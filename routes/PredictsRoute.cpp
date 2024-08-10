@@ -248,7 +248,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("id", atoi(PQgetvalue(ret, i, 6)), allocator);
             object.AddMember("season", rapidjson::StringRef(PQgetvalue(ret, i, 9)), allocator);
             object.AddMember("week", atoi(PQgetvalue(ret, i, 10)), allocator);
-            object.AddMember("date", atoll(PQgetvalue(ret, i, 11)), allocator);
+            object.AddMember("date", (double)atoll(PQgetvalue(ret, i, 11)), allocator);
             object.AddMember("team1_score", atoi(PQgetvalue(ret, i, 12)), allocator);
             object.AddMember("team2_score", atoi(PQgetvalue(ret, i, 13)), allocator);
 
@@ -395,7 +395,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("id", atoi(PQgetvalue(ret, i, 6)), allocator);
             object.AddMember("season", rapidjson::StringRef(PQgetvalue(ret, i, 9)), allocator);
             object.AddMember("week", atoi(PQgetvalue(ret, i, 10)), allocator);
-            object.AddMember("date", atoll(PQgetvalue(ret, i, 11)), allocator);
+            object.AddMember("date", (double)atoll(PQgetvalue(ret, i, 11)), allocator);
             object.AddMember("team1_score", atoi(PQgetvalue(ret, i, 12)), allocator);
             object.AddMember("team2_score", atoi(PQgetvalue(ret, i, 13)), allocator);
 
@@ -524,7 +524,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("id", atoi(PQgetvalue(ret, i, 6)), allocator);
             object.AddMember("season", rapidjson::StringRef(PQgetvalue(ret, i, 9)), allocator);
             object.AddMember("week", atoi(PQgetvalue(ret, i, 10)), allocator);
-            object.AddMember("date", atoll(PQgetvalue(ret, i, 11)), allocator);
+            object.AddMember("date", (double)atoll(PQgetvalue(ret, i, 11)), allocator);
             object.AddMember("team1_score", atoi(PQgetvalue(ret, i, 12)), allocator);
             object.AddMember("team2_score", atoi(PQgetvalue(ret, i, 13)), allocator);
 
