@@ -107,7 +107,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             matchObj.AddMember("week", week, allocator);
             matchObj.AddMember("team1", team1Obj, allocator);
             matchObj.AddMember("team2", team2Obj, allocator);
-            matchObj.AddMember("date", date, allocator);
+            matchObj.AddMember("date", (double)date, allocator);
             matchObj.AddMember("team1_score", team1Score, allocator);
             matchObj.AddMember("team2_score", team2Score, allocator);
 
