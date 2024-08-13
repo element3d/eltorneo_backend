@@ -13,6 +13,12 @@ enum class ELeague
     End = Ligue1
 };
 
+enum class ELeagueType 
+{
+    StandartLeague,
+    KnockOutLeague
+};
+
 class League
 {
 public:

@@ -14,7 +14,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetLeagues();
     std::function<void(const httplib::Request&, httplib::Response&)> GetLeague();
     std::function<void(const httplib::Request&, httplib::Response&)> PostLeague();
-
+    std::function<void(const httplib::Request&, httplib::Response&)> GetWeeks();
 
 private:
     static LeaguesRoute* sInstance;

@@ -3,6 +3,15 @@
 #include "Team.h"
 #include "../managers/PQManager.h"
 
+enum class EWeekType 
+{
+    Matchday,
+    RoundOf16,
+    QuarterFinal,
+    SemiFinal,
+    Final
+};
+
 class Match
 {
 public:
@@ -12,7 +21,8 @@ public:
     ETeam Team1;
     ETeam Team2;
     long long Date;
-};
+    EWeekType WeekType = EWeekType::Matchday;
+};  
 
 class MatchesInitializer 
 {

@@ -192,6 +192,54 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             int numWeeks = atoi(PQgetvalue(ret, i, 4));
             objValue.AddMember("num_weeks", numWeeks, allocator);
 
+            int type = atoi(PQgetvalue(ret, i, 5));
+            objValue.AddMember("type", type, allocator);
+
+            rapidjson::Value weeks;
+            weeks.SetArray();
+            if (id == (int)ELeague::ChampionsLeague)
+            {
+                int i = 1;
+                for (; i < 8; ++i)
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Matchday, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::RoundOf16, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+            }
+            objValue.AddMember("weeks", weeks, allocator);
+
             // Add the object to the document array
             document.PushBack(objValue, allocator);
         }
@@ -210,6 +258,70 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
 
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::GetWeeks()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        int id = atoi(req.get_param_value("league_id").c_str());
+
+        rapidjson::Document d;
+        rapidjson::Document::AllocatorType& allocator = d.GetAllocator();
+
+        d.SetArray();
+        if (id == (int)ELeague::ChampionsLeague) 
+        {
+            int i = 0;
+            for (; i < 8; ++i)
+            {
+                rapidjson::Value weekObject;
+                weekObject.SetObject();
+                weekObject.AddMember("week", i, allocator);
+                weekObject.AddMember("type", (int)EWeekType::Matchday, allocator);
+                d.PushBack(weekObject, allocator);
+            }
+
+            {
+                rapidjson::Value weekObject;
+                weekObject.SetObject();
+                weekObject.AddMember("week", i++, allocator);
+                weekObject.AddMember("type", (int)EWeekType::RoundOf16, allocator);
+                d.PushBack(weekObject, allocator);
+            }
+            {
+                rapidjson::Value weekObject;
+                weekObject.SetObject();
+                weekObject.AddMember("week", i++, allocator);
+                weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
+                d.PushBack(weekObject, allocator);
+            }
+            {
+                rapidjson::Value weekObject;
+                weekObject.SetObject();
+                weekObject.AddMember("week", i++, allocator);
+                weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                d.PushBack(weekObject, allocator);
+            }
+            {
+                rapidjson::Value weekObject;
+                weekObject.SetObject();
+                weekObject.AddMember("week", i++, allocator);
+                weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                d.PushBack(weekObject, allocator);
+            }
+        }
+
+        // Assuming you convert the Document to a string and send it in the response as before
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        d.Accept(writer);
+
+        // You can then use `buffer.GetString()` to get the JSON string
+        // And send it in the response as follows:
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
     };
 }
 
