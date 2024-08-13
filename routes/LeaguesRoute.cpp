@@ -34,8 +34,6 @@ void LeaguesRoute::Init()
     PQclear(ret);
     if (numLeagues > 0) 
     {
-     
-
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }
@@ -61,10 +59,14 @@ void LeaguesRoute::Init()
     MatchesInitializer::InitPremierLeagueTeams24_25(pg);
     MatchesInitializer::InitLaLigaTeams24_25(pg);
     MatchesInitializer::InitSerieATeams24_25(pg);
+    MatchesInitializer::InitBundesligaTeams24_25(pg);
+    MatchesInitializer::InitLigue1Teams24_25(pg);
 
     MatchesInitializer::InitPremierLeague24_25(pg);
     MatchesInitializer::InitLaLiga24_25(pg);
     MatchesInitializer::InitSerieA24_25(pg);
+    MatchesInitializer::InitBundesliga24_25(pg);
+    MatchesInitializer::InitLigue124_25(pg);
 
     ConnectionPool::Get()->releaseConnection(pg);
 }
