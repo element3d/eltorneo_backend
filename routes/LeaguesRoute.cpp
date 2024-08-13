@@ -387,6 +387,20 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
         document.AddMember("id", idValue, allocator);
         document.AddMember("name", nameValue, allocator);
 
+        std::string season = PQgetvalue(ret, 0, 2);
+        rapidjson::Value saesonValue;
+        saesonValue.SetString(season.c_str(), season.size(), allocator);
+        document.AddMember("season", saesonValue, allocator);
+
+        int currentWeek = atoi(PQgetvalue(ret, 0, 3));
+        document.AddMember("week", currentWeek, allocator);
+
+        int numWeeks = atoi(PQgetvalue(ret, 0, 4));
+        document.AddMember("num_weeks", numWeeks, allocator);
+
+        int type = atoi(PQgetvalue(ret, 0, 5));
+        document.AddMember("type", type, allocator);
+
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         document.Accept(writer);
