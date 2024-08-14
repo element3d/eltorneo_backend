@@ -141,7 +141,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::BorussiaDortmund:
         return "Borussia Dortmund";
     case ETeam::BorussiaMgladbach:
-        return "Borussia M'gladbach";
+        return "Borussia Mgladbach";
     case ETeam::EintrachtFrankfurt:
         return "Eintracht Frankfurt";
     case ETeam::Freiburg:
@@ -349,9 +349,9 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Bochum:
         return "Bochum";
     case ETeam::BorussiaDortmund:
-        return "Borussia Dortmund";
+        return "Borussia D.";
     case ETeam::BorussiaMgladbach:
-        return "Borussia M'gladbach";
+        return "Borussia M.";
     case ETeam::EintrachtFrankfurt:
         return "Eintracht Frankfurt";
     case ETeam::Freiburg:
