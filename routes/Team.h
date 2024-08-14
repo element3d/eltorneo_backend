@@ -114,7 +114,7 @@ enum class ETeam
     SaintEtienne,
     Strasbourg,
     Toulouse,
-    Ligue1End = Wolfsburg
+    Ligue1End = Toulouse
 
 };
 
