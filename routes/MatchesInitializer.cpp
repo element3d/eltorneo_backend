@@ -105,7 +105,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::Ligue1, "24/25", 1, ETeam::LaHavre, ETeam::PSG, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 1, ETeam::LeHavre, ETeam::PSG, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 1, ETeam::Brest, ETeam::Marseille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 1, ETeam::Reims, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 1, ETeam::Monaco, ETeam::SaintEtienne, 1722985200000 });
@@ -119,7 +119,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::PSG, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::Strasbourg, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::Nantes, ETeam::Auxerre, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::SaintEtienne, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::SaintEtienne, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::Lille, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::Nice, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 2, ETeam::Lens, ETeam::Brest, 1722985200000 });
@@ -133,7 +133,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::Montpellier, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::Angers, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::Monaco, ETeam::Lens, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::LaHavre, ETeam::Auxerre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::LeHavre, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::Reims, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 3, ETeam::Toulouse, ETeam::Marseille, 1722985200000 });
 
@@ -142,7 +142,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Rennes, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Lens, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Nantes, ETeam::Reims, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Toulouse, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Toulouse, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Strasbourg, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::SaintEtienne, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 4, ETeam::Marseille, ETeam::Nice, 1722985200000 });
@@ -157,7 +157,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 5, ETeam::Montpellier, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 5, ETeam::Lille, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 5, ETeam::Rennes, ETeam::Lens, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 5, ETeam::Monaco, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 5, ETeam::Monaco, ETeam::LeHavre, 1722985200000 });
 
     // Week 6
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Strasbourg, ETeam::Marseille, 1722985200000 });
@@ -165,7 +165,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Auxerre, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Lens, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Nantes, ETeam::SaintEtienne, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::LaHavre, ETeam::Lille, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::LeHavre, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Toulouse, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Monaco, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 6, ETeam::Angers, ETeam::Reims, 1722985200000 });
@@ -175,7 +175,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Nice, ETeam::PSG, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Lille, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::SaintEtienne, ETeam::Auxerre, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Brest, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Brest, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Marseille, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Rennes, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 7, ETeam::Strasbourg, ETeam::Lens, 1722985200000 });
@@ -184,7 +184,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     // Week 8
     matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::Auxerre, ETeam::Reims, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::Toulouse, ETeam::Angers, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::LaHavre, ETeam::Lyon, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::LeHavre, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::Nantes, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::Montpellier, ETeam::Marseille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 8, ETeam::Monaco, ETeam::Lille, 1722985200000 });
@@ -199,7 +199,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Lyon, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Montpellier, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Strasbourg, ETeam::Nantes, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Rennes, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Rennes, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Angers, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 9, ETeam::Reims, ETeam::Brest, 1722985200000 });
 
@@ -207,7 +207,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::Auxerre, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::Toulouse, ETeam::Reims, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::Monaco, ETeam::Angers, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::LaHavre, ETeam::Montpellier, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::LeHavre, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::Nantes, ETeam::Marseille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::Lille, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 10, ETeam::SaintEtienne, ETeam::Strasbourg, 1722985200000 });
@@ -218,7 +218,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Marseille, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Lyon, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Montpellier, ETeam::Brest, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::LaHavre, ETeam::Reims, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::LeHavre, ETeam::Reims, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Strasbourg, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Lens, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 11, ETeam::Rennes, ETeam::Toulouse, 1722985200000 });
@@ -231,7 +231,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Nice, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::SaintEtienne, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Lille, ETeam::Rennes, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Nantes, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Nantes, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Monaco, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Auxerre, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 12, ETeam::Reims, ETeam::Lyon, 1722985200000 });
@@ -239,7 +239,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     // Week 13
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Reims, ETeam::Lens, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Rennes, ETeam::SaintEtienne, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::LaHavre, ETeam::Angers, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::LeHavre, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Toulouse, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Brest, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Montpellier, ETeam::Lille, 1722985200000 });
@@ -248,7 +248,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 13, ETeam::Lyon, ETeam::Nice, 1722985200000 });
 
     // Week 14
-    matches.push_back({ ELeague::Ligue1, "24/25", 14, ETeam::Nice, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 14, ETeam::Nice, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 14, ETeam::Auxerre, ETeam::PSG, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 14, ETeam::SaintEtienne, ETeam::Marseille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 14, ETeam::Angers, ETeam::Lyon, 1722985200000 });
@@ -260,7 +260,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
 
     // Week 15
     matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::Rennes, ETeam::Angers, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::LaHavre, ETeam::Strasbourg, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::LeHavre, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::Reims, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::Auxerre, ETeam::Lens, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 15, ETeam::Toulouse, ETeam::SaintEtienne, 1722985200000 });
@@ -276,7 +276,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::SaintEtienne, ETeam::Reims, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Angers, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Lille, ETeam::Nantes, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Marseille, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Marseille, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Strasbourg, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 16, ETeam::Nice, ETeam::Rennes, 1722985200000 });
 
@@ -285,7 +285,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::Nantes, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::Auxerre, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::Reims, ETeam::Nice, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::LaHavre, ETeam::Lens, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::LeHavre, ETeam::Lens, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::Montpellier, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::Brest, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 17, ETeam::PSG, ETeam::SaintEtienne, 1722985200000 });
@@ -298,7 +298,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Lyon, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::SaintEtienne, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Montpellier, ETeam::Monaco, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Reims, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Reims, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Angers, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 18, ETeam::Rennes, ETeam::Brest, 1722985200000 });
 
@@ -307,7 +307,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::Nantes, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::Monaco, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::Toulouse, ETeam::Montpellier, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::LaHavre, ETeam::Brest, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::LeHavre, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::Auxerre, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::Lens, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 19, ETeam::PSG, ETeam::Reims, 1722985200000 });
@@ -319,7 +319,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Montpellier, ETeam::Lens, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Lille, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Reims, ETeam::Nantes, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Angers, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Angers, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Toulouse, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Rennes, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 20, ETeam::Monaco, ETeam::Auxerre, 1722985200000 });
@@ -328,7 +328,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Auxerre, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Nantes, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Strasbourg, ETeam::Montpellier, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Lille, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Lille, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::SaintEtienne, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::PSG, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 21, ETeam::Lyon, ETeam::Reims, 1722985200000 });
@@ -343,12 +343,12 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::Brest, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::Rennes, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::Reims, ETeam::Angers, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::LaHavre, ETeam::Nice, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::LeHavre, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 22, ETeam::Monaco, ETeam::Nantes, 1722985200000 });
 
     // Week 23
     matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::Rennes, ETeam::Reims, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::LaHavre, ETeam::Toulouse, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::LeHavre, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::Lille, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::Strasbourg, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 23, ETeam::Nantes, ETeam::Lens, 1722985200000 });
@@ -363,13 +363,13 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Lyon, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Montpellier, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::SaintEtienne, ETeam::Nice, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Lens, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Lens, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Auxerre, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Monaco, ETeam::Reims, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 24, ETeam::Angers, ETeam::Toulouse, 1722985200000 });
 
     // Week 25
-    matches.push_back({ ELeague::Ligue1, "24/25", 25, ETeam::LaHavre, ETeam::SaintEtienne, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 25, ETeam::LeHavre, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 25, ETeam::Reims, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 25, ETeam::Nantes, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 25, ETeam::Toulouse, ETeam::Monaco, 1722985200000 });
@@ -384,7 +384,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Nice, ETeam::Auxerre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Montpellier, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Brest, ETeam::Reims, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Lyon, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Lyon, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Lens, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Strasbourg, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 26, ETeam::Nantes, ETeam::Lille, 1722985200000 });
@@ -393,7 +393,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     // Week 27
     matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::Angers, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::Auxerre, ETeam::Montpellier, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::LaHavre, ETeam::Nantes, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::LeHavre, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::Strasbourg, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::Toulouse, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 27, ETeam::SaintEtienne, ETeam::PSG, 1722985200000 });
@@ -405,7 +405,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Marseille, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Nice, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Brest, ETeam::Monaco, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Montpellier, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Montpellier, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Lyon, ETeam::Lille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::Lens, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 28, ETeam::PSG, ETeam::Angers, 1722985200000 });
@@ -414,7 +414,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
 
     // Week 29
     matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::Toulouse, ETeam::Lille, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::LaHavre, ETeam::Rennes, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::LeHavre, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::Auxerre, ETeam::Lyon, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::Nantes, ETeam::PSG, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 29, ETeam::Strasbourg, ETeam::Nice, 1722985200000 });
@@ -428,14 +428,14 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Nice, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Brest, ETeam::Lens, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Lille, ETeam::Auxerre, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::PSG, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::PSG, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Marseille, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Reims, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Monaco, ETeam::Strasbourg, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 30, ETeam::Rennes, ETeam::Nantes, 1722985200000 });
 
     // Week 31
-    matches.push_back({ ELeague::Ligue1, "24/25", 31, ETeam::LaHavre, ETeam::Monaco, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 31, ETeam::LeHavre, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 31, ETeam::Strasbourg, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 31, ETeam::Nantes, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 31, ETeam::Montpellier, ETeam::Reims, 1722985200000 });
@@ -454,13 +454,13 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 32, ETeam::Nantes, ETeam::Angers, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 32, ETeam::Toulouse, ETeam::Rennes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 32, ETeam::Strasbourg, ETeam::PSG, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 32, ETeam::Auxerre, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 32, ETeam::Auxerre, ETeam::LeHavre, 1722985200000 });
 
     // Week 33
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Reims, ETeam::SaintEtienne, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Auxerre, ETeam::Nantes, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Angers, ETeam::Strasbourg, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::LaHavre, ETeam::Marseille, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::LeHavre, ETeam::Marseille, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Rennes, ETeam::Nice, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Montpellier, ETeam::PSG, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 33, ETeam::Toulouse, ETeam::Lens, 1722985200000 });
@@ -473,7 +473,7 @@ void MatchesInitializer::InitLigue124_25(PGconn* pg)
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Nice, ETeam::Brest, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::SaintEtienne, ETeam::Toulouse, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Lille, ETeam::Reims, 1722985200000 });
-    matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Strasbourg, ETeam::LaHavre, 1722985200000 });
+    matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Strasbourg, ETeam::LeHavre, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Nantes, ETeam::Montpellier, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::Lens, ETeam::Monaco, 1722985200000 });
     matches.push_back({ ELeague::Ligue1, "24/25", 34, ETeam::PSG, ETeam::Auxerre, 1722985200000 });

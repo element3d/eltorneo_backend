@@ -99,7 +99,7 @@ enum class ETeam
     Angers = Ligue1Start,
     Auxerre,
     Brest,
-    LaHavre,
+    LeHavre,
     Lens,
     Lille,
     Lyon,
