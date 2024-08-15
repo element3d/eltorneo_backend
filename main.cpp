@@ -145,6 +145,7 @@ int main(void)
     svr.Get("/api/v1/league", LeaguesRoute::Get()->GetLeague());
     svr.Post("/api/v1/leagues", LeaguesRoute::Get()->PostLeague());
     svr.Get("/api/v1/weeks", LeaguesRoute::Get()->GetWeeks());
+    svr.Post("/api/v1/league/week", LeaguesRoute::Get()->SetCurrentWeek());
 
     svr.Get("/api/v1/teams", TeamsRoute::Get()->GetTeams());
     svr.Post("/api/v1/teams", TeamsRoute::Get()->PostTeam());
@@ -196,5 +197,5 @@ int main(void)
     auto ret = svr.set_mount_point("/assets", "./assets");
 	ret = svr.set_mount_point("/data", "./data");
 
-    svr.listen("192.168.27.3", 1234);
+    svr.listen("192.168.18.234", 1234);
 }

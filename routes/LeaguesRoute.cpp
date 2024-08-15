@@ -34,6 +34,8 @@ void LeaguesRoute::Init()
     PQclear(ret);
     if (numLeagues > 0) 
     {
+       
+
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }
@@ -324,6 +326,35 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
         // And send it in the response as follows:
         res.set_content(buffer.GetString(), "application/json");
         res.status = 200;  // OK
+    };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::SetCurrentWeek()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        int id = atoi(req.get_param_value("league_id").c_str());
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+        int week = document["week"].GetInt();
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "UPDATE leagues SET current_week = " + std::to_string(week) + " where id = " + std::to_string(id) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to set current week: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        PQclear(ret);
+        res.status = 200; 
+        ConnectionPool::Get()->releaseConnection(pg);
     };
 }
 

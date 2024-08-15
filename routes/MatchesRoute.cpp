@@ -572,6 +572,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
         }
         PQclear(ret);
 
+        if (team1 >= 0 && team2 >= 0)
         {
             sql = "select * from predicts where match_id = " + matchId + ";";
             ret = PQexec(pg, sql.c_str());
@@ -632,9 +633,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
                     PQclear(updateRet);
                 }
             }
+            PQclear(ret);
         }
 
-        PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
         res.status = 201; // Created
     };
