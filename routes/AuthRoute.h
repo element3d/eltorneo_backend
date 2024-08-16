@@ -20,9 +20,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUser();
     std::function<void(const httplib::Request&, httplib::Response&)> MeUploadAvatar();
     std::function<void(const httplib::Request&, httplib::Response&)> MeDeleteAvatar();
-
-
-
+    std::function<void(const httplib::Request&, httplib::Response&)> MeSetName();
 
 private:
     static AuthRoute* sInstance;

@@ -134,6 +134,8 @@ int main(void)
     svr.Get("/api/v1/me", AuthRoute::Get()->Me());
     svr.Get("/api/v1/user", AuthRoute::Get()->GetUser());
     svr.Put("/api/v1/me/avatar", AuthRoute::Get()->MeUploadAvatar());
+    svr.Put("/api/v1/me/name", AuthRoute::Get()->MeSetName());
+
     svr.Delete("/api/v1/me/avatar", AuthRoute::Get()->MeDeleteAvatar());
     svr.Get("/api/v1/user/stats", AuthRoute::Get()->GetStats());
     svr.Post("/api/v1/signin/googlemail", AuthRoute::Get()->SignInGoogleWithEmail());

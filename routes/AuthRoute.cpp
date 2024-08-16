@@ -289,6 +289,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
             int points = atoi(PQgetvalue(ret, i, 3));
             document.AddMember("points", points, allocator);
+
+            strcpy(temp, PQgetvalue(ret, i, 4));
+            std::string email = temp;
+            v.SetString(email.c_str(), email.size(), allocator);
+            document.AddMember("email", v, allocator);
         }
 
         free(temp);
@@ -536,6 +541,43 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeUp
         res.status = 200;
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeSetName()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int uid = decoded.get_payload_claim("id").as_int();
+        std::string userId = std::to_string(uid);
+
+        std::string name = document["name"].GetString();
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        std::string sql = "UPDATE users SET name = " + userId + " WHERE id = " + userId + ";";
+        PGresult* pgres = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pgres) != PGRES_COMMAND_OK)
+        {
+            char* err = PQerrorMessage(pg);
+            fprintf(stderr, "Error: Failed to set user name: %s", PQerrorMessage(pg));
+            PQclear(pgres);
+
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+        PQclear(pgres);
+
+        ConnectionPool::Get()->releaseConnection(pg);      
+        res.status = 200;
+    };
+}
+
 
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDeleteAvatar()
 {
