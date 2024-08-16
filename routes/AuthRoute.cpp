@@ -253,7 +253,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         auto decoded = jwt::decode(token);
         int userId = decoded.get_payload_claim("id").as_int();
 
-        std::string sql = "SELECT id, name, avatar, points FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
