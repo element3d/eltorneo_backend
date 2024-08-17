@@ -559,7 +559,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeSe
         std::string name = document["name"].GetString();
         PGconn* pg = ConnectionPool::Get()->getConnection();
 
-        std::string sql = "UPDATE users SET name = " + userId + " WHERE id = " + userId + ";";
+        std::string sql = "UPDATE users SET name = " + name + " WHERE id = " + userId + ";";
         PGresult* pgres = PQexec(pg, sql.c_str());
         if (PQresultStatus(pgres) != PGRES_COMMAND_OK)
         {
