@@ -343,9 +343,9 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Augsburg:
         return "Augsburg";
     case ETeam::BayerLeverkusen:
-        return "Bayer Leverkusen";
+        return "Bayer Lev.";
     case ETeam::BayernMunich:
-        return "Bayern Munich";
+        return "Bayern Mun.";
     case ETeam::Bochum:
         return "Bochum";
     case ETeam::BorussiaDortmund:
@@ -353,7 +353,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::BorussiaMgladbach:
         return "Borussia M.";
     case ETeam::EintrachtFrankfurt:
-        return "Eintracht Frankfurt";
+        return "Eintracht F.";
     case ETeam::Freiburg:
         return "Freiburg";
     case ETeam::Heidenheim:
@@ -373,7 +373,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::UnionBerlin:
         return "Union Berlin";
     case ETeam::WerderBremen:
-        return "Werder Bremen";
+        return "Werder";
     case ETeam::Wolfsburg:
         return "Wolfsburg";
 
