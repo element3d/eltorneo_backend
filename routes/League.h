@@ -19,6 +19,12 @@ enum class ELeagueType
     KnockOutLeague
 };
 
+enum class ELeagueStatus 
+{
+    NotReady,
+    Ready
+};
+
 class League
 {
 public:

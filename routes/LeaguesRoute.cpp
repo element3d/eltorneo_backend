@@ -147,7 +147,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
 
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        const char* sql = "SELECT * FROM leagues order by id asc;";
+        const char* sql = "SELECT * FROM leagues where status = 1 order by id asc;";
         PGresult* ret = PQexec(pg, sql);
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)

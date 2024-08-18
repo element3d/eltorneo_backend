@@ -578,6 +578,52 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeSe
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDelete()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int uid = decoded.get_payload_claim("id").as_int();
+        std::string userId = std::to_string(uid);
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        std::string sql = "DELETE FROM users WHERE id = " + userId + ";";
+        PGresult* pgres = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pgres) != PGRES_COMMAND_OK)
+        {
+            char* err = PQerrorMessage(pg);
+            fprintf(stderr, "Error: Failed to delete user: %s", PQerrorMessage(pg));
+            PQclear(pgres);
+
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+        PQclear(pgres);
+
+        sql = "DELETE FROM predicts WHERE user_id = " + userId + ";";
+        pgres = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pgres) != PGRES_COMMAND_OK)
+        {
+            char* err = PQerrorMessage(pg);
+            fprintf(stderr, "Error: Failed to delete user: %s", PQerrorMessage(pg));
+            PQclear(pgres);
+
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+        PQclear(pgres);
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        res.status = 200;
+    };
+}
 
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDeleteAvatar()
 {
