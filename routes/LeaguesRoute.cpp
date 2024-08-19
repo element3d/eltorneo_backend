@@ -118,6 +118,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             objValue.AddMember("version", versionValue, allocator);
             objValue.AddMember("enableAds", atoi(PQgetvalue(ret, i, 2)), allocator);
             objValue.AddMember("numMinAdActions", atoi(PQgetvalue(ret, i, 3)), allocator);
+            objValue.AddMember("prodAds", atoi(PQgetvalue(ret, i, 4)), allocator);
 
             // Add the object to the document array
             document.PushBack(objValue, allocator);
