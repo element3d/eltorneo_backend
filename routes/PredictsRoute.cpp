@@ -772,7 +772,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetMatchPredictsTop3()
 {
-    return [](const httplib::Request& req, httplib::Response& res) {
+    return [this](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");
@@ -802,6 +802,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
 
+        if (!mCachedTable.size()) CacheTable();
         for (int i = 0; i < nrows; ++i)
         {
             rapidjson::Value object;
@@ -828,7 +829,18 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             nameVal.SetString(userAvatar.c_str(), allocator);
             userObject.AddMember("avatar", nameVal, allocator);
             userObject.AddMember("points", points, allocator);
-            userObject.AddMember("position", i + 1, allocator);  // Add position based on loop index
+
+            int pos = -1;
+            auto it = std::find(mCachedTable.begin(), mCachedTable.end(), userId);
+
+            if (it != mCachedTable.end()) 
+            {
+                // If the element is found, calculate the index
+                int index = std::distance(mCachedTable.begin(), it);
+                pos = index + 1;
+            }
+
+            userObject.AddMember("position", pos, allocator);  // Add position based on loop index
 
             object.AddMember("id", id, allocator);
             object.AddMember("user", userObject, allocator);
@@ -854,9 +866,37 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     };
 }
 
+void PredictsRoute::CacheTable()
+{
+    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions "
+        "FROM users u "
+        "LEFT JOIN predicts p ON u.id = p.user_id "
+        "GROUP BY u.id, u.name, u.avatar, u.points "
+        "ORDER BY u.points DESC "
+        "LIMIT 20;";
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    PGresult* ret = PQexec(pg, sql.c_str());
+
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return;
+    }
+
+    int nrows = PQntuples(ret);
+    mCachedTable.clear();
+    for (int i = 0; i < nrows; ++i) 
+    {
+        mCachedTable.push_back(atoi(PQgetvalue(ret, i, 0)));
+    }
+    PQclear(ret);
+    ConnectionPool::Get()->releaseConnection(pg);
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetTableByPoints()
 {
-    return [](const httplib::Request& req, httplib::Response& res) {
+    return [this](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -886,7 +926,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-
+        mCachedTable.clear();
         for (int i = 0; i < nrows; ++i) {
             rapidjson::Value object(rapidjson::kObjectType);
             object.AddMember("id", atoi(PQgetvalue(ret, i, 0)), allocator);
@@ -896,6 +936,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 4)), allocator);  // Include the count of predictions
 
             document.PushBack(object, allocator);
+            mCachedTable.push_back(atoi(PQgetvalue(ret, i, 0)));
         }
 
         rapidjson::StringBuffer buffer;
