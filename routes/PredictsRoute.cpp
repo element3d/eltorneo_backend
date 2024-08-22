@@ -868,12 +868,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
 void PredictsRoute::CacheTable()
 {
-    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions "
-        "FROM users u "
-        "LEFT JOIN predicts p ON u.id = p.user_id "
-        "GROUP BY u.id, u.name, u.avatar, u.points "
-        "ORDER BY u.points DESC "
-        "LIMIT 20;";
+    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions ASC LIMIT 20;";
+
     PGconn* pg = ConnectionPool::Get()->getConnection();
     PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -906,12 +902,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         // Updated SQL query to join users with predicts and count the total number of predictions per user
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions "
-            "FROM users u "
-            "LEFT JOIN predicts p ON u.id = p.user_id "
-            "GROUP BY u.id, u.name, u.avatar, u.points "
-            "ORDER BY u.points DESC "
-            "LIMIT 20;";
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions ASC LIMIT 20;";
+
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
