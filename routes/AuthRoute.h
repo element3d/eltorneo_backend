@@ -22,6 +22,8 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> MeUploadAvatar();
     std::function<void(const httplib::Request&, httplib::Response&)> MeDeleteAvatar();
     std::function<void(const httplib::Request&, httplib::Response&)> MeSetName();
+    std::function<void(const httplib::Request&, httplib::Response&)> MeAddFcmToken();
+    std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotification();
 
 private:
     static AuthRoute* sInstance;

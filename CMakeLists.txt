@@ -11,7 +11,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-#add_subdirectory(third_party/cpr)
+add_subdirectory(third_party/cpr)
 #add_subdirectory(third_party/firebase-cpp-sdk)
 add_subdirectory(libwebp)
 #find_package(WebP)
@@ -89,7 +89,7 @@ target_link_libraries(GodOfScore
      # libcrypto
        # libssl
 #	libpq
-#  cpr::cpr
+  cpr::cpr
 	#pthread
 	"C:\\Program Files\\PostgreSQL\\15\\lib\\libpq.lib"
 	${LIBS_DIR}/openssl/lib/x64/libssl.lib

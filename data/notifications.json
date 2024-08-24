@@ -1,0 +1,34 @@
+{
+    "en": {
+      "week_started_title": "Football Week Has Begun",
+      "week_started_msg": "Make sure to submit your predictions for the upcoming matches!"
+    },
+    "ru": {
+      "week_started_title": "Футбольная неделя началась",
+      "week_started_msg": "Не забудьте сделать прогнозы на предстоящие матчи!"
+    },
+    "es": {
+      "week_started_title": "La semana de fútbol ha comenzado",
+      "week_started_msg": "¡Asegúrate de enviar tus predicciones para los próximos partidos!"
+    },
+    "it": {
+      "week_started_title": "La settimana del calcio è iniziata",
+      "week_started_msg": "Assicurati di inviare le tue previsioni per le prossime partite!"
+    },
+    "de": {
+      "week_started_title": "Die Fußballwoche hat begonnen",
+      "week_started_msg": "Stelle sicher, dass du deine Vorhersagen für die kommenden Spiele abgibst!"
+    },
+    "hr": {
+      "week_started_title": "Nogometni tjedan je počeo",
+      "week_started_msg": "Obavezno pošaljite svoje prognoze za nadolazeće utakmice!"
+    },
+    "fr": {
+      "week_started_title": "La semaine de football a commencé",
+      "week_started_msg": "Assurez-vous de soumettre vos prévisions pour les prochains matchs !"
+    },
+    "pt": {
+      "week_started_title": "A semana do futebol começou",
+      "week_started_msg": "Certifique-se de enviar suas previsões para os próximos jogos!"
+    }
+}

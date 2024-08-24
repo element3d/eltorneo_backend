@@ -20,6 +20,7 @@
 #include "routes/MatchesRoute.h"
 #include "routes/AuthRoute.h"
 #include "routes/PredictsRoute.h"
+#include <cpr/cpr.h>
 
 using namespace httplib;
 using namespace std;
@@ -136,6 +137,9 @@ int main(void)
     svr.Put("/api/v1/me/avatar", AuthRoute::Get()->MeUploadAvatar());
     svr.Put("/api/v1/me/name", AuthRoute::Get()->MeSetName());
     svr.Delete("/api/v1/me", AuthRoute::Get()->MeDelete());
+    svr.Post("/api/v1/me/fcm_token", AuthRoute::Get()->MeAddFcmToken());
+
+    svr.Post("/api/v1/user/notification", AuthRoute::Get()->UserSendNotification());
 
     svr.Delete("/api/v1/me/avatar", AuthRoute::Get()->MeDeleteAvatar());
     svr.Get("/api/v1/user/stats", AuthRoute::Get()->GetStats());
@@ -200,5 +204,5 @@ int main(void)
     auto ret = svr.set_mount_point("/assets", "./assets");
 	ret = svr.set_mount_point("/data", "./data");
 
-    svr.listen("192.168.18.234", 1234);
+    svr.listen("192.168.27.3", 1234);
 }

@@ -622,7 +622,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
                 }
 
                 {
-                    sql = "update users set points = points + " + std::to_string(points) + " where id = " + std::to_string(userId) + ";";
+                    sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
                     PGresult* updateRet = PQexec(pg, sql.c_str());
                     PQclear(updateRet);
                 }
