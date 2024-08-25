@@ -381,19 +381,27 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetS
         res.set_header("Access-Control-Allow-Methods", "*");
         res.set_header("Access-Control-Allow-Headers", "*");
 
-        std::string token = req.get_header_value("Authentication");
-        auto decoded = jwt::decode(token);
-        int userId = decoded.get_payload_claim("id").as_int();
+        auto userId = req.get_param_value("user_id");
+        auto leagueId = req.get_param_value("league_id");
 
-        // SQL query to fetch points from users table and aggregated prediction stats excluding pending predictions
+        // Start constructing the SQL query
         std::string sql = "SELECT u.points, "
-            "COUNT(p.status) AS total_predictions, " // Total predictions excluding pending
-            "COUNT(CASE WHEN p.status = 1 THEN 1 END) AS winner_predicted, " // Winner predicted
-            "COUNT(CASE WHEN p.status = 2 THEN 1 END) AS score_predicted, " // Score predicted
-            "COUNT(CASE WHEN p.status = 3 THEN 1 END) AS failed " // Failed predictions
-            "FROM users u LEFT JOIN predicts p ON p.user_id = u.id "
-            "WHERE u.id = " + std::to_string(userId) + " AND p.status <> 0 "
-            "GROUP BY u.points;";
+            "COUNT(p.status) AS total_predictions, "
+            "COUNT(CASE WHEN p.status = 1 OR p.status = 2 THEN 1 END) AS winner_predicted, "
+            "COUNT(CASE WHEN p.status = 2 THEN 1 END) AS score_predicted, "
+            "COUNT(CASE WHEN p.status = 3 THEN 1 END) AS failed "
+            "FROM users u "
+            "LEFT JOIN predicts p ON p.user_id = u.id "
+            "LEFT JOIN matches m ON p.match_id = m.id "
+            "WHERE u.id = " + (userId);
+
+        // If leagueId is provided and is not -1, add it to the query
+        if (!leagueId.empty() && leagueId != "-1") {
+            sql += " AND m.league = " + leagueId;
+        }
+
+        // Finish the query with the GROUP BY clause
+        sql += " GROUP BY u.points;";
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
