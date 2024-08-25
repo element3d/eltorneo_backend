@@ -1,5 +1,6 @@
 #include "MatchesInitializer.h"
 #include <vector>
+#include <unordered_map>
 
 void MatchesInitializer::InitPremierLeagueTeams24_25(PGconn* pg)
 {
@@ -21,6 +22,104 @@ void MatchesInitializer::InitPremierLeagueTeams24_25(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitPremierLeagueTable(PGconn* pg)
+{
+    std::string sql = "create table tables(id serial primary key not null, team_id integer not null, league_id integer not null, season text not null, matches_played integer not null default 0, goals_f integer not null default 0, goals_a integer not null default 0, points integer not null default 0);";
+    PGresult* ret = PQexec(pg, sql.c_str());
+    PQclear(ret);
+
+    for (int i = (int)ETeam::PremierLeagueStart; i <= (int)ETeam::PremierLeagueEnd; ++i)
+    {
+        sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(i) + ", "
+            + std::to_string(int(ELeague::PremierLeague)) + " ,'"
+            + "24/25" 
+            + "');";
+        ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void FillLeagueTable(PGconn* pg, int league)
+{
+    std::string sql = "select team1, team2, team1_score, team2_score from matches where league = " + std::to_string(league) + ";";
+    PGresult* ret = PQexec(pg, sql.c_str());
+
+    int nrows = PQntuples(ret);
+
+    // Create a map to store the table data temporarily
+    std::unordered_map<int, std::tuple<int, int, int, int, int>> tableData;
+
+    for (int i = 0; i < nrows; ++i)
+    {
+        int team1 = atoi(PQgetvalue(ret, i, 0));
+        int team2 = atoi(PQgetvalue(ret, i, 1));
+        int team1Score = atoi(PQgetvalue(ret, i, 2));
+        int team2Score = atoi(PQgetvalue(ret, i, 3));
+
+        if (team1Score < 0 || team2Score < 0) continue;
+
+        // Initialize or update team1's data
+        if (tableData.find(team1) == tableData.end())
+            tableData[team1] = std::make_tuple(0, 0, 0, 0, 0);
+
+        auto& team1Data = tableData[team1];
+        std::get<0>(team1Data)++; // matches_played
+        std::get<1>(team1Data) += team1Score; // goals_f
+        std::get<2>(team1Data) += team2Score; // goals_a
+
+        // Initialize or update team2's data
+        if (tableData.find(team2) == tableData.end())
+            tableData[team2] = std::make_tuple(0, 0, 0, 0, 0);
+
+        auto& team2Data = tableData[team2];
+        std::get<0>(team2Data)++; // matches_played
+        std::get<1>(team2Data) += team2Score; // goals_f
+        std::get<2>(team2Data) += team1Score; // goals_a
+
+        // Determine points for both teams
+        if (team1Score > team2Score)
+        {
+            std::get<4>(team1Data) += 3; // 3 points for a win
+        }
+        else if (team1Score < team2Score)
+        {
+            std::get<4>(team2Data) += 3; // 3 points for a win
+        }
+        else
+        {
+            std::get<4>(team1Data) += 1; // 1 point for a draw
+            std::get<4>(team2Data) += 1; // 1 point for a draw
+        }
+    }
+
+    // Update the database
+    for (const auto& entry : tableData)
+    {
+        int teamId = entry.first;
+        int matchesPlayed = std::get<0>(entry.second);
+        int goalsF = std::get<1>(entry.second);
+        int goalsA = std::get<2>(entry.second);
+        int points = std::get<4>(entry.second);
+
+        sql = "update tables set matches_played = matches_played + " + std::to_string(matchesPlayed) +
+            ", goals_f = goals_f + " + std::to_string(goalsF) +
+            ", goals_a = goals_a + " + std::to_string(goalsA) +
+            ", points = points + " + std::to_string(points) +
+            " where team_id = " + std::to_string(teamId) +
+            " and league_id = " + std::to_string(league) + ";";
+        PQexec(pg, sql.c_str());
+    }
+
+    PQclear(ret);
+}
+
+void MatchesInitializer::FillPremierLeagueTable(PGconn* pg)
+{
+    FillLeagueTable(pg, int(ELeague::PremierLeague));
+}
+
+
 void MatchesInitializer::InitLaLigaTeams24_25(PGconn* pg)
 {
     for (int i = (int)ETeam::LaLigaStart; i <= (int)ETeam::LaLigaEnd; ++i)
@@ -39,6 +138,25 @@ void MatchesInitializer::InitLaLigaTeams24_25(PGconn* pg)
         ret = PQexec(pg, sql.c_str());
         PQclear(ret);
     }
+}
+
+void MatchesInitializer::InitLaLigaTable(PGconn* pg)
+{
+    for (int i = (int)ETeam::LaLigaStart; i <= (int)ETeam::LaLigaEnd; ++i)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(i) + ", "
+            + std::to_string(int(ELeague::LaLiga)) + " ,'"
+            + "24/25"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::FillLaLigaTable(PGconn* pg)
+{
+    FillLeagueTable(pg, int(ELeague::LaLiga));
 }
 
 void MatchesInitializer::InitSerieATeams24_25(PGconn* pg)
@@ -61,6 +179,25 @@ void MatchesInitializer::InitSerieATeams24_25(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitSeriaATable(PGconn* pg) 
+{
+    for (int i = (int)ETeam::SerieAStart; i <= (int)ETeam::SerieAEnd; ++i)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(i) + ", "
+            + std::to_string(int(ELeague::SerieA)) + " ,'"
+            + "24/25"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::FillSeriaATable(PGconn* pg) 
+{
+    FillLeagueTable(pg, int(ELeague::SerieA));
+}
+
 void MatchesInitializer::InitBundesligaTeams24_25(PGconn* pg)
 {
     for (int i = (int)ETeam::BundesligaStart; i <= (int)ETeam::BundesligaEnd; ++i)
@@ -81,6 +218,26 @@ void MatchesInitializer::InitBundesligaTeams24_25(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitBundesligaTable(PGconn* pg)
+{
+    for (int i = (int)ETeam::BundesligaStart; i <= (int)ETeam::BundesligaEnd; ++i)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(i) + ", "
+            + std::to_string(int(ELeague::Bundesliga)) + " ,'"
+            + "24/25"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::FillBundesligaTable(PGconn* pg) 
+{
+    FillLeagueTable(pg, int(ELeague::Bundesliga));
+}
+
+
 void MatchesInitializer::InitLigue1Teams24_25(PGconn* pg)
 {
     for (int i = (int)ETeam::Ligue1Start; i <= (int)ETeam::Ligue1End; ++i)
@@ -99,6 +256,25 @@ void MatchesInitializer::InitLigue1Teams24_25(PGconn* pg)
         ret = PQexec(pg, sql.c_str());
         PQclear(ret);
     }
+}
+
+void MatchesInitializer::InitLigue1Table(PGconn* pg)
+{
+    for (int i = (int)ETeam::Ligue1Start; i <= (int)ETeam::Ligue1End; ++i)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(i) + ", "
+            + std::to_string(int(ELeague::Ligue1)) + " ,'"
+            + "24/25"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::FillLigue1Table(PGconn* pg)
+{
+    FillLeagueTable(pg, int(ELeague::Ligue1));
 }
 
 void MatchesInitializer::InitLigue124_25(PGconn* pg)

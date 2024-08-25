@@ -546,25 +546,43 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
 
         rapidjson::Document document;
         document.Parse(req.body.c_str());
-        
-        int team1 = document["team1_score"].GetInt();
-        int team2 = document["team2_score"].GetInt();
-        long long date = document["date"].GetDouble();
 
+        int team1Score = document["team1_score"].GetInt();
+        int team2Score = document["team2_score"].GetInt();
+        long long date = document["date"].GetDouble();
 
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "update matches set team1_score = "
-            + std::to_string(team1) + ", "
-            + "team2_score = " + std::to_string(team2) + ", "
-            + "match_date = " + std::to_string(date) +
-            +" where id = " + (matchId) + ";";
 
-        // Execute the insert and capture the team ID
+        // Get team IDs from the match record
+        std::string sql = "SELECT team1, team2, league, season FROM matches WHERE id = " + matchId + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK || PQntuples(ret) == 0)
+        {
+            fprintf(stderr, "Failed to get match: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500; // Internal Server Error
+            return;
+        }
+
+        int team1 = atoi(PQgetvalue(ret, 0, 0));
+        int team2 = atoi(PQgetvalue(ret, 0, 1));
+        int league = atoi(PQgetvalue(ret, 0, 2));
+        std::string season = PQgetvalue(ret, 0, 3);
+
+        PQclear(ret);
+
+        // Update the match record in the database
+        sql = "UPDATE matches SET team1_score = " + std::to_string(team1Score) + ", "
+            + "team2_score = " + std::to_string(team2Score) + ", "
+            + "match_date = " + std::to_string(date) + " "
+            + "WHERE id = " + matchId + ";";
+        ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_COMMAND_OK)
         {
-            fprintf(stderr, "Failed to edit team: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to update match: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
@@ -572,19 +590,51 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
         }
         PQclear(ret);
 
-        if (team1 >= 0 && team2 >= 0)
+        
+        // Update predictions (if necessary)
+        if (team1Score >= 0 && team2Score >= 0)
         {
-            sql = "select * from predicts where match_id = " + matchId + ";";
+            // Update the league table for both teams
+            auto updateLeagueTable = [&](int team, int goalsFor, int goalsAgainst, int points) {
+                sql = "UPDATE tables SET "
+                    "matches_played = matches_played + 1, "
+                    "goals_f = goals_f + " + std::to_string(goalsFor) + ", "
+                    "goals_a = goals_a + " + std::to_string(goalsAgainst) + ", "
+                    "points = points + " + std::to_string(points) + " "
+                    "WHERE team_id = " + std::to_string(team) + " AND league_id = " + std::to_string(league) + " AND season = '" + season + "'" + ";";
+                PGresult* updateRet = PQexec(pg, sql.c_str());
+                PQclear(updateRet);
+            };
+
+            // Determine points to assign
+            int pointsForTeam1 = 0;
+            int pointsForTeam2 = 0;
+
+            if (team1Score > team2Score) {
+                pointsForTeam1 = 3; // Team 1 wins
+            }
+            else if (team1Score < team2Score) {
+                pointsForTeam2 = 3; // Team 2 wins
+            }
+            else {
+                pointsForTeam1 = 1; // Draw
+                pointsForTeam2 = 1; // Draw
+            }
+
+            // Update league table for both teams
+            updateLeagueTable(team1, team1Score, team2Score, pointsForTeam1);
+            updateLeagueTable(team2, team2Score, team1Score, pointsForTeam2);
+
+
+            sql = "SELECT * FROM predicts WHERE match_id = " + matchId + ";";
             ret = PQexec(pg, sql.c_str());
 
             int nrows = PQntuples(ret);
 
             for (int i = 0; i < nrows; ++i)
             {
-
                 int id = atoi(PQgetvalue(ret, i, 0));
                 int userId = atoi(PQgetvalue(ret, i, 1));
-                int mId = atoi(PQgetvalue(ret, i, 2));
                 int t1score = atoi(PQgetvalue(ret, i, 3));
                 int t2score = atoi(PQgetvalue(ret, i, 4));
                 EPredictStatus predictStatus = (EPredictStatus)atoi(PQgetvalue(ret, i, 5));
@@ -592,24 +642,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
 
                 int points = 0;
                 EPredictStatus status = EPredictStatus::Pending;
-                if (team1 == t1score && team2 == t2score)
+                if (team1Score == t1score && team2Score == t2score)
                 {
                     points = 3;
                     status = EPredictStatus::ScorePredicted;
                 }
-                else 
+                else
                 {
-                    if (team1 > team2 && t1score > t2score)
-                    {
-                        points = 1;
-                        status = EPredictStatus::WinnerPredicted;
-                    }
-                    else if (team1 < team2 && t1score < t2score)
-                    {
-                        points = 1;
-                        status = EPredictStatus::WinnerPredicted;
-                    }
-                    else if (team1 == team2 && t1score == t2score)
+                    if ((team1Score > team2Score && t1score > t2score) ||
+                        (team1Score < team2Score && t1score < t2score) ||
+                        (team1Score == team2Score && t1score == t2score))
                     {
                         points = 1;
                         status = EPredictStatus::WinnerPredicted;
@@ -621,17 +663,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
                     }
                 }
 
-                {
-                    sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
-                    PGresult* updateRet = PQexec(pg, sql.c_str());
-                    PQclear(updateRet);
-                }
+                sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
+                PGresult* updateRet = PQexec(pg, sql.c_str());
+                PQclear(updateRet);
 
-                {
-                    sql = "update predicts set status = " + std::to_string(int(status)) + " where id = " + std::to_string(id) + ";";
-                    PGresult* updateRet = PQexec(pg, sql.c_str());
-                    PQclear(updateRet);
-                }
+                sql = "UPDATE predicts SET status = " + std::to_string(int(status)) + " WHERE id = " + std::to_string(id) + ";";
+                updateRet = PQexec(pg, sql.c_str());
+                PQclear(updateRet);
             }
             PQclear(ret);
         }
@@ -639,5 +677,4 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
         ConnectionPool::Get()->releaseConnection(pg);
         res.status = 201; // Created
     };
-
 }

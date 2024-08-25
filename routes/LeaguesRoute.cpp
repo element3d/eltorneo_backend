@@ -34,7 +34,20 @@ void LeaguesRoute::Init()
     PQclear(ret);
     if (numLeagues > 0) 
     {
-       
+        /*MatchesInitializer::InitPremierLeagueTable(pg);
+        MatchesInitializer::FillPremierLeagueTable(pg);
+
+        MatchesInitializer::InitLaLigaTable(pg);
+        MatchesInitializer::FillLaLigaTable(pg);
+
+        MatchesInitializer::InitSeriaATable(pg);
+        MatchesInitializer::FillSeriaATable(pg);
+
+        MatchesInitializer::InitBundesligaTable(pg);
+        MatchesInitializer::FillBundesligaTable(pg);
+
+        MatchesInitializer::InitLigue1Table(pg);
+        MatchesInitializer::FillLigue1Table(pg);*/
 
         ConnectionPool::Get()->releaseConnection(pg);
         return;
@@ -359,6 +372,89 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::S
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::GetLeagueTable()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        int leagueId = atoi(req.get_param_value("league_id").c_str());
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        // SQL query to get the league table sorted by points and then by goal difference
+        std::string sql = "SELECT team_id, matches_played, goals_f, goals_a, points "
+            "FROM tables WHERE league_id = " + std::to_string(leagueId) +
+            " ORDER BY points DESC, (goals_f - goals_a) DESC;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to get league table: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500; // Internal Server Error
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+
+        // Create a JSON document to hold the league table
+        rapidjson::Document document;
+        document.SetArray();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        for (int i = 0; i < nrows; ++i)
+        {
+            rapidjson::Value teamObject(rapidjson::kObjectType);
+
+            int teamId = atoi(PQgetvalue(ret, i, 0));
+            int matchesPlayed = atoi(PQgetvalue(ret, i, 1));
+            int goalsFor = atoi(PQgetvalue(ret, i, 2));
+            int goalsAgainst = atoi(PQgetvalue(ret, i, 3));
+            int points = atoi(PQgetvalue(ret, i, 4));
+
+            // Fetch team details
+            std::string teamSql = "SELECT id, name, short_name FROM teams WHERE id = " + std::to_string(teamId) + ";";
+            PGresult* teamRet = PQexec(pg, teamSql.c_str());
+
+            if (PQresultStatus(teamRet) == PGRES_TUPLES_OK && PQntuples(teamRet) > 0) {
+                rapidjson::Value teamDetails(rapidjson::kObjectType);
+                teamDetails.AddMember("id", atoi(PQgetvalue(teamRet, 0, 0)), allocator);
+                teamDetails.AddMember("name", rapidjson::Value(PQgetvalue(teamRet, 0, 1), allocator), allocator);
+                teamDetails.AddMember("short_name", rapidjson::Value(PQgetvalue(teamRet, 0, 2), allocator), allocator);
+
+                teamObject.AddMember("team", teamDetails, allocator);
+            }
+
+            PQclear(teamRet);
+
+            // Add other league table fields
+            teamObject.AddMember("matches_played", matchesPlayed, allocator);
+            teamObject.AddMember("goals_f", goalsFor, allocator);
+            teamObject.AddMember("goals_a", goalsAgainst, allocator);
+            teamObject.AddMember("goal_difference", goalsFor - goalsAgainst, allocator);
+            teamObject.AddMember("points", points, allocator);
+
+            document.PushBack(teamObject, allocator);
+        }
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+
+        // Convert JSON document to string and set it as the response body
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+    };
+}
+
+
 
 std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::GetLeague()
 {

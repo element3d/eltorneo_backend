@@ -153,6 +153,7 @@ int main(void)
     svr.Post("/api/v1/leagues", LeaguesRoute::Get()->PostLeague());
     svr.Get("/api/v1/weeks", LeaguesRoute::Get()->GetWeeks());
     svr.Post("/api/v1/league/week", LeaguesRoute::Get()->SetCurrentWeek());
+    svr.Get("/api/v1/league/table", LeaguesRoute::Get()->GetLeagueTable());
 
     svr.Get("/api/v1/teams", TeamsRoute::Get()->GetTeams());
     svr.Post("/api/v1/teams", TeamsRoute::Get()->PostTeam());

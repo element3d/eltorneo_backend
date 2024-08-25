@@ -16,6 +16,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> PostLeague();
     std::function<void(const httplib::Request&, httplib::Response&)> GetWeeks();
     std::function<void(const httplib::Request&, httplib::Response&)> SetCurrentWeek();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetLeagueTable();
 
 private:
     static LeaguesRoute* sInstance;

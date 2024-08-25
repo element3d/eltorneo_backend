@@ -28,11 +28,24 @@ class MatchesInitializer
 {
 public:
     static void InitPremierLeagueTeams24_25(PGconn* pg);
-    static void InitLaLigaTeams24_25(PGconn* pg);
-    static void InitSerieATeams24_25(PGconn* pg);
-    static void InitBundesligaTeams24_25(PGconn* pg);
-    static void InitLigue1Teams24_25(PGconn* pg);
+    static void InitPremierLeagueTable(PGconn* pg);
+    static void FillPremierLeagueTable(PGconn* pg);
 
+    static void InitLaLigaTeams24_25(PGconn* pg);
+    static void InitLaLigaTable(PGconn* pg);
+    static void FillLaLigaTable(PGconn* pg);
+
+    static void InitSerieATeams24_25(PGconn* pg);
+    static void InitSeriaATable(PGconn* pg);
+    static void FillSeriaATable(PGconn* pg);
+
+    static void InitBundesligaTeams24_25(PGconn* pg);
+    static void InitBundesligaTable(PGconn* pg);
+    static void FillBundesligaTable(PGconn* pg);
+
+    static void InitLigue1Teams24_25(PGconn* pg);
+    static void InitLigue1Table(PGconn* pg);
+    static void FillLigue1Table(PGconn* pg);
 
     static void InitLigue124_25(PGconn* pg);
     static void InitBundesliga24_25(PGconn* pg);
