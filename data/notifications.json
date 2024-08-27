@@ -1,11 +1,23 @@
 {
     "en": {
       "week_started_title": "Football Week Has Begun",
-      "week_started_msg": "Make sure to submit your predictions for the upcoming matches!"
+      "week_started_msg": "Make sure to submit your predictions for the upcoming matches!",
+      "prediction_score_title": "Unbelievable",
+      "prediction_score_msg": "You have predicted the score of the match.",
+      "prediction_winner_title": "Congratulations",
+      "prediction_winner_msg": "You have predicted the winner of the match.",
+      "prediction_draw_title": "Congratulations",
+      "prediction_draw_msg": "You have predicted the draw in the match."
     },
     "ru": {
       "week_started_title": "Футбольная неделя началась",
-      "week_started_msg": "Не забудьте сделать прогнозы на предстоящие матчи!"
+      "week_started_msg": "Не забудьте сделать прогнозы на предстоящие матчи!",
+      "prediction_score_title": "Невероятно",
+      "prediction_score_msg": "Вы предсказали счет матча.",
+      "prediction_winner_title": "Поздравляем",
+      "prediction_winner_msg": "Вы предсказали победителя матча.",
+      "prediction_draw_title": "Поздравляем",
+      "prediction_draw_msg": "Вы предсказали ничью в матче."
     },
     "es": {
       "week_started_title": "La semana de fútbol ha comenzado",

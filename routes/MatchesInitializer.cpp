@@ -1543,7 +1543,7 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     // Premier League
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::AthleticBilbao, ETeam::Getafe, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::AthleticClub, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::RealBetis, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::CeltaVigo, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::LasPalmas, ETeam::Sevilla, 1722985200000 });
@@ -1552,13 +1552,13 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::RealSociedad, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::Mallorca, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::RealValladolid, ETeam::Espanyol, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::Villareal, ETeam::AtleticoMadrid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 1, ETeam::Villarreal, ETeam::AtleticoMadrid, 1722985200000 });
     
     // Week 2
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::CeltaVigo, ETeam::Valencia, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Sevilla, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Sevilla, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Osasuna, ETeam::Mallorca, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Barcelona, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Barcelona, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Getafe, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::Espanyol, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::RealMadrid, ETeam::RealValladolid, 1722985200000 });
@@ -1567,11 +1567,11 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Girona, 1722985200000 });
 
     // Week 3
-    matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::Villareal, ETeam::CeltaVigo, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::Villarreal, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::Mallorca, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::RayoVallecano, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::RealBetis, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::AthleticBilbao, ETeam::Valencia, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::AthleticClub, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::RealValladolid, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::RealSociedad, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 3, ETeam::AtleticoMadrid, ETeam::Espanyol, 1722985200000 });
@@ -1580,9 +1580,9 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
 
     // Week 4
     matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Barcelona, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::AthleticBilbao, ETeam::AtleticoMadrid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::AthleticClub, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Espanyol, ETeam::RayoVallecano, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Valencia, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Valencia, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Leganes, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Alaves, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 4, ETeam::Osasuna, ETeam::CeltaVigo, 1722985200000 });
@@ -1594,8 +1594,8 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::AtleticoMadrid, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::RealBetis, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::CeltaVigo, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::Mallorca, ETeam::Villareal, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::LasPalmas, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::Mallorca, ETeam::Villarreal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::LasPalmas, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::Girona, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::Sevilla, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::RayoVallecano, ETeam::Osasuna, 1722985200000 });
@@ -1603,12 +1603,12 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 5, ETeam::Espanyol, ETeam::Alaves, 1722985200000 });
 
     // Week 6
-    matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::AthleticBilbao, ETeam::CeltaVigo, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::AthleticClub, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::RealBetis, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Getafe, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Alaves, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::RayoVallecano, ETeam::AtleticoMadrid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Villareal, ETeam::Barcelona, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Villarreal, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Valencia, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::RealValladolid, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 6, ETeam::Osasuna, ETeam::LasPalmas, 1722985200000 });
@@ -1620,31 +1620,31 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Mallorca, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Sevilla, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Espanyol, ETeam::Valencia, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Leganes, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Leganes, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::CeltaVigo, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::LasPalmas, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::Valencia, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 7, ETeam::RealMadrid, ETeam::Alaves, 1722985200000 });
 
     // Week 8
-    matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::AthleticBilbao, ETeam::Sevilla, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::AthleticClub, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::AtleticoMadrid, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::CeltaVigo, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::RealSociedad, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::Osasuna, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::RealValladolid, ETeam::Mallorca, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::Villareal, ETeam::LasPalmas, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::Villarreal, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::Getafe, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::RayoVallecano, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 8, ETeam::RealBetis, ETeam::Espanyol, 1722985200000 });
 
     // Week 9
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Getafe, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::RealMadrid, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::RealMadrid, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Alaves, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Leganes, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Espanyol, ETeam::Mallorca, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Girona, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Girona, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::RealSociedad, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::Sevilla, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 9, ETeam::LasPalmas, ETeam::CeltaVigo, 1722985200000 });
@@ -1658,30 +1658,30 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Mallorca, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Alaves, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Osasuna, ETeam::RealBetis, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Villareal, ETeam::Getafe, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Villarreal, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::Valencia, ETeam::LasPalmas, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::AthleticBilbao, ETeam::Espanyol, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 10, ETeam::AthleticClub, ETeam::Espanyol, 1722985200000 });
 
     // Week 11
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::Getafe, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::Espanyol, ETeam::Sevilla, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::Mallorca, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::Mallorca, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RealBetis, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RealMadrid, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::Leganes, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::LasPalmas, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RealSociedad, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RealValladolid, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RealValladolid, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 11, ETeam::RayoVallecano, ETeam::Alaves, 1722985200000 });
 
     // Week 12
-    matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::AthleticBilbao, ETeam::RealBetis, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::AthleticClub, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::AtleticoMadrid, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::CeltaVigo, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Girona, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Osasuna, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Alaves, ETeam::Mallorca, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Villareal, ETeam::RayoVallecano, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Villarreal, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Valencia, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Sevilla, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 12, ETeam::Barcelona, ETeam::Espanyol, 1722985200000 });
@@ -1691,17 +1691,17 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Getafe, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Leganes, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Espanyol, ETeam::Valencia, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::RealValladolid, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::RealValladolid, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Mallorca, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::RealSociedad, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::RealMadrid, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::RayoVallecano, ETeam::LasPalmas, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Villareal, ETeam::Alaves, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 13, ETeam::Villarreal, ETeam::Alaves, 1722985200000 });
 
     // Week 14
-    matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::AthleticBilbao, ETeam::RealSociedad, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::AthleticClub, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::Getafe, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::Osasuna, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::Osasuna, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::LasPalmas, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::Leganes, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 14, ETeam::CeltaVigo, ETeam::Barcelona, 1722985200000 });
@@ -1715,15 +1715,15 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Mallorca, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Alaves, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Espanyol, ETeam::CeltaVigo, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::RayoVallecano, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::RayoVallecano, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::RealValladolid, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::RealSociedad, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::RealMadrid, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Villareal, ETeam::Girona, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Villarreal, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 15, ETeam::Sevilla, ETeam::Osasuna, 1722985200000 });
 
     // Week 16
-    matches.push_back({ ELeague::LaLiga, "24/25", 16, ETeam::AthleticBilbao, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 16, ETeam::AthleticClub, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 16, ETeam::AtleticoMadrid, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 16, ETeam::CeltaVigo, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 16, ETeam::Girona, ETeam::RealMadrid, 1722985200000 });
@@ -1738,9 +1738,9 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::AtleticoMadrid, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Barcelona, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::RayoVallecano, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Alaves, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Alaves, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Espanyol, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Villareal, ETeam::RealBetis, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Villarreal, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Sevilla, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::Mallorca, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 17, ETeam::RealValladolid, ETeam::Valencia, 1722985200000 });
@@ -1752,16 +1752,16 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Getafe, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Girona, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::RealMadrid, ETeam::Sevilla, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Leganes, ETeam::Villareal, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Osasuna, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Leganes, ETeam::Villarreal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Osasuna, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Barcelona, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::Valencia, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 18, ETeam::LasPalmas, ETeam::Espanyol, 1722985200000 });
 
     // Week 19
-    matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::AthleticBilbao, ETeam::RealMadrid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::AthleticClub, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::AtleticoMadrid, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::RealSociedad, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::RealSociedad, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::Sevilla, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::Alaves, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 19, ETeam::Espanyol, ETeam::Leganes, 1722985200000 });
@@ -1774,17 +1774,17 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Girona, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Osasuna, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Espanyol, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::CeltaVigo, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::CeltaVigo, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Leganes, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Getafe, ETeam::Barcelona, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Villareal, ETeam::Mallorca, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Villarreal, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::Valencia, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::RealMadrid, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 20, ETeam::RealBetis, ETeam::Alaves, 1722985200000 });
 
     // Week 21
-    matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::AthleticBilbao, ETeam::Leganes, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::AtleticoMadrid, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::AthleticClub, ETeam::Leganes, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::AtleticoMadrid, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::Barcelona, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::LasPalmas, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 21, ETeam::Alaves, ETeam::CeltaVigo, 1722985200000 });
@@ -1799,18 +1799,18 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Getafe, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Girona, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Osasuna, ETeam::RealSociedad, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Villareal, ETeam::RealValladolid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Villarreal, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Leganes, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Espanyol, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::RealBetis, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::RealBetis, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Valencia, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 22, ETeam::Barcelona, ETeam::Alaves, 1722985200000 });
 
     // Week 23
-    matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::AthleticBilbao, ETeam::Girona, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::AthleticClub, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::Mallorca, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::RayoVallecano, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::LasPalmas, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::LasPalmas, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::Alaves, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::RealMadrid, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 23, ETeam::Sevilla, ETeam::Barcelona, 1722985200000 });
@@ -1823,17 +1823,17 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Barcelona, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::RealBetis, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Osasuna, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Espanyol, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Espanyol, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Girona, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::RealValladolid, ETeam::Sevilla, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Villareal, ETeam::Valencia, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Villarreal, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Mallorca, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 24, ETeam::Leganes, ETeam::Alaves, 1722985200000 });
 
     // Week 25
-    matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::AthleticBilbao, ETeam::RealValladolid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::AthleticClub, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::CeltaVigo, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::RayoVallecano, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::RayoVallecano, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::Alaves, ETeam::Espanyol, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::Valencia, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 25, ETeam::LasPalmas, ETeam::Barcelona, 1722985200000 });
@@ -1847,21 +1847,21 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::RealBetis, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Osasuna, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::RayoVallecano, ETeam::Sevilla, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::AtleticoMadrid, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::AtleticoMadrid, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Girona, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Leganes, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::RealValladolid, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Mallorca, ETeam::Alaves, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Villareal, ETeam::Espanyol, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 26, ETeam::Villarreal, ETeam::Espanyol, 1722985200000 });
 
     // Week 27
-    matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::AthleticBilbao, ETeam::Mallorca, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::AthleticClub, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Barcelona, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::RealBetis, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::CeltaVigo, ETeam::Leganes, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::RealSociedad, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Valencia, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Alaves, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Alaves, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Espanyol, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::Getafe, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 27, ETeam::RealMadrid, ETeam::RayoVallecano, 1722985200000 });
@@ -1870,20 +1870,20 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::AtleticoMadrid, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Girona, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::RayoVallecano, ETeam::RealSociedad, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Sevilla, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Sevilla, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Leganes, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::RealValladolid, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Osasuna, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Villareal, ETeam::RealMadrid, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Villarreal, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::LasPalmas, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 28, ETeam::Mallorca, ETeam::Espanyol, 1722985200000 });
 
     // Week 29
-    matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::AthleticBilbao, ETeam::Osasuna, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::AthleticClub, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::Barcelona, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::RealBetis, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::CeltaVigo, ETeam::LasPalmas, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::Getafe, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::Getafe, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::RealSociedad, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::Alaves, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 29, ETeam::Espanyol, ETeam::AtleticoMadrid, 1722985200000 });
@@ -1895,7 +1895,7 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::RealMadrid, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::LasPalmas, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::Leganes, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::Villareal, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::Villarreal, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::Sevilla, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::Mallorca, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::RealValladolid, ETeam::Getafe, 1722985200000 });
@@ -1903,9 +1903,9 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 30, ETeam::RayoVallecano, ETeam::Espanyol, 1722985200000 });
 
     // Week 31
-    matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::AthleticBilbao, ETeam::RayoVallecano, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::AthleticClub, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::AtleticoMadrid, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::RealBetis, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::RealBetis, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::Getafe, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::Alaves, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 31, ETeam::Leganes, ETeam::Barcelona, 1722985200000 });
@@ -1918,20 +1918,20 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Barcelona, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::RayoVallecano, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Espanyol, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::RealMadrid, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::RealMadrid, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::LasPalmas, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Girona, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::RealValladolid, ETeam::Osasuna, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Villareal, ETeam::RealSociedad, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Villarreal, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Sevilla, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 32, ETeam::Mallorca, ETeam::Leganes, 1722985200000 });
 
     // Week 33
-    matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::AthleticBilbao, ETeam::LasPalmas, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::AthleticClub, ETeam::LasPalmas, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::AtleticoMadrid, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::Barcelona, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::RealBetis, ETeam::RealValladolid, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::CeltaVigo, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::CeltaVigo, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::Getafe, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::Osasuna, ETeam::Sevilla, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 33, ETeam::Alaves, ETeam::RealSociedad, 1722985200000 });
@@ -1943,11 +1943,11 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::LasPalmas, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::Alaves, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::Espanyol, ETeam::RealBetis, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::RealSociedad, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::RealSociedad, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::RealValladolid, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::RealMadrid, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::RayoVallecano, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::Villareal, ETeam::Osasuna, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::Villarreal, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 34, ETeam::Sevilla, ETeam::Leganes, 1722985200000 });
 
     // Week 35
@@ -1955,30 +1955,30 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Barcelona, ETeam::RealMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::RealBetis, ETeam::Osasuna, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::CeltaVigo, ETeam::Sevilla, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Girona, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Girona, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Mallorca, ETeam::RealValladolid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::LasPalmas, ETeam::RayoVallecano, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Valencia, ETeam::Getafe, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::AthleticBilbao, ETeam::Alaves, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::AthleticClub, ETeam::Alaves, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 35, ETeam::Leganes, ETeam::Espanyol, 1722985200000 });
 
     // Week 36
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Alaves, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Espanyol, ETeam::Barcelona, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Getafe, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Getafe, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Osasuna, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::RayoVallecano, ETeam::RealBetis, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::RealSociedad, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::RealValladolid, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::RealMadrid, ETeam::Mallorca, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Sevilla, ETeam::LasPalmas, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Villareal, ETeam::Leganes, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 36, ETeam::Villarreal, ETeam::Leganes, 1722985200000 });
 
     // Week 37
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::AtleticoMadrid, ETeam::RealBetis, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Barcelona, ETeam::Villareal, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Barcelona, ETeam::Villarreal, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::CeltaVigo, ETeam::RayoVallecano, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Valencia, ETeam::AthleticBilbao, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Valencia, ETeam::AthleticClub, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Mallorca, ETeam::Getafe, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::RealSociedad, ETeam::Girona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Sevilla, ETeam::RealMadrid, 1722985200000 });
@@ -1987,7 +1987,7 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 37, ETeam::Osasuna, ETeam::Espanyol, 1722985200000 });
 
     // Week 38
-    matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::AthleticBilbao, ETeam::Barcelona, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::AthleticClub, ETeam::Barcelona, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::RealBetis, ETeam::Valencia, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::RealMadrid, ETeam::RealSociedad, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::Alaves, ETeam::Osasuna, 1722985200000 });
@@ -1996,7 +1996,7 @@ void MatchesInitializer::InitLaLiga24_25(PGconn* pg)
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::Girona, ETeam::AtleticoMadrid, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::Getafe, ETeam::CeltaVigo, 1722985200000 });
     matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::RayoVallecano, ETeam::Mallorca, 1722985200000 });
-    matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::Villareal, ETeam::Sevilla, 1722985200000 });
+    matches.push_back({ ELeague::LaLiga, "24/25", 38, ETeam::Villarreal, ETeam::Sevilla, 1722985200000 });
 
     for (auto& m : matches)
     {

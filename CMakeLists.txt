@@ -25,6 +25,7 @@ include_directories(${LIBS_DIR})
 include_directories("C:/Program Files/PostgreSQL/15/include")
 link_directories("C:\\Program Files\\PostgreSQL\\12\\lib")
 include_directories("C:\\Program Files\\PostgreSQL\\9.6\\include")
+
 add_executable(GodOfScore
     main.cpp
 
@@ -39,6 +40,8 @@ add_executable(GodOfScore
   managers/UserManager.cpp
   managers/LeaguesManager.cpp
   managers/LeaguesManager.h
+  managers/PNManager.h
+  managers/PNManager.cpp
 #  managers/CarManager.h
 #  managers/CarManager.cpp
   managers/PQManager.h
@@ -97,3 +100,28 @@ target_link_libraries(GodOfScore
 )
 
 
+add_executable(elTorneo_cron
+    cron_main.cpp
+	managers/PQManager.h
+	managers/PQManager.cpp
+	managers/PNManager.h
+	managers/PNManager.cpp
+	routes/Team.h
+	routes/Team.cpp
+)
+
+target_link_libraries(elTorneo_cron 
+	#${LIBS_DIR}/pqxx/lib/x64/pqxx.lib
+         webp
+        webpdecoder
+       # ${WebP_LIBRARIES}
+
+     # libcrypto
+       # libssl
+#	libpq
+  cpr::cpr
+	#pthread
+	"C:\\Program Files\\PostgreSQL\\15\\lib\\libpq.lib"
+	${LIBS_DIR}/openssl/lib/x64/libssl.lib
+	${LIBS_DIR}/openssl/lib/x64/libcrypto.lib
+)

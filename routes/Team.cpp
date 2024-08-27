@@ -5,7 +5,7 @@ std::string Team::ToString(ETeam team)
     switch (team)
     {
     case ETeam::AFCBournemouth:
-        return "AFC Bournemouth";
+        return "Bournemouth";
     case ETeam::Arsenal:
         return "Arsenal";
     case ETeam::AstonVilla:
@@ -13,7 +13,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Brentford:
         return "Brentford";
     case ETeam::BrightonAndHoveAlbion:
-        return "Brighton & Hove Albion";
+        return "Brighton";
     case ETeam::Chelsea:
         return "Chelsea";
     case ETeam::CrystalPalace:
@@ -23,9 +23,9 @@ std::string Team::ToString(ETeam team)
     case ETeam::Fulham:
         return "Fulham";
     case ETeam::IpswichTown:
-        return "Ipswich Town";
+        return "Ipswich";
     case ETeam::LeicesterCity:
-        return "Leicester City";
+        return "Leicester";
     case ETeam::Liverpool:
         return "Liverpool";
     case ETeam::ManchesterCity:
@@ -33,23 +33,23 @@ std::string Team::ToString(ETeam team)
     case ETeam::ManchesterUnited:
         return "Manchester United";
     case ETeam::NewcastleUnited:
-        return "Newcastle United";
+        return "Newcastle";
     case ETeam::NottinghamForest:
         return "Nottingham Forest";
     case ETeam::Southampton:
         return "Southampton";
     case ETeam::TottenhamHotspur:
-        return "Tottenham Hotspur";
+        return "Tottenham";
     case ETeam::WestHamUnited:
-        return "West Ham United";
+        return "West Ham";
     case ETeam::Wolverhampton:
-        return "Wolverhampton";
+        return "Wolves";
 
         //LaLiga
     case ETeam::Alaves:
         return "Alaves";
-    case ETeam::AthleticBilbao:
-        return "Athletic Bilbao";
+    case ETeam::AthleticClub:
+        return "Athletic Club";
     case ETeam::AtleticoMadrid:
         return "Atletico Madrid";
     case ETeam::Barcelona:
@@ -79,13 +79,13 @@ std::string Team::ToString(ETeam team)
     case ETeam::RealSociedad:
         return "Real Sociedad";
     case ETeam::RealValladolid:
-        return "Real Valladolid";
+        return "Valladolid";
     case ETeam::Sevilla:
         return "Sevilla";
     case ETeam::Valencia:
         return "Valencia";
-    case ETeam::Villareal:
-        return "Villareal";
+    case ETeam::Villarreal:
+        return "Villarreal";
 
         // Serie A
     case ETeam::ACMilan:
@@ -105,7 +105,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Genoa:
         return "Genoa";
     case ETeam::InterMilan:
-        return "Inter Milan";
+        return "Inter";
     case ETeam::Juventus:
         return "Juventus";
     case ETeam::Lazio:
@@ -119,7 +119,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Parma:
         return "Parma";
     case ETeam::Roma:
-        return "Roma";
+        return "AS Roma";
     case ETeam::Torino:
         return "Torino";
     case ETeam::Udinese:
@@ -131,41 +131,41 @@ std::string Team::ToString(ETeam team)
 
         // Bundesliga
     case ETeam::Augsburg:
-        return "Augsburg";
+        return "FC Augsburg";
     case ETeam::BayerLeverkusen:
         return "Bayer Leverkusen";
     case ETeam::BayernMunich:
-        return "Bayern Munich";
+        return "Bayern München";
     case ETeam::Bochum:
-        return "Bochum";
+        return "VfL Bochum";
     case ETeam::BorussiaDortmund:
         return "Borussia Dortmund";
     case ETeam::BorussiaMgladbach:
-        return "Borussia Mgladbach";
+        return "Borussia Mönchengladbach";
     case ETeam::EintrachtFrankfurt:
         return "Eintracht Frankfurt";
     case ETeam::Freiburg:
-        return "Freiburg";
+        return "SC Freiburg";
     case ETeam::Heidenheim:
-        return "Heidenheim";
+        return "1. FC Heidenheim";
     case ETeam::Hoffenheim:
-        return "Hoffenheim";
+        return "1899 Hoffenheim";
     case ETeam::HolsteinKiel:
         return "Holstein Kiel";
     case ETeam::Mainz:
-        return "Mainz";
+        return "FSV Mainz 05";
     case ETeam::RBLeipzig:
         return "RB Leipzig";
     case ETeam::StPauli:
-        return "St. Pauli";
+        return "FC St. Pauli";
     case ETeam::Stuttgart:
-        return "Stuttgart";
+        return "VfB Stuttgart";
     case ETeam::UnionBerlin:
         return "Union Berlin";
     case ETeam::WerderBremen:
         return "Werder Bremen";
     case ETeam::Wolfsburg:
-        return "Wolfsburg";
+        return "VfL Wolfsburg";
 
     // Ligue1
     case ETeam::Angers:
@@ -173,9 +173,9 @@ std::string Team::ToString(ETeam team)
     case ETeam::Auxerre:
         return "Auxerre";
     case ETeam::Brest:
-        return "Brest";
+        return "Stade Brestois 29";
     case ETeam::LeHavre:
-        return "Le Havre";
+        return "LE Havre";
     case ETeam::Lens:
         return "Lens";
     case ETeam::Lille:
@@ -193,13 +193,13 @@ std::string Team::ToString(ETeam team)
     case ETeam::Nice:
         return "Nice";
     case ETeam::PSG:
-        return "PSG";
+        return "Paris Saint Germain";
     case ETeam::Reims:
         return "Reims";
     case ETeam::Rennes:
         return "Rennes";
     case ETeam::SaintEtienne:
-        return "Saint-Etienne";
+        return "Saint Etienne";
     case ETeam::Strasbourg:
         return "Strasbourg";
     case ETeam::Toulouse:
@@ -258,7 +258,7 @@ std::string Team::ToShortString(ETeam team)
         //LaLiga
     case ETeam::Alaves:
         return "Alaves";
-    case ETeam::AthleticBilbao:
+    case ETeam::AthleticClub:
         return "Ath. Bilbao";
     case ETeam::AtleticoMadrid:
         return "Atletico M.";
@@ -294,8 +294,8 @@ std::string Team::ToShortString(ETeam team)
         return "Sevilla";
     case ETeam::Valencia:
         return "Valencia";
-    case ETeam::Villareal:
-        return "Villareal";
+    case ETeam::Villarreal:
+        return "Villarreal";
 
         // Serie A
     case ETeam::ACMilan:

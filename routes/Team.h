@@ -2,6 +2,14 @@
 
 #include <string>
 
+enum class EPredictStatus
+{
+    Pending,
+    WinnerPredicted,
+    ScorePredicted,
+    Failed
+};
+
 enum class ETeam
 {
     PremierLeagueStart = 1,
@@ -29,7 +37,7 @@ enum class ETeam
 
     LaLigaStart = PremierLeagueEnd + 1,
     Alaves = LaLigaStart,
-    AthleticBilbao,
+    AthleticClub,
     AtleticoMadrid,
     Barcelona,
     CeltaVigo,
@@ -47,8 +55,8 @@ enum class ETeam
     RealValladolid,
     Sevilla,
     Valencia,
-    Villareal,
-    LaLigaEnd = Villareal,
+    Villarreal,
+    LaLigaEnd = Villarreal,
 
     // SerieA
     SerieAStart = LaLigaEnd + 1,

@@ -140,6 +140,7 @@ int main(void)
     svr.Post("/api/v1/me/fcm_token", AuthRoute::Get()->MeAddFcmToken());
 
     svr.Post("/api/v1/user/notification", AuthRoute::Get()->UserSendNotification());
+    svr.Post("/api/v1/user/notification/prediction", AuthRoute::Get()->UserPredictionSendNotification());
 
     svr.Delete("/api/v1/me/avatar", AuthRoute::Get()->MeDeleteAvatar());
     svr.Get("/api/v1/user/stats", AuthRoute::Get()->GetStats());
@@ -205,5 +206,5 @@ int main(void)
     auto ret = svr.set_mount_point("/assets", "./assets");
 	ret = svr.set_mount_point("/data", "./data");
 
-    svr.listen("192.168.27.3", 1234);
+    svr.listen("192.168.18.234", 1234);
 }
