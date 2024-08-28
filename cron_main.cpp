@@ -46,6 +46,168 @@ struct CronTeam
 };
 #include "routes/Team.h"
 
+std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjson::Value& team2Stats, const std::string& statName)
+{
+	int team1Value = -1;
+	int team2Value = -1;
+
+	// Iterate through team1Stats to find the stat
+	for (const auto& stat : team1Stats.GetArray())
+	{
+		if (stat["type"].GetString() == statName)
+		{
+			if (statName == "Ball Possession")
+			{
+				team1Value = atoi(stat["value"].GetString());
+			}
+			else
+			{
+				team1Value = stat["value"].GetInt();
+			}
+			break;
+		}
+	}
+
+	// Iterate through team2Stats to find the stat
+	for (const auto& stat : team2Stats.GetArray())
+	{
+		if (stat["type"].GetString() == statName)
+		{
+			if (statName == "Ball Possession")
+			{
+				team2Value = atoi(stat["value"].GetString());
+			}
+			else
+			{
+				team2Value = stat["value"].GetInt();
+			}
+			break;
+		}
+	}
+
+	// Format the string like "1-4"
+	std::ostringstream oss;
+	oss << team1Value << "-" << team2Value;
+
+	return oss.str();
+}
+
+void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, CronTeam& team1, CronTeam& team2)
+{
+	std::string sql = "DELETE FROM events WHERE match_id = " + std::to_string(matchId) + ";";
+	PGresult* ret = PQexec(pg, sql.c_str());
+	PQclear(ret);
+
+	if (document.HasMember("response") && document["response"].IsArray() &&
+		!document["response"].Empty() &&
+		document["response"][0].HasMember("events") && document["response"][0]["events"].IsArray() &&
+		!document["response"][0]["events"].Empty())
+	{
+
+	}
+	else
+	{
+		return;
+	}
+
+	rapidjson::Value events = document["response"][0]["events"].GetArray();
+	for (rapidjson::SizeType i = 0; i < events.Size(); ++i)
+	{
+		const rapidjson::Value& ev = events[i];
+		int elapsed = ev["time"]["elapsed"].GetInt();
+		int extra = 0;
+		if (ev["time"].HasMember("extra") && ev["time"]["extra"].IsInt()) 
+		{
+			extra = ev["time"]["extra"].GetInt();
+		}
+		std::string player = ev["player"]["name"].GetString();
+		std::string assist = "";
+		if (ev["assist"].HasMember("name") && ev["assist"]["name"].IsString()) 
+		{
+			assist = ev["assist"]["name"].GetString();
+		}
+
+		std::string type = ev["type"].GetString();
+		std::string detail = ev["detail"].GetString();
+
+		int team = ev["team"]["id"].GetInt();
+		int teamNo = 1;
+		if (team == team1.ApiId) teamNo = 1;
+		else teamNo = 2;
+
+		// create table events (id serial primary key not null, match_id integer not null, elapsed integer not null, elapsed_extra integer not null, team integer not null, player text not null, assist text not null, type text not null, detail text not null);
+		// insert event sql command here
+		sql = "INSERT INTO events (match_id, elapsed, elapsed_extra, team, player, assist, type, detail) "
+			"VALUES (" + std::to_string(matchId) + ", " + std::to_string(elapsed) + ", " + std::to_string(extra) +
+			", " + std::to_string(teamNo) + ", '" + player + "', '" + assist + "', '" + type + "', '" + detail + "');";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+		{
+			fprintf(stderr, "Insert failed: %s", PQerrorMessage(pg));
+		}
+		else
+		{
+			printf("Match events inserted successfully.\n");
+		}
+		PQclear(ret);
+	}
+}
+
+void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
+{
+	if (!document["response"][0]["statistics"].Size()) return;
+
+	/*if (!document["response"][0].HasMember("statistics") ||
+		!document["response"][0]["statistics"][0].HasMember("statistics") ||
+		!document["response"][0]["statistics"][1].HasMember("statistics") ||
+		!document["response"][0]["statistics"][0]["statistics"].IsArray() ||
+		!document["response"][0]["statistics"][1]["statistics"].IsArray() ||
+		document["response"][0]["statistics"][0]["statistics"].Size() == 0 ||
+		document["response"][0]["statistics"][1]["statistics"].Size() == 0)
+	{
+		printf("Statistics not available for this match.\n");
+		return;
+	} */
+
+	rapidjson::Value team1Stats = document["response"][0]["statistics"][0]["statistics"].GetArray();
+	rapidjson::Value team2Stats = document["response"][0]["statistics"][1]["statistics"].GetArray();
+
+	std::string shotsOnTarget = getStatisticString(team1Stats, team2Stats, "Shots on Goal");
+	std::string shotsOffTarget = getStatisticString(team1Stats, team2Stats, "Shots off Goal");
+	std::string blockedShots = getStatisticString(team1Stats, team2Stats, "Blocked Shots");
+	std::string fouls = getStatisticString(team1Stats, team2Stats, "Fouls");
+	std::string corners = getStatisticString(team1Stats, team2Stats, "Corner Kicks");
+	std::string offsides = getStatisticString(team1Stats, team2Stats, "Offsides");
+	std::string possession = getStatisticString(team1Stats, team2Stats, "Ball Possession");
+	std::string saves = getStatisticString(team1Stats, team2Stats, "Goalkeeper Saves");
+
+	std::string sql = "INSERT INTO match_stats (match_id, shots_on_target, shots_off_target, blocked_shots, fouls, corners, offsides, possession, saves) "
+		"VALUES (" + std::to_string(matchId) + ", '" + shotsOnTarget + "', '" + shotsOffTarget + "', '" + blockedShots + "', '" + fouls + "', '" + corners + "', '" + offsides + "', '" + possession + "', '" + saves + "') "
+		"ON CONFLICT (match_id) DO UPDATE SET "
+		"shots_on_target = EXCLUDED.shots_on_target, "
+		"shots_off_target = EXCLUDED.shots_off_target, "
+		"blocked_shots = EXCLUDED.blocked_shots, "
+		"fouls = EXCLUDED.fouls, "
+		"corners = EXCLUDED.corners, "
+		"offsides = EXCLUDED.offsides, "
+		"possession = EXCLUDED.possession, "
+		"saves = EXCLUDED.saves;";
+
+	PGresult* ret = PQexec(pg, sql.c_str());
+
+	if (PQresultStatus(ret) != PGRES_COMMAND_OK) {
+		fprintf(stderr, "Insert/Update failed: %s", PQerrorMessage(pg));
+	}
+	else {
+		printf("Match stats inserted/updated successfully.\n");
+	}
+
+	PQclear(ret);
+}
+
+
 int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& team1, CronTeam& team2, const std::string& season, int week)
 {
 	std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
@@ -193,10 +355,19 @@ void GetLiveMatches(PGconn* pg)
 			rapidjson::Document document;
 			document.Parse(r.text.c_str());
 
-			int elapsed = document["response"][0]["fixture"]["status"]["elapsed"].GetInt();
-			int team1Goals = document["response"][0]["goals"]["home"].GetInt();
-			int team2Goals = document["response"][0]["goals"]["away"].GetInt();
-			std::string status = document["response"][0]["fixture"]["status"]["short"].GetString();
+			rapidjson::Value statusValue = document["response"][0]["fixture"]["status"].GetObjectA();
+			int elapsed = 1; 
+			if (statusValue["elapsed"].IsInt()) elapsed = statusValue.GetInt();
+
+			rapidjson::Value goalsValue = document["response"][0]["goals"].GetObjectA();
+			int team1Goals = 0;
+			if (goalsValue["home"].IsInt()) team1Goals = goalsValue["home"].GetInt();
+
+			int team2Goals = 0;
+			if (goalsValue["away"].IsInt()) team2Goals = goalsValue["away"].GetInt();
+
+			std::string status = "";
+			if (statusValue["short"].IsString()) status = statusValue["short"].GetString();
 
 			sql = "update matches set elapsed = " + std::to_string(elapsed) +
 				", team1_score_live = " + std::to_string(team1Goals) +
@@ -210,6 +381,9 @@ void GetLiveMatches(PGconn* pg)
 			std::string jsonString = ReadFile(filename);
 			rapidjson::Document notificationsDocument;
 			notificationsDocument.Parse(jsonString.c_str());
+
+			FillMatchStats(pg, document, id);
+			FillMatchEvents(pg, document, id, team1, team2);
 
 			if (status == "FT") 
 			{
@@ -332,16 +506,16 @@ void GetLiveMatches(PGconn* pg)
 						char* temp = (char*)calloc(4096, sizeof(char));
 						std::vector<int> invalidTokens;
 						int nTokens = PQntuples(updateRet);
-						for (int i = 0; i < nTokens; ++i)
+						for (int j = 0; j < nTokens; ++j)
 						{
 							// Handle ID as integer
-							int id = atoi(PQgetvalue(updateRet, i, 0));
-							int userId = atoi(PQgetvalue(updateRet, i, 1));
-							strcpy(temp, PQgetvalue(updateRet, i, 2));
+							int id = atoi(PQgetvalue(updateRet, j, 0));
+							int userId = atoi(PQgetvalue(updateRet, j, 1));
+							strcpy(temp, PQgetvalue(updateRet, j, 2));
 							std::string token = temp;
-							strcpy(temp, PQgetvalue(updateRet, i, 3));
+							strcpy(temp, PQgetvalue(updateRet, j, 3));
 							std::string os = temp;
-							strcpy(temp, PQgetvalue(updateRet, i, 4));
+							strcpy(temp, PQgetvalue(updateRet, j, 4));
 							std::string lang = temp;
 
 							std::string t = notificationsDocument[lang.c_str()][nTitle.c_str()].GetString()
@@ -375,16 +549,17 @@ void GetLiveMatches(PGconn* pg)
 
 }
 
+
+
 int main() 
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-
+	
 	while (true) 
 	{
 		GetLiveMatches(pg);
 		// sleep for 1 minute
-		std::this_thread::sleep_for(std::chrono::minutes(5));
-
+		std::this_thread::sleep_for(std::chrono::minutes(1));
 	}
 
 	return 0;
