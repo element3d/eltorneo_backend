@@ -165,6 +165,9 @@ int main(void)
     svr.Get("/api/v1/match", MatchesRoute::Get()->GetMatch());
     svr.Post("/api/v1/matches", MatchesRoute::Get()->PostMatch());
     svr.Put("/api/v1/match", MatchesRoute::Get()->EditMatch());
+    svr.Get("/api/v1/match/statistics", MatchesRoute::Get()->GetMatchStatistics());
+    svr.Get("/api/v1/match/events", MatchesRoute::Get()->GetMatchEvents());
+    svr.Get("/api/v1/match/header", MatchesRoute::Get()->GetMatchHeader());
 
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());
     svr.Get("/api/v1/user/predict", PredictsRoute::Get()->GetUserPredict());

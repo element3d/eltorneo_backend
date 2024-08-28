@@ -405,8 +405,186 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchStatistics()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        auto matchId = req.get_param_value("match_id");
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        std::string sql = "SELECT * FROM match_stats WHERE match_id = " + (matchId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
+            fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        for (int i = 0; i < nrows; ++i)
+        {
+            int id = atoi(PQgetvalue(ret, i, 0));
+            std::string shotsOnTarget = PQgetvalue(ret, i, 2);
+            std::string shotsOffTarget = PQgetvalue(ret, i, 3);
+            std::string blocked = PQgetvalue(ret, i, 4);
+            std::string fouls = PQgetvalue(ret, i, 5);
+            std::string corners = PQgetvalue(ret, i, 6);
+            std::string offsides = PQgetvalue(ret, i, 7);
+            std::string possession = PQgetvalue(ret, i, 8);
+            std::string saves = PQgetvalue(ret, i, 9);
+
+            document.AddMember("shotsOnTarget", rapidjson::Value(shotsOnTarget.c_str(), allocator), allocator);
+            document.AddMember("shotsOffTarget", rapidjson::Value(shotsOffTarget.c_str(), allocator), allocator);
+            document.AddMember("blockedShots", rapidjson::Value(blocked.c_str(), allocator), allocator);
+            document.AddMember("fouls", rapidjson::Value(fouls.c_str(), allocator), allocator);
+            document.AddMember("corners", rapidjson::Value(corners.c_str(), allocator), allocator);
+            document.AddMember("offsides", rapidjson::Value(offsides.c_str(), allocator), allocator);
+            document.AddMember("possession", rapidjson::Value(possession.c_str(), allocator), allocator);
+            document.AddMember("saves", rapidjson::Value(saves.c_str(), allocator), allocator);
+
+        }
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchEvents()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        auto matchId = req.get_param_value("match_id");
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        std::string sql = "SELECT * FROM events WHERE match_id = " + (matchId)+";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        document.SetArray();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+    
+        for (int i = 0; i < nrows; ++i)
+        {
+            rapidjson::Value eValue;
+            eValue.SetObject();
+
+            int id = atoi(PQgetvalue(ret, i, 0));
+            int elapsed = atoi(PQgetvalue(ret, i, 2));
+            int extra = atoi(PQgetvalue(ret, i, 3));
+            int team = atoi(PQgetvalue(ret, i, 4));
+            std::string player = (PQgetvalue(ret, i, 5));
+            std::string assist = (PQgetvalue(ret, i, 6));
+            std::string type = (PQgetvalue(ret, i, 7));
+            std::string detail = (PQgetvalue(ret, i, 8));
+
+            eValue.AddMember("elapsed", elapsed, allocator);
+            eValue.AddMember("extra", extra, allocator);
+            eValue.AddMember("team", team, allocator);
+            eValue.AddMember("player", rapidjson::Value(player.c_str(), allocator), allocator);
+            eValue.AddMember("assist", rapidjson::Value(assist.c_str(), allocator), allocator);
+            eValue.AddMember("type", rapidjson::Value(type.c_str(), allocator), allocator);
+            eValue.AddMember("detail", rapidjson::Value(detail.c_str(), allocator), allocator);
+            document.PushBack(eValue, allocator);
+        }
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
 
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchHeader()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        auto matchId = req.get_param_value("match_id");
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        {
+            std::string sql = "SELECT id FROM match_stats WHERE match_id = " + (matchId)+";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            document.AddMember("statistics", nrows, allocator);
+            PQclear(ret);
+        }
+        {
+            std::string sql = "SELECT id FROM events WHERE match_id = " + (matchId) + ";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch match events: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            document.AddMember("events", int(nrows > 0), allocator);
+            PQclear(ret);
+        }
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
 
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatch()
 {
@@ -417,8 +595,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         // Extract league_id from query parameters
         std::string matchId = req.get_param_value("match_id");
-       
-
     
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
