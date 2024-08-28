@@ -2,6 +2,8 @@
 
 #include "managers/PQManager.h"
 #include <cpr/cpr.h>
+#undef GetObject
+
 #include <rapidjson/document.h>
 #include <iostream>
 #include <string>
@@ -48,8 +50,8 @@ struct CronTeam
 
 std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjson::Value& team2Stats, const std::string& statName)
 {
-	int team1Value = -1;
-	int team2Value = -1;
+	int team1Value = 0;
+	int team2Value = 0;
 
 	// Iterate through team1Stats to find the stat
 	for (const auto& stat : team1Stats.GetArray())
@@ -58,11 +60,13 @@ std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjs
 		{
 			if (statName == "Ball Possession")
 			{
-				team1Value = atoi(stat["value"].GetString());
+				if (stat["value"].IsString())
+					team1Value = atoi(stat["value"].GetString());
 			}
 			else
 			{
-				team1Value = stat["value"].GetInt();
+				if (stat["value"].IsInt())
+					team1Value = stat["value"].GetInt();
 			}
 			break;
 		}
@@ -75,11 +79,13 @@ std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjs
 		{
 			if (statName == "Ball Possession")
 			{
-				team2Value = atoi(stat["value"].GetString());
+				if (stat["value"].IsString())
+					team2Value = atoi(stat["value"].GetString());
 			}
 			else
 			{
-				team2Value = stat["value"].GetInt();
+				if (stat["value"].IsInt())
+					team2Value = stat["value"].GetInt();
 			}
 			break;
 		}
@@ -120,7 +126,11 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 		{
 			extra = ev["time"]["extra"].GetInt();
 		}
-		std::string player = ev["player"]["name"].GetString();
+		std::string player = "";
+		if (ev["player"].HasMember("name") && ev["player"]["name"].IsString())
+		{
+			player = ev["player"]["name"].GetString();
+		}
 		std::string assist = "";
 		if (ev["assist"].HasMember("name") && ev["assist"]["name"].IsString()) 
 		{
@@ -355,11 +365,11 @@ void GetLiveMatches(PGconn* pg)
 			rapidjson::Document document;
 			document.Parse(r.text.c_str());
 
-			rapidjson::Value statusValue = document["response"][0]["fixture"]["status"].GetObjectA();
+			rapidjson::Value statusValue = document["response"][0]["fixture"]["status"].GetObject();
 			int elapsed = 1; 
-			if (statusValue["elapsed"].IsInt()) elapsed = statusValue.GetInt();
+			if (statusValue["elapsed"].IsInt()) elapsed = statusValue["elapsed"].GetInt();
 
-			rapidjson::Value goalsValue = document["response"][0]["goals"].GetObjectA();
+			rapidjson::Value goalsValue = document["response"][0]["goals"].GetObject();
 			int team1Goals = 0;
 			if (goalsValue["home"].IsInt()) team1Goals = goalsValue["home"].GetInt();
 

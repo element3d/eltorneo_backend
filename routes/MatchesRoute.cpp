@@ -476,7 +476,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         auto matchId = req.get_param_value("match_id");
         PGconn* pg = ConnectionPool::Get()->getConnection();
 
-        std::string sql = "SELECT * FROM events WHERE match_id = " + (matchId)+";";
+        std::string sql = "SELECT * FROM events WHERE match_id = " + (matchId)+" and type <> 'subst' order by elapsed asc;";
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
