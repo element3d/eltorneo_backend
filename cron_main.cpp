@@ -325,7 +325,7 @@ void GetLiveMatches(PGconn* pg)
 		"JOIN teams t1 ON m.team1 = t1.id "
 		"JOIN teams t2 ON m.team2 = t2.id "
 		"WHERE m.team1_score = -1 AND m.team2_score = -1 AND match_date < " + std::to_string(milliseconds) +
-		" ORDER BY m.match_date;";
+		" AND status <> 'PST' ORDER BY m.match_date;";
 
 	PGresult* ret = PQexec(pg, sql.c_str());
 	int nrows = PQntuples(ret);
@@ -386,6 +386,8 @@ void GetLiveMatches(PGconn* pg)
 				" where id = " + std::to_string(id) + ";";
 			PGresult* updated = PQexec(pg, sql.c_str());
 			PQclear(updated);
+
+			if (status == "PST") continue;
 
 			std::string filename = "data/notifications.json";
 			std::string jsonString = ReadFile(filename);

@@ -321,7 +321,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "JOIN leagues l ON m.league = l.id "  // Join with leagues table
             "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
             "AND m.team1_score = -1 AND m.team2_score = -1 "
-            "ORDER BY m.league ASC, m.match_date ASC;";
+            "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
