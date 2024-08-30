@@ -38,8 +38,8 @@ void LeaguesRoute::Init()
 
         //MatchesInitializer::InitLigue124_25(pg);
 
-        MatchesInitializer::InitChampionsLeagueTeams24_25(pg);
-        MatchesInitializer::InitChampionsLeagueTable(pg);
+        //MatchesInitializer::InitChampionsLeagueTeams24_25(pg);
+        // MatchesInitializer::InitChampionsLeagueTable(pg);
 
         /*MatchesInitializer::InitPremierLeagueTable(pg);
         MatchesInitializer::FillPremierLeagueTable(pg);

@@ -165,6 +165,76 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 	}
 }
 
+void FillMatchLineups(PGconn* pg, rapidjson::Document& document, int matchId, long long matchDate)
+{
+	{
+		std::string sql = "SELECT * FROM lineups WHERE match_id = " + std::to_string(matchId) + ";";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			return;
+		}
+		int nrows = PQntuples(ret);
+		if (nrows > 0) 
+		{
+			return;
+		}
+
+	}
+
+	rapidjson::Value lineup1 = document["response"][0]["lineups"][0].GetObject();
+	rapidjson::Value lineup2 = document["response"][0]["lineups"][1].GetObject();
+
+	// team1
+	std::string team1Formation = lineup1["formation"].GetString();
+	std::string team1PlayerColor = lineup1["team"]["colors"]["player"]["primary"].GetString();
+	std::string team1PlayerNColor = lineup1["team"]["colors"]["player"]["number"].GetString();
+	std::string team1PlayerBColor = lineup1["team"]["colors"]["player"]["border"].GetString();
+	std::string team1GKColor = lineup1["team"]["colors"]["goalkeeper"]["primary"].GetString();
+	std::string team1GKNColor = lineup1["team"]["colors"]["goalkeeper"]["number"].GetString();
+	std::string team1GKBColor = lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
+
+	// team2
+	std::string team2Formation = lineup2["formation"].GetString();
+	std::string team2PlayerColor = lineup2["team"]["colors"]["player"]["primary"].GetString();
+	std::string team2PlayerNColor = lineup2["team"]["colors"]["player"]["number"].GetString();
+	std::string team2PlayerBColor = lineup2["team"]["colors"]["player"]["border"].GetString();
+	std::string team2GKColor = lineup2["team"]["colors"]["goalkeeper"]["primary"].GetString();
+	std::string team2GKNColor = lineup2["team"]["colors"]["goalkeeper"]["number"].GetString();
+	std::string team2GKBColor = lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
+
+	// SQL insert command
+	std::string sql = "INSERT INTO lineups (match_id, match_date, formation1, player_color1, player_ncolor1, player_bcolor1, "
+		"gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, player_bcolor2, "
+		"gk_color2, gk_ncolor2, gk_bcolor2) VALUES (" +
+		std::to_string(matchId) + ", " +
+		std::to_string(matchDate) + ", '" +
+		team1Formation + "', '" +
+		team1PlayerColor + "', '" +
+		team1PlayerNColor + "', '" +
+		team1PlayerBColor + "', '" +
+		team1GKColor + "', '" +
+		team1GKNColor + "', '" +
+		team1GKBColor + "', '" +
+		team2Formation + "', '" +
+		team2PlayerColor + "', '" +
+		team2PlayerNColor + "', '" +
+		team2PlayerBColor + "', '" +
+		team2GKColor + "', '" +
+		team2GKNColor + "', '" +
+		team2GKBColor + "');";
+
+	PGresult* ret = PQexec(pg, sql.c_str());
+	if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+	{
+		// Handle error
+		std::cerr << "Error executing SQL: " << PQerrorMessage(pg) << std::endl;
+	}
+
+	PQclear(ret);
+}
+
+
 void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
 {
 	if (!document["response"][0]["statistics"].Size()) return;
@@ -317,7 +387,7 @@ void GetLiveMatches(PGconn* pg)
 	long long milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
 
-	std::string sql = "SELECT m.id, m.league, m.week, "
+	std::string sql = "SELECT m.id, m.league, m.week, m.match_date, "
 		"t1.id AS team1_id, t1.api_id AS team1_api_id, t1.short_name AS team1_short_name, "
 		"t2.id AS team2_id, t2.api_id AS team2_api_id, t2.short_name AS team2_short_name, "
 		"m.api_id "
@@ -334,18 +404,19 @@ void GetLiveMatches(PGconn* pg)
 		int id = atoi(PQgetvalue(ret, i, 0));
 		int league = atoi(PQgetvalue(ret, i, 1));
 		int week = atoi(PQgetvalue(ret, i, 2));
+		long long matchDate = atoll(PQgetvalue(ret, i, 3));
 
 		CronTeam team1;
-		team1.Id = atoi(PQgetvalue(ret, i, 3));
-		team1.ApiId = atoi(PQgetvalue(ret, i, 4));
-		team1.ShortName = PQgetvalue(ret, i, 5); // Retrieve team1 short_name
+		team1.Id = atoi(PQgetvalue(ret, i, 4));
+		team1.ApiId = atoi(PQgetvalue(ret, i, 5));
+		team1.ShortName = PQgetvalue(ret, i, 6); // Retrieve team1 short_name
 
 		CronTeam team2;
-		team2.Id = atoi(PQgetvalue(ret, i, 6));
-		team2.ApiId = atoi(PQgetvalue(ret, i, 7));
-		team2.ShortName = PQgetvalue(ret, i, 8); // Retrieve team2 short_name
+		team2.Id = atoi(PQgetvalue(ret, i, 7));
+		team2.ApiId = atoi(PQgetvalue(ret, i, 8));
+		team2.ShortName = PQgetvalue(ret, i, 9); // Retrieve team2 short_name
 
-		int apiId = atoi(PQgetvalue(ret, i, 9));
+		int apiId = atoi(PQgetvalue(ret, i, 10));
 
 
 		if (apiId == -1 || team1.ApiId == -1 || team2.ApiId == -1)
@@ -396,6 +467,7 @@ void GetLiveMatches(PGconn* pg)
 
 			FillMatchStats(pg, document, id);
 			FillMatchEvents(pg, document, id, team1, team2);
+			// FillMatchLineups(pg, document, id, matchDate);
 
 			if (status == "FT") 
 			{
