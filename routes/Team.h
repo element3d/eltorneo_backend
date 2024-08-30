@@ -122,8 +122,23 @@ enum class ETeam
     SaintEtienne,
     Strasbourg,
     Toulouse,
-    Ligue1End = Toulouse
+    Ligue1End = Toulouse,
 
+    Benfica,
+    Celtic,
+    ClubBrugge,
+    DinamoZagreb,
+    FKCrvenaZvezda,
+    Feyenoord,
+    PSV,
+    RedStarBelgrade,
+    Salzburg,
+    ShakhtarDonetsk,
+    SlovanBratislava,
+    SpartaPrague,
+    SportingLisbon,
+    SturmGraz,
+    YoungBoys
 };
 
 class Team

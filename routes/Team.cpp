@@ -205,6 +205,36 @@ std::string Team::ToString(ETeam team)
     case ETeam::Toulouse:
         return "Toulouse";
 
+        // 
+    case ETeam::Benfica:
+        return "Benfica";
+    case ETeam::Celtic:
+        return "Celtic";
+    case ETeam::ClubBrugge:
+        return "Club Brugge KV";
+    case ETeam::DinamoZagreb:
+        return "Dinamo Zagreb";
+    case ETeam::FKCrvenaZvezda:
+        return "FK Crvena Zvezda";
+    case ETeam::Feyenoord:
+        return "Feyenoord";
+    case ETeam::PSV:
+        return "PSV Eindhoven";
+    case ETeam::Salzburg:
+        return "Red Bull Salzburg";
+    case ETeam::ShakhtarDonetsk:
+        return "Shakhtar Donetsk";
+    case ETeam::SlovanBratislava:
+        return "Slovan Bratislava";
+    case ETeam::SpartaPrague:
+        return "Sparta Praha";
+    case ETeam::SportingLisbon:
+        return "Sporting CP";
+    case ETeam::SturmGraz:
+        return "Sturm Graz";
+    case ETeam::YoungBoys:
+        return "BSC Young Boys";
+
     default:
         return "Unknown Team";
     }
@@ -414,6 +444,36 @@ std::string Team::ToShortString(ETeam team)
         return "Strasbourg";
     case ETeam::Toulouse:
         return "Toulouse";
+
+    // 
+    case ETeam::Benfica:
+        return "Benfica";
+    case ETeam::Celtic:
+        return "Celtic";
+    case ETeam::ClubBrugge:
+        return "Club Brugge";
+    case ETeam::DinamoZagreb:
+        return "Dinamo Zagreb";
+    case ETeam::FKCrvenaZvezda:
+        return "Crvena Zvezda";
+    case ETeam::Feyenoord:
+        return "Feyenoord";
+    case ETeam::PSV:
+        return "PSV";
+    case ETeam::Salzburg:
+        return "Salzburg";
+    case ETeam::ShakhtarDonetsk:
+        return "Shakhtar D.";
+    case ETeam::SlovanBratislava:
+        return "Slovan B.";
+    case ETeam::SpartaPrague:
+        return "Sparta Praha";
+    case ETeam::SportingLisbon:
+        return "Sporting CP";
+    case ETeam::SturmGraz:
+        return "Sturm Graz";
+    case ETeam::YoungBoys:
+        return "Young Boys";
 
     default:
         return "Unknown Team";

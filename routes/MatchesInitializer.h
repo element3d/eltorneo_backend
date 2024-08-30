@@ -27,6 +27,10 @@ public:
 class MatchesInitializer 
 {
 public:
+    static void InitChampionsLeagueTeams24_25(PGconn* pg);
+    static void InitChampionsLeagueTable(PGconn* pg);
+
+
     static void InitPremierLeagueTeams24_25(PGconn* pg);
     static void InitPremierLeagueTable(PGconn* pg);
     static void FillPremierLeagueTable(PGconn* pg);

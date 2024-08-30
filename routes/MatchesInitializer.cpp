@@ -2,6 +2,141 @@
 #include <vector>
 #include <unordered_map>
 
+void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
+{
+    std::vector<ETeam> newTeams =
+    {
+        ETeam::Benfica,
+        ETeam::Celtic,
+        ETeam::ClubBrugge,
+        ETeam::DinamoZagreb,
+        ETeam::Feyenoord,
+        ETeam::PSV,
+        ETeam::RedStarBelgrade,
+        ETeam::Salzburg,
+        ETeam::ShakhtarDonetsk,
+        ETeam::SlovanBratislava,
+        ETeam::SpartaPrague,
+        ETeam::SportingLisbon,
+        ETeam::SturmGraz,
+        ETeam::YoungBoys
+    };
+
+    for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
+    {
+        std::string sql = "insert into teams(id, name, short_name) values ("
+            + std::to_string(i) + ", '"
+            + Team::ToString((ETeam)i) + "', '"
+            + Team::ToShortString((ETeam)i)
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+
+    std::vector clTeams = 
+    {
+        ETeam::ACMilan,
+        ETeam::Arsenal,
+        ETeam::AstonVilla,
+        ETeam::Atalanta,
+        ETeam::AtleticoMadrid,
+        ETeam::Barcelona,
+        ETeam::BayerLeverkusen,
+        ETeam::BayernMunich,
+        ETeam::Benfica,
+        ETeam::Bologna,
+        ETeam::BorussiaDortmund,
+        ETeam::Brest,
+        ETeam::Celtic,
+        ETeam::ClubBrugge,
+        ETeam::DinamoZagreb,
+        ETeam::FKCrvenaZvezda,
+        ETeam::Feyenoord,
+        ETeam::Girona,
+        ETeam::InterMilan,
+        ETeam::Juventus,
+        ETeam::Lille,
+        ETeam::Liverpool,
+        ETeam::ManchesterCity,
+        ETeam::Monaco,
+        ETeam::PSV,
+        ETeam::PSG,
+        ETeam::RBLeipzig,
+        ETeam::RealMadrid,
+        ETeam::Salzburg,
+        ETeam::ShakhtarDonetsk,
+        ETeam::SlovanBratislava,
+        ETeam::SpartaPrague,
+        ETeam::SportingLisbon,
+        ETeam::SturmGraz,
+        ETeam::Stuttgart,
+        ETeam::YoungBoys
+    };
+
+    for (auto team : clTeams) 
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::ChampionsLeague)) + ", "
+            + std::to_string(int(team)) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
+{
+    std::vector clTeams =
+    {
+        ETeam::ACMilan,
+        ETeam::Arsenal,
+        ETeam::AstonVilla,
+        ETeam::Atalanta,
+        ETeam::AtleticoMadrid,
+        ETeam::Barcelona,
+        ETeam::BayerLeverkusen,
+        ETeam::BayernMunich,
+        ETeam::Benfica,
+        ETeam::Bologna,
+        ETeam::BorussiaDortmund,
+        ETeam::Brest,
+        ETeam::Celtic,
+        ETeam::ClubBrugge,
+        ETeam::DinamoZagreb,
+        ETeam::FKCrvenaZvezda,
+        ETeam::Feyenoord,
+        ETeam::Girona,
+        ETeam::InterMilan,
+        ETeam::Juventus,
+        ETeam::Lille,
+        ETeam::Liverpool,
+        ETeam::ManchesterCity,
+        ETeam::Monaco,
+        ETeam::PSV,
+        ETeam::PSG,
+        ETeam::RBLeipzig,
+        ETeam::RealMadrid,
+        ETeam::Salzburg,
+        ETeam::ShakhtarDonetsk,
+        ETeam::SlovanBratislava,
+        ETeam::SpartaPrague,
+        ETeam::SportingLisbon,
+        ETeam::SturmGraz,
+        ETeam::Stuttgart,
+        ETeam::YoungBoys
+    };
+
+    for (auto team : clTeams)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(int(team)) + ", "
+            + std::to_string(int(ELeague::ChampionsLeague)) + " ,'"
+            + "24/25"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 void MatchesInitializer::InitPremierLeagueTeams24_25(PGconn* pg)
 {
     for (int i = (int)ETeam::PremierLeagueStart; i <= (int)ETeam::PremierLeagueEnd; ++i)
