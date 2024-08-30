@@ -131,7 +131,6 @@ enum class ETeam
     FKCrvenaZvezda,
     Feyenoord,
     PSV,
-    RedStarBelgrade,
     Salzburg,
     ShakhtarDonetsk,
     SlovanBratislava,

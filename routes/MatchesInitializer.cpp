@@ -12,7 +12,6 @@ void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
         ETeam::DinamoZagreb,
         ETeam::Feyenoord,
         ETeam::PSV,
-        ETeam::RedStarBelgrade,
         ETeam::Salzburg,
         ETeam::ShakhtarDonetsk,
         ETeam::SlovanBratislava,
