@@ -19,6 +19,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchHeader();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchLive();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchLineups();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetTeamMatches();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatch();
 
