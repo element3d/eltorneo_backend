@@ -188,7 +188,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "JOIN teams t2 ON m.team2 = t2.id "
             "JOIN leagues l ON m.league = l.id "
             "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
-            "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date ASC;";
+            "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK) {

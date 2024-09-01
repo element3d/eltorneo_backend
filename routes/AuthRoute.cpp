@@ -388,7 +388,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetS
 
         // Start constructing the SQL query
         std::string sql = "SELECT u.points, "
-            "COUNT(p.status) AS total_predictions, "
+            "COUNT(CASE WHEN p.status <> 0 THEN 1 END) AS total_predictions, "
             "COUNT(CASE WHEN p.status = 1 OR p.status = 2 THEN 1 END) AS winner_predicted, "
             "COUNT(CASE WHEN p.status = 2 THEN 1 END) AS score_predicted, "
             "COUNT(CASE WHEN p.status = 3 THEN 1 END) AS failed "
@@ -471,7 +471,7 @@ std::string generateRandomFilename()
     return filename;
 }
 
-
+#include "../anvir/avir.h"
 void Upload(void* data, int size, std::string fullPath, EImageContentType contentType) {
     int w, h, c;
     unsigned char* d = nullptr;
@@ -483,17 +483,17 @@ void Upload(void* data, int size, std::string fullPath, EImageContentType conten
     else
         d = stbi_load_from_memory((unsigned char*)data, size, &w, &h, &c, 0);
 
-    /*int nw = 400;
+    int nw = 400;
     int nh = int(400.f * h / w);
     unsigned char* dd = new unsigned char[nw* nh * c];
-    avir :: CImageResizer<> ImageResizer( 8 );
-    ImageResizer.resizeImage( d, w, h, 0, dd, nw, nh, c, 0 );*/
+    avir::CImageResizer<> ImageResizer( 8 );
+    ImageResizer.resizeImage( d, w, h, 0, dd, nw, nh, c, 0 );
 
-    WebPSave(d, w, h, c, fullPath);
+ //   WebPSave(d, w, h, c, fullPath);
 
-    // stbi_write_jpg(fullPath.c_str(), nw, nh, c, dd, 100);
+    stbi_write_jpg(fullPath.c_str(), nw, nh, c, dd, 100);
     stbi_image_free(d);
-    // delete[] dd;
+    delete[] dd;
 }
 
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeUploadAvatar()
@@ -523,7 +523,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeUp
         if (!stlplus::folder_exists(userDir)) stlplus::folder_create(userDir);
         //        std::string carDir = userDir + "/" + carId;
         //        if (!stlplus::folder_exists(carDir)) stlplus::folder_create(carDir);
-        std::string filename = userDir + "/" + generateRandomFilename() + ".webp";
+        std::string rname = generateRandomFilename();
+        std::string filename = userDir + "/" + rname + ".jpg";
         //        std::ofstream ofs(filename, std::ios::binary);
         //        ofs << image_file.content;
 
@@ -531,7 +532,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeUp
         if (image_file.content_type == std::string("image/webp")) ct = EImageContentType::Webp;
         Upload((unsigned char*)image_file.content.c_str(), image_file.content.size(), filename, ct);
             
-        std::string sql = "UPDATE users SET avatar = '" + filename + "' WHERE id = " + userId + ";";
+        std::string dbFilename = std::string("data") + "/users" + "/" + userId + "/" + rname + ".jpg";
+        std::string sql = "UPDATE users SET avatar = '" + dbFilename + "' WHERE id = " + userId + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* pgres = PQexec(pg, sql.c_str());
         if (PQresultStatus(pgres) != PGRES_COMMAND_OK)

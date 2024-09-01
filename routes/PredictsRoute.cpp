@@ -300,7 +300,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             return total;
         };
 
-        int totalPredicts = generateCountQuery("true");
+        int totalPredicts = generateCountQuery("p.status <> 0");
         if (totalPredicts == -1) return;  // Check for errors and exit if found
 
         int totalScorePredicts = generateCountQuery("p.status = 2");
