@@ -34,6 +34,7 @@ void LeaguesRoute::Init()
     PQclear(ret);
     if (numLeagues > 0) 
     {
+        MatchesInitializer::InitChampionsLeague24_25(pg);
         //MatchesInitializer::InitLigue1Teams24_25(pg);
 
         //MatchesInitializer::InitLigue124_25(pg);
