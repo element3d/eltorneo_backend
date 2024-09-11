@@ -34,7 +34,9 @@ void LeaguesRoute::Init()
     PQclear(ret);
     if (numLeagues > 0) 
     {
-        MatchesInitializer::InitChampionsLeague24_25(pg);
+       // MatchesInitializer::InitNationsLeague24_25(pg);
+       // MatchesInitializer::InitNationsLeagueTeams24_25(pg);
+        //MatchesInitializer::InitChampionsLeague24_25(pg);
         //MatchesInitializer::InitLigue1Teams24_25(pg);
 
         //MatchesInitializer::InitLigue124_25(pg);
@@ -222,6 +224,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             int type = atoi(PQgetvalue(ret, i, 5));
             objValue.AddMember("type", type, allocator);
 
+            int isSpecial = atoi(PQgetvalue(ret, i, 7));
+            objValue.AddMember("is_special", isSpecial, allocator);
+
+            int numLeagues = atoi(PQgetvalue(ret, i, 8));
+            objValue.AddMember("num_leagues", numLeagues, allocator);
+
             rapidjson::Value weeks;
             weeks.SetArray();
             if (id == (int)ELeague::ChampionsLeague)
@@ -387,14 +395,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
         res.set_header("Access-Control-Allow-Origin", "*");
 
         int leagueId = atoi(req.get_param_value("league_id").c_str());
+        int leagueIndex = req.has_param("league_index") ? atoi(req.get_param_value("league_index").c_str()) : 0;
 
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
 
         // SQL query to get the league table sorted by points and then by goal difference
-        std::string sql = "SELECT team_id, matches_played, goals_f, goals_a, points "
-            "FROM tables WHERE league_id = " + std::to_string(leagueId) +
-            " ORDER BY points DESC, (goals_f - goals_a) DESC;";
+        std::string sql = "SELECT team_id, matches_played, goals_f, goals_a, points, league_index, group_index "
+            "FROM tables WHERE league_id = " + std::to_string(leagueId) + " AND league_index = " + std::to_string(leagueIndex) +
+            " ORDER BY group_index, points DESC, (goals_f - goals_a) DESC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -423,6 +432,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             int goalsFor = atoi(PQgetvalue(ret, i, 2));
             int goalsAgainst = atoi(PQgetvalue(ret, i, 3));
             int points = atoi(PQgetvalue(ret, i, 4));
+            int lIndex = atoi(PQgetvalue(ret, i, 5));
+            int gIndex = atoi(PQgetvalue(ret, i, 6));
 
             // Fetch team details
             std::string teamSql = "SELECT id, name, short_name FROM teams WHERE id = " + std::to_string(teamId) + ";";
@@ -445,6 +456,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             teamObject.AddMember("goals_a", goalsAgainst, allocator);
             teamObject.AddMember("goal_difference", goalsFor - goalsAgainst, allocator);
             teamObject.AddMember("points", points, allocator);
+            teamObject.AddMember("league_index", lIndex, allocator);
+            teamObject.AddMember("group_index", gIndex, allocator);
 
             document.PushBack(teamObject, allocator);
         }

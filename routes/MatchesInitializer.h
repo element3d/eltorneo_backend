@@ -58,4 +58,8 @@ public:
 	static void InitPremierLeague24_25(PGconn* pg);
     static void InitLaLiga24_25(PGconn* pg);
 
+    static void InitNationsLeagueTeams24_25(PGconn* pg);
+    static void InitNationsLeague24_25(PGconn* pg);
+
+
 };

@@ -10,7 +10,8 @@ enum class ELeague
     SerieA,
     Bundesliga,
     Ligue1,
-    End = Ligue1
+    NationsLeague,
+    End = NationsLeague
 };
 
 enum class ELeagueType 

@@ -235,6 +235,116 @@ std::string Team::ToString(ETeam team)
     case ETeam::YoungBoys:
         return "BSC Young Boys";
 
+    // Nations League
+    case ETeam::Portugal:
+        return "Portugal";
+    case ETeam::Croatia:
+        return "Croatia";
+    case ETeam::Poland:
+        return "Poland";
+    case ETeam::Scotland:
+        return "Scotland";
+    case ETeam::Italy:
+        return "Italy";
+    case ETeam::France:
+        return "France";
+    case ETeam::Belgium:
+        return "Belgium";
+    case ETeam::Israel:
+        return "Israel";
+    case ETeam::Germany:
+        return "Germany";
+    case ETeam::Netherlands:
+        return "Netherlands";
+    case ETeam::BosniaAndHerzegovina:
+        return "Bosnia And Herzegovina";
+    case ETeam::Hungary:
+        return "Hungary";
+    case ETeam::Denmark:
+        return "Denmark";
+    case ETeam::Spain:
+        return "Spain";
+    case ETeam::Serbia:
+        return "Serbia";
+    case ETeam::Switzerland:
+        return "Switzerland";
+    case ETeam::Georgia:
+        return "Georgia";
+    case ETeam::Albania:
+        return "Albania";
+    case ETeam::Czechia:
+        return "Czechia";
+    case ETeam::Ukraine:
+        return "Ukraine";
+    case ETeam::Greece:
+        return "Greece";
+    case ETeam::England:
+        return "England";
+    case ETeam::RepublicOfIreland:
+        return "Republic Of Ireland";
+    case ETeam::Finland:
+        return "Finland";
+    case ETeam::Slovenia:
+        return "Slovenia";
+    case ETeam::Norway:
+        return "Norway";
+    case ETeam::Austria:
+        return "Austria";
+    case ETeam::Kazakhstan:
+        return "Kazakhstan";
+    case ETeam::Turkiye:
+        return "Turkiye";
+    case ETeam::Wales:
+        return "Wales";
+    case ETeam::Iceland:
+        return "Iceland";
+    case ETeam::Montenegro:
+        return "Montenegro";
+    case ETeam::Sweden:
+        return "Sweden";
+    case ETeam::Slovakia:
+        return "Slovakia";
+    case ETeam::Azerbaijan:
+        return "Azerbaijan";
+    case ETeam::Estonia:
+        return "Estonia";
+    case ETeam::Romania:
+        return "Romania";
+    case ETeam::Kosovo:
+        return "Kosovo";
+    case ETeam::Cyprus:
+        return "Cyprus";
+    case ETeam::Lithuania:
+        return "Lithuania";
+    case ETeam::Belarus:
+        return "Belarus";
+    case ETeam::Bulgaria:
+        return "Bulgaria";
+    case ETeam::NorthernIreland:
+        return "Northern Ireland";
+    case ETeam::Luxemburg:
+        return "Luxemburg";
+    case ETeam::NorthMacedonia:
+        return "North Macedonia";
+    case ETeam::Armenia:
+        return "Armenia";
+    case ETeam::Latvia:
+        return "Latvia";
+    case ETeam::FaroeIslands:
+        return "Faroe Islands";
+    case ETeam::SanMarino:
+        return "San Marino";
+    case ETeam::Gibraltar:
+        return "Gibraltar";
+    case ETeam::Liechtenstein:
+        return "Liechtenstein";
+    case ETeam::Moldova:
+        return "Moldova";
+    case ETeam::Malta:
+        return "Malta";
+    case ETeam::Andorra:
+        return "Andorra";
+
     default:
         return "Unknown Team";
     }
@@ -474,6 +584,116 @@ std::string Team::ToShortString(ETeam team)
         return "Sturm Graz";
     case ETeam::YoungBoys:
         return "Young Boys";
+
+        // Nations League
+    case ETeam::Portugal:
+        return "Portugal";
+    case ETeam::Croatia:
+        return "Croatia";
+    case ETeam::Poland:
+        return "Poland";
+    case ETeam::Scotland:
+        return "Scotland";
+    case ETeam::Italy:
+        return "Italy";
+    case ETeam::France:
+        return "France";
+    case ETeam::Belgium:
+        return "Belgium";
+    case ETeam::Israel:
+        return "Israel";
+    case ETeam::Germany:
+        return "Germany";
+    case ETeam::Netherlands:
+        return "Netherlands";
+    case ETeam::BosniaAndHerzegovina:
+        return "Bosnia Her.";
+    case ETeam::Hungary:
+        return "Hungary";
+    case ETeam::Denmark:
+        return "Denmark";
+    case ETeam::Spain:
+        return "Spain";
+    case ETeam::Serbia:
+        return "Serbia";
+    case ETeam::Switzerland:
+        return "Switzerland";
+    case ETeam::Georgia:
+        return "Georgia";
+    case ETeam::Albania:
+        return "Albania";
+    case ETeam::Czechia:
+        return "Czechia";
+    case ETeam::Ukraine:
+        return "Ukraine";
+    case ETeam::Greece:
+        return "Greece";
+    case ETeam::England:
+        return "England";
+    case ETeam::RepublicOfIreland:
+        return "R.Ireland";
+    case ETeam::Finland:
+        return "Finland";
+    case ETeam::Slovenia:
+        return "Slovenia";
+    case ETeam::Norway:
+        return "Norway";
+    case ETeam::Austria:
+        return "Austria";
+    case ETeam::Kazakhstan:
+        return "Kazakhstan";
+    case ETeam::Turkiye:
+        return "Turkiye";
+    case ETeam::Wales:
+        return "Wales";
+    case ETeam::Iceland:
+        return "Iceland";
+    case ETeam::Montenegro:
+        return "Montenegro";
+    case ETeam::Sweden:
+        return "Sweden";
+    case ETeam::Slovakia:
+        return "Slovakia";
+    case ETeam::Azerbaijan:
+        return "Azerbaijan";
+    case ETeam::Estonia:
+        return "Estonia";
+    case ETeam::Romania:
+        return "Romania";
+    case ETeam::Kosovo:
+        return "Kosovo";
+    case ETeam::Cyprus:
+        return "Cyprus";
+    case ETeam::Lithuania:
+        return "Lithuania";
+    case ETeam::Belarus:
+        return "Belarus";
+    case ETeam::Bulgaria:
+        return "Bulgaria";
+    case ETeam::NorthernIreland:
+        return "N. Ireland";
+    case ETeam::Luxemburg:
+        return "Luxemburg";
+    case ETeam::NorthMacedonia:
+        return "N. Macedonia";
+    case ETeam::Armenia:
+        return "Armenia";
+    case ETeam::Latvia:
+        return "Latvia";
+    case ETeam::FaroeIslands:
+        return "Faroe Is.";
+    case ETeam::SanMarino:
+        return "San Marino";
+    case ETeam::Gibraltar:
+        return "Gibraltar";
+    case ETeam::Liechtenstein:
+        return "Liechtenstein";
+    case ETeam::Moldova:
+        return "Moldova";
+    case ETeam::Malta:
+        return "Malta";
+    case ETeam::Andorra:
+        return "Andorra";
 
     default:
         return "Unknown Team";
