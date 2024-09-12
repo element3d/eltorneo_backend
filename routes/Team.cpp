@@ -257,7 +257,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Netherlands:
         return "Netherlands";
     case ETeam::BosniaAndHerzegovina:
-        return "Bosnia And Herzegovina";
+        return "Bosnia & Herzegovina";
     case ETeam::Hungary:
         return "Hungary";
     case ETeam::Denmark:
@@ -273,7 +273,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Albania:
         return "Albania";
     case ETeam::Czechia:
-        return "Czechia";
+        return "Czech Republic";
     case ETeam::Ukraine:
         return "Ukraine";
     case ETeam::Greece:
@@ -281,7 +281,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::England:
         return "England";
     case ETeam::RepublicOfIreland:
-        return "Republic Of Ireland";
+        return "Rep. Of Ireland";
     case ETeam::Finland:
         return "Finland";
     case ETeam::Slovenia:
@@ -293,7 +293,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Kazakhstan:
         return "Kazakhstan";
     case ETeam::Turkiye:
-        return "Turkiye";
+        return "Türkiye";
     case ETeam::Wales:
         return "Wales";
     case ETeam::Iceland:
@@ -325,7 +325,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Luxemburg:
         return "Luxemburg";
     case ETeam::NorthMacedonia:
-        return "North Macedonia";
+        return "FYR Macedonia";
     case ETeam::Armenia:
         return "Armenia";
     case ETeam::Latvia:

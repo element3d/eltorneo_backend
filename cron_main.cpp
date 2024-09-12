@@ -34,6 +34,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 	case ELeague::Ligue1:
 		return 61;
 		break;
+	case ELeague::NationsLeague:
+		return 5;
 	default:
 		break;
 	}
@@ -287,9 +289,29 @@ void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
 	PQclear(ret);
 }
 
+std::string getLeagueNameFromIndex(int index) 
+{
+	if (index == 0) return "A";
+	if (index == 1) return "B";
+	if (index == 2) return "C";
+	if (index == 3) return "D";
+	return "";
+}
 
 int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& team1, CronTeam& team2, const std::string& season, int week)
 {
+	std::string round = "Regular Season - " + std::to_string(week);
+	if (league == ELeague::NationsLeague) 
+	{
+		std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
+			+ " AND team_id = " + std::to_string(team1.Id) + ";";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
+		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
+		PQclear(ret);
+	}
+
 	std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 
 	int leagueId = elTorneoLeagueIdToApiFootball(league);
@@ -297,7 +319,7 @@ int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& tea
 	cpr::Parameters params = {
 		  {"league", std::to_string(leagueId)},
 		  {"season", season},
-		  {"round", "Regular Season - " + std::to_string(week)}
+		  {"round", round}
 	};
 
 	// Make the request
