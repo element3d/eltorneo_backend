@@ -311,6 +311,13 @@ int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& tea
 		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
 		PQclear(ret);
 	}
+	else if (league == ELeague::ChampionsLeague) 
+	{
+		if (week <= 8) 
+		{
+			round = "League Stage - " + std::to_string(week);
+		}
+	}
 
 	std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 

@@ -673,11 +673,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDe
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAddFcmToken()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        int userId = -1;
         std::string token = req.get_header_value("Authentication");
-        auto decoded = jwt::decode(token);
-
-        int userId = decoded.get_payload_claim("id").as_int();
-
+        if (token.size())
+        {
+            auto decoded = jwt::decode(token);
+            userId = decoded.get_payload_claim("id").as_int();
+        }
         rapidjson::Document d;
         d.Parse(req.body.c_str());
         if (!d.HasMember("fcm_token") || !d.HasMember("os"))
@@ -692,36 +694,86 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
         std::string lang = d["lang"].GetString();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT COUNT(*) FROM fcm_tokens where user_id = " + std::to_string(userId)
-            + " AND token = '" + fcmToken + "';";
+        if (userId != -1) 
+        {
+            std::string sql = "SELECT COUNT(*) FROM fcm_tokens where user_id = " + std::to_string(userId)
+                + " AND token = '" + fcmToken + "';";
 
-        PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-        {
-            fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 200;
+                return;
+            }
+            char* temp = (char*)calloc(256, sizeof(char));
+            strcpy(temp, PQgetvalue(ret, 0, 0));
+            bool exists = atoi(temp) > 0;
             PQclear(ret);
-            ConnectionPool::Get()->releaseConnection(pg);
-            res.status = 200;
-            return;
+            free(temp);
+            if (exists)
+            {
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 200;
+                return;
+            }
+            else 
+            {
+                std::string sql = "SELECT id FROM fcm_tokens where token = '" + (fcmToken)+"';";
+                PGresult* ret = PQexec(pg, sql.c_str());
+                if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+                {
+                    fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
+                    PQclear(ret);
+                    ConnectionPool::Get()->releaseConnection(pg);
+                    res.status = 200;
+                    return;
+                }
+
+                bool tokenExists = PQntuples(ret) > 0;
+                if (tokenExists)
+                {
+                    PQclear(ret);
+                    sql = "UPDATE fcm_tokens SET user_id = " + std::to_string(userId) + " WHERE token = '" + token + "';";
+                    ret = PQexec(pg, sql.c_str());
+                    PQclear(ret);
+                    ConnectionPool::Get()->releaseConnection(pg);
+                    res.status = 200;
+                    return;
+                }
+            }
         }
-        char* temp = (char*)calloc(256, sizeof(char));
-        strcpy(temp, PQgetvalue(ret, 0, 0));
-        bool exists = atoi(temp) > 0;
-        PQclear(ret);
-        free(temp);
-        if (exists)
+        else
         {
-            ConnectionPool::Get()->releaseConnection(pg);
-            res.status = 200;
-            return;
+            std::string sql = "SELECT id FROM fcm_tokens where token = '" + (fcmToken) + "';";
+            PGresult*  ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 200;
+                return;
+            }
+            bool exists = PQntuples(ret) > 0;
+            if (exists) 
+            {
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 200;
+                return;
+            }
         }
         
-        sql = "INSERT INTO fcm_tokens (user_id, token, os, lang) VALUES (" + std::to_string(userId)
+        std::string sql = "INSERT INTO fcm_tokens (user_id, token, os, lang) VALUES (" + std::to_string(userId)
             + ",'" + fcmToken
             + "','" + os
             + "','" + lang
             + "');";
-        ret = PQexec(pg, sql.c_str());
+
+        PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_COMMAND_OK)
         {
             fprintf(stderr, "Failed to add fcm token: %s", PQerrorMessage(pg));
