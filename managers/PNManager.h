@@ -12,6 +12,7 @@ public:
 	static bool SendPushNotification(const std::string& access_token, const std::string fcm_token, const std::string& title, const std::string& msg);
 
 	static bool SendWeekStartedNotification();
+	static bool SendCLStartedNotification();
 	static bool SendPredictionNotification(int matchId);
 
 };

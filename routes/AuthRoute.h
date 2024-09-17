@@ -24,6 +24,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> MeSetName();
     std::function<void(const httplib::Request&, httplib::Response&)> MeAddFcmToken();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotification();
+    std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationCL();
     std::function<void(const httplib::Request&, httplib::Response&)> UserPredictionSendNotification();
 
 private:

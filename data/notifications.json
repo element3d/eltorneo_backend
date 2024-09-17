@@ -7,7 +7,9 @@
       "prediction_winner_title": "Congratulations",
       "prediction_winner_msg": "You have predicted the winner of the match.",
       "prediction_draw_title": "Congratulations",
-      "prediction_draw_msg": "You have predicted the draw in the match."
+      "prediction_draw_msg": "You have predicted the draw in the match.",
+      "cl_started_title": "Let the Champions League Battle Begin!",
+      "cl_started_msg": "The road to glory begins today! Get your predictions in and compete for the top spot!"
     },
     "ru": {
       "week_started_title": "Футбольная неделя началась",
@@ -17,30 +19,80 @@
       "prediction_winner_title": "Поздравляем",
       "prediction_winner_msg": "Вы предсказали победителя матча.",
       "prediction_draw_title": "Поздравляем",
-      "prediction_draw_msg": "Вы предсказали ничью в матче."
+      "prediction_draw_msg": "Вы предсказали ничью в матче.",
+      "cl_started_title": "Да начнется битва в Лиге чемпионов!",
+      "cl_started_msg": "Путь к славе начинается сегодня! Делайте прогнозы и соревнуйтесь за первое место!"
     },
     "es": {
       "week_started_title": "La semana de fútbol ha comenzado",
-      "week_started_msg": "¡Asegúrate de enviar tus predicciones para los próximos partidos!"
+      "week_started_msg": "¡Asegúrate de enviar tus predicciones para los próximos partidos!",
+      "prediction_score_title": "Increíble",
+      "prediction_score_msg": "Has pronosticado el resultado del partido.",
+      "prediction_winner_title": "Enhorabuena",
+      "prediction_winner_msg": "Has pronosticado el ganador del partido.",
+      "prediction_draw_title": "Enhorabuena",
+      "prediction_draw_msg": "Has pronosticado el empate del partido.",
+      "cl_started_title": "¡Que comience la batalla de la Champions League!",
+      "cl_started_msg": "¡El camino a la gloria comienza hoy! ¡Haz tus predicciones y compite por el primer puesto!"
     },
     "it": {
       "week_started_title": "La settimana del calcio è iniziata",
-      "week_started_msg": "Assicurati di inviare le tue previsioni per le prossime partite!"
+      "week_started_msg": "Assicurati di inviare le tue previsioni per le prossime partite!",
+      "prediction_score_title": "Incredibile",
+      "prediction_score_msg": "Hai previsto il punteggio della partita.",
+      "prediction_winner_title": "Congratulazioni",
+      "prediction_winner_msg": "Hai previsto il vincitore della partita.",
+      "prediction_draw_title": "Congratulazioni",
+      "prediction_draw_msg": "Hai previsto il pareggio nella partita.",
+      "cl_started_title": "Che la battaglia della Champions League abbia inizio!",
+      "cl_started_msg": "La strada per la gloria inizia oggi! Invia i tuoi pronostici e gareggia per il primo posto!"
     },
     "de": {
       "week_started_title": "Die Fußballwoche hat begonnen",
-      "week_started_msg": "Stelle sicher, dass du deine Vorhersagen für die kommenden Spiele abgibst!"
+      "week_started_msg": "Stelle sicher, dass du deine Vorhersagen für die kommenden Spiele abgibst!",
+      "prediction_score_title": "Unglaublich",
+      "prediction_score_msg": "Sie haben das Ergebnis des Spiels vorhergesagt.",
+      "prediction_winner_title": "Herzlichen Glückwunsch",
+      "prediction_winner_msg": "Sie haben den Sieger des Spiels vorhergesagt.",
+      "prediction_draw_title": "Herzlichen Glückwunsch",
+      "prediction_draw_msg": "Sie haben das Unentschieden im Spiel vorhergesagt.",
+      "cl_started_title": "Der Kampf um die Champions League kann beginnen!",
+      "cl_started_msg": "Der Weg zum Ruhm beginnt heute! Geben Sie Ihre Tipps ab und kämpfen Sie um den Spitzenplatz!"
     },
     "hr": {
       "week_started_title": "Nogometni tjedan je počeo",
-      "week_started_msg": "Obavezno pošaljite svoje prognoze za nadolazeće utakmice!"
+      "week_started_msg": "Obavezno pošaljite svoje prognoze za nadolazeće utakmice!",
+      "prediction_score_title": "Nevjerojatno",
+      "prediction_score_msg": "Predvidjeli ste rezultat utakmice.",
+      "prediction_winner_title": "Čestitamo",
+      "prediction_winner_msg": "Predvidjeli ste pobjednika utakmice.",
+      "prediction_draw_title": "Čestitamo",
+      "prediction_draw_msg": "Predvidjeli ste neodlučeno u utakmici.",
+      "cl_started_title": "Neka bitka za Ligu prvaka počne!",
+      "cl_started_msg": "Put do slave počinje danas! Uključite svoja predviđanja i natječite se za prvo mjesto!"
     },
     "fr": {
       "week_started_title": "La semaine de football a commencé",
-      "week_started_msg": "Assurez-vous de soumettre vos prévisions pour les prochains matchs !"
+      "week_started_msg": "Assurez-vous de soumettre vos prévisions pour les prochains matchs !",
+      "prediction_score_title": "Incroyable",
+      "prediction_score_msg": "Vous avez prédit le score du match.",
+      "prediction_winner_title": "Félicitations",
+      "prediction_winner_msg": "Vous avez prédit le vainqueur du match.",
+      "prediction_draw_title": "Félicitations",
+      "prediction_draw_msg": "Vous avez prédit le match nul.",
+      "cl_started_title": "Que la bataille pour la Ligue des Champions commence !",
+      "cl_started_msg": "La route vers la gloire commence aujourd'hui ! Faites vos pronostics et concourez pour la première place !"
     },
     "pt": {
       "week_started_title": "A semana do futebol começou",
-      "week_started_msg": "Certifique-se de enviar suas previsões para os próximos jogos!"
+      "week_started_msg": "Certifique-se de enviar suas previsões para os próximos jogos!",
+      "prediction_score_title": "Inacreditável",
+      "prediction_score_msg": "Você previu o placar da partida.",
+      "prediction_winner_title": "Parabéns",
+      "prediction_winner_msg": "Você previu o vencedor da partida.",
+      "prediction_draw_title": "Parabéns",
+      "prediction_draw_msg": "Você previu o empate na partida.",
+      "cl_started_title": "Que a Batalha da Liga dos Campeões Comece!",
+      "cl_started_msg": "A estrada para a glória começa hoje! Faça suas previsões e concorra ao primeiro lugar!"
     }
 }
