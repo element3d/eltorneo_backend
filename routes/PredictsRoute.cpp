@@ -872,7 +872,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
 void PredictsRoute::CacheTable()
 {
-    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions ASC LIMIT 20;";
+    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC LIMIT 20;";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();
     PGresult* ret = PQexec(pg, sql.c_str());
@@ -899,14 +899,29 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     return [this](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
+        // Get the 'page' query parameter, default to 1 if not provided
+        int page = 1;
+        if (req.has_param("page")) {
+            page = std::stoi(req.get_param_value("page"));
+        }
+
+        int limit = 20; // Number of users per page
+        int offset = (page - 1) * limit; // Calculate the offset based on the page
+
         PGconn* pg = ConnectionPool::Get()->getConnection();
         if (!pg) {
             res.status = 500;  // Internal Server Error
             return;
         }
 
-        // Updated SQL query to join users with predicts and count the total number of predictions per user
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC LIMIT 20;";
+        // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts p ON u.id = p.user_id "
+            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predictions DESC "
+            "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -922,7 +937,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        mCachedTable.clear();
+        if (page == 1) mCachedTable.clear();
         for (int i = 0; i < nrows; ++i) {
             rapidjson::Value object(rapidjson::kObjectType);
             object.AddMember("id", atoi(PQgetvalue(ret, i, 0)), allocator);
@@ -932,7 +947,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 4)), allocator);  // Include the count of predictions
 
             document.PushBack(object, allocator);
-            mCachedTable.push_back(atoi(PQgetvalue(ret, i, 0)));
+
+            if (page == 1) mCachedTable.push_back(atoi(PQgetvalue(ret, i, 0)));
         }
 
         rapidjson::StringBuffer buffer;
@@ -946,6 +962,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
 
 
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetTableByScore()
