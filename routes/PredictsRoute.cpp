@@ -920,8 +920,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "INNER JOIN predicts p ON u.id = p.user_id "
             "GROUP BY u.id, u.name, u.avatar, u.points "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY u.points DESC, total_predictions DESC "
+            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
+
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
