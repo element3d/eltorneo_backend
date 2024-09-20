@@ -15,6 +15,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
     std::function<void(const httplib::Request&, httplib::Response&)> PostPredict();
+    std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();

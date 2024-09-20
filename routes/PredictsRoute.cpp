@@ -1111,9 +1111,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     };
 }
 
-
-
-
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::PostPredict()
 {
     return [](const httplib::Request& req, httplib::Response& res) {
@@ -1146,6 +1143,50 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         // Execute the insert and capture the team ID
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to add team: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500; // Internal Server Error
+            return;
+        }
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        res.status = 201; // Created
+    };
+
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::EditPredict()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "POST");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        int predictId = document["predict"].GetInt();
+        int team1 = document["team1_score"].GetInt();
+        int team2 = document["team2_score"].GetInt();
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "UPDATE predicts set team1_score = " + std::to_string(team1)
+            + ", team2_score = " + std::to_string(team2)
+            + " WHERE id = " + std::to_string(predictId) 
+            + " AND user_id = " + std::to_string(userId)
+            + ";";
+           
+        // Execute the insert and capture the team ID
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_COMMAND_OK)
         {
             fprintf(stderr, "Failed to add team: %s", PQerrorMessage(pg));
             PQclear(ret);

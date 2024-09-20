@@ -176,6 +176,7 @@ int main(void)
     svr.Get("/api/v1/team/matches", MatchesRoute::Get()->GetTeamMatches());
 
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());
+    svr.Put("/api/v1/predicts", PredictsRoute::Get()->EditPredict());
     svr.Get("/api/v1/user/predict", PredictsRoute::Get()->GetUserPredict());
     svr.Get("/api/v1/user/predicts", PredictsRoute::Get()->GetUserPredicts());
     svr.Get("/api/v1/user/score_predicts", PredictsRoute::Get()->GetUserScorePredicts());
@@ -215,5 +216,5 @@ int main(void)
     auto ret = svr.set_mount_point("/assets", "./assets");
 	ret = svr.set_mount_point("/data", "./data");
 
-    svr.listen("192.168.18.234", 1234);
+    svr.listen("192.168.27.2", 1234);
 }
