@@ -12,6 +12,9 @@
 #undef max
 #include "managers/PNManager.h"
 
+std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
+
+
 int elTorneoLeagueIdToApiFootball(ELeague league) 
 {
 	switch (league)
@@ -319,7 +322,6 @@ int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& tea
 		}
 	}
 
-	std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 
 	int leagueId = elTorneoLeagueIdToApiFootball(league);
 	std::string url = "https://v3.football.api-sports.io/fixtures";
@@ -405,8 +407,6 @@ static std::string ReadFile(const std::string& filename)
 
 void GetLiveMatches(PGconn* pg)
 {
-	std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
-
 	auto now = std::chrono::system_clock::now();
 
 	// Convert the time point to a duration since the epoch
@@ -662,15 +662,274 @@ void GetLiveMatches(PGconn* pg)
 
 }
 
+void DeleteExistingLineups(PGconn* pg, int matchId)
+{
+	// Delete from lineups_players first (foreign key relationship)
+	std::string sqlDeletePlayers = "DELETE FROM lineups_players WHERE lineup IN (SELECT id FROM lineups WHERE match_id = " + std::to_string(matchId) + ");";
+	PGresult* retPlayers = PQexec(pg, sqlDeletePlayers.c_str());
+	if (PQresultStatus(retPlayers) != PGRES_COMMAND_OK)
+	{
+		std::cerr << "Error deleting players: " << PQerrorMessage(pg) << std::endl;
+	}
+	PQclear(retPlayers);
 
+	// Then delete from lineups
+	std::string sqlDeleteLineups = "DELETE FROM lineups WHERE match_id = " + std::to_string(matchId) + ";";
+	PGresult* retLineups = PQexec(pg, sqlDeleteLineups.c_str());
+	if (PQresultStatus(retLineups) != PGRES_COMMAND_OK)
+	{
+		std::cerr << "Error deleting lineups: " << PQerrorMessage(pg) << std::endl;
+	}
+	PQclear(retLineups);
+}
+
+void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int team)
+{
+	const rapidjson::Value& start11 = lineup["startXI"].GetArray();
+	for (rapidjson::SizeType i = 0; i < start11.Size(); ++i)
+	{
+		const rapidjson::Value& player = start11[i]["player"];
+		std::string name = player["name"].GetString();
+		int number = player["number"].GetInt();
+		std::string grid = player["grid"].GetString();
+		std::string pos = player["pos"].GetString();
+
+		int start11Flag = 1;
+
+		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos) VALUES (" +
+			std::to_string(lineupId) + ", '" +
+			name + "', " +
+			std::to_string(number) + ", '" +
+			grid + "', " +
+			std::to_string(start11Flag) + ", " +
+			std::to_string(team) + ", '" +
+			pos + 
+			"');";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+		{
+			std::cerr << "Error inserting player: " << PQerrorMessage(pg) << std::endl;
+		}
+		PQclear(ret);
+	}
+
+	const rapidjson::Value& subs = lineup["substitutes"].GetArray();
+	for (rapidjson::SizeType i = 0; i < subs.Size(); ++i)
+	{
+		const rapidjson::Value& player = subs[i]["player"];
+		std::string name = player["name"].GetString();
+		int number = player["number"].GetInt();
+		std::string grid = "";
+		std::string pos = player["pos"].GetString();
+
+		int start11Flag = 0;
+
+		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos) VALUES (" +
+			std::to_string(lineupId) + ", '" +
+			name + "', " +
+			std::to_string(number) + ", '" +
+			grid + "', " +
+			std::to_string(start11Flag) + ", " +
+			std::to_string(team) + ", '" +
+			pos +
+			"');";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+		{
+			std::cerr << "Error inserting substitute: " << PQerrorMessage(pg) << std::endl;
+		}
+		PQclear(ret);
+	}
+}
+
+std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int teamId)
+{
+	std::string round = "Regular Season - " + std::to_string(week);
+	if (league == ELeague::NationsLeague)
+	{
+		std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
+			+ " AND team_id = " + std::to_string(teamId) + ";";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
+		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
+		PQclear(ret);
+	}
+	else if (league == ELeague::ChampionsLeague)
+	{
+		if (week <= 8)
+		{
+			round = "League Stage - " + std::to_string(week);
+		}
+	}
+	return round;
+}
+
+void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
+{
+	std::string url = "https://v3.football.api-sports.io/fixtures/lineups?fixture=" + std::to_string(apiId);
+	cpr::Response r = cpr::Get(cpr::Url{ url }, cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+		if (!document["response"].Size()) return;
+
+		rapidjson::Value lineup1 = document["response"][0].GetObject();
+		rapidjson::Value lineup2 = document["response"][1].GetObject();
+
+		// Delete existing lineups and players for this match
+		DeleteExistingLineups(pg, matchId);
+
+		// Extract team1 details
+		std::string team1Formation = lineup1["formation"].GetString();
+		if (!lineup1["team"].HasMember("colors") || lineup1["team"]["colors"].IsNull()) return;
+
+		std::string team1PlayerColor = lineup1["team"]["colors"]["player"]["primary"].GetString();
+		std::string team1PlayerNColor = lineup1["team"]["colors"]["player"]["number"].GetString();
+		std::string team1PlayerBColor = lineup1["team"]["colors"]["player"]["border"].GetString();
+		std::string team1GKColor = lineup1["team"]["colors"]["goalkeeper"]["primary"].GetString();
+		std::string team1GKNColor = lineup1["team"]["colors"]["goalkeeper"]["number"].GetString();
+		std::string team1GKBColor = lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
+		if (!lineup1.HasMember("coach") || lineup1["coach"].IsNull() || !lineup1["coach"].HasMember("name") || lineup1["coach"]["name"].IsNull()) return;
+		std::string coach1 = lineup1["coach"]["name"].GetString();
+
+
+		// Extract team2 details
+		std::string team2Formation = lineup2["formation"].GetString();
+		if (!lineup2["team"].HasMember("colors") || lineup2["team"]["colors"].IsNull()) return;
+
+		std::string team2PlayerColor = lineup2["team"]["colors"]["player"]["primary"].GetString();
+		std::string team2PlayerNColor = lineup2["team"]["colors"]["player"]["number"].GetString();
+		std::string team2PlayerBColor = lineup2["team"]["colors"]["player"]["border"].GetString();
+		std::string team2GKColor = lineup2["team"]["colors"]["goalkeeper"]["primary"].GetString();
+		std::string team2GKNColor = lineup2["team"]["colors"]["goalkeeper"]["number"].GetString();
+		std::string team2GKBColor = lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
+		if (!lineup2.HasMember("coach") || lineup2["coach"].IsNull() || !lineup2["coach"].HasMember("name") || lineup2["coach"]["name"].IsNull()) return;
+		std::string coach2 = lineup2["coach"]["name"].GetString();
+
+		// Insert into lineups table
+		std::string sql = "INSERT INTO lineups (match_id, match_date, formation1, player_color1, player_ncolor1, player_bcolor1, "
+			"gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, player_bcolor2, "
+			"gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2) VALUES (" +
+			std::to_string(matchId) + ", " +
+			std::to_string(matchDate) + ", '" +
+			team1Formation + "', '" +
+			team1PlayerColor + "', '" +
+			team1PlayerNColor + "', '" +
+			team1PlayerBColor + "', '" +
+			team1GKColor + "', '" +
+			team1GKNColor + "', '" +
+			team1GKBColor + "', '" +
+			team2Formation + "', '" +
+			team2PlayerColor + "', '" +
+			team2PlayerNColor + "', '" +
+			team2PlayerBColor + "', '" +
+			team2GKColor + "', '" +
+			team2GKNColor + "', '" +
+			team2GKBColor + "', '" +
+			coach1 + "', '" +
+			coach2 +
+			"') RETURNING id;";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			std::cerr << "Error executing SQL: " << PQerrorMessage(pg) << std::endl;
+			PQclear(ret);
+			return;
+		}
+
+		// Get the inserted lineup ID
+		int lineupId = atoi(PQgetvalue(ret, 0, 0));
+		PQclear(ret);
+
+		// Fill players for both lineups
+		FillLineupPlayers(pg, lineupId, lineup1, 1);
+		FillLineupPlayers(pg, lineupId, lineup2, 2);
+	}
+}
+
+void GetTodayMatches(PGconn* pg) 
+{
+	auto now = std::chrono::system_clock::now();
+	auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+	auto oneHourLaterMs = nowMs + 3600 * 1 * 1000;  // 3600 seconds = 1 hour in milliseconds
+
+	const std::string sql = "SELECT m.id, m.api_id, m.league, m.team1, m.team2, m.week, m.match_date "
+		"FROM MATCHES m "
+		"WHERE m.match_date >= " + std::to_string(nowMs) +
+		" AND m.match_date < " + std::to_string(oneHourLaterMs) + ";";
+
+	PGresult* res = PQexec(pg, sql.c_str());
+
+	if (PQresultStatus(res) != PGRES_TUPLES_OK) 
+	{
+		std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
+		PQclear(res);
+		return;
+	}
+
+	int rows = PQntuples(res);
+	for (int i = 0; i < rows; i++) 
+	{
+		std::string id = PQgetvalue(res, i, 0);           // Match ID
+		std::string api_id = PQgetvalue(res, i, 1);       // API ID
+		std::string league_id = PQgetvalue(res, i, 2);    // League ID
+		std::string team1_id = PQgetvalue(res, i, 3);     // Team 1 ID
+		std::string team2_id = PQgetvalue(res, i, 4);     // Team 2 ID
+		std::string week = PQgetvalue(res, i, 5);
+		std::string matchDate = PQgetvalue(res, i, 6);
+
+		CronTeam team1;
+		team1.Id = atoi(team1_id.c_str());
+		CronTeam team2;
+		team2.Id = atoi(team2_id.c_str());
+
+		int apiId = atoi(api_id.c_str());
+
+		if (apiId == -1) 
+		{
+			apiId = GetApiFootballMatches(pg, ELeague(atoi(league_id.c_str())), atoi(id.c_str()), team1, team2, "2024", atoi(week.c_str()));
+		}
+
+		if (apiId > 0) 
+		{
+			GetMatchLineups(pg, apiId, atoi(id.c_str()), atoll(matchDate.c_str()));
+		}
+	}
+
+	// Clean up
+	PQclear(res);
+}
+
+void FillTodayLineups(PGconn* pg)
+{
+	GetTodayMatches(pg);
+	
+	//int matchId = 38;
+	//long long matchDate = 1726340400000;
+	//int apiId = 1208051;
+}
 
 int main() 
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	
+	auto lastFillTime = std::chrono::system_clock::now();
+
 	while (true) 
 	{
 		GetLiveMatches(pg);
+
+		auto now = std::chrono::system_clock::now();
+		if (std::chrono::duration_cast<std::chrono::minutes>(now - lastFillTime).count() >= 5)
+		{
+			FillTodayLineups(pg);
+			lastFillTime = now;  // Update the last fill time
+		}
 		// sleep for 1 minute
 		std::this_thread::sleep_for(std::chrono::minutes(1));
 	}
