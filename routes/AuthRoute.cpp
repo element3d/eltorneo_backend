@@ -706,6 +706,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 200;
+                res.set_content("OK", "text/plain");
                 return;
             }
             char* temp = (char*)calloc(256, sizeof(char));
@@ -717,6 +718,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
             {
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 200;
+                res.set_content("OK", "text/plain");
                 return;
             }
             else 
@@ -729,6 +731,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                     PQclear(ret);
                     ConnectionPool::Get()->releaseConnection(pg);
                     res.status = 200;
+                    res.set_content("OK", "text/plain");
                     return;
                 }
 
@@ -741,6 +744,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                     PQclear(ret);
                     ConnectionPool::Get()->releaseConnection(pg);
                     res.status = 200;
+                    res.set_content("OK", "text/plain");
                     return;
                 }
             }
@@ -755,6 +759,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 200;
+                res.set_content("OK", "text/plain");
                 return;
             }
             bool exists = PQntuples(ret) > 0;
@@ -763,6 +768,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 200;
+                res.set_content("OK", "text/plain");
                 return;
             }
         }
@@ -780,6 +786,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500;
+            res.set_content("OK", "text/plain");
             return;
         }
 
