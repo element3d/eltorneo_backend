@@ -1129,7 +1129,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int team1 = document["team1_score"].GetInt();
         int team2 = document["team2_score"].GetInt();
 
-
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "INSERT INTO predicts(user_id, match_id, team1_score, team2_score, status) VALUES("
@@ -1138,25 +1137,41 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             + std::to_string(team1) + ", "
             + std::to_string(team2) + ", "
             + "0"
-            +")";
+            + ") RETURNING id";  // Return the inserted ID
 
-        // Execute the insert and capture the team ID
+        // Execute the insert and capture the inserted predict ID
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-        {
-            fprintf(stderr, "Failed to add team: %s", PQerrorMessage(pg));
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) {
+            fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
             return;
         }
 
+        // Get the inserted ID
+        int insertedId = std::stoi(PQgetvalue(ret, 0, 0));
+
+        // Clear result and release connection
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
+
+        // Create a JSON response with the inserted ID
+        rapidjson::Document responseDoc;
+        responseDoc.SetObject();
+        responseDoc.AddMember("predict_id", insertedId, responseDoc.GetAllocator());
+
+        // Convert the document to a string
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        responseDoc.Accept(writer);
+
+        // Send response
+        res.set_content(buffer.GetString(), "application/json");
         res.status = 201; // Created
     };
-
 }
+
 
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::EditPredict()
 {
@@ -1171,7 +1186,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string token = req.get_header_value("Authentication");
         auto decoded = jwt::decode(token);
         int userId = decoded.get_payload_claim("id").as_int();
-
+        if (!document.HasMember("predict"))
+        {
+            res.status = 500; // Internal Server Error
+            return;
+        }
         int predictId = document["predict"].GetInt();
         int team1 = document["team1_score"].GetInt();
         int team2 = document["team2_score"].GetInt();
