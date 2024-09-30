@@ -14,6 +14,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatches();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchesByDay();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchesLive();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUpcomingMatches();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchStatistics();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEvents();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchHeader();

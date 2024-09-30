@@ -940,8 +940,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
         if (page == 1) mCachedTable.clear();
         for (int i = 0; i < nrows; ++i) {
+            int id = atoi(PQgetvalue(ret, i, 0));
             rapidjson::Value object(rapidjson::kObjectType);
-            object.AddMember("id", atoi(PQgetvalue(ret, i, 0)), allocator);
+            object.AddMember("id",id , allocator);
             object.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 1), allocator), allocator);
             object.AddMember("avatar", rapidjson::Value(PQgetvalue(ret, i, 2), allocator), allocator);
             object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
@@ -949,7 +950,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             document.PushBack(object, allocator);
 
-            if (page == 1) mCachedTable.push_back(atoi(PQgetvalue(ret, i, 0)));
+            if (page == 1) mCachedTable.push_back(id);
         }
 
         rapidjson::StringBuffer buffer;
