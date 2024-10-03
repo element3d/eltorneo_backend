@@ -187,6 +187,7 @@ int main(void)
     svr.Get("/api/v1/table/points", PredictsRoute::Get()->GetTableByPoints());
     svr.Get("/api/v1/table/score", PredictsRoute::Get()->GetTableByScore());
     svr.Get("/api/v1/table/winner", PredictsRoute::Get()->GetTableByWinner());
+    svr.Get("/api/v1/top_scorers", LeaguesRoute::Get()->GetTopScorers());
 
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());

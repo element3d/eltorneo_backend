@@ -17,6 +17,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetWeeks();
     std::function<void(const httplib::Request&, httplib::Response&)> SetCurrentWeek();
     std::function<void(const httplib::Request&, httplib::Response&)> GetLeagueTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetTopScorers();
 
 private:
     static LeaguesRoute* sInstance;

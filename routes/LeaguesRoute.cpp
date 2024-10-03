@@ -600,3 +600,113 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::P
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::GetTopScorers()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        // SQL query to retrieve all data from players and top_scorers, excluding players whose ready != 1
+        std::string sql = R"(
+            SELECT ts.id, ts.player_id, ts.league_id, ts.team_id, ts.games, ts.goals,
+                   p.id, p.name, p.team_id, p.team_name, p.team_short_name, p.number, p.firstname, p.lastname, p.api_id, p.ready
+            FROM top_scorers ts
+            JOIN players p ON ts.player_id = p.id
+            WHERE p.ready = 1;
+        )";
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to get top scorers: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        rapidjson::Document d;
+        d.SetObject();
+
+        int nrows = PQntuples(ret);
+        for (int i = 0; i < nrows; ++i)
+        {
+            rapidjson::Value player(rapidjson::kObjectType);
+
+            // Data from top_scorers table
+            int id = atoi(PQgetvalue(ret, i, 0));
+            int playerId = atoi(PQgetvalue(ret, i, 1));
+            int leagueId = atoi(PQgetvalue(ret, i, 2));
+            int teamId = atoi(PQgetvalue(ret, i, 3));
+            int games = atoi(PQgetvalue(ret, i, 4));
+            int goals = atoi(PQgetvalue(ret, i, 5));
+
+            // Data from players table
+            int playerIdFromPlayers = atoi(PQgetvalue(ret, i, 6));  // This should match ts.player_id
+            std::string playerName = PQgetvalue(ret, i, 7);
+            int playerTeamId = atoi(PQgetvalue(ret, i, 8));
+            std::string teamName = PQgetvalue(ret, i, 9);
+            std::string teamShortName = PQgetvalue(ret, i, 10);
+            int number = atoi(PQgetvalue(ret, i, 11));
+            std::string firstName = PQgetvalue(ret, i, 12);
+            std::string lastName = PQgetvalue(ret, i, 13);
+            int apiId = atoi(PQgetvalue(ret, i, 14));
+            int ready = atoi(PQgetvalue(ret, i, 15));  // ready should always be 1 due to the filter
+
+            // Build player JSON object
+            rapidjson::Value v;
+            v.SetInt(id);
+            player.AddMember("id", v, d.GetAllocator());
+            v.SetInt(playerId);
+            player.AddMember("player_id", v, d.GetAllocator());
+            v.SetInt(leagueId);
+            player.AddMember("league_id", v, d.GetAllocator());
+            v.SetInt(teamId);
+            player.AddMember("team_id", v, d.GetAllocator());
+            v.SetInt(games);
+            player.AddMember("games", v, d.GetAllocator());
+            v.SetInt(goals);
+            player.AddMember("goals", v, d.GetAllocator());
+
+            // Add player table data to the JSON
+            v.SetInt(playerIdFromPlayers);
+            player.AddMember("player_id_from_players", v, d.GetAllocator());
+            v.SetString(playerName.c_str(), d.GetAllocator());
+            player.AddMember("player_name", v, d.GetAllocator());
+            v.SetInt(playerTeamId);
+            player.AddMember("player_team_id", v, d.GetAllocator());
+            v.SetString(teamName.c_str(), d.GetAllocator());
+            player.AddMember("team_name", v, d.GetAllocator());
+            v.SetString(teamShortName.c_str(), d.GetAllocator());
+            player.AddMember("team_short_name", v, d.GetAllocator());
+            v.SetInt(number);
+            player.AddMember("number", v, d.GetAllocator());
+            v.SetString(firstName.c_str(), d.GetAllocator());
+            player.AddMember("firstname", v, d.GetAllocator());
+            v.SetString(lastName.c_str(), d.GetAllocator());
+            player.AddMember("lastname", v, d.GetAllocator());
+            v.SetInt(apiId);
+            player.AddMember("api_id", v, d.GetAllocator());
+            v.SetInt(ready);
+            player.AddMember("ready", v, d.GetAllocator());
+
+            // Add the player object to the league ID key in the document
+            rapidjson::Value k;
+            k.SetString(std::to_string(leagueId).c_str(), d.GetAllocator());
+            d.AddMember(k, player, d.GetAllocator());
+        }
+
+        // Serialize the JSON response
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        d.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}

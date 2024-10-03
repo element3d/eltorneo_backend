@@ -915,22 +915,140 @@ void FillTodayLineups(PGconn* pg)
 	//int apiId = 1208051;
 }
 
-int main() 
+void FillLeagueTopScorers(PGconn* pg, ELeague league)
+{
+	int leagueId = elTorneoLeagueIdToApiFootball(league);
+	std::string season = "2024";
+
+	std::string url = "https://v3.football.api-sports.io/players/topscorers";
+	cpr::Parameters params = {
+		  {"league", std::to_string(leagueId)},
+		  {"season", season}
+	};
+
+	// Make the request
+	cpr::Response r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		std::string& res = r.text;
+		rapidjson::Document d;
+		d.Parse(res.c_str());
+
+		rapidjson::Value player = d["response"][0]["player"].GetObject();
+		int id = player["id"].GetInt();
+		std::string name = player["name"].GetString();
+
+		rapidjson::Value stats = d["response"][0]["statistics"][0].GetObject();
+		int teamId = stats["team"]["id"].GetInt();
+		int games = stats["games"]["appearences"].GetInt();
+		int goals = stats["goals"]["total"].GetInt();
+		
+		std::string teamName;
+		std::string teamShortName;
+		int tid;
+		{
+			std::string sql = "SELECT id, name, short_name from teams where api_id = " + std::to_string(teamId) + ";";
+			PGresult* res = PQexec(pg, sql.c_str());
+			int rows = PQntuples(res);
+			std::string teamid = PQgetvalue(res, 0, 0);     
+			tid = atoi(teamid.c_str());
+			teamName = PQgetvalue(res, 0, 1);
+			teamShortName = PQgetvalue(res, 0, 2);
+			PQclear(res);
+		}
+		int playerId;
+		int playerReady = 0;
+		{
+			std::string sql = "select id from players where api_id = "
+				+ std::to_string(id) + " AND team_id = " + std::to_string(tid) + ";";
+			PGresult* res = PQexec(pg, sql.c_str());
+			int rows = PQntuples(res);
+
+			if (rows <= 0) 
+			{
+				sql = "insert into players (name, team_id, team_name, team_short_name, api_id) values ('"
+					+ name + "', "
+					+ std::to_string(tid) + ", '"
+					+ teamName + "', '"
+					+ teamShortName + "', "
+					+ std::to_string(id) 
+					+ ") RETURNING id;";
+
+				PQclear(res);
+				res = PQexec(pg, sql.c_str());
+				playerId = atoi(PQgetvalue(res, 0, 0));
+				PQclear(res);
+			}
+			else 
+			{
+				playerId = atoi(PQgetvalue(res, 0, 0));
+				PQclear(res);
+			}
+		}
+
+		{
+			std::string sql = "delete from top_scorers where league_id = " + std::to_string((int)league) + ";";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+
+		std::string sql = "insert into top_scorers (player_id, league_id, team_id, games, goals) values ("
+			+ std::to_string(playerId) + ", "
+			+ std::to_string((int)league) + ", "
+			+ std::to_string(tid) + ", "
+			+ std::to_string(games) + ", "
+			+ std::to_string(goals)
+			+ ");";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+	}
+}
+
+void FillTopScorers(PGconn* pg)
+{
+	for (int i = (int)ELeague::PremierLeague; i <= (int)ELeague::Ligue1; ++i) 
+	{
+		FillLeagueTopScorers(pg, ELeague(i));
+	}
+}
+
+int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	auto lastFillTime = std::chrono::system_clock::now();
 
-	while (true) 
+	// Get current time
+	auto lastFillTime = std::chrono::system_clock::now();
+	auto lastTopScorersFillTime = lastFillTime;
+
+	// Run FillTopScorers at the start
+	FillTopScorers(pg);
+
+	while (true)
 	{
 		GetLiveMatches(pg);
 
+		// Get the current time
 		auto now = std::chrono::system_clock::now();
+
+		// Check if 5 minutes have passed to fill today's lineups
 		if (std::chrono::duration_cast<std::chrono::minutes>(now - lastFillTime).count() >= 5)
 		{
 			FillTodayLineups(pg);
 			lastFillTime = now;  // Update the last fill time
 		}
-		// sleep for 1 minute
+
+		// Check if 6 hours have passed to fill top scorers again
+		if (std::chrono::duration_cast<std::chrono::hours>(now - lastTopScorersFillTime).count() >= 6)
+		{
+			FillTopScorers(pg);
+			lastTopScorersFillTime = now;  // Update the last fill time for top scorers
+		}
+
+		// Sleep for 1 minute
 		std::this_thread::sleep_for(std::chrono::minutes(1));
 	}
 
