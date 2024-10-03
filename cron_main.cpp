@@ -11,6 +11,7 @@
 #undef min
 #undef max
 #include "managers/PNManager.h"
+#include <thread>
 
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 
