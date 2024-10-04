@@ -173,6 +173,8 @@ int main(void)
     svr.Get("/api/v1/match/header", MatchesRoute::Get()->GetMatchHeader());
     svr.Get("/api/v1/match/live", MatchesRoute::Get()->GetMatchLive());
     svr.Get("/api/v1/match/lineups", MatchesRoute::Get()->GetMatchLineups());
+    svr.Get("/api/v1/matches/special", MatchesRoute::Get()->GetSpecialMatch());
+
     svr.Get("/api/v1/team/matches", MatchesRoute::Get()->GetTeamMatches());
 
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());

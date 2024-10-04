@@ -417,7 +417,7 @@ void GetLiveMatches(PGconn* pg)
 	long long milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
 
-	std::string sql = "SELECT m.id, m.league, m.week, m.match_date, "
+	std::string sql = "SELECT m.id, m.league, m.week, m.match_date, m.is_special, "
 		"t1.id AS team1_id, t1.api_id AS team1_api_id, t1.short_name AS team1_short_name, "
 		"t2.id AS team2_id, t2.api_id AS team2_api_id, t2.short_name AS team2_short_name, "
 		"m.api_id "
@@ -435,18 +435,19 @@ void GetLiveMatches(PGconn* pg)
 		int league = atoi(PQgetvalue(ret, i, 1));
 		int week = atoi(PQgetvalue(ret, i, 2));
 		long long matchDate = atoll(PQgetvalue(ret, i, 3));
+		int isSpecial = atoll(PQgetvalue(ret, i, 4));
 
 		CronTeam team1;
-		team1.Id = atoi(PQgetvalue(ret, i, 4));
-		team1.ApiId = atoi(PQgetvalue(ret, i, 5));
-		team1.ShortName = PQgetvalue(ret, i, 6); // Retrieve team1 short_name
+		team1.Id = atoi(PQgetvalue(ret, i, 5));
+		team1.ApiId = atoi(PQgetvalue(ret, i, 6));
+		team1.ShortName = PQgetvalue(ret, i, 7); // Retrieve team1 short_name
 
 		CronTeam team2;
-		team2.Id = atoi(PQgetvalue(ret, i, 7));
-		team2.ApiId = atoi(PQgetvalue(ret, i, 8));
-		team2.ShortName = PQgetvalue(ret, i, 9); // Retrieve team2 short_name
+		team2.Id = atoi(PQgetvalue(ret, i, 8));
+		team2.ApiId = atoi(PQgetvalue(ret, i, 9));
+		team2.ShortName = PQgetvalue(ret, i, 10); // Retrieve team2 short_name
 
-		int apiId = atoi(PQgetvalue(ret, i, 10));
+		int apiId = atoi(PQgetvalue(ret, i, 11));
 
 
 		if (apiId == -1 || team1.ApiId == -1 || team2.ApiId == -1)
@@ -572,7 +573,7 @@ void GetLiveMatches(PGconn* pg)
 					EPredictStatus status = EPredictStatus::Pending;
 					if (team1Goals == t1score && team2Goals == t2score)
 					{
-						points = 3;
+						points = isSpecial ? 10 : 3;
 						status = EPredictStatus::ScorePredicted;
 					}
 					else
@@ -581,7 +582,7 @@ void GetLiveMatches(PGconn* pg)
 							(team1Goals < team2Goals && t1score < t2score) ||
 							(team1Goals == team2Goals && t1score == t2score))
 						{
-							points = 1;
+							points = isSpecial ? 5 : 1;
 							status = EPredictStatus::WinnerPredicted;
 
 							if (team1Goals == team2Goals && t1score == t2score)
@@ -597,7 +598,7 @@ void GetLiveMatches(PGconn* pg)
 						}
 						else
 						{
-							points = -1;
+							points = isSpecial ? 0 : -1;
 							status = EPredictStatus::Failed;
 							sendPN = false;
 						}

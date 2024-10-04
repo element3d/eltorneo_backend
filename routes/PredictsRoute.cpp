@@ -209,13 +209,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // SQL base string
         std::string sqlBase = "SELECT p.*, m.id, l.id as league_id, l.name as league_name, m.season, m.week, m.match_date, "
-            "m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, t1.id as team1_id, t1.name as team1_name, t1.short_name as team1_short_name, "
-            "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name "
+            "m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, t1.id as team1_id, t1.name as team1_name, t1.short_name as team1_short_name, "
+            "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name, "
+            "COALESCE(s.title, '') AS special_match_title " // Fetch title from special_matches table
             "FROM predicts p "
             "INNER JOIN matches m ON p.match_id = m.id "
             "LEFT JOIN leagues l ON m.league = l.id "
             "LEFT JOIN teams t1 ON m.team1 = t1.id "
             "LEFT JOIN teams t2 ON m.team2 = t2.id "
+            "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
             "WHERE p.user_id = " + userId +
             (leagueId != "-1" ? " AND m.league = " + leagueId : "") +
             " ORDER BY m.match_date DESC, m.id DESC "
@@ -256,17 +258,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("team1_score_live", atoi(PQgetvalue(ret, i, 16)), allocator);
             object.AddMember("team2_score_live", atoi(PQgetvalue(ret, i, 17)), allocator);
             object.AddMember("status", rapidjson::StringRef(PQgetvalue(ret, i, 18)), allocator);
+            object.AddMember("is_special", atoi(PQgetvalue(ret, i, 19)), allocator);
+            object.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 26), allocator), allocator);
 
             rapidjson::Value team1Object(rapidjson::kObjectType);
-            team1Object.AddMember("id", atoi(PQgetvalue(ret, i, 19)), allocator);
-            team1Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 20)), allocator);
-            team1Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 21)), allocator);
+            team1Object.AddMember("id", atoi(PQgetvalue(ret, i, 20)), allocator);
+            team1Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 21)), allocator);
+            team1Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 22)), allocator);
             object.AddMember("team1", team1Object, allocator);
 
             rapidjson::Value team2Object(rapidjson::kObjectType);
-            team2Object.AddMember("id", atoi(PQgetvalue(ret, i, 22)), allocator);
-            team2Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 23)), allocator);
-            team2Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 24)), allocator);
+            team2Object.AddMember("id", atoi(PQgetvalue(ret, i, 23)), allocator);
+            team2Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 24)), allocator);
+            team2Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 25)), allocator);
             object.AddMember("team2", team2Object, allocator);
 
             rapidjson::Value predict(rapidjson::kObjectType);
@@ -360,13 +364,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Base SQL query
         std::string sqlBase = "SELECT p.*, m.id, l.id as league_id, l.name as league_name, m.season, m.week, m.match_date, "
-            "m.team1_score, m.team2_score, m.week_type, t1.id as team1_id, t1.name as team1_name, t1.short_name as team1_short_name, "
-            "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name "
+            "m.team1_score, m.team2_score, m.week_type, m.is_special, t1.id as team1_id, t1.name as team1_name, t1.short_name as team1_short_name, "
+            "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name, "
+            "COALESCE(s.title, '') AS special_match_title " // Fetch title from special_matches table
             "FROM predicts p "
             "INNER JOIN matches m ON p.match_id = m.id "
             "LEFT JOIN leagues l ON m.league = l.id "
             "LEFT JOIN teams t1 ON m.team1 = t1.id "
             "LEFT JOIN teams t2 ON m.team2 = t2.id "
+            "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
             "WHERE p.user_id = " + userId + " AND p.status = 2";
 
         if (leagueId != "-1") {
@@ -404,17 +410,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("team1_score", atoi(PQgetvalue(ret, i, 12)), allocator);
             object.AddMember("team2_score", atoi(PQgetvalue(ret, i, 13)), allocator);
             object.AddMember("week_type", atoi(PQgetvalue(ret, i, 14)), allocator);
+            object.AddMember("is_special", atoi(PQgetvalue(ret, i, 15)), allocator);
+            object.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 22), allocator), allocator);
 
             rapidjson::Value team1Object(rapidjson::kObjectType);
-            team1Object.AddMember("id", atoi(PQgetvalue(ret, i, 15)), allocator);
-            team1Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 16)), allocator);
-            team1Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 17)), allocator);
+            team1Object.AddMember("id", atoi(PQgetvalue(ret, i, 16)), allocator);
+            team1Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 17)), allocator);
+            team1Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 18)), allocator);
             object.AddMember("team1", team1Object, allocator);
 
             rapidjson::Value team2Object(rapidjson::kObjectType);
-            team2Object.AddMember("id", atoi(PQgetvalue(ret, i, 18)), allocator);
-            team2Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 19)), allocator);
-            team2Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 20)), allocator);
+            team2Object.AddMember("id", atoi(PQgetvalue(ret, i, 19)), allocator);
+            team2Object.AddMember("name", rapidjson::StringRef(PQgetvalue(ret, i, 20)), allocator);
+            team2Object.AddMember("shortName", rapidjson::StringRef(PQgetvalue(ret, i, 21)), allocator);
             object.AddMember("team2", team2Object, allocator);
 
             rapidjson::Value predict(rapidjson::kObjectType);
