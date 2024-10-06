@@ -1,26 +1,34 @@
 {
     "en": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Fire vs Ice"
     },
     "es": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Fuego contra Hielo"
     },
     "fr": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Feu contre Glace"
     },
     "it": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Fuoco contro Ghiaccio"
     },
     "ru": {
-        "mortal_kombat": "Смертельная битва"
+        "mortal_kombat": "Смертельная битва",
+        "fire_vs_ice": "Огонь против Льда"
     },
     "pt": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Fogo contra Gelo"
     },
     "de": {
-        "mortal_kombat": "Mortal Kombat"
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Feuer gegen Eis"
     },
     "hr": {
-        "mortal_kombat": "Mortal Kombat"
-    }   
+        "mortal_kombat": "Mortal Kombat",
+        "fire_vs_ice": "Vatra protiv Leda"
+    }
 }
