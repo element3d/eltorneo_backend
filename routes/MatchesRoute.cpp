@@ -295,6 +295,11 @@ static std::string ReadFile(const std::string& filename)
     return buffer.str();
 }
 
+static int getRandomNumber(int n) 
+{
+    return rand() % n;
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetSpecialMatch()
 {
     return [&](const httplib::Request& req, httplib::Response& res) {
@@ -314,9 +319,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         std::string sql = "SELECT sm.* "
             "FROM special_matches sm "
             "JOIN matches m ON sm.match_id = m.id "
-            "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000 " // Compare match_date with the current time (in milliseconds)
-            "ORDER BY sm.id DESC "
-            "LIMIT 1;";
+            "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000;"; // Compare match_date with the current time (in milliseconds)
+           
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
@@ -338,29 +342,44 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             return;
         }
 
-        int i = 0;
-        int id = atoi(PQgetvalue(ret, i, 0));
-        std::string title = PQgetvalue(ret, i, 1);
-        std::string stadium = PQgetvalue(ret, i, 2);
-        int matchId = atoi(PQgetvalue(ret, i, 3));
+        int matchId = -1;
+        std::string title;
+        std::string stadium;
 
-        // If user exists, check if they have predicted this match
-        if (userId > 0)
+        for (int i = 0; i < nm; ++i)
         {
-            std::string sql = "SELECT id FROM predicts WHERE user_id = "
-                + std::to_string(userId) + " AND match_id = " + std::to_string(matchId) + ";";
-            PGresult* predRet = PQexec(pg, sql.c_str());
-            int n = PQntuples(predRet);
-            PQclear(predRet);
+            int id = atoi(PQgetvalue(ret, i, 0));
+            std::string tt = PQgetvalue(ret, i, 1);
+            std::string ss = PQgetvalue(ret, i, 2);
+            int mid = atoi(PQgetvalue(ret, i, 3));
 
-            if (n > 0)
+            // If user exists, check if they have predicted this match
+            if (userId > 0)
             {
-                PQclear(ret);
-                res.set_content("[]", "application/json");
-                ConnectionPool::Get()->releaseConnection(pg);
-                res.status = 200;
-                return; // User has already predicted, return empty
+                std::string sql = "SELECT id FROM predicts WHERE user_id = "
+                    + std::to_string(userId) + " AND match_id = " + std::to_string(mid) + ";";
+                PGresult* predRet = PQexec(pg, sql.c_str());
+                int n = PQntuples(predRet);
+                PQclear(predRet);
+
+                if (n > 0)
+                {
+                    continue;
+                }
             }
+           
+            matchId = mid;
+            title = tt;
+            stadium = ss;
+        }
+        
+        if (matchId == -1) 
+        {
+            PQclear(ret);
+            res.set_content("[]", "application/json");
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 200;
+            return; // User has already predicted, return empty
         }
 
         // Fetch match details from matches and teams table
@@ -514,7 +533,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "JOIN leagues l ON m.league = l.id "  // Join with leagues table
             "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
             "WHERE m.match_date >= " + std::to_string(dayStart) + " AND m.match_date <= " + std::to_string(dayEnd) + " "
-            "ORDER BY m.league ASC, m.match_date ASC;";
+            "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
 
 

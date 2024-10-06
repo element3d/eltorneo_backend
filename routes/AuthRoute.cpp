@@ -831,3 +831,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
         res.status = 200;
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendSpecialMatchNotification() 
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+
+        bool b = PNManager::SendSpecialMatchNotification();
+        if (b) res.status = 200;
+        else res.status = 500;
+        res.status = 200;
+    };
+}

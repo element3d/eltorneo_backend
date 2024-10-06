@@ -1140,6 +1140,30 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        {
+            std::string sql = "select id from predicts where user_id = "
+                + std::to_string(userId) + " AND match_id = " + std::to_string(matchId) + ";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
+            {
+                fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+
+            int n = PQntuples(ret);
+            if (n > 0) 
+            {
+                fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+
+        }
         std::string sql = "INSERT INTO predicts(user_id, match_id, team1_score, team2_score, status) VALUES("
             + std::to_string(userId) + ", "
             + std::to_string(matchId) + ", "

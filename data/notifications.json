@@ -9,7 +9,9 @@
       "prediction_draw_title": "Congratulations",
       "prediction_draw_msg": "You have predicted the draw in the match.",
       "cl_started_title": "Let the Champions League Battle Begin!",
-      "cl_started_msg": "The road to glory begins today! Get your predictions in and compete for the top spot!"
+      "cl_started_msg": "The road to glory begins today! Get your predictions in and compete for the top spot!",
+      "mortal_kombat": "Mortal Kombat at",
+      "special_match_msg": "Earn 10 points by correctly predicting the match score!"
     },
     "ru": {
       "week_started_title": "Футбольная неделя началась",
@@ -21,7 +23,9 @@
       "prediction_draw_title": "Поздравляем",
       "prediction_draw_msg": "Вы предсказали ничью в матче.",
       "cl_started_title": "Да начнется битва в Лиге чемпионов!",
-      "cl_started_msg": "Путь к славе начинается сегодня! Делайте прогнозы и соревнуйтесь за первое место!"
+      "cl_started_msg": "Путь к славе начинается сегодня! Делайте прогнозы и соревнуйтесь за первое место!",
+      "mortal_kombat": "Смертельная битва на",
+      "special_match_msg": "Заработайте 10 очков, правильно предсказав счет матча!"   
     },
     "es": {
       "week_started_title": "La semana de fútbol ha comenzado",
@@ -33,7 +37,9 @@
       "prediction_draw_title": "Enhorabuena",
       "prediction_draw_msg": "Has pronosticado el empate del partido.",
       "cl_started_title": "¡Que comience la batalla de la Champions League!",
-      "cl_started_msg": "¡El camino a la gloria comienza hoy! ¡Haz tus predicciones y compite por el primer puesto!"
+      "cl_started_msg": "¡El camino a la gloria comienza hoy! ¡Haz tus predicciones y compite por el primer puesto!",
+      "mortal_kombat": "Mortal Kombat en",
+      "special_match_msg": "¡Gana 10 puntos al predecir correctamente el marcador del partido!"    
     },
     "it": {
       "week_started_title": "La settimana del calcio è iniziata",
@@ -45,7 +51,9 @@
       "prediction_draw_title": "Congratulazioni",
       "prediction_draw_msg": "Hai previsto il pareggio nella partita.",
       "cl_started_title": "Che la battaglia della Champions League abbia inizio!",
-      "cl_started_msg": "La strada per la gloria inizia oggi! Invia i tuoi pronostici e gareggia per il primo posto!"
+      "cl_started_msg": "La strada per la gloria inizia oggi! Invia i tuoi pronostici e gareggia per il primo posto!",
+      "mortal_kombat": "Mortal Kombat a",
+      "special_match_msg": "Guadagna 10 punti prevedendo correttamente il punteggio della partita!"    
     },
     "de": {
       "week_started_title": "Die Fußballwoche hat begonnen",
@@ -57,7 +65,9 @@
       "prediction_draw_title": "Herzlichen Glückwunsch",
       "prediction_draw_msg": "Sie haben das Unentschieden im Spiel vorhergesagt.",
       "cl_started_title": "Der Kampf um die Champions League kann beginnen!",
-      "cl_started_msg": "Der Weg zum Ruhm beginnt heute! Geben Sie Ihre Tipps ab und kämpfen Sie um den Spitzenplatz!"
+      "cl_started_msg": "Der Weg zum Ruhm beginnt heute! Geben Sie Ihre Tipps ab und kämpfen Sie um den Spitzenplatz!",
+      "mortal_kombat": "Mortal Kombat bei",
+      "special_match_msg": "Erhalte 10 Punkte, indem du das Endergebnis des Spiels korrekt vorhersagst!"    
     },
     "hr": {
       "week_started_title": "Nogometni tjedan je počeo",
@@ -69,7 +79,9 @@
       "prediction_draw_title": "Čestitamo",
       "prediction_draw_msg": "Predvidjeli ste neodlučeno u utakmici.",
       "cl_started_title": "Neka bitka za Ligu prvaka počne!",
-      "cl_started_msg": "Put do slave počinje danas! Uključite svoja predviđanja i natječite se za prvo mjesto!"
+      "cl_started_msg": "Put do slave počinje danas! Uključite svoja predviđanja i natječite se za prvo mjesto!",
+      "mortal_kombat": "Mortal Kombat na",
+      "special_match_msg": "Zaradi 10 bodova točno predviđajući rezultat utakmice!"    
     },
     "fr": {
       "week_started_title": "La semaine de football a commencé",
@@ -81,7 +93,9 @@
       "prediction_draw_title": "Félicitations",
       "prediction_draw_msg": "Vous avez prédit le match nul.",
       "cl_started_title": "Que la bataille pour la Ligue des Champions commence !",
-      "cl_started_msg": "La route vers la gloire commence aujourd'hui ! Faites vos pronostics et concourez pour la première place !"
+      "cl_started_msg": "La route vers la gloire commence aujourd'hui ! Faites vos pronostics et concourez pour la première place !",
+      "mortal_kombat": "Mortal Kombat à",
+      "special_match_msg": "Gagnez 10 points en prédisant correctement le score du match !"
     },
     "pt": {
       "week_started_title": "A semana do futebol começou",
@@ -93,6 +107,8 @@
       "prediction_draw_title": "Parabéns",
       "prediction_draw_msg": "Você previu o empate na partida.",
       "cl_started_title": "Que a Batalha da Liga dos Campeões Comece!",
-      "cl_started_msg": "A estrada para a glória começa hoje! Faça suas previsões e concorra ao primeiro lugar!"
+      "cl_started_msg": "A estrada para a glória começa hoje! Faça suas previsões e concorra ao primeiro lugar!",
+      "mortal_kombat": "Mortal Kombat em",
+      "special_match_msg": "Ganhe 10 pontos prevendo corretamente o placar da partida!"    
     }
 }

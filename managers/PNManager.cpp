@@ -104,7 +104,7 @@ std::string PNManager::RequestAccessToken(const std::string& jwt_token)
     return access_token;
 }
 
-bool PNManager::SendPushNotification(const std::string& access_token, const std::string fcm_token, const std::string& title, const std::string& msg)
+bool PNManager::SendPushNotification(const std::string& access_token, const std::string fcm_token, const std::string& title, const std::string& msg, const std::string& icon)
 {
     // Prepare the notification payload
     std::string notification_url = "https://fcm.googleapis.com/v1/projects/el-torneo-bc127/messages:send";
@@ -121,19 +121,32 @@ bool PNManager::SendPushNotification(const std::string& access_token, const std:
     vm.SetString(msg.c_str(), allocator);
     notification.AddMember("title", vt, allocator);
     notification.AddMember("body", vm, allocator);
-
+  
     // Create the message object
     rapidjson::Value message(rapidjson::kObjectType);
     rapidjson::Value v;
     v.SetString(fcm_token.c_str(), allocator);
     message.AddMember("token", v, allocator);
     message.AddMember("notification", notification, allocator);
-    //  message.AddMember("android", android, allocator); // Set Android-specific settings here
+
+    rapidjson::Value andNote;
+    andNote.SetObject();
+
+    rapidjson::Value android;
+    android.SetObject();
+    std::string ni = icon;
+    if (!icon.size()) ni = "ic_notification";
+    v.SetString(ni.c_str(), allocator);
+    andNote.AddMember("icon", v, allocator);
+    v.SetString("#37003C", allocator);
+    andNote.AddMember("color", v, allocator);
+
+    android.AddMember("notification", andNote, allocator);
+    message.AddMember("android", android, allocator); // Set Android-specific settings here
 
       // Add the message object to the root object
     payload.AddMember("message", message, allocator);
 
-    // Serialize the payload to JSON string
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     payload.Accept(writer);
@@ -220,7 +233,7 @@ bool PNManager::SendWeekStartedNotification()
         std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
         std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
 
-        bool ret = PNManager::SendPushNotification(access_token, token, t, m);
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "laliga");
         if (!ret) invalidTokens.push_back(id);
     }
     free(temp);
@@ -298,9 +311,9 @@ bool PNManager::SendCLStartedNotification()
         std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
         std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
 
-        bool ret = PNManager::SendPushNotification(access_token, token, t, m);
+       bool ret = PNManager::SendPushNotification(access_token, token, t, m, "champions_league");
         // break;
-        if (!ret) invalidTokens.push_back(id);
+       if (!ret) invalidTokens.push_back(id);
     }
     free(temp);
     PQclear(ret);
@@ -312,6 +325,139 @@ bool PNManager::SendCLStartedNotification()
             sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
             ret = PQexec(pg, sql.c_str());
             PQclear(ret);
+        }
+    }
+
+    ConnectionPool::Get()->releaseConnection(pg);
+    return true;
+}
+
+#include <cstdlib>
+#include <ctime>
+int getRandomNumber(int n) {
+    return rand() % n;
+}
+bool PNManager::SendSpecialMatchNotification()
+{
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    std::string sql = "SELECT sm.*, t1.short_name AS team1_name, t2.short_name AS team2_name "
+        "FROM special_matches sm "
+        "JOIN matches m ON sm.match_id = m.id "
+        "JOIN teams t1 ON m.team1 = t1.id "
+        "JOIN teams t2 ON m.team2 = t2.id "
+        "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000;";
+
+    PGresult* ret = PQexec(pg, sql.c_str());
+
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch settings: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return false;
+    }
+
+    int nrows = PQntuples(ret);
+    if (!nrows) return false;
+
+    srand(static_cast<unsigned int>(time(0)));
+    int i = getRandomNumber(nrows);
+
+    int id = atoi(PQgetvalue(ret, i, 0));
+    std::string title = PQgetvalue(ret, i, 1);
+    std::string stadium = PQgetvalue(ret, i, 2);
+    int matchId = atoi(PQgetvalue(ret, i, 3));
+
+    std::string team1Name = PQgetvalue(ret, i, PQfnumber(ret, "team1_name"));  // Get team1 short name
+    std::string team2Name = PQgetvalue(ret, i, PQfnumber(ret, "team2_name"));  // Get team2 short name
+    PQclear(ret);
+
+    {
+        sql = "SELECT * FROM fcm_tokens;";
+        ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch settings: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return false;
+        }
+
+        int nrows = PQntuples(ret);
+        if (!nrows)
+        {
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
+            return true;
+        }
+        std::string jwt_token = PNManager::CreateJwtToken();
+        if (!jwt_token.size())
+        {
+            return false;
+        }
+
+        std::string access_token = PNManager::RequestAccessToken(jwt_token);
+        if (!access_token.size())
+        {
+            return false;
+        }
+
+        std::string filename = "data/notifications.json";
+        std::string jsonString = ReadFile(filename);
+        rapidjson::Document document;
+        document.Parse(jsonString.c_str());
+
+        std::string nTitle = "special_match_title";
+        std::string nMsg = "special_match_msg";
+
+        char* temp = (char*)calloc(4096, sizeof(char));
+        std::vector<int> invalidTokens;
+        for (int i = 0; i < nrows; ++i)
+        {
+            // Handle ID as integer
+            int id = atoi(PQgetvalue(ret, i, 0));
+            int userId = atoi(PQgetvalue(ret, i, 1));
+            strcpy(temp, PQgetvalue(ret, i, 2));
+            std::string token = temp;//"cHuMBtqtTFWYbCBmHMlJrs:APA91bGl1--uMCtDCW94jmpy0TsrMGiAmmYEMs1OXnIq-bnk2kCFqsC8KLB0GSgowgT7ZIUc58YOzmhkQbFbK0iqH5cM_wQwJH1FrHfF0tLbtI3LGmIeHzhvX5-vxuZPrLGv741WkV4I";
+            strcpy(temp, PQgetvalue(ret, i, 3));
+            std::string os = temp;
+            strcpy(temp, PQgetvalue(ret, i, 4));
+            std::string lang = temp;
+
+            if (userId > 0)
+            {
+                sql = "SELECT id from predicts where user_id = "
+                    + std::to_string(userId) + " and " + "match_id = " + std::to_string(matchId) + ";";
+                PGresult* pr = PQexec(pg, sql.c_str());
+                int nt = PQntuples(pr);
+                if (nt > 0)
+                {
+                    int np = atoi(PQgetvalue(pr, 0, 0));
+                    PQclear(pr);
+                    if (np > 0) continue;
+                }
+               
+            }
+
+            std::string t = std::string(document[lang.c_str()][title.c_str()].GetString()) + " " + stadium;
+            std::string m = std::string(document[lang.c_str()][nMsg.c_str()].GetString()) + " " + team1Name + " vs " + team2Name;
+
+            bool ret = PNManager::SendPushNotification(access_token, token, t, m, title);
+            // break;
+            if (!ret) invalidTokens.push_back(id);
+        }
+        free(temp);
+        PQclear(ret);
+
+        if (invalidTokens.size())
+        {
+            for (auto id : invalidTokens)
+            {
+                sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
+                ret = PQexec(pg, sql.c_str());
+                PQclear(ret);
+            }
         }
     }
 

@@ -638,7 +638,7 @@ void GetLiveMatches(PGconn* pg)
 							
 							std::string m = notificationsDocument[lang.c_str()][nMsg.c_str()].GetString();
 
-							bool sendRet = PNManager::SendPushNotification(accessToken, token, t, m);
+							bool sendRet = PNManager::SendPushNotification(accessToken, token, t, m, "ic_notification");
 							if (!sendRet) invalidTokens.push_back(id);
 						}
 
