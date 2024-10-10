@@ -13,6 +13,7 @@ public:
 
 	static bool SendWeekStartedNotification();
 	static bool SendCLStartedNotification();
+	static bool SendNLStartedNotification();
 	static bool SendPredictionNotification(int matchId);
 	static bool SendSpecialMatchNotification();
 

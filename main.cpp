@@ -141,6 +141,8 @@ int main(void)
 
     svr.Post("/api/v1/user/notification", AuthRoute::Get()->UserSendNotification());
     svr.Post("/api/v1/user/notification/cl", AuthRoute::Get()->UserSendNotificationCL());
+    svr.Post("/api/v1/user/notification/nl", AuthRoute::Get()->UserSendNotificationNL());
+
     svr.Post("/api/v1/user/notification/special", AuthRoute::Get()->UserSendSpecialMatchNotification());
 
     svr.Post("/api/v1/user/notification/prediction", AuthRoute::Get()->UserPredictionSendNotification());

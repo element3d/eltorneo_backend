@@ -821,6 +821,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationNL()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+
+        bool b = PNManager::SendNLStartedNotification();
+        if (b) res.status = 200;
+        else res.status = 500;
+        res.status = 200;
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserPredictionSendNotification()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
