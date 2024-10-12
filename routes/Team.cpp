@@ -323,7 +323,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::NorthernIreland:
         return "Northern Ireland";
     case ETeam::Luxemburg:
-        return "Luxemburg";
+        return "Luxembourg";
     case ETeam::NorthMacedonia:
         return "FYR Macedonia";
     case ETeam::Armenia:

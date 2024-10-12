@@ -1,34 +1,42 @@
 {
     "en": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Fire vs Ice"
+        "fire_vs_ice": "Fire vs Ice",
+        "stellar_symphony": "Stellar Symphony"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Fuego contra Hielo"
+        "fire_vs_ice": "Fuego contra Hielo",
+        "stellar_symphony": "Sinfonía Estelar"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Feu contre Glace"
+        "fire_vs_ice": "Feu contre Glace",
+        "stellar_symphony": "Symphonie Stellaire"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Fuoco contro Ghiaccio"
+        "fire_vs_ice": "Fuoco contro Ghiaccio",
+        "stellar_symphony": "Sinfonia stellare"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
-        "fire_vs_ice": "Огонь против Льда"
+        "fire_vs_ice": "Огонь против Льда",
+        "stellar_symphony": "Звездная симфония"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Fogo contra Gelo"
+        "fire_vs_ice": "Fogo contra Gelo",
+        "stellar_symphony": "Sinfonia Estelar"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Feuer gegen Eis"
+        "fire_vs_ice": "Feuer gegen Eis",
+        "stellar_symphony": "Sternensymphonie"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
-        "fire_vs_ice": "Vatra protiv Leda"
+        "fire_vs_ice": "Vatra protiv Leda",
+        "stellar_symphony": "Zvjezdana Simfonija"
     }
 }
