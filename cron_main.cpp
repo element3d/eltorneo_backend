@@ -560,6 +560,7 @@ void GetLiveMatches(PGconn* pg)
 
 				for (int i = 0; i < nrows; ++i)
 				{
+					bool localSendPN = sendPN;
 					int id = atoi(PQgetvalue(pret, i, 0));
 					int userId = atoi(PQgetvalue(pret, i, 1));
 					int t1score = atoi(PQgetvalue(pret, i, 3));
@@ -600,7 +601,7 @@ void GetLiveMatches(PGconn* pg)
 						{
 							points = isSpecial ? 0 : -1;
 							status = EPredictStatus::Failed;
-							sendPN = false;
+							localSendPN = false;
 						}
 					}
 
@@ -613,7 +614,7 @@ void GetLiveMatches(PGconn* pg)
 					PQclear(updateRet);
 
 					// Send push notifications
-					if (sendPN)
+					if (localSendPN)
 					{
 						sql = "SELECT * FROM fcm_tokens WHERE user_id = " + std::to_string(userId);
 						updateRet = PQexec(pg, sql.c_str());
