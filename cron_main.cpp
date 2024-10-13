@@ -1027,7 +1027,7 @@ int main()
 	auto lastTopScorersFillTime = lastFillTime;
 
 	// Run FillTopScorers at the start
-	FillTopScorers(pg);
+	//FillTopScorers(pg);
 
 	while (true)
 	{
@@ -1044,14 +1044,14 @@ int main()
 		}
 
 		// Check if 6 hours have passed to fill top scorers again
-		if (std::chrono::duration_cast<std::chrono::hours>(now - lastTopScorersFillTime).count() >= 6)
+		/*if (std::chrono::duration_cast<std::chrono::hours>(now - lastTopScorersFillTime).count() >= 6)
 		{
 			FillTopScorers(pg);
 			lastTopScorersFillTime = now;  // Update the last fill time for top scorers
-		}
+		}*/
 
 		// Sleep for 1 minute
-		std::this_thread::sleep_for(std::chrono::minutes(1));
+		std::this_thread::sleep_for(std::chrono::seconds(30));
 	}
 
 	return 0;
