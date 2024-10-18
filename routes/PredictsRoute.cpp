@@ -211,7 +211,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string sqlBase = "SELECT p.*, m.id, l.id as league_id, l.name as league_name, m.season, m.week, m.match_date, "
             "m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, t1.id as team1_id, t1.name as team1_name, t1.short_name as team1_short_name, "
             "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name, "
-            "COALESCE(s.title, '') AS special_match_title " // Fetch title from special_matches table
+            "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches table
+            "COALESCE(s.points, '') AS special_match_points " // Fetch title from special_matches table
             "FROM predicts p "
             "INNER JOIN matches m ON p.match_id = m.id "
             "LEFT JOIN leagues l ON m.league = l.id "
@@ -260,6 +261,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("status", rapidjson::StringRef(PQgetvalue(ret, i, 18)), allocator);
             object.AddMember("is_special", atoi(PQgetvalue(ret, i, 19)), allocator);
             object.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 26), allocator), allocator);
+            object.AddMember("special_match_points", rapidjson::Value(PQgetvalue(ret, i, 27), allocator), allocator);
 
             rapidjson::Value team1Object(rapidjson::kObjectType);
             team1Object.AddMember("id", atoi(PQgetvalue(ret, i, 20)), allocator);
@@ -672,7 +674,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string userId = req.get_param_value("match_id");
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT * FROM predicts WHERE match_id = "
+        std::string sql = "SELECT * FROM predicts WHERE status <> 4 and match_id = "
             + userId +
             +";";
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -793,7 +795,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         // Join the predicts with users table and order by points descending, limit to 3
         std::string sql = "SELECT p.*, u.name, u.avatar, u.points FROM predicts p "
             "JOIN users u ON p.user_id = u.id "
-            "WHERE p.match_id = " + matchId + " "
+            "WHERE p.status <> 4 and p.match_id = " + matchId + " "
             "ORDER BY u.points DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 

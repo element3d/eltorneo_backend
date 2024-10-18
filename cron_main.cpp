@@ -406,6 +406,19 @@ static std::string ReadFile(const std::string& filename)
 	return buffer.str();
 }
 
+static std::vector<int> splitPoints(const std::string& str, char delimiter) {
+	std::vector<int> tokens;
+	std::stringstream ss(str);  // Create a string stream from the input string
+	std::string item;
+
+	// Extract each part of the string separated by the delimiter
+	while (std::getline(ss, item, delimiter)) {
+		tokens.push_back(std::stoi(item));  // Convert to int and add to the vector
+	}
+
+	return tokens;
+}
+
 void GetLiveMatches(PGconn* pg)
 {
 	auto now = std::chrono::system_clock::now();
@@ -558,6 +571,19 @@ void GetLiveMatches(PGconn* pg)
 				}
 				if (!accessToken.size()) sendPN = false;
 
+				std::vector<int> specialPoints;
+				bool isQuest = false;
+				if (isSpecial)
+				{
+					std::string sql = "SELECT points, title FROM special_matches where match_id = " + std::to_string(id) + ";";
+					PGresult* ret = PQexec(pg, sql.c_str());
+					std::string pp = PQgetvalue(ret, 0, 0);
+					std::string tt = PQgetvalue(ret, 0, 1);
+					isQuest = tt == "quest";
+					specialPoints = splitPoints(pp, ':');
+					PQclear(ret);
+				}
+
 				for (int i = 0; i < nrows; ++i)
 				{
 					bool localSendPN = sendPN;
@@ -574,7 +600,7 @@ void GetLiveMatches(PGconn* pg)
 					EPredictStatus status = EPredictStatus::Pending;
 					if (team1Goals == t1score && team2Goals == t2score)
 					{
-						points = isSpecial ? 10 : 3;
+						points = isSpecial ? specialPoints[0] : 3;
 						status = EPredictStatus::ScorePredicted;
 					}
 					else
@@ -583,7 +609,7 @@ void GetLiveMatches(PGconn* pg)
 							(team1Goals < team2Goals && t1score < t2score) ||
 							(team1Goals == team2Goals && t1score == t2score))
 						{
-							points = isSpecial ? 5 : 1;
+							points = isSpecial ? specialPoints[1] : 1;
 							status = EPredictStatus::WinnerPredicted;
 
 							if (team1Goals == team2Goals && t1score == t2score)
@@ -599,7 +625,7 @@ void GetLiveMatches(PGconn* pg)
 						}
 						else
 						{
-							points = isSpecial ? 0 : -1;
+							points = isSpecial ? specialPoints[2] : -1;
 							status = EPredictStatus::Failed;
 							localSendPN = false;
 						}
@@ -658,6 +684,27 @@ void GetLiveMatches(PGconn* pg)
 					}
 				}
 				PQclear(pret);
+
+				// Quest remove points
+				if (isQuest)
+				{
+					sql =
+						"UPDATE users "
+						"SET points = GREATEST(0, points - 3) "
+						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
+					PGresult* pret = PQexec(pg, sql.c_str());
+					PQclear(pret);
+
+					// Insert empty predictions for users who didn't predict the match
+					/*sql =
+						"INSERT INTO predicts (user_id, match_id, team1_score, team2_score, status) "
+						"SELECT id, " + std::to_string(id) + ", 0, 0, 4 "
+						"FROM users "
+						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
+					pret = PQexec(pg, sql.c_str());
+					PQclear(pret);*/
+				}
+
 			}
 		}
 	}
