@@ -696,13 +696,13 @@ void GetLiveMatches(PGconn* pg)
 					PQclear(pret);
 
 					// Insert empty predictions for users who didn't predict the match
-					/*sql =
+					sql =
 						"INSERT INTO predicts (user_id, match_id, team1_score, team2_score, status) "
 						"SELECT id, " + std::to_string(id) + ", 0, 0, 4 "
 						"FROM users "
 						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
 					pret = PQexec(pg, sql.c_str());
-					PQclear(pret);*/
+					PQclear(pret);
 				}
 
 			}

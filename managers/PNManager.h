@@ -14,6 +14,9 @@ public:
 	static bool SendWeekStartedNotification();
 	static bool SendCLStartedNotification();
 	static bool SendNLStartedNotification();
+	static bool SendUpdateNotification();
+	static bool SendQuestNotification();
+
 	static bool SendPredictionNotification(int matchId);
 	static bool SendSpecialMatchNotification();
 
