@@ -104,6 +104,20 @@ std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjs
 	return oss.str();
 }
 
+// Function to escape single quotes in a string
+std::string escapeSingleQuotes(const std::string& str) {
+	std::string escapedStr;
+	for (char c : str) {
+		if (c == '\'') {
+			escapedStr += "''"; // Escape single quote
+		}
+		else {
+			escapedStr += c;
+		}
+	}
+	return escapedStr;
+}
+
 void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, CronTeam& team1, CronTeam& team2)
 {
 	std::string sql = "DELETE FROM events WHERE match_id = " + std::to_string(matchId) + ";";
@@ -142,6 +156,9 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 		{
 			assist = ev["assist"]["name"].GetString();
 		}
+
+		player = escapeSingleQuotes(player);
+		assist = escapeSingleQuotes(assist);
 
 		std::string type = ev["type"].GetString();
 		std::string detail = ev["detail"].GetString();
