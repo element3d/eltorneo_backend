@@ -95,12 +95,6 @@ int UserManager::CreateUser(const std::string& username, const std::string& pass
 }
 #include <cstdlib>
 
-
-
-
-
-
-
 bool UserManager::UserAddDevice(int userId,const std::string& device, const std::string& os)
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -418,6 +412,7 @@ DBUser* UserManager::GetUser(int id)
 
 
     //ConnectionPool::Get()->releaseConnection(pConn);
+    PQclear(res);
   ConnectionPool::Get()->releaseConnection(pConn);
 	free(temp);
   return pUser;

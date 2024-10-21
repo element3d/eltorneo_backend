@@ -202,7 +202,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int offset = page * limit;
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        if (!pg) {
+        if (!pg) 
+        {
             res.status = 500;  // Internal Server Error
             return;
         }
@@ -226,7 +227,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sqlBase.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -286,15 +288,18 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         // Reintroducing the count queries
-        auto generateCountQuery = [&](const std::string& condition) {
+        auto generateCountQuery = [&](const std::string& condition) 
+        {
             std::string countSql = "SELECT COUNT(*) FROM predicts p INNER JOIN matches m ON p.match_id = m.id WHERE p.user_id = " + userId;
-            if (leagueId != "-1") {
+            if (leagueId != "-1") 
+            {
                 countSql += " AND m.league = " + leagueId;
             }
             countSql += " AND " + condition + ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
-            if (PQresultStatus(countRet) != PGRES_TUPLES_OK) {
+            if (PQresultStatus(countRet) != PGRES_TUPLES_OK) 
+            {
                 fprintf(stderr, "Failed to fetch count: %s", PQerrorMessage(pg));
                 PQclear(countRet);
                 ConnectionPool::Get()->releaseConnection(pg);

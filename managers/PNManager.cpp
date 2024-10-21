@@ -179,7 +179,7 @@ bool PNManager::SendWeekStartedNotification()
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
     std::string sql = "SELECT * FROM fcm_tokens;";
-    PGresult* ret = PQexec(pg, sql.c_str());
+    PGresult* ret = PQexec(pg, sql.c_str());    
 
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
@@ -199,12 +199,16 @@ bool PNManager::SendWeekStartedNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
@@ -277,12 +281,16 @@ bool PNManager::SendCLStartedNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
@@ -356,12 +364,16 @@ bool PNManager::SendNLStartedNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
@@ -435,12 +447,16 @@ bool PNManager::SendUpdateNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
@@ -514,12 +530,16 @@ bool PNManager::SendQuestNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
@@ -596,7 +616,12 @@ bool PNManager::SendSpecialMatchNotification()
     }
 
     int nrows = PQntuples(ret);
-    if (!nrows) return false;
+    if (!nrows)
+    {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return false;
+    }
 
     srand(static_cast<unsigned int>(time(0)));
     int i = getRandomNumber(nrows);
@@ -632,12 +657,16 @@ bool PNManager::SendSpecialMatchNotification()
         std::string jwt_token = PNManager::CreateJwtToken();
         if (!jwt_token.size())
         {
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
             return false;
         }
 
         std::string access_token = PNManager::RequestAccessToken(jwt_token);
         if (!access_token.size())
         {
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
             return false;
         }
 
@@ -729,12 +758,16 @@ bool PNManager::SendPredictionNotification(int matchId)
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
         return false;
     }
 
