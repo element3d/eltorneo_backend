@@ -802,6 +802,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotification() 
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendWeekStartedNotification();
         if (b) res.status = 200;
@@ -813,6 +816,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationCL()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendCLStartedNotification();
         if (b) res.status = 200;
@@ -824,6 +830,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationNL()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendNLStartedNotification();
         if (b) res.status = 200;
@@ -835,6 +844,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationUpdate()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendUpdateNotification();
         if (b) res.status = 200;
@@ -846,6 +858,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationQuest()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendQuestNotification();
         if (b) res.status = 200;
@@ -869,6 +884,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendSpecialMatchNotification() 
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
 
         bool b = PNManager::SendSpecialMatchNotification();
         if (b) res.status = 200;
