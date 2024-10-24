@@ -5,7 +5,8 @@
         "stellar_symphony": "Stellar Symphony",
         "gladiators": "Gladiators",
         "quest": "Quest",
-        "gunshots": "Shootout"
+        "gunshots": "Shootout",
+        "vengeance": "Vengeance"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -13,7 +14,8 @@
         "stellar_symphony": "Sinfonía Estelar",
         "gladiators": "Gladiadores",
         "quest": "Quest",
-        "gunshots": "Disparos"
+        "gunshots": "Disparos",
+        "vengeance": "Venganza"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -21,7 +23,8 @@
         "stellar_symphony": "Symphonie Stellaire",
         "gladiators": "Gladiateurs",
         "quest": "Quest",
-        "gunshots": "Fusillade"
+        "gunshots": "Fusillade",
+        "vengeance": "Vengeance"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -29,7 +32,8 @@
         "stellar_symphony": "Sinfonia stellare",
         "gladiators": "Gladiatori",
         "quest": "Quest",
-        "gunshots": "Sparatoria"
+        "gunshots": "Sparatoria",
+        "vengeance": "Vendetta"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -37,7 +41,8 @@
         "stellar_symphony": "Звездная симфония",
         "gladiators": "Гладиаторы",
         "quest": "Квест",
-        "gunshots": "Перестрелка"
+        "gunshots": "Перестрелка",
+        "vengeance": "Месть"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -45,7 +50,8 @@
         "stellar_symphony": "Sinfonia Estelar",
         "gladiators": "Gladiadores",
         "quest": "Quest",
-        "gunshots": "Tiroteio"
+        "gunshots": "Tiroteio",
+        "vengeance": "Vingança"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -53,7 +59,8 @@
         "stellar_symphony": "Sternensymphonie",
         "gladiators": "Gladiatoren",
         "quest": "Quest",
-        "gunshots": "Schießerei"
+        "gunshots": "Schießerei",
+        "vengeance": "Rache"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -61,6 +68,7 @@
         "stellar_symphony": "Zvjezdana Simfonija",
         "gladiators": "Gladijatori",
         "quest": "Quest",
-        "gunshots": "Pucanje"
+        "gunshots": "Pucanje",
+        "vengeance": "Osveta"
     }
 }
