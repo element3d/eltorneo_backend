@@ -17,7 +17,9 @@
     "update_title": "New version is available!",
     "update_msg": "We recommend updating to enjoy the latest features and improvements.",
     "quest_title": "Attention: Quest match!",
-    "quest_msg": "These rare matches require a prediction; otherwise, you’ll lose 3 points."
+    "quest_msg": "These rare matches require a prediction; otherwise, you’ll lose 3 points.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "The time has come to choose the winner."
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -37,7 +39,9 @@
     "update_title": "Доступна новая версия!",
     "update_msg": "Рекомендуем обновиться, чтобы насладиться последними функциями и улучшениями.",
     "quest_title": "Внимание: Квест-матч!",
-    "quest_msg": "Эти редкие матчи требуют прогноза; в противном случае вы потеряете 3 очка."
+    "quest_msg": "Эти редкие матчи требуют прогноза; в противном случае вы потеряете 3 очка.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "Пришло время выбрать победителя."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -57,7 +61,9 @@
     "update_title": "¡Nueva versión disponible!",
     "update_msg": "Recomendamos actualizar para disfrutar de las últimas características y mejoras.",
     "quest_title": "¡Atención: Partido Quest!",
-    "quest_msg": "Estos partidos raros requieren una predicción; de lo contrario, perderás 3 puntos."
+    "quest_msg": "Estos partidos raros requieren una predicción; de lo contrario, perderás 3 puntos.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "Es momento de elegir un ganador."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -77,7 +83,9 @@
     "update_title": "Nuova versione disponibile!",
     "update_msg": "Ti consigliamo di aggiornare per godere delle ultime funzionalità e miglioramenti.",
     "quest_title": "Attenzione: Partita Quest!",
-    "quest_msg": "Queste partite rare richiedono una previsione; altrimenti, perderai 3 punti."
+    "quest_msg": "Queste partite rare richiedono una previsione; altrimenti, perderai 3 punti.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "È il momento di scegliere un vincitore."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -97,7 +105,9 @@
     "update_title": "Neue Version verfügbar!",
     "update_msg": "Wir empfehlen, ein Update durchzuführen, um die neuesten Funktionen und Verbesserungen zu genießen.",
     "quest_title": "Achtung: Quest-Spiel!",
-    "quest_msg": "Diese seltenen Spiele erfordern eine Vorhersage; andernfalls verlieren Sie 3 Punkte."
+    "quest_msg": "Diese seltenen Spiele erfordern eine Vorhersage; andernfalls verlieren Sie 3 Punkte.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "Es ist Zeit, einen Gewinner auszuwählen."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -117,7 +127,9 @@
     "update_title": "Nova verzija dostupna!",
     "update_msg": "Preporučujemo vam da ažurirate kako biste uživali u najnovijim značajkama i poboljšanjima.",
     "quest_title": "Pažnja: Quest utakmica!",
-    "quest_msg": "Ove rijetke utakmice zahtijevaju prognozu; u suprotnom ćete izgubiti 3 boda."
+    "quest_msg": "Ove rijetke utakmice zahtijevaju prognozu; u suprotnom ćete izgubiti 3 boda.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "Vrijeme je da izaberemo pobjednika."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -137,7 +149,9 @@
     "update_title": "Nouvelle version disponible !",
     "update_msg": "Nous vous recommandons de mettre à jour pour profiter des dernières fonctionnalités et améliorations.",
     "quest_title": "Attention : Match Quest !",
-    "quest_msg": "Ces matchs rares nécessitent une prédiction ; sinon, vous perdrez 3 points."
+    "quest_msg": "Ces matchs rares nécessitent une prédiction ; sinon, vous perdrez 3 points.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "Il est temps de choisir un gagnant."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -157,6 +171,8 @@
     "update_title": "Nova versão disponível!",
     "update_msg": "Recomendamos a atualização para aproveitar os últimos recursos e melhorias.",
     "quest_title": "Atenção: Partida Quest!",
-    "quest_msg": "Essas partidas raras exigem uma previsão; caso contrário, você perderá 3 pontos."
+    "quest_msg": "Essas partidas raras exigem uma previsão; caso contrário, você perderá 3 pontos.",
+    "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
+    "elclasico_msg": "É hora de escolher um vencedor."
   }
 }

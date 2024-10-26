@@ -739,8 +739,18 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 if (tokenExists)
                 {
                     PQclear(ret);
-                    sql = "UPDATE fcm_tokens SET user_id = " + std::to_string(userId) + " WHERE token = '" + token + "';";
+                    sql = "UPDATE fcm_tokens SET user_id = " + std::to_string(userId) + " WHERE token = '" + fcmToken + "';";
                     ret = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 200;
+                        res.set_content("OK", "text/plain");
+                        return;
+                    }
+
                     PQclear(ret);
                     ConnectionPool::Get()->releaseConnection(pg);
                     res.status = 200;
@@ -869,6 +879,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationElClasico()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        bool b = PNManager::SendElClasicoNotification();
+        if (b) res.status = 200;
+        else res.status = 500;
+        res.status = 200;
+    };
+}
 
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserPredictionSendNotification()
 {
