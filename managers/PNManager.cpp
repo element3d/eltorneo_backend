@@ -49,7 +49,8 @@ std::string PNManager::CreateJwtToken()
 
     EVP_PKEY* pkey = PEM_read_bio_PrivateKey(bio, nullptr, nullptr, nullptr);
     BIO_free(bio);
-    if (!pkey) {
+    if (!pkey) 
+    {
         return "";
     }
 
@@ -68,13 +69,17 @@ std::string PNManager::CreateJwtToken()
         .set_payload_claim("scope", jwt::claim(std::string("https://www.googleapis.com/auth/firebase.messaging")));
 
     std::string jwt_token;
-    try {
+    try 
+    {
         jwt_token = jwt_builder.sign(jwt::algorithm::rs256("", private_key_pem, "", ""));
         // Free the private key
         EVP_PKEY_free(pkey);
         return jwt_token;
     }
-    catch (const std::exception& ex) {
+    catch (const std::exception& ex) 
+    {
+        fprintf(stderr, "CreateJwtToken ex: %s", ex.what());
+
         EVP_PKEY_free(pkey);
         return "";
     }
@@ -431,7 +436,7 @@ bool PNManager::SendUpdateNotification()
 
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch settings: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Failed to fetch fcm_tokens: %s", PQerrorMessage(pg));
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
         return false;
@@ -440,6 +445,7 @@ bool PNManager::SendUpdateNotification()
     int nrows = PQntuples(ret);
     if (!nrows)
     {
+        fprintf(stderr, "No fcm_tokens: %s", PQerrorMessage(pg));
         ConnectionPool::Get()->releaseConnection(pg);
         PQclear(ret);
         return true;
@@ -447,6 +453,8 @@ bool PNManager::SendUpdateNotification()
     std::string jwt_token = PNManager::CreateJwtToken();
     if (!jwt_token.size())
     {
+        fprintf(stderr, "Failed to create jwt token: %s", PQerrorMessage(pg));
+
         ConnectionPool::Get()->releaseConnection(pg);
         PQclear(ret);
         return false;
@@ -455,6 +463,8 @@ bool PNManager::SendUpdateNotification()
     std::string access_token = PNManager::RequestAccessToken(jwt_token);
     if (!access_token.size())
     {
+        fprintf(stderr, "Failed to create access token: %s", PQerrorMessage(pg));
+
         ConnectionPool::Get()->releaseConnection(pg);
         PQclear(ret);
         return false;
