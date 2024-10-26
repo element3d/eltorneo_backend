@@ -667,7 +667,7 @@ bool PNManager::SendElClasicoNotification()
         std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
         std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
 
-        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "quest");
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "laliga");
         // break;
         if (!ret) invalidTokens.push_back(id);
     }

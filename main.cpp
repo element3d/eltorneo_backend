@@ -144,6 +144,7 @@ int main(void)
     svr.Post("/api/v1/user/notification/nl", AuthRoute::Get()->UserSendNotificationNL());
     svr.Post("/api/v1/user/notification/update", AuthRoute::Get()->UserSendNotificationUpdate());
     svr.Post("/api/v1/user/notification/quest", AuthRoute::Get()->UserSendNotificationQuest());
+    svr.Post("/api/v1/user/notification/elclasico", AuthRoute::Get()->UserSendNotificationElClasico());
 
     svr.Post("/api/v1/user/notification/special", AuthRoute::Get()->UserSendSpecialMatchNotification());
 
