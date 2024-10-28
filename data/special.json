@@ -6,7 +6,8 @@
         "gladiators": "Gladiators",
         "quest": "Quest",
         "gunshots": "Shootout",
-        "vengeance": "Vengeance"
+        "vengeance": "Vengeance",
+        "neapolitan_attack": "Neapolitan attack"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -15,7 +16,8 @@
         "gladiators": "Gladiadores",
         "quest": "Quest",
         "gunshots": "Disparos",
-        "vengeance": "Venganza"
+        "vengeance": "Venganza",
+        "neapolitan_attack": "Ataque napolitano"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -24,7 +26,8 @@
         "gladiators": "Gladiateurs",
         "quest": "Quest",
         "gunshots": "Fusillade",
-        "vengeance": "Vengeance"
+        "vengeance": "Vengeance",
+        "neapolitan_attack": "Attaque napolitaine"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -33,7 +36,8 @@
         "gladiators": "Gladiatori",
         "quest": "Quest",
         "gunshots": "Sparatoria",
-        "vengeance": "Vendetta"
+        "vengeance": "Vendetta",
+        "neapolitan_attack": "Attacco napoletano"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -42,7 +46,8 @@
         "gladiators": "Гладиаторы",
         "quest": "Квест",
         "gunshots": "Перестрелка",
-        "vengeance": "Месть"
+        "vengeance": "Месть",
+        "neapolitan_attack": "Неаполитанское нападение"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -51,7 +56,8 @@
         "gladiators": "Gladiadores",
         "quest": "Quest",
         "gunshots": "Tiroteio",
-        "vengeance": "Vingança"
+        "vengeance": "Vingança",
+        "neapolitan_attack": "Ataque napolitan"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -60,7 +66,8 @@
         "gladiators": "Gladiatoren",
         "quest": "Quest",
         "gunshots": "Schießerei",
-        "vengeance": "Rache"
+        "vengeance": "Rache",
+        "neapolitan_attack": "Neapolitanischer Angriff"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -69,6 +76,7 @@
         "gladiators": "Gladijatori",
         "quest": "Quest",
         "gunshots": "Pucanje",
-        "vengeance": "Osveta"
+        "vengeance": "Osveta",
+        "neapolitan_attack": "Napuljski napad"
     }
 }
