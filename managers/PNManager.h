@@ -17,6 +17,7 @@ public:
 	static bool SendUpdateNotification();
 	static bool SendQuestNotification();
 	static bool SendElClasicoNotification();
+	static bool SendSerieANotification();
 
 	static bool SendPredictionNotification(int matchId);
 	static bool SendSpecialMatchNotification();

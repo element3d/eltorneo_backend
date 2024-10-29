@@ -893,6 +893,20 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationSerieA()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        bool b = PNManager::SendSerieANotification();
+        if (b) res.status = 200;
+        else res.status = 500;
+        res.status = 200;
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserPredictionSendNotification()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {

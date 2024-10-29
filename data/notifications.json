@@ -19,7 +19,9 @@
     "quest_title": "Attention: Quest match!",
     "quest_msg": "These rare matches require a prediction; otherwise, you’ll lose 3 points.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "The time has come to choose the winner."
+    "elclasico_msg": "The time has come to choose the winner.",
+    "seriea_title": "The Scudetto fight continues",
+    "seriea_msg": "Make sure to submit your predictions today."
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -41,7 +43,9 @@
     "quest_title": "Внимание: Квест-матч!",
     "quest_msg": "Эти редкие матчи требуют прогноза; в противном случае вы потеряете 3 очка.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "Пришло время выбрать победителя."
+    "elclasico_msg": "Пришло время выбрать победителя.",
+    "seriea_title": "Борьба за Скудетто продолжается",
+    "seriea_msg": "Не забудьте подать свои прогнозы сегодня."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -63,7 +67,9 @@
     "quest_title": "¡Atención: Partido Quest!",
     "quest_msg": "Estos partidos raros requieren una predicción; de lo contrario, perderás 3 puntos.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "Es momento de elegir un ganador."
+    "elclasico_msg": "Es momento de elegir un ganador.",
+    "seriea_title": "La lucha por el Scudetto continúa",
+    "seriea_msg": "Asegúrate de enviar tus predicciones hoy."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -85,7 +91,9 @@
     "quest_title": "Attenzione: Partita Quest!",
     "quest_msg": "Queste partite rare richiedono una previsione; altrimenti, perderai 3 punti.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "È il momento di scegliere un vincitore."
+    "elclasico_msg": "È il momento di scegliere un vincitore.",
+    "seriea_title": "La lotta per lo Scudetto continua",
+    "seriea_msg": "Assicurati di inviare i tuoi pronostici oggi."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -107,7 +115,9 @@
     "quest_title": "Achtung: Quest-Spiel!",
     "quest_msg": "Diese seltenen Spiele erfordern eine Vorhersage; andernfalls verlieren Sie 3 Punkte.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "Es ist Zeit, einen Gewinner auszuwählen."
+    "elclasico_msg": "Es ist Zeit, einen Gewinner auszuwählen.",
+    "seriea_title": "Der Kampf um den Scudetto geht weiter",
+    "seriea_msg": "Vergiss nicht, heute deine Tipps abzugeben."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -129,7 +139,9 @@
     "quest_title": "Pažnja: Quest utakmica!",
     "quest_msg": "Ove rijetke utakmice zahtijevaju prognozu; u suprotnom ćete izgubiti 3 boda.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "Vrijeme je da izaberemo pobjednika."
+    "elclasico_msg": "Vrijeme je da izaberemo pobjednika.",
+    "seriea_title": "Borba za Scudetto se nastavlja",
+    "seriea_msg": "Ne zaboravi poslati svoje prognoze danas."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -151,7 +163,9 @@
     "quest_title": "Attention : Match Quest !",
     "quest_msg": "Ces matchs rares nécessitent une prédiction ; sinon, vous perdrez 3 points.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "Il est temps de choisir un gagnant."
+    "elclasico_msg": "Il est temps de choisir un gagnant.",
+    "seriea_title": "La lutte pour le Scudetto continue",
+    "seriea_msg": "N'oubliez pas de soumettre vos pronostics aujourd'hui."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -173,6 +187,8 @@
     "quest_title": "Atenção: Partida Quest!",
     "quest_msg": "Essas partidas raras exigem uma previsão; caso contrário, você perderá 3 pontos.",
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
-    "elclasico_msg": "É hora de escolher um vencedor."
+    "elclasico_msg": "É hora de escolher um vencedor.",
+    "seriea_title": "A luta pelo Scudetto continua",
+    "seriea_msg": "Não se esqueça de enviar suas previsões hoje."
   }
 }

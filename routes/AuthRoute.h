@@ -29,6 +29,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationUpdate();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationQuest();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationElClasico();
+    std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationSerieA();
 
     std::function<void(const httplib::Request&, httplib::Response&)> UserPredictionSendNotification();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendSpecialMatchNotification();
