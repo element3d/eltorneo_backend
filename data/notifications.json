@@ -21,7 +21,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "The time has come to choose the winner.",
     "seriea_title": "The Scudetto fight continues",
-    "seriea_msg": "Make sure to submit your predictions today."
+    "seriea_msg": "Make sure to submit your predictions today.",
+    "match_title": "Neapolitan Attack on San Siro: Milan vs Napoli",
+    "match_msg": "The match is about to start. Make your prediction now."
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -45,7 +47,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "Пришло время выбрать победителя.",
     "seriea_title": "Борьба за Скудетто продолжается",
-    "seriea_msg": "Не забудьте подать свои прогнозы сегодня."
+    "seriea_msg": "Не забудьте подать свои прогнозы сегодня.",
+    "match_title": "Неаполитанское нападение на Сан Сиро: Milan vs Napoli",
+    "match_msg": "Матч скоро начнётся. Сделай свой прогноз сейчас."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -69,7 +73,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "Es momento de elegir un ganador.",
     "seriea_title": "La lucha por el Scudetto continúa",
-    "seriea_msg": "Asegúrate de enviar tus predicciones hoy."
+    "seriea_msg": "Asegúrate de enviar tus predicciones hoy.",
+    "match_title": "Ataque Napolitano en San Siro: Milan vs Napoli",
+    "match_msg": "El partido está por comenzar. Haz tu pronóstico ahora."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -93,7 +99,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "È il momento di scegliere un vincitore.",
     "seriea_title": "La lotta per lo Scudetto continua",
-    "seriea_msg": "Assicurati di inviare i tuoi pronostici oggi."
+    "seriea_msg": "Assicurati di inviare i tuoi pronostici oggi.",
+    "match_title": "Attacco Napoletano a San Siro: Milan vs Napoli",
+    "match_msg": "La partita sta per iniziare. Fai il tuo pronostico ora."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -117,7 +125,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "Es ist Zeit, einen Gewinner auszuwählen.",
     "seriea_title": "Der Kampf um den Scudetto geht weiter",
-    "seriea_msg": "Vergiss nicht, heute deine Tipps abzugeben."
+    "seriea_msg": "Vergiss nicht, heute deine Tipps abzugeben.",
+    "match_title": "Neapolitanischer Angriff auf San Siro: Milan vs Napoli",
+    "match_msg": "Das Spiel beginnt bald. Gib jetzt deinen Tipp ab."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -141,7 +151,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "Vrijeme je da izaberemo pobjednika.",
     "seriea_title": "Borba za Scudetto se nastavlja",
-    "seriea_msg": "Ne zaboravi poslati svoje prognoze danas."
+    "seriea_msg": "Ne zaboravi poslati svoje prognoze danas.",
+    "match_title": "Napuljski napad na San Siro: Milan protiv Napolija",
+    "match_msg": "Utakmica uskoro počinje. Napravi svoju prognozu sada."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -165,7 +177,9 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "Il est temps de choisir un gagnant.",
     "seriea_title": "La lutte pour le Scudetto continue",
-    "seriea_msg": "N'oubliez pas de soumettre vos pronostics aujourd'hui."
+    "seriea_msg": "N'oubliez pas de soumettre vos pronostics aujourd'hui.",
+    "match_title": "Attaque Napolitaine à San Siro: Milan vs Napoli",
+    "match_msg": "Le match va bientôt commencer. Fais ton pronostic maintenant."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -189,6 +203,8 @@
     "elclasico_title": "El Clasico: Real Madrid vs Barcelona",
     "elclasico_msg": "É hora de escolher um vencedor.",
     "seriea_title": "A luta pelo Scudetto continua",
-    "seriea_msg": "Não se esqueça de enviar suas previsões hoje."
+    "seriea_msg": "Não se esqueça de enviar suas previsões hoje.",
+    "match_title": "Ataque Napolitano em San Siro: Milan vs Napoli",
+    "match_msg": "A partida vai começar em breve. Faça sua previsão agora."
   }
 }
