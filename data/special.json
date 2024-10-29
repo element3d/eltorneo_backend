@@ -9,7 +9,9 @@
         "vengeance": "Vengeance",
         "neapolitan_attack": "Neapolitan attack",
         "game_of_thrones": "Game of Thrones",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Bull in Hell",
+        "assassins_creed": "Assassin's Creed"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -21,7 +23,8 @@
         "vengeance": "Venganza",
         "neapolitan_attack": "Ataque napolitano",
         "game_of_thrones": "Juego de Tronos",
-        "devil_may_cry": "Devil May Cry"        
+        "devil_may_cry": "Devil May Cry",
+        "assassins_creed": "El credo de los asesinos"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -33,7 +36,9 @@
         "vengeance": "Vengeance",
         "neapolitan_attack": "Attaque napolitaine",
         "game_of_thrones": "Le Trône de Fer",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Taureaux en enfer",
+        "assassins_creed": "Le credo des assassins"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -45,7 +50,9 @@
         "vengeance": "Vendetta",
         "neapolitan_attack": "Attacco napoletano",
         "game_of_thrones": "Il Trono di Spade",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Tori all'inferno",
+        "assassins_creed": "Il credo degli assassini"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -57,7 +64,9 @@
         "vengeance": "Месть",
         "neapolitan_attack": "Неаполитанское нападение",
         "game_of_thrones": "Игра престолов",
-        "devil_may_cry": "Дьявол Может Плакать"
+        "devil_may_cry": "Дьявол Может Плакать",
+        "bulls_in_hell": "Быки в аду",
+        "assassins_creed": "Кредо убийц"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -69,7 +78,9 @@
         "vengeance": "Vingança",
         "neapolitan_attack": "Ataque napolitan",
         "game_of_thrones": "Jogo dos Tronos",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Touros no inferno",
+        "assassins_creed": "O credo dos assassinos"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -81,7 +92,9 @@
         "vengeance": "Rache",
         "neapolitan_attack": "Neapolitanischer Angriff",
         "game_of_thrones": "Game of Thrones",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Stiere in der Hölle",
+        "assassins_creed": "Das Credo der Assassinen"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -93,6 +106,8 @@
         "vengeance": "Osveta",
         "neapolitan_attack": "Napuljski napad",
         "game_of_thrones": "Igra prijestolja",
-        "devil_may_cry": "Devil May Cry"
+        "devil_may_cry": "Devil May Cry",
+        "bulls_in_hell": "Bikovi u paklu",
+        "assassins_creed": "Vjerovanje ubojica"
     }
 }
