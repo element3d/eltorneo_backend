@@ -8,7 +8,8 @@
         "gunshots": "Shootout",
         "vengeance": "Vengeance",
         "neapolitan_attack": "Neapolitan attack",
-        "game_of_thrones": "Game of Thrones"
+        "game_of_thrones": "Game of Thrones",
+        "devil_may_cry": "Devil May Cry"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -19,7 +20,8 @@
         "gunshots": "Disparos",
         "vengeance": "Venganza",
         "neapolitan_attack": "Ataque napolitano",
-        "game_of_thrones": "Juego de Tronos"
+        "game_of_thrones": "Juego de Tronos",
+        "devil_may_cry": "Devil May Cry"        
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -30,7 +32,8 @@
         "gunshots": "Fusillade",
         "vengeance": "Vengeance",
         "neapolitan_attack": "Attaque napolitaine",
-        "game_of_thrones": "Le Trône de Fer"
+        "game_of_thrones": "Le Trône de Fer",
+        "devil_may_cry": "Devil May Cry"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -41,7 +44,8 @@
         "gunshots": "Sparatoria",
         "vengeance": "Vendetta",
         "neapolitan_attack": "Attacco napoletano",
-        "game_of_thrones": "Il Trono di Spade"
+        "game_of_thrones": "Il Trono di Spade",
+        "devil_may_cry": "Devil May Cry"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -52,7 +56,8 @@
         "gunshots": "Перестрелка",
         "vengeance": "Месть",
         "neapolitan_attack": "Неаполитанское нападение",
-        "game_of_thrones": "Игра престолов"
+        "game_of_thrones": "Игра престолов",
+        "devil_may_cry": "Дьявол Может Плакать"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -63,7 +68,8 @@
         "gunshots": "Tiroteio",
         "vengeance": "Vingança",
         "neapolitan_attack": "Ataque napolitan",
-        "game_of_thrones": "Jogo dos Tronos"
+        "game_of_thrones": "Jogo dos Tronos",
+        "devil_may_cry": "Devil May Cry"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -74,7 +80,8 @@
         "gunshots": "Schießerei",
         "vengeance": "Rache",
         "neapolitan_attack": "Neapolitanischer Angriff",
-        "game_of_thrones": "Game of Thrones"
+        "game_of_thrones": "Game of Thrones",
+        "devil_may_cry": "Devil May Cry"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -85,6 +92,7 @@
         "gunshots": "Pucanje",
         "vengeance": "Osveta",
         "neapolitan_attack": "Napuljski napad",
-        "game_of_thrones": "Igra prijestolja"
+        "game_of_thrones": "Igra prijestolja",
+        "devil_may_cry": "Devil May Cry"
     }
 }
