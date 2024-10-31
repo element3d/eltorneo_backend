@@ -11,6 +11,8 @@ public:
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostMatch();
     std::function<void(const httplib::Request&, httplib::Response&)> EditMatch();
+    std::function<void(const httplib::Request&, httplib::Response&)> EditMatchPreview();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatches();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchesByDay();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchesLive();
