@@ -11,7 +11,8 @@
         "game_of_thrones": "Game of Thrones",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Bulls in Hell",
-        "assassins_creed": "Assassin's Creed"
+        "assassins_creed": "Assassin's Creed",
+        "halloween": "Halloween"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -25,7 +26,8 @@
         "game_of_thrones": "Juego de Tronos",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Toros en el infierno",
-        "assassins_creed": "El credo de los asesinos"
+        "assassins_creed": "El credo de los asesinos",
+        "halloween": "Halloween"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -39,7 +41,8 @@
         "game_of_thrones": "Le Trône de Fer",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Taureaux en enfer",
-        "assassins_creed": "Le credo des assassins"
+        "assassins_creed": "Le credo des assassins",
+        "halloween": "Halloween"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -53,7 +56,8 @@
         "game_of_thrones": "Il Trono di Spade",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Tori all'inferno",
-        "assassins_creed": "Il credo degli assassini"
+        "assassins_creed": "Il credo degli assassini",
+        "halloween": "Halloween"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -67,7 +71,8 @@
         "game_of_thrones": "Игра престолов",
         "devil_may_cry": "Дьявол Может Плакать",
         "bulls_in_hell": "Быки в аду",
-        "assassins_creed": "Кредо убийц"
+        "assassins_creed": "Кредо убийц",
+        "halloween": "Хэллоуин"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -81,7 +86,8 @@
         "game_of_thrones": "Jogo dos Tronos",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Touros no inferno",
-        "assassins_creed": "O credo dos assassinos"
+        "assassins_creed": "O credo dos assassinos",
+        "halloween": "Halloween"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -95,7 +101,8 @@
         "game_of_thrones": "Game of Thrones",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Stiere in der Hölle",
-        "assassins_creed": "Das Credo der Assassinen"
+        "assassins_creed": "Das Credo der Assassinen",
+        "halloween": "Halloween"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -109,6 +116,7 @@
         "game_of_thrones": "Igra prijestolja",
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Bikovi u paklu",
-        "assassins_creed": "Vjerovanje ubojica"
+        "assassins_creed": "Vjerovanje ubojica",
+        "halloween": "Noć vještica"
     }
 }
