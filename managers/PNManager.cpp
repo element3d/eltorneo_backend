@@ -845,7 +845,96 @@ bool PNManager::SendMatchNotification()
         std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
         std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
 
-        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "serie_a");
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "bundesliga");
+        // break;
+        if (!ret) invalidTokens.push_back(id);
+    }
+    free(temp);
+    PQclear(ret);
+
+    if (invalidTokens.size())
+    {
+        for (auto id : invalidTokens)
+        {
+            sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
+            ret = PQexec(pg, sql.c_str());
+            PQclear(ret);
+        }
+    }
+
+    ConnectionPool::Get()->releaseConnection(pg);
+    return true;
+}
+
+bool PNManager::SendPreviewNotification()
+{
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    std::string sql = "SELECT * FROM fcm_tokens;";
+    PGresult* ret = PQexec(pg, sql.c_str());
+
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch tokens: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return false;
+    }
+
+    int nrows = PQntuples(ret);
+    if (!nrows)
+    {
+        fprintf(stderr, "No tokens: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return true;
+    }
+    std::string jwt_token = PNManager::CreateJwtToken();
+    if (!jwt_token.size())
+    {
+        fprintf(stderr, "Failed to create jwt token: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return false;
+    }
+
+    std::string access_token = PNManager::RequestAccessToken(jwt_token);
+    if (!access_token.size())
+    {
+        fprintf(stderr, "Failed to create access token: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return false;
+    }
+
+    std::string filename = "data/notifications.json";
+    std::string jsonString = ReadFile(filename);
+    rapidjson::Document document;
+    document.Parse(jsonString.c_str());
+
+    std::string nTitle = "preview_title";
+    std::string nMsg = "preview_msg";
+
+    char* temp = (char*)calloc(4096, sizeof(char));
+    std::vector<int> invalidTokens;
+    for (int i = 0; i < nrows; ++i)
+    {
+        // Handle ID as integer
+        int id = atoi(PQgetvalue(ret, i, 0));
+        int userId = atoi(PQgetvalue(ret, i, 1));
+        strcpy(temp, PQgetvalue(ret, i, 2));
+        std::string token = temp;//"cHuMBtqtTFWYbCBmHMlJrs:APA91bGl1--uMCtDCW94jmpy0TsrMGiAmmYEMs1OXnIq-bnk2kCFqsC8KLB0GSgowgT7ZIUc58YOzmhkQbFbK0iqH5cM_wQwJH1FrHfF0tLbtI3LGmIeHzhvX5-vxuZPrLGv741WkV4I";
+        strcpy(temp, PQgetvalue(ret, i, 3));
+        std::string os = temp;
+        strcpy(temp, PQgetvalue(ret, i, 4));
+        std::string lang = temp;
+
+        std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
+        std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
+
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "");
         // break;
         if (!ret) invalidTokens.push_back(id);
     }
