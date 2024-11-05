@@ -823,7 +823,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
 
-        if (!mCachedTable.size()) CacheTable();
+     //   if (!mCachedTable.size()) CacheTable();
         for (int i = 0; i < nrows; ++i)
         {
             rapidjson::Value object;
@@ -891,7 +891,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
-
+/*
 void PredictsRoute::CacheTable()
 {
     std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 WHERE u.league = 1 ORDER BY u.points DESC, total_predictions DESC LIMIT 20;";
@@ -914,7 +914,7 @@ void PredictsRoute::CacheTable()
     }
     PQclear(ret);
     ConnectionPool::Get()->releaseConnection(pg);
-}
+}*/
 #include "CachedTable.h"
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetTableByPoints()
 {
@@ -966,7 +966,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        if (page == 1 && league == 1) mCachedTable.clear();
+     //   if (page == 1 && league == 1) mCachedTable.clear();
         for (int i = 0; i < nrows; ++i) {
             int id = atoi(PQgetvalue(ret, i, 0));
             rapidjson::Value object(rapidjson::kObjectType);

@@ -22,9 +22,9 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByWinner();
 
 private:
-    void CacheTable();
+   // void CacheTable();
 
 private:
     static PredictsRoute* sInstance;
-    std::vector<int> mCachedTable;
+ //   std::vector<int> mCachedTable;
 };
