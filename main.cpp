@@ -21,6 +21,7 @@
 #include "routes/AuthRoute.h"
 #include "routes/PredictsRoute.h"
 #include <cpr/cpr.h>
+#include "routes/CachedTable.h"
 
 using namespace httplib;
 using namespace std;
@@ -138,6 +139,7 @@ int main(void)
     svr.Put("/api/v1/me/name", AuthRoute::Get()->MeSetName());
     svr.Delete("/api/v1/me", AuthRoute::Get()->MeDelete());
     svr.Post("/api/v1/me/fcm_token", AuthRoute::Get()->MeAddFcmToken());
+    svr.Put("/api/v1/me/movetoleague", AuthRoute::Get()->MeMoveToLeague());
 
     svr.Post("/api/v1/user/notification", AuthRoute::Get()->UserSendNotification());
     svr.Post("/api/v1/user/notification/cl", AuthRoute::Get()->UserSendNotificationCL());
@@ -229,6 +231,14 @@ int main(void)
 
     auto ret = svr.set_mount_point("/assets", "./assets");
 	ret = svr.set_mount_point("/data", "./data");
+
+    std::thread t([]() {
+        while (true) 
+        {
+            CachedTable::Get()->Cache();
+            std::this_thread::sleep_for(std::chrono::minutes(3));
+        }
+    });
 
     svr.listen("192.168.18.234", 1234);
 }

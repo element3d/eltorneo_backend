@@ -144,6 +144,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             objValue.AddMember("prodAds", atoi(PQgetvalue(ret, i, 4)), allocator);
             objValue.AddMember("adDiffHours", atoi(PQgetvalue(ret, i, 5)), allocator);
             objValue.AddMember("enableNativeAds", atoi(PQgetvalue(ret, i, 6)), allocator);
+            objValue.AddMember("bannerType", atoi(PQgetvalue(ret, i, 7)), allocator);
 
             // Add the object to the document array
             document.PushBack(objValue, allocator);

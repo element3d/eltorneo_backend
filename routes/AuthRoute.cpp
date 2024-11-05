@@ -11,6 +11,7 @@
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
 #include "../managers/PQManager.h"
+#include "CachedTable.h"
 
 AuthRoute* AuthRoute::sInstance = nullptr;
 
@@ -255,7 +256,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         auto decoded = jwt::decode(token);
         int userId = decoded.get_payload_claim("id").as_int();
 
-        std::string sql = "SELECT id, name, avatar, points, email FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email, league FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -272,6 +273,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
         char* temp = (char*)calloc(4096, sizeof(char));
+        int league = -1;
         for (int i = 0; i < nrows; ++i)
         {
             int id = atoi(PQgetvalue(ret, i, 0));
@@ -296,8 +298,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
             std::string email = temp;
             v.SetString(email.c_str(), email.size(), allocator);
             document.AddMember("email", v, allocator);
+
+            league = atoi(PQgetvalue(ret, i, 5));
+            document.AddMember("league", league, allocator);
         }
 
+        int pos = CachedTable::Get()->GetPosition(userId, league);
+        document.AddMember("position", pos, allocator);
         free(temp);
 
         rapidjson::StringBuffer buffer;
@@ -323,7 +330,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         auto userId = req.get_param_value("user_id");
 
 
-        std::string sql = "SELECT id, name, avatar, points FROM users WHERE id = " + (userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, league FROM users WHERE id = " + (userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -340,6 +347,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
         char* temp = (char*)calloc(4096, sizeof(char));
+        int league = -1;
         for (int i = 0; i < nrows; ++i)
         {
             int id = atoi(PQgetvalue(ret, i, 0));
@@ -359,7 +367,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
 
             int points = atoi(PQgetvalue(ret, i, 3));
             document.AddMember("points", points, allocator);
+
+            league = atoi(PQgetvalue(ret, i, 4));
+            document.AddMember("league", league, allocator);
         }
+
+        int pos = CachedTable::Get()->GetPosition(atoi(userId.c_str()), league);
+        document.AddMember("position", pos, allocator);
 
         free(temp);
 
@@ -670,6 +684,54 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDe
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeMoveToLeague()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        int userId = -1;
+        std::string token = req.get_header_value("Authentication");
+        if (token.size())
+        {
+            auto decoded = jwt::decode(token);
+            userId = decoded.get_payload_claim("id").as_int();
+        }
+        if (userId <= 0) 
+        {
+            res.status = 500;
+            res.set_content("ERROR", "text/plain");
+            return;
+        }
+        
+        rapidjson::Document d;
+        d.Parse(req.body.c_str());
+        if (!d.HasMember("league"))
+        {
+            res.status = 500;
+            res.set_content("ERROR", "text/plain");
+            return;
+        }
+        int league = d["league"].GetInt();
+        std::string sql = "UPDATE users SET league = " + std::to_string(league) + " WHERE id = " + std::to_string(userId) + ";";
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+        {
+            fprintf(stderr, "Failed move to league: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            res.set_content("OK", "text/plain");
+            return;
+        }
+            
+        ConnectionPool::Get()->releaseConnection(pg);
+        res.status = 200;
+        res.set_content("OK", "text/plain");
+        return;     
+    };
+}
+
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAddFcmToken()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
@@ -694,7 +756,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
         std::string lang = d["lang"].GetString();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        if (userId != -1) 
+        if (userId != -1)
         {
             std::string sql = "SELECT COUNT(*) FROM fcm_tokens where user_id = " + std::to_string(userId)
                 + " AND token = '" + fcmToken + "';";
@@ -721,7 +783,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 res.set_content("OK", "text/plain");
                 return;
             }
-            else 
+            else
             {
                 std::string sql = "SELECT id FROM fcm_tokens where token = '" + (fcmToken)+"';";
                 PGresult* ret = PQexec(pg, sql.c_str());
@@ -761,8 +823,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
         }
         else
         {
-            std::string sql = "SELECT id FROM fcm_tokens where token = '" + (fcmToken) + "';";
-            PGresult*  ret = PQexec(pg, sql.c_str());
+            std::string sql = "SELECT id FROM fcm_tokens where token = '" + (fcmToken)+"';";
+            PGresult* ret = PQexec(pg, sql.c_str());
             if (PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "SELECT failed: %s", PQerrorMessage(pg));
@@ -773,7 +835,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 return;
             }
             bool exists = PQntuples(ret) > 0;
-            if (exists) 
+            if (exists)
             {
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
@@ -782,7 +844,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeAd
                 return;
             }
         }
-        
+
         std::string sql = "INSERT INTO fcm_tokens (user_id, token, os, lang) VALUES (" + std::to_string(userId)
             + ",'" + fcmToken
             + "','" + os

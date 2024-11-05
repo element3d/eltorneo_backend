@@ -80,6 +80,9 @@ add_executable(GodOfScore
 
   routes/AnalyticsRoute.h
   routes/AnalyticsRoute.cpp
+
+  routes/CachedTable.h
+  routes/CachedTable.cpp
 )
 
 

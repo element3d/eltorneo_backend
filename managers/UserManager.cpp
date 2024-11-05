@@ -20,10 +20,11 @@ UserManager* UserManager::Get()
 
 int UserManager::CreateUser(const std::string& email, const std::string& name)
 {
-    std::string sql = "INSERT INTO users(email, name, points) VALUES ('"
+    std::string sql = "INSERT INTO users(email, name, points, league) VALUES ('"
         + email + "', '" 
 		+ name + "', " 
-        + std::to_string(0) +
+        + std::to_string(0) + ", "
+        + std::to_string(2) +
     ");";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();

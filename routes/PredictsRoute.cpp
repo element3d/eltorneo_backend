@@ -790,7 +790,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
-
+#include "CachedTable.h"
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetMatchPredictsTop3()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
@@ -800,7 +800,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT p.*, u.name, u.avatar, u.points FROM predicts p "
+        std::string sql = "SELECT p.*, u.name, u.avatar, u.points, u.league FROM predicts p "
             "JOIN users u ON p.user_id = u.id "
             "WHERE p.status <> 4 and p.match_id = " + matchId + " "
             "ORDER BY u.points DESC LIMIT 20;";
@@ -839,6 +839,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             std::string userName = PQgetvalue(ret, i, 6);
             std::string userAvatar = PQgetvalue(ret, i, 7);
             int points = atoi(PQgetvalue(ret, i, 8));
+            int league = atoi(PQgetvalue(ret, i, 9));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
@@ -850,8 +851,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             nameVal.SetString(userAvatar.c_str(), allocator);
             userObject.AddMember("avatar", nameVal, allocator);
             userObject.AddMember("points", points, allocator);
+            userObject.AddMember("league", league, allocator);
 
-            int pos = -1;
+            int posi = CachedTable::Get()->GetPosition(userId, league);
+            userObject.AddMember("position", posi, allocator);
+
+           /* int pos = -1;
             auto it = std::find(mCachedTable.begin(), mCachedTable.end(), userId);
 
             if (it != mCachedTable.end()) 
@@ -862,7 +867,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             }
 
             userObject.AddMember("position", pos, allocator);  // Add position based on loop index
-
+            */
             object.AddMember("id", id, allocator);
             object.AddMember("user", userObject, allocator);
             object.AddMember("match_id", matchId, allocator);
@@ -889,7 +894,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
 void PredictsRoute::CacheTable()
 {
-    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC LIMIT 20;";
+    std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 WHERE u.league = 1 ORDER BY u.points DESC, total_predictions DESC LIMIT 20;";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();
     PGresult* ret = PQexec(pg, sql.c_str());
@@ -910,7 +915,7 @@ void PredictsRoute::CacheTable()
     PQclear(ret);
     ConnectionPool::Get()->releaseConnection(pg);
 }
-
+#include "CachedTable.h"
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetTableByPoints()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
@@ -918,8 +923,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Get the 'page' query parameter, default to 1 if not provided
         int page = 1;
+        int league = 1;
         if (req.has_param("page")) {
             page = std::stoi(req.get_param_value("page"));
+        }
+        if (req.has_param("league")) {
+            league = std::stoi(req.get_param_value("league"));
         }
 
         int limit = 20; // Number of users per page
@@ -932,11 +941,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, COUNT(p.id) AS total_predictions "
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.league, COUNT(p.id) AS total_predictions "
             "FROM users u "
             "INNER JOIN predicts p ON u.id = p.user_id "
-            "WHERE p.status != 4 "  // Exclude predictions with status 4
-            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "WHERE p.status != 4 AND u.league = " + std::to_string(league) +
+            " GROUP BY u.id, u.name, u.avatar, u.points "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY u.points DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
@@ -957,7 +966,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        if (page == 1) mCachedTable.clear();
+        if (page == 1 && league == 1) mCachedTable.clear();
         for (int i = 0; i < nrows; ++i) {
             int id = atoi(PQgetvalue(ret, i, 0));
             rapidjson::Value object(rapidjson::kObjectType);
@@ -965,11 +974,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 1), allocator), allocator);
             object.AddMember("avatar", rapidjson::Value(PQgetvalue(ret, i, 2), allocator), allocator);
             object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
-            object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 4)), allocator);  // Include the count of predictions
+            object.AddMember("league", atoi(PQgetvalue(ret, i, 4)), allocator);
+            object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 5)), allocator);  // Include the count of predictions
+            int pos = CachedTable::Get()->GetPosition(id, league);
+            object.AddMember("position", pos, allocator);
 
             document.PushBack(object, allocator);
 
-            if (page == 1) mCachedTable.push_back(id);
+           // if (page == 1 && league == 1) mCachedTable.push_back(id);
         }
 
         rapidjson::StringBuffer buffer;
