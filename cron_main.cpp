@@ -707,7 +707,7 @@ void GetLiveMatches(PGconn* pg)
 				{
 					sql =
 						"UPDATE users "
-						"SET points = GREATEST(0, points - 3) "
+						"SET points = GREATEST(0, points - 2) "
 						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
 					PGresult* pret = PQexec(pg, sql.c_str());
 					PQclear(pret);
