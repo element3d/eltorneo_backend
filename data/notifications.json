@@ -25,7 +25,9 @@
     "match_title": "Quest game: Inter - Arsenal",
     "match_msg": "The match is about to start. Make your prediction now.",
     "preview_title": "Catch Every Goal with Video Highlights!",
-    "preview_msg": "Update now to watch all the latest goals and highlights from your favorite club!"
+    "preview_msg": "Update now to watch all the latest goals and highlights from your favorite club!",
+    "league2_title": "Join League 2",
+    "league2_msg": "If your score is below 20 points, consider moving to League 2 where you can have a better chance to compete for the top spot."
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -53,7 +55,9 @@
     "match_title": "Игра в Квест: Inter - Arsenal",
     "match_msg": "Матч скоро начнётся. Сделай свой прогноз сейчас.",
     "preview_title": "Смотрите все голы в видеообзорах!",
-    "preview_msg": "Обновите приложение, чтобы смотреть последние голы и обзоры вашего любимого клуба!"
+    "preview_msg": "Обновите приложение, чтобы смотреть последние голы и обзоры вашего любимого клуба!",
+    "league2_title": "Перейдите в Лигу 2",
+    "league2_msg": "Если ваш счет ниже 20 очков, рассмотрите возможность перехода в Лигу 2, где у вас будет больше шансов побороться за первое место."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -81,7 +85,9 @@
     "match_title": "Juego de Quest: Inter - Arsenal",
     "match_msg": "El partido está por comenzar. Haz tu pronóstico ahora.",
     "preview_title": "¡Mira todos los goles en los resúmenes de video!",
-    "preview_msg": "Actualiza ahora para ver los últimos goles y resúmenes de tu club favorito!"
+    "preview_msg": "Actualiza ahora para ver los últimos goles y resúmenes de tu club favorito!",
+    "league2_title": "Únete a la Liga 2",
+    "league2_msg": "Si tu puntuación es inferior a 20 puntos, considera la posibilidad de unirte a la Liga 2, donde tendrás una mejor oportunidad de competir por el primer puesto."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -109,7 +115,9 @@
     "match_title": "Gioco di Quest: Inter - Arsenal",
     "match_msg": "La partita sta per iniziare. Fai il tuo pronostico ora.",
     "preview_title": "Guarda tutti i gol nei video highlights!",
-    "preview_msg": "Aggiorna ora per vedere gli ultimi gol e highlights del tuo club preferito!"
+    "preview_msg": "Aggiorna ora per vedere gli ultimi gol e highlights del tuo club preferito!",
+    "league2_title": "Unisciti alla Lega 2",
+    "league2_msg": "Se il tuo punteggio è inferiore a 20 punti, considera la possibilità di passare alla Lega 2, dove avrai maggiori possibilità di competere per il primo posto."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -137,7 +145,9 @@
     "match_title": "Spiel des Quests: Inter - Arsenal",
     "match_msg": "Das Spiel beginnt bald. Gib jetzt deinen Tipp ab.",
     "preview_title": "Sieh dir alle Tore in den Video-Highlights an!",
-    "preview_msg": "Aktualisiere jetzt, um die neuesten Tore und Highlights deines Lieblingsvereins zu sehen!"
+    "preview_msg": "Aktualisiere jetzt, um die neuesten Tore und Highlights deines Lieblingsvereins zu sehen!",
+    "league2_title": "Wechsel in die Liga 2",
+    "league2_msg": "Wenn deine Punktzahl unter 20 liegt, erwäge den Wechsel in die Liga 2, wo du bessere Chancen hast, um den ersten Platz zu kämpfen."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -165,7 +175,9 @@
     "match_title": "Igra Quest: Inter - Arsenal",
     "match_msg": "Utakmica uskoro počinje. Napravi svoju prognozu sada.",
     "preview_title": "Pogledajte sve golove u video sažecima!",
-    "preview_msg": "Ažurirajte sada i gledajte najnovije golove vašeg omiljenog kluba!"
+    "preview_msg": "Ažurirajte sada i gledajte najnovije golove vašeg omiljenog kluba!",
+    "league2_title": "Pridruži se Ligi 2",
+    "league2_msg": "Ako imaš manje od 20 bodova, razmisli o prelasku u Ligu 2, gdje ćeš imati bolju šansu za natjecanje za prvo mjesto."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -193,7 +205,9 @@
     "match_title": "Jeu de Quête: Inter - Arsenal",
     "match_msg": "Le match va bientôt commencer. Fais ton pronostic maintenant.",
     "preview_title": "Regardez tous les buts dans les résumés vidéo !",
-    "preview_msg": "Mettez à jour maintenant pour voir les derniers buts et résumés de votre club préféré !"
+    "preview_msg": "Mettez à jour maintenant pour voir les derniers buts et résumés de votre club préféré !",
+    "league2_title": "Rejoignez la Ligue 2",
+    "league2_msg": "Si vous avez moins de 20 points, envisagez de rejoindre la Ligue 2, où vous aurez une meilleure chance de concourir pour la première place."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -221,6 +235,8 @@
     "match_title": "Jogo de Quest: Inter - Arsenal",
     "match_msg": "A partida vai começar em breve. Faça sua previsão agora.",
     "preview_title": "Assista a todos os gols nos destaques em vídeo!",
-    "preview_msg": "Atualize agora para ver os últimos gols e destaques do seu clube favorito!"
+    "preview_msg": "Atualize agora para ver os últimos gols e destaques do seu clube favorito!",
+    "league2_title": "Junte-se à Liga 2",
+    "league2_msg": "Se você tem menos de 20 pontos, considere mudar para a Liga 2, onde terá mais chances de competir pelo primeiro lugar." 
   }
 }

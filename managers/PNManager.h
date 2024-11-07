@@ -20,6 +20,7 @@ public:
 	static bool SendSerieANotification();
 	static bool SendMatchNotification();
 	static bool SendPreviewNotification();
+	static bool SendLeague2Notification();
 
 	static bool SendPredictionNotification(int matchId);
 	static bool SendSpecialMatchNotification();

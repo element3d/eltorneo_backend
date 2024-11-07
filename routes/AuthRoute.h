@@ -34,6 +34,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationSerieA();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationMatch();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationPreview();
+    std::function<void(const httplib::Request&, httplib::Response&)> UserSendNotificationLeague2();
 
     std::function<void(const httplib::Request&, httplib::Response&)> UserPredictionSendNotification();
     std::function<void(const httplib::Request&, httplib::Response&)> UserSendSpecialMatchNotification();
