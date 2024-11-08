@@ -12,7 +12,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Bulls in Hell",
         "assassins_creed": "Assassin's Creed",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Cold War"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -27,7 +28,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Toros en el infierno",
         "assassins_creed": "El credo de los asesinos",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Guerra Fría"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -42,7 +44,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Taureaux en enfer",
         "assassins_creed": "Le credo des assassins",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Guerre froide"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -57,7 +60,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Tori all'inferno",
         "assassins_creed": "Il credo degli assassini",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Guerra fredda"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -72,7 +76,8 @@
         "devil_may_cry": "Дьявол Может Плакать",
         "bulls_in_hell": "Быки в аду",
         "assassins_creed": "Кредо убийц",
-        "halloween": "Хэллоуин"
+        "halloween": "Хэллоуин",
+        "cold_war": "Холодная война"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -87,7 +92,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Touros no inferno",
         "assassins_creed": "O credo dos assassinos",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Guerra Fria"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -102,7 +108,8 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Stiere in der Hölle",
         "assassins_creed": "Das Credo der Assassinen",
-        "halloween": "Halloween"
+        "halloween": "Halloween",
+        "cold_war": "Kalter Krieg"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -117,6 +124,7 @@
         "devil_may_cry": "Devil May Cry",
         "bulls_in_hell": "Bikovi u paklu",
         "assassins_creed": "Vjerovanje ubojica",
-        "halloween": "Noć vještica"
+        "halloween": "Noć vještica",
+        "cold_war": "Hladni rat"
     }
 }
