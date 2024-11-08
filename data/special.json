@@ -13,7 +13,8 @@
         "bulls_in_hell": "Bulls in Hell",
         "assassins_creed": "Assassin's Creed",
         "halloween": "Halloween",
-        "cold_war": "Cold War"
+        "cold_war": "Cold War",
+        "modern_warfare": "Modern Warfare"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -29,7 +30,8 @@
         "bulls_in_hell": "Toros en el infierno",
         "assassins_creed": "El credo de los asesinos",
         "halloween": "Halloween",
-        "cold_war": "Guerra Fría"
+        "cold_war": "Guerra Fría",
+        "modern_warfare": "Modern Warfare"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -45,7 +47,8 @@
         "bulls_in_hell": "Taureaux en enfer",
         "assassins_creed": "Le credo des assassins",
         "halloween": "Halloween",
-        "cold_war": "Guerre froide"
+        "cold_war": "Guerre froide",
+        "modern_warfare": "Modern Warfare"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -61,7 +64,8 @@
         "bulls_in_hell": "Tori all'inferno",
         "assassins_creed": "Il credo degli assassini",
         "halloween": "Halloween",
-        "cold_war": "Guerra fredda"
+        "cold_war": "Guerra fredda",
+        "modern_warfare": "Modern Warfare"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -77,7 +81,8 @@
         "bulls_in_hell": "Быки в аду",
         "assassins_creed": "Кредо убийц",
         "halloween": "Хэллоуин",
-        "cold_war": "Холодная война"
+        "cold_war": "Холодная война",
+        "modern_warfare": "Modern Warfare"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -93,7 +98,8 @@
         "bulls_in_hell": "Touros no inferno",
         "assassins_creed": "O credo dos assassinos",
         "halloween": "Halloween",
-        "cold_war": "Guerra Fria"
+        "cold_war": "Guerra Fria",
+        "modern_warfare": "Modern Warfare"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -109,7 +115,8 @@
         "bulls_in_hell": "Stiere in der Hölle",
         "assassins_creed": "Das Credo der Assassinen",
         "halloween": "Halloween",
-        "cold_war": "Kalter Krieg"
+        "cold_war": "Kalter Krieg",
+        "modern_warfare": "Modern Warfare"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -125,6 +132,7 @@
         "bulls_in_hell": "Bikovi u paklu",
         "assassins_creed": "Vjerovanje ubojica",
         "halloween": "Noć vještica",
-        "cold_war": "Hladni rat"
+        "cold_war": "Hladni rat",
+        "modern_warfare": "Modern Warfare"
     }
 }
