@@ -14,7 +14,8 @@
         "assassins_creed": "Assassin's Creed",
         "halloween": "Halloween",
         "cold_war": "Cold War",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Road to Olymp"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -31,7 +32,8 @@
         "assassins_creed": "El credo de los asesinos",
         "halloween": "Halloween",
         "cold_war": "Guerra Fría",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Camino al Olimpo"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -48,7 +50,8 @@
         "assassins_creed": "Le credo des assassins",
         "halloween": "Halloween",
         "cold_war": "Guerre froide",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Chemin vers l'Olympe"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -65,7 +68,8 @@
         "assassins_creed": "Il credo degli assassini",
         "halloween": "Halloween",
         "cold_war": "Guerra fredda",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Strada verso l'Olimpo"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -82,7 +86,8 @@
         "assassins_creed": "Кредо убийц",
         "halloween": "Хэллоуин",
         "cold_war": "Холодная война",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Путь на Олимп"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -99,7 +104,8 @@
         "assassins_creed": "O credo dos assassinos",
         "halloween": "Halloween",
         "cold_war": "Guerra Fria",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Caminho para o Olimpo"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -116,7 +122,8 @@
         "assassins_creed": "Das Credo der Assassinen",
         "halloween": "Halloween",
         "cold_war": "Kalter Krieg",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Weg zum Olymp"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -133,6 +140,7 @@
         "assassins_creed": "Vjerovanje ubojica",
         "halloween": "Noć vještica",
         "cold_war": "Hladni rat",
-        "modern_warfare": "Modern Warfare"
+        "modern_warfare": "Modern Warfare",
+        "road_to_olymp": "Put na Olimp"
     }
 }
