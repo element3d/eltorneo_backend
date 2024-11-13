@@ -297,7 +297,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             {
                 countSql += " AND m.league = " + leagueId;
             }
-            countSql += " AND " + condition + ";";
+            countSql += condition.size() ? " AND " + condition + ";" : ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
             if (PQresultStatus(countRet) != PGRES_TUPLES_OK) 
@@ -322,9 +322,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int totalWinnerPredicts = generateCountQuery("(p.status = 2 OR p.status = 1)");
         if (totalWinnerPredicts == -1) return;  // Check for errors and exit if found
 
+        int totalFailPredicts = generateCountQuery("p.status = 3");
+        if (totalFailPredicts == -1) return;  // Check for errors and exit if found
+
+        int allPredicts = generateCountQuery("");
+        if (allPredicts == -1) return;  // Check for errors and exit if found
+
         document.AddMember("totalPredicts", totalPredicts, allocator);
         document.AddMember("totalScorePredicts", totalScorePredicts, allocator);
         document.AddMember("totalWinnerPredicts", totalWinnerPredicts, allocator);
+        document.AddMember("totalFailPredicts", totalFailPredicts, allocator);
+        document.AddMember("allPredicts", allPredicts, allocator);
 
         document.AddMember("predicts", predictsArray, allocator);
 
