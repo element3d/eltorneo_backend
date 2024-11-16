@@ -834,6 +834,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int teamId
 	return round;
 }
 
+
 void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 {
 	std::string url = "https://v3.football.api-sports.io/fixtures/lineups?fixture=" + std::to_string(apiId);
@@ -884,22 +885,22 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 			"gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2) VALUES (" +
 			std::to_string(matchId) + ", " +
 			std::to_string(matchDate) + ", '" +
-			team1Formation + "', '" +
-			team1PlayerColor + "', '" +
-			team1PlayerNColor + "', '" +
-			team1PlayerBColor + "', '" +
-			team1GKColor + "', '" +
-			team1GKNColor + "', '" +
-			team1GKBColor + "', '" +
-			team2Formation + "', '" +
-			team2PlayerColor + "', '" +
-			team2PlayerNColor + "', '" +
-			team2PlayerBColor + "', '" +
-			team2GKColor + "', '" +
-			team2GKNColor + "', '" +
-			team2GKBColor + "', '" +
-			coach1 + "', '" +
-			coach2 +
+			escapeSingleQuotes(team1Formation) + "', '" +
+			escapeSingleQuotes(team1PlayerColor) + "', '" +
+			escapeSingleQuotes(team1PlayerNColor) + "', '" +
+			escapeSingleQuotes(team1PlayerBColor) + "', '" +
+			escapeSingleQuotes(team1GKColor) + "', '" +
+			escapeSingleQuotes(team1GKNColor) + "', '" +
+			escapeSingleQuotes(team1GKBColor) + "', '" +
+			escapeSingleQuotes(team2Formation) + "', '" +
+			escapeSingleQuotes(team2PlayerColor) + "', '" +
+			escapeSingleQuotes(team2PlayerNColor) + "', '" +
+			escapeSingleQuotes(team2PlayerBColor) + "', '" +
+			escapeSingleQuotes(team2GKColor) + "', '" +
+			escapeSingleQuotes(team2GKNColor) + "', '" +
+			escapeSingleQuotes(team2GKBColor) + "', '" +
+			escapeSingleQuotes(coach1) + "', '" +
+			escapeSingleQuotes(coach2) +
 			"') RETURNING id;";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
