@@ -756,10 +756,10 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < start11.Size(); ++i)
 	{
 		const rapidjson::Value& player = start11[i]["player"];
-		std::string name = player["name"].GetString();
 		int number = player["number"].GetInt();
-		std::string grid = player["grid"].GetString();
-		std::string pos = player["pos"].GetString();
+		std::string name = escapeSingleQuotes(player["name"].GetString());
+		std::string pos = escapeSingleQuotes(player["pos"].GetString());
+		std::string grid = escapeSingleQuotes(player["grid"].GetString());
 
 		int start11Flag = 1;
 
@@ -785,10 +785,10 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < subs.Size(); ++i)
 	{
 		const rapidjson::Value& player = subs[i]["player"];
-		std::string name = player["name"].GetString();
 		int number = player["number"].GetInt();
 		std::string grid = "";
-		std::string pos = player["pos"].GetString();
+		std::string name = escapeSingleQuotes(player["name"].GetString());
+		std::string pos = escapeSingleQuotes(player["pos"].GetString());
 
 		int start11Flag = 0;
 
