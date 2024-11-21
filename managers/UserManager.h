@@ -18,6 +18,9 @@ struct DBUser
     std::string Password;
 	std::string Name;
     std::string Avatar;
+    std::string TelegramUsername;
+    long long TelegramId;
+
     int Points;
 
     std::string ToJson(bool addNumGolds = false)
@@ -61,11 +64,13 @@ public:
 //    void SetPsql(pqxx::connection* pPsql);
     int CreateUser(const std::string& username, const std::string& password, const std::string& name);
     int CreateUser(const std::string& email, const std::string& name);
+    int CreateTelegramUser(const std::string& username, long long tgId, const std::string& name);
 
     bool MeDelete(int id);
     bool MeHandshake(int id);
     DBUser* GetUser(int id);
     DBUser* GetUserByEmail(const std::string& email);
+    DBUser* GetUserByTelegramId(long long tgId);
 
     uint64_t UserHandshake(int id);
     bool EditUser(int id, const std::string& firstName, const std::string& phone, const std::string& whatsapp, const std::string& viber);

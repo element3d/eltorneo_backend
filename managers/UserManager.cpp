@@ -18,6 +18,46 @@ UserManager* UserManager::Get()
     mPsql = pPsql;
 }*/
 
+int UserManager::CreateTelegramUser(const std::string& username, long long tgId, const std::string& name)
+{
+    std::string sql = "INSERT INTO users(tg_username, tg_id, name, points, league) VALUES ('"
+        + username + "', "
+        + std::to_string(tgId) + ", '"
+        + name + "', "
+        + std::to_string(0) + ", "
+        + std::to_string(2) +
+        ");";
+
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    PGresult* res = PQexec(pg, sql.c_str());
+    if (PQresultStatus(res) != PGRES_COMMAND_OK)
+    {
+        char* err = PQerrorMessage(pg);
+        fprintf(stderr, "Error: Failed to create user: %s", PQerrorMessage(pg));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return -1;
+    }
+
+    sql = "SELECT currval('users_id_seq');";
+    res = PQexec(pg, sql.c_str());
+    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    {
+        char* err = PQerrorMessage(pg);
+        fprintf(stderr, "Error: Failed to get new user id: %s", PQerrorMessage(pg));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return -1;
+    }
+    char* temp = (char*)calloc(256, sizeof(char));
+    int rec_count = PQntuples(res);
+    strcpy(temp, PQgetvalue(res, 0, 0));
+    int id = atoi(temp);
+    free(temp);
+    ConnectionPool::Get()->releaseConnection(pg);
+    return id;
+}
+
 int UserManager::CreateUser(const std::string& email, const std::string& name)
 {
     std::string sql = "INSERT INTO users(email, name, points, league) VALUES ('"
@@ -270,6 +310,60 @@ DBUser* UserManager::GetUserByEmail(const std::string& email)
     free(temp);
     return pUser;
 }
+
+DBUser* UserManager::GetUserByTelegramId(long long tgId)
+{
+    if (tgId <= 0) return nullptr;
+    std::string sql = "SELECT * FROM users WHERE tg_id = '"
+        + std::to_string(tgId) + "';";
+
+    PGconn* pConn = ConnectionPool::Get()->getConnection();
+
+    PGresult* res = PQexec(pConn, sql.c_str());
+    if (PQresultStatus(res) != PGRES_TUPLES_OK || PQntuples(res) == 0)
+    {
+        char* err = PQerrorMessage(pConn);
+        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pConn);
+        //exit_nicely(conn);
+        return nullptr;
+    }
+
+    char* temp = (char*)calloc(256, sizeof(char));
+    DBUser* pUser = new DBUser();
+    strcpy(temp, PQgetvalue(res, 0, 0));
+    pUser->Id = atoi(temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 1));
+    pUser->Username = (temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 2));
+    pUser->Password = (temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 3));
+    pUser->Name = (temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 4));
+    pUser->Avatar = (temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 5));
+    pUser->Points = atoi(temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 6));
+    pUser->Email = temp;
+
+    strcpy(temp, PQgetvalue(res, 0, 8));
+    pUser->TelegramUsername = temp;
+
+    strcpy(temp, PQgetvalue(res, 0, 9));
+    pUser->TelegramId = atoll(temp);
+
+    ConnectionPool::Get()->releaseConnection(pConn);
+    free(temp);
+    return pUser;
+}
+
 
 
 bool UserManager::EditUser(int id, const std::string& firstName, const std::string& phone, const std::string& whatsapp, const std::string& viber)
