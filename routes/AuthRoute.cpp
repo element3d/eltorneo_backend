@@ -301,6 +301,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         std::string token = req.get_header_value("Authentication");
         auto decoded = jwt::decode(token);
         int userId = decoded.get_payload_claim("id").as_int();
+        std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
         std::string sql = "SELECT id, name, avatar, points, email, league FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -347,6 +348,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
             league = atoi(PQgetvalue(ret, i, 5));
             document.AddMember("league", league, allocator);
+
+            v.SetString(authType.c_str(), authType.size(), allocator);
+            document.AddMember("authType", v, allocator);
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
