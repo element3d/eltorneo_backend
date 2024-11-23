@@ -737,6 +737,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeDe
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeMoveToLeague()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
         int userId = -1;
         std::string token = req.get_header_value("Authentication");
         if (token.size())
