@@ -18,14 +18,46 @@ UserManager* UserManager::Get()
     mPsql = pPsql;
 }*/
 
+#include <iostream>
+#include <random>
+int generateRandomCode() 
+{
+    // Create a random device
+    std::random_device rd;
+
+    // Use a Mersenne Twister random number generator
+    std::mt19937 gen(rd());
+
+    // Define the range for 6-digit numbers (100000 to 999999)
+    std::uniform_int_distribution<> distr(100000, 999999);
+
+    // Generate and return the random number
+    return distr(gen);
+}
+
+int UserManager::CreateTelegramUserCode(int id)
+{
+    int code = generateRandomCode();
+    std::string sql = "UPDATE users set tg_code = " + std::to_string(code) +
+        " WHERE id = " + std::to_string(id) + ";";
+
+
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    PGresult* res = PQexec(pg, sql.c_str());
+    PQclear(res);
+    ConnectionPool::Get()->releaseConnection(pg);
+    return code;
+}
+
 int UserManager::CreateTelegramUser(const std::string& username, long long tgId, const std::string& name)
 {
-    std::string sql = "INSERT INTO users(tg_username, tg_id, name, points, league) VALUES ('"
+    std::string sql = "INSERT INTO users(tg_username, tg_id, name, points, league, tg_code) VALUES ('"
         + username + "', "
         + std::to_string(tgId) + ", '"
         + name + "', "
         + std::to_string(0) + ", "
-        + std::to_string(2) +
+        + std::to_string(2) + ", "
+        + std::to_string(generateRandomCode()) +
         ");";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -358,6 +390,9 @@ DBUser* UserManager::GetUserByTelegramId(long long tgId)
 
     strcpy(temp, PQgetvalue(res, 0, 9));
     pUser->TelegramId = atoll(temp);
+
+    strcpy(temp, PQgetvalue(res, 0, 10));
+    pUser->TelegramCode = atoll(temp);
 
     ConnectionPool::Get()->releaseConnection(pConn);
     free(temp);

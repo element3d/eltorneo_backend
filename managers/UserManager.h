@@ -20,6 +20,7 @@ struct DBUser
     std::string Avatar;
     std::string TelegramUsername;
     long long TelegramId;
+    int TelegramCode;
 
     int Points;
 
@@ -65,6 +66,7 @@ public:
     int CreateUser(const std::string& username, const std::string& password, const std::string& name);
     int CreateUser(const std::string& email, const std::string& name);
     int CreateTelegramUser(const std::string& username, long long tgId, const std::string& name);
+    int CreateTelegramUserCode(int Id);
 
     bool MeDelete(int id);
     bool MeHandshake(int id);

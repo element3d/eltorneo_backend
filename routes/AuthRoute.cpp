@@ -263,6 +263,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Sign
         DBUser* pUser = UserManager::Get()->GetUserByTelegramId(tgId);
         if (pUser)
         {
+            if (pUser->TelegramCode == 0) 
+            {
+                UserManager::Get()->CreateTelegramUserCode(pUser->Id);
+            }
+
             userId = pUser->Id;
             delete pUser;
         }
@@ -303,7 +308,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT id, name, avatar, points, email, league FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -351,6 +356,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
             v.SetString(authType.c_str(), authType.size(), allocator);
             document.AddMember("authType", v, allocator);
+
+            if (authType == "telegram") 
+            {
+                int code = atoi(PQgetvalue(ret, i, 6));
+                document.AddMember("tgCode", code, allocator);
+            }
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
