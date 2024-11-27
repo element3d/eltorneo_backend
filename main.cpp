@@ -160,6 +160,7 @@ int main(void)
     svr.Get("/api/v1/user/stats", AuthRoute::Get()->GetStats());
     svr.Post("/api/v1/signin/googlemail", AuthRoute::Get()->SignInGoogleWithEmail());
     svr.Post("/api/v1/signin/tgbot", AuthRoute::Get()->SignInWithTelegramBot());
+    svr.Post("/api/v1/signin/tgcode", AuthRoute::Get()->SignInWithTelegramCode());
 
 
     svr.Get("/api/v1/settings", LeaguesRoute::Get()->GetSettings());

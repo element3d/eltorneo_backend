@@ -73,6 +73,7 @@ public:
     DBUser* GetUser(int id);
     DBUser* GetUserByEmail(const std::string& email);
     DBUser* GetUserByTelegramId(long long tgId);
+    DBUser* GetUserByTelegramCode(int tgCode);
 
     uint64_t UserHandshake(int id);
     bool EditUser(int id, const std::string& firstName, const std::string& phone, const std::string& whatsapp, const std::string& viber);

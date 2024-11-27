@@ -296,6 +296,40 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Sign
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::SignInWithTelegramCode()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        int tgCode = document["tg_code"].GetInt();
+        DBUser* pUser = UserManager::Get()->GetUserByTelegramCode(tgCode);
+        if (!pUser)
+        {
+            res.status = 403;
+            res.set_content("Error", "text/plain");
+            return;
+        }
+        int userId = pUser->Id;
+
+        std::string token = jwt::create()
+            .set_issuer("auth0")
+            .set_type("JWS")
+            .set_payload_claim("id", picojson::value(int64_t(userId)))
+            .set_payload_claim("auth_type", picojson::value("telegram_code"))
+            .sign(jwt::algorithm::hs256{ "secret" });
+
+        res.status = 200;
+        res.set_content(token, "text/plain");
+        return;
+
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 {
     return [](const httplib::Request& req, httplib::Response& res) {

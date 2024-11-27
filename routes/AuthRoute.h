@@ -16,6 +16,7 @@ public:
     std::function<void(const httplib::Request &, httplib::Response &)> SignInGoogle();
     std::function<void(const httplib::Request &, httplib::Response &)> SignInGoogleWithEmail();
     std::function<void(const httplib::Request &, httplib::Response &)> SignInWithTelegramBot();
+    std::function<void(const httplib::Request&, httplib::Response&)> SignInWithTelegramCode();
     std::function<void(const httplib::Request &, httplib::Response&)> Me();
     std::function<void(const httplib::Request&, httplib::Response&)> MeDelete();
     std::function<void(const httplib::Request&, httplib::Response&)> GetStats();
