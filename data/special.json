@@ -15,7 +15,9 @@
         "halloween": "Halloween",
         "cold_war": "Cold War",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Road to Olymp"
+        "road_to_olymp": "Road to Olymp",
+        "welcome_to_hell": "Welcome to Hell",
+        "davincis_demons": "Da Vinci's Demons"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -33,7 +35,9 @@
         "halloween": "Halloween",
         "cold_war": "Guerra Fría",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Camino al Olimpo"
+        "road_to_olymp": "Camino al Olimpo",
+        "welcome_to_hell": "Bienvenido al Infierno",
+        "davincis_demons": "Los Demonios de Da Vinci"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -51,7 +55,9 @@
         "halloween": "Halloween",
         "cold_war": "Guerre froide",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Chemin vers l'Olympe"
+        "road_to_olymp": "Chemin vers l'Olympe",
+        "welcome_to_hell": "Bienvenue en Enfer",
+        "davincis_demons": "Les Démons de Da Vinci"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -69,7 +75,9 @@
         "halloween": "Halloween",
         "cold_war": "Guerra fredda",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Strada verso l'Olimpo"
+        "road_to_olymp": "Strada verso l'Olimpo",
+        "welcome_to_hell": "Benvenuto all'Inferno",
+        "davincis_demons": "I Demoni di Da Vinci"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -87,7 +95,9 @@
         "halloween": "Хэллоуин",
         "cold_war": "Холодная война",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Путь на Олимп"
+        "road_to_olymp": "Путь на Олимп",
+        "welcome_to_hell": "Добро пожаловать в Ад",
+        "davincis_demons": "Демоны Да Винчи"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -105,7 +115,9 @@
         "halloween": "Halloween",
         "cold_war": "Guerra Fria",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Caminho para o Olimpo"
+        "road_to_olymp": "Caminho para o Olimpo",
+        "welcome_to_hell": "Bem-vindo ao Inferno",
+        "davincis_demons": "Os Demônios de Da Vinci"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -123,7 +135,9 @@
         "halloween": "Halloween",
         "cold_war": "Kalter Krieg",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Weg zum Olymp"
+        "road_to_olymp": "Weg zum Olymp",
+        "welcome_to_hell": "Willkommen in der Hölle",
+        "davincis_demons": "Da Vincis Dämonen"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -141,6 +155,8 @@
         "halloween": "Noć vještica",
         "cold_war": "Hladni rat",
         "modern_warfare": "Modern Warfare",
-        "road_to_olymp": "Put na Olimp"
+        "road_to_olymp": "Put na Olimp",
+        "welcome_to_hell": "Dobrodošli u Pakao",
+        "davincis_demons": "Da Vincijevi Demoni"
     }
 }
