@@ -36,6 +36,7 @@ int sign_in(const std::string& username, const std::string& password, std::strin
         .set_issuer("auth0")
         .set_type("JWS")
         .set_payload_claim("id", picojson::value(int64_t(pUser->Id)))
+        .set_payload_claim("auth_type", picojson::value("username"))
         .sign(jwt::algorithm::hs256{"secret"});
 
     delete pUser;
