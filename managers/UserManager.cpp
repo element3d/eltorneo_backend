@@ -131,10 +131,13 @@ int UserManager::CreateUser(const std::string& email, const std::string& name)
 
 int UserManager::CreateUser(const std::string& username, const std::string& password, const std::string& name)
 {
-    std::string sql = "INSERT INTO users(username, password, name) VALUES ('"
+    std::string sql = "INSERT INTO users(username, password, name, points, league) VALUES ('"
         + username + "', '"
         + password + "', '"
-        + name + "');";
+        + name + "', "
+        + std::to_string(0) + ", "
+        + std::to_string(2) +
+        + ");";
 
 
     PGconn* pg = ConnectionPool::Get()->getConnection();

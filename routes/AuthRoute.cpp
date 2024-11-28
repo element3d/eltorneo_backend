@@ -160,16 +160,16 @@ std::function<void(const httplib::Request &, httplib::Response &)> AuthRoute::Si
 		std::string firstName = document["name"].GetString();
         int userId = UserManager::Get()->CreateUser(username, pwd, firstName);
 
-        std::string token;
-        int status = sign_in(username, pwd, token);
-		if (!token.size())
-		{
-            res.status = status;
-			return;
-		}
+        std::string token = jwt::create()
+            .set_issuer("auth0")
+            .set_type("JWS")
+            .set_payload_claim("id", picojson::value(int64_t(userId)))
+            .set_payload_claim("auth_type", picojson::value("username"))
+            .sign(jwt::algorithm::hs256{ "secret" });
 
         res.status = 200;
         res.set_content(token, "text/plain");
+        return;
     };
 }
 
