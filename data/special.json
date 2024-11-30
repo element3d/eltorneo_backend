@@ -17,7 +17,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Road to Olymp",
         "welcome_to_hell": "Welcome to Hell",
-        "davincis_demons": "Da Vinci's Demons"
+        "davincis_demons": "Da Vinci's Demons",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "The beginning of the end"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -37,7 +39,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Camino al Olimpo",
         "welcome_to_hell": "Bienvenido al Infierno",
-        "davincis_demons": "Los Demonios de Da Vinci"
+        "davincis_demons": "Los Demonios de Da Vinci",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "El principio del fin"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -57,7 +61,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Chemin vers l'Olympe",
         "welcome_to_hell": "Bienvenue en Enfer",
-        "davincis_demons": "Les Démons de Da Vinci"
+        "davincis_demons": "Les Démons de Da Vinci",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "Le début de la fin"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -77,7 +83,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Strada verso l'Olimpo",
         "welcome_to_hell": "Benvenuto all'Inferno",
-        "davincis_demons": "I Demoni di Da Vinci"
+        "davincis_demons": "I Demoni di Da Vinci",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "L'inizio della fine"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -97,7 +105,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Путь на Олимп",
         "welcome_to_hell": "Добро пожаловать в Ад",
-        "davincis_demons": "Демоны Да Винчи"
+        "davincis_demons": "Демоны Да Винчи",
+        "web_of_shadows": "В паутине теней",
+        "beginning_of_the_end": "Начало конца"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -117,7 +127,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Caminho para o Olimpo",
         "welcome_to_hell": "Bem-vindo ao Inferno",
-        "davincis_demons": "Os Demônios de Da Vinci"
+        "davincis_demons": "Os Demônios de Da Vinci",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "O começo do fim"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -137,7 +149,9 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Weg zum Olymp",
         "welcome_to_hell": "Willkommen in der Hölle",
-        "davincis_demons": "Da Vincis Dämonen"
+        "davincis_demons": "Da Vincis Dämonen",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "Der Anfang vom Ende"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -157,6 +171,8 @@
         "modern_warfare": "Modern Warfare",
         "road_to_olymp": "Put na Olimp",
         "welcome_to_hell": "Dobrodošli u Pakao",
-        "davincis_demons": "Da Vincijevi Demoni"
+        "davincis_demons": "Da Vincijevi Demoni",
+        "web_of_shadows": "Web of Shadows",
+        "beginning_of_the_end": "Početak kraja"
     }
 }
