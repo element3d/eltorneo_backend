@@ -356,6 +356,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         }
 
         int nrows = PQntuples(ret);
+        if (!nrows) 
+        {
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
         rapidjson::Document document;
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
