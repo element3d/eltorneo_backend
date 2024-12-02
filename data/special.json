@@ -19,7 +19,8 @@
         "welcome_to_hell": "Welcome to Hell",
         "davincis_demons": "Da Vinci's Demons",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "The beginning of the end"
+        "beginning_of_the_end": "The beginning of the end",
+        "devil_in_crosshairs": "The Devil in the Crosshairs"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -41,7 +42,8 @@
         "welcome_to_hell": "Bienvenido al Infierno",
         "davincis_demons": "Los Demonios de Da Vinci",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "El principio del fin"
+        "beginning_of_the_end": "El principio del fin",
+        "devil_in_crosshairs": "El diablo en la mira"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -63,7 +65,8 @@
         "welcome_to_hell": "Bienvenue en Enfer",
         "davincis_demons": "Les Démons de Da Vinci",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "Le début de la fin"
+        "beginning_of_the_end": "Le début de la fin",
+        "devil_in_crosshairs": "Le Diable dans la Ligne de Mire"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -85,7 +88,8 @@
         "welcome_to_hell": "Benvenuto all'Inferno",
         "davincis_demons": "I Demoni di Da Vinci",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "L'inizio della fine"
+        "beginning_of_the_end": "L'inizio della fine",
+        "devil_in_crosshairs": "Il Diavolo nel Mirino"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -107,7 +111,8 @@
         "welcome_to_hell": "Добро пожаловать в Ад",
         "davincis_demons": "Демоны Да Винчи",
         "web_of_shadows": "В паутине теней",
-        "beginning_of_the_end": "Начало конца"
+        "beginning_of_the_end": "Начало конца",
+        "devil_in_crosshairs": "Дьявол под прицелом"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -129,7 +134,8 @@
         "welcome_to_hell": "Bem-vindo ao Inferno",
         "davincis_demons": "Os Demônios de Da Vinci",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "O começo do fim"
+        "beginning_of_the_end": "O começo do fim",
+        "devil_in_crosshairs": "O Diabo na Mira"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -151,7 +157,8 @@
         "welcome_to_hell": "Willkommen in der Hölle",
         "davincis_demons": "Da Vincis Dämonen",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "Der Anfang vom Ende"
+        "beginning_of_the_end": "Der Anfang vom Ende",
+        "devil_in_crosshairs": "Der Teufel im Visier"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -173,6 +180,7 @@
         "welcome_to_hell": "Dobrodošli u Pakao",
         "davincis_demons": "Da Vincijevi Demoni",
         "web_of_shadows": "Web of Shadows",
-        "beginning_of_the_end": "Početak kraja"
+        "beginning_of_the_end": "Početak kraja",
+        "devil_in_crosshairs": "Đavao na nišanu"
     }
 }
