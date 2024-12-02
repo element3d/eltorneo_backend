@@ -343,7 +343,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code, username FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -404,6 +404,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
                 int code = atoi(PQgetvalue(ret, i, 6));
                 document.AddMember("tgCode", code, allocator);
             }
+
+            strcpy(temp, PQgetvalue(ret, i, 7));
+            std::string username = temp;
+            v.SetString(username.c_str(), username.size(), allocator);
+            document.AddMember("username", v, allocator);
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
