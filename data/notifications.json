@@ -27,7 +27,9 @@
     "preview_title": "Matchday Video Highlights",
     "preview_msg": "Catch the video highlights from today's matches now!",
     "league2_title": "Join League 2",
-    "league2_msg": "If your score is below 20 points, consider moving to League 2 where you can have a better chance to compete for the top spot."
+    "league2_msg": "If your score is below 20 points, consider moving to League 2 where you can have a better chance to compete for the top spot.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "The new leader of el Torneo!"
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -57,7 +59,9 @@
     "preview_title": "Обзор матчей",
     "preview_msg": "Смотрите видеообзор предыдущих матчей прямо сейчас!",
     "league2_title": "Перейдите в Лигу 2",
-    "league2_msg": "Если ваш счет ниже 20 очков, рассмотрите возможность перехода в Лигу 2, где у вас будет больше шансов побороться за первое место."
+    "league2_msg": "Если ваш счет ниже 20 очков, рассмотрите возможность перехода в Лигу 2, где у вас будет больше шансов побороться за первое место.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "Новый лидер el Torneo!"
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -87,7 +91,9 @@
     "preview_title": "Resumen de partidos",
     "preview_msg": "Mira el resumen en video de los partidos anteriores ahora mismo.",
     "league2_title": "Únete a la Liga 2",
-    "league2_msg": "Si tu puntuación es inferior a 20 puntos, considera la posibilidad de unirte a la Liga 2, donde tendrás una mejor oportunidad de competir por el primer puesto."
+    "league2_msg": "Si tu puntuación es inferior a 20 puntos, considera la posibilidad de unirte a la Liga 2, donde tendrás una mejor oportunidad de competir por el primer puesto.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "¡El nuevo líder de el Torneo!"
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -117,7 +123,9 @@
     "preview_title": "Highlights delle partite",
     "preview_msg": "Guarda gli highlights video delle partite precedenti subito!",
     "league2_title": "Unisciti alla Lega 2",
-    "league2_msg": "Se il tuo punteggio è inferiore a 20 punti, considera la possibilità di passare alla Lega 2, dove avrai maggiori possibilità di competere per il primo posto."
+    "league2_msg": "Se il tuo punteggio è inferiore a 20 punti, considera la possibilità di passare alla Lega 2, dove avrai maggiori possibilità di competere per il primo posto.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "Il nuovo leader di el Torneo!"
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -147,7 +155,9 @@
     "preview_title": "Spiel-Highlights",
     "preview_msg": "Schau dir jetzt die Video-Highlights der vorherigen Spiele an!",
     "league2_title": "Wechsel in die Liga 2",
-    "league2_msg": "Wenn deine Punktzahl unter 20 liegt, erwäge den Wechsel in die Liga 2, wo du bessere Chancen hast, um den ersten Platz zu kämpfen."
+    "league2_msg": "Wenn deine Punktzahl unter 20 liegt, erwäge den Wechsel in die Liga 2, wo du bessere Chancen hast, um den ersten Platz zu kämpfen.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "Der neue Anführer von el Torneo!"
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -177,7 +187,9 @@
     "preview_title": "Pregled utakmica",
     "preview_msg": "Pogledajte video pregled prethodnih utakmica odmah!",
     "league2_title": "Pridruži se Ligi 2",
-    "league2_msg": "Ako imaš manje od 20 bodova, razmisli o prelasku u Ligu 2, gdje ćeš imati bolju šansu za natjecanje za prvo mjesto."
+    "league2_msg": "Ako imaš manje od 20 bodova, razmisli o prelasku u Ligu 2, gdje ćeš imati bolju šansu za natjecanje za prvo mjesto.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "Novi vođa el Tornea!"
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -207,7 +219,9 @@
     "preview_title": "Résumé des matchs",
     "preview_msg": "Regardez dès maintenant les vidéos des matchs précédents !",
     "league2_title": "Rejoignez la Ligue 2",
-    "league2_msg": "Si vous avez moins de 20 points, envisagez de rejoindre la Ligue 2, où vous aurez une meilleure chance de concourir pour la première place."
+    "league2_msg": "Si vous avez moins de 20 points, envisagez de rejoindre la Ligue 2, où vous aurez une meilleure chance de concourir pour la première place.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "Le nouveau leader de el Torneo !"
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -237,6 +251,8 @@
     "preview_title": "Resumo das partidas",
     "preview_msg": "Assista agora aos melhores momentos das partidas anteriores!",
     "league2_title": "Junte-se à Liga 2",
-    "league2_msg": "Se você tem menos de 20 pontos, considere mudar para a Liga 2, onde terá mais chances de competir pelo primeiro lugar." 
+    "league2_msg": "Se você tem menos de 20 pontos, considere mudar para a Liga 2, onde terá mais chances de competir pelo primeiro lugar.",
+    "leader_title": "MASCOTTE OFFICIAL",
+    "leader_msg": "O novo líder do el Torneo!"
   }
 }
