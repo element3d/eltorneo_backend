@@ -56,7 +56,7 @@ int UserManager::CreateTelegramUser(const std::string& username, long long tgId,
         + std::to_string(tgId) + ", '"
         + name + "', "
         + std::to_string(0) + ", "
-        + std::to_string(2) + ", "
+        + std::to_string(3) + ", "
         + std::to_string(generateRandomCode()) +
         ");";
 
