@@ -21,7 +21,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "The beginning of the end",
         "devil_in_crosshairs": "The Devil in the Crosshairs",
-        "rise_of_empires": "The Rise of Empires"
+        "rise_of_empires": "The Rise of Empires",
+        "disambiguation": "Disambiguation"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -45,7 +46,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "El principio del fin",
         "devil_in_crosshairs": "El diablo en la mira",
-        "rise_of_empires": "Ascenso de Imperios"
+        "rise_of_empires": "Ascenso de Imperios",
+        "disambiguation": "Disambiguation"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -69,7 +71,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "Le début de la fin",
         "devil_in_crosshairs": "Le Diable dans la Ligne de Mire",
-        "rise_of_empires": "Ascension des Empires"
+        "rise_of_empires": "Ascension des Empires",
+        "disambiguation": "Désambiguïsation"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -93,7 +96,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "L'inizio della fine",
         "devil_in_crosshairs": "Il Diavolo nel Mirino",
-        "rise_of_empires": "Ascesa degli Imperi"
+        "rise_of_empires": "Ascesa degli Imperi",
+        "disambiguation": "Disambiguazione"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -117,7 +121,8 @@
         "web_of_shadows": "В паутине теней",
         "beginning_of_the_end": "Начало конца",
         "devil_in_crosshairs": "Дьявол под прицелом",
-        "rise_of_empires": "Восхождение Империй"
+        "rise_of_empires": "Восхождение Империй",
+        "disambiguation": "Враг в отражении"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -141,7 +146,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "O começo do fim",
         "devil_in_crosshairs": "O Diabo na Mira",
-        "rise_of_empires": "Ascensão dos Impérios"
+        "rise_of_empires": "Ascensão dos Impérios",
+        "disambiguation": "Desambiguação"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -165,7 +171,8 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "Der Anfang vom Ende",
         "devil_in_crosshairs": "Der Teufel im Visier",
-        "rise_of_empires": "Aufstieg der Imperien"
+        "rise_of_empires": "Aufstieg der Imperien",
+        "disambiguation": "Begriffsklärung"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -189,6 +196,7 @@
         "web_of_shadows": "Web of Shadows",
         "beginning_of_the_end": "Početak kraja",
         "devil_in_crosshairs": "Đavao na nišanu",
-        "rise_of_empires": "Uspon Carstava"
+        "rise_of_empires": "Uspon Carstava",
+        "disambiguation": "Višeznačnost"
     }
 }
