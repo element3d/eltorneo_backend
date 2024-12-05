@@ -319,26 +319,33 @@ std::string getLeagueNameFromIndex(int index)
 	return "";
 }
 
-int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& team1, CronTeam& team2, const std::string& season, int week)
+std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1Id)
 {
 	std::string round = "Regular Season - " + std::to_string(week);
-	if (league == ELeague::NationsLeague) 
+	if (league == ELeague::NationsLeague)
 	{
 		std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
-			+ " AND team_id = " + std::to_string(team1.Id) + ";";
+			+ " AND team_id = " + std::to_string(team1Id) + ";";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
 		int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
 		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
 		PQclear(ret);
 	}
-	else if (league == ELeague::ChampionsLeague) 
+	else if (league == ELeague::ChampionsLeague)
 	{
-		if (week <= 8) 
+		if (week <= 8)
 		{
 			round = "League Stage - " + std::to_string(week);
 		}
 	}
+
+	return round;
+}
+
+int GetApiFootballMatches(PGconn* pg, ELeague league, int matchId, CronTeam& team1, CronTeam& team2, const std::string& season, int week)
+{
+	std::string round = GetApiFootballRound(pg, league, week, team1.Id);
 
 
 	int leagueId = elTorneoLeagueIdToApiFootball(league);
@@ -811,29 +818,6 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	}
 }
 
-std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int teamId)
-{
-	std::string round = "Regular Season - " + std::to_string(week);
-	if (league == ELeague::NationsLeague)
-	{
-		std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
-			+ " AND team_id = " + std::to_string(teamId) + ";";
-
-		PGresult* ret = PQexec(pg, sql.c_str());
-		int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
-		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
-		PQclear(ret);
-	}
-	else if (league == ELeague::ChampionsLeague)
-	{
-		if (week <= 8)
-		{
-			round = "League Stage - " + std::to_string(week);
-		}
-	}
-	return round;
-}
-
 
 void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 {
@@ -1084,16 +1068,147 @@ void FillTopScorers(PGconn* pg)
 	}
 }
 
+void ProcessLeagueMatches(PGconn* pg, int lId, int week)
+{
+	std::string sql = "SELECT id, team1, team2, match_date, api_id from matches where status = '' and league = " + 
+		std::to_string(lId) + " AND week = " + std::to_string(week) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+
+	int rows = PQntuples(res);
+	std::string season = "2024";
+	for (int i = 0; i < rows; ++i)
+	{
+		int id = atoi(PQgetvalue(res, i, 0));
+		int team1 = atoi(PQgetvalue(res, i, 1));
+		int team2 = atoi(PQgetvalue(res, i, 2));
+		long long ts = atoll(PQgetvalue(res, i, 3));
+		int apiId = atoi(PQgetvalue(res, i, 4));
+
+		int leagueId = elTorneoLeagueIdToApiFootball(ELeague(lId));
+		std::string round = GetApiFootballRound(pg, ELeague(lId), week, team1);
+		std::string url = "https://v3.football.api-sports.io/fixtures";
+
+		cpr::Response r;
+		cpr::Parameters params;
+		if (apiId == -1)
+		{
+			params = {
+				  {"league", std::to_string(leagueId)},
+				  {"season", season},
+				  {"round", round}
+			};
+		}
+		else 
+		{
+			params = {
+				  {"id", std::to_string(apiId)}
+			};
+		}
+
+		// Make the request
+		r = cpr::Get(cpr::Url{ url },
+			params,
+			cpr::Header{ {"x-apisports-key", apiKey} });
+
+		if (r.status_code == 200)
+		{
+			// Parse the JSON response
+			rapidjson::Document document;
+			document.Parse(r.text.c_str());
+
+			if (document.HasMember("response") && document["response"].IsArray())
+			{
+				const rapidjson::Value& matches = document["response"];
+				for (rapidjson::SizeType i = 0; i < matches.Size(); i++)
+				{
+					const rapidjson::Value& match = matches[i];
+					if (match.HasMember("fixture"))
+					{
+						long long date = match["fixture"]["timestamp"].GetInt64() * 1000;
+						int newApiId = match["fixture"]["id"].GetInt();
+						std::string team1Name = Team::ToString(ETeam(team1));
+						std::string team2Name = Team::ToString(ETeam(team2));
+
+						std::string homeTeam = match["teams"]["home"]["name"].GetString();
+						std::string awayTeam = match["teams"]["away"]["name"].GetString();
+
+						if (homeTeam == team1Name && awayTeam == team2Name)
+						{
+							int homeId = match["teams"]["home"]["id"].GetInt();
+							int awayId = match["teams"]["away"]["id"].GetInt();
+
+
+							
+
+							std::string sql = "update matches set api_id = " + std::to_string(newApiId)
+								+ ", match_date = " + std::to_string(date) + 
+								+ " where id = " + std::to_string(id) + ";";
+							PGresult* ret = PQexec(pg, sql.c_str());
+							PQclear(ret);
+							
+						}
+					}
+				}
+			}
+			else {
+				std::cerr << "No matches found in the response." << std::endl;
+			}
+		}
+		else {
+			std::cerr << "Failed to retrieve data. HTTP Status code: " << r.status_code << std::endl;
+			std::cerr << "Response: " << r.text << std::endl;
+		}
+
+		//return;
+	}
+	PQclear(res);
+}
+
+void CorrectMatchDates(PGconn* pg)
+{
+	std::string sql = "SELECT id, current_week, num_weeks from leagues order by id;";
+	PGresult* res = PQexec(pg, sql.c_str());
+	
+	int rows = PQntuples(res);
+	for (int i = 0; i < rows; ++i) 
+	{
+		
+		int id = atoi(PQgetvalue(res, i, 0));
+		if (id == 7) continue;
+		int week = atoi(PQgetvalue(res, i, 1));
+		int numWeeks = atoi(PQgetvalue(res, i, 2));
+		for (int w = week; w <= std::min(week + 3, numWeeks); ++w) 
+		{
+			ProcessLeagueMatches(pg, id, w);
+		}
+
+		//return;
+	}
+	PQclear(res);
+	return;
+}
+
 int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;
 
 	// Run FillTopScorers at the start
 	//FillTopScorers(pg);
+
+	auto getCurrentDate = []() {
+		std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+		std::tm tm = *std::localtime(&t);
+		char buffer[11]; // "YYYY-MM-DD\0" -> 11 characters
+		std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", &tm);
+		return std::string(buffer);
+	};
+
+	std::string lastCorrectMatchDatesDate;
+	CorrectMatchDates(pg);
+	lastCorrectMatchDatesDate = getCurrentDate();
 
 	while (true)
 	{
@@ -1115,6 +1230,14 @@ int main()
 			FillTopScorers(pg);
 			lastTopScorersFillTime = now;  // Update the last fill time for top scorers
 		}*/
+
+		// Check if it's a new day to run CorrectMatchDates
+		std::string currentDate = getCurrentDate();
+		if (currentDate != lastCorrectMatchDatesDate)
+		{
+			CorrectMatchDates(pg);
+			lastCorrectMatchDatesDate = currentDate; // Update the last execution date
+		}
 
 		// Sleep for 1 minute
 		std::this_thread::sleep_for(std::chrono::seconds(30));
