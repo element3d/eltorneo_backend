@@ -22,7 +22,8 @@
         "beginning_of_the_end": "The beginning of the end",
         "devil_in_crosshairs": "The Devil in the Crosshairs",
         "rise_of_empires": "The Rise of Empires",
-        "disambiguation": "Disambiguation"
+        "disambiguation": "Disambiguation",
+        "the_italian_job": "The Italian Job"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -47,7 +48,8 @@
         "beginning_of_the_end": "El principio del fin",
         "devil_in_crosshairs": "El diablo en la mira",
         "rise_of_empires": "Ascenso de Imperios",
-        "disambiguation": "Disambiguation"
+        "disambiguation": "Disambiguation",
+        "the_italian_job": "Un robo a la italiana"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -72,7 +74,8 @@
         "beginning_of_the_end": "Le début de la fin",
         "devil_in_crosshairs": "Le Diable dans la Ligne de Mire",
         "rise_of_empires": "Ascension des Empires",
-        "disambiguation": "Désambiguïsation"
+        "disambiguation": "Désambiguïsation",
+        "the_italian_job": "Un casse à l'italienne"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -97,7 +100,8 @@
         "beginning_of_the_end": "L'inizio della fine",
         "devil_in_crosshairs": "Il Diavolo nel Mirino",
         "rise_of_empires": "Ascesa degli Imperi",
-        "disambiguation": "Disambiguazione"
+        "disambiguation": "Disambiguazione",
+        "the_italian_job": "Un colpo all'italiana"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -122,7 +126,8 @@
         "beginning_of_the_end": "Начало конца",
         "devil_in_crosshairs": "Дьявол под прицелом",
         "rise_of_empires": "Восхождение Империй",
-        "disambiguation": "Враг в отражении"
+        "disambiguation": "Враг в отражении",
+        "the_italian_job": "Ограбление по-итальянски "
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -147,7 +152,8 @@
         "beginning_of_the_end": "O começo do fim",
         "devil_in_crosshairs": "O Diabo na Mira",
         "rise_of_empires": "Ascensão dos Impérios",
-        "disambiguation": "Desambiguação"
+        "disambiguation": "Desambiguação",
+        "the_italian_job": "Um golpe à italiana"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -172,7 +178,8 @@
         "beginning_of_the_end": "Der Anfang vom Ende",
         "devil_in_crosshairs": "Der Teufel im Visier",
         "rise_of_empires": "Aufstieg der Imperien",
-        "disambiguation": "Begriffsklärung"
+        "disambiguation": "Begriffsklärung",
+        "the_italian_job": "Ein Coup auf Italienisch"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -197,6 +204,7 @@
         "beginning_of_the_end": "Početak kraja",
         "devil_in_crosshairs": "Đavao na nišanu",
         "rise_of_empires": "Uspon Carstava",
-        "disambiguation": "Višeznačnost"
+        "disambiguation": "Višeznačnost",
+        "the_italian_job": "Pljačka na talijanski način"
     }
 }
