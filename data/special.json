@@ -23,7 +23,8 @@
         "devil_in_crosshairs": "The Devil in the Crosshairs",
         "rise_of_empires": "The Rise of Empires",
         "disambiguation": "Disambiguation",
-        "the_italian_job": "The Italian Job"
+        "the_italian_job": "The Italian Job",
+        "london_assault": "London assault"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -49,7 +50,8 @@
         "devil_in_crosshairs": "El diablo en la mira",
         "rise_of_empires": "Ascenso de Imperios",
         "disambiguation": "Disambiguation",
-        "the_italian_job": "Un robo a la italiana"
+        "the_italian_job": "Un robo a la italiana",
+        "london_assault": "Asalto de Londres"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -75,7 +77,8 @@
         "devil_in_crosshairs": "Le Diable dans la Ligne de Mire",
         "rise_of_empires": "Ascension des Empires",
         "disambiguation": "Désambiguïsation",
-        "the_italian_job": "Un casse à l'italienne"
+        "the_italian_job": "Un casse à l'italienne",
+        "london_assault": "Assaut de Londres"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -101,7 +104,8 @@
         "devil_in_crosshairs": "Il Diavolo nel Mirino",
         "rise_of_empires": "Ascesa degli Imperi",
         "disambiguation": "Disambiguazione",
-        "the_italian_job": "Un colpo all'italiana"
+        "the_italian_job": "Un colpo all'italiana",
+        "london_assault": "Assalto di Londra"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -127,7 +131,8 @@
         "devil_in_crosshairs": "Дьявол под прицелом",
         "rise_of_empires": "Восхождение Империй",
         "disambiguation": "Враг в отражении",
-        "the_italian_job": "Ограбление по-итальянски "
+        "the_italian_job": "Ограбление по-итальянски",
+        "london_assault": "Штурм Лондона"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -153,7 +158,8 @@
         "devil_in_crosshairs": "O Diabo na Mira",
         "rise_of_empires": "Ascensão dos Impérios",
         "disambiguation": "Desambiguação",
-        "the_italian_job": "Um golpe à italiana"
+        "the_italian_job": "Um golpe à italiana",
+        "london_assault": "Assalto de Londres"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -179,7 +185,8 @@
         "devil_in_crosshairs": "Der Teufel im Visier",
         "rise_of_empires": "Aufstieg der Imperien",
         "disambiguation": "Begriffsklärung",
-        "the_italian_job": "Ein Coup auf Italienisch"
+        "the_italian_job": "Ein Coup auf Italienisch",
+        "london_assault": "Angriff auf London"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -205,6 +212,7 @@
         "devil_in_crosshairs": "Đavao na nišanu",
         "rise_of_empires": "Uspon Carstava",
         "disambiguation": "Višeznačnost",
-        "the_italian_job": "Pljačka na talijanski način"
+        "the_italian_job": "Pljačka na talijanski način",
+        "london_assault": "Napad na London"
     }
 }
