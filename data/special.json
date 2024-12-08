@@ -24,7 +24,8 @@
         "rise_of_empires": "The Rise of Empires",
         "disambiguation": "Disambiguation",
         "the_italian_job": "The Italian Job",
-        "london_assault": "London assault"
+        "london_assault": "London assault",
+        "panzer_squad": "Panzer Squad"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -51,7 +52,8 @@
         "rise_of_empires": "Ascenso de Imperios",
         "disambiguation": "Disambiguation",
         "the_italian_job": "Un robo a la italiana",
-        "london_assault": "Asalto de Londres"
+        "london_assault": "Asalto de Londres",
+        "panzer_squad": "Escuadrón Panzer"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -78,7 +80,8 @@
         "rise_of_empires": "Ascension des Empires",
         "disambiguation": "Désambiguïsation",
         "the_italian_job": "Un casse à l'italienne",
-        "london_assault": "Assaut de Londres"
+        "london_assault": "Assaut de Londres",
+        "panzer_squad": "Escouade Panzer"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -105,7 +108,8 @@
         "rise_of_empires": "Ascesa degli Imperi",
         "disambiguation": "Disambiguazione",
         "the_italian_job": "Un colpo all'italiana",
-        "london_assault": "Assalto di Londra"
+        "london_assault": "Assalto di Londra",
+        "panzer_squad": "Squadra Panzer"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -132,7 +136,8 @@
         "rise_of_empires": "Восхождение Империй",
         "disambiguation": "Враг в отражении",
         "the_italian_job": "Ограбление по-итальянски",
-        "london_assault": "Штурм Лондона"
+        "london_assault": "Штурм Лондона",
+        "panzer_squad": "Танковый отряд"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -159,7 +164,8 @@
         "rise_of_empires": "Ascensão dos Impérios",
         "disambiguation": "Desambiguação",
         "the_italian_job": "Um golpe à italiana",
-        "london_assault": "Assalto de Londres"
+        "london_assault": "Assalto de Londres",
+        "panzer_squad": "Esquadrão Panzer"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -186,7 +192,8 @@
         "rise_of_empires": "Aufstieg der Imperien",
         "disambiguation": "Begriffsklärung",
         "the_italian_job": "Ein Coup auf Italienisch",
-        "london_assault": "Angriff auf London"
+        "london_assault": "Angriff auf London",
+        "panzer_squad": "Panzer Squad"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -213,6 +220,7 @@
         "rise_of_empires": "Uspon Carstava",
         "disambiguation": "Višeznačnost",
         "the_italian_job": "Pljačka na talijanski način",
-        "london_assault": "Napad na London"
+        "london_assault": "Napad na London",
+        "panzer_squad": "Tenkovski odred"
     }
 }
