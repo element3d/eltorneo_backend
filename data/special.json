@@ -26,7 +26,8 @@
         "the_italian_job": "The Italian Job",
         "london_assault": "London assault",
         "panzer_squad": "Panzer Squad",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -55,7 +56,8 @@
         "the_italian_job": "Un robo a la italiana",
         "london_assault": "Asalto de Londres",
         "panzer_squad": "Escuadrón Panzer",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -84,7 +86,8 @@
         "the_italian_job": "Un casse à l'italienne",
         "london_assault": "Assaut de Londres",
         "panzer_squad": "Escouade Panzer",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -113,7 +116,8 @@
         "the_italian_job": "Un colpo all'italiana",
         "london_assault": "Assalto di Londra",
         "panzer_squad": "Squadra Panzer",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -142,7 +146,8 @@
         "the_italian_job": "Ограбление по-итальянски",
         "london_assault": "Штурм Лондона",
         "panzer_squad": "Танковый отряд",
-        "transformers": "Трансформеры"
+        "transformers": "Трансформеры",
+        "jumanji": "Джуманджи"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -171,7 +176,8 @@
         "the_italian_job": "Um golpe à italiana",
         "london_assault": "Assalto de Londres",
         "panzer_squad": "Esquadrão Panzer",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -200,7 +206,8 @@
         "the_italian_job": "Ein Coup auf Italienisch",
         "london_assault": "Angriff auf London",
         "panzer_squad": "Panzer Squad",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -229,6 +236,7 @@
         "the_italian_job": "Pljačka na talijanski način",
         "london_assault": "Napad na London",
         "panzer_squad": "Tenkovski odred",
-        "transformers": "Transformers"
+        "transformers": "Transformers",
+        "jumanji": "Jumanji"
     }
 }
