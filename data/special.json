@@ -29,7 +29,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "Money Heist",
-        "taxi": "Taxi 6: Olympic"
+        "taxi": "Taxi 6: Olympic",
+        "pharaoh": "The last Pharaoh"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -61,7 +62,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-        "taxi": "Taxi 6: Olímpico"
+        "taxi": "Taxi 6: Olímpico",
+        "pharaoh": "El último faraón"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -93,7 +95,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-        "taxi": "Taxi 6 : Olympique"
+        "taxi": "Taxi 6 : Olympique",
+        "pharaoh": "Le dernier pharaon"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -125,7 +128,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-        "taxi": "Taxi 6: Olimpico"
+        "taxi": "Taxi 6: Olimpico",
+        "pharaoh": "L'ultimo faraone"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -157,7 +161,8 @@
         "transformers": "Трансформеры",
         "jumanji": "Джуманджи",
         "la_casa_de_papel": "Бумажный дом",
-        "taxi": "Такси 6: Олимпик"
+        "taxi": "Такси 6: Олимпик",
+        "pharaoh": "Последний фараон"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -189,7 +194,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-         "taxi": "Taxi 6: Olímpico"
+        "taxi": "Taxi 6: Olímpico",
+        "pharaoh": "O último faraó"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -221,7 +227,8 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-        "taxi": "Taxi 6: Olympisch"
+        "taxi": "Taxi 6: Olympisch",
+        "pharaoh": "Der letzte Pharao"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -253,6 +260,7 @@
         "transformers": "Transformers",
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
-        "taxi": "Taxi 6: Olimpijski"
+        "taxi": "Taxi 6: Olimpijski",
+        "pharaoh": "Posljednji faraon"
     }
 }
