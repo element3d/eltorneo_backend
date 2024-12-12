@@ -28,7 +28,8 @@
         "panzer_squad": "Panzer Squad",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "Money Heist"
+        "la_casa_de_papel": "Money Heist",
+        "taxi": "Taxi 6: Olympic"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -59,7 +60,8 @@
         "panzer_squad": "Escuadrón Panzer",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+        "taxi": "Taxi 6: Olímpico"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -90,7 +92,8 @@
         "panzer_squad": "Escouade Panzer",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+        "taxi": "Taxi 6 : Olympique"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -121,7 +124,8 @@
         "panzer_squad": "Squadra Panzer",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+        "taxi": "Taxi 6: Olimpico"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -152,7 +156,8 @@
         "panzer_squad": "Танковый отряд",
         "transformers": "Трансформеры",
         "jumanji": "Джуманджи",
-        "la_casa_de_papel": "Бумажный дом"
+        "la_casa_de_papel": "Бумажный дом",
+        "taxi": "Такси 6: Олимпик"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -183,7 +188,8 @@
         "panzer_squad": "Esquadrão Panzer",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+         "taxi": "Taxi 6: Olímpico"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -214,7 +220,8 @@
         "panzer_squad": "Panzer Squad",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+        "taxi": "Taxi 6: Olympisch"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -245,6 +252,7 @@
         "panzer_squad": "Tenkovski odred",
         "transformers": "Transformers",
         "jumanji": "Jumanji",
-        "la_casa_de_papel": "La casa de papel"
+        "la_casa_de_papel": "La casa de papel",
+        "taxi": "Taxi 6: Olimpijski"
     }
 }
