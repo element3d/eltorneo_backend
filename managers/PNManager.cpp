@@ -914,8 +914,8 @@ bool PNManager::SendPreviewNotification()
     rapidjson::Document document;
     document.Parse(jsonString.c_str());
 
-    std::string nTitle = "leader_title";
-    std::string nMsg = "leader_msg";
+    std::string nTitle = "preview_title";
+    std::string nMsg = "preview_msg";
 
     char* temp = (char*)calloc(4096, sizeof(char));
     std::vector<int> invalidTokens;
