@@ -32,7 +32,8 @@
         "taxi": "Taxi 6: Olympic",
         "pharaoh": "The last Pharaoh",
         "home_alone": "Home Alone",
-        "all_money": "All the Money in the World"
+        "all_money": "All the Money in the World",
+        "castle_of_glass": "Castle of Glass"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -67,7 +68,8 @@
         "taxi": "Taxi 6: Olímpico",
         "pharaoh": "El último faraón",
         "home_alone": "Home Alone",
-        "all_money": "Todo el Dinero del Mundo"
+        "all_money": "Todo el Dinero del Mundo",
+        "castle_of_glass": "Castillo de Cristal"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -102,7 +104,8 @@
         "taxi": "Taxi 6 : Olympique",
         "pharaoh": "Le dernier pharaon",
         "home_alone": "Home Alone",
-        "all_money": "Tout l'Argent du Monde"
+        "all_money": "Tout l'Argent du Monde",
+        "castle_of_glass": "Château de Verre"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -137,7 +140,8 @@
         "taxi": "Taxi 6: Olimpico",
         "pharaoh": "L'ultimo faraone",
         "home_alone": "Home Alone",
-        "all_money": "Tutti i Soldi del Mondo"
+        "all_money": "Tutti i Soldi del Mondo",
+        "castle_of_glass": "Castello di Vetro"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -172,7 +176,8 @@
         "taxi": "Такси 6: Олимпик",
         "pharaoh": "Последний фараон",
         "home_alone": "Один дома",
-        "all_money": "Все деньги мира"
+        "all_money": "Все деньги мира",
+        "castle_of_glass": "Стеклянный замок"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -207,7 +212,8 @@
         "taxi": "Taxi 6: Olímpico",
         "pharaoh": "O último faraó",
         "home_alone": "Home Alone",
-        "all_money": "Todo o Dinheiro do Mundo"
+        "all_money": "Todo o Dinheiro do Mundo",
+        "castle_of_glass": "Castelo de Vidro"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -242,7 +248,8 @@
         "taxi": "Taxi 6: Olympisch",
         "pharaoh": "Der letzte Pharao",
         "home_alone": "Home Alone",
-        "all_money": "Das ganze Geld der Welt"
+        "all_money": "Das ganze Geld der Welt",
+        "castle_of_glass": "Schloss aus Glas"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -277,6 +284,7 @@
         "taxi": "Taxi 6: Olimpijski",
         "pharaoh": "Posljednji faraon",
         "home_alone": "Home Alone",
-        "all_money": "Sav novac svijeta"
+        "all_money": "Sav novac svijeta",
+        "castle_of_glass": "Dvorac od Stakla"
     }
 }
