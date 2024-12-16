@@ -30,7 +30,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "Money Heist",
         "taxi": "Taxi 6: Olympic",
-        "pharaoh": "The last Pharaoh"
+        "pharaoh": "The last Pharaoh",
+        "home_alone": "Home Alone"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -63,7 +64,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6: Olímpico",
-        "pharaoh": "El último faraón"
+        "pharaoh": "El último faraón",
+        "home_alone": "Home Alone"  
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -96,7 +98,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6 : Olympique",
-        "pharaoh": "Le dernier pharaon"
+        "pharaoh": "Le dernier pharaon",
+        "home_alone": "Home Alone"  
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -129,7 +132,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6: Olimpico",
-        "pharaoh": "L'ultimo faraone"
+        "pharaoh": "L'ultimo faraone",
+        "home_alone": "Home Alone"  
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -162,7 +166,8 @@
         "jumanji": "Джуманджи",
         "la_casa_de_papel": "Бумажный дом",
         "taxi": "Такси 6: Олимпик",
-        "pharaoh": "Последний фараон"
+        "pharaoh": "Последний фараон",
+        "home_alone": "Один дома"  
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -195,7 +200,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6: Olímpico",
-        "pharaoh": "O último faraó"
+        "pharaoh": "O último faraó",
+        "home_alone": "Home Alone"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -228,7 +234,8 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6: Olympisch",
-        "pharaoh": "Der letzte Pharao"
+        "pharaoh": "Der letzte Pharao",
+        "home_alone": "Home Alone"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -261,6 +268,7 @@
         "jumanji": "Jumanji",
         "la_casa_de_papel": "La casa de papel",
         "taxi": "Taxi 6: Olimpijski",
-        "pharaoh": "Posljednji faraon"
+        "pharaoh": "Posljednji faraon",
+        "home_alone": "Home Alone"
     }
 }
