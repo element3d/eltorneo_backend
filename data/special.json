@@ -34,7 +34,8 @@
         "home_alone": "Home Alone",
         "all_money": "All the Money in the World",
         "castle_of_glass": "Castle of Glass",
-        "arabian_night": "Arabian Night"
+        "arabian_night": "Arabian Night",
+        "street_fighters": "Street Fighters"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -71,7 +72,8 @@
         "home_alone": "Home Alone",
         "all_money": "Todo el Dinero del Mundo",
         "castle_of_glass": "Castillo de Cristal",
-        "arabian_night": "Noche Árabe"
+        "arabian_night": "Noche Árabe",
+        "street_fighters": "Street Fighters"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -108,7 +110,8 @@
         "home_alone": "Home Alone",
         "all_money": "Tout l'Argent du Monde",
         "castle_of_glass": "Château de Verre",
-        "arabian_night": "Nuit Arabe"
+        "arabian_night": "Nuit Arabe",
+        "street_fighters": "Street Fighters"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -145,7 +148,8 @@
         "home_alone": "Home Alone",
         "all_money": "Tutti i Soldi del Mondo",
         "castle_of_glass": "Castello di Vetro",
-        "arabian_night": "Notte Araba"
+        "arabian_night": "Notte Araba",
+        "street_fighters": "Street Fighters"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -182,7 +186,8 @@
         "home_alone": "Один дома",
         "all_money": "Все деньги мира",
         "castle_of_glass": "Стеклянный замок",
-        "arabian_night": "Арабская ночь"
+        "arabian_night": "Арабская ночь",
+        "street_fighters": "Street Fighters"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -219,7 +224,8 @@
         "home_alone": "Home Alone",
         "all_money": "Todo o Dinheiro do Mundo",
         "castle_of_glass": "Castelo de Vidro",
-        "arabian_night": "Noite Árabe"
+        "arabian_night": "Noite Árabe",
+        "street_fighters": "Street Fighters"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -256,7 +262,8 @@
         "home_alone": "Home Alone",
         "all_money": "Das ganze Geld der Welt",
         "castle_of_glass": "Schloss aus Glas",
-        "arabian_night": "Arabische Nacht"
+        "arabian_night": "Arabische Nacht",
+        "street_fighters": "Street Fighters"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -293,6 +300,7 @@
         "home_alone": "Home Alone",
         "all_money": "Sav novac svijeta",
         "castle_of_glass": "Dvorac od Stakla",
-        "arabian_night": "Arapska Noć"
+        "arabian_night": "Arapska Noć",
+        "street_fighters": "Street Fighters"
     }
 }
