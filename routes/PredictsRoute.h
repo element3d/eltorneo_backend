@@ -21,6 +21,9 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByWinner();
 
+    std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBet();
+
+
 private:
    // void CacheTable();
 
