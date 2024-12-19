@@ -36,7 +36,8 @@
         "castle_of_glass": "Castle of Glass",
         "arabian_night": "Arabian Night",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -75,7 +76,8 @@
         "castle_of_glass": "Castillo de Cristal",
         "arabian_night": "Noche Árabe",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -114,7 +116,8 @@
         "castle_of_glass": "Château de Verre",
         "arabian_night": "Nuit Arabe",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -153,7 +156,8 @@
         "castle_of_glass": "Castello di Vetro",
         "arabian_night": "Notte Araba",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -192,7 +196,8 @@
         "castle_of_glass": "Стеклянный замок",
         "arabian_night": "Арабская ночь",
         "street_fighters": "Street Fighters",
-        "prison_break": "Побег из тюрьмы"
+        "prison_break": "Побег из тюрьмы",
+        "angry_birds": "Angry Birds"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -231,7 +236,8 @@
         "castle_of_glass": "Castelo de Vidro",
         "arabian_night": "Noite Árabe",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -270,7 +276,8 @@
         "castle_of_glass": "Schloss aus Glas",
         "arabian_night": "Arabische Nacht",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -309,6 +316,7 @@
         "castle_of_glass": "Dvorac od Stakla",
         "arabian_night": "Arapska Noć",
         "street_fighters": "Street Fighters",
-        "prison_break": "Prison Break"
+        "prison_break": "Prison Break",
+        "angry_birds": "Angry Birds"
     }
 }
