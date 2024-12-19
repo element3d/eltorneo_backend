@@ -199,6 +199,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string strPlayer = req.get_param_value("player");
         std::string strTeam = req.get_param_value("team");
         std::string strLeague = req.get_param_value("league");
+        bool isHome = false;
+        bool isAway = false;
+        if (req.has_param("home")) 
+        {
+            isHome = atoi(req.get_param_value("home").c_str());
+        }
+        if (req.has_param("away"))
+        {
+            isAway = atoi(req.get_param_value("away").c_str());
+        }
+        
 
         rapidjson::Document document;
         document.SetObject();
@@ -211,7 +222,22 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string leagueCmd = league > 0 ? " AND m.league = " + std::to_string(league) + " " : "";
 
         int team = atoi(strTeam.c_str());;
-        std::string teamCmd = team > 0 ? " AND (m.team1 = " + std::to_string(team) + " OR m.team2 = " + std::to_string(team) + ") " : "";
+        std::string teamCmd;
+        if (team > 0) 
+        {
+            if (isHome)
+            {
+                teamCmd = " AND m.team1 = " + std::to_string(team) + " ";
+            }
+            else if (isAway) 
+            {
+                teamCmd = " AND m.team2 = " + std::to_string(team) + " ";
+            }
+            else 
+            {
+                teamCmd = " AND (m.team1 = " + std::to_string(team) + " OR m.team2 = " + std::to_string(team) + ") ";
+            }
+        }
 
         int player = atoi(strPlayer.c_str());
         std::string playerCmd = player > 0 ? " AND p.user_id = " + std::to_string(player) + " " : "";
