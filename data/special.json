@@ -37,7 +37,8 @@
         "arabian_night": "Arabian Night",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -77,7 +78,8 @@
         "arabian_night": "Noche Árabe",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -117,7 +119,8 @@
         "arabian_night": "Nuit Arabe",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -157,7 +160,8 @@
         "arabian_night": "Notte Araba",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -197,7 +201,8 @@
         "arabian_night": "Арабская ночь",
         "street_fighters": "Street Fighters",
         "prison_break": "Побег из тюрьмы",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -237,7 +242,8 @@
         "arabian_night": "Noite Árabe",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -277,7 +283,8 @@
         "arabian_night": "Arabische Nacht",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -317,6 +324,7 @@
         "arabian_night": "Arapska Noć",
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
-        "angry_birds": "Angry Birds"
+        "angry_birds": "Angry Birds",
+        "rampage": "Rampage"
     }
 }
