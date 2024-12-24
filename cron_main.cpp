@@ -40,6 +40,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		break;
 	case ELeague::NationsLeague:
 		return 5;
+	case ELeague::CoppaItalia:
+		return 137;
 	default:
 		break;
 	}
@@ -339,6 +341,13 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "League Stage - " + std::to_string(week);
 		}
 	}
+	else if (league == ELeague::CoppaItalia)
+	{
+		if (week == 1)
+		{
+			round = "Round of 16";
+		}
+	}
 
 	return round;
 }
@@ -443,6 +452,163 @@ static std::vector<int> splitPoints(const std::string& str, char delimiter) {
 	return tokens;
 }
 
+enum class EBeatBetType 
+{
+	Win,
+	NotLoose,
+	Draw,
+	NotDraw
+};
+
+void UpdateBeatBetPredicts(PGconn* pg, int matchId, int team1Goals, int team2Goals)
+{
+	std::string beatBetSql =
+		"SELECT id, ai_team, ai_type, ai_status, ls_team, ls_type, ls_percent, ls_status, "
+		"score180_team, score180_type, score180_percent, score180_status "
+		"FROM beat_bet WHERE match_id = " + std::to_string(matchId) + " LIMIT 1;";
+
+	PGresult* beatBetRet = PQexec(pg, beatBetSql.c_str());
+
+	int aiStatus = -1;
+	int lsStatus = -1;
+	int s180Status = -1;
+	int id = -1;
+	if (PQresultStatus(beatBetRet) == PGRES_TUPLES_OK && PQntuples(beatBetRet) > 0)
+	{
+		id = atoi(PQgetvalue(beatBetRet, 0, 0));
+		int aiTeam = atoi(PQgetvalue(beatBetRet, 0, 1));
+		int aiType = atoi(PQgetvalue(beatBetRet, 0, 2));
+		int lsTeam = atoi(PQgetvalue(beatBetRet, 0, 4));
+		int lsType = atoi(PQgetvalue(beatBetRet, 0, 5));
+		int score180Team = atoi(PQgetvalue(beatBetRet, 0, 8));
+		int score180Type = atoi(PQgetvalue(beatBetRet, 0, 9));
+
+		// AI
+		aiStatus = 0;
+		{
+			if (aiType == (int)EBeatBetType::Win) 
+			{
+				if (aiTeam == 1) 
+				{
+					aiStatus = team1Goals > team2Goals;
+				}
+				else if (aiTeam == 2)
+				{
+					aiStatus = team2Goals > team1Goals;
+				}
+			}
+			else if (aiType == (int)EBeatBetType::NotLoose) 
+			{
+				if (aiTeam == 1)
+				{
+					aiStatus = team1Goals >= team2Goals;
+				}
+				else if (aiTeam == 2)
+				{
+					aiStatus = team2Goals >= team1Goals;
+				}
+			}
+			else if (aiType == (int)EBeatBetType::Draw)
+			{
+				
+				aiStatus = team1Goals == team2Goals;
+			}
+			else if (aiType == (int)EBeatBetType::NotDraw)
+			{
+
+				aiStatus = team1Goals != team2Goals;
+			}
+		}
+
+		// LiveScore
+		lsStatus = 0;
+		{
+			if (lsType == (int)EBeatBetType::Win)
+			{
+				if (lsTeam == 1)
+				{
+					lsStatus = team1Goals > team2Goals;
+				}
+				else if (lsTeam == 2)
+				{
+					lsStatus = team2Goals > team1Goals;
+				}
+			}
+			else if (lsType == (int)EBeatBetType::NotLoose)
+			{
+				if (lsTeam == 1)
+				{
+					lsStatus = team1Goals >= team2Goals;
+				}
+				else if (lsTeam == 2)
+				{
+					lsStatus = team2Goals >= team1Goals;
+				}
+			}
+			else if (lsType == (int)EBeatBetType::Draw)
+			{
+
+				lsStatus = team1Goals == team2Goals;
+			}
+			else if (lsType == (int)EBeatBetType::NotDraw)
+			{
+
+				lsStatus = team1Goals != team2Goals;
+			}
+		}
+
+		// 180 Score
+		s180Status = 0;
+		{
+			if (score180Type == (int)EBeatBetType::Win)
+			{
+				if (score180Team == 1)
+				{
+					s180Status = team1Goals > team2Goals;
+				}
+				else if (score180Team == 2)
+				{
+					s180Status = team2Goals > team1Goals;
+				}
+			}
+			else if (score180Type == (int)EBeatBetType::NotLoose)
+			{
+				if (score180Team == 1)
+				{
+					s180Status = team1Goals >= team2Goals;
+				}
+				else if (score180Team == 2)
+				{
+					s180Status = team2Goals >= team1Goals;
+				}
+			}
+			else if (score180Type == (int)EBeatBetType::Draw)
+			{
+
+				s180Status = team1Goals == team2Goals;
+			}
+			else if (score180Type == (int)EBeatBetType::NotDraw)
+			{
+				s180Status = team1Goals != team2Goals;
+			}
+		}
+	}
+
+	PQclear(beatBetRet);
+
+	// Update
+	if (id > 0)
+	{
+		beatBetSql = "UPDATE beat_bet SET ai_status = " + std::to_string(aiStatus)
+			+ ", ls_status = " + std::to_string(lsStatus)
+			+ ", score180_status = " + std::to_string(s180Status)
+			+ " WHERE id = " + std::to_string(id)
+			+ ";";
+		beatBetRet = PQexec(pg, beatBetSql.c_str());
+		PQclear(beatBetRet);
+	}
+}
+
 void GetLiveMatches(PGconn* pg)
 {
 	auto now = std::chrono::system_clock::now();
@@ -454,7 +620,7 @@ void GetLiveMatches(PGconn* pg)
 	long long milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
 
-	std::string sql = "SELECT m.id, m.league, m.week, m.match_date, m.is_special, "
+	std::string sql = "SELECT m.id, m.league, m.week, m.week_type, m.match_date, m.is_special, "
 		"t1.id AS team1_id, t1.api_id AS team1_api_id, t1.short_name AS team1_short_name, "
 		"t2.id AS team2_id, t2.api_id AS team2_api_id, t2.short_name AS team2_short_name, "
 		"m.api_id "
@@ -471,20 +637,22 @@ void GetLiveMatches(PGconn* pg)
 		int id = atoi(PQgetvalue(ret, i, 0));
 		int league = atoi(PQgetvalue(ret, i, 1));
 		int week = atoi(PQgetvalue(ret, i, 2));
-		long long matchDate = atoll(PQgetvalue(ret, i, 3));
-		int isSpecial = atoll(PQgetvalue(ret, i, 4));
+		int weekType = atoi(PQgetvalue(ret, i, 3));
+
+		long long matchDate = atoll(PQgetvalue(ret, i, 4));
+		int isSpecial = atoll(PQgetvalue(ret, i, 5));
 
 		CronTeam team1;
-		team1.Id = atoi(PQgetvalue(ret, i, 5));
-		team1.ApiId = atoi(PQgetvalue(ret, i, 6));
-		team1.ShortName = PQgetvalue(ret, i, 7); // Retrieve team1 short_name
+		team1.Id = atoi(PQgetvalue(ret, i, 6));
+		team1.ApiId = atoi(PQgetvalue(ret, i, 7));
+		team1.ShortName = PQgetvalue(ret, i, 8); // Retrieve team1 short_name
 
 		CronTeam team2;
-		team2.Id = atoi(PQgetvalue(ret, i, 8));
-		team2.ApiId = atoi(PQgetvalue(ret, i, 9));
-		team2.ShortName = PQgetvalue(ret, i, 10); // Retrieve team2 short_name
+		team2.Id = atoi(PQgetvalue(ret, i, 9));
+		team2.ApiId = atoi(PQgetvalue(ret, i, 10));
+		team2.ShortName = PQgetvalue(ret, i, 11); // Retrieve team2 short_name
 
-		int apiId = atoi(PQgetvalue(ret, i, 11));
+		int apiId = atoi(PQgetvalue(ret, i, 12));
 
 
 		if (apiId == -1 || team1.ApiId == -1 || team2.ApiId == -1)
@@ -537,198 +705,210 @@ void GetLiveMatches(PGconn* pg)
 			FillMatchEvents(pg, document, id, team1, team2);
 			// FillMatchLineups(pg, document, id, matchDate);
 
-			if (status == "FT") 
+			if (status == "FT" || status == "ET" || status == "AET" || status == "PEN")
 			{
-				sql = "update matches set team1_score = " + std::to_string(team1Goals) +
-					", team2_score = " + std::to_string(team2Goals) +
-					" where id = " + std::to_string(id) + ";";
-				updated = PQexec(pg, sql.c_str());
-				PQclear(updated);
-
-				// Update the league table for both teams
-				auto updateLeagueTable = [&](int team, int goalsFor, int goalsAgainst, int points) {
-					sql = "UPDATE tables SET "
-						"matches_played = matches_played + 1, "
-						"goals_f = goals_f + " + std::to_string(goalsFor) + ", "
-						"goals_a = goals_a + " + std::to_string(goalsAgainst) + ", "
-						"points = points + " + std::to_string(points) + " "
-						"WHERE team_id = " + std::to_string(team) + " AND league_id = " + std::to_string(league) + " AND season = '" + "24/25" + "'" + ";";
-					PGresult* updateRet = PQexec(pg, sql.c_str());
-					PQclear(updateRet);
-				};
-
-				// Determine points to assign
-				int pointsForTeam1 = 0;
-				int pointsForTeam2 = 0;
-
-				if (team1Goals > team2Goals) 
+				if (status == "FT" || status == "AET" || status == "PEN")
 				{
-					pointsForTeam1 = 3; // Team 1 wins
-				}
-				else if (team1Goals < team2Goals) 
-				{
-					pointsForTeam2 = 3; // Team 2 wins
-				}
-				else 
-				{
-					pointsForTeam1 = 1; // Draw
-					pointsForTeam2 = 1; // Draw
+					sql = "update matches set team1_score = " + std::to_string(team1Goals) +
+						", team2_score = " + std::to_string(team2Goals) +
+						" where id = " + std::to_string(id) + ";";
+					updated = PQexec(pg, sql.c_str());
+					PQclear(updated);
 				}
 
-				// Update league table for both teams
-				updateLeagueTable(team1.Id, team1Goals, team2Goals, pointsForTeam1);
-				updateLeagueTable(team2.Id, team2Goals, team1Goals, pointsForTeam2);
-
-
-				sql = "SELECT * FROM predicts WHERE match_id = " + std::to_string(id) + ";";
-				PGresult* pret = PQexec(pg, sql.c_str());
-
-				int nrows = PQntuples(pret);
-
-				bool sendPN = nrows > 0;
-				std::string accessToken;
-				std::string jwt = PNManager::CreateJwtToken();
-				if (!jwt.size()) sendPN = false;
-				else 
+				if (status == "FT" || status == "ET")
 				{
-					accessToken = PNManager::RequestAccessToken(jwt);
-				}
-				if (!accessToken.size()) sendPN = false;
-
-				std::vector<int> specialPoints;
-				bool isQuest = false;
-				if (isSpecial)
-				{
-					std::string sql = "SELECT points, title FROM special_matches where match_id = " + std::to_string(id) + ";";
-					PGresult* ret = PQexec(pg, sql.c_str());
-					std::string pp = PQgetvalue(ret, 0, 0);
-					std::string tt = PQgetvalue(ret, 0, 1);
-					isQuest = tt == "quest";
-					specialPoints = splitPoints(pp, ':');
-					PQclear(ret);
-				}
-
-				for (int i = 0; i < nrows; ++i)
-				{
-					bool localSendPN = sendPN;
-					int id = atoi(PQgetvalue(pret, i, 0));
-					int userId = atoi(PQgetvalue(pret, i, 1));
-					int t1score = atoi(PQgetvalue(pret, i, 3));
-					int t2score = atoi(PQgetvalue(pret, i, 4));
-					EPredictStatus predictStatus = (EPredictStatus)atoi(PQgetvalue(pret, i, 5));
-					if (predictStatus != EPredictStatus::Pending) continue;
-
-					std::string nTitle = "prediction_score_title";
-					std::string nMsg = "prediction_score_msg";
-					int points = 0;
-					EPredictStatus status = EPredictStatus::Pending;
-					if (team1Goals == t1score && team2Goals == t2score)
+					// Update league tables
+					if (weekType == 0)
 					{
-						points = isSpecial ? specialPoints[0] : 3;
-						status = EPredictStatus::ScorePredicted;
-					}
-					else
-					{
-						if ((team1Goals > team2Goals && t1score > t2score) ||
-							(team1Goals < team2Goals && t1score < t2score) ||
-							(team1Goals == team2Goals && t1score == t2score))
+						// Update the league table for both teams
+						auto updateLeagueTable = [&](int team, int goalsFor, int goalsAgainst, int points) {
+							sql = "UPDATE tables SET "
+								"matches_played = matches_played + 1, "
+								"goals_f = goals_f + " + std::to_string(goalsFor) + ", "
+								"goals_a = goals_a + " + std::to_string(goalsAgainst) + ", "
+								"points = points + " + std::to_string(points) + " "
+								"WHERE team_id = " + std::to_string(team) + " AND league_id = " + std::to_string(league) + " AND season = '" + "24/25" + "'" + ";";
+							PGresult* updateRet = PQexec(pg, sql.c_str());
+							PQclear(updateRet);
+						};
+
+						// Determine points to assign
+						int pointsForTeam1 = 0;
+						int pointsForTeam2 = 0;
+
+						if (team1Goals > team2Goals)
 						{
-							points = isSpecial ? specialPoints[1] : 1;
-							status = EPredictStatus::WinnerPredicted;
-
-							if (team1Goals == team2Goals && t1score == t2score)
-							{
-								nTitle = "prediction_draw_title";
-								nMsg = "prediction_draw_msg";
-							}
-							else 
-							{
-								nTitle = "prediction_winner_title";
-								nMsg = "prediction_winner_msg";
-							}
+							pointsForTeam1 = 3; // Team 1 wins
+						}
+						else if (team1Goals < team2Goals)
+						{
+							pointsForTeam2 = 3; // Team 2 wins
 						}
 						else
 						{
-							points = isSpecial ? specialPoints[2] : -1;
-							status = EPredictStatus::Failed;
-							localSendPN = false;
+							pointsForTeam1 = 1; // Draw
+							pointsForTeam2 = 1; // Draw
 						}
+
+						// Update league table for both teams
+						updateLeagueTable(team1.Id, team1Goals, team2Goals, pointsForTeam1);
+						updateLeagueTable(team2.Id, team2Goals, team1Goals, pointsForTeam2);
 					}
 
-					sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
-					PGresult* updateRet = PQexec(pg, sql.c_str());
-					PQclear(updateRet);
+					// Update BeatBet
+					UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
 
-					sql = "UPDATE predicts SET status = " + std::to_string(int(status)) + " WHERE id = " + std::to_string(id) + ";";
-					updateRet = PQexec(pg, sql.c_str());
-					PQclear(updateRet);
+					// Update user predics
+					sql = "SELECT * FROM predicts WHERE match_id = " + std::to_string(id) + ";";
+					PGresult* pret = PQexec(pg, sql.c_str());
 
-					// Send push notifications
-					if (localSendPN)
+					int nrows = PQntuples(pret);
+
+					bool sendPN = nrows > 0;
+					std::string accessToken;
+					std::string jwt = PNManager::CreateJwtToken();
+					if (!jwt.size()) sendPN = false;
+					else
 					{
-						sql = "SELECT * FROM fcm_tokens WHERE user_id = " + std::to_string(userId);
-						updateRet = PQexec(pg, sql.c_str());
+						accessToken = PNManager::RequestAccessToken(jwt);
+					}
+					if (!accessToken.size()) sendPN = false;
 
-						char* temp = (char*)calloc(4096, sizeof(char));
-						std::vector<int> invalidTokens;
-						int nTokens = PQntuples(updateRet);
-						for (int j = 0; j < nTokens; ++j)
+					std::vector<int> specialPoints;
+					bool isQuest = false;
+					if (isSpecial)
+					{
+						std::string sql = "SELECT points, title FROM special_matches where match_id = " + std::to_string(id) + ";";
+						PGresult* ret = PQexec(pg, sql.c_str());
+						std::string pp = PQgetvalue(ret, 0, 0);
+						std::string tt = PQgetvalue(ret, 0, 1);
+						isQuest = tt == "quest";
+						specialPoints = splitPoints(pp, ':');
+						PQclear(ret);
+					}
+
+					for (int i = 0; i < nrows; ++i)
+					{
+						bool localSendPN = sendPN;
+						int id = atoi(PQgetvalue(pret, i, 0));
+						int userId = atoi(PQgetvalue(pret, i, 1));
+						int t1score = atoi(PQgetvalue(pret, i, 3));
+						int t2score = atoi(PQgetvalue(pret, i, 4));
+						EPredictStatus predictStatus = (EPredictStatus)atoi(PQgetvalue(pret, i, 5));
+						if (predictStatus != EPredictStatus::Pending) continue;
+
+						std::string nTitle = "prediction_score_title";
+						std::string nMsg = "prediction_score_msg";
+						int points = 0;
+						EPredictStatus status = EPredictStatus::Pending;
+						if (team1Goals == t1score && team2Goals == t2score)
 						{
-							// Handle ID as integer
-							int id = atoi(PQgetvalue(updateRet, j, 0));
-							int userId = atoi(PQgetvalue(updateRet, j, 1));
-							strcpy(temp, PQgetvalue(updateRet, j, 2));
-							std::string token = temp;
-							strcpy(temp, PQgetvalue(updateRet, j, 3));
-							std::string os = temp;
-							strcpy(temp, PQgetvalue(updateRet, j, 4));
-							std::string lang = temp;
+							points = isSpecial ? specialPoints[0] : 3;
+							status = EPredictStatus::ScorePredicted;
+						}
+						else
+						{
+							if ((team1Goals > team2Goals && t1score > t2score) ||
+								(team1Goals < team2Goals && t1score < t2score) ||
+								(team1Goals == team2Goals && t1score == t2score))
+							{
+								points = isSpecial ? specialPoints[1] : 1;
+								status = EPredictStatus::WinnerPredicted;
 
-							std::string t = notificationsDocument[lang.c_str()][nTitle.c_str()].GetString()
-								+ std::string(" ") + team1.ShortName + " " + std::to_string(team1Goals) + " - " + std::to_string(team2Goals) + " " + team2.ShortName;
-							
-							std::string m = notificationsDocument[lang.c_str()][nMsg.c_str()].GetString();
-
-							bool sendRet = PNManager::SendPushNotification(accessToken, token, t, m, "ic_notification");
-							if (!sendRet) invalidTokens.push_back(id);
+								if (team1Goals == team2Goals && t1score == t2score)
+								{
+									nTitle = "prediction_draw_title";
+									nMsg = "prediction_draw_msg";
+								}
+								else
+								{
+									nTitle = "prediction_winner_title";
+									nMsg = "prediction_winner_msg";
+								}
+							}
+							else
+							{
+								points = isSpecial ? specialPoints[2] : -1;
+								status = EPredictStatus::Failed;
+								localSendPN = false;
+							}
 						}
 
-						free(temp);
+						sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
+						PGresult* updateRet = PQexec(pg, sql.c_str());
 						PQclear(updateRet);
 
-						if (invalidTokens.size())
+						sql = "UPDATE predicts SET status = " + std::to_string(int(status)) + " WHERE id = " + std::to_string(id) + ";";
+						updateRet = PQexec(pg, sql.c_str());
+						PQclear(updateRet);
+
+						// Send push notifications
+						if (localSendPN)
 						{
-							for (auto id : invalidTokens)
+							sql = "SELECT * FROM fcm_tokens WHERE user_id = " + std::to_string(userId);
+							updateRet = PQexec(pg, sql.c_str());
+
+							char* temp = (char*)calloc(4096, sizeof(char));
+							std::vector<int> invalidTokens;
+							int nTokens = PQntuples(updateRet);
+							for (int j = 0; j < nTokens; ++j)
 							{
-								sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
-								PGresult* res = PQexec(pg, sql.c_str());
-								PQclear(res);
+								// Handle ID as integer
+								int id = atoi(PQgetvalue(updateRet, j, 0));
+								int userId = atoi(PQgetvalue(updateRet, j, 1));
+								strcpy(temp, PQgetvalue(updateRet, j, 2));
+								std::string token = temp;
+								strcpy(temp, PQgetvalue(updateRet, j, 3));
+								std::string os = temp;
+								strcpy(temp, PQgetvalue(updateRet, j, 4));
+								std::string lang = temp;
+
+								std::string t = notificationsDocument[lang.c_str()][nTitle.c_str()].GetString()
+									+ std::string(" ") + team1.ShortName + " " + std::to_string(team1Goals) + " - " + std::to_string(team2Goals) + " " + team2.ShortName;
+
+								std::string m = notificationsDocument[lang.c_str()][nMsg.c_str()].GetString();
+
+								bool sendRet = PNManager::SendPushNotification(accessToken, token, t, m, "ic_notification");
+								if (!sendRet) invalidTokens.push_back(id);
+							}
+
+							free(temp);
+							PQclear(updateRet);
+
+							if (invalidTokens.size())
+							{
+								for (auto id : invalidTokens)
+								{
+									sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
+									PGresult* res = PQexec(pg, sql.c_str());
+									PQclear(res);
+								}
 							}
 						}
 					}
-				}
-				PQclear(pret);
-
-				// Quest remove points
-				if (isQuest)
-				{
-					sql =
-						"UPDATE users "
-						"SET points = GREATEST(0, points - 2) "
-						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
-					PGresult* pret = PQexec(pg, sql.c_str());
 					PQclear(pret);
 
-					// Insert empty predictions for users who didn't predict the match
-					sql =
-						"INSERT INTO predicts (user_id, match_id, team1_score, team2_score, status) "
-						"SELECT id, " + std::to_string(id) + ", 0, 0, 4 "
-						"FROM users "
-						"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
-					pret = PQexec(pg, sql.c_str());
-					PQclear(pret);
-				}
+					// Quest remove points
+					if (isQuest)
+					{
+						sql =
+							"UPDATE users "
+							"SET points = GREATEST(0, points - 2) "
+							"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
+						PGresult* pret = PQexec(pg, sql.c_str());
+						PQclear(pret);
 
+						// Insert empty predictions for users who didn't predict the match
+						sql =
+							"INSERT INTO predicts (user_id, match_id, team1_score, team2_score, status) "
+							"SELECT id, " + std::to_string(id) + ", 0, 0, 4 "
+							"FROM users "
+							"WHERE id NOT IN (SELECT user_id FROM predicts WHERE match_id = " + std::to_string(id) + ");";
+						pret = PQexec(pg, sql.c_str());
+						PQclear(pret);
+					}
+				}
 			}
 		}
 	}
@@ -1207,7 +1387,7 @@ int main()
 	};
 
 	std::string lastCorrectMatchDatesDate;
-	CorrectMatchDates(pg);
+	//CorrectMatchDates(pg);
 	lastCorrectMatchDatesDate = getCurrentDate();
 
 	while (true)

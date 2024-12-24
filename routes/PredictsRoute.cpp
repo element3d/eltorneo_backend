@@ -1015,118 +1015,89 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     return [](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
-        std::string userId = req.get_param_value("match_id");
+        std::string matchId = req.get_param_value("match_id");
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT * FROM predicts WHERE status <> 4 and match_id = "
-            + userId +
-            +";";
-        PGresult* ret = PQexec(pg, sql.c_str());
+        std::string predictsSql = "SELECT * FROM predicts WHERE status <> 4 AND match_id = " + matchId + ";";
+        PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch leagues: %s", PQerrorMessage(pg));
-            PQclear(ret);
+            fprintf(stderr, "Failed to fetch predicts: %s", PQerrorMessage(pg));
+            PQclear(predictsRet);
             res.status = 500;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
             return;
         }
 
-        int nrows = PQntuples(ret);
+        // Fetch predicts
+        int nrows = PQntuples(predictsRet);
         rapidjson::Document document;
         rapidjson::Value predicts;
         predicts.SetArray();
 
         document.SetObject();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        char* temp = (char*)calloc(4096, sizeof(char));
-
-        int numP1 = 0;
-        int numP2 = 0;
-        int numDraw = 0;
+        int numP1 = 0, numP2 = 0, numDraw = 0;
 
         for (int i = 0; i < nrows; ++i)
         {
-            /*rapidjson::Value object;
-            object.SetObject();
-
-            // Handle ID as integer
-            int id = atoi(PQgetvalue(ret, i, 0)); // Convert the string from the first column to an integer
-            rapidjson::Value idValue;
-            idValue.SetInt(id);
-            object.AddMember("id", idValue, allocator);
-
-            int userId = atoi(PQgetvalue(ret, i, 1));
-            std::string userName = getUserName(pg, userId);
-            std::string userAvatar = getUserAvatar(pg, userId);
-            int points = getUserPoints(pg, userId);
-
-            // Create user object
-            rapidjson::Value userObject;
-            userObject.SetObject();
-            rapidjson::Value userIdValue;
-            userIdValue.SetInt(userId);
-            userObject.AddMember("id", userIdValue, allocator);
-
-            rapidjson::Value userNameValue;
-            userNameValue.SetString(userName.c_str(), allocator);
-            userObject.AddMember("name", userNameValue, allocator);*/
-
-            //rapidjson::Value userAvatarValue;
-            //userAvatarValue.SetString(userAvatar.c_str(), allocator);
-            //userObject.AddMember("avatar", userAvatarValue, allocator);
-
-            //userObject.AddMember("points", points, allocator);
-
-            // Add user object to the main JSON object
-            //object.AddMember("user", userObject, allocator);
-
-            //int matchId = atoi(PQgetvalue(ret, i, 2));
-            //idValue.SetInt(matchId);
-            //object.AddMember("match_id", idValue, allocator);
-
-            int score1 = atoi(PQgetvalue(ret, i, 3));
-            //idValue.SetInt(score1);
-            //object.AddMember("team1_score", idValue, allocator);
-
-            int score2 = atoi(PQgetvalue(ret, i, 4));
-            // idValue.SetInt(score2);
-            // object.AddMember("team2_score", idValue, allocator);
-
-            // int status = atoi(PQgetvalue(ret, i, 5));
-            // idValue.SetInt(status);
-            // object.AddMember("status", idValue, allocator);
+            int score1 = atoi(PQgetvalue(predictsRet, i, 3));
+            int score2 = atoi(PQgetvalue(predictsRet, i, 4));
 
             if (score1 > score2) ++numP1;
             else if (score2 > score1) ++numP2;
             else ++numDraw;
-
-          //  predicts.PushBack(object, allocator);
         }
-        free(temp);
 
-     //   document.AddMember("predicts", predicts, allocator);
         document.AddMember("numP1", numP1, allocator);
         document.AddMember("numP2", numP2, allocator);
         document.AddMember("numDraw", numDraw, allocator);
         document.AddMember("numPredicts", nrows, allocator);
 
+        // Check for beat_bet record
+        std::string beatBetSql =
+            "SELECT ai_team, ai_type, ai_status, ls_team, ls_type, ls_percent, ls_status, "
+            "score180_team, score180_type, score180_percent, score180_status "
+            "FROM beat_bet WHERE match_id = " + matchId + " LIMIT 1;";
+        PGresult* beatBetRet = PQexec(pg, beatBetSql.c_str());
 
-        // Assuming you convert the Document to a string and send it in the response as before
+        if (PQresultStatus(beatBetRet) == PGRES_TUPLES_OK && PQntuples(beatBetRet) > 0)
+        {
+            rapidjson::Value beatBet(rapidjson::kObjectType);
+
+            beatBet.AddMember("ai_team", atoi(PQgetvalue(beatBetRet, 0, 0)), allocator);
+            beatBet.AddMember("ai_type", atoi(PQgetvalue(beatBetRet, 0, 1)), allocator);
+            beatBet.AddMember("ai_status", atoi(PQgetvalue(beatBetRet, 0, 2)), allocator);
+            beatBet.AddMember("ls_team", atoi(PQgetvalue(beatBetRet, 0, 3)), allocator);
+            beatBet.AddMember("ls_type", atoi(PQgetvalue(beatBetRet, 0, 4)), allocator);
+            beatBet.AddMember("ls_percent", atoi(PQgetvalue(beatBetRet, 0, 5)), allocator);
+            beatBet.AddMember("ls_status", atoi(PQgetvalue(beatBetRet, 0, 6)), allocator);
+            beatBet.AddMember("score180_team", atoi(PQgetvalue(beatBetRet, 0, 7)), allocator);
+            beatBet.AddMember("score180_type", atoi(PQgetvalue(beatBetRet, 0, 8)), allocator);
+            beatBet.AddMember("score180_percent", atoi(PQgetvalue(beatBetRet, 0, 9)), allocator);
+            beatBet.AddMember("score180_status", atoi(PQgetvalue(beatBetRet, 0, 10)), allocator);
+
+            document.AddMember("beatBet", beatBet, allocator);
+        }
+
+        // Clean up beat_bet result
+        PQclear(beatBetRet);
+
+        // Serialize JSON response
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         document.Accept(writer);
 
-        // You can then use `buffer.GetString()` to get the JSON string
-        // And send it in the response as follows:
         res.set_content(buffer.GetString(), "application/json");
         res.status = 200;  // OK
 
-
-        PQclear(ret);
+        PQclear(predictsRet);
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+
 #include "CachedTable.h"
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetMatchPredictsTop3()
 {
