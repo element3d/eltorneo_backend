@@ -11,7 +11,8 @@ enum class ELeague
     Bundesliga,
     Ligue1,
     NationsLeague,
-    End = NationsLeague
+    CoppaItalia,
+    End = CoppaItalia
 };
 
 enum class ELeagueType 

@@ -59,6 +59,9 @@ void LeaguesRoute::Init()
         MatchesInitializer::InitLigue1Table(pg);
         MatchesInitializer::FillLigue1Table(pg);*/
 
+        // MatchesInitializer::InitCoppaItaliaTeams24_25(pg);
+        //MatchesInitializer::InitCoppaItalia24_25(pg);
+
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }
@@ -246,6 +249,38 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
                     weeks.PushBack(weekObject, allocator);
                 }
 
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::RoundOf16, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+            }
+            else if (id == (int)ELeague::CoppaItalia)
+            {
+                int i = 1;
                 {
                     rapidjson::Value weekObject;
                     weekObject.SetObject();
