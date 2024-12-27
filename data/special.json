@@ -38,7 +38,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "New Mutants"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -79,7 +80,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Nuevos mutantes"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -120,7 +122,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Nouveaux mutants"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -161,7 +164,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Nuovi mutanti"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -202,7 +206,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Побег из тюрьмы",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Новые Мутанты"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -243,7 +248,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Novos Mutantes"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -284,7 +290,8 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Neue Mutanten"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -325,6 +332,7 @@
         "street_fighters": "Street Fighters",
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
-        "rampage": "Rampage"
+        "rampage": "Rampage",
+        "new_mutants": "Novi mutanti"
     }
 }
