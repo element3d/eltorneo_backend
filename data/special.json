@@ -39,7 +39,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "New Mutants"
+        "new_mutants": "New Mutants",
+        "legacy": "Legacy"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -81,7 +82,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Nuevos mutantes"
+        "new_mutants": "Nuevos mutantes",
+        "legacy": "Legado"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -123,7 +125,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Nouveaux mutants"
+        "new_mutants": "Nouveaux mutants",
+        "legacy": "Héritage"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -165,7 +168,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Nuovi mutanti"
+        "new_mutants": "Nuovi mutanti",
+        "legacy": "Eredità"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -207,7 +211,8 @@
         "prison_break": "Побег из тюрьмы",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Новые Мутанты"
+        "new_mutants": "Новые Мутанты",
+        "legacy": "Наследие"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -249,7 +254,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Novos Mutantes"
+        "new_mutants": "Novos Mutantes",
+        "legacy": "Legado"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -291,7 +297,8 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Neue Mutanten"
+        "new_mutants": "Neue Mutanten",
+        "legacy": "Vermächtnis"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -333,6 +340,7 @@
         "prison_break": "Prison Break",
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
-        "new_mutants": "Novi mutanti"
+        "new_mutants": "Novi mutanti",
+        "legacy": "Naslijeđe"
     }
 }
