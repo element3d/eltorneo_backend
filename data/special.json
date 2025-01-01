@@ -40,7 +40,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "New Mutants",
-        "legacy": "Legacy"
+        "legacy": "Legacy",
+        "happy_new_year": "Happy New Year"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -83,7 +84,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Nuevos mutantes",
-        "legacy": "Legado"
+        "legacy": "Legado",
+        "happy_new_year": "Feliz año nuevo"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -126,7 +128,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Nouveaux mutants",
-        "legacy": "Héritage"
+        "legacy": "Héritage",
+        "happy_new_year": "Bonne année"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -169,7 +172,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Nuovi mutanti",
-        "legacy": "Eredità"
+        "legacy": "Eredità",
+        "happy_new_year": "Buon Anno"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -212,7 +216,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Новые Мутанты",
-        "legacy": "Наследие"
+        "legacy": "Наследие",
+        "happy_new_year": "С Новым Годом"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -255,7 +260,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Novos Mutantes",
-        "legacy": "Legado"
+        "legacy": "Legado",
+        "happy_new_year": "Feliz Ano Novo"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -298,7 +304,8 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Neue Mutanten",
-        "legacy": "Vermächtnis"
+        "legacy": "Vermächtnis",
+        "happy_new_year": "Frohes Neues Jahr"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -341,6 +348,7 @@
         "angry_birds": "Angry Birds",
         "rampage": "Rampage",
         "new_mutants": "Novi mutanti",
-        "legacy": "Naslijeđe"
+        "legacy": "Naslijeđe",
+        "happy_new_year": "Sretna Nova godina"
     }
 }
