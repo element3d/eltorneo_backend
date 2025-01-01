@@ -164,6 +164,11 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 
 		std::string type = ev["type"].GetString();
 		std::string detail = ev["detail"].GetString();
+		std::string comments;
+		if (ev.HasMember("comments") && !ev["comments"].IsNull()) 
+		{
+			comments = ev["comments"].GetString();
+		}
 
 		int team = ev["team"]["id"].GetInt();
 		int teamNo = 1;
@@ -172,9 +177,14 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 
 		// create table events (id serial primary key not null, match_id integer not null, elapsed integer not null, elapsed_extra integer not null, team integer not null, player text not null, assist text not null, type text not null, detail text not null);
 		// insert event sql command here
-		sql = "INSERT INTO events (match_id, elapsed, elapsed_extra, team, player, assist, type, detail) "
+		sql = "INSERT INTO events (match_id, elapsed, elapsed_extra, team, player, assist, type, detail, comments) "
 			"VALUES (" + std::to_string(matchId) + ", " + std::to_string(elapsed) + ", " + std::to_string(extra) +
-			", " + std::to_string(teamNo) + ", '" + player + "', '" + assist + "', '" + type + "', '" + detail + "');";
+			", " + std::to_string(teamNo) + ", '" + player + "', '" 
+			+ assist + "', '" 
+			+ type + "', '" 
+			+ detail + "', '"
+			+ comments 
+			+ "');";
 
 		ret = PQexec(pg, sql.c_str());
 
@@ -677,6 +687,13 @@ void GetLiveMatches(PGconn* pg)
 			if (statusValue["elapsed"].IsInt()) elapsed = statusValue["elapsed"].GetInt();
 
 			rapidjson::Value goalsValue = document["response"][0]["goals"].GetObject();
+			bool hasScore = false;
+			rapidjson::Value scoreValue;
+			if (document["response"][0].HasMember("score") && document["response"][0]["score"].IsObject())
+			{
+				scoreValue = document["response"][0]["score"].GetObject();
+				hasScore = true;
+			}
 			int team1Goals = 0;
 			if (goalsValue["home"].IsInt()) team1Goals = goalsValue["home"].GetInt();
 
@@ -705,9 +722,32 @@ void GetLiveMatches(PGconn* pg)
 			FillMatchEvents(pg, document, id, team1, team2);
 			// FillMatchLineups(pg, document, id, matchDate);
 
-			if (status == "FT" || status == "ET" || status == "AET" || status == "PEN")
+			if (status == "FT" || status == "AET" || status == "PEN")
 			{
-				if (status == "FT" || status == "AET" || status == "PEN")
+				int team1Goals90 = -1;
+				int team2Goals90 = -1;
+				int team1GoalsPen = -1;
+				int team2GoalsPen = -1;
+				if (hasScore)
+				{
+					if (scoreValue["fulltime"]["home"].IsInt()) 
+						team1Goals90 = scoreValue["fulltime"]["home"].GetInt();
+
+					if (scoreValue["fulltime"]["away"].IsInt()) 
+						team2Goals90 = scoreValue["fulltime"]["away"].GetInt();
+
+					if (scoreValue.HasMember("penalty")) 
+					{
+						if (scoreValue["penalty"]["home"].IsInt())
+							team1GoalsPen = scoreValue["penalty"]["home"].GetInt();
+
+						if (scoreValue["penalty"]["away"].IsInt())
+							team2GoalsPen = scoreValue["penalty"]["away"].GetInt();
+					}
+
+				}
+
+				if (status == "FT")
 				{
 					sql = "update matches set team1_score = " + std::to_string(team1Goals) +
 						", team2_score = " + std::to_string(team2Goals) +
@@ -715,8 +755,36 @@ void GetLiveMatches(PGconn* pg)
 					updated = PQexec(pg, sql.c_str());
 					PQclear(updated);
 				}
+				else if (status == "AET")
+				{
+					sql = "update matches set team1_score = " + std::to_string(team1Goals) +
+						", team2_score = " + std::to_string(team2Goals) +
+						", team1_score_90 = " + std::to_string(team1Goals90) +
+						", team2_score_90 = " + std::to_string(team2Goals90) +
+						" where id = " + std::to_string(id) + ";";
+					updated = PQexec(pg, sql.c_str());
+					PQclear(updated);
 
-				if (status == "FT" || status == "ET")
+					team1Goals = team1Goals90;
+					team2Goals = team2Goals90;
+				}
+				else if (status == "PEN")
+				{
+					sql = "update matches set team1_score = " + std::to_string(team1Goals) +
+						", team2_score = " + std::to_string(team2Goals) +
+						", team1_score_90 = " + std::to_string(team1Goals90) +
+						", team2_score_90 = " + std::to_string(team2Goals90) +
+						", team1_score_pen = " + std::to_string(team1GoalsPen) +
+						", team2_score_pen = " + std::to_string(team2GoalsPen) +
+						" where id = " + std::to_string(id) + ";";
+					updated = PQexec(pg, sql.c_str());
+					PQclear(updated);
+
+					team1Goals = team1Goals90;
+					team2Goals = team2Goals90;
+				}
+
+				//if (status == "FT")
 				{
 					// Update league tables
 					if (weekType == 0)
