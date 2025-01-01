@@ -61,7 +61,8 @@ void LeaguesRoute::Init()
 
         // MatchesInitializer::InitCoppaItaliaTeams24_25(pg);
         //MatchesInitializer::InitCoppaItalia24_25(pg);
-
+        //MatchesInitializer::InitSuperCupItaliaTeams24_25(pg);
+        //MatchesInitializer::InitSuperCupItalia24_25(pg);
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }
@@ -236,6 +237,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             int numLeagues = atoi(PQgetvalue(ret, i, 8));
             objValue.AddMember("num_leagues", numLeagues, allocator);
 
+            strcpy(temp, PQgetvalue(ret, i, 10));
+            std::string country = temp;
+            rapidjson::Value countryValue;
+            countryValue.SetString(country.c_str(), country.size(), allocator);
+            objValue.AddMember("country", countryValue, allocator);
+
+            int isMain = atoi(PQgetvalue(ret, i, 11));
+            objValue.AddMember("is_main", isMain, allocator);
+
             rapidjson::Value weeks;
             weeks.SetArray();
             if (id == (int)ELeague::ChampionsLeague)
@@ -296,6 +306,24 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
                     weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
                     weeks.PushBack(weekObject, allocator);
                 }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+            }
+            else if (id == (int)ELeague::SuperCupItalia)
+            {
+                int i = 1;
                 {
                     rapidjson::Value weekObject;
                     weekObject.SetObject();

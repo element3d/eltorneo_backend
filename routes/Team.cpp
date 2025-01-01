@@ -235,6 +235,14 @@ std::string Team::ToString(ETeam team)
     case ETeam::YoungBoys:
         return "BSC Young Boys";
 
+    // New teams
+    case ETeam::Sampdoria:
+        return "Sampdoria";
+    case ETeam::Sassuolo:
+        return "Sassuolo";
+    case ETeam::Cesena:
+        return "Cesena";
+
     // Nations League
     case ETeam::Portugal:
         return "Portugal";
@@ -584,6 +592,14 @@ std::string Team::ToShortString(ETeam team)
         return "Sturm Graz";
     case ETeam::YoungBoys:
         return "Young Boys";
+
+    // New teams
+    case ETeam::Sampdoria:
+        return "Sampdoria";
+    case ETeam::Sassuolo:
+        return "Sassuolo";
+    case ETeam::Cesena:
+        return "Cesena";
 
         // Nations League
     case ETeam::Portugal:

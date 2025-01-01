@@ -140,6 +140,10 @@ enum class ETeam
     SturmGraz,
     YoungBoys,
 
+    // New Teams
+    Sampdoria,
+    Sassuolo,
+    Cesena,
 
     // International
     // Nations League
