@@ -22,6 +22,7 @@ public:
     ETeam Team2;
     long long Date;
     EWeekType WeekType = EWeekType::Matchday;
+    bool PlayOff = false;
 };  
 
 class MatchesInitializer 
@@ -57,6 +58,12 @@ public:
     static void InitSerieA24_25(PGconn* pg);
 	static void InitPremierLeague24_25(PGconn* pg);
     static void InitLaLiga24_25(PGconn* pg);
+
+    static void InitCoppaItaliaTeams24_25(PGconn* pg);
+    static void InitCoppaItalia24_25(PGconn* pg);
+
+    static void InitSuperCupItaliaTeams24_25(PGconn* pg);
+    static void InitSuperCupItalia24_25(PGconn* pg);
 
     static void InitNationsLeagueTeams24_25(PGconn* pg);
     static void InitNationsLeague24_25(PGconn* pg);

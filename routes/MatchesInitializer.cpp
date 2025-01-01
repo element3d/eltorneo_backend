@@ -3265,3 +3265,127 @@ void MatchesInitializer::InitPremierLeague24_25(PGconn* pg)
         PQclear(ret);
     }
 }
+
+void MatchesInitializer::InitCoppaItaliaTeams24_25(PGconn* pg)
+{
+    std::vector<ETeam> newTeams =
+    {
+        ETeam::Sassuolo,
+        ETeam::Cesena,
+        ETeam::Sampdoria,
+    };
+
+    for (ETeam t : newTeams)
+    {
+        std::string sql = "insert into teams(id, name, short_name) values ("
+            + std::to_string(int(t)) + ", '"
+            + Team::ToString(t) + "', '"
+            + Team::ToShortString(t)
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::Bologna);
+    teams.push_back(ETeam::Monza);
+    teams.push_back(ETeam::ACMilan);
+    teams.push_back(ETeam::Sassuolo); 
+    teams.push_back(ETeam::Fiorentina);
+    teams.push_back(ETeam::Empoli);
+    teams.push_back(ETeam::Lazio);
+    teams.push_back(ETeam::Napoli);
+    teams.push_back(ETeam::Juventus);
+    teams.push_back(ETeam::Cagliari);
+    teams.push_back(ETeam::Atalanta);
+    teams.push_back(ETeam::Cesena);
+    teams.push_back(ETeam::Roma);
+    teams.push_back(ETeam::Sampdoria);
+    teams.push_back(ETeam::InterMilan);
+    teams.push_back(ETeam::Udinese);
+
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::CoppaItalia)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitSuperCupItaliaTeams24_25(PGconn* pg)
+{
+  
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::ACMilan);
+    teams.push_back(ETeam::InterMilan);
+    teams.push_back(ETeam::Atalanta);
+    teams.push_back(ETeam::Juventus);
+  
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::SuperCupItalia)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitCoppaItalia24_25(PGconn* pg)
+{
+    // Premier League
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Bologna, ETeam::Monza, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::ACMilan, ETeam::Sassuolo, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Fiorentina, ETeam::Empoli, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Lazio, ETeam::Napoli, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Juventus, ETeam::Cagliari, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Atalanta, ETeam::Cesena, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::Roma, ETeam::Sampdoria, 1734465600000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::CoppaItalia, "24/25", 1, ETeam::InterMilan, ETeam::Udinese, 1734465600000, EWeekType::RoundOf16, true });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitSuperCupItalia24_25(PGconn * pg)
+{
+    std::vector<Match> matches;
+    // Semi final
+    matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::InterMilan, ETeam::Atalanta, 1735844400000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::Juventus, ETeam::ACMilan, 1735930800000, EWeekType::SemiFinal, true });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
