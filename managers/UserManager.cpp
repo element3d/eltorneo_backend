@@ -96,7 +96,7 @@ int UserManager::CreateUser(const std::string& email, const std::string& name)
         + email + "', '" 
 		+ name + "', " 
         + std::to_string(0) + ", "
-        + std::to_string(2) +
+        + std::to_string(3) +
     ");";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -136,7 +136,7 @@ int UserManager::CreateUser(const std::string& username, const std::string& pass
         + password + "', '"
         + name + "', "
         + std::to_string(0) + ", "
-        + std::to_string(2) +
+        + std::to_string(3) +
         + ");";
 
 
