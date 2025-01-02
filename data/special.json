@@ -41,7 +41,8 @@
         "rampage": "Rampage",
         "new_mutants": "New Mutants",
         "legacy": "Legacy",
-        "happy_new_year": "Happy New Year"
+        "happy_new_year": "Happy New Year",
+        "batman": "Batman"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -85,7 +86,8 @@
         "rampage": "Rampage",
         "new_mutants": "Nuevos mutantes",
         "legacy": "Legado",
-        "happy_new_year": "Feliz año nuevo"
+        "happy_new_year": "Feliz año nuevo",
+        "batman": "Batman"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -129,7 +131,8 @@
         "rampage": "Rampage",
         "new_mutants": "Nouveaux mutants",
         "legacy": "Héritage",
-        "happy_new_year": "Bonne année"
+        "happy_new_year": "Bonne année",
+        "batman": "Batman"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -173,7 +176,8 @@
         "rampage": "Rampage",
         "new_mutants": "Nuovi mutanti",
         "legacy": "Eredità",
-        "happy_new_year": "Buon Anno"
+        "happy_new_year": "Buon Anno",
+        "batman": "Batman"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -217,7 +221,8 @@
         "rampage": "Rampage",
         "new_mutants": "Новые Мутанты",
         "legacy": "Наследие",
-        "happy_new_year": "С Новым Годом"
+        "happy_new_year": "С Новым Годом",
+        "batman": "Batman"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -261,7 +266,8 @@
         "rampage": "Rampage",
         "new_mutants": "Novos Mutantes",
         "legacy": "Legado",
-        "happy_new_year": "Feliz Ano Novo"
+        "happy_new_year": "Feliz Ano Novo",
+        "batman": "Batman"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -305,7 +311,8 @@
         "rampage": "Rampage",
         "new_mutants": "Neue Mutanten",
         "legacy": "Vermächtnis",
-        "happy_new_year": "Frohes Neues Jahr"
+        "happy_new_year": "Frohes Neues Jahr",
+        "batman": "Batman"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -349,6 +356,7 @@
         "rampage": "Rampage",
         "new_mutants": "Novi mutanti",
         "legacy": "Naslijeđe",
-        "happy_new_year": "Sretna Nova godina"
+        "happy_new_year": "Sretna Nova godina",
+        "batman": "Batman"
     }
 }
