@@ -65,6 +65,9 @@ public:
     static void InitSuperCupItaliaTeams24_25(PGconn* pg);
     static void InitSuperCupItalia24_25(PGconn* pg);
 
+    static void InitSuperCupFranceTeams24_25(PGconn* pg);
+    static void InitSuperCupFrance24_25(PGconn* pg);
+
     static void InitNationsLeagueTeams24_25(PGconn* pg);
     static void InitNationsLeague24_25(PGconn* pg);
 
