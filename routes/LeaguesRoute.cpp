@@ -62,9 +62,9 @@ void LeaguesRoute::Init()
         // MatchesInitializer::InitCoppaItaliaTeams24_25(pg);
         //MatchesInitializer::InitCoppaItalia24_25(pg);
         //MatchesInitializer::InitSuperCupItaliaTeams24_25(pg);
-        //MatchesInitializer::InitSuperCupItalia24_25(pg);
-        MatchesInitializer::InitSuperCupFranceTeams24_25(pg);
-        MatchesInitializer::InitSuperCupFrance24_25(pg);
+        MatchesInitializer::InitSuperCupItalia24_25(pg);
+        //MatchesInitializer::InitSuperCupFranceTeams24_25(pg);
+        //MatchesInitializer::InitSuperCupFrance24_25(pg);
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }
