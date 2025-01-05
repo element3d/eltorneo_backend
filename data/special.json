@@ -46,7 +46,8 @@
         "the_gentlemen": "The Gentlemen",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -95,7 +96,8 @@
         "the_gentlemen": "Los Caballeros",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -144,7 +146,8 @@
         "the_gentlemen": "Les Gentlemen",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -193,7 +196,8 @@
         "the_gentlemen": "I Gentlemen",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -242,7 +246,8 @@
         "the_gentlemen": "Джентльмены",
         "deadpool": "Дэдпул",
         "rome_total_war": "Рим: Total War",
-        "aladdin": "Аладдин"
+        "aladdin": "Аладдин",
+        "batman_vs_dracula": "Бэтмен против Дракулы"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -291,7 +296,8 @@
         "the_gentlemen": "Os Cavalheiros",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -340,7 +346,8 @@
         "the_gentlemen": "Die Gentlemen",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -389,6 +396,7 @@
         "the_gentlemen": "Gospoda",
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
-        "aladdin": "Aladdin"
+        "aladdin": "Aladdin",
+        "batman_vs_dracula": "Batman vs. Dracula"
     }
 }
