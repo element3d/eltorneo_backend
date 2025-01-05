@@ -3477,8 +3477,8 @@ void MatchesInitializer::InitEFLCup24_25(PGconn* pg)
 {
     std::vector<Match> matches;
     // Semi final
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::Arsenal, ETeam::NewcastleUnited, 1736280000000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::TottenhamHotspur, ETeam::Liverpool, 1736366400000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::Arsenal, ETeam::NewcastleUnited, 1736280000000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::TottenhamHotspur, ETeam::Liverpool, 1736366400000, EWeekType::SemiFinal, false });
 
     matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::NewcastleUnited, ETeam::Arsenal, 1738785600000, EWeekType::SemiFinal, true });
     matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::Liverpool, ETeam::TottenhamHotspur, 1738872000000, EWeekType::SemiFinal, true });
