@@ -71,6 +71,9 @@ public:
     static void InitSuperCupSpainTeams24_25(PGconn* pg);
     static void InitSuperCupSpain24_25(PGconn* pg);
 
+    static void InitEFLCupTeams24_25(PGconn* pg);
+    static void InitEFLCup24_25(PGconn* pg);
+
     static void InitNationsLeagueTeams24_25(PGconn* pg);
     static void InitNationsLeague24_25(PGconn* pg);
 
