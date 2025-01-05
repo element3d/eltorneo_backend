@@ -14,7 +14,8 @@ enum class ELeague
     CoppaItalia,
     SuperCupItalia,
     SuperCupFrance,
-    End = SuperCupFrance
+    SuperCupSpain,
+    End = SuperCupSpain
 };
 
 enum class ELeagueType 

@@ -46,6 +46,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 547;
 	case ELeague::SuperCupFrance:
 		return 526;
+	case ELeague::SuperCupSpain:
+		return 556;
 	default:
 		break;
 	}
@@ -362,7 +364,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Round of 16";
 		}
 	}
-	else if (league == ELeague::SuperCupItalia)
+	else if (league == ELeague::SuperCupItalia || league == ELeague::SuperCupSpain)
 	{
 		if (week == 1)
 		{

@@ -3333,6 +3333,25 @@ void MatchesInitializer::InitSuperCupItaliaTeams24_25(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitSuperCupSpainTeams24_25(PGconn* pg)
+{
+
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::AthleticClub);
+    teams.push_back(ETeam::Barcelona);
+    teams.push_back(ETeam::RealMadrid);
+    teams.push_back(ETeam::Mallorca);
+
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::SuperCupSpain)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 void MatchesInitializer::InitSuperCupFranceTeams24_25(PGconn* pg)
 {
 
@@ -3409,6 +3428,32 @@ void MatchesInitializer::InitSuperCupItalia24_25(PGconn * pg)
         PQclear(ret);
     }
 }
+
+void MatchesInitializer::InitSuperCupSpain24_25(PGconn* pg)
+{
+    std::vector<Match> matches;
+    // Semi final
+    matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::AthleticClub, ETeam::Barcelona, 1736362800000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::RealMadrid, ETeam::Mallorca, 1736449200000, EWeekType::SemiFinal, true });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 
 void MatchesInitializer::InitSuperCupFrance24_25(PGconn* pg)
 {
