@@ -43,7 +43,10 @@
         "legacy": "Legacy",
         "happy_new_year": "Happy New Year",
         "batman": "Batman",
-        "the_gentlemen": "The Gentlemen"
+        "the_gentlemen": "The Gentlemen",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -89,7 +92,10 @@
         "legacy": "Legado",
         "happy_new_year": "Feliz año nuevo",
         "batman": "Batman",
-        "the_gentlemen": "Los Caballeros"
+        "the_gentlemen": "Los Caballeros",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -135,7 +141,10 @@
         "legacy": "Héritage",
         "happy_new_year": "Bonne année",
         "batman": "Batman",
-        "the_gentlemen": "Les Gentlemen"
+        "the_gentlemen": "Les Gentlemen",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -181,7 +190,10 @@
         "legacy": "Eredità",
         "happy_new_year": "Buon Anno",
         "batman": "Batman",
-        "the_gentlemen": "I Gentlemen"
+        "the_gentlemen": "I Gentlemen",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -227,7 +239,10 @@
         "legacy": "Наследие",
         "happy_new_year": "С Новым Годом",
         "batman": "Batman",
-        "the_gentlemen": "Джентльмены"
+        "the_gentlemen": "Джентльмены",
+        "deadpool": "Дэдпул",
+        "rome_total_war": "Рим: Total War",
+        "aladdin": "Аладдин"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -273,7 +288,10 @@
         "legacy": "Legado",
         "happy_new_year": "Feliz Ano Novo",
         "batman": "Batman",
-        "the_gentlemen": "Os Cavalheiros"
+        "the_gentlemen": "Os Cavalheiros",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -319,7 +337,10 @@
         "legacy": "Vermächtnis",
         "happy_new_year": "Frohes Neues Jahr",
         "batman": "Batman",
-        "the_gentlemen": "Die Gentlemen"
+        "the_gentlemen": "Die Gentlemen",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -365,6 +386,9 @@
         "legacy": "Naslijeđe",
         "happy_new_year": "Sretna Nova godina",
         "batman": "Batman",
-        "the_gentlemen": "Gospoda"
+        "the_gentlemen": "Gospoda",
+        "deadpool": "Deadpool",
+        "rome_total_war": "Rome: Total War",
+        "aladdin": "Aladdin"
     }
 }
