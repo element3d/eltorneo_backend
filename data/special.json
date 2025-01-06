@@ -47,7 +47,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -97,7 +99,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -147,7 +151,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -197,7 +203,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -247,7 +255,9 @@
         "deadpool": "Дэдпул",
         "rome_total_war": "Рим: Total War",
         "aladdin": "Аладдин",
-        "batman_vs_dracula": "Бэтмен против Дракулы"
+        "batman_vs_dracula": "Бэтмен против Дракулы",
+        "spider_man": "Человек-Паук",
+        "venom": "Веном"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -297,7 +307,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -347,7 +359,9 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -397,6 +411,8 @@
         "deadpool": "Deadpool",
         "rome_total_war": "Rome: Total War",
         "aladdin": "Aladdin",
-        "batman_vs_dracula": "Batman vs. Dracula"
+        "batman_vs_dracula": "Batman vs. Dracula",
+        "spider_man": "Spider-Man",
+        "venom": "Venom"
     }
 }
