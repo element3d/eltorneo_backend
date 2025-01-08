@@ -49,7 +49,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "The Beekeeper"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -101,7 +102,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "El Apicultor"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -153,7 +155,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "L'Apiculteur"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -205,7 +208,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "L'Apicoltore"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -257,7 +261,8 @@
         "aladdin": "Аладдин",
         "batman_vs_dracula": "Бэтмен против Дракулы",
         "spider_man": "Человек-Паук",
-        "venom": "Веном"
+        "venom": "Веном",
+        "the_beekeeper": "Пчеловод"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -309,7 +314,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "O Apicultor"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -361,7 +367,8 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "Der Imker"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -413,6 +420,7 @@
         "aladdin": "Aladdin",
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
-        "venom": "Venom"
+        "venom": "Venom",
+        "the_beekeeper": "Pčelar"
     }
 }
