@@ -50,7 +50,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "The Beekeeper"
+        "the_beekeeper": "The Beekeeper",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -103,7 +104,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "El Apicultor"
+        "the_beekeeper": "El Apicultor",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -156,7 +158,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "L'Apiculteur"
+        "the_beekeeper": "L'Apiculteur",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -209,7 +212,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "L'Apicoltore"
+        "the_beekeeper": "L'Apicoltore",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -262,7 +266,8 @@
         "batman_vs_dracula": "Бэтмен против Дракулы",
         "spider_man": "Человек-Паук",
         "venom": "Веном",
-        "the_beekeeper": "Пчеловод"
+        "the_beekeeper": "Пчеловод",
+        "venom_vs_spiderman": "Веном против Человека-Паука"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -315,7 +320,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "O Apicultor"
+        "the_beekeeper": "O Apicultor",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -368,7 +374,8 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "Der Imker"
+        "the_beekeeper": "Der Imker",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -421,6 +428,7 @@
         "batman_vs_dracula": "Batman vs. Dracula",
         "spider_man": "Spider-Man",
         "venom": "Venom",
-        "the_beekeeper": "Pčelar"
+        "the_beekeeper": "Pčelar",
+        "venom_vs_spiderman": "Venom vs. Spider-Man"
     }
 }
