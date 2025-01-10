@@ -3452,8 +3452,11 @@ void MatchesInitializer::InitSuperCupSpain24_25(PGconn* pg)
 {
     std::vector<Match> matches;
     // Semi final
-    matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::AthleticClub, ETeam::Barcelona, 1736362800000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::RealMadrid, ETeam::Mallorca, 1736449200000, EWeekType::SemiFinal, true });
+    //matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::AthleticClub, ETeam::Barcelona, 1736362800000, EWeekType::SemiFinal, true });
+    //matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::RealMadrid, ETeam::Mallorca, 1736449200000, EWeekType::SemiFinal, true });
+
+    matches.push_back({ ELeague::SuperCupSpain, "24/25", 2, ETeam::RealMadrid, ETeam::Barcelona, 1736708400000, EWeekType::Final, true });
+
 
     for (auto& m : matches)
     {
