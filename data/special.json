@@ -51,7 +51,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "The Beekeeper",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -105,7 +106,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "El Apicultor",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -159,7 +161,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "L'Apiculteur",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -213,7 +216,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "L'Apicoltore",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -267,7 +271,8 @@
         "spider_man": "Человек-Паук",
         "venom": "Веном",
         "the_beekeeper": "Пчеловод",
-        "venom_vs_spiderman": "Веном против Человека-Паука"
+        "venom_vs_spiderman": "Веном против Человека-Паука",
+        "jurassik_park": "Парк юрского периода"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -321,7 +326,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "O Apicultor",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -375,7 +381,8 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "Der Imker",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -429,6 +436,7 @@
         "spider_man": "Spider-Man",
         "venom": "Venom",
         "the_beekeeper": "Pčelar",
-        "venom_vs_spiderman": "Venom vs. Spider-Man"
+        "venom_vs_spiderman": "Venom vs. Spider-Man",
+        "jurassik_park": "Jurassik Park"
     }
 }
