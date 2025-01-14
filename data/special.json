@@ -52,7 +52,8 @@
         "venom": "Venom",
         "the_beekeeper": "The Beekeeper",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -107,7 +108,8 @@
         "venom": "Venom",
         "the_beekeeper": "El Apicultor",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -162,7 +164,8 @@
         "venom": "Venom",
         "the_beekeeper": "L'Apiculteur",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -217,7 +220,8 @@
         "venom": "Venom",
         "the_beekeeper": "L'Apicoltore",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -272,7 +276,8 @@
         "venom": "Веном",
         "the_beekeeper": "Пчеловод",
         "venom_vs_spiderman": "Веном против Человека-Паука",
-        "jurassik_park": "Парк юрского периода"
+        "jurassik_park": "Парк юрского периода",
+        "fantastic_beasts": "Фантастические твари"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -327,7 +332,8 @@
         "venom": "Venom",
         "the_beekeeper": "O Apicultor",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -382,7 +388,8 @@
         "venom": "Venom",
         "the_beekeeper": "Der Imker",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -437,6 +444,7 @@
         "venom": "Venom",
         "the_beekeeper": "Pčelar",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
-        "jurassik_park": "Jurassik Park"
+        "jurassik_park": "Jurassik Park",
+        "fantastic_beasts": "Fantastic Beasts"
     }
 }
