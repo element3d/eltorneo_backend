@@ -53,7 +53,9 @@
         "the_beekeeper": "The Beekeeper",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "The Werewolf",
+        "deathly_hallows": "Deathly Hallows"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -109,7 +111,9 @@
         "the_beekeeper": "El Apicultor",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "El hombre lobo",
+        "deathly_hallows": "Las Reliquias de la Muerte"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -165,7 +169,9 @@
         "the_beekeeper": "L'Apiculteur",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "Le Loup Garou",
+        "deathly_hallows": "Les Reliques de la Mort"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -221,7 +227,9 @@
         "the_beekeeper": "L'Apicoltore",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "Il Lupo Mannaro",
+        "deathly_hallows": "I Doni della Morte"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -277,7 +285,9 @@
         "the_beekeeper": "Пчеловод",
         "venom_vs_spiderman": "Веном против Человека-Паука",
         "jurassik_park": "Парк юрского периода",
-        "fantastic_beasts": "Фантастические твари"
+        "fantastic_beasts": "Фантастические твари",
+        "the_werewolf": "Оборотень",
+        "deathly_hallows": "Дары Смерти"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -333,7 +343,9 @@
         "the_beekeeper": "O Apicultor",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "O Lobisomem",
+        "deathly_hallows": "As Relíquias da Morte"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -389,7 +401,9 @@
         "the_beekeeper": "Der Imker",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "Der Werwolf",
+        "deathly_hallows": "Die Heiligtümer des Todes"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -445,6 +459,8 @@
         "the_beekeeper": "Pčelar",
         "venom_vs_spiderman": "Venom vs. Spider-Man",
         "jurassik_park": "Jurassik Park",
-        "fantastic_beasts": "Fantastic Beasts"
+        "fantastic_beasts": "Fantastic Beasts",
+        "the_werewolf": "Vukodlak",
+        "deathly_hallows": "Darovi Smrti"
     }
 }
