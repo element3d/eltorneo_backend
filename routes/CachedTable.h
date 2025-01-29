@@ -16,6 +16,7 @@ private:
 	static CachedTable* sInstance;
 	std::map<int, int> mTable;
 	std::map<int, int> mTableLeague2;
+	std::map<int, int> mTableLeague3;
 
 	std::mutex mMutex;
 };

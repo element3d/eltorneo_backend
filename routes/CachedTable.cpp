@@ -68,6 +68,33 @@ void CachedTable::Cache()
         PQclear(ret);
     }
 
+    {
+        std::string sql = "SELECT u.id, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id WHERE p.status != 4 AND u.league = 3 GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        {
+            std::lock_guard<std::mutex> l(mMutex);
+            mTableLeague3.clear();
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int pos = i + 1;
+                int uid = atoi(PQgetvalue(ret, i, 0));
+                mTableLeague3[uid] = pos;
+            }
+        }
+        PQclear(ret);
+    }
+
     ConnectionPool::Get()->releaseConnection(pg);
 }
 
@@ -83,6 +110,11 @@ int CachedTable::GetPosition(int userId, int league)
     {
         if (mTableLeague2.find(userId) == mTableLeague2.end()) return -1;
         return mTableLeague2[userId];
+    }
+    if (league == 3)
+    {
+        if (mTableLeague3.find(userId) == mTableLeague3.end()) return -1;
+        return mTableLeague3[userId];
     }
     return -1;
 }
