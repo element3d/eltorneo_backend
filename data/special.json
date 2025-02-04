@@ -59,7 +59,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Horns and Hooves",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -121,7 +122,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Cuernos y pezuñas",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -183,7 +185,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Cornes et sabots",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -245,7 +248,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Corna e zoccoli",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -307,7 +311,8 @@
         "pirates_caribbean": "Пираты Карибского моря",
         "horns_and_hooves": "Рога и копыта",
         "spider_man_vs_sub_zero": "Человек-паук против Саб-Зиро",
-        "ninja_go": "Ниндзяго"
+        "ninja_go": "Ниндзяго",
+        "pacific_assault": "Тихоокеанский штурм"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -369,7 +374,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Chifres e cascos",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -431,7 +437,8 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Hörner und Hufe",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -493,6 +500,7 @@
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Rogovi i kopita",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
-        "ninja_go": "Ninjago"
+        "ninja_go": "Ninjago",
+        "pacific_assault": "Pacific Assault"
     }
 }
