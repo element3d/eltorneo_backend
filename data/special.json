@@ -60,7 +60,8 @@
         "horns_and_hooves": "Horns and Hooves",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Caesar's Civil War"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -123,7 +124,8 @@
         "horns_and_hooves": "Cuernos y pezuñas",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Guerra civil de César"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -186,7 +188,8 @@
         "horns_and_hooves": "Cornes et sabots",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Guerre Civile de César"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -249,7 +252,8 @@
         "horns_and_hooves": "Corna e zoccoli",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Guerra civile di Cesare"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -312,7 +316,8 @@
         "horns_and_hooves": "Рога и копыта",
         "spider_man_vs_sub_zero": "Человек-паук против Саб-Зиро",
         "ninja_go": "Ниндзяго",
-        "pacific_assault": "Тихоокеанский штурм"
+        "pacific_assault": "Тихоокеанский штурм",
+        "civil_war": "Гражданская война Цезаря"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -375,7 +380,8 @@
         "horns_and_hooves": "Chifres e cascos",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Guerra Civil de César"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -438,7 +444,8 @@
         "horns_and_hooves": "Hörner und Hufe",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Caesars Bürgerkrieg"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -501,6 +508,7 @@
         "horns_and_hooves": "Rogovi i kopita",
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
-        "pacific_assault": "Pacific Assault"
+        "pacific_assault": "Pacific Assault",
+        "civil_war": "Cezarov građanski rat"
     }
 }
