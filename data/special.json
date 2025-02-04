@@ -62,7 +62,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Caesar's Civil War"
+        "civil_war": "Caesar's Civil War",
+        "carnage": "Carnage"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -127,7 +128,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Guerra civil de César"
+        "civil_war": "Guerra civil de César",
+        "carnage": "Carnage"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -192,7 +194,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Guerre Civile de César"
+        "civil_war": "Guerre Civile de César",
+        "carnage": "Carnage"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -257,7 +260,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Guerra civile di Cesare"
+        "civil_war": "Guerra civile di Cesare",
+        "carnage": "Carnage"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -322,7 +326,8 @@
         "spider_man_vs_sub_zero": "Человек-паук против Саб-Зиро",
         "ninja_go": "Ниндзяго",
         "pacific_assault": "Тихоокеанский штурм",
-        "civil_war": "Гражданская война Цезаря"
+        "civil_war": "Гражданская война Цезаря",
+        "carnage": "Карнаж"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -387,7 +392,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Guerra Civil de César"
+        "civil_war": "Guerra Civil de César",
+        "carnage": "Carnage"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -452,7 +458,8 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Caesars Bürgerkrieg"
+        "civil_war": "Caesars Bürgerkrieg",
+        "carnage": "Carnage"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -517,6 +524,7 @@
         "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
-        "civil_war": "Cezarov građanski rat"
+        "civil_war": "Cezarov građanski rat",
+        "carnage": "Carnage"
     }
 }
