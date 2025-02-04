@@ -59,6 +59,9 @@ public:
 	static void InitPremierLeague24_25(PGconn* pg);
     static void InitLaLiga24_25(PGconn* pg);
 
+    static void InitCopaDelReyTeams24_25(PGconn* pg);
+    static void InitCopaDelRey24_25(PGconn* pg);
+
     static void InitCoppaItaliaTeams24_25(PGconn* pg);
     static void InitCoppaItalia24_25(PGconn* pg);
 

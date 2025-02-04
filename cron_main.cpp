@@ -50,6 +50,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 556;
 	case ELeague::EFLCup:
 		return 48;
+	case ELeague::CopaDelRey:
+		return 143;
 	default:
 		break;
 	}
@@ -359,13 +361,6 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "League Stage - " + std::to_string(week);
 		}
 	}
-	else if (league == ELeague::CoppaItalia)
-	{
-		if (week == 1)
-		{
-			round = "Round of 16";
-		}
-	}
 	else if (league == ELeague::SuperCupItalia || league == ELeague::SuperCupSpain || league == ELeague::EFLCup)
 	{
 		if (week == 1)
@@ -380,6 +375,21 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 	else if (league == ELeague::SuperCupFrance)
 	{
 		if (week == 1)
+		{
+			round = "Final";
+		}
+	}
+	else if (league == ELeague::CopaDelRey || league == ELeague::CoppaItalia)
+	{
+		if (week == 1)
+		{
+			round = "Quarter-finals";
+		}
+		if (week == 2)
+		{
+			round = "Semi-finals";
+		}
+		else if (week == 3)
 		{
 			round = "Final";
 		}
