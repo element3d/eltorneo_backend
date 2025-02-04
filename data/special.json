@@ -58,7 +58,8 @@
         "deathly_hallows": "Deathly Hallows",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Horns and Hooves",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -119,7 +120,8 @@
         "deathly_hallows": "Las Reliquias de la Muerte",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Cuernos y pezuñas",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -180,7 +182,8 @@
         "deathly_hallows": "Les Reliques de la Mort",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Cornes et sabots",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -241,7 +244,8 @@
         "deathly_hallows": "I Doni della Morte",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Corna e zoccoli",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -302,7 +306,8 @@
         "deathly_hallows": "Дары Смерти",
         "pirates_caribbean": "Пираты Карибского моря",
         "horns_and_hooves": "Рога и копыта",
-        "spider_man_vs_sub_zero": "Человек-паук против Саб-Зиро"
+        "spider_man_vs_sub_zero": "Человек-паук против Саб-Зиро",
+        "ninja_go": "Ниндзяго"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -363,7 +368,8 @@
         "deathly_hallows": "As Relíquias da Morte",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Chifres e cascos",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -424,7 +430,8 @@
         "deathly_hallows": "Die Heiligtümer des Todes",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Hörner und Hufe",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -485,6 +492,7 @@
         "deathly_hallows": "Darovi Smrti",
         "pirates_caribbean": "Pirates of the Caribbean",
         "horns_and_hooves": "Rogovi i kopita",
-        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero"
+        "spider_man_vs_sub_zero": "Spider-Man vs. Sub-Zero",
+        "ninja_go": "Ninjago"
     }
 }
