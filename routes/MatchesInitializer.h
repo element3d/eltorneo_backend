@@ -31,7 +31,6 @@ public:
     static void InitChampionsLeagueTeams24_25(PGconn* pg);
     static void InitChampionsLeagueTable(PGconn* pg);
 
-
     static void InitPremierLeagueTeams24_25(PGconn* pg);
     static void InitPremierLeagueTable(PGconn* pg);
     static void FillPremierLeagueTable(PGconn* pg);
@@ -53,6 +52,8 @@ public:
     static void FillLigue1Table(PGconn* pg);
 
     static void InitChampionsLeague24_25(PGconn* pg);
+    static void InitChampionsLeaguePO24_25(PGconn* pg);
+
     static void InitLigue124_25(PGconn* pg);
     static void InitBundesliga24_25(PGconn* pg);
     static void InitSerieA24_25(PGconn* pg);

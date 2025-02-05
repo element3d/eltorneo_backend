@@ -876,6 +876,34 @@ void MatchesInitializer::FillLigue1Table(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::Ligue1));
 }
 
+void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
+{
+    std::vector<Match> matches;
+    // 1-16 Finals
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739295900000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Juventus, ETeam::PSV, 1739304000000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ManchesterCity, ETeam::RealMadrid, 1739304000000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::SportingLisbon, ETeam::BorussiaDortmund, 1739304000000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ClubBrugge, ETeam::Atalanta, 1739382300000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Monaco, ETeam::Benfica, 1739390400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Celtic, ETeam::BayernMunich, 1739390400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Feyenoord, ETeam::ACMilan, 1739390400000, EWeekType::RoundOf16, false });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, team1, team2, match_date) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 void MatchesInitializer::InitChampionsLeague24_25(PGconn* pg)
 {
     std::vector<Match> matches;

@@ -360,6 +360,10 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		{
 			round = "League Stage - " + std::to_string(week);
 		}
+		else if (week == 9) 
+		{
+			round = "Knockout Round Play-offs";
+		}
 	}
 	else if (league == ELeague::SuperCupItalia || league == ELeague::SuperCupSpain || league == ELeague::EFLCup)
 	{
@@ -861,7 +865,7 @@ void GetLiveMatches(PGconn* pg)
 					}
 
 					// Update BeatBet
-					UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
+					// UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
 
 					// Update user predics
 					sql = "SELECT * FROM predicts WHERE match_id = " + std::to_string(id) + ";";
