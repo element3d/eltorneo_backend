@@ -9,7 +9,8 @@ enum class EWeekType
     RoundOf16,
     QuarterFinal,
     SemiFinal,
-    Final
+    Final,
+    RoundOf8,
 };
 
 class Match
