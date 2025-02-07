@@ -63,7 +63,9 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Caesar's Civil War",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "At the world's end"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -129,7 +131,9 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Guerra civil de César",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "En el fin del mundo"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -195,7 +199,9 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Guerre Civile de César",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "Jusqu'au bout du monde"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -261,7 +267,10 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Guerra civile di Cesare",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "Ai confini del mondo",
+
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -327,7 +336,9 @@
         "ninja_go": "Ниндзяго",
         "pacific_assault": "Тихоокеанский штурм",
         "civil_war": "Гражданская война Цезаря",
-        "carnage": "Карнаж"
+        "carnage": "Карнаж",
+        "banlieue_13": "13-й район",
+        "worlds_end": "На краю света"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -393,7 +404,9 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Guerra Civil de César",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "No Fim do Mundo"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -459,7 +472,9 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Caesars Bürgerkrieg",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "Am Ende der Welt"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -525,6 +540,8 @@
         "ninja_go": "Ninjago",
         "pacific_assault": "Pacific Assault",
         "civil_war": "Cezarov građanski rat",
-        "carnage": "Carnage"
+        "carnage": "Carnage",
+        "banlieue_13": "Banlieue 13",
+        "worlds_end": "Na kraju svijeta"
     }
 }
