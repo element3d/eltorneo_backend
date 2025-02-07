@@ -65,7 +65,8 @@
         "civil_war": "Caesar's Civil War",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "At the world's end"
+        "worlds_end": "At the world's end",
+        "revenge_of_fallen": "Revenge of the fallen"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -133,7 +134,8 @@
         "civil_war": "Guerra civil de César",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "En el fin del mundo"
+        "worlds_end": "En el fin del mundo",
+        "revenge_of_fallen": "La venganza de los caídos"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -201,7 +203,8 @@
         "civil_war": "Guerre Civile de César",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "Jusqu'au bout du monde"
+        "worlds_end": "Jusqu'au bout du monde",
+        "revenge_of_fallen": "La Revanche des déchus"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -270,7 +273,7 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Ai confini del mondo",
-
+        "revenge_of_fallen": "La vendetta del caduto"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -338,7 +341,8 @@
         "civil_war": "Гражданская война Цезаря",
         "carnage": "Карнаж",
         "banlieue_13": "13-й район",
-        "worlds_end": "На краю света"
+        "worlds_end": "На краю света",
+        "revenge_of_fallen": "Месть падших"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -406,7 +410,8 @@
         "civil_war": "Guerra Civil de César",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "No Fim do Mundo"
+        "worlds_end": "No Fim do Mundo",
+        "revenge_of_fallen": "A Vingança dos Derrotados"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -474,7 +479,8 @@
         "civil_war": "Caesars Bürgerkrieg",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "Am Ende der Welt"
+        "worlds_end": "Am Ende der Welt",
+        "revenge_of_fallen": "Die Rache der Gefallenen"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -542,6 +548,7 @@
         "civil_war": "Cezarov građanski rat",
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
-        "worlds_end": "Na kraju svijeta"
+        "worlds_end": "Na kraju svijeta",
+        "revenge_of_fallen": "Osveta palih"
     }
 }
