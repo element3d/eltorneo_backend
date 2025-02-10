@@ -66,7 +66,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "At the world's end",
-        "revenge_of_fallen": "Revenge of the fallen"
+        "revenge_of_fallen": "Revenge of the fallen",
+        "wolverine": "Wolverine"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -135,7 +136,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "En el fin del mundo",
-        "revenge_of_fallen": "La venganza de los caídos"
+        "revenge_of_fallen": "La venganza de los caídos",
+        "wolverine": "Wolverine"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -204,7 +206,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Jusqu'au bout du monde",
-        "revenge_of_fallen": "La Revanche des déchus"
+        "revenge_of_fallen": "La Revanche des déchus",
+        "wolverine": "Wolverine"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -273,7 +276,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Ai confini del mondo",
-        "revenge_of_fallen": "La vendetta del caduto"
+        "revenge_of_fallen": "La vendetta del caduto",
+        "wolverine": "Wolverine"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -342,7 +346,8 @@
         "carnage": "Карнаж",
         "banlieue_13": "13-й район",
         "worlds_end": "На краю света",
-        "revenge_of_fallen": "Месть падших"
+        "revenge_of_fallen": "Месть падших",
+        "wolverine": "Росомаха"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -411,7 +416,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "No Fim do Mundo",
-        "revenge_of_fallen": "A Vingança dos Derrotados"
+        "revenge_of_fallen": "A Vingança dos Derrotados",
+        "wolverine": "Wolverine"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -480,7 +486,8 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Am Ende der Welt",
-        "revenge_of_fallen": "Die Rache der Gefallenen"
+        "revenge_of_fallen": "Die Rache der Gefallenen",
+        "wolverine": "Wolverine"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -549,6 +556,7 @@
         "carnage": "Carnage",
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Na kraju svijeta",
-        "revenge_of_fallen": "Osveta palih"
+        "revenge_of_fallen": "Osveta palih",
+        "wolverine": "Wolverine"
     }
 }
