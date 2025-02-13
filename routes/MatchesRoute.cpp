@@ -1457,7 +1457,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
             // Team 1 object
             rapidjson::Value team1Obj(rapidjson::kObjectType);
-            team1Obj.AddMember("id", atoi(PQgetvalue(ret, i, 19)), allocator);
+            team1Obj.AddMember("id", atoi(PQgetvalue(ret, i, 20)), allocator);
             team1Obj.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 21), allocator), allocator);
             team1Obj.AddMember("shortName", rapidjson::Value(PQgetvalue(ret, i, 22), allocator), allocator);
             team1Obj.AddMember("league_index", atoi(PQgetvalue(ret, i, 26)), allocator);  // Add league_index for team1
