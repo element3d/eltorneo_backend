@@ -67,7 +67,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "At the world's end",
         "revenge_of_fallen": "Revenge of the fallen",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -137,7 +138,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "En el fin del mundo",
         "revenge_of_fallen": "La venganza de los caídos",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -207,7 +209,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Jusqu'au bout du monde",
         "revenge_of_fallen": "La Revanche des déchus",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -277,7 +280,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Ai confini del mondo",
         "revenge_of_fallen": "La vendetta del caduto",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -347,7 +351,8 @@
         "banlieue_13": "13-й район",
         "worlds_end": "На краю света",
         "revenge_of_fallen": "Месть падших",
-        "wolverine": "Росомаха"
+        "wolverine": "Росомаха",
+        "dead_men_tell": "Мертвецы не рассказывают сказки"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -417,7 +422,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "No Fim do Mundo",
         "revenge_of_fallen": "A Vingança dos Derrotados",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -487,7 +493,8 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Am Ende der Welt",
         "revenge_of_fallen": "Die Rache der Gefallenen",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -557,6 +564,7 @@
         "banlieue_13": "Banlieue 13",
         "worlds_end": "Na kraju svijeta",
         "revenge_of_fallen": "Osveta palih",
-        "wolverine": "Wolverine"
+        "wolverine": "Wolverine",
+        "dead_men_tell": "Dead Men Tell No Tales"
     }
 }
