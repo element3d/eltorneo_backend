@@ -880,14 +880,24 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
 {
     std::vector<Match> matches;
     // 1-16 Finals
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739295900000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Juventus, ETeam::PSV, 1739304000000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ManchesterCity, ETeam::RealMadrid, 1739304000000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::SportingLisbon, ETeam::BorussiaDortmund, 1739304000000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ClubBrugge, ETeam::Atalanta, 1739382300000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Monaco, ETeam::Benfica, 1739390400000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Celtic, ETeam::BayernMunich, 1739390400000, EWeekType::RoundOf16, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Feyenoord, ETeam::ACMilan, 1739390400000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739295900000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Juventus, ETeam::PSV, 1739304000000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ManchesterCity, ETeam::RealMadrid, 1739304000000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::SportingLisbon, ETeam::BorussiaDortmund, 1739304000000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ClubBrugge, ETeam::Atalanta, 1739382300000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Monaco, ETeam::Benfica, 1739390400000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Celtic, ETeam::BayernMunich, 1739390400000, EWeekType::RoundOf16, false });
+    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Feyenoord, ETeam::ACMilan, 1739390400000, EWeekType::RoundOf16, false });
+
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739995200000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::PSV, ETeam::Juventus, 1739995200000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::RealMadrid, ETeam::ManchesterCity, 1739995200000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::BorussiaDortmund, ETeam::SportingLisbon, 1739987100000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Atalanta, ETeam::ClubBrugge, 1739908800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Benfica, ETeam::Monaco, 1739908800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::BayernMunich, ETeam::Celtic, 1739908800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ACMilan, ETeam::Feyenoord, 1739900700000, EWeekType::RoundOf16, true });
+
 
     for (auto& m : matches)
     {
