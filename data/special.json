@@ -68,7 +68,9 @@
         "worlds_end": "At the world's end",
         "revenge_of_fallen": "Revenge of the fallen",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -139,7 +141,9 @@
         "worlds_end": "En el fin del mundo",
         "revenge_of_fallen": "La venganza de los caídos",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -210,7 +214,9 @@
         "worlds_end": "Jusqu'au bout du monde",
         "revenge_of_fallen": "La Revanche des déchus",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -281,7 +287,9 @@
         "worlds_end": "Ai confini del mondo",
         "revenge_of_fallen": "La vendetta del caduto",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -352,7 +360,9 @@
         "worlds_end": "На краю света",
         "revenge_of_fallen": "Месть падших",
         "wolverine": "Росомаха",
-        "dead_men_tell": "Мертвецы не рассказывают сказки"
+        "dead_men_tell": "Мертвецы не рассказывают сказки",
+        "dmc" : "Дьявол Может Плакать",
+        "alien_vs_predator": "Чужой против Хищника"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -423,7 +433,9 @@
         "worlds_end": "No Fim do Mundo",
         "revenge_of_fallen": "A Vingança dos Derrotados",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -494,7 +506,9 @@
         "worlds_end": "Am Ende der Welt",
         "revenge_of_fallen": "Die Rache der Gefallenen",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -565,6 +579,8 @@
         "worlds_end": "Na kraju svijeta",
         "revenge_of_fallen": "Osveta palih",
         "wolverine": "Wolverine",
-        "dead_men_tell": "Dead Men Tell No Tales"
+        "dead_men_tell": "Dead Men Tell No Tales",
+        "dmc" : "Devil May Cry",
+        "alien_vs_predator": "Alien vs Predator"
     }
 }
