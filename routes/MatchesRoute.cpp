@@ -187,6 +187,58 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetTrailers()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        rapidjson::Document d;
+        d.SetArray();
+
+        rapidjson::Value title;
+
+        rapidjson::Value t1;
+        t1.SetObject();
+        title.SetString("Lamine Yamal", d.GetAllocator());
+        t1.AddMember("title", title, d.GetAllocator());
+
+        title.SetString("The Amazing Spider-Man", d.GetAllocator());
+        t1.AddMember("subtitle", title, d.GetAllocator());
+
+        title.SetString("w6kDZYXL94w", d.GetAllocator());
+        t1.AddMember("video", title, d.GetAllocator());
+
+        title.SetString("spider_man", d.GetAllocator());
+        t1.AddMember("image", title, d.GetAllocator());
+
+        rapidjson::Value t2;
+        t2.SetObject();
+        title.SetString("Erling Halland", d.GetAllocator());
+        t2.AddMember("title", title, d.GetAllocator());
+
+        title.SetString("Dead Men Tell No Tales", d.GetAllocator());
+        t2.AddMember("subtitle", title, d.GetAllocator());
+
+        title.SetString("AMZyXoQtlM8", d.GetAllocator());
+        t2.AddMember("video", title, d.GetAllocator());
+
+        title.SetString("dead_men_tell", d.GetAllocator());
+        t2.AddMember("image", title, d.GetAllocator());
+
+        d.PushBack(t1, d.GetAllocator());
+        d.PushBack(t2, d.GetAllocator());
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        d.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetTeamMatches()
 {
     return [&](const httplib::Request& req, httplib::Response& res) {
