@@ -215,7 +215,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         rapidjson::Value t2;
         t2.SetObject();
-        title.SetString("Erling Halland", d.GetAllocator());
+        title.SetString("Erling Haaland", d.GetAllocator());
         t2.AddMember("title", title, d.GetAllocator());
 
         title.SetString("Dead Men Tell No Tales", d.GetAllocator());
