@@ -70,7 +70,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Gods Of Egypt"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -143,7 +144,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Dioses de Egipto"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -216,7 +218,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Dieux d'Egypte"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -289,7 +292,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Dei dell'Egitto"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -362,7 +366,8 @@
         "wolverine": "Росомаха",
         "dead_men_tell": "Мертвецы не рассказывают сказки",
         "dmc" : "Дьявол Может Плакать",
-        "alien_vs_predator": "Чужой против Хищника"
+        "alien_vs_predator": "Чужой против Хищника",
+        "gods_of_egypt": "Боги Египта"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -435,7 +440,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Deuses do Egito"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -508,7 +514,8 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Götter Ägyptens"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -581,6 +588,7 @@
         "wolverine": "Wolverine",
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
-        "alien_vs_predator": "Alien vs Predator"
+        "alien_vs_predator": "Alien vs Predator",
+        "gods_of_egypt": "Bogovi Egipta"
     }
 }
