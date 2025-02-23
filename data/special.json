@@ -71,7 +71,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Gods Of Egypt"
+        "gods_of_egypt": "Gods Of Egypt",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -145,7 +146,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Dioses de Egipto"
+        "gods_of_egypt": "Dioses de Egipto",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -219,7 +221,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Dieux d'Egypte"
+        "gods_of_egypt": "Dieux d'Egypte",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -293,7 +296,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Dei dell'Egitto"
+        "gods_of_egypt": "Dei dell'Egitto",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -367,7 +371,8 @@
         "dead_men_tell": "Мертвецы не рассказывают сказки",
         "dmc" : "Дьявол Может Плакать",
         "alien_vs_predator": "Чужой против Хищника",
-        "gods_of_egypt": "Боги Египта"
+        "gods_of_egypt": "Боги Египта",
+        "the_amazing_sm": "Новый Человек-паук"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -441,7 +446,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Deuses do Egito"
+        "gods_of_egypt": "Deuses do Egito",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -515,7 +521,8 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Götter Ägyptens"
+        "gods_of_egypt": "Götter Ägyptens",
+        "the_amazing_sm": "The Amazing Spider-Man"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -589,6 +596,7 @@
         "dead_men_tell": "Dead Men Tell No Tales",
         "dmc" : "Devil May Cry",
         "alien_vs_predator": "Alien vs Predator",
-        "gods_of_egypt": "Bogovi Egipta"
+        "gods_of_egypt": "Bogovi Egipta",
+        "the_amazing_sm": "The Amazing Spider-Man"
     }
 }
