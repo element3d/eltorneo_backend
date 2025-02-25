@@ -73,7 +73,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Gods Of Egypt",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Lost"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -149,7 +150,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Dioses de Egipto",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Lost"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -225,7 +227,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Dieux d'Egypte",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Les Disparus"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -301,7 +304,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Dei dell'Egitto",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Lost"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -377,7 +381,8 @@
         "alien_vs_predator": "Чужой против Хищника",
         "gods_of_egypt": "Боги Египта",
         "the_amazing_sm": "Новый Человек-паук",
-        "godzilla_vs_kong": "Годзилла против Конга"
+        "godzilla_vs_kong": "Годзилла против Конга",
+        "lost": "Остаться в живых"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -453,7 +458,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Deuses do Egito",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Lost"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -529,7 +535,8 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Götter Ägyptens",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Lost"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -605,6 +612,7 @@
         "alien_vs_predator": "Alien vs Predator",
         "gods_of_egypt": "Bogovi Egipta",
         "the_amazing_sm": "The Amazing Spider-Man",
-        "godzilla_vs_kong": "Godzilla vs. Kong"
+        "godzilla_vs_kong": "Godzilla vs. Kong",
+        "lost": "Izgubljeni"
     }
 }
