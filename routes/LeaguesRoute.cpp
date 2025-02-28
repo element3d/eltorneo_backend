@@ -37,7 +37,7 @@ void LeaguesRoute::Init()
        // MatchesInitializer::InitNationsLeague24_25(pg);
        // MatchesInitializer::InitNationsLeagueTeams24_25(pg);
         //MatchesInitializer::InitChampionsLeague24_25(pg);
-        // MatchesInitializer::InitChampionsLeaguePO24_25(pg);
+        MatchesInitializer::InitChampionsLeaguePO24_25(pg);
         //MatchesInitializer::InitLigue1Teams24_25(pg);
 
         //MatchesInitializer::InitLigue124_25(pg);
@@ -72,7 +72,7 @@ void LeaguesRoute::Init()
         //MatchesInitializer::InitEFLCup24_25(pg);
 
         //MatchesInitializer::InitCopaDelReyTeams24_25(pg);
-        MatchesInitializer::InitCopaDelRey24_25(pg);
+        //MatchesInitializer::InitCopaDelRey24_25(pg);
 
         ConnectionPool::Get()->releaseConnection(pg);
         return;
