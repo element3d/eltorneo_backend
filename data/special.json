@@ -74,7 +74,8 @@
         "gods_of_egypt": "Gods Of Egypt",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Lost"
+        "lost": "Lost",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -151,7 +152,8 @@
         "gods_of_egypt": "Dioses de Egipto",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Lost"
+        "lost": "Lost",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -228,7 +230,8 @@
         "gods_of_egypt": "Dieux d'Egypte",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Les Disparus"
+        "lost": "Les Disparus",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -305,7 +308,8 @@
         "gods_of_egypt": "Dei dell'Egitto",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Lost"
+        "lost": "Lost",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -382,7 +386,8 @@
         "gods_of_egypt": "Боги Египта",
         "the_amazing_sm": "Новый Человек-паук",
         "godzilla_vs_kong": "Годзилла против Конга",
-        "lost": "Остаться в живых"
+        "lost": "Остаться в живых",
+        "tmnt": "Черепашки-ниндзя"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -459,7 +464,8 @@
         "gods_of_egypt": "Deuses do Egito",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Lost"
+        "lost": "Lost",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -536,7 +542,8 @@
         "gods_of_egypt": "Götter Ägyptens",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Lost"
+        "lost": "Lost",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -613,6 +620,7 @@
         "gods_of_egypt": "Bogovi Egipta",
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
-        "lost": "Izgubljeni"
+        "lost": "Izgubljeni",
+        "tmnt": "Teenage Mutant Ninja Turtles"
     }
 }
