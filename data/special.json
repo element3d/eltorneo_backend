@@ -75,7 +75,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Lost",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -153,7 +154,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Lost",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -231,7 +233,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Les Disparus",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -309,7 +312,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Lost",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -387,7 +391,8 @@
         "the_amazing_sm": "Новый Человек-паук",
         "godzilla_vs_kong": "Годзилла против Конга",
         "lost": "Остаться в живых",
-        "tmnt": "Черепашки-ниндзя"
+        "tmnt": "Черепашки-ниндзя",
+        "rush": "Гонка"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -465,7 +470,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Lost",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -543,7 +549,8 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Lost",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -621,6 +628,7 @@
         "the_amazing_sm": "The Amazing Spider-Man",
         "godzilla_vs_kong": "Godzilla vs. Kong",
         "lost": "Izgubljeni",
-        "tmnt": "Teenage Mutant Ninja Turtles"
+        "tmnt": "Teenage Mutant Ninja Turtles",
+        "rush": "Rush"
     }
 }
