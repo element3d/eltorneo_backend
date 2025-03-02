@@ -77,7 +77,9 @@
         "lost": "Lost",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "The Law of the Jungle"
+        "law_of_jungle": "The Law of the Jungle",
+        "lord_dracula": "Lord Dracula",
+        "noob_saibot": "Noob Saibot"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -157,7 +159,9 @@
         "lost": "Lost",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "La ley de la selva"
+        "law_of_jungle": "La ley de la selva",
+        "lord_dracula": "Señor Drácula",
+        "noob_saibot": "Noob Saibot"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -237,7 +241,9 @@
         "lost": "Les Disparus",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "La loi de la jungle"
+        "law_of_jungle": "La loi de la jungle",
+        "lord_dracula": "Seigneur Dracula",
+        "noob_saibot": "Noob Saibot"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -317,7 +323,9 @@
         "lost": "Lost",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "La legge della giungla"
+        "law_of_jungle": "La legge della giungla",
+        "lord_dracula": "Signore Dracula",
+        "noob_saibot": "Noob Saibot"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -397,7 +405,9 @@
         "lost": "Остаться в живых",
         "tmnt": "Черепашки-ниндзя",
         "rush": "Гонка",
-        "law_of_jungle": "Закон джунглей"
+        "law_of_jungle": "Закон джунглей",
+        "lord_dracula": "Лорд Дракула",
+        "noob_saibot": "Нуб Сайбот"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -477,7 +487,9 @@
         "lost": "Lost",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "A Lei da Selva"
+        "law_of_jungle": "A Lei da Selva",
+        "lord_dracula": "Senhor Drácula",
+        "noob_saibot": "Noob Saibot"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -557,7 +569,9 @@
         "lost": "Lost",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "Das Gesetz des Jungles("
+        "law_of_jungle": "Das Gesetz des Jungles",
+        "lord_dracula": "Lord Dracula",
+        "noob_saibot": "Noob Saibot"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -637,6 +651,8 @@
         "lost": "Izgubljeni",
         "tmnt": "Teenage Mutant Ninja Turtles",
         "rush": "Rush",
-        "law_of_jungle": "Zakon džungle"
+        "law_of_jungle": "Zakon džungle",
+        "lord_dracula": "Gospodar Drakula",
+        "noob_saibot": "Noob Saibot"
     }
 }
