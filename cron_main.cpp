@@ -360,9 +360,13 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		{
 			round = "League Stage - " + std::to_string(week);
 		}
-		else if (week == 9 || week == 10)
+		else if (week == 9)
 		{
 			round = "Knockout Round Play-offs";
+		}
+		else if (week == 10) 
+		{
+			round = "Round of 16";
 		}
 	}
 	else if (league == ELeague::SuperCupItalia || league == ELeague::SuperCupSpain || league == ELeague::EFLCup)
