@@ -899,26 +899,37 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
     //matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ACMilan, ETeam::Feyenoord, 1739900700000, EWeekType::RoundOf16, true });
 
 
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::ClubBrugge, ETeam::AstonVilla, 1741110300000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::BorussiaDortmund, ETeam::Lille, 1741118400000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::PSV, ETeam::Arsenal, 1741118400000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::RealMadrid, ETeam::AtleticoMadrid, 1741118400000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Feyenoord, ETeam::InterMilan, 1741196700000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::BayernMunich, ETeam::BayerLeverkusen, 1741204800000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Benfica, ETeam::Barcelona, 1741204800000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::PSG, ETeam::Liverpool, 1741204800000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::ClubBrugge, ETeam::AstonVilla, 1741110300000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::BorussiaDortmund, ETeam::Lille, 1741118400000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::PSV, ETeam::Arsenal, 1741118400000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::RealMadrid, ETeam::AtleticoMadrid, 1741118400000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Feyenoord, ETeam::InterMilan, 1741196700000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::BayernMunich, ETeam::BayerLeverkusen, 1741204800000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Benfica, ETeam::Barcelona, 1741204800000, EWeekType::RoundOf8, false });
+    //matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::PSG, ETeam::Liverpool, 1741204800000, EWeekType::RoundOf8, false });
 
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Barcelona, ETeam::Benfica, 1741715100000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::BayerLeverkusen, ETeam::BayernMunich, 1741723200000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::InterMilan, ETeam::Feyenoord, 1741723200000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Liverpool, ETeam::PSG, 1741723200000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Lille, ETeam::BorussiaDortmund, 1741801500000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::Arsenal, ETeam::PSV, 1741809600000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::AstonVilla, ETeam::ClubBrugge, 1741809600000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 10, ETeam::AtleticoMadrid, ETeam::RealMadrid, 1741809600000, EWeekType::RoundOf8, true });
 
 
     for (auto& m : matches)
     {
-        std::string sql = "insert into matches(league, season, week, team1, team2, match_date) values ("
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
             + std::to_string(int(m.League)) + ", '"
             + m.Season + "', "
             + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
             + std::to_string((int)m.Team1) + ", "
             + std::to_string((int)m.Team2) + ", "
-            + std::to_string(m.Date) + ");";
+            + std::to_string(m.Date) + ", "
+            + std::to_string((int)m.PlayOff) + ""
+            + ");";
 
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
