@@ -80,7 +80,10 @@
         "law_of_jungle": "The Law of the Jungle",
         "lord_dracula": "Lord Dracula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "Armor of God",
+        "gangs_of_london": "Gangs of London"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -163,7 +166,10 @@
         "law_of_jungle": "La ley de la selva",
         "lord_dracula": "Señor Drácula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "La Armadura de Dios",
+        "gangs_of_london": "Las Bandas de Londres"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -246,7 +252,10 @@
         "law_of_jungle": "La loi de la jungle",
         "lord_dracula": "Seigneur Dracula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "L'Armure de Dieu",
+        "gangs_of_london": "Les Gangs de Londres"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -329,7 +338,10 @@
         "law_of_jungle": "La legge della giungla",
         "lord_dracula": "Signore Dracula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "L'Armatura di Dio",
+        "gangs_of_london": "Le Gang di Londra"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -412,7 +424,10 @@
         "law_of_jungle": "Закон джунглей",
         "lord_dracula": "Лорд Дракула",
         "noob_saibot": "Нуб Сайбот",
-        "ultimatum": "Ультиматум"
+        "ultimatum": "Ультиматум",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "Доспехи Бога",
+        "gangs_of_london": "Банды Лондона"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -495,7 +510,10 @@
         "law_of_jungle": "A Lei da Selva",
         "lord_dracula": "Senhor Drácula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "A Armadura de Deus",
+        "gangs_of_london": "Gangs de Londres"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -578,7 +596,10 @@
         "law_of_jungle": "Das Gesetz des Jungles",
         "lord_dracula": "Lord Dracula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "Die Rüstung Gottes",
+        "gangs_of_london": "Gangs of London"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -661,6 +682,9 @@
         "law_of_jungle": "Zakon džungle",
         "lord_dracula": "Gospodar Drakula",
         "noob_saibot": "Noob Saibot",
-        "ultimatum": "Ultimatum"
+        "ultimatum": "Ultimatum",
+        "gran_turismo": "Gran Turismo",
+        "armor_of_god": "Oklop Božji",
+        "gangs_of_london": "Bande Londona"
     }
 }
