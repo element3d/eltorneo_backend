@@ -657,35 +657,35 @@ void MatchesInitializer::InitNationsLeague24_25(PGconn* pg)
     // Nations League
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Portugal, ETeam::Croatia, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Scotland, ETeam::Poland, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Denmark, ETeam::Switzerland, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Serbia, ETeam::Spain, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Belgium, ETeam::Israel, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::France, ETeam::Italy, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Germany, ETeam::Hungary, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Netherlands, ETeam::BosniaAndHerzegovina, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Portugal, ETeam::Croatia, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Scotland, ETeam::Poland, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Denmark, ETeam::Switzerland, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Serbia, ETeam::Spain, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Belgium, ETeam::Israel, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::France, ETeam::Italy, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Germany, ETeam::Hungary, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Netherlands, ETeam::BosniaAndHerzegovina, 1722985200000 });
 
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Kazakhstan, ETeam::Norway, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Slovenia, ETeam::Austria, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Iceland, ETeam::Montenegro, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Wales, ETeam::Turkiye, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Georgia, ETeam::Czechia, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::RepublicOfIreland, ETeam::England, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Ukraine, ETeam::Albania, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Greece, ETeam::Finland, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Kazakhstan, ETeam::Norway, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Slovenia, ETeam::Austria, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Iceland, ETeam::Montenegro, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Wales, ETeam::Turkiye, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Georgia, ETeam::Czechia, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::RepublicOfIreland, ETeam::England, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Ukraine, ETeam::Albania, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Greece, ETeam::Finland, 1722985200000 });
    
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Azerbaijan, ETeam::Sweden, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Estonia, ETeam::Slovakia, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Belarus, ETeam::Bulgaria, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::NorthernIreland, ETeam::Luxemburg, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Lithuania, ETeam::Cyprus, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Kosovo, ETeam::Romania, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::FaroeIslands, ETeam::NorthMacedonia, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Armenia, ETeam::Latvia, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Azerbaijan, ETeam::Sweden, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Estonia, ETeam::Slovakia, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Belarus, ETeam::Bulgaria, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::NorthernIreland, ETeam::Luxemburg, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Lithuania, ETeam::Cyprus, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Kosovo, ETeam::Romania, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::FaroeIslands, ETeam::NorthMacedonia, 1722985200000 });
+  //  matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Armenia, ETeam::Latvia, 1722985200000 });
 
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::SanMarino, ETeam::Liechtenstein, 1722985200000 });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Moldova, ETeam::Malta, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::SanMarino, ETeam::Liechtenstein, 1722985200000 });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 1, ETeam::Moldova, ETeam::Malta, 1722985200000 });
 
     // week 2
     matches.push_back({ ELeague::NationsLeague, "24/25", 2, ETeam::Denmark, ETeam::Serbia, 1722985200000 });
@@ -848,6 +848,32 @@ void MatchesInitializer::InitNationsLeague24_25(PGconn* pg)
             + std::to_string(int(m.League)) + ", '"
             + m.Season + "', "
             + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitNationsLeaguePO24_25(PGconn* pg)
+{
+    // Nations League
+    std::vector<Match> matches;
+
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Italy, ETeam::Germany, 1742499900000, EWeekType::QuarterFinal });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Denmark, ETeam::Portugal, 1742499900000, EWeekType::QuarterFinal });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Croatia, ETeam::France, 1742499900000, EWeekType::QuarterFinal });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Netherlands, ETeam::Spain, 1742499900000, EWeekType::QuarterFinal });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
             + std::to_string((int)m.Team1) + ", "
             + std::to_string((int)m.Team2) + ", "
             + std::to_string(m.Date) + ");";
