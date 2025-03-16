@@ -259,7 +259,40 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
 
             rapidjson::Value weeks;
             weeks.SetArray();
-            if (id == (int)ELeague::ChampionsLeague)
+            if (id == (int)ELeague::NationsLeague)
+            {
+                int i = 1;
+                for (; i < 6; ++i)
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Matchday, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+            }
+            else if (id == (int)ELeague::ChampionsLeague)
             {
                 int i = 1;
                 for (; i < 8; ++i)
