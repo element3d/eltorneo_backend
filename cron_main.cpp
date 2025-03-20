@@ -346,13 +346,20 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 	std::string round = "Regular Season - " + std::to_string(week);
 	if (league == ELeague::NationsLeague)
 	{
-		std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
-			+ " AND team_id = " + std::to_string(team1Id) + ";";
+		if (week <= 6) 
+		{
+			std::string sql = "SELECT league_index FROM leagues_teams where league_id = " + std::to_string(int(league))
+				+ " AND team_id = " + std::to_string(team1Id) + ";";
 
-		PGresult* ret = PQexec(pg, sql.c_str());
-		int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
-		round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
-		PQclear(ret);
+			PGresult* ret = PQexec(pg, sql.c_str());
+			int leagueIndex = atoi(PQgetvalue(ret, 0, 0));
+			round = "League " + getLeagueNameFromIndex(leagueIndex) + " - " + std::to_string(week);
+			PQclear(ret);
+		} 
+		else if (week == 7) 
+		{
+			round = "Quarter-finals";
+		}
 	}
 	else if (league == ELeague::ChampionsLeague)
 	{
