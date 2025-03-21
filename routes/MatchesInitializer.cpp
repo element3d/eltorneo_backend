@@ -862,21 +862,30 @@ void MatchesInitializer::InitNationsLeaguePO24_25(PGconn* pg)
     // Nations League
     std::vector<Match> matches;
 
-    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Italy, ETeam::Germany, 1742499900000, EWeekType::QuarterFinal });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Denmark, ETeam::Portugal, 1742499900000, EWeekType::QuarterFinal });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Croatia, ETeam::France, 1742499900000, EWeekType::QuarterFinal });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Netherlands, ETeam::Spain, 1742499900000, EWeekType::QuarterFinal });
+   //matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Italy, ETeam::Germany, 1742499900000, EWeekType::QuarterFinal });
+   //matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Denmark, ETeam::Portugal, 1742499900000, EWeekType::QuarterFinal });
+   //matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Croatia, ETeam::France, 1742499900000, EWeekType::QuarterFinal });
+   //matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Netherlands, ETeam::Spain, 1742499900000, EWeekType::QuarterFinal });
+
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Germany, ETeam::Italy, 1742759100000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Portugal, ETeam::Denmark, 1742759100000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::France, ETeam::Croatia, 1742759100000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Spain, ETeam::Netherlands, 1742759100000, EWeekType::QuarterFinal, true });
+
 
     for (auto& m : matches)
     {
-        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date) values ("
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2,match_date,play_off) values ("
             + std::to_string(int(m.League)) + ", '"
             + m.Season + "', "
             + std::to_string(m.Week) + ", "
             + std::to_string((int)m.WeekType) + ", "
             + std::to_string((int)m.Team1) + ", "
             + std::to_string((int)m.Team2) + ", "
-            + std::to_string(m.Date) + ");";
+            + std::to_string(m.Date) + ", "
+            + std::to_string((int)m.PlayOff) + ""
+            + ");";
+
 
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
