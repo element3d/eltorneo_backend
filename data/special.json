@@ -85,7 +85,8 @@
         "armor_of_god": "Armor of God",
         "gangs_of_london": "Gangs of London",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu against all"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -173,7 +174,8 @@
         "armor_of_god": "La Armadura de Dios",
         "gangs_of_london": "Las Bandas de Londres",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu contra todos"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -261,7 +263,8 @@
         "armor_of_god": "L'Armure de Dieu",
         "gangs_of_london": "Les Gangs de Londres",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu contre tous"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -349,7 +352,8 @@
         "armor_of_god": "L'Armatura di Dio",
         "gangs_of_london": "Le Gang di Londra",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu contro tutti"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -437,7 +441,8 @@
         "armor_of_god": "Доспехи Бога",
         "gangs_of_london": "Банды Лондона",
         "star_wars": "Звездные войны",
-        "pokemon": "Покемон"
+        "pokemon": "Покемон",
+        "pikachu": "Пикачу против всех"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -525,7 +530,8 @@
         "armor_of_god": "A Armadura de Deus",
         "gangs_of_london": "Gangs de Londres",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu contra todos"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -613,7 +619,8 @@
         "armor_of_god": "Die Rüstung Gottes",
         "gangs_of_london": "Gangs of London",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu gegen alle"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -701,6 +708,7 @@
         "armor_of_god": "Oklop Božji",
         "gangs_of_london": "Bande Londona",
         "star_wars": "Star Wars",
-        "pokemon": "Pokemon"
+        "pokemon": "Pokemon",
+        "pikachu": "Pikachu protiv svih"
     }
 }
