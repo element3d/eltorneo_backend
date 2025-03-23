@@ -187,6 +187,7 @@ int main(void)
 
     svr.Get("/api/v1/match/statistics", MatchesRoute::Get()->GetMatchStatistics());
     svr.Get("/api/v1/match/events", MatchesRoute::Get()->GetMatchEvents());
+    svr.Get("/api/v1/match/odds", MatchesRoute::Get()->GetMatchOdds());
     svr.Get("/api/v1/match/header", MatchesRoute::Get()->GetMatchHeader());
     svr.Get("/api/v1/match/live", MatchesRoute::Get()->GetMatchLive());
     svr.Get("/api/v1/match/lineups", MatchesRoute::Get()->GetMatchLineups());
@@ -194,10 +195,13 @@ int main(void)
 
     svr.Get("/api/v1/team/matches", MatchesRoute::Get()->GetTeamMatches());
 
+    svr.Post("/api/v1/bet", PredictsRoute::Get()->PostBet());
+
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());
     svr.Put("/api/v1/predicts", PredictsRoute::Get()->EditPredict());
     svr.Get("/api/v1/user/predict", PredictsRoute::Get()->GetUserPredict());
     svr.Get("/api/v1/user/predicts", PredictsRoute::Get()->GetUserPredicts());
+    svr.Get("/api/v1/user/bets", PredictsRoute::Get()->GetUserBets());
     svr.Get("/api/v1/user/score_predicts", PredictsRoute::Get()->GetUserScorePredicts());
     svr.Get("/api/v1/user/winner_predicts", PredictsRoute::Get()->GetUserWinnerPredicts());
 

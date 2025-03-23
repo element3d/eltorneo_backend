@@ -1183,6 +1183,92 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchOdds()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        auto matchId = req.get_param_value("match_id");
+        std::string token = req.get_header_value("Authentication");
+        int userId = -1;
+
+        if (!token.empty()) {
+            auto decoded = jwt::decode(token);
+            userId = decoded.get_payload_claim("id").as_int();
+        }
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        // SQL query to get odds
+        std::string sql = "SELECT * FROM odds WHERE match_id = " + matchId + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+            fprintf(stderr, "Failed to fetch match odds: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        for (int i = 0; i < nrows; ++i) {
+            float w1 = atof(PQgetvalue(ret, i, 2));
+            float x = atof(PQgetvalue(ret, i, 3));
+            float w2 = atof(PQgetvalue(ret, i, 4));
+            float x1 = atof(PQgetvalue(ret, i, 5));
+            float x12 = atof(PQgetvalue(ret, i, 6));
+            float x2 = atof(PQgetvalue(ret, i, 7));
+
+            document.AddMember("w1", w1, allocator);
+            document.AddMember("x", x, allocator);
+            document.AddMember("w2", w2, allocator);
+            document.AddMember("x1", x1, allocator);
+            document.AddMember("x12", x12, allocator);
+            document.AddMember("x2", x2, allocator);
+        }
+
+        PQclear(ret); // Free result after processing odds
+
+        // If user is authenticated, fetch their bet for this match
+        if (userId != -1) {
+            std::string betSql = "SELECT id, bet, amount, odd, status FROM bets WHERE user_id = " +
+                std::to_string(userId) + " AND match_id = " + matchId + " LIMIT 1;";
+            PGresult* betResult = PQexec(pg, betSql.c_str());
+
+            if (PQresultStatus(betResult) == PGRES_TUPLES_OK && PQntuples(betResult) > 0) {
+                rapidjson::Value betObject(rapidjson::kObjectType);
+                betObject.AddMember("id", atoi(PQgetvalue(betResult, 0, 0)), allocator);
+                betObject.AddMember("bet", rapidjson::Value(PQgetvalue(betResult, 0, 1), allocator), allocator);
+                betObject.AddMember("amount", atoi(PQgetvalue(betResult, 0, 2)), allocator);
+                betObject.AddMember("odd", atof(PQgetvalue(betResult, 0, 3)), allocator);
+                betObject.AddMember("status", atoi(PQgetvalue(betResult, 0, 4)), allocator);
+
+                document.AddMember("bet", betObject, allocator);
+            }
+
+            PQclear(betResult); // Free result after processing bet
+        }
+
+        ConnectionPool::Get()->releaseConnection(pg);
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;
+    };
+
+}
+
+
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchLineups()
 {
     return [&](const httplib::Request& req, httplib::Response& res) {
@@ -1390,6 +1476,22 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
             int nrows = PQntuples(ret);
             document.AddMember("lineups", int(nrows > 0), allocator);
+            PQclear(ret);
+        }
+        {
+            std::string sql = "SELECT id FROM odds WHERE match_id = " + (matchId)+";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch match events: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            document.AddMember("odds", int(nrows > 0), allocator);
             PQclear(ret);
         }
 

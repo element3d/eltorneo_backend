@@ -20,6 +20,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUpcomingMatches();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchStatistics();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEvents();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchOdds();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchHeader();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchLive();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchLineups();
