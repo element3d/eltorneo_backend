@@ -784,6 +784,42 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         document.AddMember("bets", betsArray, allocator);
 
+        auto generateBetCountQuery = [&](const std::string& condition)
+        {
+            std::string countSql = "SELECT COUNT(*) FROM bets b INNER JOIN matches m ON b.match_id = m.id WHERE b.user_id = " + userId;
+            if (leagueId != "-1")
+            {
+                countSql += " AND m.league = " + leagueId;
+            }
+            countSql += condition.size() ? " AND " + condition : "";
+            return countSql;
+        };
+
+        std::string countAllBetsSql = generateBetCountQuery("");  // Count all bets
+        std::string countWinBetsSql = generateBetCountQuery("b.status = 1"); // Count win bets
+        std::string countLooseBetsSql = generateBetCountQuery("b.status = 2"); // Count lose bets
+        std::string countTotalBetsSql = generateBetCountQuery("b.status IN (1, 2)"); // Total bets that are NOT pending
+
+        PGresult* retAllBets = PQexec(pg, countAllBetsSql.c_str());
+        PGresult* retWinBets = PQexec(pg, countWinBetsSql.c_str());
+        PGresult* retLooseBets = PQexec(pg, countLooseBetsSql.c_str());
+        PGresult* retTotalBets = PQexec(pg, countTotalBetsSql.c_str());
+
+        int allBets = (PQntuples(retAllBets) > 0) ? atoi(PQgetvalue(retAllBets, 0, 0)) : 0;
+        int totalWinBets = (PQntuples(retWinBets) > 0) ? atoi(PQgetvalue(retWinBets, 0, 0)) : 0;
+        int totalLooseBets = (PQntuples(retLooseBets) > 0) ? atoi(PQgetvalue(retLooseBets, 0, 0)) : 0;
+        int totalBets = (PQntuples(retTotalBets) > 0) ? atoi(PQgetvalue(retTotalBets, 0, 0)) : 0;
+
+        PQclear(retAllBets);
+        PQclear(retWinBets);
+        PQclear(retLooseBets);
+        PQclear(retTotalBets);
+
+        document.AddMember("allBets", allBets, allocator);
+        document.AddMember("totalBets", totalBets, allocator);
+        document.AddMember("totalWinBets", totalWinBets, allocator);
+        document.AddMember("totalLooseBets", totalLooseBets, allocator);
+
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         document.Accept(writer);
@@ -1268,7 +1304,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             std::string userAvatar = PQgetvalue(ret, i, 7);
             int points = atoi(PQgetvalue(ret, i, 8));
             int league = atoi(PQgetvalue(ret, i, 9));
-            int balance = atof(PQgetvalue(ret, i, 10));
+            float balance = atof(PQgetvalue(ret, i, 10));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
