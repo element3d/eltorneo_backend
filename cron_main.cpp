@@ -697,7 +697,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals)
 
 				float win = amount * odd;
 				std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(win)
-					+ " WHERE user_id = " + std::to_string(userId) + ";";
+					+ " WHERE id = " + std::to_string(userId) + ";";
 				PGresult* balanceRet = PQexec(pg, balanceSql.c_str());
 				PQclear(balanceRet);
 			}
@@ -718,7 +718,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals)
 
 				float win = amount * odd;
 				std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(win)
-					+ " WHERE user_id = " + std::to_string(userId) + ";";
+					+ " WHERE id = " + std::to_string(userId) + ";";
 				PGresult* balanceRet = PQexec(pg, balanceSql.c_str());
 				PQclear(balanceRet);
 			}
@@ -739,7 +739,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals)
 
 				float win = amount * odd;
 				std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(win)
-					+ " WHERE user_id = " + std::to_string(userId) + ";";
+					+ " WHERE id = " + std::to_string(userId) + ";";
 				PGresult* balanceRet = PQexec(pg, balanceSql.c_str());
 				PQclear(balanceRet);
 			}

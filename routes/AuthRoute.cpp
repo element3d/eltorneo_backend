@@ -343,7 +343,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code, username FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code, username, balance FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -409,6 +409,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
             std::string username = temp;
             v.SetString(username.c_str(), username.size(), allocator);
             document.AddMember("username", v, allocator);
+
+            float balance = atof(PQgetvalue(ret, i, 8));
+            document.AddMember("balance", balance, allocator);
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
@@ -438,7 +441,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         auto userId = req.get_param_value("user_id");
 
 
-        std::string sql = "SELECT id, name, avatar, points, league FROM users WHERE id = " + (userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, league, balance FROM users WHERE id = " + (userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -478,6 +481,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
 
             league = atoi(PQgetvalue(ret, i, 4));
             document.AddMember("league", league, allocator);
+
+            float balance = atof(PQgetvalue(ret, i, 8));
+            document.AddMember("balance", balance, allocator);
         }
 
         int pos = CachedTable::Get()->GetPosition(atoi(userId.c_str()), league);
