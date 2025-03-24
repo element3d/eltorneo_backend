@@ -1228,7 +1228,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT p.*, u.name, u.avatar, u.points, u.league FROM predicts p "
+        std::string sql = "SELECT p.*, u.name, u.avatar, u.points, u.league, u.balance FROM predicts p "
             "JOIN users u ON p.user_id = u.id "
             "WHERE p.status <> 4 and p.match_id = " + matchId + " "
             "ORDER BY u.points DESC LIMIT 20;";
@@ -1268,6 +1268,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             std::string userAvatar = PQgetvalue(ret, i, 7);
             int points = atoi(PQgetvalue(ret, i, 8));
             int league = atoi(PQgetvalue(ret, i, 9));
+            int balance = atof(PQgetvalue(ret, i, 10));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
