@@ -1281,6 +1281,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("avatar", nameVal, allocator);
             userObject.AddMember("points", points, allocator);
             userObject.AddMember("league", league, allocator);
+            userObject.AddMember("balance", balance, allocator);
 
             int posi = CachedTable::Get()->GetPosition(userId, league);
             userObject.AddMember("position", posi, allocator);
