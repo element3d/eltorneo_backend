@@ -86,7 +86,11 @@
         "gangs_of_london": "Gangs of London",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu against all"
+        "pikachu": "Pikachu against all",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -175,7 +179,11 @@
         "gangs_of_london": "Las Bandas de Londres",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu contra todos"
+        "pikachu": "Pikachu contra todos",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -264,7 +272,11 @@
         "gangs_of_london": "Les Gangs de Londres",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu contre tous"
+        "pikachu": "Pikachu contre tous",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -353,7 +365,11 @@
         "gangs_of_london": "Le Gang di Londra",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu contro tutti"
+        "pikachu": "Pikachu contro tutti",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -442,7 +458,11 @@
         "gangs_of_london": "Банды Лондона",
         "star_wars": "Звездные войны",
         "pokemon": "Покемон",
-        "pikachu": "Пикачу против всех"
+        "pikachu": "Пикачу против всех",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -531,7 +551,11 @@
         "gangs_of_london": "Gangs de Londres",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu contra todos"
+        "pikachu": "Pikachu contra todos",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -620,7 +644,11 @@
         "gangs_of_london": "Gangs of London",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu gegen alle"
+        "pikachu": "Pikachu gegen alle",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -709,6 +737,10 @@
         "gangs_of_london": "Bande Londona",
         "star_wars": "Star Wars",
         "pokemon": "Pokemon",
-        "pikachu": "Pikachu protiv svih"
+        "pikachu": "Pikachu protiv svih",
+        "scorp_vs_venom": "Scorpion vs Venom",
+        "wolverine_vs_sub": "Wolverine vs Sub-Zero",
+        "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
+        "sm_vs_jax": "Spider-Man vs Jax"
     }
 }
