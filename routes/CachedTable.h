@@ -17,6 +17,7 @@ private:
 	std::map<int, int> mTable;
 	std::map<int, int> mTableLeague2;
 	std::map<int, int> mTableLeague3;
+	std::map<int, int> mTableLeague4;
 
 	std::mutex mMutex;
 };
