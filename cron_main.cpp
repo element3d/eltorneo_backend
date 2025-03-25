@@ -1553,12 +1553,8 @@ void GetMatchBets(PGconn* pg, int matchId, int apiId)
 	return;
 }
 
-void ProcessLeagueMatches(PGconn* pg, int lId, int week)
+void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 {
-	std::string sql = "SELECT id, team1, team2, match_date, api_id from matches where status = '' and league = " + 
-		std::to_string(lId) + " AND week = " + std::to_string(week) + ";";
-	PGresult* res = PQexec(pg, sql.c_str());
-
 	int rows = PQntuples(res);
 	std::string season = "2024";
 	for (int i = 0; i < rows; ++i)
@@ -1568,6 +1564,7 @@ void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 		int team2 = atoi(PQgetvalue(res, i, 2));
 		long long ts = atoll(PQgetvalue(res, i, 3));
 		int apiId = atoi(PQgetvalue(res, i, 4));
+		int week = atoi(PQgetvalue(res, i, 5));
 
 		int leagueId = elTorneoLeagueIdToApiFootball(ELeague(lId));
 		std::string round = GetApiFootballRound(pg, ELeague(lId), week, team1);
@@ -1583,7 +1580,7 @@ void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 				  {"round", round}
 			};
 		}
-		else 
+		else
 		{
 			params = {
 				  {"id", std::to_string(apiId)}
@@ -1623,11 +1620,11 @@ void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 							int awayId = match["teams"]["away"]["id"].GetInt();
 
 							std::string sql = "update matches set api_id = " + std::to_string(newApiId)
-								+ ", match_date = " + std::to_string(date) + 
-								+ " where id = " + std::to_string(id) + ";";
+								+ ", match_date = " + std::to_string(date) +
+								+" where id = " + std::to_string(id) + ";";
 							PGresult* ret = PQexec(pg, sql.c_str());
 							PQclear(ret);
-							
+
 							GetMatchBets(pg, id, newApiId);
 						}
 					}
@@ -1647,6 +1644,23 @@ void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 	PQclear(res);
 }
 
+void ProcessLeagueMatches(PGconn* pg, int lId, int week)
+{
+	std::string sql = "SELECT id, team1, team2, match_date, api_id, week from matches where status = '' and league = " +
+		std::to_string(lId) + " AND week = " + std::to_string(week) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+	ProcessMatchesForOdds(pg, lId, week, res);
+}
+
+void ProcessLeaguePSTMatches(PGconn* pg, int lId, int week) 
+{
+	std::string sql = "SELECT id, team1, team2, match_date, api_id, week from matches where status = '' and league = " +
+		std::to_string(lId) + " AND week < " + std::to_string(week) + " and team1_score = -1 and team2_score = -1;";
+	PGresult* res = PQexec(pg, sql.c_str());
+	ProcessMatchesForOdds(pg, lId, week, res);
+}
+
+
 void CorrectMatchDates(PGconn* pg)
 {
 	std::string sql = "SELECT id, current_week, num_weeks from leagues order by id;";
@@ -1664,6 +1678,8 @@ void CorrectMatchDates(PGconn* pg)
 		{
 			ProcessLeagueMatches(pg, id, w);
 		}
+
+		ProcessLeaguePSTMatches(pg, id, week);
 
 		//return;
 	}
