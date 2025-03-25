@@ -1826,6 +1826,30 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::DeleteBet()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "DELETE");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+        std::string betId = req.get_param_value("bet_id");
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "DELETE FROM bets WHERE user_id = " + std::to_string(userId)
+            + " AND id = " + betId + ";";
+
+        // Execute the insert and capture the team ID
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        res.status = 200;
+    };
+}
 
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::EditPredict()
 {
@@ -1853,10 +1877,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "UPDATE predicts set team1_score = " + std::to_string(team1)
             + ", team2_score = " + std::to_string(team2)
-            + " WHERE id = " + std::to_string(predictId) 
+            + " WHERE id = " + std::to_string(predictId)
             + " AND user_id = " + std::to_string(userId)
             + ";";
-           
+
         // Execute the insert and capture the team ID
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_COMMAND_OK)

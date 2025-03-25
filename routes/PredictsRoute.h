@@ -19,6 +19,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostBet();
+    std::function<void(const httplib::Request&, httplib::Response&)> DeleteBet();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();
