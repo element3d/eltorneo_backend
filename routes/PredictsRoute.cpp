@@ -1838,13 +1838,20 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int userId = decoded.get_payload_claim("id").as_int();
         std::string betId = req.get_param_value("bet_id");
 
-        // Connect to the database
-        PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "DELETE FROM bets WHERE user_id = " + std::to_string(userId)
+        std::string sql = "SELECT amount FROM bets WHERE user_id = " + std::to_string(userId)
             + " AND id = " + betId + ";";
-
-        // Execute the insert and capture the team ID
+        PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
+        int amount = atoi(PQgetvalue(ret, 0, 0));
+        PQclear(ret);
+
+        sql = "UPDATE users set balance = balance + " + std::to_string(amount) + " WHERE id = " + std::to_string(userId) + ";";
+        ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+
+        sql = "DELETE FROM bets WHERE user_id = " + std::to_string(userId)
+            + " AND id = " + betId + ";";
+        ret = PQexec(pg, sql.c_str());
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
         res.status = 200;
