@@ -32,7 +32,9 @@
     "leader_title": "Danijel Radoslovic is back on the throne!",
     "leader_msg": "The new leader of el Torneo!",
     "beat_bet_title": "Today's AI Predictions (Beta)",
-    "beat_bet_msg": "Bayern Munich to win (90%), Girona to win (90%), Verona to avoid defeat (91%)"
+    "beat_bet_msg": "Bayern Munich to win (90%), Girona to win (90%), Verona to avoid defeat (91%)",
+    "vbet_title": "Virtual betting.",
+    "vbet_msg": "A new feature has been added."
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -67,7 +69,9 @@
     "leader_title": "Danijel Radoslovic снова на троне!",
     "leader_msg": "Новый лидер el Torneo!",
     "beat_bet_title": "Сегодняшние прогнозы ИИ (Бета)",
-    "beat_bet_msg": "Победа Баварии (90%), победа Жироны (90%), Верона не проиграет (91%)"
+    "beat_bet_msg": "Победа Баварии (90%), победа Жироны (90%), Верона не проиграет (91%)",
+    "vbet_title": "Виртуальные ставки.",
+    "vbet_msg": "Добавлена новая функция."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -102,7 +106,9 @@
     "leader_title": "Danijel Radoslovic vuelve al trono!",
     "leader_msg": "¡El nuevo líder de el Torneo!",
     "beat_bet_title": "Predicciones de IA de hoy (Beta)",
-    "beat_bet_msg": "Bayern Múnich ganará (90%), Girona ganará (90%), Verona no perderá (91%)"
+    "beat_bet_msg": "Bayern Múnich ganará (90%), Girona ganará (90%), Verona no perderá (91%)",
+    "vbet_title": "Apuestas virtuales.",
+    "vbet_msg": "Se ha añadido una nueva función."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -137,7 +143,9 @@
     "leader_title": "Danijel Radoslovic torna sul trono!",
     "leader_msg": "Il nuovo leader di el Torneo!",
     "beat_bet_title": "Previsioni AI di oggi (Beta)",
-    "beat_bet_msg": "Bayern Monaco vincerà (90%), Girona vincerà (90%), Verona non perderà (91%)"
+    "beat_bet_msg": "Bayern Monaco vincerà (90%), Girona vincerà (90%), Verona non perderà (91%)",
+    "vbet_title": "Scommesse virtuali.",
+    "vbet_msg": "È stata aggiunta una nuova funzione."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -172,7 +180,9 @@
     "leader_title": "Danijel Radoslovic ist zurück auf dem Thron!",
     "leader_msg": "Der neue Anführer von el Torneo!",
     "beat_bet_title": "Heutige KI-Vorhersagen (Beta)",
-    "beat_bet_msg": "Bayern München gewinnt (90%), Girona gewinnt (90%), Verona verliert nicht (91%)"
+    "beat_bet_msg": "Bayern München gewinnt (90%), Girona gewinnt (90%), Verona verliert nicht (91%)",
+    "vbet_title": "Virtuelle Wetten.",
+    "vbet_msg": "Eine neue Funktion wurde hinzugefügt."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -207,7 +217,9 @@
     "leader_title": "Danijel Radoslovic se vratio na tron!",
     "leader_msg": "Novi vođa el Tornea!",
     "beat_bet_title": "Današnje AI prognoze (Beta)",
-    "beat_bet_msg": "Bayern München pobjeđuje (90%), Girona pobjeđuje (90%), Verona ne gubi (91%)"
+    "beat_bet_msg": "Bayern München pobjeđuje (90%), Girona pobjeđuje (90%), Verona ne gubi (91%)",
+    "vbet_title": "Virtualno klađenje.",
+    "vbet_msg": "Dodana je nova značajka."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -242,7 +254,9 @@
     "leader_title": "Danijel Radoslovic est de retour sur le trône !",
     "leader_msg": "Le nouveau leader de el Torneo !",
     "beat_bet_title": "Prédictions IA du jour (Bêta)",
-    "beat_bet_msg": "Bayern Munich gagne (90%), Girona gagne (90%), Vérone ne perd pas (91%)"
+    "beat_bet_msg": "Bayern Munich gagne (90%), Girona gagne (90%), Vérone ne perd pas (91%)",
+    "vbet_title": "Pari virtuel.",
+    "vbet_msg": "Une nouvelle fonctionnalité a été ajoutée."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -277,6 +291,8 @@
     "leader_title": "Danijel Radoslovic está de volta ao trono!",
     "leader_msg": "O novo líder do el Torneo!",
     "beat_bet_title": "Previsões de IA de hoje (Beta)",
-    "beat_bet_msg": "Bayern de Munique vence (90%), Girona vence (90%), Verona não perde (91%)"
+    "beat_bet_msg": "Bayern de Munique vence (90%), Girona vence (90%), Verona não perde (91%)",
+    "vbet_title": "Aposta virtual.",
+    "vbet_msg": "Um novo recurso foi adicionado."
   }
 }
