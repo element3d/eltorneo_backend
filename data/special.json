@@ -90,7 +90,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Suicide Squad",
+        "bad_boys": "Bad Boys"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -183,7 +185,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Escuadrón Suicida",
+        "bad_boys": "Bad Boys"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -276,7 +280,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Suicide Squad",
+        "bad_boys": "Bad Boys"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -369,7 +375,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Suicide Squad",
+        "bad_boys": "Bad Boys"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -462,7 +470,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Отряд самоубийц",
+        "bad_boys": "Плохие парни"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -555,7 +565,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Esquadrão Suicida",
+        "bad_boys": "Bad Boys"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -648,7 +660,9 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Suicide Squad",
+        "bad_boys": "Bad Boys"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -741,6 +755,8 @@
         "scorp_vs_venom": "Scorpion vs Venom",
         "wolverine_vs_sub": "Wolverine vs Sub-Zero",
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
-        "sm_vs_jax": "Spider-Man vs Jax"
+        "sm_vs_jax": "Spider-Man vs Jax",
+        "suicide_squad": "Odred otpisanih",
+        "bad_boys": "Zločesti dečki"
     }
 }
