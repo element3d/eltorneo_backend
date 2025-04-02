@@ -92,7 +92,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Suicide Squad",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -187,7 +189,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Escuadrón Suicida",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -282,7 +286,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Suicide Squad",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -377,7 +383,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Suicide Squad",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -472,7 +480,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Отряд самоубийц",
-        "bad_boys": "Плохие парни"
+        "bad_boys": "Плохие парни",
+        "super_sonic": "Супер Соник",
+        "hotel_transylvania": "Монстры на каникулах"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -567,7 +577,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Esquadrão Suicida",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -662,7 +674,9 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Suicide Squad",
-        "bad_boys": "Bad Boys"
+        "bad_boys": "Bad Boys",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -757,6 +771,8 @@
         "noob_saibot_vs_liu": "Noob Saibot vs Liu Kang",
         "sm_vs_jax": "Spider-Man vs Jax",
         "suicide_squad": "Odred otpisanih",
-        "bad_boys": "Zločesti dečki"
+        "bad_boys": "Zločesti dečki",
+        "super_sonic": "Super Sonic",
+        "hotel_transylvania": "Hotel Transylvania"
     }
 }
