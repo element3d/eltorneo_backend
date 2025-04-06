@@ -94,7 +94,10 @@
         "suicide_squad": "Suicide Squad",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "Age of Extinction",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "Man Of Steel"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -191,7 +194,10 @@
         "suicide_squad": "Escuadrón Suicida",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "La Era de la Extinción",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "El Hombre de Acero"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -288,7 +294,10 @@
         "suicide_squad": "Suicide Squad",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "L'Âge de l'Extinction",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "L’Homme d’Acier"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -385,7 +394,10 @@
         "suicide_squad": "Suicide Squad",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "L'era dell'estinzione",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "L’Uomo d’Acciaio"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -482,7 +494,10 @@
         "suicide_squad": "Отряд самоубийц",
         "bad_boys": "Плохие парни",
         "super_sonic": "Супер Соник",
-        "hotel_transylvania": "Монстры на каникулах"
+        "hotel_transylvania": "Монстры на каникулах",
+        "age_of_extinction": "Эпоха истребления",
+        "the_witcher": "Ведьмак",
+        "man_of_steel": "Человек из стали"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -579,7 +594,10 @@
         "suicide_squad": "Esquadrão Suicida",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "A Era da Extinção",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "O Homem de Aço"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -676,7 +694,10 @@
         "suicide_squad": "Suicide Squad",
         "bad_boys": "Bad Boys",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "Zeitalter des Untergangs",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "Der Mann aus Stahl"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -773,6 +794,9 @@
         "suicide_squad": "Odred otpisanih",
         "bad_boys": "Zločesti dečki",
         "super_sonic": "Super Sonic",
-        "hotel_transylvania": "Hotel Transylvania"
+        "hotel_transylvania": "Hotel Transylvania",
+        "age_of_extinction": "Doba izumiranja",
+        "the_witcher": "The Witcher",
+        "man_of_steel": "Čovjek od čelika"
     }
 }
