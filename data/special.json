@@ -97,7 +97,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "Age of Extinction",
         "the_witcher": "The Witcher",
-        "man_of_steel": "Man Of Steel"
+        "man_of_steel": "Man Of Steel",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -197,7 +201,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "La Era de la Extinción",
         "the_witcher": "The Witcher",
-        "man_of_steel": "El Hombre de Acero"
+        "man_of_steel": "El Hombre de Acero",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -297,7 +305,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "L'Âge de l'Extinction",
         "the_witcher": "The Witcher",
-        "man_of_steel": "L’Homme d’Acier"
+        "man_of_steel": "L’Homme d’Acier",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -397,7 +409,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "L'era dell'estinzione",
         "the_witcher": "The Witcher",
-        "man_of_steel": "L’Uomo d’Acciaio"
+        "man_of_steel": "L’Uomo d’Acciaio",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -497,7 +513,11 @@
         "hotel_transylvania": "Монстры на каникулах",
         "age_of_extinction": "Эпоха истребления",
         "the_witcher": "Ведьмак",
-        "man_of_steel": "Человек из стали"
+        "man_of_steel": "Человек из стали",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -597,7 +617,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "A Era da Extinção",
         "the_witcher": "The Witcher",
-        "man_of_steel": "O Homem de Aço"
+        "man_of_steel": "O Homem de Aço",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -697,7 +721,11 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "Zeitalter des Untergangs",
         "the_witcher": "The Witcher",
-        "man_of_steel": "Der Mann aus Stahl"
+        "man_of_steel": "Der Mann aus Stahl",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -797,6 +825,10 @@
         "hotel_transylvania": "Hotel Transylvania",
         "age_of_extinction": "Doba izumiranja",
         "the_witcher": "The Witcher",
-        "man_of_steel": "Čovjek od čelika"
+        "man_of_steel": "Čovjek od čelika",
+        "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
+        "venom_vs_scorp": "Venom vs Scorpion",
+        "jax_vs_sm": "Jax vs Spider-Man",
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
     }
 }
