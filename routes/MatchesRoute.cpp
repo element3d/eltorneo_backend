@@ -269,6 +269,21 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         title.SetString("mortal_kombat", d.GetAllocator());
         t5.AddMember("image", title, d.GetAllocator());
 
+        rapidjson::Value t6;
+        t6.SetObject();
+        title.SetString("Robert Lewandowski", d.GetAllocator());
+        t6.AddMember("title", title, d.GetAllocator());
+
+        title.SetString("Devil May Cry", d.GetAllocator());
+        t6.AddMember("subtitle", title, d.GetAllocator());
+
+        title.SetString("x7WG8lvW6TM", d.GetAllocator());
+        t6.AddMember("video", title, d.GetAllocator());
+
+        title.SetString("dmc", d.GetAllocator());
+        t6.AddMember("image", title, d.GetAllocator());
+
+        d.PushBack(t6, d.GetAllocator());
         d.PushBack(t5, d.GetAllocator());
         d.PushBack(t4, d.GetAllocator());
         d.PushBack(t1, d.GetAllocator());

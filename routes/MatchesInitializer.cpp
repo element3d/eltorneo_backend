@@ -3503,8 +3503,10 @@ void MatchesInitializer::InitCopaDelRey24_25(PGconn* pg)
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1740515400000, EWeekType::SemiFinal, false });
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealSociedad, ETeam::RealMadrid, 1740601800000, EWeekType::SemiFinal, false });
 
-    matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealMadrid, ETeam::RealSociedad, 1743535800000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1743622200000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealMadrid, ETeam::RealSociedad, 1743535800000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1743622200000, EWeekType::SemiFinal, true });
+
+    matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
