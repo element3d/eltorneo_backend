@@ -101,7 +101,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -205,7 +206,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -309,7 +311,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -413,7 +416,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -517,7 +521,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -621,7 +626,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -725,7 +731,8 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -829,6 +836,7 @@
         "sub_zero_vs_wolverine": "Sub-Zero vs Wolverine",
         "venom_vs_scorp": "Venom vs Scorpion",
         "jax_vs_sm": "Jax vs Spider-Man",
-        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot"
+        "liu_kang_vs_ns": "Liu Kang vs Noob Saibot",
+        "battlefield": "Battlefield"
     }
 }
