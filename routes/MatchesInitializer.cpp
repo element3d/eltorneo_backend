@@ -957,10 +957,14 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::Barcelona, ETeam::BorussiaDortmund, 1744225200000, EWeekType::QuarterFinal, false });
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::PSG, ETeam::AstonVilla, 1744225200000, EWeekType::QuarterFinal, false });
 
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::AstonVilla, ETeam::PSG, 1744743600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::BorussiaDortmund, ETeam::Barcelona, 1744743600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::InterMilan, ETeam::BayernMunich, 1744830000000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::RealMadrid, ETeam::Arsenal, 1744830000000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::AstonVilla, ETeam::PSG, 1744743600000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::BorussiaDortmund, ETeam::Barcelona, 1744743600000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::InterMilan, ETeam::BayernMunich, 1744830000000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::RealMadrid, ETeam::Arsenal, 1744830000000, EWeekType::QuarterFinal, true });
+
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Arsenal, ETeam::PSG, 1745953200000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Barcelona, ETeam::InterMilan, 1746039600000, EWeekType::SemiFinal, false });
+
 
 
     for (auto& m : matches)
