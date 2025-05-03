@@ -962,9 +962,11 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::InterMilan, ETeam::BayernMunich, 1744830000000, EWeekType::QuarterFinal, true });
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 11, ETeam::RealMadrid, ETeam::Arsenal, 1744830000000, EWeekType::QuarterFinal, true });
 
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Arsenal, ETeam::PSG, 1745953200000, EWeekType::SemiFinal, false });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Barcelona, ETeam::InterMilan, 1746039600000, EWeekType::SemiFinal, false });
+  //  matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Arsenal, ETeam::PSG, 1745953200000, EWeekType::SemiFinal, false });
+   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Barcelona, ETeam::InterMilan, 1746039600000, EWeekType::SemiFinal, false });
 
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::InterMilan, ETeam::Barcelona, 1746558000000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::PSG, ETeam::Arsenal, 1746644400000, EWeekType::SemiFinal, true });
 
 
     for (auto& m : matches)
