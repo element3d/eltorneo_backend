@@ -108,7 +108,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -219,7 +220,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -330,7 +332,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -441,7 +444,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -552,7 +556,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -663,7 +668,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -774,7 +780,8 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -885,6 +892,7 @@
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
-        "call_of_duty": "Call of Duty"
+        "call_of_duty": "Call of Duty",
+        "medal_of_honor" : "Medal of Honor"
     }
 }
