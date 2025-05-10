@@ -106,7 +106,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -215,7 +216,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -324,7 +326,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -433,7 +436,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -542,7 +546,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -651,7 +656,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -760,7 +766,8 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -869,6 +876,7 @@
         "sm_vs_sz": "Spider-Man vs Sub-Zero",
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
-        "ns_vs_scorp": "Noob Saibot vs Scorpion"
+        "ns_vs_scorp": "Noob Saibot vs Scorpion",
+        "final_fantasy" : "Final Fantasy"
     }
 }
