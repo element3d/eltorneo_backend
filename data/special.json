@@ -107,7 +107,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -217,7 +218,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -327,7 +329,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -437,7 +440,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -547,7 +551,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -657,7 +662,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -767,7 +773,8 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -877,6 +884,7 @@
         "scorp_vs_ns": "Scorpion vs Noob Saibot",
         "sz_vs_sm": "Sub-Zero vs Spider-Man",
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
-        "final_fantasy" : "Final Fantasy"
+        "final_fantasy" : "Final Fantasy",
+        "call_of_duty": "Call of Duty"
     }
 }
