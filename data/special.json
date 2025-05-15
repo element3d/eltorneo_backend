@@ -109,7 +109,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -221,7 +222,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -333,7 +335,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -445,7 +448,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -557,7 +561,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -669,7 +674,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -781,7 +787,8 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -893,6 +900,7 @@
         "ns_vs_scorp": "Noob Saibot vs Scorpion",
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
-        "medal_of_honor" : "Medal of Honor"
+        "medal_of_honor" : "Medal of Honor",
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
     }
 }
