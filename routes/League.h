@@ -17,6 +17,8 @@ enum class ELeague
     SuperCupSpain,
     EFLCup,
     CopaDelRey,
+    EuropaLeague,
+    ConferenceLeague,
     End = CopaDelRey
 };
 

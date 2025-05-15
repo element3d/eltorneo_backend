@@ -399,7 +399,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
-	else if (league == ELeague::SuperCupFrance)
+	else if (league == ELeague::SuperCupFrance || league == ELeague::EuropaLeague || league == ELeague::ConferenceLeague)
 	{
 		if (week == 1)
 		{
