@@ -111,7 +111,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -225,7 +226,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -339,7 +341,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -453,7 +456,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -567,7 +571,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -681,7 +686,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -795,7 +801,8 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -909,6 +916,7 @@
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
-        "bad_company": "Bad Company"
+        "bad_company": "Bad Company",
+        "crash_team": "Crash Team"
     }
 }
