@@ -19,7 +19,8 @@ enum class ELeague
     CopaDelRey,
     EuropaLeague,
     ConferenceLeague,
-    End = CopaDelRey
+    ClubWorldCup,
+    End = ClubWorldCup
 };
 
 enum class ELeagueType 

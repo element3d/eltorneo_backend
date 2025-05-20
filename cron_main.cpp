@@ -52,6 +52,10 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 48;
 	case ELeague::CopaDelRey:
 		return 143;
+	case ELeague::EuropaLeague:
+		return 3;
+	case ELeague::ConferenceLeague:
+		return 848;
 	default:
 		break;
 	}
