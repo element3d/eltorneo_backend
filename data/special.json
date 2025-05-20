@@ -110,7 +110,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -223,7 +224,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -336,7 +338,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -449,7 +452,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -562,7 +566,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -675,7 +680,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -788,7 +794,8 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -901,6 +908,7 @@
         "final_fantasy" : "Final Fantasy",
         "call_of_duty": "Call of Duty",
         "medal_of_honor" : "Medal of Honor",
-        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final"
+        "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
+        "bad_company": "Bad Company"
     }
 }
