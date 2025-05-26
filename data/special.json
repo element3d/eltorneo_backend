@@ -112,7 +112,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Thunderbolts",
+        "tekken": "Tekken"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -227,7 +230,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Los Nuevos Vengadores",
+        "tekken": "Tekken"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -342,7 +348,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Les Nouveaux Avengers",
+        "tekken": "Tekken"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -457,7 +466,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "I Nuovi Avengers",
+        "tekken": "Tekken"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -572,7 +584,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Громовержцы",
+        "tekken": "Tekken"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -687,7 +702,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Os Novos Vingadores",
+        "tekken": "Tekken"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -802,7 +820,10 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Die Neuen Avengers",
+        "tekken": "Tekken"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -917,6 +938,9 @@
         "medal_of_honor" : "Medal of Honor",
         "ns_vs_sz": "Noob Saibot vs Sub Zero: Final",
         "bad_company": "Bad Company",
-        "crash_team": "Crash Team"
+        "crash_team": "Crash Team",
+        "modern_warfare2": "Modern Warfare",
+        "thunderbolts": "Novi Osvetnici",
+        "tekken": "Tekken"
     }
 }
