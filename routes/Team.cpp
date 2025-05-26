@@ -353,6 +353,50 @@ std::string Team::ToString(ETeam team)
     case ETeam::Andorra:
         return "Andorra";
 
+    // Club World Cup
+    case ETeam::AlAhly:
+        return "Al Ahly";
+    case ETeam::AlAin:
+        return "Al Ain";
+    case ETeam::AlHilal:
+        return "Al-Hilal Saudi FC";
+    case ETeam::AucklandCity:
+        return "Auckland City";
+    case ETeam::BocaJuniors:
+        return "Boca Juniors";
+    case ETeam::Botafogo:
+        return "Botafogo";
+    case ETeam::Esperance:
+        return "ES Tunis";
+    case ETeam::Flamengo:
+        return "Flamengo";
+    case ETeam::Fluminense:
+        return "Fluminense";
+    case ETeam::InterMiami:
+        return "Inter Miami";
+    case ETeam::MamelodiSundowns:
+        return "Mamelodi Sundowns";
+    case ETeam::Monterrey:
+        return "Monterrey";
+    case ETeam::Pachuca:
+        return "Pachuca";
+    case ETeam::Palmerias:
+        return "Palmerias";
+    case ETeam::Porto:
+        return "FC Porto";
+    case ETeam::RiverPlate:
+        return "River Plate";
+    case ETeam::SeatleSounders:
+        return "Seattle Sounders";
+    case ETeam::Ulsan:
+        return "Ulsan Hyundai FC";
+    case ETeam::UrawaReds:
+        return "Urawa";
+    case ETeam::Wydad:
+        return "Wydad AC";
+    case ETeam::Leon:
+        return "Leon";
+
     default:
         return "Unknown Team";
     }
@@ -710,6 +754,50 @@ std::string Team::ToShortString(ETeam team)
         return "Malta";
     case ETeam::Andorra:
         return "Andorra";
+
+        // Club World Cup
+    case ETeam::AlAhly:
+        return "Al Ahly";
+    case ETeam::AlAin:
+        return "Al Ain";
+    case ETeam::AlHilal:
+        return "Al Hilal";
+    case ETeam::AucklandCity:
+        return "Auckland C.";
+    case ETeam::BocaJuniors:
+        return "Boca Jun.";
+    case ETeam::Botafogo:
+        return "Botafogo";
+    case ETeam::Esperance:
+        return "Esperance";
+    case ETeam::Flamengo:
+        return "Flamengo";
+    case ETeam::Fluminense:
+        return "Fluminense";
+    case ETeam::InterMiami:
+        return "Inter Miami";
+    case ETeam::MamelodiSundowns:
+        return "Mamelodi S.";
+    case ETeam::Monterrey:
+        return "Monterrey";
+    case ETeam::Pachuca:
+        return "Pachuca";
+    case ETeam::Palmerias:
+        return "Palmerias";
+    case ETeam::Porto:
+        return "Porto";
+    case ETeam::RiverPlate:
+        return "River Plate";
+    case ETeam::SeatleSounders:
+        return "Seattle S.";
+    case ETeam::Ulsan:
+        return "Ulsan";
+    case ETeam::UrawaReds:
+        return "Urawa Reds";
+    case ETeam::Wydad:
+        return "Wydad";
+    case ETeam::Leon:
+        return "Leon";
 
     default:
         return "Unknown Team";

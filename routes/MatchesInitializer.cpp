@@ -2,6 +2,388 @@
 #include <vector>
 #include <unordered_map>
 
+void MatchesInitializer::InitClubWorldCupTeams24_25(PGconn* pg)
+{
+    std::vector<ETeam> newTeams =
+    {
+        ETeam::AlAhly,
+        ETeam::AlAin,
+        ETeam::AlHilal,
+        ETeam::AucklandCity,
+        ETeam::BocaJuniors,
+        ETeam::Botafogo,
+        ETeam::Esperance,
+        ETeam::Flamengo,
+        ETeam::Fluminense,
+        ETeam::InterMiami,
+        ETeam::MamelodiSundowns,
+        ETeam::Monterrey,
+        ETeam::Pachuca,
+        ETeam::Palmerias,
+        ETeam::Porto,
+        ETeam::RiverPlate,
+        ETeam::SeatleSounders,
+        ETeam::Ulsan,
+        ETeam::UrawaReds,
+        ETeam::Wydad,
+        ETeam::Leon
+    };
+
+    for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
+    {
+        std::string sql = "insert into teams(id, name, short_name) values ("
+            + std::to_string(i) + ", '"
+            + Team::ToString((ETeam)i) + "', '"
+            + Team::ToShortString((ETeam)i)
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::AlAhly,
+        ETeam::InterMiami,
+        ETeam::Palmerias,
+        ETeam::Porto
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::AtleticoMadrid,
+        ETeam::Botafogo,
+        ETeam::PSG,
+        ETeam::SeatleSounders
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::AucklandCity,
+        ETeam::BayernMunich,
+        ETeam::Benfica,
+        ETeam::BocaJuniors
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::Chelsea,
+        ETeam::Esperance,
+        ETeam::Flamengo,
+        ETeam::Leon
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::InterMilan,
+        ETeam::RiverPlate,
+        ETeam::Monterrey,
+        ETeam::UrawaReds
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::BorussiaDortmund,
+        ETeam::Fluminense,
+        ETeam::MamelodiSundowns,
+        ETeam::Ulsan
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::AlAin,
+        ETeam::Juventus,
+        ETeam::ManchesterCity,
+        ETeam::Wydad
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::AlHilal,
+        ETeam::Pachuca,
+        ETeam::RealMadrid,
+        ETeam::Salzburg
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
+void MatchesInitializer::InitClubWorldCupTable24_25(PGconn* pg)
+{
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::AlAhly,
+        ETeam::InterMiami,
+        ETeam::Palmerias,
+        ETeam::Porto
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::AtleticoMadrid,
+        ETeam::Botafogo,
+        ETeam::PSG,
+        ETeam::SeatleSounders
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::AucklandCity,
+        ETeam::BayernMunich,
+        ETeam::Benfica,
+        ETeam::BocaJuniors
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::Chelsea,
+        ETeam::Esperance,
+        ETeam::Flamengo,
+        ETeam::Leon
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::InterMilan,
+        ETeam::RiverPlate,
+        ETeam::Monterrey,
+        ETeam::UrawaReds
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::BorussiaDortmund,
+        ETeam::Fluminense,
+        ETeam::MamelodiSundowns,
+        ETeam::Ulsan
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::AlAin,
+        ETeam::Juventus,
+        ETeam::ManchesterCity,
+        ETeam::Wydad
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::AlHilal,
+        ETeam::Pachuca,
+        ETeam::RealMadrid,
+        ETeam::Salzburg
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::ClubWorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '24/25'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
 void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
 {
     std::vector<ETeam> newTeams =
@@ -650,6 +1032,100 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     {
         insertInto(team, leagueIndex, groupIndex);
     } 
+}
+
+void MatchesInitializer::InitClubWorldCup24_25(PGconn* pg)
+{
+    // ClubWorldCup
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::AlAhly, ETeam::InterMiami, 1749945600000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Palmerias, ETeam::Porto, 1750024800000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::PSG, ETeam::AtleticoMadrid, 1750014000000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Botafogo, ETeam::SeatleSounders, 1750039200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::BayernMunich, ETeam::AucklandCity, 1750003200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::BocaJuniors, ETeam::Benfica, 1750111200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Chelsea, ETeam::Leon, 1750100400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Flamengo, ETeam::Esperance, 1750122000000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::RiverPlate, ETeam::UrawaReds, 1750186800000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Monterrey, ETeam::InterMilan, 1750208400000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Fluminense, ETeam::BorussiaDortmund, 1750176000000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Ulsan, ETeam::MamelodiSundowns, 1750197600000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::ManchesterCity, ETeam::Wydad, 1750262400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::AlAin, ETeam::Juventus, 1750294800000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::RealMadrid, ETeam::AlHilal, 1750273200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Pachuca, ETeam::Salzburg, 1750284000000 });
+
+    // Week 2
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Palmerias, ETeam::AlAhly, 1750348800000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::InterMiami, ETeam::Porto, 1750359600000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::SeatleSounders, ETeam::AtleticoMadrid, 1750370400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::PSG, ETeam::Botafogo, 1750381200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Benfica, ETeam::AucklandCity, 1750435200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::BayernMunich, ETeam::BocaJuniors, 1750467600000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Flamengo, ETeam::Chelsea, 1750442400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Leon, ETeam::Esperance, 1750456800000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::InterMilan, ETeam::UrawaReds, 1750532400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::RiverPlate, ETeam::Monterrey, 1750554000000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::MamelodiSundowns, ETeam::BorussiaDortmund, 1750521600000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Fluminense, ETeam::Ulsan, 1750543200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Juventus, ETeam::Wydad, 1750608000000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::ManchesterCity, ETeam::AlAin, 1750640400000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::RealMadrid, ETeam::Pachuca, 1750618800000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Salzburg, ETeam::AlHilal, 1750629600000 });
+
+    // Week 3
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::InterMiami, ETeam::Palmerias, 1750726800000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Porto, ETeam::AlAhly, 1750726800000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::AtleticoMadrid, ETeam::Botafogo, 1750705200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::SeatleSounders, ETeam::PSG, 1750705200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Benfica, ETeam::BayernMunich, 1750791600000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::AucklandCity, ETeam::BocaJuniors, 1750791600000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Leon, ETeam::Flamengo, 1750813200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Esperance, ETeam::Chelsea, 1750813200000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::UrawaReds, ETeam::Monterrey, 1750899600000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::InterMilan, ETeam::RiverPlate, 1750899600000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::BorussiaDortmund, ETeam::Ulsan, 1750878000000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::MamelodiSundowns, ETeam::Fluminense, 1750878000000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Juventus, ETeam::ManchesterCity, 1750964400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Wydad, ETeam::AlAin, 1750964400000 });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::AlHilal, ETeam::Pachuca, 1750986000000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Salzburg, ETeam::RealMadrid, 1750986000000 });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, team1, team2, match_date) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
 }
 
 void MatchesInitializer::InitNationsLeague24_25(PGconn* pg)

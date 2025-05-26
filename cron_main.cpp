@@ -56,6 +56,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 3;
 	case ELeague::ConferenceLeague:
 		return 848;
+	case ELeague::ClubWorldCup:
+		return 15;
 	default:
 		break;
 	}
@@ -425,6 +427,22 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
+	else if (league == ELeague::ClubWorldCup)
+	{
+		if (week == 1)
+		{
+			round = "Group Stage - 1";
+		}
+		if (week == 2)
+		{
+			round = "Group Stage - 2";
+		}
+		else if (week == 3)
+		{
+			round = "Group Stage - 3";
+		}
+	}
+
 
 	return round;
 }

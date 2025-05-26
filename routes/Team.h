@@ -145,6 +145,30 @@ enum class ETeam
     Sassuolo,
     Cesena,
 
+    // Club World Cup
+    AlAhly,
+    AlAin,
+    AlHilal,
+    AucklandCity,
+    BocaJuniors,
+    Botafogo,
+    Esperance,
+    Flamengo,
+    Fluminense,
+    InterMiami,
+    MamelodiSundowns,
+    Monterrey,
+    Pachuca,
+    Palmerias,
+    Porto,
+    RiverPlate,
+    SeatleSounders,
+    Ulsan,
+    UrawaReds,
+    Wydad,
+    Leon,
+
+
     // International
     // Nations League
     NationsLeagueStart = 10000,
