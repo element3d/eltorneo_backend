@@ -1348,8 +1348,11 @@ void MatchesInitializer::InitNationsLeaguePO24_25(PGconn* pg)
   //  matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::France, ETeam::Croatia, 1742759100000, EWeekType::QuarterFinal, true });
 //    matches.push_back({ ELeague::NationsLeague, "24/25", 7, ETeam::Spain, ETeam::Netherlands, 1742759100000, EWeekType::QuarterFinal, true });
 
-    matches.push_back({ ELeague::NationsLeague, "24/25", 8, ETeam::Germany, ETeam::Portugal, 1749063600000, EWeekType::SemiFinal, false });
-    matches.push_back({ ELeague::NationsLeague, "24/25", 8, ETeam::Spain, ETeam::France, 1749150000000, EWeekType::SemiFinal, false });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 8, ETeam::Germany, ETeam::Portugal, 1749063600000, EWeekType::SemiFinal, false });
+   // matches.push_back({ ELeague::NationsLeague, "24/25", 8, ETeam::Spain, ETeam::France, 1749150000000, EWeekType::SemiFinal, false });
+
+    matches.push_back({ ELeague::NationsLeague, "24/25", 9, ETeam::Germany, ETeam::France, 1749387600000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::NationsLeague, "24/25", 10, ETeam::Portugal, ETeam::Spain, 1749409200000, EWeekType::Final, true });
 
 
     for (auto& m : matches)

@@ -11,6 +11,7 @@ enum class EWeekType
     SemiFinal,
     Final,
     RoundOf8,
+    ThirdPlace
 };
 
 class Match
