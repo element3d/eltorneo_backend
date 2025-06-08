@@ -394,8 +394,8 @@ std::string Team::ToString(ETeam team)
         return "Urawa";
     case ETeam::Wydad:
         return "Wydad AC";
-    case ETeam::Leon:
-        return "Leon";
+    case ETeam::LosAngelesFC:
+        return "Los Angeles FC";
 
     default:
         return "Unknown Team";
@@ -796,8 +796,8 @@ std::string Team::ToShortString(ETeam team)
         return "Urawa Reds";
     case ETeam::Wydad:
         return "Wydad";
-    case ETeam::Leon:
-        return "Leon";
+    case ETeam::LosAngelesFC:
+        return "Los Angeles";
 
     default:
         return "Unknown Team";

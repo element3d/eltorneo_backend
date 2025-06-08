@@ -166,7 +166,7 @@ enum class ETeam
     Ulsan,
     UrawaReds,
     Wydad,
-    Leon,
+    LosAngelesFC,
 
 
     // International

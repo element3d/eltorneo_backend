@@ -26,7 +26,7 @@ void MatchesInitializer::InitClubWorldCupTeams24_25(PGconn* pg)
         ETeam::Ulsan,
         ETeam::UrawaReds,
         ETeam::Wydad,
-        ETeam::Leon
+        ETeam::LosAngelesFC
     };
 
     for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
@@ -111,7 +111,7 @@ void MatchesInitializer::InitClubWorldCupTeams24_25(PGconn* pg)
         ETeam::Chelsea,
         ETeam::Esperance,
         ETeam::Flamengo,
-        ETeam::Leon
+        ETeam::LosAngelesFC
     };
 
     for (auto team : group4Teams)
@@ -284,7 +284,7 @@ void MatchesInitializer::InitClubWorldCupTable24_25(PGconn* pg)
         ETeam::Chelsea,
         ETeam::Esperance,
         ETeam::Flamengo,
-        ETeam::Leon
+        ETeam::LosAngelesFC
     };
 
     for (auto team : group4Teams)
@@ -1048,7 +1048,7 @@ void MatchesInitializer::InitClubWorldCup24_25(PGconn* pg)
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::BayernMunich, ETeam::AucklandCity, 1750003200000 });
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::BocaJuniors, ETeam::Benfica, 1750111200000 });
 
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Chelsea, ETeam::Leon, 1750100400000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Chelsea, ETeam::LosAngelesFC, 1750100400000 });
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::Flamengo, ETeam::Esperance, 1750122000000 });
 
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 1, ETeam::RiverPlate, ETeam::UrawaReds, 1750186800000 });
@@ -1074,7 +1074,7 @@ void MatchesInitializer::InitClubWorldCup24_25(PGconn* pg)
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::BayernMunich, ETeam::BocaJuniors, 1750467600000 });
 
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Flamengo, ETeam::Chelsea, 1750442400000 });
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::Leon, ETeam::Esperance, 1750456800000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::LosAngelesFC, ETeam::Esperance, 1750456800000 });
 
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::InterMilan, ETeam::UrawaReds, 1750532400000 });
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 2, ETeam::RiverPlate, ETeam::Monterrey, 1750554000000 });
@@ -1098,7 +1098,7 @@ void MatchesInitializer::InitClubWorldCup24_25(PGconn* pg)
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Benfica, ETeam::BayernMunich, 1750791600000 });
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::AucklandCity, ETeam::BocaJuniors, 1750791600000 });
 
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Leon, ETeam::Flamengo, 1750813200000 });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::LosAngelesFC, ETeam::Flamengo, 1750813200000 });
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::Esperance, ETeam::Chelsea, 1750813200000 });
 
     matches.push_back({ ELeague::ClubWorldCup, "24/25", 3, ETeam::UrawaReds, ETeam::Monterrey, 1750899600000 });
