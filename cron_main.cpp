@@ -848,7 +848,7 @@ void GetLiveMatches(PGconn* pg)
 
 		if (apiId == -1 || team1.ApiId == -1 || team2.ApiId == -1)
 		{
-			apiId = GetApiFootballMatches(pg, ELeague(league), id, team1, team2, "2024", week);
+			apiId = GetApiFootballMatches(pg, ELeague(league), id, team1, team2, "2025", week);
 		}
 
 		std::string url = "https://v3.football.api-sports.io/fixtures?id=" + std::to_string(apiId);
@@ -1376,7 +1376,7 @@ void GetTodayMatches(PGconn* pg)
 
 		if (apiId == -1) 
 		{
-			apiId = GetApiFootballMatches(pg, ELeague(atoi(league_id.c_str())), atoi(id.c_str()), team1, team2, "2024", atoi(week.c_str()));
+			apiId = GetApiFootballMatches(pg, ELeague(atoi(league_id.c_str())), atoi(id.c_str()), team1, team2, "2025", atoi(week.c_str()));
 		}
 
 		if (apiId > 0) 
@@ -1597,7 +1597,7 @@ void GetMatchBets(PGconn* pg, int matchId, int apiId)
 void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 {
 	int rows = PQntuples(res);
-	std::string season = "2024";
+	std::string season = "2025";
 	for (int i = 0; i < rows; ++i)
 	{
 		int id = atoi(PQgetvalue(res, i, 0));
