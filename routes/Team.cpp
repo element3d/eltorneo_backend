@@ -381,7 +381,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Pachuca:
         return "Pachuca";
     case ETeam::Palmerias:
-        return "Palmerias";
+        return "Palmeiras";
     case ETeam::Porto:
         return "FC Porto";
     case ETeam::RiverPlate:
@@ -783,7 +783,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Pachuca:
         return "Pachuca";
     case ETeam::Palmerias:
-        return "Palmerias";
+        return "Palmeiras";
     case ETeam::Porto:
         return "Porto";
     case ETeam::RiverPlate:
