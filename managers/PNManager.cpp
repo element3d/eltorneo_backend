@@ -825,8 +825,8 @@ bool PNManager::SendMatchNotification()
     rapidjson::Document document;
     document.Parse(jsonString.c_str());
 
-    std::string nTitle = "fifa_title";
-    std::string nMsg = "fifa_msg";
+    std::string nTitle = "match_title";
+    std::string nMsg = "match_msg";
 
     char* temp = (char*)calloc(4096, sizeof(char));
     std::vector<int> invalidTokens;
