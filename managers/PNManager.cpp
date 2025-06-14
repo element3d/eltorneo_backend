@@ -825,8 +825,8 @@ bool PNManager::SendMatchNotification()
     rapidjson::Document document;
     document.Parse(jsonString.c_str());
 
-    std::string nTitle = "match_title";
-    std::string nMsg = "match_msg";
+    std::string nTitle = "fifa_title";
+    std::string nMsg = "fifa_msg";
 
     char* temp = (char*)calloc(4096, sizeof(char));
     std::vector<int> invalidTokens;
@@ -845,7 +845,7 @@ bool PNManager::SendMatchNotification()
         std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
         std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
 
-        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "nations_league");
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, "fifa_cwc");
         // break;
         if (!ret) invalidTokens.push_back(id);
     }
