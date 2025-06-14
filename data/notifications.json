@@ -35,7 +35,7 @@
     "beat_bet_msg": "Bayern Munich to win (90%), Girona to win (90%), Verona to avoid defeat (91%)",
     "vbet_title": "Virtual betting.",
     "vbet_msg": "A new feature has been added.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
+    "fifa_title": "The final tournament of the 2024/25 season in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: Make your predictions now."
   },
   "ru": {
@@ -74,8 +74,8 @@
     "beat_bet_msg": "Победа Баварии (90%), победа Жироны (90%), Верона не проиграет (91%)",
     "vbet_title": "Виртуальные ставки.",
     "vbet_msg": "Добавлена новая функция.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "Финальный турнир сезона 2024/25 в El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: сделайте свои прогнозы прямо сейчас."
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -113,8 +113,8 @@
     "beat_bet_msg": "Bayern Múnich ganará (90%), Girona ganará (90%), Verona no perderá (91%)",
     "vbet_title": "Apuestas virtuales.",
     "vbet_msg": "Se ha añadido una nueva función.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "¡El torneo final de la temporada 2024/25 en El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: haz tus predicciones ahora."
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -152,8 +152,8 @@
     "beat_bet_msg": "Bayern Monaco vincerà (90%), Girona vincerà (90%), Verona non perderà (91%)",
     "vbet_title": "Scommesse virtuali.",
     "vbet_msg": "È stata aggiunta una nuova funzione.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "Il torneo finale della stagione 2024/25 in El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: fai le tue previsioni ora."
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -191,8 +191,8 @@
     "beat_bet_msg": "Bayern München gewinnt (90%), Girona gewinnt (90%), Verona verliert nicht (91%)",
     "vbet_title": "Virtuelle Wetten.",
     "vbet_msg": "Eine neue Funktion wurde hinzugefügt.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "Das letzte Turnier der Saison 2024/25 in El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: Gib jetzt deine Tipps ab."
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -230,8 +230,8 @@
     "beat_bet_msg": "Bayern München pobjeđuje (90%), Girona pobjeđuje (90%), Verona ne gubi (91%)",
     "vbet_title": "Virtualno klađenje.",
     "vbet_msg": "Dodana je nova značajka.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "Završni turnir sezone 2024./25. u El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: daj svoje prognoze sada."
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -269,8 +269,8 @@
     "beat_bet_msg": "Bayern Munich gagne (90%), Girona gagne (90%), Vérone ne perd pas (91%)",
     "vbet_title": "Pari virtuel.",
     "vbet_msg": "Une nouvelle fonctionnalité a été ajoutée.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "Le tournoi final de la saison 2024/25 dans El Torneo !",
+    "fifa_msg": "FIFA Club World Cup : fais tes pronostics maintenant."
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -308,7 +308,7 @@
     "beat_bet_msg": "Bayern de Munique vence (90%), Girona vence (90%), Verona não perde (91%)",
     "vbet_title": "Aposta virtual.",
     "vbet_msg": "Um novo recurso foi adicionado.",
-    "fifa_title": "The last tournament of season 24/25 in el Torneo.",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_title": "O torneio final da temporada 2024/25 no El Torneo!",
+    "fifa_msg": "FIFA Club World Cup: faça suas previsões agora."
   }
 }
