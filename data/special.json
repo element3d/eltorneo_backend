@@ -117,7 +117,8 @@
         "thunderbolts": "Thunderbolts",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "National Treasure"
+        "national_treasure": "National Treasure",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -237,7 +238,8 @@
         "thunderbolts": "Los Nuevos Vengadores",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Tesoro Nacional"
+        "national_treasure": "Tesoro Nacional",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -357,7 +359,8 @@
         "thunderbolts": "Les Nouveaux Avengers",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Trésor national"
+        "national_treasure": "Trésor national",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -477,7 +480,8 @@
         "thunderbolts": "I Nuovi Avengers",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Tesoro nazionale"
+        "national_treasure": "Tesoro nazionale",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -597,7 +601,8 @@
         "thunderbolts": "Громовержцы",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Сокровище нации"
+        "national_treasure": "Сокровище нации",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -717,7 +722,8 @@
         "thunderbolts": "Os Novos Vingadores",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Tesouro Nacional"
+        "national_treasure": "Tesouro Nacional",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -837,7 +843,8 @@
         "thunderbolts": "Die Neuen Avengers",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Das Nationalheiligtum"
+        "national_treasure": "Das Nationalheiligtum",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -957,6 +964,7 @@
         "thunderbolts": "Novi Osvetnici",
         "tekken": "Tekken",
         "uncharted": "Uncharted",
-        "national_treasure": "Nacionalno blago"
+        "national_treasure": "Nacionalno blago",
+        "law_vs_hwo" : "Marshall Law vs Hwoarang"
     }
 }
