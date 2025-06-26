@@ -1034,6 +1034,36 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     } 
 }
 
+void MatchesInitializer::InitClubWorldCupPO24_25(PGconn* pg)
+{
+    // ClubWorldCup
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::Palmerias, ETeam::Botafogo, 1751126400000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::Benfica, ETeam::Chelsea, 1751140800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::PSG, ETeam::InterMiami, 1751212800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::Flamengo, ETeam::BayernMunich, 1751227200000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::InterMilan, ETeam::Fluminense, 1751310000000, EWeekType::RoundOf16, true });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2,match_date,play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string((int)m.PlayOff) + ""
+            + ");";
+
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 void MatchesInitializer::InitClubWorldCup24_25(PGconn* pg)
 {
     // ClubWorldCup
