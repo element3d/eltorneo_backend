@@ -118,7 +118,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "National Treasure",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -239,7 +240,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Tesoro Nacional",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -360,7 +362,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Trésor national",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -481,7 +484,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Tesoro nazionale",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -602,7 +606,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Сокровище нации",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -723,7 +728,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Tesouro Nacional",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -844,7 +850,8 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Das Nationalheiligtum",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -965,6 +972,7 @@
         "tekken": "Tekken",
         "uncharted": "Uncharted",
         "national_treasure": "Nacionalno blago",
-        "law_vs_hwo" : "Marshall Law vs Hwoarang"
+        "law_vs_hwo" : "Marshall Law vs Hwoarang",
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
     }
 }
