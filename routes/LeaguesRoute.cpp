@@ -391,7 +391,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             else if (id == (int)ELeague::ClubWorldCup)
             {
                 int i = 1;
-                for (; i < 3; ++i)
+                for (; i <= 3; ++i)
                 {
                     rapidjson::Value weekObject;
                     weekObject.SetObject();
