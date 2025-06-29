@@ -119,7 +119,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "National Treasure",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -241,7 +242,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Tesoro Nacional",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -363,7 +365,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Trésor national",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -485,7 +488,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Tesoro nazionale",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -607,7 +611,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Сокровище нации",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -729,7 +734,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Tesouro Nacional",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -851,7 +857,8 @@
         "uncharted": "Uncharted",
         "national_treasure": "Das Nationalheiligtum",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -973,6 +980,7 @@
         "uncharted": "Uncharted",
         "national_treasure": "Nacionalno blago",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
-        "eddy_vs_law": "Eddy Gordo vs Marshall Law"
+        "eddy_vs_law": "Eddy Gordo vs Marshall Law",
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
     }
 }
