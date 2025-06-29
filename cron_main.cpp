@@ -456,6 +456,18 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		{
 			round = "8th Finals";
 		}
+		else if (week == 5)
+		{
+			round = "Quarter-finals";
+		}
+		else if (week == 6)
+		{
+			round = "Semi-finals";
+		}
+		else if (week == 7)
+		{
+			round = "Final";
+		}
 	}
 
 

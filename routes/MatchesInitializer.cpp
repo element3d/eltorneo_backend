@@ -1045,9 +1045,12 @@ void MatchesInitializer::InitClubWorldCupPO24_25(PGconn* pg)
 //    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::Flamengo, ETeam::BayernMunich, 1751227200000, EWeekType::RoundOf16, true });
 //    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::InterMilan, ETeam::Fluminense, 1751310000000, EWeekType::RoundOf16, true });
 
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::ManchesterCity, ETeam::AlHilal, 1751331600000, EWeekType::RoundOf16, true });
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::RealMadrid, ETeam::Juventus, 1751396400000, EWeekType::RoundOf16, true });
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::BorussiaDortmund, ETeam::Monterrey, 1751418000000, EWeekType::RoundOf16, true });
+    //matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::ManchesterCity, ETeam::AlHilal, 1751331600000, EWeekType::RoundOf16, true });
+  //  matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::RealMadrid, ETeam::Juventus, 1751396400000, EWeekType::RoundOf16, true });
+//    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::BorussiaDortmund, ETeam::Monterrey, 1751418000000, EWeekType::RoundOf16, true });
+
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::Palmerias, ETeam::Chelsea, 1751677200000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::PSG, ETeam::BayernMunich, 1751731200000, EWeekType::RoundOf8, true });
 
     for (auto& m : matches)
     {
