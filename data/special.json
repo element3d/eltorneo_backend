@@ -120,7 +120,10 @@
         "national_treasure": "National Treasure",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -243,7 +246,10 @@
         "national_treasure": "Tesoro Nacional",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -366,7 +372,10 @@
         "national_treasure": "Trésor national",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -489,7 +498,10 @@
         "national_treasure": "Tesoro nazionale",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -612,7 +624,10 @@
         "national_treasure": "Сокровище нации",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -735,7 +750,10 @@
         "national_treasure": "Tesouro Nacional",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -858,7 +876,10 @@
         "national_treasure": "Das Nationalheiligtum",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -981,6 +1002,9 @@
         "national_treasure": "Nacionalno blago",
         "law_vs_hwo" : "Marshall Law vs Hwoarang",
         "eddy_vs_law": "Eddy Gordo vs Marshall Law",
-        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama"
+        "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
+        "br_vs_og": "Bryan Fury vs Ogre",
+        "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
+        "eg_vs_ki": "Eddy Gordo vs King"
     }
 }
