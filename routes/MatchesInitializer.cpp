@@ -1049,9 +1049,13 @@ void MatchesInitializer::InitClubWorldCupPO24_25(PGconn* pg)
   //  matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::RealMadrid, ETeam::Juventus, 1751396400000, EWeekType::RoundOf16, true });
 //    matches.push_back({ ELeague::ClubWorldCup, "24/25", 4, ETeam::BorussiaDortmund, ETeam::Monterrey, 1751418000000, EWeekType::RoundOf16, true });
 
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::Palmerias, ETeam::Chelsea, 1751677200000, EWeekType::RoundOf8, true });
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::PSG, ETeam::BayernMunich, 1751731200000, EWeekType::RoundOf8, true });
+   // matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::Palmerias, ETeam::Chelsea, 1751677200000, EWeekType::RoundOf8, true });
+   // matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::PSG, ETeam::BayernMunich, 1751731200000, EWeekType::RoundOf8, true });
 
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::Fluminense, ETeam::AlHilal, 1751655600000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::RealMadrid, ETeam::BorussiaDortmund, 1751745600000, EWeekType::QuarterFinal, true });
+
+    
     for (auto& m : matches)
     {
         std::string sql = "insert into matches(league, season, week, week_type, team1, team2,match_date,play_off) values ("
