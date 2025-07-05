@@ -123,7 +123,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -249,7 +250,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -375,7 +377,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -501,7 +504,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -627,7 +631,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -753,7 +758,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -879,7 +885,8 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1005,6 +1012,7 @@
         "yoshi_vs_jin": "Yoshimitsu vs Jin Kazama",
         "br_vs_og": "Bryan Fury vs Ogre",
         "pp_vs_hm": "Paul Phoenix vs Heihachi Mishima",
-        "eg_vs_ki": "Eddy Gordo vs King"
+        "eg_vs_ki": "Eddy Gordo vs King",
+        "bf_vs_hm": "Bryan Fury vs Heihachi Mishima"
     }
 }
