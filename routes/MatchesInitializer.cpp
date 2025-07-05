@@ -1052,7 +1052,7 @@ void MatchesInitializer::InitClubWorldCupPO24_25(PGconn* pg)
    // matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::Palmerias, ETeam::Chelsea, 1751677200000, EWeekType::RoundOf8, true });
    // matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::PSG, ETeam::BayernMunich, 1751731200000, EWeekType::RoundOf8, true });
 
-    matches.push_back({ ELeague::ClubWorldCup, "24/25", 6, ETeam::Fluminense, ETeam::Chelsea, 1752001200000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::ClubWorldCup, "24/25", 6, ETeam::PSG, ETeam::RealMadrid, 1752087600000, EWeekType::SemiFinal, true });
     //matches.push_back({ ELeague::ClubWorldCup, "24/25", 5, ETeam::RealMadrid, ETeam::BorussiaDortmund, 1751745600000, EWeekType::QuarterFinal, true });
 
     
