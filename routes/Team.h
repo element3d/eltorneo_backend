@@ -168,6 +168,38 @@ enum class ETeam
     Wydad,
     LosAngelesFC,
 
+    // Laliga 2025
+    LaLiga2025Start,
+    Levante = LaLiga2025Start,
+    Oviedo,
+    Elche,
+    LaLiga2025End = Elche,
+
+    // Premier League 2025
+    PremierLeague2025Start,
+    Burnley = PremierLeague2025Start,
+    Leeds,
+    Sunderland,
+    PremierLeague2025End = Sunderland,
+
+    // Serie A 2025
+    SerieA2025Start,
+    Cremonese = SerieA2025Start,
+    Pisa,
+    SerieA2025End = Pisa,
+
+    // Bundesliga 2025
+    Bundesliga2025Start,
+    Koln = Bundesliga2025Start,
+    Hamburg,
+    Bundesliga2025End = Hamburg,
+
+    // Ligue 1 2025
+    Ligue12025Start,
+    Lorient = Ligue12025Start,
+    Metz,
+    ParisFC,
+    Ligue12025End = ParisFC,
 
     // International
     // Nations League

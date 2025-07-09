@@ -61,11 +61,11 @@ public:
     static void InitChampionsLeague24_25(PGconn* pg);
     static void InitChampionsLeaguePO24_25(PGconn* pg);
 
-    static void InitLigue124_25(PGconn* pg);
-    static void InitBundesliga24_25(PGconn* pg);
-    static void InitSerieA24_25(PGconn* pg);
-	static void InitPremierLeague24_25(PGconn* pg);
-    static void InitLaLiga24_25(PGconn* pg);
+    static void InitLigue125_26(PGconn* pg);
+    static void InitBundesliga25_26(PGconn* pg);
+    static void InitSerieA25_26(PGconn* pg);
+    static void InitPremierLeague25_26(PGconn* pg);
+    static void InitLaLiga25_26(PGconn* pg);
 
     static void InitCopaDelReyTeams24_25(PGconn* pg);
     static void InitCopaDelRey24_25(PGconn* pg);

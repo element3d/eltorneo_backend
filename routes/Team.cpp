@@ -396,6 +396,38 @@ std::string Team::ToString(ETeam team)
         return "Wydad AC";
     case ETeam::LosAngelesFC:
         return "Los Angeles FC";
+    // Laliga 2025
+    case ETeam::Levante:
+        return "Levante";
+    case ETeam::Oviedo:
+        return "Oviedo";
+    case ETeam::Elche:
+        return "Elche";
+    // Premier League
+    case ETeam::Burnley:
+        return "Burnley";
+    case ETeam::Leeds:
+        return "Leeds";
+    case ETeam::Sunderland:
+        return "Sunderland";
+    // Serie A
+    case ETeam::Cremonese:
+        return "Cremonese";
+    case ETeam::Pisa:
+        return "Pisa";
+    // Bundesliga 
+    case ETeam::Koln:
+        return "1.FC Köln";
+    case ETeam::Hamburg:
+        return "Hamburger SV";
+    // Ligue 1 
+    case ETeam::Lorient:
+        return "Lorient";
+    case ETeam::Metz:
+        return "Metz";
+    case ETeam::ParisFC:
+        return "Paris FC";
+
 
     default:
         return "Unknown Team";
@@ -798,6 +830,36 @@ std::string Team::ToShortString(ETeam team)
         return "Wydad";
     case ETeam::LosAngelesFC:
         return "Los Angeles";
+    // Laliga 2025
+    case ETeam::Levante:
+        return "Levante";
+    case ETeam::Oviedo:
+        return "Oviedo";
+    case ETeam::Elche:
+        return "Elche";
+    case ETeam::Burnley:
+        return "Burnley";
+    case ETeam::Leeds:
+        return "Leeds";
+    case ETeam::Sunderland:
+        return "Sunderland";
+    // Serie A
+    case ETeam::Cremonese:
+        return "Cremonese";
+    case ETeam::Pisa:
+        return "Pisa";
+    // Bundesliga 
+    case ETeam::Koln:
+        return "Koln";
+    case ETeam::Hamburg:
+        return "Hamburg";
+    // Ligue 1 
+    case ETeam::Lorient:
+        return "Lorient";
+    case ETeam::Metz:
+        return "Metz";
+    case ETeam::ParisFC:
+        return "Paris FC";
 
     default:
         return "Unknown Team";
