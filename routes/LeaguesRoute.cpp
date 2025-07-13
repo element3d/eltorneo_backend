@@ -32,38 +32,51 @@ void LeaguesRoute::Init()
     PGresult* ret = PQexec(pg, sql.c_str());
     int numLeagues = atoi(PQgetvalue(ret, 0, 0));
     PQclear(ret);
+
+   // MatchesInitializer::FillAwards(pg);
+
     if (numLeagues > 0) 
     {
         //MatchesInitializer::InitClubWorldCupTeams24_25(pg);
         //MatchesInitializer::InitClubWorldCupTable24_25(pg);
         //MatchesInitializer::InitClubWorldCup24_25(pg);
-        MatchesInitializer::InitClubWorldCupPO24_25(pg);
+      //  MatchesInitializer::InitClubWorldCupPO24_25(pg);
 
        //MatchesInitializer::InitNationsLeaguePO24_25(pg);
        // MatchesInitializer::InitNationsLeagueTeams24_25(pg);
         //MatchesInitializer::InitChampionsLeague24_25(pg);
         //MatchesInitializer::InitChampionsLeaguePO24_25(pg);
-        //MatchesInitializer::InitLigue1Teams24_25(pg);
-
-        //MatchesInitializer::InitLigue124_25(pg);
+     
+        //MatchesInitializer::InitLigue1Teams25_26(pg);
+        //MatchesInitializer::InitLigue125_26(pg);
 
         //MatchesInitializer::InitChampionsLeagueTeams24_25(pg);
         // MatchesInitializer::InitChampionsLeagueTable(pg);
 
-        /*MatchesInitializer::InitPremierLeagueTable(pg);
-        MatchesInitializer::FillPremierLeagueTable(pg);
-
-        MatchesInitializer::InitLaLigaTable(pg);
-        MatchesInitializer::FillLaLigaTable(pg);
-
-        MatchesInitializer::InitSeriaATable(pg);
-        MatchesInitializer::FillSeriaATable(pg);
-
-        MatchesInitializer::InitBundesligaTable(pg);
-        MatchesInitializer::FillBundesligaTable(pg);
-
-        MatchesInitializer::InitLigue1Table(pg);
-        MatchesInitializer::FillLigue1Table(pg);*/
+  //     MatchesInitializer::InitPremierLeagueTeams25_26(pg);
+  //     MatchesInitializer::InitPremierLeague25_26(pg);
+  //     MatchesInitializer::InitPremierLeagueTable(pg);
+  //  // MatchesInitializer::FillPremierLeagueTable(pg);
+  //
+  //     MatchesInitializer::InitLaLigaTeams25_26(pg);
+  //     MatchesInitializer::InitLaLiga25_26(pg);
+  //     MatchesInitializer::InitLaLigaTable(pg);
+  //  // MatchesInitializer::FillLaLigaTable(pg);
+  //
+       //MatchesInitializer::InitSerieATeams25_26(pg);
+  //     MatchesInitializer::InitSerieA25_26(pg);
+  //     MatchesInitializer::InitSeriaATable(pg);
+  //  // MatchesInitializer::FillSeriaATable(pg);
+  //
+  //     MatchesInitializer::InitBundesligaTeams25_26(pg);
+  //     MatchesInitializer::InitBundesliga25_26(pg);
+  //     MatchesInitializer::InitBundesligaTable(pg);
+  //  // MatchesInitializer::FillBundesligaTable(pg);
+  //
+  //     MatchesInitializer::InitLigue1Teams25_26(pg);
+  //     MatchesInitializer::InitLigue125_26(pg);
+  //     MatchesInitializer::InitLigue1Table(pg);
+  //  // MatchesInitializer::FillLigue1Table(pg);
 
         //MatchesInitializer::InitCoppaItaliaTeams24_25(pg);
         //MatchesInitializer::InitCoppaItalia24_25(pg);
@@ -101,17 +114,13 @@ void LeaguesRoute::Init()
         PQclear(ret);
     }
 
-    MatchesInitializer::InitPremierLeagueTeams24_25(pg);
+/*   MatchesInitializer::InitPremierLeagueTeams24_25(pg);
     MatchesInitializer::InitLaLigaTeams24_25(pg);
     MatchesInitializer::InitSerieATeams24_25(pg);
     MatchesInitializer::InitBundesligaTeams24_25(pg);
-    MatchesInitializer::InitLigue1Teams24_25(pg);
+    MatchesInitializer::InitLigue1Teams24_25(pg);*/
 
-    MatchesInitializer::InitPremierLeague24_25(pg);
-    MatchesInitializer::InitLaLiga24_25(pg);
-    MatchesInitializer::InitSerieA24_25(pg);
-    MatchesInitializer::InitBundesliga24_25(pg);
-    MatchesInitializer::InitLigue124_25(pg);
+  
 
     ConnectionPool::Get()->releaseConnection(pg);
 }
@@ -156,9 +165,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             rapidjson::Value versionValue;
             versionValue.SetString(version.c_str(), version.size(), allocator);
 
+            rapidjson::Value seasonValue;
+            std::string season = "25/26";
+            seasonValue.SetString(season.c_str(), season.size(), allocator);
+
             // Add key-value pairs to the object
             objValue.AddMember("id", idValue, allocator);
             objValue.AddMember("version", versionValue, allocator);
+            objValue.AddMember("season", seasonValue, allocator);
+
             objValue.AddMember("enableAds", atoi(PQgetvalue(ret, i, 2)), allocator);
             objValue.AddMember("numMinAdActions", atoi(PQgetvalue(ret, i, 3)), allocator);
             objValue.AddMember("prodAds", atoi(PQgetvalue(ret, i, 4)), allocator);
@@ -557,9 +572,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
         PGconn* pg = ConnectionPool::Get()->getConnection();
 
         // SQL query to get the league table sorted by points and then by goal difference
-        std::string sql = "SELECT team_id, matches_played, goals_f, goals_a, points, league_index, group_index "
-            "FROM tables WHERE league_id = " + std::to_string(leagueId) + " AND league_index = " + std::to_string(leagueIndex) +
-            " ORDER BY group_index, points DESC, (goals_f - goals_a) DESC;";
+        std::string sql =
+            "SELECT t.team_id, t.matches_played, t.goals_f, t.goals_a, t.points, "
+            "t.league_index, t.group_index "
+            "FROM tables t "
+            "JOIN leagues l ON t.league_id = l.id "
+            "WHERE t.league_id = " + std::to_string(leagueId) + " "
+            "AND t.league_index = " + std::to_string(leagueIndex) + " "
+            "AND t.season = l.current_season "
+            "ORDER BY t.group_index, t.points DESC, (t.goals_f - t.goals_a) DESC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 

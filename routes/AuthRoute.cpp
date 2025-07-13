@@ -418,6 +418,42 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         document.AddMember("position", pos, allocator);
         free(temp);
 
+        {
+            std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+            if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                PQclear(awardsRes);
+            }
+            else
+            {
+                int awardCount = PQntuples(awardsRes);
+                rapidjson::Value awards(rapidjson::kArrayType);
+
+                for (int j = 0; j < awardCount; ++j)
+                {
+                    rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                    int place = atoi(PQgetvalue(awardsRes, j, 0));
+                    char* season = PQgetvalue(awardsRes, j, 1);
+
+                    awardObj.AddMember("place", place, allocator);
+
+                    rapidjson::Value seasonVal;
+                    seasonVal.SetString(season, allocator);
+                    awardObj.AddMember("season", seasonVal, allocator);
+
+                    awards.PushBack(awardObj, allocator);
+                }
+
+                document.AddMember("awards", awards, allocator);
+                PQclear(awardsRes);
+            }
+
+        }
+
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         document.Accept(writer);
@@ -488,6 +524,42 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
 
         int pos = CachedTable::Get()->GetPosition(atoi(userId.c_str()), league);
         document.AddMember("position", pos, allocator);
+
+        {
+            std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + userId + ";";
+            PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+            if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                PQclear(awardsRes);
+            }
+            else
+            {
+                int awardCount = PQntuples(awardsRes);
+                rapidjson::Value awards(rapidjson::kArrayType);
+
+                for (int j = 0; j < awardCount; ++j)
+                {
+                    rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                    int place = atoi(PQgetvalue(awardsRes, j, 0));
+                    char* season = PQgetvalue(awardsRes, j, 1);
+
+                    awardObj.AddMember("place", place, allocator);
+
+                    rapidjson::Value seasonVal;
+                    seasonVal.SetString(season, allocator);
+                    awardObj.AddMember("season", seasonVal, allocator);
+
+                    awards.PushBack(awardObj, allocator);
+                }
+
+                document.AddMember("awards", awards, allocator);
+                PQclear(awardsRes);
+            }
+
+        }
 
         free(temp);
 

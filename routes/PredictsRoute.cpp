@@ -22,14 +22,28 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");
-
+        std::string season = "";
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
 
         std::string token = req.get_header_value("Authentication");
         auto decoded = jwt::decode(token);
         int userId = decoded.get_payload_claim("id").as_int();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT * FROM predicts WHERE user_id = "
+        std::string sql = "SELECT * FROM predicts" + postfix + " WHERE user_id = "
             + std::to_string(userId) + " AND match_id = "
             + matchId
             + ";";
@@ -1172,9 +1186,24 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");
+        std::string season;
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string predictsSql = "SELECT * FROM predicts WHERE status <> 4 AND match_id = " + matchId + ";";
+        std::string predictsSql = "SELECT * FROM predicts" + postfix + " WHERE status <> 4 AND match_id = " + matchId + ";";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
 
         if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
@@ -1260,14 +1289,28 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     return [this](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
-        std::string matchId = req.get_param_value("match_id");
+        std::string matchId = req.get_param_value("match_id");std::string season = "";
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT p.*, u.name, u.avatar, u.points, u.league, u.balance FROM predicts p "
+        std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix +", u.league, u.balance FROM predicts" + postfix + " p "
             "JOIN users u ON p.user_id = u.id "
             "WHERE p.status <> 4 and p.match_id = " + matchId + " "
-            "ORDER BY u.points DESC LIMIT 20;";
+            "ORDER BY u.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -1321,6 +1364,43 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int posi = CachedTable::Get()->GetPosition(userId, league);
             userObject.AddMember("position", posi, allocator);
+
+            {
+                std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+                PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+                if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+                {
+                    fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                    PQclear(awardsRes);
+                }
+                else
+                {
+                    int awardCount = PQntuples(awardsRes);
+                    rapidjson::Value awards(rapidjson::kArrayType);
+
+                    for (int j = 0; j < awardCount; ++j)
+                    {
+                        rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                        int place = atoi(PQgetvalue(awardsRes, j, 0));
+                        char* season = PQgetvalue(awardsRes, j, 1);
+
+                        awardObj.AddMember("place", place, allocator);
+
+                        rapidjson::Value seasonVal;
+                        seasonVal.SetString(season, allocator);
+                        awardObj.AddMember("season", seasonVal, allocator);
+
+                        awards.PushBack(awardObj, allocator);
+                    }
+
+                    userObject.AddMember("awards", awards, allocator);
+                    PQclear(awardsRes);
+                }
+
+            }
+
 
            /* int pos = -1;
             auto it = std::find(mCachedTable.begin(), mCachedTable.end(), userId);
@@ -1390,11 +1470,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         // Get the 'page' query parameter, default to 1 if not provided
         int page = 1;
         int league = 1;
+        std::string season = "25_26";
         if (req.has_param("page")) {
             page = std::stoi(req.get_param_value("page"));
         }
         if (req.has_param("league")) {
             league = std::stoi(req.get_param_value("league"));
+        }
+        if (req.has_param("season")) {
+            season = req.get_param_value("season");
+            std::replace(season.begin(), season.end(), '/', '_');
+
         }
 
         int limit = 20; // Number of users per page
@@ -1406,14 +1492,24 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             return;
         }
 
+        std::string predictsTableName = "predicts";
+        std::string pointsColName = "u.points";
+
+        std::string currentSeason = "25_26";
+        if (season != currentSeason) 
+        {
+            predictsTableName += "_" + season;
+            pointsColName += "_" + season;
+        }
+
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.league, u.balance, COUNT(p.id) AS total_predictions "
+        std::string sql = "SELECT u.id, u.name, u.avatar, " + pointsColName + ", u.league, u.balance, COUNT(p.id) AS total_predictions "
             "FROM users u "
-            "INNER JOIN predicts p ON u.id = p.user_id "
+            "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
             "WHERE p.status != 4 AND u.league = " + std::to_string(league) +
-            " GROUP BY u.id, u.name, u.avatar, u.points "
+            " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
+            "ORDER BY "+ pointsColName + " DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
 
@@ -1445,6 +1541,42 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 6)), allocator);  // Include the count of predictions
             int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
+
+            {
+                std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + std::to_string(id) + ";";
+                PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+                if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+                {
+                    fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                    PQclear(awardsRes);
+                }
+                else
+                {
+                    int awardCount = PQntuples(awardsRes);
+                    rapidjson::Value awards(rapidjson::kArrayType);
+
+                    for (int j = 0; j < awardCount; ++j)
+                    {
+                        rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                        int place = atoi(PQgetvalue(awardsRes, j, 0));
+                        char* season = PQgetvalue(awardsRes, j, 1);
+
+                        awardObj.AddMember("place", place, allocator);
+
+                        rapidjson::Value seasonVal;
+                        seasonVal.SetString(season, allocator);
+                        awardObj.AddMember("season", seasonVal, allocator);
+
+                        awards.PushBack(awardObj, allocator);
+                    }
+
+                    object.AddMember("awards", awards, allocator);
+                    PQclear(awardsRes);
+                }
+
+            }
 
             document.PushBack(object, allocator);
 

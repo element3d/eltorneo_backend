@@ -518,7 +518,7 @@ void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitPremierLeagueTeams24_25(PGconn* pg)
+void MatchesInitializer::InitPremierLeagueTeams25_26(PGconn* pg)
 {
     for (int i = (int)ETeam::PremierLeague2025Start; i <= (int)ETeam::PremierLeague2025End; ++i)
     {
@@ -659,7 +659,7 @@ void MatchesInitializer::FillPremierLeagueTable(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitLaLigaTeams24_25(PGconn* pg)
+void MatchesInitializer::InitLaLigaTeams25_26(PGconn* pg)
 {
     for (int i = (int)ETeam::LaLiga2025Start; i <= (int)ETeam::LaLiga2025End; ++i)
     {
@@ -721,7 +721,7 @@ void MatchesInitializer::FillLaLigaTable(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::LaLiga));
 }
 
-void MatchesInitializer::InitSerieATeams24_25(PGconn* pg)
+void MatchesInitializer::InitSerieATeams25_26(PGconn* pg)
 {
 
     for (int i = (int)ETeam::SerieA2025Start; i <= (int)ETeam::SerieA2025End; ++i)
@@ -784,7 +784,7 @@ void MatchesInitializer::FillSeriaATable(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::SerieA));
 }
 
-void MatchesInitializer::InitBundesligaTeams24_25(PGconn* pg)
+void MatchesInitializer::InitBundesligaTeams25_26(PGconn* pg)
 {
     for (int i = (int)ETeam::Bundesliga2025Start; i <= (int)ETeam::Bundesliga2025End; ++i)
     {
@@ -845,7 +845,7 @@ void MatchesInitializer::FillBundesligaTable(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitLigue1Teams24_25(PGconn* pg)
+void MatchesInitializer::InitLigue1Teams25_26(PGconn* pg)
 {
     for (int i = (int)ETeam::Ligue12025Start; i <= (int)ETeam::Ligue12025End; ++i)
     {
@@ -4310,4 +4310,37 @@ void MatchesInitializer::InitSuperCupFrance24_25(PGconn* pg)
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
     }
+}
+
+void MatchesInitializer::FillAwards(PGconn* pg)
+{
+    for (int league = 1; league <= 3; ++league)
+    {
+        std::string sql = "SELECT u.id, u.points_24_25, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts_24_25 p ON u.id = p.user_id "
+            "WHERE p.status != 4 AND u.league = " + std::to_string(league) +
+            " GROUP BY u.id, u.name, u.points_24_25 "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY points_24_25 DESC, total_predictions DESC, u.id ASC "
+            "LIMIT 20;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        int nrows = PQntuples(ret);
+        for (int i = 0; i < nrows; ++i)
+        {
+            int id = atoi(PQgetvalue(ret, i, 0));
+
+            sql = "INSERT INTO awards (user_id, league, place, season) VALUES ("
+                + std::to_string(id) + ", "
+                + std::to_string(league) + ", "
+                + std::to_string(i + 1) + ", '24/25');";
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            PQclear(ret);
+        }
+        PQclear(ret);
+    }
+
+    return;
 }

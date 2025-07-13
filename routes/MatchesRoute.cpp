@@ -58,6 +58,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         season = season.substr(2);
         std::string week = req.get_param_value("week");
 
+        std::string currentSeason = "25/26";
+        std::string postfix = "";
+        if (season != currentSeason) 
+        {
+            std::replace(season.begin(), season.end(), '/', '_');
+            postfix = "_" + season;
+        }
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, "
@@ -70,11 +77,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "COALESCE(s.stadium, '') AS special_match_stadium, " 
             "COALESCE(s.points, '') AS special_match_points " 
             "FROM matches m "
+            "JOIN leagues l ON m.league = l.id "
             "JOIN teams t1 ON m.team1 = t1.id "
             "JOIN teams t2 ON m.team2 = t2.id "
-            "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+            "LEFT JOIN predicts"+ postfix + " p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
             "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
-            "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = '" + season + "' "
+            "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = l.current_season "
             "ORDER BY m.match_date ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -347,7 +355,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "JOIN leagues l ON m.league = l.id "
             "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
             "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
-            "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC;";
+            "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
@@ -1603,7 +1611,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         // Extract match_id from query parameters
         std::string matchId = req.get_param_value("match_id");
-
+       
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "SELECT m.id, m.league, m.season, m.week, m.match_date, m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, m.team1_score_90, m.team2_score_90, m.team1_score_pen, m.team2_score_pen, "

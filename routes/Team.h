@@ -142,7 +142,7 @@ enum class ETeam
 
     // New Teams
     Sampdoria,
-    Sassuolo,
+    Sassuolo1,
     Cesena,
 
     // Club World Cup
@@ -186,7 +186,8 @@ enum class ETeam
     SerieA2025Start,
     Cremonese = SerieA2025Start,
     Pisa,
-    SerieA2025End = Pisa,
+    Sassuolo,
+    SerieA2025End = Sassuolo,
 
     // Bundesliga 2025
     Bundesliga2025Start,
