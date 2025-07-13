@@ -22,7 +22,7 @@
     "elclasico_msg": "The time has come to choose the winner.",
     "seriea_title": "The Scudetto fight continues",
     "seriea_msg": "Make sure to submit your predictions today.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Make your prediction now.",
     "match_msg": "The match is about to begin. Make your prediction now.",
     "preview_title": "Matchday Video Highlights",
@@ -36,7 +36,9 @@
     "vbet_title": "Virtual betting.",
     "vbet_msg": "A new feature has been added.",
     "fifa_title": "The final tournament of the 2024/25 season in El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: Make your predictions now."
+    "fifa_msg": "FIFA Club World Cup: Make your predictions now.",
+    "winner_title": "Danijel Radoslovic – Champion of el Torneo 2024/25",
+    "winner_msg": "Get ready for the 2025/26 season – update the app now!"
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -61,7 +63,7 @@
     "elclasico_msg": "Пришло время выбрать победителя.",
     "seriea_title": "Борьба за Скудетто продолжается",
     "seriea_msg": "Не забудьте подать свои прогнозы сегодня.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Сделайте ваш прогноз сейчас.",
     "match_msg": "Матч скоро начнется! Сделайте ваш прогноз сейчас.",
     "preview_title": "Обзор матчей",
@@ -75,7 +77,9 @@
     "vbet_title": "Виртуальные ставки.",
     "vbet_msg": "Добавлена новая функция.",
     "fifa_title": "Финальный турнир сезона 2024/25 в El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: сделайте свои прогнозы прямо сейчас."
+    "fifa_msg": "FIFA Club World Cup: сделайте свои прогнозы прямо сейчас.",
+    "winner_title": "Danijel Radoslovic – чемпион el Torneo 2024/25",
+    "winner_msg": "Будьте готовы к сезону 2025/26 – обновите приложение!"
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -100,7 +104,7 @@
     "elclasico_msg": "Es momento de elegir un ganador.",
     "seriea_title": "La lucha por el Scudetto continúa",
     "seriea_msg": "Asegúrate de enviar tus predicciones hoy.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Haz tu predicción ahora.",
     "match_msg": "¡El partido está a punto de comenzar! Haz tu predicción ahora.",
     "preview_title": "Resumen de partidos",
@@ -114,7 +118,9 @@
     "vbet_title": "Apuestas virtuales.",
     "vbet_msg": "Se ha añadido una nueva función.",
     "fifa_title": "¡El torneo final de la temporada 2024/25 en El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: haz tus predicciones ahora."
+    "fifa_msg": "FIFA Club World Cup: haz tus predicciones ahora.",
+    "winner_title": "Danijel Radoslovic – campeón de el Torneo 2024/25",
+    "winner_msg": "Prepárate para la temporada 2025/26 – ¡actualiza la app!"
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -139,7 +145,7 @@
     "elclasico_msg": "È il momento di scegliere un vincitore.",
     "seriea_title": "La lotta per lo Scudetto continua",
     "seriea_msg": "Assicurati di inviare i tuoi pronostici oggi.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Fai la tua previsione ora.",
     "match_msg": "La partita sta per iniziare! Fai la tua previsione ora.",
     "preview_title": "Highlights delle partite",
@@ -153,7 +159,9 @@
     "vbet_title": "Scommesse virtuali.",
     "vbet_msg": "È stata aggiunta una nuova funzione.",
     "fifa_title": "Il torneo finale della stagione 2024/25 in El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: fai le tue previsioni ora."
+    "fifa_msg": "FIFA Club World Cup: fai le tue previsioni ora.",
+    "winner_title": "Danijel Radoslovic – campione di el Torneo 2024/25",
+    "winner_msg": "Preparati per la stagione 2025/26 – aggiorna l'app!"
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -178,7 +186,7 @@
     "elclasico_msg": "Es ist Zeit, einen Gewinner auszuwählen.",
     "seriea_title": "Der Kampf um den Scudetto geht weiter",
     "seriea_msg": "Vergiss nicht, heute deine Tipps abzugeben.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Gib jetzt deine Vorhersage ab.",
     "match_msg": "Das Spiel beginnt gleich! Gib jetzt deine Vorhersage ab.",
     "preview_title": "Spiel-Highlights",
@@ -192,7 +200,9 @@
     "vbet_title": "Virtuelle Wetten.",
     "vbet_msg": "Eine neue Funktion wurde hinzugefügt.",
     "fifa_title": "Das letzte Turnier der Saison 2024/25 in El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: Gib jetzt deine Tipps ab."
+    "fifa_msg": "FIFA Club World Cup: Gib jetzt deine Tipps ab.",
+    "winner_title": "Danijel Radoslovic – Sieger von el Torneo 2024/25",
+    "winner_msg": "Mach dich bereit für die Saison 2025/26 – aktualisiere die App!"
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -217,7 +227,7 @@
     "elclasico_msg": "Vrijeme je da izaberemo pobjednika.",
     "seriea_title": "Borba za Scudetto se nastavlja",
     "seriea_msg": "Ne zaboravi poslati svoje prognoze danas.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Napravite svoju prognozu sada.",
     "match_msg": "Utakmica uskoro počinje! Napravite svoju prognozu sada.",
     "preview_title": "Pregled utakmica",
@@ -231,7 +241,9 @@
     "vbet_title": "Virtualno klađenje.",
     "vbet_msg": "Dodana je nova značajka.",
     "fifa_title": "Završni turnir sezone 2024./25. u El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: daj svoje prognoze sada."
+    "fifa_msg": "FIFA Club World Cup: daj svoje prognoze sada.",
+    "winner_title": "Danijel Radoslovic – pobjednik el Torneo 2024/25",
+    "winner_msg": "Pripremi se za sezonu 2025/26 – ažuriraj aplikaciju!"
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -256,7 +268,7 @@
     "elclasico_msg": "Il est temps de choisir un gagnant.",
     "seriea_title": "La lutte pour le Scudetto continue",
     "seriea_msg": "N'oubliez pas de soumettre vos pronostics aujourd'hui.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Faites votre prédiction maintenant.",
     "match_msg": "Le match est sur le point de commencer ! Faites votre prédiction maintenant.",
     "preview_title": "Résumé des matchs",
@@ -270,7 +282,9 @@
     "vbet_title": "Pari virtuel.",
     "vbet_msg": "Une nouvelle fonctionnalité a été ajoutée.",
     "fifa_title": "Le tournoi final de la saison 2024/25 dans El Torneo !",
-    "fifa_msg": "FIFA Club World Cup : fais tes pronostics maintenant."
+    "fifa_msg": "FIFA Club World Cup : fais tes pronostics maintenant.",
+    "winner_title": "Danijel Radoslovic – champion de el Torneo 2024/25",
+    "winner_msg": "Prépare-toi pour la saison 2025/26 – mets l'application à jour !"
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -295,7 +309,7 @@
     "elclasico_msg": "É hora de escolher um vencedor.",
     "seriea_title": "A luta pelo Scudetto continua",
     "seriea_msg": "Não se esqueça de enviar suas previsões hoje.",
-    "match_title": "Yoshimitsu vs Eddy Gordo: PSG - Real Madrid",
+    "match_title": "Final: Heihachi Mishima vs Yoshimitsu: Chelsea - PSG",
     "match_msg2": "Faça sua previsão agora.",
     "match_msg": "A partida está prestes a começar! Faça sua previsão agora.",
     "preview_title": "Resumo das partidas",
@@ -309,6 +323,8 @@
     "vbet_title": "Aposta virtual.",
     "vbet_msg": "Um novo recurso foi adicionado.",
     "fifa_title": "O torneio final da temporada 2024/25 no El Torneo!",
-    "fifa_msg": "FIFA Club World Cup: faça suas previsões agora."
+    "fifa_msg": "FIFA Club World Cup: faça suas previsões agora.",
+    "winner_title": "Danijel Radoslovic – campeão do el Torneo 2024/25",
+    "winner_msg": "Prepare-se para a temporada 2025/26 – atualize o app!"
   }
 }
