@@ -56,7 +56,7 @@ int UserManager::CreateTelegramUser(const std::string& username, long long tgId,
         + std::to_string(tgId) + ", '"
         + name + "', "
         + std::to_string(0) + ", "
-        + std::to_string(3) + ", "
+        + std::to_string(1) + ", "
         + std::to_string(generateRandomCode()) +
         ");";
 
@@ -96,7 +96,7 @@ int UserManager::CreateUser(const std::string& email, const std::string& name)
         + email + "', '" 
 		+ name + "', " 
         + std::to_string(0) + ", "
-        + std::to_string(4) +
+        + std::to_string(1) +
     ");";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -136,7 +136,7 @@ int UserManager::CreateUser(const std::string& username, const std::string& pass
         + password + "', '"
         + name + "', "
         + std::to_string(0) + ", "
-        + std::to_string(3) +
+        + std::to_string(1) +
         + ");";
 
 
