@@ -126,7 +126,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -255,7 +256,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -384,7 +386,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -513,7 +516,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -642,7 +646,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -771,7 +776,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -900,7 +906,8 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1029,6 +1036,7 @@
         "eg_vs_ki": "Eddy Gordo vs King",
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
-        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu"
+        "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
+        "advanced_warfare": "Advanced Warfare"
     }
 }
