@@ -1494,19 +1494,21 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         std::string predictsTableName = "predicts";
         std::string pointsColName = "u.points";
+        std::string leagueColName = "u.league";
 
         std::string currentSeason = "25_26";
         if (season != currentSeason) 
         {
             predictsTableName += "_" + season;
             pointsColName += "_" + season;
+            leagueColName += "_" + season;
         }
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, " + pointsColName + ", u.league, u.balance, COUNT(p.id) AS total_predictions "
+        std::string sql = "SELECT u.id, u.name, u.avatar, " + pointsColName + ", " + leagueColName + ", u.balance, COUNT(p.id) AS total_predictions "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
-            "WHERE p.status != 4 AND u.league = " + std::to_string(league) +
+            "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
             " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY "+ pointsColName + " DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
