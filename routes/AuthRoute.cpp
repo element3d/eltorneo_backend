@@ -419,7 +419,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         free(temp);
 
         {
-            std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -438,12 +438,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
                     int place = atoi(PQgetvalue(awardsRes, j, 0));
                     char* season = PQgetvalue(awardsRes, j, 1);
+                    int league = atoi(PQgetvalue(awardsRes, j, 2));
 
                     awardObj.AddMember("place", place, allocator);
 
                     rapidjson::Value seasonVal;
                     seasonVal.SetString(season, allocator);
                     awardObj.AddMember("season", seasonVal, allocator);
+                    awardObj.AddMember("league", league, allocator);
 
                     awards.PushBack(awardObj, allocator);
                 }
@@ -526,7 +528,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         document.AddMember("position", pos, allocator);
 
         {
-            std::string awardsQuery = "SELECT place, season FROM awards WHERE user_id = " + userId + ";";
+            std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + userId + ";";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -545,12 +547,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
 
                     int place = atoi(PQgetvalue(awardsRes, j, 0));
                     char* season = PQgetvalue(awardsRes, j, 1);
+                    int league = atoi(PQgetvalue(awardsRes, j, 2));
 
                     awardObj.AddMember("place", place, allocator);
 
                     rapidjson::Value seasonVal;
                     seasonVal.SetString(season, allocator);
                     awardObj.AddMember("season", seasonVal, allocator);
+                    awardObj.AddMember("league", league, allocator);
 
                     awards.PushBack(awardObj, allocator);
                 }
