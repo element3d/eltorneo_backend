@@ -548,7 +548,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         // Fetch match details from matches and teams table
         sql = R"(
             SELECT m.id, m.league, m.week, m.week_type, m.match_date, m.is_special, t1.id, t1.name, t1.short_name, 
-                   t2.id, t2.name, t2.short_name, l.name AS league_name, m.teaser
+                   t2.id, t2.name, t2.short_name, l.name AS league_name, m.teaser, m.season 
             FROM matches m
             JOIN teams t1 ON m.team1 = t1.id
             JOIN teams t2 ON m.team2 = t2.id
@@ -606,6 +606,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         matchObject.AddMember("team2", team2Object, allocator);
         matchObject.AddMember("leagueName", rapidjson::Value(PQgetvalue(matchRet, 0, 12), allocator), allocator);
         matchObject.AddMember("teaser", rapidjson::Value(PQgetvalue(matchRet, 0, 13), allocator), allocator);
+        matchObject.AddMember("season", rapidjson::Value(PQgetvalue(matchRet, 0, 14), allocator), allocator);
 
         // Title and Stadium
         rapidjson::Value v;
