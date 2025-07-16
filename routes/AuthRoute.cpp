@@ -593,7 +593,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetS
         // Start constructing the SQL query
         std::string sql = "SELECT u.points, "
             "COUNT(CASE WHEN p.status <> 0 THEN 1 END) AS total_predictions, "
-            "COUNT(CASE WHEN p.status = 1 OR p.status = 2 THEN 1 END) AS winner_predicted, "
+            "COUNT(CASE WHEN p.status = 1 OR p.status = 2 OR p.status = 5 THEN 1 END) AS winner_predicted, "
             "COUNT(CASE WHEN p.status = 2 THEN 1 END) AS score_predicted, "
             "COUNT(CASE WHEN p.status = 3 THEN 1 END) AS failed "
             "FROM users u "

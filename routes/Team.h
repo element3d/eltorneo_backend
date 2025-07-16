@@ -8,7 +8,8 @@ enum class EPredictStatus
     WinnerPredicted,
     ScorePredicted,
     Failed,
-    Missed
+    Missed,
+    DiffPredicted
 };
 
 enum class ETeam

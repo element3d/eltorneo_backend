@@ -1946,6 +1946,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
 
                 int points = 0;
                 EPredictStatus status = EPredictStatus::Pending;
+
                 if (team1Score == t1score && team2Score == t2score)
                 {
                     points = isSpecial ? specialPoints[0] : 3;
@@ -1953,12 +1954,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
                 }
                 else
                 {
+                    int actualDiff = team1Score - team2Score;
+                    int predictedDiff = t1score - t2score;
+
                     if ((team1Score > team2Score && t1score > t2score) ||
                         (team1Score < team2Score && t1score < t2score) ||
                         (team1Score == team2Score && t1score == t2score))
                     {
-                        points = isSpecial ? specialPoints[1] : 1;
-                        status = EPredictStatus::WinnerPredicted;
+                        if (actualDiff == predictedDiff)
+                        {
+                            // Correct goal difference
+                            points = isSpecial ? specialPoints[1] : 2;
+                            status = EPredictStatus::DiffPredicted;
+                        }
+                        else
+                        {
+                            // Only winner predicted
+                            points = isSpecial ? specialPoints[1] : 1;
+                            status = EPredictStatus::WinnerPredicted;
+                        }
                     }
                     else
                     {
@@ -1966,6 +1980,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::E
                         status = EPredictStatus::Failed;
                     }
                 }
+
 
                 sql = "UPDATE users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE id = " + std::to_string(userId) + ";";
                 PGresult* updateRet = PQexec(pg, sql.c_str());

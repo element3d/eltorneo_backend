@@ -665,7 +665,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int totalScorePredicts = generateCountQuery("p.status = 2");
         if (totalScorePredicts == -1) return;  // Check for errors and exit if found
 
-        int totalWinnerPredicts = generateCountQuery("(p.status = 2 OR p.status = 1)");
+        int totalWinnerPredicts = generateCountQuery("(p.status = 2 OR p.status = 1 OR p.status = 5)");
         if (totalWinnerPredicts == -1) return;  // Check for errors and exit if found
 
         int totalFailPredicts = generateCountQuery("p.status = 3");
@@ -1921,7 +1921,29 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 res.status = 500; // Internal Server Error
                 return;
             }
+        }
+        if ((team1 == 1 && team2 == 2) || (team1 == 2 && team2 == 1))
+        {
+            std::string sql = "SELECT "
+                "CAST(COUNT(*) FILTER (WHERE (team1_score = 1 AND team2_score = 2) OR (team1_score = 2 AND team2_score = 1)) AS float) / "
+                "NULLIF(COUNT(*), 0) AS ratio "
+                "FROM predicts "
+                "WHERE user_id = " + std::to_string(userId) + ";";
 
+            PGresult* ret = PQexec(pg, sql.c_str());
+            const char* val = PQgetvalue(ret, 0, 0);
+            float ratio = 0.0f;
+            if (val && strlen(val) > 0) 
+                ratio = std::stof(val);  // Safe to convert
+            else 
+                ratio = 0.0f;  // Or you could set it to NAN, etc.
+            if (ratio > 0.6f) 
+            {
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 403; 
+                return;
+            }
         }
         std::string sql = "INSERT INTO predicts(user_id, match_id, team1_score, team2_score, status) VALUES("
             + std::to_string(userId) + ", "
@@ -2018,8 +2040,33 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int team1 = document["team1_score"].GetInt();
         int team2 = document["team2_score"].GetInt();
 
-        // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if ((team1 == 1 && team2 == 2) || (team1 == 2 && team2 == 1))
+        {
+            std::string sql = "SELECT "
+                "CAST(COUNT(*) FILTER (WHERE (team1_score = 1 AND team2_score = 2) OR (team1_score = 2 AND team2_score = 1)) AS float) / "
+                "NULLIF(COUNT(*), 0) AS ratio "
+                "FROM predicts "
+                "WHERE user_id = " + std::to_string(userId) + ";";
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            const char* val = PQgetvalue(ret, 0, 0);
+            float ratio = 0.0f;
+            if (val && strlen(val) > 0)
+                ratio = std::stof(val);  // Safe to convert
+            else
+                ratio = 0.0f;  // Or you could set it to NAN, etc.
+            if (ratio > 0.6f)
+            {
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 403;
+                return;
+            }
+
+        }
+
+        // Connect to the database
         std::string sql = "UPDATE predicts set team1_score = " + std::to_string(team1)
             + ", team2_score = " + std::to_string(team2)
             + " WHERE id = " + std::to_string(predictId)
