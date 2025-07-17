@@ -520,7 +520,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
             league = atoi(PQgetvalue(ret, i, 4));
             document.AddMember("league", league, allocator);
 
-            float balance = atof(PQgetvalue(ret, i, 8));
+            float balance = atof(PQgetvalue(ret, i, 5));
             document.AddMember("balance", balance, allocator);
         }
 
