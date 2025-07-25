@@ -1417,7 +1417,7 @@ void FillTodayLineups(PGconn* pg)
 void FillLeagueTopScorers(PGconn* pg, ELeague league)
 {
 	int leagueId = elTorneoLeagueIdToApiFootball(league);
-	std::string season = "2024";
+	std::string season = "2025";
 
 	std::string url = "https://v3.football.api-sports.io/players/topscorers";
 	cpr::Parameters params = {
@@ -1744,9 +1744,138 @@ void CorrectMatchDates(PGconn* pg)
 	return;
 }
 
+void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
+{
+	std::string sql;
+	std::string url = "https://v3.football.api-sports.io/players/squads";
+
+	cpr::Response r;
+	cpr::Parameters params;
+	if (teamApiId == -1)
+	{
+		return;
+	}
+	else
+	{
+		params = {
+			  {"team", std::to_string(teamApiId)}
+		};
+	}
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		// Parse the JSON response
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray())
+		{
+			const rapidjson::Value& players = document["response"][0]["players"];
+			for (rapidjson::SizeType i = 0; i < players.Size(); i++)
+			{
+				const auto& player = players[i];
+				int playerId = player["id"].GetInt();
+				std::string name = player["name"].GetString();
+				int age = player["age"].IsNull() ? 0 : player["age"].GetInt();
+				int number = player["number"].IsNull() ? 0 : player["number"].GetInt();
+				std::string pos = player["position"].IsNull() ? "" : player["position"].GetString();
+				std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
+
+				sql = "INSERT INTO team_players(id, team_id, name, age, number, position, photo) VALUES ("
+					+ std::to_string(playerId) + ", "
+					+ std::to_string(teamId) + ", '"
+					+ name + "', "
+					+ std::to_string(age) + ", "
+					+ std::to_string(number) + ", '"
+					+ pos + "', '"
+					+ photo + "');";
+
+				PGresult* insertRes = PQexec(pg, sql.c_str());
+				PQclear(insertRes);
+			}
+		}
+	}
+}
+
+void FillTeamData(PGconn* pg, int teamId, int teamApiId)
+{
+	std::string sql;
+	std::string url = "https://v3.football.api-sports.io/teams";
+
+	cpr::Response r;
+	cpr::Parameters params;
+	if (teamApiId == -1)
+	{
+		return;
+	}
+	else
+	{
+		params = {
+			  {"id", std::to_string(teamApiId)}
+		};
+	}
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		// Parse the JSON response
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray())
+		{
+			const rapidjson::Value& team = document["response"][0]["team"];
+			std::string country = team["country"].IsNull() ? "" : team["country"].GetString();
+			int national = team["national"].GetBool();
+
+			const rapidjson::Value& venue = document["response"][0]["venue"];
+			std::string venueName = venue["name"].GetString();
+
+			sql = "UPDATE teams set country = '" + country + "', national = " + std::to_string(national) + ", venue = '" + venueName 
+				+ "' where id = " + std::to_string(teamId) + ";";
+
+			PGresult* insertRes = PQexec(pg, sql.c_str());
+			PQclear(insertRes);
+		}
+	}
+}
+
+void FillTeamSquad(PGconn* pg)
+{
+	std::string sql = "SELECT id, api_id from teams;";
+	PGresult* res = PQexec(pg, sql.c_str());
+
+	int rows = PQntuples(res);
+	if (rows > 0) 
+	{
+		sql = "DELETE FROM team_players;";
+		PGresult* res = PQexec(pg, sql.c_str());
+		PQclear(res);
+	}
+	for (int i = 0; i < rows; ++i)
+	{
+		int teamId = atoi(PQgetvalue(res, i, 0));
+		int teamApiId = atoi(PQgetvalue(res, i, 1));
+
+		FillOneTeamPlayers(pg, teamId, teamApiId);
+		FillTeamData(pg, teamId, teamApiId);
+	}
+
+	PQclear(res);
+}
+
 int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
+	FillTeamSquad(pg);
+
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;
