@@ -1744,6 +1744,127 @@ void CorrectMatchDates(PGconn* pg)
 	return;
 }
 
+std::string escape_sql_string(const std::string& input) {
+	std::string output;
+	for (char c : input) {
+		if (c == '\'') output += "''";
+		else output += c;
+	}
+	return output;
+}
+
+ELeague ApiLeagueToLeagueId(int leagueApiId)
+{
+	if (leagueApiId == 2) return ELeague::ChampionsLeague; // Champions league
+	if (leagueApiId == 3) return ELeague::EuropaLeague; // Europa league
+	if (leagueApiId == 848) return ELeague::ConferenceLeague; // Conference league
+
+	if (leagueApiId == 39) return ELeague::PremierLeague; // Premier league
+	if (leagueApiId == 135) return ELeague::SerieA; // Serie A
+	if (leagueApiId == 140) return ELeague::LaLiga; // LaLiga
+	if (leagueApiId == 78) return ELeague::Bundesliga; // Bundesliga
+	if (leagueApiId == 61) return ELeague::Ligue1; // Ligue1
+
+	if (leagueApiId == 5) return ELeague::NationsLeague; // Nations League
+	if (leagueApiId == 137) return ELeague::CoppaItalia; // Coppa Italia
+	if (leagueApiId == 143) return ELeague::CopaDelRey; // CopaDelRey
+	if (leagueApiId == 15) return ELeague::ClubWorldCup; // ClubWorldCup
+
+	return ELeague::End;
+}
+
+bool IsApiLeagueSupported(int leagueApiId) 
+{
+	if (leagueApiId == 2) return true; // Champions league
+	if (leagueApiId == 3) return true; // Europa league
+	if (leagueApiId == 848) return true; // Conference league
+
+	if (leagueApiId == 39) return true; // Premier league
+	if (leagueApiId == 135) return true; // Serie A
+	if (leagueApiId == 140) return true; // LaLiga
+	if (leagueApiId == 78) return true; // Bundesliga
+	if (leagueApiId == 61) return true; // Ligue1
+
+	if (leagueApiId == 5) return true; // Nations League
+	if (leagueApiId == 137) return true; // Coppa Italia
+	if (leagueApiId == 143) return true; // CopaDelRey
+	if (leagueApiId == 15) return true; // FIFA Club World Cup
+
+
+	return false;
+}
+
+void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId)
+{
+	std::string url = "https://v3.football.api-sports.io/players";
+
+	cpr::Response r;
+	cpr::Parameters params;
+	if (teamApiId == -1)
+	{
+		return;
+	}
+	else
+	{
+		params = {
+			{"id", std::to_string(playerApiId)},
+			{"season", "2025"},
+			{"team", std::to_string(teamApiId)}
+		};
+	}
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray() && document["response"].Size() > 0)
+		{
+			const rapidjson::Value& statistics = document["response"][0]["statistics"];
+			for (rapidjson::SizeType i = 0; i < statistics.Size(); i++)
+			{
+				const auto& stat = statistics[i];
+				const auto& league = stat["league"];
+				if (league["id"].IsNull()) continue;
+				int leagueApiId = league["id"].GetInt();
+				if (!IsApiLeagueSupported(leagueApiId)) continue;
+
+				const auto& games = stat["games"];
+				int appearences = games["appearences"].IsNull() ? 0 : games["appearences"].GetInt();
+				std::string rating = games["rating"].IsNull() ? "" : games["rating"].GetString();
+
+				const auto& goals = stat["goals"];
+				int numGoals = goals["total"].IsNull() ? 0 : goals["total"].GetInt();
+				int numAssists = goals["assists"].IsNull() ? 0 : goals["assists"].GetInt();
+
+				std::string sql = "INSERT INTO player_stats (player_api_id, league_id, league_api_id, team_id, team_api_id, games, rating, goals, assists) VALUES ("
+					+ std::to_string(playerApiId) + ", "
+					+ std::to_string(int(ApiLeagueToLeagueId(leagueApiId))) + ", "
+					+ std::to_string(leagueApiId) + ", "
+					+ std::to_string(teamId) + ", "
+					+ std::to_string(teamApiId) + ", "
+					+ std::to_string(appearences) + ", '"
+					+ rating + "', "
+					+ std::to_string(numGoals) + ", "
+					+ std::to_string(numAssists) + ");";
+
+				PGresult* insertRes = PQexec(pg, sql.c_str());
+				if (PQresultStatus(insertRes) != PGRES_COMMAND_OK)
+				{
+					std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
+					PQclear(insertRes);
+					return;
+				}
+				PQclear(insertRes);
+			}
+		}
+	}
+}
+
 void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
 {
 	std::string sql;
@@ -1779,23 +1900,32 @@ void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
 			{
 				const auto& player = players[i];
 				int playerId = player["id"].GetInt();
+				if (playerId == 0 || player["name"].IsNull()) continue;
 				std::string name = player["name"].GetString();
 				int age = player["age"].IsNull() ? 0 : player["age"].GetInt();
 				int number = player["number"].IsNull() ? 0 : player["number"].GetInt();
 				std::string pos = player["position"].IsNull() ? "" : player["position"].GetString();
 				std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
 
-				sql = "INSERT INTO team_players(id, team_id, name, age, number, position, photo) VALUES ("
+				std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, position, photo) VALUES ("
 					+ std::to_string(playerId) + ", "
 					+ std::to_string(teamId) + ", '"
-					+ name + "', "
+					+ escape_sql_string(name) + "', "
 					+ std::to_string(age) + ", "
 					+ std::to_string(number) + ", '"
-					+ pos + "', '"
-					+ photo + "');";
+					+ escape_sql_string(pos) + "', '"
+					+ escape_sql_string(photo) + "');";
 
 				PGresult* insertRes = PQexec(pg, sql.c_str());
+				if (PQresultStatus(insertRes) != PGRES_COMMAND_OK)
+				{
+					std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
+					PQclear(insertRes);
+					return;
+				}
 				PQclear(insertRes);
+
+				FillPlayerStats(pg, playerId, teamId, teamApiId);
 			}
 		}
 	}
@@ -1838,7 +1968,7 @@ void FillTeamData(PGconn* pg, int teamId, int teamApiId)
 			const rapidjson::Value& venue = document["response"][0]["venue"];
 			std::string venueName = venue["name"].GetString();
 
-			sql = "UPDATE teams set country = '" + country + "', national = " + std::to_string(national) + ", venue = '" + venueName 
+			sql = "UPDATE teams set country = '" + country + "', national = " + std::to_string(national) + ", venue = '" + escapeSingleQuotes(venueName)
 				+ "' where id = " + std::to_string(teamId) + ";";
 
 			PGresult* insertRes = PQexec(pg, sql.c_str());
@@ -1855,9 +1985,26 @@ void FillTeamSquad(PGconn* pg)
 	int rows = PQntuples(res);
 	if (rows > 0) 
 	{
-		sql = "DELETE FROM team_players;";
-		PGresult* res = PQexec(pg, sql.c_str());
-		PQclear(res);
+		{
+			sql = "DROP TABLE team_players;";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+		{
+			sql = "DROP TABLE player_stats;";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+		{
+			sql = "CREATE TABLE team_players(id serial primary key not null, team_id integer, name text, age integer, number integer, position text, photo text, api_id integer);";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+		{
+			sql = "CREATE TABLE player_stats(id serial primary key not null, player_api_id integer, league_id integer, league_api_id integer, team_id integer, team_api_id integer, games integer, rating text, goals integer, assists integer);";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
 	}
 	for (int i = 0; i < rows; ++i)
 	{
@@ -1875,7 +2022,6 @@ int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	FillTeamSquad(pg);
-
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;

@@ -613,7 +613,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             int gIndex = atoi(PQgetvalue(ret, i, 6));
 
             // Fetch team details
-            std::string teamSql = "SELECT id, name, short_name FROM teams WHERE id = " + std::to_string(teamId) + ";";
+            std::string teamSql = "SELECT id, name, short_name, venue FROM teams WHERE id = " + std::to_string(teamId) + ";";
             PGresult* teamRet = PQexec(pg, teamSql.c_str());
 
             if (PQresultStatus(teamRet) == PGRES_TUPLES_OK && PQntuples(teamRet) > 0) {
@@ -621,6 +621,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
                 teamDetails.AddMember("id", atoi(PQgetvalue(teamRet, 0, 0)), allocator);
                 teamDetails.AddMember("name", rapidjson::Value(PQgetvalue(teamRet, 0, 1), allocator), allocator);
                 teamDetails.AddMember("short_name", rapidjson::Value(PQgetvalue(teamRet, 0, 2), allocator), allocator);
+                teamDetails.AddMember("venue", rapidjson::Value(PQgetvalue(teamRet, 0, 3), allocator), allocator);
 
                 teamObject.AddMember("team", teamDetails, allocator);
             }

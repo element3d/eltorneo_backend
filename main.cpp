@@ -194,6 +194,7 @@ int main(void)
     svr.Get("/api/v1/matches/special", MatchesRoute::Get()->GetSpecialMatch());
 
     svr.Get("/api/v1/team/matches", MatchesRoute::Get()->GetTeamMatches());
+    svr.Get("/api/v1/team", MatchesRoute::Get()->GetTeam());
 
     svr.Post("/api/v1/bet", PredictsRoute::Get()->PostBet());
     svr.Delete("/api/v1/bet", PredictsRoute::Get()->DeleteBet());
