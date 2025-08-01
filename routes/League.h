@@ -20,7 +20,8 @@ enum class ELeague
     EuropaLeague,
     ConferenceLeague,
     ClubWorldCup,
-    End = ClubWorldCup
+    CommunityShield,
+    End = CommunityShield
 };
 
 enum class ELeagueType 

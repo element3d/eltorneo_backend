@@ -58,6 +58,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 848;
 	case ELeague::ClubWorldCup:
 		return 15;
+	case ELeague::CommunityShield:
+		return 528;
 	default:
 		break;
 	}
@@ -416,7 +418,10 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
-	else if (league == ELeague::SuperCupFrance || league == ELeague::EuropaLeague || league == ELeague::ConferenceLeague)
+	else if (league == ELeague::SuperCupFrance 
+		|| league == ELeague::EuropaLeague 
+		|| league == ELeague::ConferenceLeague
+		|| league == ELeague::CommunityShield)
 	{
 		if (week == 1)
 		{
@@ -1682,6 +1687,14 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 							PGresult* ret = PQexec(pg, sql.c_str());
 							PQclear(ret);
 
+							sql = "update teams set api_id = " + std::to_string(homeId) + " where id = " + std::to_string(team1) + ";";
+							ret = PQexec(pg, sql.c_str());
+							PQclear(ret);
+
+							sql = "update teams set api_id = " + std::to_string(awayId) + " where id = " + std::to_string(team2) + ";";
+							ret = PQexec(pg, sql.c_str());
+							PQclear(ret);
+
 							GetMatchBets(pg, id, newApiId);
 						}
 					}
@@ -1704,7 +1717,7 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 {
 	std::string sql = "SELECT id, team1, team2, match_date, api_id, week from matches where status = '' and league = " +
-		std::to_string(lId) + " AND week = " + std::to_string(week) + ";";
+		std::to_string(lId) + " AND week = " + std::to_string(week) + " AND season = '25/26';";
 	PGresult* res = PQexec(pg, sql.c_str());
 	ProcessMatchesForOdds(pg, lId, week, res);
 }
@@ -1728,7 +1741,7 @@ void CorrectMatchDates(PGconn* pg)
 	{
 		
 		int id = atoi(PQgetvalue(res, i, 0));
-		// if (id != 7) continue;
+		 //if (id != 3) continue;
 		int week = atoi(PQgetvalue(res, i, 1));
 		int numWeeks = atoi(PQgetvalue(res, i, 2));
 		for (int w = week; w <= std::min(week + 3, numWeeks); ++w) 
@@ -1863,6 +1876,7 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId)
 			}
 		}
 	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
@@ -1929,6 +1943,7 @@ void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
 			}
 		}
 	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
 void FillTeamData(PGconn* pg, int teamId, int teamApiId)
@@ -2021,7 +2036,8 @@ void FillTeamSquad(PGconn* pg)
 int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	FillTeamSquad(pg);
+	
+	//FillTeamSquad(pg);
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;
