@@ -133,6 +133,8 @@ int main(void)
 
     svr.Post("/api/v1/signin", AuthRoute::Get()->SignIn());
     svr.Post("/api/v1/signup", AuthRoute::Get()->SignUpV2());
+    svr.Post("/api/v1/signup/guest", AuthRoute::Get()->SignUpGuest());
+
     svr.Get("/api/v1/me", AuthRoute::Get()->Me());
     svr.Get("/api/v1/user", AuthRoute::Get()->GetUser());
     svr.Put("/api/v1/me/avatar", AuthRoute::Get()->MeUploadAvatar());
@@ -159,6 +161,9 @@ int main(void)
     svr.Delete("/api/v1/me/avatar", AuthRoute::Get()->MeDeleteAvatar());
     svr.Get("/api/v1/user/stats", AuthRoute::Get()->GetStats());
     svr.Post("/api/v1/signin/googlemail", AuthRoute::Get()->SignInGoogleWithEmail());
+    svr.Post("/api/v1/link/googlemail", AuthRoute::Get()->LinkGoogleWithEmail());
+    svr.Post("/api/v1/link/username", AuthRoute::Get()->LinkUserWithUsername());
+
     svr.Post("/api/v1/signin/tgbot", AuthRoute::Get()->SignInWithTelegramBot());
     svr.Post("/api/v1/signin/tgcode", AuthRoute::Get()->SignInWithTelegramCode());
 
