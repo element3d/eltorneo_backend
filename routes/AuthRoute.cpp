@@ -136,6 +136,71 @@ std::function<void(const httplib::Request &, httplib::Response &)> AuthRoute::Si
     };
 }
 
+std::string generateGuestUsername(size_t length = 20) {
+    const std::string charset =
+        "abcdefghijklmnopqrstuvwxyz"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "0123456789";
+
+    std::random_device rd;  // Non-deterministic random source
+    std::mt19937 gen(rd()); // Mersenne Twister RNG
+    std::uniform_int_distribution<> dist(0, charset.size() - 1);
+
+    std::string username;
+    username.reserve(length);
+
+    for (size_t i = 0; i < length; ++i) {
+        username += charset[dist(gen)];
+    }
+
+    return username;
+}
+
+std::string generateRandomPlayerName(size_t suffixLength = 6) {
+    const std::string charset =
+        "abcdefghijklmnopqrstuvwxyz"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "0123456789";
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(0, charset.size() - 1);
+
+    std::string suffix;
+    suffix.reserve(suffixLength);
+
+    for (size_t i = 0; i < suffixLength; ++i) {
+        suffix += charset[dist(gen)];
+    }
+
+    return "Player-" + suffix;
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::SignUpGuest()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        std::string username = generateGuestUsername();
+        std::string name = generateRandomPlayerName();
+        int userId = UserManager::Get()->CreateGuestUser(username, name);
+
+        std::string token = jwt::create()
+            .set_issuer("auth0")
+            .set_type("JWS")
+            .set_payload_claim("id", picojson::value(int64_t(userId)))
+            .set_payload_claim("auth_type", picojson::value("username"))
+            .sign(jwt::algorithm::hs256{ "secret" });
+
+        res.status = 200;
+        res.set_content(token, "text/plain");
+        return;
+    };
+}
+
+
 std::function<void(const httplib::Request &, httplib::Response &)> AuthRoute::SignUpV2()
 {
      return [](const httplib::Request& req, httplib::Response& res){
@@ -246,6 +311,136 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Sign
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::LinkGoogleWithEmail()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string email = document["email"].GetString();
+        std::string name = document["name"].GetString();
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int guestUserId = decoded.get_payload_claim("id").as_int();
+
+        int googleUserId = -1;
+        DBUser* pUser = UserManager::Get()->GetUserByEmail(email);
+        int numActions = 0;
+        int numGoogleActions = 0;
+        if (pUser)
+        {
+            PGconn* pConn = ConnectionPool::Get()->getConnection();
+            googleUserId = pUser->Id;
+            std::string sql =
+                "SELECT SUM(count) AS total FROM ("
+                "SELECT COUNT(*) AS count FROM predicts WHERE user_id = " + std::to_string(guestUserId) +
+                " UNION ALL "
+                "SELECT COUNT(*) FROM bets WHERE user_id = " + std::to_string(guestUserId) +
+                ") AS all_counts;";
+
+            PGresult* sqlRes = PQexec(pConn, sql.c_str());
+            numActions = atoi(PQgetvalue(sqlRes, 0, 0));
+            PQclear(sqlRes);
+
+            sql =
+                "SELECT SUM(count) AS total FROM ("
+                "SELECT COUNT(*) AS count FROM predicts WHERE user_id = " + std::to_string(googleUserId) + " UNION ALL "
+                "SELECT COUNT(*) FROM bets WHERE user_id = " + std::to_string(googleUserId) + " UNION ALL "
+                "SELECT COUNT(*) FROM predicts_24_25 WHERE user_id = " + std::to_string(googleUserId) +
+                ") AS all_counts;";
+
+            sqlRes = PQexec(pConn, sql.c_str());
+            numGoogleActions = atoi(PQgetvalue(sqlRes, 0, 0));
+            PQclear(sqlRes);
+            ConnectionPool::Get()->releaseConnection(pConn);
+
+            delete pUser;
+            if (numActions > 0 && numGoogleActions > 0) 
+            {
+                res.status = 403;
+                res.set_content("", "text/plain");
+                return;
+            }
+        }
+      
+        int userId = UserManager::Get()->LinkGuestUserGoogle(guestUserId, googleUserId, email, name, numActions, numGoogleActions);
+       
+        if (userId < 0)
+        {
+            res.status = 403;
+            res.set_content("Error", "text/plain");
+            return;
+        }
+        
+        token = jwt::create()
+            .set_issuer("auth0")
+            .set_type("JWS")
+            .set_payload_claim("id", picojson::value(int64_t(userId)))
+            .set_payload_claim("auth_type", picojson::value("google"))
+            .sign(jwt::algorithm::hs256{ "secret" });
+
+        res.status = 200;
+        res.set_content(token, "text/plain");
+        return;
+
+    };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::LinkUserWithUsername()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string username = document["username"].GetString();
+        std::string name = document["name"].GetString();
+        std::string password = document["password"].GetString();
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int guestUserId = decoded.get_payload_claim("id").as_int();
+
+        DBUser* pUser = UserManager::Get()->GetUser(username);
+        if (pUser)
+        {
+            delete pUser;
+            res.status = 403;
+            res.set_content("", "text/plain");
+            return;
+        }
+
+        int userId = UserManager::Get()->LinkGuestUserUsername(guestUserId, username, name, password);
+
+        if (userId < 0)
+        {
+            res.status = 403;
+            res.set_content("Error", "text/plain");
+            return;
+        }
+
+        token = jwt::create()
+            .set_issuer("auth0")
+            .set_type("JWS")
+            .set_payload_claim("id", picojson::value(int64_t(userId)))
+            .set_payload_claim("auth_type", picojson::value("username"))
+            .sign(jwt::algorithm::hs256{ "secret" });
+
+        res.status = 200;
+        res.set_content(token, "text/plain");
+        return;
+
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::SignInWithTelegramBot()
 {
     return [](const httplib::Request& req, httplib::Response& res) {
@@ -343,7 +538,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code, username, balance FROM users WHERE id = " + std::to_string(userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, email, league, tg_code, username, balance, is_guest FROM users WHERE id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -412,6 +607,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
             float balance = atof(PQgetvalue(ret, i, 8));
             document.AddMember("balance", balance, allocator);
+
+            int isGuest = atof(PQgetvalue(ret, i, 9));
+            document.AddMember("isGuest", isGuest, allocator);
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);

@@ -10,11 +10,16 @@ public:
 
     std::function<void(const httplib::Request &, httplib::Response &)> SignUpVerify();
     std::function<void(const httplib::Request &, httplib::Response &)> SignUpV2();
+    std::function<void(const httplib::Request&, httplib::Response&)> SignUpGuest();
+
     std::function<void(const httplib::Request &, httplib::Response &)> SignIn();
     std::function<void(const httplib::Request &, httplib::Response &)> SignInForgot();
     std::function<void(const httplib::Request &, httplib::Response &)> ChangePassword();
     std::function<void(const httplib::Request &, httplib::Response &)> SignInGoogle();
     std::function<void(const httplib::Request &, httplib::Response &)> SignInGoogleWithEmail();
+    std::function<void(const httplib::Request&, httplib::Response&)> LinkGoogleWithEmail();
+    std::function<void(const httplib::Request&, httplib::Response&)> LinkUserWithUsername();
+
     std::function<void(const httplib::Request &, httplib::Response &)> SignInWithTelegramBot();
     std::function<void(const httplib::Request&, httplib::Response&)> SignInWithTelegramCode();
     std::function<void(const httplib::Request &, httplib::Response&)> Me();

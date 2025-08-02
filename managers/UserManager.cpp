@@ -90,6 +90,109 @@ int UserManager::CreateTelegramUser(const std::string& username, long long tgId,
     return id;
 }
 
+int UserManager::CreateGuestUser(const std::string& username, const std::string& name)
+{
+    std::string sql = "INSERT INTO users(username, name, points, league, is_guest) VALUES ('"
+        + username + "', '"
+        + name + "', "
+        + std::to_string(0) + ", "
+        + std::to_string(1) + ", "
+        + std::to_string(1) +
+        ");";
+
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    PGresult* res = PQexec(pg, sql.c_str());
+    if (PQresultStatus(res) != PGRES_COMMAND_OK)
+    {
+        char* err = PQerrorMessage(pg);
+        fprintf(stderr, "Error: Failed to create guest user: %s", PQerrorMessage(pg));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return -1;
+    }
+
+    sql = "SELECT currval('users_id_seq');";
+    res = PQexec(pg, sql.c_str());
+    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    {
+        char* err = PQerrorMessage(pg);
+        fprintf(stderr, "Error: Failed to get new user id: %s", PQerrorMessage(pg));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return -1;
+    }
+    char* temp = (char*)calloc(256, sizeof(char));
+    int rec_count = PQntuples(res);
+    strcpy(temp, PQgetvalue(res, 0, 0));
+    int id = atoi(temp);
+    free(temp);
+    ConnectionPool::Get()->releaseConnection(pg);
+    return id;
+}
+
+int UserManager::LinkGuestUserUsername(int newUserId, const std::string& username, const std::string& name, const std::string& password)
+{
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    std::string sql = "UPDATE users SET username = '" + username + "', "
+        + " name = '" + name + "', "
+        + " password = '" + password + "', "
+        + " is_guest = 0 WHERE id = " + std::to_string(newUserId) + ";";
+
+    PGresult* res = PQexec(pg, sql.c_str());
+    if (PQresultStatus(res) != PGRES_COMMAND_OK)
+    {
+        char* err = PQerrorMessage(pg);
+        fprintf(stderr, "Error: Failed to link user: %s", PQerrorMessage(pg));
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return -1;
+    }
+    PQclear(res);
+
+    ConnectionPool::Get()->releaseConnection(pg);
+    return newUserId;
+}
+
+int UserManager::LinkGuestUserGoogle(int newUserId, int oldUserId, const std::string& email, const std::string& name, int numNewActions, int numOldActions)
+{
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    if (numOldActions > 0 && numNewActions <= 0) 
+    {
+        std::string sql = "DELETE FROM users WHERE id = " + std::to_string(newUserId) + ";";
+        PGresult* res = PQexec(pg, sql.c_str());
+        PQclear(res);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return oldUserId;
+    }
+    if (numOldActions <= 0) 
+    {
+        std::string sql = "UPDATE users SET email = '" + email + "', "
+            + " name = '" + name + "', "
+            + " is_guest = 0 WHERE id = " + std::to_string(newUserId) + ";";
+
+        PGresult* res = PQexec(pg, sql.c_str());
+        if (PQresultStatus(res) != PGRES_COMMAND_OK)
+        {
+            char* err = PQerrorMessage(pg);
+            fprintf(stderr, "Error: Failed to link google user: %s", PQerrorMessage(pg));
+            PQclear(res);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return -1;
+        }
+        PQclear(res);
+
+        if (oldUserId > 0)
+        {
+            sql = "DELETE FROM users WHERE id = " + std::to_string(oldUserId) + ";";
+            res = PQexec(pg, sql.c_str());
+            PQclear(res);
+        }
+    }
+    
+    ConnectionPool::Get()->releaseConnection(pg);
+    return newUserId;
+}
+
 int UserManager::CreateUser(const std::string& email, const std::string& name)
 {
     std::string sql = "INSERT INTO users(email, name, points, league) VALUES ('"
@@ -243,9 +346,9 @@ bool UserManager::ChangePassword(const std::string& phone, const std::string& pa
 
 DBUser* UserManager::GetUser(const std::string& username)
 {
-    std::string sql = "SELECT * FROM users WHERE username = '"
-        + username 
-        + "';";
+    std::string sql = "SELECT * FROM users WHERE username ILIKE '"
+        + username +
+        "';";
       
    PGconn* pg = ConnectionPool::Get()->getConnection(); //ConnectionPool::Get()->getConnection();
 

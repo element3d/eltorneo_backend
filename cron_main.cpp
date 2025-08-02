@@ -1081,12 +1081,28 @@ void GetLiveMatches(PGconn* pg)
 						}
 						else
 						{
+							int actualDiff = team1Goals - team2Goals;
+							int predictedDiff = t1score - t2score;
+
 							if ((team1Goals > team2Goals && t1score > t2score) ||
 								(team1Goals < team2Goals && t1score < t2score) ||
 								(team1Goals == team2Goals && t1score == t2score))
 							{
-								points = isSpecial ? specialPoints[1] : 1;
-								status = EPredictStatus::WinnerPredicted;
+								if (actualDiff == predictedDiff)
+								{
+									// Correct goal difference
+									points = isSpecial ? specialPoints[1] : 2;
+									status = EPredictStatus::DiffPredicted;
+								}
+								else
+								{
+									// Only winner predicted
+									points = isSpecial ? specialPoints[1] : 1;
+									status = EPredictStatus::WinnerPredicted;
+								}
+
+								//points = isSpecial ? specialPoints[1] : 1;
+							//	status = EPredictStatus::WinnerPredicted;
 
 								if (team1Goals == team2Goals && t1score == t2score)
 								{
