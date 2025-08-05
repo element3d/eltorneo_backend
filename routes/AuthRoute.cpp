@@ -183,9 +183,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Sign
         res.set_header("Access-Control-Allow-Methods", "*");
         res.set_header("Access-Control-Allow-Headers", "*");
 
+        std::string userOS = "";
+        rapidjson::Document document;
+        if (res.body.size() > 0) 
+        {
+            document.Parse(req.body.c_str());
+            if (document.HasMember("userOS")) userOS = document["userOS"].GetString();
+        }
         std::string username = generateGuestUsername();
         std::string name = generateRandomPlayerName();
-        int userId = UserManager::Get()->CreateGuestUser(username, name);
+        int userId = UserManager::Get()->CreateGuestUser(username, name, userOS);
 
         std::string token = jwt::create()
             .set_issuer("auth0")
@@ -258,7 +265,7 @@ std::function<void(const httplib::Request &, httplib::Response &)> AuthRoute::Si
        // res.set_header("Access-Control-Allow-Origin", "*");
 		if (!token.size())
 		{
-      res.status = status;
+            res.status = status;
 			return;
 		}
         res.status = 200;

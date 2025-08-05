@@ -90,14 +90,15 @@ int UserManager::CreateTelegramUser(const std::string& username, long long tgId,
     return id;
 }
 
-int UserManager::CreateGuestUser(const std::string& username, const std::string& name)
+int UserManager::CreateGuestUser(const std::string& username, const std::string& name, const std::string& userOS)
 {
-    std::string sql = "INSERT INTO users(username, name, points, league, is_guest) VALUES ('"
+    std::string sql = "INSERT INTO users(username, name, points, league, is_guest, os) VALUES ('"
         + username + "', '"
         + name + "', "
         + std::to_string(0) + ", "
         + std::to_string(1) + ", "
-        + std::to_string(1) +
+        + std::to_string(1) + ", '"
+        + userOS + "'"
         ");";
 
     PGconn* pg = ConnectionPool::Get()->getConnection();

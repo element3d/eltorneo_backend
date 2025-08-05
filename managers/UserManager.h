@@ -65,7 +65,7 @@ public:
 //    void SetPsql(pqxx::connection* pPsql);
     int CreateUser(const std::string& username, const std::string& password, const std::string& name);
     int CreateUser(const std::string& email, const std::string& name);
-    int CreateGuestUser(const std::string& username, const std::string& name);
+    int CreateGuestUser(const std::string& username, const std::string& name, const std::string& userOS);
     int LinkGuestUserGoogle(int newUserId, int oldUserId, const std::string& email, const std::string& name, int numNewActions, int numOldActions);
     int LinkGuestUserUsername(int newUserId, const std::string& username, const std::string& name, const std::string& password);
 
