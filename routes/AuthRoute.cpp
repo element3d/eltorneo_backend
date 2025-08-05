@@ -185,7 +185,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Sign
 
         std::string userOS = "";
         rapidjson::Document document;
-        if (res.body.size() > 0) 
+        if (req.body.size() > 0) 
         {
             document.Parse(req.body.c_str());
             if (document.HasMember("userOS")) userOS = document["userOS"].GetString();
