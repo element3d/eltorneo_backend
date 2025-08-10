@@ -127,7 +127,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -257,7 +258,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -387,7 +389,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -517,7 +520,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -647,7 +651,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Сверхновая"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -777,7 +782,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -907,7 +913,8 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1037,6 +1044,7 @@
         "bf_vs_hm": "Bryan Fury vs Heihachi Mishima",
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
-        "advanced_warfare": "Advanced Warfare"
+        "advanced_warfare": "Advanced Warfare",
+        "supernova": "Supernova"
     }
 }
