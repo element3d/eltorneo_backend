@@ -4112,16 +4112,16 @@ void MatchesInitializer::InitEFLCupTeams24_25(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitCommunityShieldTeams25_26(PGconn* pg)
+void MatchesInitializer::InitUEFASuperCupTeams25_26(PGconn* pg)
 {
     std::vector<ETeam> teams;
-    teams.push_back(ETeam::CrystalPalace);
-    teams.push_back(ETeam::Liverpool);
+    teams.push_back(ETeam::PSG);
+    teams.push_back(ETeam::TottenhamHotspur);
 
     for (ETeam t : teams)
     {
         std::string sql = "insert into leagues_teams(league_id, team_id) values ("
-            + std::to_string(int(ELeague::CommunityShield)) + ", "
+            + std::to_string(int(ELeague::UEFASuperCup)) + ", "
             + std::to_string((int)t) + ");";
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -4303,10 +4303,10 @@ void MatchesInitializer::InitEFLCup24_25(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitCommunityShield25_26(PGconn* pg)
+void MatchesInitializer::InitUEFASuperCup25_26(PGconn* pg)
 {
     std::vector<Match> matches;
-    matches.push_back({ ELeague::CommunityShield, "25/26", 1, ETeam::CrystalPalace, ETeam::Liverpool, 1754834400000, EWeekType::Final, true });
+    matches.push_back({ ELeague::UEFASuperCup, "25/26", 1, ETeam::PSG, ETeam::TottenhamHotspur, 1755111600000, EWeekType::Final, true });
 
     for (auto& m : matches)
     {

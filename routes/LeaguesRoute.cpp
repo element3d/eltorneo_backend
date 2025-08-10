@@ -91,8 +91,8 @@ void LeaguesRoute::Init()
 
         //MatchesInitializer::InitCopaDelReyTeams24_25(pg);
         //MatchesInitializer::InitCopaDelRey24_25(pg);
-        MatchesInitializer::InitCommunityShieldTeams25_26(pg);
-        MatchesInitializer::InitCommunityShield25_26(pg);
+        MatchesInitializer::InitUEFASuperCupTeams25_26(pg);
+        MatchesInitializer::InitUEFASuperCup25_26(pg);
 
         ConnectionPool::Get()->releaseConnection(pg);
         return;
