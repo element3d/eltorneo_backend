@@ -89,8 +89,8 @@ public:
     static void InitNationsLeague24_25(PGconn* pg);
     static void InitNationsLeaguePO24_25(PGconn* pg);
 
-    static void InitUEFASuperCupTeams25_26(PGconn* pg);
-    static void InitUEFASuperCup25_26(PGconn* pg);
+    static void InitDFLSuperCupTeams25_26(PGconn* pg);
+    static void InitDFLSuperCup25_26(PGconn* pg);
 
     static void FillAwards(PGconn* pg);
 };
