@@ -62,6 +62,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 528;
 	case ELeague::UEFASuperCup:
 		return 531;
+	case ELeague::DFLSuperCup:
+		return 529;
 	default:
 		break;
 	}
@@ -424,7 +426,8 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		|| league == ELeague::EuropaLeague 
 		|| league == ELeague::ConferenceLeague
 		|| league == ELeague::CommunityShield
-		|| league == ELeague::UEFASuperCup)
+		|| league == ELeague::UEFASuperCup
+		|| league == ELeague::DFLSuperCup)
 	{
 		if (week == 1)
 		{
