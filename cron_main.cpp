@@ -1004,7 +1004,7 @@ void GetLiveMatches(PGconn* pg)
 								"goals_f = goals_f + " + std::to_string(goalsFor) + ", "
 								"goals_a = goals_a + " + std::to_string(goalsAgainst) + ", "
 								"points = points + " + std::to_string(points) + " "
-								"WHERE team_id = " + std::to_string(team) + " AND league_id = " + std::to_string(league) + " AND season = '" + "24/25" + "'" + ";";
+								"WHERE team_id = " + std::to_string(team) + " AND league_id = " + std::to_string(league) + " AND season = '" + "25/26" + "'" + ";";
 							PGresult* updateRet = PQexec(pg, sql.c_str());
 							PQclear(updateRet);
 						};
