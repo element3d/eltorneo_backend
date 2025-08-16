@@ -22,6 +22,8 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteBet();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTable();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByWinner();
 
