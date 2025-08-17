@@ -1643,7 +1643,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }*/
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.balance, COUNT(p.id) AS total_predictions "
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.balance, COUNT(p.id) AS total_predictions "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
         //    "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
@@ -1675,12 +1675,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("id", id, allocator);
             object.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 1), allocator), allocator);
             object.AddMember("avatar", rapidjson::Value(PQgetvalue(ret, i, 2), allocator), allocator);
-          //  object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
+            object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
           //  object.AddMember("league", atoi(PQgetvalue(ret, i, 4)), allocator);
-            object.AddMember("balance", atof(PQgetvalue(ret, i, 3)), allocator);
-            object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 4)), allocator);  // Include the count of predictions
-            int pos = CachedTable::Get()->GetPosition(id, league);
-            object.AddMember("position", pos, allocator);
+            object.AddMember("balance", atof(PQgetvalue(ret, i, 4)), allocator);
+            object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 5)), allocator);  // Include the count of predictions
+            //int pos = CachedTable::Get()->GetPosition(id, league);
+            //object.AddMember("position", pos, allocator);
 
           /* {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
