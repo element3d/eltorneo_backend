@@ -1365,6 +1365,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int posi = CachedTable::Get()->GetPosition(userId, league);
             userObject.AddMember("position", posi, allocator);
 
+            int bbPos = CachedTable::Get()->GetBeatBetPosition(userId);
+            userObject.AddMember("beatBetPosition", bbPos, allocator);
+
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
                 PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
