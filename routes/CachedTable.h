@@ -11,6 +11,7 @@ public:
 
 	void Cache();
 	int GetPosition(int userId, int league);
+	int GetBeatBetPosition(int userId);
 
 private:
 	static CachedTable* sInstance;
@@ -19,5 +20,9 @@ private:
 	std::map<int, int> mTableLeague3;
 	std::map<int, int> mTableLeague4;
 
+	std::map<int, int> mBeatBetTable;
+
 	std::mutex mMutex;
+	std::mutex mBeatBetMutex;
+
 };

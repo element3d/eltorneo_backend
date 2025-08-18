@@ -122,6 +122,33 @@ void CachedTable::Cache()
         PQclear(ret);
     }
 
+    {
+        std::string sql = "SELECT u.id, COUNT(b.id) AS total_bets FROM users u INNER JOIN bets b ON u.id = b.user_id GROUP BY u.id, u.name, u.avatar, u.balance HAVING COUNT(b.id) > 0 ORDER BY u.balance DESC, total_bets DESC;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        {
+            std::lock_guard<std::mutex> l(mMutex);
+            mBeatBetTable.clear();
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int pos = i + 1;
+                int uid = atoi(PQgetvalue(ret, i, 0));
+                mBeatBetTable[uid] = pos;
+            }
+        }
+        PQclear(ret);
+    }
+
     ConnectionPool::Get()->releaseConnection(pg);
 }
 
@@ -148,5 +175,15 @@ int CachedTable::GetPosition(int userId, int league)
         if (mTableLeague4.find(userId) == mTableLeague4.end()) return -1;
         return mTableLeague4[userId];
     }
+    return -1;
+}
+
+int CachedTable::GetBeatBetPosition(int userId)
+{
+    std::lock_guard<std::mutex> l(mMutex);
+
+    if (mBeatBetTable.find(userId) == mBeatBetTable.end()) return -1;
+    return mBeatBetTable[userId];
+
     return -1;
 }

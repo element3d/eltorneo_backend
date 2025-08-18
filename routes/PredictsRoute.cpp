@@ -1545,6 +1545,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 6)), allocator);  // Include the count of predictions
             int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
+            int beatBetPos = CachedTable::Get()->GetBeatBetPosition(id);
+            object.AddMember("beatBetPosition", beatBetPos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
@@ -1681,6 +1683,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 6)), allocator);  // Include the count of predictions
             int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
+            int beatBetPos = CachedTable::Get()->GetBeatBetPosition(id);
+            object.AddMember("beatBetPosition", beatBetPos, allocator);
 
            {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
