@@ -14,7 +14,7 @@
 #include <thread>
 
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
-
+void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId);
 
 int elTorneoLeagueIdToApiFootball(ELeague league) 
 {
@@ -214,10 +214,7 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 		{
 			fprintf(stderr, "Insert failed: %s", PQerrorMessage(pg));
 		}
-		else
-		{
-			printf("Match events inserted successfully.\n");
-		}
+		
 		PQclear(ret);
 	}
 }
@@ -1202,6 +1199,9 @@ void GetLiveMatches(PGconn* pg)
 						pret = PQexec(pg, sql.c_str());
 						PQclear(pret);
 					} */
+
+					// Update match players
+					// GetMatchPlayers(pg, id, apiId);
 				}
 			}
 		}
@@ -2055,10 +2055,98 @@ void FillTeamSquad(PGconn* pg)
 	PQclear(res);
 }
 
+void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
+{
+	std::string url = "https://v3.football.api-sports.io/fixtures/players";
+	cpr::Response r;
+	cpr::Parameters params = {
+		{"fixture", std::to_string(matchApiId)}
+	};
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		// Parse the JSON response
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray() && document["response"].Size())
+		{
+			for (rapidjson::SizeType teamIndex = 0; teamIndex < document["response"].Size(); teamIndex++)
+			{
+				const rapidjson::Value& team1 = document["response"][teamIndex];
+				const rapidjson::Value& players = team1["players"];
+				for (rapidjson::SizeType i = 0; i < players.Size(); i++)
+				{
+					const rapidjson::Value& player = players[i]["player"];
+					int id = player["id"].GetInt();
+					std::string name = player["name"].GetString();
+					std::string photo = player["photo"].GetString();
+
+					const rapidjson::Value& statistics = players[i]["statistics"];
+					const rapidjson::Value& games = statistics[0]["games"];
+					if (games["minutes"].IsNull())
+					{
+						continue;
+					}
+					int number = games["number"].GetInt();
+					std::string position = games["position"].GetString();
+					float rating = games["rating"].IsNull() ? 0 : atof(games["rating"].GetString());
+
+					const rapidjson::Value& goals = statistics[0]["goals"];
+					int total = goals["total"].IsNull() ? 0 : goals["total"].GetInt();
+					int assists = goals["assists"].IsNull() ? 0 : goals["assists"].GetInt();
+
+					const rapidjson::Value& cards = statistics[0]["cards"];
+					int yellow = cards["yellow"].GetInt();
+					int red = cards["red"].GetInt();
+
+					std::string sql = "insert into match_players "
+						"(api_id, match_id, match_api_id, name, photo, number, position, rating, goals, assists, yellow, red) values (";
+
+					sql += std::to_string(id) + ",";
+					sql += std::to_string(matchId) + ",";
+					sql += std::to_string(matchApiId) + ",";
+
+					// Escape strings for SQL
+					char* escName = PQescapeLiteral(pg, name.c_str(), name.size());
+					char* escPhoto = PQescapeLiteral(pg, photo.c_str(), photo.size());
+					char* escPosition = PQescapeLiteral(pg, position.c_str(), position.size());
+
+					sql += std::string(escName) + ",";
+					sql += std::string(escPhoto) + ",";
+					sql += std::to_string(number) + ",";
+					sql += std::string(escPosition) + ",";
+					sql += std::to_string(rating) + ",";
+					sql += std::to_string(total) + ",";
+					sql += std::to_string(assists) + ",";
+					sql += std::to_string(yellow) + ",";
+					sql += std::to_string(red) + ")";
+
+					PQfreemem(escName);
+					PQfreemem(escPhoto);
+					PQfreemem(escPosition);
+
+					PGresult* insertRes = PQexec(pg, sql.c_str());
+					if (PQresultStatus(insertRes) != PGRES_COMMAND_OK) 
+					{
+						fprintf(stderr, "Insert failed: %s\n", PQerrorMessage(pg));
+					}
+					PQclear(insertRes);
+				}
+			}
+		}
+	}
+}
+
 int main()
 {
+
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	
+	// GetMatchPlayers(pg, 0, 1390826);
 	//FillTeamSquad(pg);
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
