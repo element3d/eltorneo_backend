@@ -128,7 +128,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -259,7 +260,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -390,7 +392,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -521,7 +524,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -652,7 +656,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Сверхновая"
+        "supernova": "Сверхновая",
+        "raptors": "Raptors"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -783,7 +788,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -914,7 +920,8 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1045,6 +1052,7 @@
         "yo_vs_eg": "Yoshimitsu vs Eddy Gordo",
         "hm_vs_yo": "Heihachi Mishima vs Yoshimitsu",
         "advanced_warfare": "Advanced Warfare",
-        "supernova": "Supernova"
+        "supernova": "Supernova",
+        "raptors": "Raptors"
     }
 }
