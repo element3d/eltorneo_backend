@@ -1201,7 +1201,7 @@ void GetLiveMatches(PGconn* pg)
 					} */
 
 					// Update match players
-					// GetMatchPlayers(pg, id, apiId);
+					GetMatchPlayers(pg, id, apiId);
 				}
 			}
 		}
@@ -1237,6 +1237,7 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < start11.Size(); ++i)
 	{
 		const rapidjson::Value& player = start11[i]["player"];
+		int apiId = player["id"].GetInt();
 		int number = player["number"].GetInt();
 		std::string name = escapeSingleQuotes(player["name"].GetString());
 		std::string pos = escapeSingleQuotes(player["pos"].GetString());
@@ -1244,15 +1245,16 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 
 		int start11Flag = 1;
 
-		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos) VALUES (" +
+		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos, api_id) VALUES (" +
 			std::to_string(lineupId) + ", '" +
 			name + "', " +
 			std::to_string(number) + ", '" +
 			grid + "', " +
 			std::to_string(start11Flag) + ", " +
 			std::to_string(team) + ", '" +
-			pos + 
-			"');";
+			pos + "', " + 
+			std::to_string(apiId) + 
+			");";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
 		if (PQresultStatus(ret) != PGRES_COMMAND_OK)
@@ -1266,6 +1268,7 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < subs.Size(); ++i)
 	{
 		const rapidjson::Value& player = subs[i]["player"];
+		int apiId = player["id"].GetInt();
 		int number = player["number"].GetInt();
 		std::string grid = "";
 		std::string name = escapeSingleQuotes(player["name"].GetString());
@@ -1273,15 +1276,16 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 
 		int start11Flag = 0;
 
-		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos) VALUES (" +
+		std::string sql = "INSERT INTO lineups_players (lineup, name, number, grid, start11, team, pos, api_id) VALUES (" +
 			std::to_string(lineupId) + ", '" +
 			name + "', " +
 			std::to_string(number) + ", '" +
 			grid + "', " +
 			std::to_string(start11Flag) + ", " +
 			std::to_string(team) + ", '" +
-			pos +
-			"');";
+			pos + "', " +
+			std::to_string(apiId) +
+			");";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
 		if (PQresultStatus(ret) != PGRES_COMMAND_OK)
@@ -1322,6 +1326,11 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 		std::string team1GKBColor = lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
 		if (!lineup1.HasMember("coach") || lineup1["coach"].IsNull() || !lineup1["coach"].HasMember("name") || lineup1["coach"]["name"].IsNull()) return;
 		std::string coach1 = lineup1["coach"]["name"].GetString();
+		std::string coach1Photo = "";
+		if (!lineup1["coach"]["photo"].IsNull()) 
+		{
+			coach1Photo = lineup1["coach"]["photo"].GetString();
+		}
 
 
 		// Extract team2 details
@@ -1336,11 +1345,15 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 		std::string team2GKBColor = lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
 		if (!lineup2.HasMember("coach") || lineup2["coach"].IsNull() || !lineup2["coach"].HasMember("name") || lineup2["coach"]["name"].IsNull()) return;
 		std::string coach2 = lineup2["coach"]["name"].GetString();
-
+		std::string coach2Photo = "";
+		if (!lineup2["coach"]["photo"].IsNull())
+		{
+			coach2Photo = lineup2["coach"]["photo"].GetString();
+		}
 		// Insert into lineups table
 		std::string sql = "INSERT INTO lineups (match_id, match_date, formation1, player_color1, player_ncolor1, player_bcolor1, "
 			"gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, player_bcolor2, "
-			"gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2) VALUES (" +
+			"gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2, coach1_photo, coach2_photo) VALUES (" +
 			std::to_string(matchId) + ", " +
 			std::to_string(matchDate) + ", '" +
 			escapeSingleQuotes(team1Formation) + "', '" +
@@ -1358,7 +1371,9 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 			escapeSingleQuotes(team2GKNColor) + "', '" +
 			escapeSingleQuotes(team2GKBColor) + "', '" +
 			escapeSingleQuotes(coach1) + "', '" +
-			escapeSingleQuotes(coach2) +
+			escapeSingleQuotes(coach2) + "', '" +
+			escapeSingleQuotes(coach1Photo) + "', '" +
+			escapeSingleQuotes(coach2Photo) +
 			"') RETURNING id;";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
@@ -2092,6 +2107,7 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					{
 						continue;
 					}
+					int minutes = games["minutes"].GetInt();
 					int number = games["number"].GetInt();
 					std::string position = games["position"].GetString();
 					float rating = games["rating"].IsNull() ? 0 : atof(games["rating"].GetString());
@@ -2105,7 +2121,7 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					int red = cards["red"].GetInt();
 
 					std::string sql = "insert into match_players "
-						"(api_id, match_id, match_api_id, name, photo, number, position, rating, goals, assists, yellow, red) values (";
+						"(api_id, match_id, match_api_id, name, photo, number, position, rating, goals, assists, yellow, red, minutes) values (";
 
 					sql += std::to_string(id) + ",";
 					sql += std::to_string(matchId) + ",";
@@ -2124,7 +2140,8 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					sql += std::to_string(total) + ",";
 					sql += std::to_string(assists) + ",";
 					sql += std::to_string(yellow) + ",";
-					sql += std::to_string(red) + ")";
+					sql += std::to_string(red) + ",";
+					sql += std::to_string(minutes) + ")";
 
 					PQfreemem(escName);
 					PQfreemem(escPhoto);
