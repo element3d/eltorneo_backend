@@ -1580,7 +1580,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         // Query the database for the lineups
         std::string sql = "SELECT formation1, player_color1, player_ncolor1, player_bcolor1, "
             "gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, "
-            "player_bcolor2, gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2 "
+            "player_bcolor2, gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2, coach1_photo, coach2_photo "
             "FROM lineups WHERE match_id = " + matchId + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -1631,6 +1631,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         rapidjson::Value coach1(PQgetvalue(ret, 0, 14), allocator);
         rapidjson::Value coach2(PQgetvalue(ret, 0, 15), allocator);
 
+        rapidjson::Value coach1Photo(PQgetvalue(ret, 0, 16), allocator);
+        rapidjson::Value coach2Photo(PQgetvalue(ret, 0, 17), allocator);
+
         // Add them to the JSON objects
         team1.AddMember("formation", formation1, allocator);
         team1.AddMember("player_color", player_color1, allocator);
@@ -1640,6 +1643,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         team1.AddMember("gk_ncolor", gk_ncolor1, allocator);
         team1.AddMember("gk_bcolor", gk_bcolor1, allocator);
         team1.AddMember("coach", coach1, allocator);
+        team1.AddMember("coachPhoto", coach1Photo, allocator);
 
         team2.AddMember("formation", formation2, allocator);
         team2.AddMember("player_color", player_color2, allocator);
@@ -1649,9 +1653,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         team2.AddMember("gk_ncolor", gk_ncolor2, allocator);
         team2.AddMember("gk_bcolor", gk_bcolor2, allocator);
         team2.AddMember("coach", coach2, allocator);
+        team1.AddMember("coachPhoto", coach2Photo, allocator);
 
         // Query players for both teams
-        std::string sqlPlayers = "SELECT name, number, grid, start11, team, pos FROM lineups_players WHERE lineup IN "
+        std::string sqlPlayers = "SELECT name, number, grid, start11, team, pos, api_id FROM lineups_players WHERE lineup IN "
             "(SELECT id FROM lineups WHERE match_id = " + matchId + ");";
 
         PGresult* retPlayers = PQexec(pg, sqlPlayers.c_str());
@@ -1669,19 +1674,49 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         rapidjson::Value team1Players(rapidjson::kArrayType);
         rapidjson::Value team2Players(rapidjson::kArrayType);
 
-        for (int i = 0; i < playerRows; ++i) {
+        for (int i = 0; i < playerRows; ++i) 
+        {
             rapidjson::Value player(rapidjson::kObjectType);
             player.AddMember("name", rapidjson::Value(PQgetvalue(retPlayers, i, 0), allocator), allocator);
             player.AddMember("number", std::stoi(PQgetvalue(retPlayers, i, 1)), allocator);
             player.AddMember("grid", rapidjson::Value(PQgetvalue(retPlayers, i, 2), allocator), allocator);
             player.AddMember("start11", std::stoi(PQgetvalue(retPlayers, i, 3)), allocator);
             player.AddMember("pos", rapidjson::Value(PQgetvalue(retPlayers, i, 5), allocator), allocator);
+            int playerApiId = std::stoi(PQgetvalue(retPlayers, i, 6));
+            player.AddMember("apiId", playerApiId, allocator);
+
+            std::string playerStatsSql = "SELECT rating, goals, assists, yellow, red, minutes FROM match_players WHERE api_id = "
+                + std::to_string(playerApiId) + " AND match_id = " + matchId + ";";
+
+            PGresult* statsRes = PQexec(pg, playerStatsSql.c_str());
+            if (PQresultStatus(statsRes) == PGRES_TUPLES_OK && PQntuples(statsRes) > 0)
+            {
+                player.AddMember("rating", std::stod(PQgetvalue(statsRes, 0, 0)), allocator);
+                player.AddMember("goals", std::stoi(PQgetvalue(statsRes, 0, 1)), allocator);
+                player.AddMember("assists", std::stoi(PQgetvalue(statsRes, 0, 2)), allocator);
+                player.AddMember("yellow", std::stoi(PQgetvalue(statsRes, 0, 3)), allocator);
+                player.AddMember("red", std::stoi(PQgetvalue(statsRes, 0, 4)), allocator);
+                player.AddMember("minutes", std::stoi(PQgetvalue(statsRes, 0, 5)), allocator);
+            }
+            else
+            {
+                // Default values if no stats yet
+                player.AddMember("rating", 0.0, allocator);
+                player.AddMember("goals", 0, allocator);
+                player.AddMember("assists", 0, allocator);
+                player.AddMember("yellow", 0, allocator);
+                player.AddMember("red", 0, allocator);
+                player.AddMember("minutes", 0, allocator);
+            }
+            PQclear(statsRes);
 
             int team = std::stoi(PQgetvalue(retPlayers, i, 4));
-            if (team == 1) {
+            if (team == 1)
+            {
                 team1Players.PushBack(player, allocator);
             }
-            else {
+            else
+            {
                 team2Players.PushBack(player, allocator);
             }
 

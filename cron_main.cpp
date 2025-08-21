@@ -925,6 +925,7 @@ void GetLiveMatches(PGconn* pg)
 
 			FillMatchStats(pg, document, id);
 			FillMatchEvents(pg, document, id, team1, team2);
+			GetMatchPlayers(pg, id, apiId);
 			// FillMatchLineups(pg, document, id, matchDate);
 
 			if (status == "FT" || status == "AET" || status == "PEN")
@@ -2141,7 +2142,20 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					sql += std::to_string(assists) + ",";
 					sql += std::to_string(yellow) + ",";
 					sql += std::to_string(red) + ",";
-					sql += std::to_string(minutes) + ")";
+					sql += std::to_string(minutes) + ") ";
+
+					sql += "ON CONFLICT (api_id, match_id) DO UPDATE SET "
+						"match_api_id = EXCLUDED.match_api_id, "
+						"name = EXCLUDED.name, "
+						"photo = EXCLUDED.photo, "
+						"number = EXCLUDED.number, "
+						"position = EXCLUDED.position, "
+						"rating = EXCLUDED.rating, "
+						"goals = EXCLUDED.goals, "
+						"assists = EXCLUDED.assists, "
+						"yellow = EXCLUDED.yellow, "
+						"red = EXCLUDED.red, "
+						"minutes = EXCLUDED.minutes";
 
 					PQfreemem(escName);
 					PQfreemem(escPhoto);
