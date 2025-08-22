@@ -1238,7 +1238,7 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < start11.Size(); ++i)
 	{
 		const rapidjson::Value& player = start11[i]["player"];
-		int apiId = player["id"].GetInt();
+		int apiId = player["id"].IsNull() ? 0 : player["id"].GetInt();
 		int number = player["number"].GetInt();
 		std::string name = escapeSingleQuotes(player["name"].GetString());
 		std::string pos = escapeSingleQuotes(player["pos"].GetString());
@@ -1269,7 +1269,7 @@ void FillLineupPlayers(PGconn* pg, int lineupId, rapidjson::Value& lineup, int t
 	for (rapidjson::SizeType i = 0; i < subs.Size(); ++i)
 	{
 		const rapidjson::Value& player = subs[i]["player"];
-		int apiId = player["id"].GetInt();
+		int apiId = player["id"].IsNull() ? 0 : player["id"].GetInt();
 		int number = player["number"].GetInt();
 		std::string grid = "";
 		std::string name = escapeSingleQuotes(player["name"].GetString());
@@ -2177,6 +2177,7 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
+	FillTodayLineups(pg);
 	// GetMatchPlayers(pg, 0, 1390826);
 	//FillTeamSquad(pg);
 	// Get current time
