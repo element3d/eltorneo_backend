@@ -1657,8 +1657,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         team2.AddMember("gk_ncolor", gk_ncolor2, allocator);
         team2.AddMember("gk_bcolor", gk_bcolor2, allocator);
         team2.AddMember("coach", coach2, allocator);
-        team1.AddMember("coachPhoto", coach2Photo, allocator);
-        team1.AddMember("coachApiId", coach2ApiId, allocator);
+        team2.AddMember("coachPhoto", coach2Photo, allocator);
+        team2.AddMember("coachApiId", coach2ApiId, allocator);
 
         // Query players for both teams
         std::string sqlPlayers = "SELECT name, number, grid, start11, team, pos, api_id FROM lineups_players WHERE lineup IN "
