@@ -1580,7 +1580,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         // Query the database for the lineups
         std::string sql = "SELECT formation1, player_color1, player_ncolor1, player_bcolor1, "
             "gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, "
-            "player_bcolor2, gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2, coach1_photo, coach2_photo "
+            "player_bcolor2, gk_color2, gk_ncolor2, gk_bcolor2, coach1, coach2, coach1_photo, coach2_photo, coach1_api_id, coach2_api_id "
             "FROM lineups WHERE match_id = " + matchId + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -1634,6 +1634,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         rapidjson::Value coach1Photo(PQgetvalue(ret, 0, 16), allocator);
         rapidjson::Value coach2Photo(PQgetvalue(ret, 0, 17), allocator);
 
+        rapidjson::Value coach1ApiId(PQgetvalue(ret, 0, 18), allocator);
+        rapidjson::Value coach2ApiId(PQgetvalue(ret, 0, 19), allocator);
+
         // Add them to the JSON objects
         team1.AddMember("formation", formation1, allocator);
         team1.AddMember("player_color", player_color1, allocator);
@@ -1644,6 +1647,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         team1.AddMember("gk_bcolor", gk_bcolor1, allocator);
         team1.AddMember("coach", coach1, allocator);
         team1.AddMember("coachPhoto", coach1Photo, allocator);
+        team1.AddMember("coachApiId", coach1ApiId, allocator);
 
         team2.AddMember("formation", formation2, allocator);
         team2.AddMember("player_color", player_color2, allocator);
@@ -1654,6 +1658,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         team2.AddMember("gk_bcolor", gk_bcolor2, allocator);
         team2.AddMember("coach", coach2, allocator);
         team1.AddMember("coachPhoto", coach2Photo, allocator);
+        team1.AddMember("coachApiId", coach2ApiId, allocator);
 
         // Query players for both teams
         std::string sqlPlayers = "SELECT name, number, grid, start11, team, pos, api_id FROM lineups_players WHERE lineup IN "
