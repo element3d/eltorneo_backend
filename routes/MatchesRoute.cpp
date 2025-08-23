@@ -484,6 +484,7 @@ bool FillTeamSquds(PGconn* pg, long tid, rapidjson::Value& document, rapidjson::
         matchObj.AddMember("position", rapidjson::Value(PQgetvalue(ret, i, 4), allocator), allocator);
         matchObj.AddMember("photo", rapidjson::Value(PQgetvalue(ret, i, 5), allocator), allocator);
         std::string playerApiId = (PQgetvalue(ret, i, 6));
+        matchObj.AddMember("apiId", atoi(PQgetvalue(ret, i, 6)), allocator);
         sql = "SELECT player_api_id, league_id, games, rating, goals, assists FROM player_stats WHERE team_id = "
             + std::to_string(tid) + " AND player_api_id = " + playerApiId + ";";
         PGresult* statRet = PQexec(pg, sql.c_str());
