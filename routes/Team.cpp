@@ -175,7 +175,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Brest:
         return "Stade Brestois 29";
     case ETeam::LeHavre:
-        return "LE Havre";
+        return "Le Havre";
     case ETeam::Lens:
         return "Lens";
     case ETeam::Lille:
