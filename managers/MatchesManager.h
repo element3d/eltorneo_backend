@@ -7,6 +7,13 @@
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
 
+enum class ETeamMatch
+{
+	Finished,
+	Live,
+	Upcoming
+};
+
 class MatchesManager 
 {
 public:
@@ -62,4 +69,19 @@ public:
 		int userId,
 		long tid,
 		rapidjson::Document& document);
+
+	// Matches team (Team page)
+	static bool FillTeamMatchesWithPredicts(PGconn* pg,
+		int userId,
+		int tid,
+		rapidjson::Value& document,
+		rapidjson::Document::AllocatorType& allocator,
+		ETeamMatch eMatch);
+
+	static bool FillTeamMatchesWithBets(PGconn* pg,
+		int userId,
+		int tid,
+		rapidjson::Value& document,
+		rapidjson::Document::AllocatorType& allocator,
+		ETeamMatch eMatch);
 };
