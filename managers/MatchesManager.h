@@ -59,6 +59,17 @@ public:
 		long long currentTimeMs,
 		rapidjson::Document& document);
 
+	// Matches upcoming (Live page)
+	static bool GetMatchesUpcomingWithPredicts(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
+	static bool GetMatchesUpcomingWithBets(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
 	// Matches team (H2H page)
 	static bool GetMatchesTeamWithPredicts(PGconn* pg,
 		int userId,
