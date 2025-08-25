@@ -207,6 +207,7 @@ int main(void)
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());
     svr.Put("/api/v1/predicts", PredictsRoute::Get()->EditPredict());
     svr.Get("/api/v1/user/predict", PredictsRoute::Get()->GetUserPredict());
+    svr.Get("/api/v1/user/bet", PredictsRoute::Get()->GetUserBet());
     svr.Get("/api/v1/user/predicts", PredictsRoute::Get()->GetUserPredicts());
     svr.Get("/api/v1/user/bets", PredictsRoute::Get()->GetUserBets());
     svr.Get("/api/v1/user/score_predicts", PredictsRoute::Get()->GetUserScorePredicts());

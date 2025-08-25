@@ -8,6 +8,8 @@ public:
     static PredictsRoute* Get();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserPredict();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUserBet();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserBets();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserScorePredicts();

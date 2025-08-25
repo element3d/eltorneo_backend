@@ -110,6 +110,85 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetUserBet()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string matchId = req.get_param_value("match_id");
+        std::string season = "";
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "id, bet, amount, odd, status FROM bets" + postfix + " WHERE user_id = "
+            + std::to_string(userId) + " AND match_id = "
+            + matchId
+            + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch user bet: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+        char* temp = (char*)calloc(4096, sizeof(char));
+
+        for (int i = 0; i < nrows; ++i)
+        {
+            // Handle ID as integer
+            int id = atoi(PQgetvalue(ret, i, 0)); // Convert the string from the first column to an integer
+            rapidjson::Value idValue;
+            idValue.SetInt(id);
+            document.AddMember("id", idValue, allocator);
+            document.AddMember("bet", rapidjson::Value(PQgetvalue(ret, 0, 1), allocator), allocator);
+            document.AddMember("amount", atoi(PQgetvalue(ret, 0, 2)), allocator);
+            document.AddMember("odd", atof(PQgetvalue(ret, 0, 3)), allocator);
+            document.AddMember("status", atoi(PQgetvalue(ret, 0, 4)), allocator);
+        }
+        free(temp);
+
+        // Assuming you convert the Document to a string and send it in the response as before
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        // You can then use `buffer.GetString()` to get the JSON string
+        // And send it in the response as follows:
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
+
+
 int getTeamId(PGconn* conn, int matchId, int teamNumber)
 {
     const char* teamField = (teamNumber == 1) ? "team1" : "team2";
