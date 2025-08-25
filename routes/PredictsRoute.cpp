@@ -137,7 +137,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int userId = decoded.get_payload_claim("id").as_int();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "id, bet, amount, odd, status FROM bets" + postfix + " WHERE user_id = "
+        std::string sql = "select id, bet, amount, odd, status FROM bets" + postfix + " WHERE user_id = "
             + std::to_string(userId) + " AND match_id = "
             + matchId
             + ";";
