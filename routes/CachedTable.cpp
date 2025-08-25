@@ -1,6 +1,7 @@
 #include "CachedTable.h"
 #include "../managers/PQManager.h"
 #include <mutex>
+#include <string>
 
 CachedTable* CachedTable::sInstance = nullptr;
 
@@ -13,9 +14,22 @@ CachedTable* CachedTable::Get()
 void CachedTable::Cache() 
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
+    auto now = std::chrono::system_clock::now();
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+    long long timestamp = ms.count();
+    long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
 
     {
-        std::string sql = "SELECT u.id, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id WHERE p.status != 4 AND u.league = 1 GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC;";
+        std::string sql =
+            "SELECT u.id, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts p ON u.id = p.user_id "
+            "WHERE p.status != 4 "
+            "AND u.league = 1 "
+            "AND u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -42,7 +56,16 @@ void CachedTable::Cache()
     }
 
     {
-        std::string sql = "SELECT u.id, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id WHERE p.status != 4 AND u.league = 2 GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC;";
+        std::string sql =
+            "SELECT u.id, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts p ON u.id = p.user_id "
+            "WHERE p.status != 4 "
+            "AND u.league = 2 "
+            "AND u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -69,7 +92,16 @@ void CachedTable::Cache()
     }
 
     {
-        std::string sql = "SELECT u.id, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id WHERE p.status != 4 AND u.league = 3 GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC;";
+        std::string sql =
+            "SELECT u.id, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts p ON u.id = p.user_id "
+            "WHERE p.status != 4 "
+            "AND u.league = 3 "
+            "AND u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -96,7 +128,16 @@ void CachedTable::Cache()
     }
 
     {
-        std::string sql = "SELECT u.id, COUNT(p.id) AS total_predictions FROM users u INNER JOIN predicts p ON u.id = p.user_id WHERE p.status != 4 AND u.league = 4 GROUP BY u.id, u.name, u.avatar, u.points HAVING COUNT(p.id) > 0 ORDER BY u.points DESC, total_predictions DESC;";
+        std::string sql =
+            "SELECT u.id, COUNT(p.id) AS total_predictions "
+            "FROM users u "
+            "INNER JOIN predicts p ON u.id = p.user_id "
+            "WHERE p.status != 4 "
+            "AND u.league = 4 "
+            "AND u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.id, u.name, u.avatar, u.points "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predictions DESC, u.id ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -123,7 +164,14 @@ void CachedTable::Cache()
     }
 
     {
-        std::string sql = "SELECT u.id, COUNT(b.id) AS total_bets FROM users u INNER JOIN bets b ON u.id = b.user_id GROUP BY u.id, u.name, u.avatar, u.balance HAVING COUNT(b.id) > 0 ORDER BY u.balance DESC, total_bets DESC;";
+        std::string sql =
+            "SELECT u.id, COUNT(b.id) AS total_bets "
+            "FROM users u "
+            "INNER JOIN bets b ON u.id = b.user_id "
+            "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.id, u.name, u.avatar, u.balance "
+            "HAVING COUNT(b.id) > 0 "
+            "ORDER BY u.balance DESC, total_bets DESC, u.id ASC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
 

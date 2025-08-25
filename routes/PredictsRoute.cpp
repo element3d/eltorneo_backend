@@ -1476,23 +1476,26 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int page = 1;
         int league = 1;
         std::string season = "25_26";
-        if (req.has_param("page")) {
+        if (req.has_param("page")) 
+        {
             page = std::stoi(req.get_param_value("page"));
         }
-        if (req.has_param("league")) {
+        if (req.has_param("league")) 
+        {
             league = std::stoi(req.get_param_value("league"));
         }
-        if (req.has_param("season")) {
+        if (req.has_param("season")) 
+        {
             season = req.get_param_value("season");
             std::replace(season.begin(), season.end(), '/', '_');
-
         }
 
         int limit = 20; // Number of users per page
         int offset = (page - 1) * limit; // Calculate the offset based on the page
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        if (!pg) {
+        if (!pg) 
+        {
             res.status = 500;  // Internal Server Error
             return;
         }
@@ -1501,25 +1504,34 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string pointsColName = "u.points";
         std::string leagueColName = "u.league";
 
+        auto now = std::chrono::system_clock::now();
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());\
+        long long timestamp = ms.count();
+        long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
+        long long tsDiff = timestamp - ten_days_ms;
+
         std::string currentSeason = "25_26";
         if (season != currentSeason) 
         {
             predictsTableName += "_" + season;
             pointsColName += "_" + season;
             leagueColName += "_" + season;
+            tsDiff = 0;
         }
 
-        // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, " + pointsColName + ", " + leagueColName + ", u.balance, COUNT(p.id) AS total_predictions "
+        // SQL query
+        std::string sql =
+            "SELECT u.id, u.name, u.avatar, " + pointsColName + ", " + leagueColName +
+            ", u.balance, COUNT(p.id) AS total_predictions "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
-            "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
-            " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
+            "WHERE p.status != 4 "
+            "AND " + leagueColName + " = " + std::to_string(league) + " "
+            "AND u.last_predict_ts >= " + std::to_string(tsDiff) + " "
+            "GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY "+ pointsColName + " DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
+            "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
-
-
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -1647,17 +1659,21 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             leagueColName += "_" + season;
         }*/
 
+        auto now = std::chrono::system_clock::now();
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+        long long timestamp = ms.count();
+        long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
+
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
         std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.league, u.balance, COUNT(p.id) AS total_predictions "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
-        //    "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
+            "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            // "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
             " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "  // Added u.id to ensure stable ordering
+            "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
-
-
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
