@@ -130,7 +130,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -263,7 +264,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -396,7 +398,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -529,7 +532,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -662,7 +666,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Сверхновая",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Круг ада"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -795,7 +800,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -928,7 +934,8 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1061,6 +1068,7 @@
         "advanced_warfare": "Advanced Warfare",
         "supernova": "Supernova",
         "raptors": "Raptors",
-        "jurassic_park2": "Jurassic Park"
+        "jurassic_park2": "Jurassic Park",
+        "circle_of_hell": "Circle of Hell"
     }
 }
