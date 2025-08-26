@@ -1680,8 +1680,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int matchId = atoi(PQgetvalue(ret, i, 2));
             std::string bet = (PQgetvalue(ret, i, 3));
             int amount = atoi(PQgetvalue(ret, i, 4));
-            float odd = atof(PQgetvalue(ret, i, 6));
-            int status = atoi(PQgetvalue(ret, i, 7));
+            float odd = atof(PQgetvalue(ret, i, 5));
+            int status = atoi(PQgetvalue(ret, i, 6));
 
             std::string userName = PQgetvalue(ret, i, 7);
             std::string userAvatar = PQgetvalue(ret, i, 8);
