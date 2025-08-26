@@ -16,7 +16,11 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserWinnerPredicts();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredicts();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsSummary();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20();
+
     std::function<void(const httplib::Request&, httplib::Response&)> PostPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
 
