@@ -621,6 +621,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
         document.AddMember("position", pos, allocator);
+        int bbpos = CachedTable::Get()->GetBeatBetPosition(userId);
+        document.AddMember("beatBetPosition", bbpos, allocator);
         free(temp);
 
         {
