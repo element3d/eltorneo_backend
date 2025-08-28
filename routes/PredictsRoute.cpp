@@ -2303,6 +2303,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             return;
         }
 
+        int isSpecial = false;
+        {
+            sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
+            PGresult* specialRet = PQexec(pg, sql.c_str());
+            isSpecial = atoi(PQgetvalue(specialRet, 0, 0));
+            PQclear(specialRet);
+        }
+
+        if (!isSpecial)
         {
             amount = std::max(10, amount);
             amount = std::min(20, amount);
@@ -2464,16 +2473,28 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int userId = decoded.get_payload_claim("id").as_int();
         std::string betId = req.get_param_value("bet_id");
 
-        std::string sql = "SELECT amount FROM bets WHERE user_id = " + std::to_string(userId)
+        std::string sql = "SELECT amount, match_id FROM bets WHERE user_id = " + std::to_string(userId)
             + " AND id = " + betId + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         int amount = atoi(PQgetvalue(ret, 0, 0));
+        int matchId = atoi(PQgetvalue(ret, 0, 1));
+
         PQclear(ret);
 
-        sql = "UPDATE users set balance = balance + " + std::to_string(amount) + " WHERE id = " + std::to_string(userId) + ";";
-        ret = PQexec(pg, sql.c_str());
-        PQclear(ret);
+        int isSpecial = false;
+        {
+            sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
+            PGresult* specialRet = PQexec(pg, sql.c_str());
+            isSpecial = atoi(PQgetvalue(specialRet, 0, 0));
+            PQclear(specialRet);
+        }
+        if (!isSpecial)
+        {
+            sql = "UPDATE users set balance = balance + " + std::to_string(amount) + " WHERE id = " + std::to_string(userId) + ";";
+            ret = PQexec(pg, sql.c_str());
+            PQclear(ret);
+        }
 
         sql = "DELETE FROM bets WHERE user_id = " + std::to_string(userId)
             + " AND id = " + betId + ";";
