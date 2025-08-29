@@ -1812,7 +1812,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string leagueColName = "u.league";
 
         auto now = std::chrono::system_clock::now();
-        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());\
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
         long long timestamp = ms.count();
         long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
         long long tsDiff = timestamp - ten_days_ms;
@@ -2330,6 +2330,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             }
             PQclear(amountRet);
         }
+        {
+            auto now = std::chrono::system_clock::now();
+            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+            long long timestamp = ms.count();
+            sql = "UPDATE users SET last_bet_ts = " + std::to_string(timestamp) + " WHERE id = " + std::to_string(userId) + ";";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
+        }
 
         // Get the inserted ID
         int insertedId = std::stoi(PQgetvalue(ret, 0, 0));
@@ -2436,6 +2444,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
             return;
+        }
+
+        {
+            auto now = std::chrono::system_clock::now();
+            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+            long long timestamp = ms.count();
+            sql = "UPDATE users SET last_predict_ts = " + std::to_string(timestamp) + " WHERE id = " + std::to_string(userId) + ";";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
         }
 
         // Get the inserted ID
