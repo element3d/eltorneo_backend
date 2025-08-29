@@ -331,11 +331,9 @@ void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
 
 	PGresult* ret = PQexec(pg, sql.c_str());
 
-	if (PQresultStatus(ret) != PGRES_COMMAND_OK) {
+	if (PQresultStatus(ret) != PGRES_COMMAND_OK)
+	{
 		fprintf(stderr, "Insert/Update failed: %s", PQerrorMessage(pg));
-	}
-	else {
-		printf("Match stats inserted/updated successfully.\n");
 	}
 
 	PQclear(ret);
@@ -2104,7 +2102,7 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					const rapidjson::Value& player = players[i]["player"];
 					int id = player["id"].GetInt();
 					std::string name = player["name"].GetString();
-					std::string photo = player["photo"].GetString();
+					std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
 
 					const rapidjson::Value& statistics = players[i]["statistics"];
 					const rapidjson::Value& games = statistics[0]["games"];
