@@ -2669,6 +2669,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             PQclear(tsRet);
         }
 
+        {
+            std::string sql =
+                "INSERT INTO fireball_users (user_id) VALUES (" + std::to_string(userId) + ") "
+                "ON CONFLICT (user_id) DO NOTHING;";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
+        }
+
         // Get the inserted ID
         int insertedId = std::stoi(PQgetvalue(ret, 0, 0));
 
