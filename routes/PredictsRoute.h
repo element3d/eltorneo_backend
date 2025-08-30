@@ -35,6 +35,8 @@ public:
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBet();
 
+    // Fireball
+    std::function<void(const httplib::Request&, httplib::Response&)> PostFireballPredict();
 
 private:
    // void CacheTable();

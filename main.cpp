@@ -226,6 +226,9 @@ int main(void)
 
     svr.Get("/api/v1/beat_bet", PredictsRoute::Get()->GetBeatBet());
 
+    // Fireball
+    svr.Post("/api/v1/fireball/predict", PredictsRoute::Get()->PostFireballPredict());
+
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 

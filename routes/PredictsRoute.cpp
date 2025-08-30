@@ -2592,5 +2592,102 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
         res.status = 201; // Created
     };
+}
 
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::PostFireballPredict()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "POST");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        int matchId = document["matchId"].GetInt();
+        int teamId = document["teamId"].GetInt();
+        int playerApiId = document["playerApiId"].GetInt();
+        std::string playerName = document["playerName"].GetString();
+        std::string playerPhoto = document["playerPhoto"].GetString();
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        {
+            std::string sql = "select id from fireball_predicts where user_id = "
+                + std::to_string(userId) + " AND match_id = " + std::to_string(matchId) + ";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+
+            int n = PQntuples(ret);
+            if (n > 0)
+            {
+                fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+        }
+       
+        std::string sql = "INSERT INTO fireball_predicts(user_id, match_id, team_id, player_api_id, player_name, player_photo) VALUES("
+            + std::to_string(userId) + ", "
+            + std::to_string(matchId) + ", "
+            + std::to_string(teamId) + ", "
+            + std::to_string(playerApiId) + ", '"
+            + playerName + "', '" 
+            + playerPhoto + "' "
+            + ") RETURNING id";  // Return the inserted ID
+
+        // Execute the insert and capture the inserted predict ID
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
+        {
+            fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500; // Internal Server Error
+            return;
+        }
+
+        {
+            auto now = std::chrono::system_clock::now();
+            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+            long long timestamp = ms.count();
+            sql = "UPDATE users SET last_fireball_predict_ts = " + std::to_string(timestamp) + " WHERE id = " + std::to_string(userId) + ";";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
+        }
+
+        // Get the inserted ID
+        int insertedId = std::stoi(PQgetvalue(ret, 0, 0));
+
+        // Clear result and release connection
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+
+        // Create a JSON response with the inserted ID
+        rapidjson::Document responseDoc;
+        responseDoc.SetObject();
+        responseDoc.AddMember("predict_id", insertedId, responseDoc.GetAllocator());
+
+        // Convert the document to a string
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        responseDoc.Accept(writer);
+
+        // Send response
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 201; // Created
+    };
 }
