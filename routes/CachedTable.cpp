@@ -17,7 +17,7 @@ void CachedTable::Cache()
     auto now = std::chrono::system_clock::now();
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
     long long timestamp = ms.count();
-    long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
+    long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
     {
         std::string sql =
@@ -163,6 +163,7 @@ void CachedTable::Cache()
         PQclear(ret);
     }
 
+    // Beat Bet
     {
         std::string sql =
             "SELECT u.id, COUNT(b.id) AS total_bets "
@@ -192,6 +193,41 @@ void CachedTable::Cache()
                 int pos = i + 1;
                 int uid = atoi(PQgetvalue(ret, i, 0));
                 mBeatBetTable[uid] = pos;
+            }
+        }
+        PQclear(ret);
+    }
+
+    // Fireball
+    {
+        std::string sql =
+            "SELECT u.user_id, COUNT(p.id) AS total_predicts "
+            "FROM fireball_users u "
+            "INNER JOIN fireball_predicts b ON u.user_id = p.user_id "
+            "WHERE u.last_fireball_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "GROUP BY u.user_id "
+            "HAVING COUNT(p.id) > 0 "
+            "ORDER BY u.points DESC, total_predicts DESC, u.user_id ASC;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to cache fireball table: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        {
+            std::lock_guard<std::mutex> l(mMutex);
+            mFireballTable.clear();
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int pos = i + 1;
+                int uid = atoi(PQgetvalue(ret, i, 0));
+                mFireballTable[uid] = pos;
             }
         }
         PQclear(ret);
@@ -232,6 +268,16 @@ int CachedTable::GetBeatBetPosition(int userId)
 
     if (mBeatBetTable.find(userId) == mBeatBetTable.end()) return -1;
     return mBeatBetTable[userId];
+
+    return -1;
+}
+
+int CachedTable::GetFireballPosition(int userId)
+{
+    std::lock_guard<std::mutex> l(mMutex);
+
+    if (mFireballTable.find(userId) == mFireballTable.end()) return -1;
+    return mFireballTable[userId];
 
     return -1;
 }

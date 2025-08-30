@@ -2797,3 +2797,150 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetMatchFireballTop20()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string matchId = req.get_param_value("match_id");std::string season = "";
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "SELECT p.*, u.name, u.avatar, fu.points FROM fireball_predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "JOIN fireball_users fu ON p.user_id = fu.user_id "
+            "WHERE p.match_id = " + matchId + " "
+            "ORDER BY fu.points DESC LIMIT 20;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch top fireball predicts: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        rapidjson::Value predicts;
+        predicts.SetArray();
+
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+        for (int i = 0; i < nrows; ++i)
+        {
+            rapidjson::Value object;
+            object.SetObject();
+
+            int id = atoi(PQgetvalue(ret, i, 0));
+            int userId = atoi(PQgetvalue(ret, i, 1));
+            int matchId = atoi(PQgetvalue(ret, i, 2));
+            int teamId = atoi(PQgetvalue(ret, i, 3));
+            int playerApiId = atoi(PQgetvalue(ret, i, 4));
+            std::string playerName = PQgetvalue(ret, i, 5);
+            std::string playerPhoto = PQgetvalue(ret, i, 6);
+            int goals = atoi(PQgetvalue(ret, i, 7));
+            int status = atoi(PQgetvalue(ret, i, 8));
+
+            std::string userName = PQgetvalue(ret, i, 9);
+            std::string userAvatar = PQgetvalue(ret, i, 10);
+
+            int points = atoi(PQgetvalue(ret, i, 11));
+
+            // Add user info and position to the JSON object
+            rapidjson::Value userObject;
+            userObject.SetObject();
+            userObject.AddMember("id", userId, allocator);
+            rapidjson::Value nameVal;
+            nameVal.SetString(userName.c_str(), allocator);
+            userObject.AddMember("name", nameVal, allocator);
+            nameVal.SetString(userAvatar.c_str(), allocator);
+            userObject.AddMember("avatar", nameVal, allocator);
+            userObject.AddMember("points", points, allocator);
+
+            int posi = CachedTable::Get()->GetFireballPosition(userId);
+            userObject.AddMember("position", posi, allocator);
+
+
+            {
+                std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+                PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+                if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+                {
+                    fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                    PQclear(awardsRes);
+                }
+                else
+                {
+                    int awardCount = PQntuples(awardsRes);
+                    rapidjson::Value awards(rapidjson::kArrayType);
+
+                    for (int j = 0; j < awardCount; ++j)
+                    {
+                        rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                        int place = atoi(PQgetvalue(awardsRes, j, 0));
+                        char* season = PQgetvalue(awardsRes, j, 1);
+                        int league = atoi(PQgetvalue(awardsRes, j, 2));
+
+                        awardObj.AddMember("place", place, allocator);
+
+                        rapidjson::Value seasonVal;
+                        seasonVal.SetString(season, allocator);
+                        awardObj.AddMember("season", seasonVal, allocator);
+                        awardObj.AddMember("league", league, allocator);
+
+                        awards.PushBack(awardObj, allocator);
+                    }
+
+                    userObject.AddMember("awards", awards, allocator);
+                    PQclear(awardsRes);
+                }
+            }
+
+            object.AddMember("id", id, allocator);
+            object.AddMember("user", userObject, allocator);
+            object.AddMember("match_id", matchId, allocator);
+            object.AddMember("team_id", teamId, allocator);
+            object.AddMember("player_api_id", playerApiId, allocator);
+            rapidjson::Value sVal;
+            sVal.SetString(playerName.c_str(), allocator);
+            object.AddMember("player_name", sVal, allocator);
+            sVal.SetString(playerPhoto.c_str(), allocator);
+            object.AddMember("player_photo", sVal, allocator);
+            object.AddMember("goals", goals, allocator);
+            object.AddMember("status", status, allocator);
+
+            predicts.PushBack(object, allocator);
+        }
+
+        document.AddMember("predicts", predicts, allocator);
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
