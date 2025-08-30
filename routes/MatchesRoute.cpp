@@ -422,6 +422,56 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetTeamPlayers()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        int userId = -1;
+        std::string token = req.get_header_value("Authentication");
+        if (token.size())
+        {
+            auto decoded = jwt::decode(token);
+            userId = decoded.get_payload_claim("id").as_int();
+        }
+
+        std::string team1_id = req.get_param_value("team1_id");
+        std::string team2_id = req.get_param_value("team2_id");
+
+        int t1id = atoi(team1_id.c_str());
+        int t2id = atoi(team2_id.c_str());
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        rapidjson::Document document;
+        document.SetObject();
+
+        {
+            rapidjson::Value vPlayers(rapidjson::kArrayType);
+            vPlayers.SetArray();
+            FillTeamSquds(pg, t1id, vPlayers, document.GetAllocator());
+            document.AddMember("team1Players", vPlayers, document.GetAllocator());
+        }
+
+        {
+            rapidjson::Value vPlayers(rapidjson::kArrayType);
+            vPlayers.SetArray();
+            FillTeamSquds(pg, t2id, vPlayers, document.GetAllocator());
+            document.AddMember("team2Players", vPlayers, document.GetAllocator());
+        }
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
+
+
 static int getRandomNumber(int n) 
 {
     return rand() % n;
