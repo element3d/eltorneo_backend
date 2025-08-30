@@ -39,6 +39,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> PostFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
 
 private:
    // void CacheTable();

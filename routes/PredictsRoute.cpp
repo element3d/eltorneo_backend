@@ -2952,3 +2952,114 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetMatchFireballSummary()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string matchId = req.get_param_value("match_id");
+        std::string season;
+        if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }
+        std::string postfix = "";
+        if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string predictsSql =
+            "SELECT player_api_id, "
+            "       player_name, "
+            "       player_photo, "
+            "       COUNT(*) AS predict_count, "
+            "       SUM(COUNT(*)) OVER () AS total_predicts "
+            "FROM fireball_predicts "
+            "WHERE match_id = " + matchId + " "
+            "GROUP BY player_api_id, player_name, player_photo "
+            "ORDER BY predict_count DESC "
+            "LIMIT 2;";
+        PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
+
+        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch fireball summary: %s", PQerrorMessage(pg));
+            PQclear(predictsRet);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        // Fetch predicts
+        int nrows = PQntuples(predictsRet);
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        if (nrows > 0) 
+        {
+            if (nrows >= 1) 
+            {
+                int playerApiId = atoi(PQgetvalue(predictsRet, 0, 0));
+                std::string playerName = PQgetvalue(predictsRet, 0, 1);
+                std::string playerPhoto = PQgetvalue(predictsRet, 0, 2);
+                int playerPredictCount = atoi(PQgetvalue(predictsRet, 0, 3));
+                int totalCount = atoi(PQgetvalue(predictsRet, 0, 4));
+
+                rapidjson::Value player1Val;
+                player1Val.SetObject();
+                player1Val.AddMember("player_api_id", playerApiId, allocator);
+                rapidjson::Value strVal;
+                strVal.SetString(playerName.c_str(), allocator);
+                player1Val.AddMember("player_name", strVal, allocator);
+                strVal.SetString(playerPhoto.c_str(), allocator);
+                player1Val.AddMember("player_photo", strVal, allocator);
+                player1Val.AddMember("count", playerPredictCount, allocator);
+
+                document.AddMember("total_predicts", totalCount, allocator);
+                document.AddMember("player1", player1Val, allocator);
+            }
+            if (nrows == 2)
+            {
+                int playerApiId = atoi(PQgetvalue(predictsRet, 1, 0));
+                std::string playerName = PQgetvalue(predictsRet, 1, 1);
+                std::string playerPhoto = PQgetvalue(predictsRet, 1, 2);
+                int playerPredictCount = atoi(PQgetvalue(predictsRet, 1, 3));
+                int totalCount = atoi(PQgetvalue(predictsRet, 1, 4));
+
+                rapidjson::Value player2Val;
+                player2Val.SetObject();
+                player2Val.AddMember("player_api_id", playerApiId, allocator);
+                rapidjson::Value strVal;
+                strVal.SetString(playerName.c_str(), allocator);
+                player2Val.AddMember("player_name", strVal, allocator);
+                strVal.SetString(playerPhoto.c_str(), allocator);
+                player2Val.AddMember("player_photo", strVal, allocator);
+                player2Val.AddMember("count", playerPredictCount, allocator);
+                document.AddMember("player2", player2Val, allocator);
+            }
+        }
+        else 
+        {
+            document.AddMember("total_predicts", 0, allocator);
+        }
+        // Serialize JSON response
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+        PQclear(predictsRet);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}

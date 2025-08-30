@@ -230,6 +230,7 @@ int main(void)
     svr.Post("/api/v1/fireball/predict", PredictsRoute::Get()->PostFireballPredict());
     svr.Get("/api/v1/user/fireball_predict", PredictsRoute::Get()->GetUserFireballPredict());
     svr.Get("/api/v1/match/fireball/top20", PredictsRoute::Get()->GetMatchFireballTop20());
+    svr.Get("/api/v1/match/fireball/summary", PredictsRoute::Get()->GetMatchFireballSummary());
 
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
