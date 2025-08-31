@@ -2277,8 +2277,10 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 				}
 			}
 		}
-
-		UpdateFireballPredictsForNonPlayedPlayer(pg, matchId);
+		if (updateFireball)
+		{
+			UpdateFireballPredictsForNonPlayedPlayer(pg, matchId);
+		}
 	}
 }
 
