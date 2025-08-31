@@ -2985,7 +2985,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "       SUM(COUNT(*)) OVER () AS total_predicts "
             "FROM fireball_predicts "
             "WHERE match_id = " + matchId + " "
-            "GROUP BY player_api_id, player_name, player_photo "
+            "GROUP BY player_api_id, team_id, player_name, player_photo "
             "ORDER BY predict_count DESC "
             "LIMIT 2;";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
