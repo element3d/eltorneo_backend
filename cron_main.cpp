@@ -2088,13 +2088,42 @@ void FillTeamSquad(PGconn* pg)
 	PQclear(res);
 }
 
+void UpdateFireballPredictsForNonPlayedPlayer(PGconn* pg, int matchId)
+{
+	std::string sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
+		+ " AND status = 0;";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int rows = PQntuples(res);
+	if (rows == 0)
+	{
+		PQclear(res);
+		return;
+	}
+
+	for (int i = 0; i < rows; ++i)
+	{
+		int predictId = atoi(PQgetvalue(res, i, 0));
+		int userId = atoi(PQgetvalue(res, i, 1));
+
+		std::string updatePointsSql = "UPDATE fireball_users SET points = points - 1 WHERE user_id = " + std::to_string(userId) + ";";
+		PGresult* resUpdatePoints = PQexec(pg, updatePointsSql.c_str());
+		PQclear(resUpdatePoints);
+
+		std::string updatePredictStatusSql = "UPDATE fireball_predicts SET status = -1 WHERE id = " + std::to_string(predictId) + ";";
+		PGresult* updatePredictStatusRes = PQexec(pg, updatePredictStatusSql.c_str());
+		PQclear(updatePredictStatusRes);
+	}
+	PQclear(res);
+}
+
 void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, int minutes, int goals)
 {
 	std::string sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
 		+ " AND player_api_id = " + std::to_string(playerApiId) + ";";
 	PGresult* res = PQexec(pg, sql.c_str());
 	int rows = PQntuples(res);
-	if (rows == 0) {
+	if (rows == 0) 
+	{
 		PQclear(res);
 		return;
 	}
@@ -2248,6 +2277,8 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 				}
 			}
 		}
+
+		UpdateFireballPredictsForNonPlayedPlayer(pg, matchId);
 	}
 }
 
