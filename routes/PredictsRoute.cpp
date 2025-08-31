@@ -3033,7 +3033,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             if (nrows == 2)
             {
                 int playerApiId = atoi(PQgetvalue(predictsRet, 1, 0));
-                int teamId = atoi(PQgetvalue(predictsRet, 0, 1));
+                int teamId = atoi(PQgetvalue(predictsRet, 1, 1));
                 std::string playerName = PQgetvalue(predictsRet, 1, 2);
                 std::string playerPhoto = PQgetvalue(predictsRet, 1, 3);
                 int playerPredictCount = atoi(PQgetvalue(predictsRet, 1, 4));
