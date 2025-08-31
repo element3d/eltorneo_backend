@@ -14,7 +14,7 @@
 #include <thread>
 
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
-void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId);
+void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFireball = false);
 
 int elTorneoLeagueIdToApiFootball(ELeague league) 
 {
@@ -923,7 +923,7 @@ void GetLiveMatches(PGconn* pg)
 
 			FillMatchStats(pg, document, id);
 			FillMatchEvents(pg, document, id, team1, team2);
-			GetMatchPlayers(pg, id, apiId);
+			GetMatchPlayers(pg, id, apiId, false);
 			// FillMatchLineups(pg, document, id, matchDate);
 
 			if (status == "FT" || status == "AET" || status == "PEN")
@@ -1200,7 +1200,7 @@ void GetLiveMatches(PGconn* pg)
 					} */
 
 					// Update match players
-					GetMatchPlayers(pg, id, apiId);
+					GetMatchPlayers(pg, id, apiId, true);
 				}
 			}
 		}
@@ -2073,7 +2073,60 @@ void FillTeamSquad(PGconn* pg)
 	PQclear(res);
 }
 
-void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
+void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, int minutes, int goals)
+{
+	std::string sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
+		+ " AND player_api_id = " + std::to_string(playerApiId) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int rows = PQntuples(res);
+	if (rows == 0) {
+		PQclear(res);
+		return;
+	}
+
+	for (int i = 0; i < rows; ++i)
+	{
+		int predictId = atoi(PQgetvalue(res, i, 0));
+		int userId = atoi(PQgetvalue(res, i, 1));
+
+		int points = 0;
+		int status = 0;
+
+		if (minutes <= 0) {
+			status = -1;  // did not play
+			points = -1;
+		}
+		else if (goals == 1) {
+			status = 1;
+			points = 2;
+		}
+		else if (goals == 2) {
+			status = 2;
+			points = 3;
+		}
+		else if (goals >= 3) {
+			status = 3;
+			points = 5;
+		}
+		else { // goals == 0
+			status = 4;
+			points = -1;
+		}
+
+		std::string updatePointsSql = "UPDATE fireball_users SET points = points + " + std::to_string(points)
+			+ " WHERE user_id = " + std::to_string(userId) + ";";
+		PGresult* resUpdatePoints = PQexec(pg, updatePointsSql.c_str());
+		PQclear(resUpdatePoints);
+
+		std::string updatePredictStatusSql = "UPDATE fireball_predicts SET status = " + std::to_string(status) +
+			", goals = " + std::to_string(goals) + " WHERE id = " + std::to_string(predictId) + ";";
+		PGresult* updatePredictStatusRes = PQexec(pg, updatePredictStatusSql.c_str());
+		PQclear(updatePredictStatusRes);
+	}
+	PQclear(res);
+}
+
+void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFireball)
 {
 	std::string url = "https://v3.football.api-sports.io/fixtures/players";
 	cpr::Response r;
@@ -2108,6 +2161,10 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 					const rapidjson::Value& games = statistics[0]["games"];
 					if (games["minutes"].IsNull())
 					{
+						if (updateFireball) 
+						{
+							UpdateFireballPredictsForPlayer(pg, matchId, id, 0, 0);
+						}
 						continue;
 					}
 					int minutes = games["minutes"].GetInt();
@@ -2169,6 +2226,10 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId)
 						fprintf(stderr, "Insert failed: %s\n", PQerrorMessage(pg));
 					}
 					PQclear(insertRes);
+					if (updateFireball)
+					{
+						UpdateFireballPredictsForPlayer(pg, matchId, id, minutes, total);
+					}
 				}
 			}
 		}
