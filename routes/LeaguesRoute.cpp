@@ -37,6 +37,10 @@ void LeaguesRoute::Init()
 
     if (numLeagues > 0) 
     {
+        MatchesInitializer::InitChampionsLeagueTeams25_26(pg);
+        MatchesInitializer::InitChampionsLeagueTable(pg);
+        MatchesInitializer::InitChampionsLeague25_26(pg);
+
         //MatchesInitializer::InitClubWorldCupTeams24_25(pg);
         //MatchesInitializer::InitClubWorldCupTable24_25(pg);
         //MatchesInitializer::InitClubWorldCup24_25(pg);
@@ -50,8 +54,7 @@ void LeaguesRoute::Init()
         //MatchesInitializer::InitLigue1Teams25_26(pg);
         //MatchesInitializer::InitLigue125_26(pg);
 
-        //MatchesInitializer::InitChampionsLeagueTeams24_25(pg);
-        // MatchesInitializer::InitChampionsLeagueTable(pg);
+
 
   //     MatchesInitializer::InitPremierLeagueTeams25_26(pg);
   //     MatchesInitializer::InitPremierLeague25_26(pg);
@@ -91,8 +94,8 @@ void LeaguesRoute::Init()
 
         //MatchesInitializer::InitCopaDelReyTeams24_25(pg);
         //MatchesInitializer::InitCopaDelRey24_25(pg);
-        MatchesInitializer::InitDFLSuperCupTeams25_26(pg);
-        MatchesInitializer::InitDFLSuperCup25_26(pg);
+        //MatchesInitializer::InitDFLSuperCupTeams25_26(pg);
+        //MatchesInitializer::InitDFLSuperCup25_26(pg);
 
         ConnectionPool::Get()->releaseConnection(pg);
         return;

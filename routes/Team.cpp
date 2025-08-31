@@ -235,6 +235,28 @@ std::string Team::ToString(ETeam team)
     case ETeam::YoungBoys:
         return "BSC Young Boys";
 
+    // Champions League 25/26
+    case ETeam::UnionSG:
+        return "Union St. Gilloise";
+    case ETeam::Qarabag:
+        return "Qarabag";
+    case ETeam::Olympiakos:
+        return "Olympiakos Piraeus";
+    case ETeam::Pafos:
+        return "Pafos";
+    case ETeam::Slavia:
+        return "Slavia Praha";
+    case ETeam::BodoGlimt:
+        return "Bodo/Glimt";
+    case ETeam::Ajax:
+        return "Ajax";
+    case ETeam::Copenhagen:
+        return "FC Copenhagen";
+    case ETeam::Kairat:
+        return "Kairat Almaty";
+    case ETeam::Galatasaray:
+        return "Galatasaray";
+
     // New teams
     case ETeam::Sampdoria:
         return "Sampdoria";
@@ -639,7 +661,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Toulouse:
         return "Toulouse";
 
-    // 
+    // Champions League 24/25
     case ETeam::Benfica:
         return "Benfica";
     case ETeam::Celtic:
@@ -668,6 +690,28 @@ std::string Team::ToShortString(ETeam team)
         return "Sturm Graz";
     case ETeam::YoungBoys:
         return "Young Boys";
+
+    // Champions League 25/26
+    case ETeam::UnionSG:
+        return "Union SG";
+    case ETeam::Qarabag:
+        return "Qarabag";
+    case ETeam::Olympiakos:
+        return "Olympiakos";
+    case ETeam::Pafos:
+        return "Pafos";
+    case ETeam::Slavia:
+        return "Slavia Praha";
+    case ETeam::BodoGlimt:
+        return "Bodo/Glimt";
+    case ETeam::Ajax:
+        return "Ajax";
+    case ETeam::Copenhagen:
+        return "Copenhagen";
+    case ETeam::Kairat:
+        return "Kairat";
+    case ETeam::Galatasaray:
+        return "Galatasaray";
 
     // New teams
     case ETeam::Sampdoria:

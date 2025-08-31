@@ -384,23 +384,19 @@ void MatchesInitializer::InitClubWorldCupTable24_25(PGconn* pg)
     ++groupIndex;
 }
 
-void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
+void MatchesInitializer::InitChampionsLeagueTeams25_26(PGconn* pg)
 {
     std::vector<ETeam> newTeams =
     {
-        ETeam::Benfica,
-        ETeam::Celtic,
-        ETeam::ClubBrugge,
-        ETeam::DinamoZagreb,
-        ETeam::Feyenoord,
-        ETeam::PSV,
-        ETeam::Salzburg,
-        ETeam::ShakhtarDonetsk,
-        ETeam::SlovanBratislava,
-        ETeam::SpartaPrague,
-        ETeam::SportingLisbon,
-        ETeam::SturmGraz,
-        ETeam::YoungBoys
+        ETeam::UnionSG,
+        ETeam::Qarabag,
+        ETeam::Olympiakos,
+        ETeam::Pafos,
+        ETeam::Slavia,
+        ETeam::BodoGlimt,
+        ETeam::Ajax,
+        ETeam::Copenhagen,
+        ETeam::Kairat
     };
 
     for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
@@ -414,47 +410,47 @@ void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
         PQclear(ret);
     }
 
-    std::vector clTeams = 
+    std::vector clTeams =
     {
-        ETeam::ACMilan,
+        ETeam::Ajax,
         ETeam::Arsenal,
-        ETeam::AstonVilla,
         ETeam::Atalanta,
+        ETeam::AthleticClub,
         ETeam::AtleticoMadrid,
+        ETeam::BorussiaDortmund,
         ETeam::Barcelona,
-        ETeam::BayerLeverkusen,
         ETeam::BayernMunich,
         ETeam::Benfica,
-        ETeam::Bologna,
-        ETeam::BorussiaDortmund,
-        ETeam::Brest,
-        ETeam::Celtic,
+        ETeam::BodoGlimt,
+        ETeam::Chelsea,
         ETeam::ClubBrugge,
-        ETeam::DinamoZagreb,
-        ETeam::FKCrvenaZvezda,
-        ETeam::Feyenoord,
-        ETeam::Girona,
+        ETeam::Copenhagen,
+        ETeam::EintrachtFrankfurt,
+        ETeam::Galatasaray,
         ETeam::InterMilan,
         ETeam::Juventus,
-        ETeam::Lille,
+        ETeam::Kairat,
+        ETeam::BayerLeverkusen,
         ETeam::Liverpool,
         ETeam::ManchesterCity,
+        ETeam::Marseille,
         ETeam::Monaco,
-        ETeam::PSV,
+        ETeam::Napoli,
+        ETeam::NewcastleUnited,
+        ETeam::Olympiakos,
+        ETeam::Pafos,
         ETeam::PSG,
-        ETeam::RBLeipzig,
+        ETeam::PSV,
+        ETeam::Qarabag,
         ETeam::RealMadrid,
-        ETeam::Salzburg,
-        ETeam::ShakhtarDonetsk,
-        ETeam::SlovanBratislava,
-        ETeam::SpartaPrague,
+        ETeam::Slavia,
         ETeam::SportingLisbon,
-        ETeam::SturmGraz,
-        ETeam::Stuttgart,
-        ETeam::YoungBoys
+        ETeam::TottenhamHotspur,
+        ETeam::UnionSG,
+        ETeam::Villarreal
     };
 
-    for (auto team : clTeams) 
+    for (auto team : clTeams)
     {
         std::string sql = "insert into leagues_teams(league_id, team_id) values ("
             + std::to_string(int(ELeague::ChampionsLeague)) + ", "
@@ -464,46 +460,47 @@ void MatchesInitializer::InitChampionsLeagueTeams24_25(PGconn* pg)
     }
 }
 
+
 void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
 {
     std::vector clTeams =
     {
-        ETeam::ACMilan,
+        ETeam::Ajax,
         ETeam::Arsenal,
-        ETeam::AstonVilla,
         ETeam::Atalanta,
+        ETeam::AthleticClub,
         ETeam::AtleticoMadrid,
+        ETeam::BorussiaDortmund,
         ETeam::Barcelona,
-        ETeam::BayerLeverkusen,
         ETeam::BayernMunich,
         ETeam::Benfica,
-        ETeam::Bologna,
-        ETeam::BorussiaDortmund,
-        ETeam::Brest,
-        ETeam::Celtic,
+        ETeam::BodoGlimt,
+        ETeam::Chelsea,
         ETeam::ClubBrugge,
-        ETeam::DinamoZagreb,
-        ETeam::FKCrvenaZvezda,
-        ETeam::Feyenoord,
-        ETeam::Girona,
+        ETeam::Copenhagen,
+        ETeam::EintrachtFrankfurt,
+        ETeam::Galatasaray,
         ETeam::InterMilan,
         ETeam::Juventus,
-        ETeam::Lille,
+        ETeam::Kairat,
+        ETeam::BayerLeverkusen,
         ETeam::Liverpool,
         ETeam::ManchesterCity,
+        ETeam::Marseille,
         ETeam::Monaco,
-        ETeam::PSV,
+        ETeam::Napoli,
+        ETeam::NewcastleUnited,
+        ETeam::Olympiakos,
+        ETeam::Pafos,
         ETeam::PSG,
-        ETeam::RBLeipzig,
+        ETeam::PSV,
+        ETeam::Qarabag,
         ETeam::RealMadrid,
-        ETeam::Salzburg,
-        ETeam::ShakhtarDonetsk,
-        ETeam::SlovanBratislava,
-        ETeam::SpartaPrague,
+        ETeam::Slavia,
         ETeam::SportingLisbon,
-        ETeam::SturmGraz,
-        ETeam::Stuttgart,
-        ETeam::YoungBoys
+        ETeam::TottenhamHotspur,
+        ETeam::UnionSG,
+        ETeam::Villarreal
     };
 
     for (auto team : clTeams)
@@ -511,7 +508,7 @@ void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
         std::string sql = "insert into tables(team_id, league_id, season) values ("
             + std::to_string(int(team)) + ", "
             + std::to_string(int(ELeague::ChampionsLeague)) + " ,'"
-            + "24/25"
+            + "25/26"
             + "');";
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -1626,168 +1623,191 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitChampionsLeague24_25(PGconn* pg)
+void MatchesInitializer::InitChampionsLeague25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Juventus, ETeam::PSV, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::YoungBoys, ETeam::AstonVilla, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::BayernMunich, ETeam::DinamoZagreb, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::ACMilan, ETeam::Liverpool, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::SportingLisbon, ETeam::Lille, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::RealMadrid, ETeam::Stuttgart, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Bologna, ETeam::ShakhtarDonetsk, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::SpartaPrague, ETeam::Salzburg, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Celtic, ETeam::SlovanBratislava, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::ClubBrugge, ETeam::BorussiaDortmund, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::ManchesterCity, ETeam::InterMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::PSG, ETeam::Girona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::FKCrvenaZvezda, ETeam::Benfica, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Feyenoord, ETeam::BayerLeverkusen, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Atalanta, ETeam::Arsenal, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::AtleticoMadrid, ETeam::RBLeipzig, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Brest, ETeam::SturmGraz, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 1, ETeam::Monaco, ETeam::Barcelona, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::PSV, ETeam::UnionSG, 1758041100000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::AthleticClub, ETeam::Arsenal, 1758041100000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Juventus, ETeam::BorussiaDortmund, 1758049200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::TottenhamHotspur, ETeam::Villarreal, 1758049200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::RealMadrid, ETeam::Marseille, 1758049200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Benfica, ETeam::Qarabag, 1758049200000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Olympiakos, ETeam::Pafos, 1758127500000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Slavia, ETeam::BodoGlimt, 1758127500000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Ajax, ETeam::InterMilan, 1758135600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::PSG, ETeam::Atalanta, 1758135600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Liverpool, ETeam::AtleticoMadrid, 1758135600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::BayernMunich, ETeam::Chelsea, 1758135600000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::ClubBrugge, ETeam::Monaco, 1758213900000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::Copenhagen, ETeam::BayerLeverkusen, 1758213900000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::EintrachtFrankfurt, ETeam::Galatasaray, 1758222000000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::SportingLisbon, ETeam::Kairat, 1758222000000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::NewcastleUnited, ETeam::Barcelona, 1758222000000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 1, ETeam::ManchesterCity, ETeam::Napoli, 1758222000000 });
 
     // Week 2
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Salzburg, ETeam::Brest, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Stuttgart, ETeam::SpartaPrague, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Barcelona, ETeam::YoungBoys, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::BayerLeverkusen, ETeam::ACMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::BorussiaDortmund, ETeam::Celtic, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::InterMilan, ETeam::FKCrvenaZvezda, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::PSV, ETeam::SportingLisbon, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::SlovanBratislava, ETeam::ManchesterCity, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Arsenal, ETeam::PSG, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Girona, ETeam::Feyenoord, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::ShakhtarDonetsk, ETeam::Atalanta, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::AstonVilla, ETeam::BayernMunich, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Benfica, ETeam::AtleticoMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::DinamoZagreb, ETeam::Monaco, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Lille, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::Liverpool, ETeam::Bologna, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::RBLeipzig, ETeam::Juventus, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 2, ETeam::SturmGraz, ETeam::ClubBrugge, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Kairat, ETeam::RealMadrid, 1759250700000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Atalanta, ETeam::ClubBrugge, 1759250700000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::AtleticoMadrid, ETeam::EintrachtFrankfurt, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Marseille, ETeam::Ajax, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Chelsea, ETeam::Benfica, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::InterMilan, ETeam::Slavia, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::BodoGlimt, ETeam::TottenhamHotspur, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Pafos, ETeam::BayernMunich, 1759258800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Galatasaray, ETeam::Liverpool, 1759258800000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Qarabag, ETeam::Copenhagen, 1759337100000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::UnionSG, ETeam::NewcastleUnited, 1759337100000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::BorussiaDortmund, ETeam::AthleticClub, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Barcelona, ETeam::PSG, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Monaco, ETeam::ManchesterCity, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Arsenal, ETeam::Olympiakos, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Napoli, ETeam::SportingLisbon, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::BayerLeverkusen, ETeam::PSV, 1759345200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 2, ETeam::Villarreal, ETeam::Juventus, 1759345200000 });
 
     // Week 3
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::ACMilan, ETeam::ClubBrugge, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Monaco, ETeam::FKCrvenaZvezda, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::AstonVilla, ETeam::Bologna, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Girona, ETeam::SlovanBratislava, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Juventus, ETeam::Stuttgart, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::PSG, ETeam::PSV, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::SturmGraz, ETeam::SportingLisbon, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Arsenal, ETeam::ShakhtarDonetsk, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::RealMadrid, ETeam::BorussiaDortmund, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Atalanta, ETeam::Celtic, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Brest, ETeam::BayerLeverkusen, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::AtleticoMadrid, ETeam::Lille, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Barcelona, ETeam::BayernMunich, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Benfica, ETeam::Feyenoord, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::Salzburg, ETeam::DinamoZagreb, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::ManchesterCity, ETeam::SpartaPrague, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::RBLeipzig, ETeam::Liverpool, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 3, ETeam::YoungBoys, ETeam::InterMilan, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Kairat, ETeam::Pafos, 1761065100000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Barcelona, ETeam::Olympiakos, 1761065100000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::UnionSG, ETeam::InterMilan, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::PSV, ETeam::Napoli, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::BayerLeverkusen, ETeam::PSG, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Arsenal, ETeam::AtleticoMadrid, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Copenhagen, ETeam::BorussiaDortmund, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Villarreal, ETeam::ManchesterCity, 1761073200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::NewcastleUnited, ETeam::Benfica, 1761073200000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Galatasaray, ETeam::BodoGlimt, 1761151500000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::AthleticClub, ETeam::Qarabag, 1761151500000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Monaco, ETeam::TottenhamHotspur, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::RealMadrid, ETeam::Juventus, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::EintrachtFrankfurt, ETeam::Liverpool, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Chelsea, ETeam::Ajax, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::Atalanta, ETeam::Slavia, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::SportingLisbon, ETeam::Marseille, 1761159600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 3, ETeam::BayernMunich, ETeam::ClubBrugge, 1761159600000 });
 
     // Week 4
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::PSV, ETeam::Girona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::SlovanBratislava, ETeam::DinamoZagreb, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Bologna, ETeam::Monaco, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::BorussiaDortmund, ETeam::SturmGraz, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Celtic, ETeam::RBLeipzig, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Lille, ETeam::Juventus, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Liverpool, ETeam::BayerLeverkusen, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::SportingLisbon, ETeam::ManchesterCity, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::RealMadrid, ETeam::ACMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::ClubBrugge, ETeam::AstonVilla, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::ShakhtarDonetsk, ETeam::YoungBoys, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::FKCrvenaZvezda, ETeam::Barcelona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::BayernMunich, ETeam::Benfica, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Feyenoord, ETeam::Salzburg, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::InterMilan, ETeam::Arsenal, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::PSG, ETeam::AtleticoMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::SpartaPrague, ETeam::Brest, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 4, ETeam::Stuttgart, ETeam::Atalanta, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Napoli, ETeam::EintrachtFrankfurt, 1762278300000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Slavia, ETeam::Arsenal, 1762278300000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::TottenhamHotspur, ETeam::Copenhagen, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Liverpool, ETeam::RealMadrid, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Olympiakos, ETeam::PSV, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::AtleticoMadrid, ETeam::UnionSG, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::BodoGlimt, ETeam::Monaco, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::PSG, ETeam::BayernMunich, 1762286400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Juventus, ETeam::SportingLisbon, 1762286400000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Qarabag, ETeam::Chelsea, 1762364700000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Pafos, ETeam::Villarreal, 1762364700000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::ManchesterCity, ETeam::BorussiaDortmund, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::ClubBrugge, ETeam::Barcelona, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Ajax, ETeam::Galatasaray, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::NewcastleUnited, ETeam::AthleticClub, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Benfica, ETeam::BayerLeverkusen, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::InterMilan, ETeam::Kairat, 1762372800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 4, ETeam::Marseille, ETeam::Atalanta, 1762372800000 });
 
     // Week 5
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::SlovanBratislava, ETeam::ACMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::SpartaPrague, ETeam::AtleticoMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::Barcelona, ETeam::Brest, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::BayerLeverkusen, ETeam::Salzburg, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::BayernMunich, ETeam::PSG, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::InterMilan, ETeam::RBLeipzig, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::ManchesterCity, ETeam::Feyenoord, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::SportingLisbon, ETeam::Arsenal, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::YoungBoys, ETeam::Atalanta, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::FKCrvenaZvezda, ETeam::Stuttgart, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::SturmGraz, ETeam::Girona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::AstonVilla, ETeam::Juventus, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::Bologna, ETeam::Lille, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::Celtic, ETeam::ClubBrugge, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::DinamoZagreb, ETeam::BorussiaDortmund, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::Liverpool, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::Monaco, ETeam::Benfica, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 5, ETeam::PSV, ETeam::ShakhtarDonetsk, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Ajax, ETeam::Benfica, 1764092700000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Galatasaray, ETeam::UnionSG, 1764092700000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::ManchesterCity, ETeam::BayerLeverkusen, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Marseille, ETeam::NewcastleUnited, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Chelsea, ETeam::Barcelona, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Napoli, ETeam::Qarabag, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::BorussiaDortmund, ETeam::Villarreal, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Slavia, ETeam::AthleticClub, 1764100800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::BodoGlimt, ETeam::Juventus, 1764100800000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Copenhagen, ETeam::Kairat, 1764179100000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Pafos, ETeam::Monaco, 1764179100000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Olympiakos, ETeam::RealMadrid, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::AtleticoMadrid, ETeam::InterMilan, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::PSG, ETeam::TottenhamHotspur, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::SportingLisbon, ETeam::ClubBrugge, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Arsenal, ETeam::BayernMunich, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::EintrachtFrankfurt, ETeam::Atalanta, 1764187200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 5, ETeam::Liverpool, ETeam::PSV, 1764187200000 });
 
     // Week 6
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::DinamoZagreb, ETeam::Celtic, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Girona, ETeam::Liverpool, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Atalanta, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::BayerLeverkusen, ETeam::InterMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Brest, ETeam::PSV, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::ClubBrugge, ETeam::SportingLisbon, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Salzburg, ETeam::PSG, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::RBLeipzig, ETeam::AstonVilla, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::ShakhtarDonetsk, ETeam::BayernMunich, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::AtleticoMadrid, ETeam::SlovanBratislava, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Lille, ETeam::SturmGraz, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Benfica, ETeam::Bologna, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::BorussiaDortmund, ETeam::Barcelona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Feyenoord, ETeam::SpartaPrague, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Juventus, ETeam::ManchesterCity, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::ACMilan, ETeam::FKCrvenaZvezda, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Stuttgart, ETeam::YoungBoys, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 6, ETeam::Arsenal, ETeam::Monaco, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Kairat, ETeam::Olympiakos, 1765302300000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::BayernMunich, ETeam::SportingLisbon, 1765302300000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Barcelona, ETeam::EintrachtFrankfurt, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::InterMilan, ETeam::Liverpool, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Atalanta, ETeam::Chelsea, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::UnionSG, ETeam::Marseille, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Monaco, ETeam::Galatasaray, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::TottenhamHotspur, ETeam::Slavia, 1765310400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::PSV, ETeam::AtleticoMadrid, 1765310400000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Villarreal, ETeam::Copenhagen, 1765388700000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Qarabag, ETeam::Ajax, 1765388700000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::RealMadrid, ETeam::ManchesterCity, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::AthleticClub, ETeam::PSG, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::ClubBrugge, ETeam::Arsenal, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::BayerLeverkusen, ETeam::NewcastleUnited, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Juventus, ETeam::Pafos, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::BorussiaDortmund, ETeam::BodoGlimt, 1765396800000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 6, ETeam::Benfica, ETeam::Napoli, 1765396800000 });
 
     // Week 7
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Atalanta, ETeam::SturmGraz, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Monaco, ETeam::AstonVilla, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::AtleticoMadrid, ETeam::BayerLeverkusen, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Benfica, ETeam::Barcelona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Bologna, ETeam::BorussiaDortmund, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::ClubBrugge, ETeam::Juventus, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::FKCrvenaZvezda, ETeam::PSV, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Liverpool, ETeam::Lille, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::SlovanBratislava, ETeam::Stuttgart, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::RBLeipzig, ETeam::SportingLisbon, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::ShakhtarDonetsk, ETeam::Brest, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Celtic, ETeam::YoungBoys, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Feyenoord, ETeam::BayernMunich, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::ACMilan, ETeam::Girona, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::PSG, ETeam::ManchesterCity, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::SpartaPrague, ETeam::InterMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::Arsenal, ETeam::DinamoZagreb, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 7, ETeam::RealMadrid, ETeam::Salzburg, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Kairat, ETeam::ClubBrugge, 1768931100000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::BodoGlimt, ETeam::ManchesterCity, 1768931100000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::RealMadrid, ETeam::Monaco, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::SportingLisbon, ETeam::PSG, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Copenhagen, ETeam::Napoli, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Villarreal, ETeam::Ajax, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Olympiakos, ETeam::BayerLeverkusen, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::TottenhamHotspur, ETeam::BorussiaDortmund, 1768939200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::InterMilan, ETeam::Arsenal, 1768939200000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Galatasaray, ETeam::AtleticoMadrid, 1769017500000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Qarabag, ETeam::EintrachtFrankfurt, 1769017500000 });
+
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Slavia, ETeam::Barcelona, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Atalanta, ETeam::AthleticClub, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Juventus, ETeam::Benfica, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Chelsea, ETeam::Pafos, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::NewcastleUnited, ETeam::PSV, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::BayernMunich, ETeam::UnionSG, 1769025600000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 7, ETeam::Marseille, ETeam::Liverpool, 1769025600000 });
 
     // Week 8
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::AstonVilla, ETeam::Celtic, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Barcelona, ETeam::Atalanta, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::BayerLeverkusen, ETeam::SpartaPrague, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::BorussiaDortmund, ETeam::ShakhtarDonetsk, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Brest, ETeam::RealMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::DinamoZagreb, ETeam::ACMilan, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::BayernMunich, ETeam::SlovanBratislava, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Salzburg, ETeam::AtleticoMadrid, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Girona, ETeam::Arsenal, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::InterMilan, ETeam::Monaco, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Juventus, ETeam::Benfica, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Lille, ETeam::Feyenoord, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::ManchesterCity, ETeam::ClubBrugge, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::PSV, ETeam::Liverpool, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::SturmGraz, ETeam::RBLeipzig, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::SportingLisbon, ETeam::Bologna, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::Stuttgart, ETeam::PSG, 1722985200000 });
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 8, ETeam::YoungBoys, ETeam::FKCrvenaZvezda, 1722985200000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Napoli, ETeam::Chelsea, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::BorussiaDortmund, ETeam::InterMilan, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Monaco, ETeam::Juventus, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::PSG, ETeam::NewcastleUnited, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::EintrachtFrankfurt, ETeam::TottenhamHotspur, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Pafos, ETeam::Slavia, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::AtleticoMadrid, ETeam::BodoGlimt, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::ManchesterCity, ETeam::Galatasaray, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::PSV, ETeam::BayernMunich, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::BayerLeverkusen, ETeam::Villarreal, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::AthleticClub, ETeam::SportingLisbon, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Ajax, ETeam::Olympiakos, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::UnionSG, ETeam::Atalanta, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Arsenal, ETeam::Kairat, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Liverpool, ETeam::Qarabag, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Barcelona, ETeam::Copenhagen, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::Benfica, ETeam::RealMadrid, 1769630400000 });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 8, ETeam::ClubBrugge, ETeam::Marseille, 1769630400000 });
 
     for (auto& m : matches)
     {
@@ -1803,6 +1823,7 @@ void MatchesInitializer::InitChampionsLeague24_25(PGconn* pg)
         PQclear(ret);
     }
 }
+
 
 void MatchesInitializer::InitLigue125_26(PGconn* pg)
 {

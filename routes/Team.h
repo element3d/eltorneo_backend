@@ -203,6 +203,19 @@ enum class ETeam
     ParisFC,
     Ligue12025End = ParisFC,
 
+    // Champions League 25/26
+    UnionSG,
+    Qarabag,
+    Olympiakos,
+    Pafos,
+    Slavia,
+    BodoGlimt,
+    Ajax,
+    Copenhagen,
+    Kairat,
+    Galatasaray,
+
+
     // International
     // Nations League
     NationsLeagueStart = 10000,
