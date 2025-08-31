@@ -203,7 +203,7 @@ void CachedTable::Cache()
         std::string sql =
             "SELECT u.user_id, COUNT(p.id) AS total_predicts "
             "FROM fireball_users u "
-            "INNER JOIN fireball_predicts b ON u.user_id = p.user_id "
+            "INNER JOIN fireball_predicts p ON u.user_id = p.user_id "
             "WHERE u.last_fireball_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
             "GROUP BY u.user_id "
             "HAVING COUNT(p.id) > 0 "
