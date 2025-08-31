@@ -16,6 +16,14 @@
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFireball = false);
 
+struct FinishedMatch 
+{
+	long long Timestamp;
+	int MatchId;
+	int MatchApiId;
+};
+std::vector<FinishedMatch> finishedMatches;
+
 int elTorneoLeagueIdToApiFootball(ELeague league) 
 {
 	switch (league)
@@ -1200,7 +1208,14 @@ void GetLiveMatches(PGconn* pg)
 					} */
 
 					// Update match players
-					GetMatchPlayers(pg, id, apiId, true);
+					GetMatchPlayers(pg, id, apiId, false);
+					FinishedMatch fm;
+					auto now = std::chrono::system_clock::now();
+					auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+					fm.Timestamp = nowMs;
+					fm.MatchApiId = apiId;
+					fm.MatchId = id;
+					finishedMatches.push_back(fm);
 				}
 			}
 		}
@@ -2269,6 +2284,22 @@ int main()
 
 		// Get the current time
 		auto now = std::chrono::system_clock::now();
+		auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+		for (auto it = finishedMatches.begin(); it != finishedMatches.end(); )
+		{
+			if (nowMs - it->Timestamp >= 10 * 60 * 1000) // 10 minutes
+			{
+				// call your update function
+				GetMatchPlayers(pg, it->MatchId, it->MatchApiId, true);
+
+				// remove from list so it won't be processed again
+				it = finishedMatches.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 
 		// Check if 5 minutes have passed to fill today's lineups
 		if (std::chrono::duration_cast<std::chrono::minutes>(now - lastFillTime).count() >= 5)
