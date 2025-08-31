@@ -2978,6 +2978,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string predictsSql =
             "SELECT player_api_id, "
+            "       team_id, "
             "       player_name, "
             "       player_photo, "
             "       COUNT(*) AS predict_count, "
@@ -3009,14 +3010,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             if (nrows >= 1) 
             {
                 int playerApiId = atoi(PQgetvalue(predictsRet, 0, 0));
-                std::string playerName = PQgetvalue(predictsRet, 0, 1);
-                std::string playerPhoto = PQgetvalue(predictsRet, 0, 2);
-                int playerPredictCount = atoi(PQgetvalue(predictsRet, 0, 3));
-                int totalCount = atoi(PQgetvalue(predictsRet, 0, 4));
+                int teamId = atoi(PQgetvalue(predictsRet, 0, 1));
+                std::string playerName = PQgetvalue(predictsRet, 0, 2);
+                std::string playerPhoto = PQgetvalue(predictsRet, 0, 3);
+                int playerPredictCount = atoi(PQgetvalue(predictsRet, 0, 4));
+                int totalCount = atoi(PQgetvalue(predictsRet, 0, 5));
 
                 rapidjson::Value player1Val;
                 player1Val.SetObject();
                 player1Val.AddMember("player_api_id", playerApiId, allocator);
+                player1Val.AddMember("team_id", teamId, allocator);
                 rapidjson::Value strVal;
                 strVal.SetString(playerName.c_str(), allocator);
                 player1Val.AddMember("player_name", strVal, allocator);
@@ -3030,14 +3033,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             if (nrows == 2)
             {
                 int playerApiId = atoi(PQgetvalue(predictsRet, 1, 0));
-                std::string playerName = PQgetvalue(predictsRet, 1, 1);
-                std::string playerPhoto = PQgetvalue(predictsRet, 1, 2);
-                int playerPredictCount = atoi(PQgetvalue(predictsRet, 1, 3));
-                int totalCount = atoi(PQgetvalue(predictsRet, 1, 4));
+                int teamId = atoi(PQgetvalue(predictsRet, 0, 1));
+                std::string playerName = PQgetvalue(predictsRet, 1, 2);
+                std::string playerPhoto = PQgetvalue(predictsRet, 1, 3);
+                int playerPredictCount = atoi(PQgetvalue(predictsRet, 1, 4));
+                int totalCount = atoi(PQgetvalue(predictsRet, 1, 5));
 
                 rapidjson::Value player2Val;
                 player2Val.SetObject();
                 player2Val.AddMember("player_api_id", playerApiId, allocator);
+                player2Val.AddMember("team_id", teamId, allocator);
                 rapidjson::Value strVal;
                 strVal.SetString(playerName.c_str(), allocator);
                 player2Val.AddMember("player_name", strVal, allocator);
