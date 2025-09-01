@@ -33,6 +33,14 @@ public:
 		const std::string& lang,
 		rapidjson::Document& document);
 
+	static bool GetLeagueMatchesWithFireball(PGconn* pg,
+		int userId,
+		int lid,
+		const std::string& season,
+		const std::string& week,
+		const std::string& lang,
+		rapidjson::Document& document);
+
 	// Matches by date (Calendar page)
 	static bool GetMatchesByDateWithPredicts(PGconn* pg,
 		int userId,

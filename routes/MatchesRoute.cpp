@@ -67,6 +67,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            if (g == "fireball") game = g;
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -75,6 +76,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (game == "beatbet") 
         {
             ok = MatchesManager::GetLeagueMatchesWithBets(pg, userId, lid, season, week, lang, document);
+        }
+        else if (game == "fireball")
+        {
+            ok = MatchesManager::GetLeagueMatchesWithFireball(pg, userId, lid, season, week, lang, document);
         }
         else 
         {
