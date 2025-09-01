@@ -687,6 +687,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            if (g == "fireball") game = g;
         }
 
         std::string lang = "en";
@@ -719,6 +720,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (game == "beatbet")
         {
             ok = MatchesManager::GetMatchesByDateWithBets(pg, userId, dayStart, dayEnd, lang, document);
+        }
+        else if (game == "fireball")
+        {
+            ok = MatchesManager::GetMatchesByDateWithFireball(pg, userId, dayStart, dayEnd, lang, document);
         }
         else 
         {
