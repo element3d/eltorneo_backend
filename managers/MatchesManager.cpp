@@ -587,7 +587,7 @@ bool MatchesManager::GetMatchesByDateWithFireball(PGconn* pg,
         "COALESCE(fp.player_name, '') AS fp_player_name, "
         "COALESCE(fp.player_photo, '') AS fp_player_photo, "
         "COALESCE(fp.goals, 0) AS fp_goals, "
-        "COALESCE(fp.status, 0) AS fp_status, "
+        "COALESCE(fp.status, -2) AS fp_status, "
 
         "l.name AS league_name, "  // Include league name
         "l.country AS league_country, "  // Include league name
