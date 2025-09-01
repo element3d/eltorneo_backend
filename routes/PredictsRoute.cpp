@@ -2659,7 +2659,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             auto now = std::chrono::system_clock::now();
             auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
             long long timestamp = ms.count();
-            sql = "UPDATE users SET last_fireball_predict_ts = " + std::to_string(timestamp) + " WHERE id = " + std::to_string(userId) + ";";
+            sql = "UPDATE fireball_users SET last_predict_ts = " + std::to_string(timestamp) + " WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* tsRet = PQexec(pg, sql.c_str());
             PQclear(tsRet);
         }
