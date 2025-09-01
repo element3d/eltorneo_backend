@@ -205,7 +205,7 @@ void CachedTable::Cache()
             "FROM fireball_users u "
             "INNER JOIN fireball_predicts p ON u.user_id = p.user_id "
             "WHERE u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-            "GROUP BY u.user_id "
+            "GROUP BY u.user_id, u.points "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY u.points DESC, total_predicts DESC, u.user_id ASC;";
 
