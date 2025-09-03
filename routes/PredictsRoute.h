@@ -42,7 +42,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredicts();
-
+    std::function<void(const httplib::Request&, httplib::Response&)> DeleteFireballPredict();
 
 private:
    // void CacheTable();

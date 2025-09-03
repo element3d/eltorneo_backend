@@ -3361,3 +3361,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::DeleteFireballPredict()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "DELETE");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+        std::string id = req.get_param_value("id");
+
+        std::string sql = "DELETE FROM fireball_predicts WHERE user_id = " + std::to_string(userId)
+            + " AND id = " + id + ";";
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        res.status = 200;
+    };
+}

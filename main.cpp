@@ -233,6 +233,7 @@ int main(void)
     svr.Get("/api/v1/match/fireball/summary", PredictsRoute::Get()->GetMatchFireballSummary());
     svr.Get("/api/v1/fireball_table", PredictsRoute::Get()->GetFireballTable());
     svr.Get("/api/v1/user/fireball", PredictsRoute::Get()->GetUserFireballPredicts());
+    svr.Delete("/api/v1/fireball", PredictsRoute::Get()->DeleteFireballPredict());
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 
