@@ -3327,9 +3327,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         };
 
         std::string countAllBetsSql = generateBetCountQuery("");  // Count all bets
-        std::string countWinBetsSql = generateBetCountQuery("b.status IN (1, 2, 3)"); // Count win bets
-        std::string countLooseBetsSql = generateBetCountQuery("b.status IN (-1, 4)"); // Count lose bets
-        std::string countTotalBetsSql = generateBetCountQuery("b.status <> 0"); // Total bets that are NOT pending
+        std::string countWinBetsSql = generateBetCountQuery("fp.status IN (1, 2, 3)"); // Count win bets
+        std::string countLooseBetsSql = generateBetCountQuery("fp.status IN (-1, 4)"); // Count lose bets
+        std::string countTotalBetsSql = generateBetCountQuery("fp.status <> 0"); // Total bets that are NOT pending
 
         PGresult* retAllBets = PQexec(pg, countAllBetsSql.c_str());
         PGresult* retWinBets = PQexec(pg, countWinBetsSql.c_str());
