@@ -785,6 +785,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            else if (g == "fireball") game = g;
         }
 
         // Get the current timestamp in milliseconds
@@ -802,6 +803,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (game == "beatbet") 
         {
             ok = MatchesManager::GetMatchesLiveWithBets(pg, userId, currentTimeMs, document);
+        }
+        else if (game == "fireball")
+        {
+            ok = MatchesManager::GetMatchesLiveWithFireball(pg, userId, currentTimeMs, document);
         }
         else 
         {
@@ -845,6 +850,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            else if (g == "fireball") game = g;
         }
 
         // Get the current timestamp in milliseconds
@@ -862,6 +868,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (game == "beatbet") 
         {
             ok = MatchesManager::GetMatchesUpcomingWithBets(pg, userId, currentTimeMs, document);
+        }
+        else if (game == "fireball")
+        {
+            ok = MatchesManager::GetMatchesUpcomingWithFireball(pg, userId, currentTimeMs, document);
         }
         else
         {

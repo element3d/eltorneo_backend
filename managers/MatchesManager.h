@@ -74,6 +74,11 @@ public:
 		long long currentTimeMs,
 		rapidjson::Document& document);
 
+	static bool GetMatchesLiveWithFireball(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
 	// Matches upcoming (Live page)
 	static bool GetMatchesUpcomingWithPredicts(PGconn* pg,
 		int userId,
@@ -81,6 +86,11 @@ public:
 		rapidjson::Document& document);
 
 	static bool GetMatchesUpcomingWithBets(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
+	static bool GetMatchesUpcomingWithFireball(PGconn* pg,
 		int userId,
 		long long currentTimeMs,
 		rapidjson::Document& document);

@@ -1088,6 +1088,127 @@ bool MatchesManager::GetMatchesLiveWithBets(PGconn* pg,
     return true;
 }
 
+bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
+    int userId,
+    long long currentTimeMs,
+    rapidjson::Document& document
+)
+{
+    std::string sql = "SELECT m.id, m.league, m.season, m.week, m.match_date, m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.play_off, "
+        "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
+        "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
+
+        // user bet fields (default values if no bet)
+        "COALESCE(fp.id, -1) AS fp_id, "
+        "COALESCE(fp.team_id, -1) AS fp_team_id, "
+        "COALESCE(fp.player_api_id, -1) AS fp_player_api_id, "
+        "COALESCE(fp.player_name, '') AS fp_player_name, "
+        "COALESCE(fp.player_photo, '') AS fp_player_photo, "
+        "COALESCE(fp.goals, 0) AS fp_goals, "
+        "COALESCE(fp.status, -2) AS fp_status, "
+
+        "l.name AS league_name, "  // Include league name
+        "l.country AS league_country, "  // Include league name
+        "l.current_week, "
+        "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches 
+        "COALESCE(s.points, '') AS special_match_points "
+        "FROM matches m "
+        "JOIN teams t1 ON m.team1 = t1.id "
+        "JOIN teams t2 ON m.team2 = t2.id "
+        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "JOIN leagues l ON m.league = l.id "  // Join with leagues table
+        "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
+        "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
+        "AND m.team1_score = -1 AND m.team2_score = -1 "
+        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+
+    PGresult* ret = PQexec(pg, sql.c_str());
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        return false;
+    }
+
+    int nrows = PQntuples(ret);
+    document.SetArray();
+    rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+    for (int i = 0; i < nrows; ++i)
+    {
+        rapidjson::Value matchObj(rapidjson::kObjectType);
+        int id = atoi(PQgetvalue(ret, i, 0));
+        int league = atoi(PQgetvalue(ret, i, 1));
+        std::string season = PQgetvalue(ret, i, 2);
+        int week = atoi(PQgetvalue(ret, i, 3));
+        long long date = atoll(PQgetvalue(ret, i, 4));
+        int team1Score = atol(PQgetvalue(ret, i, 5));
+        int team2Score = atol(PQgetvalue(ret, i, 6));
+        int weekType = atoi(PQgetvalue(ret, i, 7));
+        int elapsed = atoi(PQgetvalue(ret, i, 8));
+        int team1ScoreLive = atoi(PQgetvalue(ret, i, 9));
+        int team2ScoreLive = atoi(PQgetvalue(ret, i, 10));
+        std::string status = (PQgetvalue(ret, i, 11));
+        int isSpecial = atoi(PQgetvalue(ret, i, 12));
+        int playOff = atoi(PQgetvalue(ret, i, 13));
+
+        std::string leagueName = PQgetvalue(ret, i, 27); // Assuming league_name is the last column
+        std::string leagueCountry = PQgetvalue(ret, i, 28); // Assuming league_name is the last column
+        int currentWeek = atol(PQgetvalue(ret, i, 29));
+        std::string specialMatchTitle = PQgetvalue(ret, i, 30);
+        std::string specialMatchPoints = PQgetvalue(ret, i, 31);
+
+        rapidjson::Value team1Obj(rapidjson::kObjectType);
+        team1Obj.AddMember("id", atoi(PQgetvalue(ret, i, 14)), allocator);
+        team1Obj.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 15), allocator), allocator);
+        team1Obj.AddMember("shortName", rapidjson::Value(PQgetvalue(ret, i, 16), allocator), allocator);
+
+        rapidjson::Value team2Obj(rapidjson::kObjectType);
+        team2Obj.AddMember("id", atoi(PQgetvalue(ret, i, 17)), allocator);
+        team2Obj.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 18), allocator), allocator);
+        team2Obj.AddMember("shortName", rapidjson::Value(PQgetvalue(ret, i, 19), allocator), allocator);
+
+        matchObj.AddMember("id", id, allocator);
+        matchObj.AddMember("league", league, allocator);
+        matchObj.AddMember("season", rapidjson::Value(season.c_str(), allocator), allocator);
+        matchObj.AddMember("week", week, allocator);
+        matchObj.AddMember("team1", team1Obj, allocator);
+        matchObj.AddMember("team2", team2Obj, allocator);
+        matchObj.AddMember("date", (double)date, allocator);
+        matchObj.AddMember("team1_score", team1Score, allocator);
+        matchObj.AddMember("team2_score", team2Score, allocator);
+        matchObj.AddMember("week_type", weekType, allocator);
+        matchObj.AddMember("elapsed", elapsed, allocator);
+        matchObj.AddMember("team1_score_live", team1ScoreLive, allocator);
+        matchObj.AddMember("team2_score_live", team2ScoreLive, allocator);
+        matchObj.AddMember("status", rapidjson::Value(status.c_str(), allocator), allocator);
+        matchObj.AddMember("is_special", isSpecial, allocator);
+        matchObj.AddMember("playOff", playOff, allocator);
+
+        matchObj.AddMember("league_name", rapidjson::Value(leagueName.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("league_country", rapidjson::Value(leagueCountry.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("currentWeek", currentWeek, allocator);
+        matchObj.AddMember("special_match_title", rapidjson::Value(specialMatchTitle.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("special_match_points", rapidjson::Value(specialMatchPoints.c_str(), allocator), allocator); // Add league name
+
+        // Add bet object
+        rapidjson::Value predictObj(rapidjson::kObjectType);
+        predictObj.AddMember("id", atoi(PQgetvalue(ret, i, 20)), allocator);
+        predictObj.AddMember("team_id", atoi(PQgetvalue(ret, i, 21)), allocator);
+        predictObj.AddMember("player_api_id", atoi(PQgetvalue(ret, i, 22)), allocator);
+        predictObj.AddMember("player_name", rapidjson::Value(PQgetvalue(ret, i, 23), allocator), allocator);
+        predictObj.AddMember("player_photo", rapidjson::Value(PQgetvalue(ret, i, 24), allocator), allocator);
+        predictObj.AddMember("goals", atoi(PQgetvalue(ret, i, 25)), allocator);
+        predictObj.AddMember("status", atoi(PQgetvalue(ret, i, 26)), allocator);
+        matchObj.AddMember("fireballPredict", predictObj, allocator);
+
+        document.PushBack(matchObj, allocator);
+    }
+
+    PQclear(ret);
+    return true;
+}
+
 bool MatchesManager::GetMatchesUpcomingWithPredicts(PGconn* pg,
     int userId,
     long long currentTimeMs,
@@ -1314,6 +1435,126 @@ bool MatchesManager::GetMatchesUpcomingWithBets(PGconn* pg,
     return true;
 }
 
+bool MatchesManager::GetMatchesUpcomingWithFireball(PGconn* pg,
+    int userId,
+    long long currentTimeMs,
+    rapidjson::Document& document
+)
+{
+    std::string sql = "SELECT m.id, m.league, m.season, m.week, m.match_date, m.team1_score, m.team2_score, m.week_type, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.play_off, "
+        "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
+        "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
+
+        // user bet fields (default values if no bet)
+        "COALESCE(fp.id, -1) AS fp_id, "
+        "COALESCE(fp.team_id, -1) AS fp_team_id, "
+        "COALESCE(fp.player_api_id, -1) AS fp_player_api_id, "
+        "COALESCE(fp.player_name, '') AS fp_player_name, "
+        "COALESCE(fp.player_photo, '') AS fp_player_photo, "
+        "COALESCE(fp.goals, 0) AS fp_goals, "
+        "COALESCE(fp.status, -2) AS fp_status, "
+
+        "l.name AS league_name, "  // Include league name
+        "l.country AS league_country, "  // Include league name
+        "l.current_week, "
+        "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches 
+        "COALESCE(s.points, '') AS special_match_points "
+        "FROM matches m "
+        "JOIN teams t1 ON m.team1 = t1.id "
+        "JOIN teams t2 ON m.team2 = t2.id "
+        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "JOIN leagues l ON m.league = l.id "  // Join with leagues table
+        "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
+        "WHERE m.match_date > " + std::to_string(currentTimeMs) + " "
+        "ORDER BY m.match_date ASC "
+        "LIMIT 10;";
+
+    PGresult* ret = PQexec(pg, sql.c_str());
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        return false;
+    }
+
+    int nrows = PQntuples(ret);
+    document.SetArray();
+    rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+    for (int i = 0; i < nrows; ++i)
+    {
+        rapidjson::Value matchObj(rapidjson::kObjectType);
+        int id = atoi(PQgetvalue(ret, i, 0));
+        int league = atoi(PQgetvalue(ret, i, 1));
+        std::string season = PQgetvalue(ret, i, 2);
+        int week = atoi(PQgetvalue(ret, i, 3));
+        long long date = atoll(PQgetvalue(ret, i, 4));
+        int team1Score = atol(PQgetvalue(ret, i, 5));
+        int team2Score = atol(PQgetvalue(ret, i, 6));
+        int weekType = atoi(PQgetvalue(ret, i, 7)); // week_type included
+        int elapsed = atoi(PQgetvalue(ret, i, 8));
+        int team1ScoreLive = atoi(PQgetvalue(ret, i, 9));
+        int team2ScoreLive = atoi(PQgetvalue(ret, i, 10));
+        std::string status = (PQgetvalue(ret, i, 11));
+        int isSpecial = atoi(PQgetvalue(ret, i, 12));
+        int playOff = atoi(PQgetvalue(ret, i, 13));
+
+        std::string leagueName = PQgetvalue(ret, i, 27); // Assuming league_name is the last column
+        std::string leagueCountry = PQgetvalue(ret, i, 28); // Assuming league_name is the last column
+        int currentWeek = atol(PQgetvalue(ret, i, 29));
+        std::string specialMatchTitle = PQgetvalue(ret, i, 30);
+        std::string specialMatchPoints = PQgetvalue(ret, i, 31);
+
+        rapidjson::Value team1Obj(rapidjson::kObjectType);
+        team1Obj.AddMember("id", atoi(PQgetvalue(ret, i, 14)), allocator);
+        team1Obj.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 15), allocator), allocator);
+        team1Obj.AddMember("shortName", rapidjson::Value(PQgetvalue(ret, i, 16), allocator), allocator);
+
+        rapidjson::Value team2Obj(rapidjson::kObjectType);
+        team2Obj.AddMember("id", atoi(PQgetvalue(ret, i, 17)), allocator);
+        team2Obj.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 18), allocator), allocator);
+        team2Obj.AddMember("shortName", rapidjson::Value(PQgetvalue(ret, i, 19), allocator), allocator);
+
+        matchObj.AddMember("id", id, allocator);
+        matchObj.AddMember("league", league, allocator);
+        matchObj.AddMember("season", rapidjson::Value(season.c_str(), allocator), allocator);
+        matchObj.AddMember("week", week, allocator);
+        matchObj.AddMember("team1", team1Obj, allocator);
+        matchObj.AddMember("team2", team2Obj, allocator);
+        matchObj.AddMember("date", (double)date, allocator);
+        matchObj.AddMember("team1_score", team1Score, allocator);
+        matchObj.AddMember("team2_score", team2Score, allocator);
+        matchObj.AddMember("week_type", weekType, allocator); // Add week_type
+        matchObj.AddMember("elapsed", elapsed, allocator);
+        matchObj.AddMember("team1_score_live", team1ScoreLive, allocator);
+        matchObj.AddMember("team2_score_live", team2ScoreLive, allocator);
+        matchObj.AddMember("status", rapidjson::Value(status.c_str(), allocator), allocator);
+        matchObj.AddMember("is_special", isSpecial, allocator);
+        matchObj.AddMember("playOff", playOff, allocator);
+
+        matchObj.AddMember("league_name", rapidjson::Value(leagueName.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("league_country", rapidjson::Value(leagueCountry.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("currentWeek", currentWeek, allocator);
+        matchObj.AddMember("special_match_title", rapidjson::Value(specialMatchTitle.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("special_match_points", rapidjson::Value(specialMatchPoints.c_str(), allocator), allocator); // Add league name
+
+        // Add bet object
+        rapidjson::Value predictObj(rapidjson::kObjectType);
+        predictObj.AddMember("id", atoi(PQgetvalue(ret, i, 20)), allocator);
+        predictObj.AddMember("team_id", atoi(PQgetvalue(ret, i, 21)), allocator);
+        predictObj.AddMember("player_api_id", atoi(PQgetvalue(ret, i, 22)), allocator);
+        predictObj.AddMember("player_name", rapidjson::Value(PQgetvalue(ret, i, 23), allocator), allocator);
+        predictObj.AddMember("player_photo", rapidjson::Value(PQgetvalue(ret, i, 24), allocator), allocator);
+        predictObj.AddMember("goals", atoi(PQgetvalue(ret, i, 25)), allocator);
+        predictObj.AddMember("status", atoi(PQgetvalue(ret, i, 26)), allocator);
+        matchObj.AddMember("fireballPredict", predictObj, allocator);
+
+        document.PushBack(matchObj, allocator);
+    }
+
+    PQclear(ret);
+    return true;
+}
 
 bool MatchesManager::GetMatchesTeamWithPredicts(PGconn* pg,
     int userId,
