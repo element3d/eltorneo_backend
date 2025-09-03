@@ -133,7 +133,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -269,7 +270,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -405,7 +407,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -541,7 +544,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -677,7 +681,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Круг ада",
         "first_class": "Люди Икс: Первый класс",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Лига Справедливости"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -813,7 +818,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -949,7 +955,8 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1085,6 +1092,7 @@
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
         "first_class": "X-Men: First Class",
-        "crysis3": "Crysis"
+        "crysis3": "Crysis",
+        "justice_league": "Justice League"
     }
 }
