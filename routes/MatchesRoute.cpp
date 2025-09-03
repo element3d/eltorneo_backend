@@ -245,6 +245,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            if (g == "fireball") game = g;
         }
 
         // Validate team_id
@@ -265,6 +266,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (game == "beatbet")
         {
             ok = MatchesManager::GetMatchesTeamWithBets(pg, userId, tid, document);
+        }
+        else if (game == "fireball")
+        {
+            ok = MatchesManager::GetMatchesTeamWithFireball(pg, userId, tid, document);
         }
         else 
         {
@@ -388,6 +393,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
+            if (g == "fireball") game = g;
         }
 
         // Connect to the database
@@ -401,6 +407,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             MatchesManager::FillTeamMatchesWithBets(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Upcoming);
             MatchesManager::FillTeamMatchesWithBets(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Live);
             MatchesManager::FillTeamMatchesWithBets(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Finished);
+        }
+        else if (game == "fireball")
+        {
+            MatchesManager::FillTeamMatchesWithFireball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Upcoming);
+            MatchesManager::FillTeamMatchesWithFireball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Live);
+            MatchesManager::FillTeamMatchesWithFireball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Finished);
         }
         else 
         {
