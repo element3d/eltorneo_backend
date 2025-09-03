@@ -132,7 +132,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -267,7 +268,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -402,7 +404,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -537,7 +540,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -672,7 +676,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Круг ада",
-        "first_class": "Люди Икс: Первый класс"
+        "first_class": "Люди Икс: Первый класс",
+        "crysis3": "Crysis"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -807,7 +812,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -942,7 +948,8 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1077,6 +1084,7 @@
         "raptors": "Raptors",
         "jurassic_park2": "Jurassic Park",
         "circle_of_hell": "Circle of Hell",
-        "first_class": "X-Men: First Class"
+        "first_class": "X-Men: First Class",
+        "crysis3": "Crysis"
     }
 }
