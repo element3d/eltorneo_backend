@@ -72,6 +72,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 531;
 	case ELeague::DFLSuperCup:
 		return 529;
+	case ELeague::UEFAWorldClubQualification:
+		return 32;
 	default:
 		break;
 	}
@@ -483,6 +485,17 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
+	else if (league == ELeague::UEFAWorldClubQualification)
+	{
+		if (week == 5)
+		{
+			round = "Group Stage - 5";
+		}
+		if (week == 6)
+		{
+			round = "Group Stage - 6";
+		}
+	}
 
 
 	return round;
@@ -878,7 +891,7 @@ void GetLiveMatches(PGconn* pg)
 
 		if (apiId == -1 || team1.ApiId == -1 || team2.ApiId == -1)
 		{
-			apiId = GetApiFootballMatches(pg, ELeague(league), id, team1, team2, "2025", week);
+			apiId = GetApiFootballMatches(pg, ELeague(league), id, team1, team2, league == 20 ? "2024" : "2025", week);
 		}
 
 		std::string url = "https://v3.football.api-sports.io/fixtures?id=" + std::to_string(apiId);
