@@ -4902,11 +4902,8 @@ void MatchesInitializer::InitUEFAWCQualifiers(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    //matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 1, ETeam::Luxemburg, ETeam::NorthernIreland, 1757011500000 });
-    //matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 1, ETeam::Slovakia, ETeam::Germany, 1757011500000 });
-
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Georgia, ETeam::Turkiye, 1757001600000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Bulgaria, ETeam::Spain, 1757011500000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Luxemburg, ETeam::NorthernIreland, 1757011500000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Slovakia, ETeam::Germany, 1757011500000 });
 
     matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Georgia, ETeam::Turkiye, 1757001600000 });
     matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 5, ETeam::Bulgaria, ETeam::Spain, 1757011500000 });
