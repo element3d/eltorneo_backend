@@ -4372,6 +4372,555 @@ void MatchesInitializer::InitSuperCupFrance24_25(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitUEFAWCQualifiersTeams(PGconn* pg)
+{
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::Luxemburg,
+        ETeam::NorthernIreland,
+        ETeam::Slovakia,
+        ETeam::Germany
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::Kosovo,
+        ETeam::Slovenia,
+        ETeam::Sweden,
+        ETeam::Switzerland
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::Belarus,
+        ETeam::Denmark,
+        ETeam::Greece,
+        ETeam::Scotland
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::Azerbaijan,
+        ETeam::France,
+        ETeam::Iceland,
+        ETeam::Ukraine
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::Bulgaria,
+        ETeam::Georgia,
+        ETeam::Spain,
+        ETeam::Turkiye
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::Armenia,
+        ETeam::Hungary,
+        ETeam::Portugal,
+        ETeam::RepublicOfIreland
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::Finland,
+        ETeam::Netherlands,
+        ETeam::Poland,
+        ETeam::Lithuania,
+        ETeam::Malta
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::BosniaAndHerzegovina,
+        ETeam::Austria,
+        ETeam::Romania,
+        ETeam::Cyprus,
+        ETeam::SanMarino
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group I
+    std::vector group9Teams =
+    {
+        ETeam::Norway,
+        ETeam::Israel,
+        ETeam::Italy,
+        ETeam::Estonia,
+        ETeam::Moldova
+    };
+
+    for (auto team : group9Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group J
+    std::vector group10Teams =
+    {
+        ETeam::NorthMacedonia,
+        ETeam::Wales,
+        ETeam::Belgium,
+        ETeam::Kazakhstan,
+        ETeam::Liechtenstein
+    };
+
+    for (auto team : group10Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group K
+    std::vector group11Teams =
+    {
+        ETeam::England,
+        ETeam::Albania,
+        ETeam::Serbia,
+        ETeam::Latvia,
+        ETeam::Andorra
+    };
+
+    for (auto team : group11Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group L
+    std::vector group12Teams =
+    {
+        ETeam::Czechia,
+        ETeam::Croatia,
+        ETeam::Montenegro,
+        ETeam::FaroeIslands,
+        ETeam::Gibraltar
+    };
+
+    for (auto team : group12Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
+void MatchesInitializer::InitUEFAWCQualifiersTables(PGconn* pg)
+{
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::Luxemburg,
+        ETeam::NorthernIreland,
+        ETeam::Slovakia,
+        ETeam::Germany
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::Kosovo,
+        ETeam::Slovenia,
+        ETeam::Sweden,
+        ETeam::Switzerland
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::Belarus,
+        ETeam::Denmark,
+        ETeam::Greece,
+        ETeam::Scotland
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::Azerbaijan,
+        ETeam::France,
+        ETeam::Iceland,
+        ETeam::Ukraine
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::Bulgaria,
+        ETeam::Georgia,
+        ETeam::Spain,
+        ETeam::Turkiye
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::Armenia,
+        ETeam::Hungary,
+        ETeam::Portugal,
+        ETeam::RepublicOfIreland
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::Finland,
+        ETeam::Netherlands,
+        ETeam::Poland,
+        ETeam::Lithuania,
+        ETeam::Malta
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::BosniaAndHerzegovina,
+        ETeam::Austria,
+        ETeam::Romania,
+        ETeam::Cyprus,
+        ETeam::SanMarino
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group I
+    std::vector group9Teams =
+    {
+        ETeam::Norway,
+        ETeam::Israel,
+        ETeam::Italy,
+        ETeam::Estonia,
+        ETeam::Moldova
+    };
+
+    for (auto team : group9Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group J
+    std::vector group10Teams =
+    {
+        ETeam::NorthMacedonia,
+        ETeam::Wales,
+        ETeam::Belgium,
+        ETeam::Kazakhstan,
+        ETeam::Liechtenstein
+    };
+
+    for (auto team : group10Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group K
+    std::vector group11Teams =
+    {
+        ETeam::England,
+        ETeam::Albania,
+        ETeam::Serbia,
+        ETeam::Latvia,
+        ETeam::Andorra
+    };
+
+    for (auto team : group11Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group L
+    std::vector group12Teams =
+    {
+        ETeam::Czechia,
+        ETeam::Croatia,
+        ETeam::Montenegro,
+        ETeam::FaroeIslands,
+        ETeam::Gibraltar
+    };
+
+    for (auto team : group12Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::UEFAWorldClubQualification)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
+void MatchesInitializer::InitUEFAWCQualifiers(PGconn* pg)
+{
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 1, ETeam::Luxemburg, ETeam::NorthernIreland, 1757011500000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 1, ETeam::Slovakia, ETeam::Germany, 1757011500000 });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, team1, team2, match_date) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+
 void MatchesInitializer::FillAwards(PGconn* pg)
 {
     for (int league = 1; league <= 3; ++league)

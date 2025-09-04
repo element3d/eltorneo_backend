@@ -23,7 +23,8 @@ enum class ELeague
     CommunityShield,
     UEFASuperCup,
     DFLSuperCup,
-    End = DFLSuperCup
+    UEFAWorldClubQualification,
+    End = UEFAWorldClubQualification
 };
 
 enum class ELeagueType 

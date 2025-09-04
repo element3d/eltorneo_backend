@@ -37,9 +37,13 @@ void LeaguesRoute::Init()
 
     if (numLeagues > 0) 
     {
-        MatchesInitializer::InitChampionsLeagueTeams25_26(pg);
-        MatchesInitializer::InitChampionsLeagueTable(pg);
-        MatchesInitializer::InitChampionsLeague25_26(pg);
+        MatchesInitializer::InitUEFAWCQualifiersTeams(pg);
+        MatchesInitializer::InitUEFAWCQualifiersTables(pg);
+        MatchesInitializer::InitUEFAWCQualifiers(pg);
+      
+        //MatchesInitializer::InitChampionsLeagueTeams25_26(pg);
+        //MatchesInitializer::InitChampionsLeagueTable(pg);
+        //MatchesInitializer::InitChampionsLeague25_26(pg);
 
         //MatchesInitializer::InitClubWorldCupTeams24_25(pg);
         //MatchesInitializer::InitClubWorldCupTable24_25(pg);
