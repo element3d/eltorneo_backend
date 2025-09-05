@@ -550,7 +550,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch leagues: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch me: %s", PQerrorMessage(pg));
             PQclear(ret);
             res.status = 500;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
@@ -617,12 +617,27 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
 
             int isGuest = atof(PQgetvalue(ret, i, 9));
             document.AddMember("isGuest", isGuest, allocator);
+            
+            sql = "SELECT points from fireball_users WHERE user_id = " + std::to_string(id) + ";";
+            PGresult* fpRet = PQexec(pg, sql.c_str());
+            int n = PQntuples(fpRet);
+            int fPoints = 0;
+            if (n > 0) 
+            {
+                fPoints = atoi(PQgetvalue(fpRet, 0, 0));
+            }
+            document.AddMember("fireballPoints", fPoints, allocator);
+            PQclear(fpRet);
+
+            break;
         }
 
         int pos = CachedTable::Get()->GetPosition(userId, league);
         document.AddMember("position", pos, allocator);
         int bbpos = CachedTable::Get()->GetBeatBetPosition(userId);
         document.AddMember("beatBetPosition", bbpos, allocator);
+        int fpos = CachedTable::Get()->GetFireballPosition(userId);
+        document.AddMember("fireballPosition", fpos, allocator);
         free(temp);
 
         {

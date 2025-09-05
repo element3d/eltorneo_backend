@@ -116,13 +116,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");
-        std::string season = "";
+        /*std::string season = "";
         if (req.has_param("season"))
         {
             season = req.get_param_value("season");
-        }
+        }*/
         std::string postfix = "";
-        if (season.size())
+        /*if (season.size())
         {
             std::string currentSeason = "25/26";
             if (season != currentSeason)
@@ -130,7 +130,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::replace(season.begin(), season.end(), '/', '_');
                 postfix = "_" + season;
             }
-        }
+        }*/
 
         std::string token = req.get_header_value("Authentication");
         auto decoded = jwt::decode(token);
