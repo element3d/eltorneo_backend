@@ -1351,15 +1351,20 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 		std::string team1GKColor = lineup1["team"]["colors"]["goalkeeper"]["primary"].GetString();
 		std::string team1GKNColor = lineup1["team"]["colors"]["goalkeeper"]["number"].GetString();
 		std::string team1GKBColor = lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
-		if (!lineup1.HasMember("coach") || lineup1["coach"].IsNull() || !lineup1["coach"].HasMember("name") || lineup1["coach"]["name"].IsNull()) return;
-		int coach1ApiId = lineup1["coach"]["id"].GetInt();
-		std::string coach1 = lineup1["coach"]["name"].GetString();
+		std::string coach1 = "";
+		int coach1ApiId = -1;
 		std::string coach1Photo = "";
-		if (!lineup1["coach"]["photo"].IsNull()) 
-		{
-			coach1Photo = lineup1["coach"]["photo"].GetString();
-		}
 
+		if (!lineup1.HasMember("coach") || lineup1["coach"].IsNull() || !lineup1["coach"].HasMember("name") || lineup1["coach"]["name"].IsNull()) {}
+		else 
+		{
+			coach1ApiId = lineup1["coach"]["id"].GetInt();
+			coach1 = lineup1["coach"]["name"].GetString();
+			if (!lineup1["coach"]["photo"].IsNull())
+			{
+				coach1Photo = lineup1["coach"]["photo"].GetString();
+			}
+		}
 
 		// Extract team2 details
 		std::string team2Formation = lineup2["formation"].GetString();
@@ -1371,14 +1376,22 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 		std::string team2GKColor = lineup2["team"]["colors"]["goalkeeper"]["primary"].GetString();
 		std::string team2GKNColor = lineup2["team"]["colors"]["goalkeeper"]["number"].GetString();
 		std::string team2GKBColor = lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
-		if (!lineup2.HasMember("coach") || lineup2["coach"].IsNull() || !lineup2["coach"].HasMember("name") || lineup2["coach"]["name"].IsNull()) return;
-		int coach2ApiId = lineup2["coach"]["id"].GetInt();
-		std::string coach2 = lineup2["coach"]["name"].GetString();
+		
+		std::string coach2 = "";
+		int coach2ApiId = -1;
 		std::string coach2Photo = "";
-		if (!lineup2["coach"]["photo"].IsNull())
+
+		if (!lineup2.HasMember("coach") || lineup2["coach"].IsNull() || !lineup2["coach"].HasMember("name") || lineup2["coach"]["name"].IsNull()) {}
+		else
 		{
-			coach2Photo = lineup2["coach"]["photo"].GetString();
+			coach2ApiId = lineup2["coach"]["id"].GetInt();
+			coach2 = lineup2["coach"]["name"].GetString();
+			if (!lineup2["coach"]["photo"].IsNull())
+			{
+				coach2Photo = lineup2["coach"]["photo"].GetString();
+			}
 		}
+		
 		// Insert into lineups table
 		std::string sql = "INSERT INTO lineups (match_id, match_date, formation1, player_color1, player_ncolor1, player_bcolor1, "
 			"gk_color1, gk_ncolor1, gk_bcolor1, formation2, player_color2, player_ncolor2, player_bcolor2, "
@@ -2301,7 +2314,6 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	//GetMatchLineups(pg, 1390831, 0, 0);
 	//FillTodayLineups(pg);
 	// GetMatchPlayers(pg, 0, 1390826);
 	//FillTeamSquad(pg);
