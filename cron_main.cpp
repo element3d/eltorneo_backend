@@ -2144,9 +2144,14 @@ void UpdateFireballPredictsForNonPlayedPlayer(PGconn* pg, int matchId)
 
 void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, int minutes, int goals)
 {
-	std::string sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
-		+ " AND player_api_id = " + std::to_string(playerApiId) + ";";
+	std::string sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
 	PGresult* res = PQexec(pg, sql.c_str());
+	int isSpecial = atoi(PQgetvalue(res, 0, 0));
+	PQclear(res);
+
+	sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
+		+ " AND player_api_id = " + std::to_string(playerApiId) + ";";
+	res = PQexec(pg, sql.c_str());
 	int rows = PQntuples(res);
 	if (rows == 0) 
 	{
@@ -2162,29 +2167,36 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 		int points = 0;
 		int status = 0;
 
-		if (minutes <= 0) {
+		if (minutes <= 0) 
+		{
 			status = -1;  // did not play
-			points = -1;
+			points = isSpecial ? 0 : -1;
 		}
-		else if (goals == 1) {
+		else if (goals == 1) 
+		{
 			status = 1;
-			points = 2;
+			points = isSpecial ? 4 : 2;
 		}
-		else if (goals == 2) {
+		else if (goals == 2) 
+		{
 			status = 2;
-			points = 3;
+			points = isSpecial ? 5 : 3;
 		}
-		else if (goals >= 3) {
+		else if (goals >= 3) 
+		{
 			status = 3;
-			points = 5;
+			points = isSpecial ? 8 : 5;
 		}
-		else { // goals == 0
+		else 
+		{ // goals == 0
 			status = 4;
-			points = -1;
+			points = isSpecial ? 0 : -1;
 		}
 
-		std::string updatePointsSql = "UPDATE fireball_users SET points = points + " + std::to_string(points)
-			+ " WHERE user_id = " + std::to_string(userId) + ";";
+		std::string updatePointsSql =
+			"UPDATE fireball_users "
+			"SET points = GREATEST(points + " + std::to_string(points) + ", 0) "
+			"WHERE user_id = " + std::to_string(userId) + ";";
 		PGresult* resUpdatePoints = PQexec(pg, updatePointsSql.c_str());
 		PQclear(resUpdatePoints);
 
