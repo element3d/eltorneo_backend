@@ -1472,7 +1472,7 @@ void GetTodayMatches(PGconn* pg)
 {
 	auto now = std::chrono::system_clock::now();
 	auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
-	auto oneHourLaterMs = nowMs + 3600 * 1 * 1000;  // 3600 seconds = 1 hour in milliseconds
+	auto oneHourLaterMs = nowMs + (3600 + 1200) * 1000;  // 3600 seconds = 1 20min hour in milliseconds
 
 	const std::string sql = "SELECT m.id, m.api_id, m.league, m.team1, m.team2, m.week, m.match_date "
 		"FROM MATCHES m "
