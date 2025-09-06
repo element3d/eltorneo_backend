@@ -1959,10 +1959,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int page = 1;
         int league = 1;
      //   std::string season = "25_26";
-        if (req.has_param("page")) {
+        if (req.has_param("page")) 
+        {
             page = std::stoi(req.get_param_value("page"));
         }
-        if (req.has_param("league")) {
+        if (req.has_param("league")) 
+        {
             league = std::stoi(req.get_param_value("league"));
         }
       /*  if (req.has_param("season")) {
@@ -1974,7 +1976,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int offset = (page - 1) * limit; // Calculate the offset based on the page
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        if (!pg) {
+        if (!pg) 
+        {
             res.status = 500;  // Internal Server Error
             return;
         }
@@ -1997,20 +2000,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.league, u.balance, COUNT(p.id) AS total_predictions "
+        std::string sql =
+            "SELECT u.id, u.name, u.avatar, u.points, u.league, u.balance, "
+            "COUNT(p.id) AS total_predictions, "
+            "COALESCE(fu.points, -1) AS fireball_points "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
+            "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-            // "WHERE p.status != 4 AND " + leagueColName + " = " + std::to_string(league) +
-            " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
+            "GROUP BY u.id, u.name, u.avatar, u.points, u.league, u.balance, fu.points "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
+
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
-            fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
+            fprintf(stderr, "Failed to fetch bets table: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500;
@@ -2021,8 +2029,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        //   if (page == 1 && league == 1) mCachedTable.clear();
-        for (int i = 0; i < nrows; ++i) {
+        for (int i = 0; i < nrows; ++i) 
+        {
             int id = atoi(PQgetvalue(ret, i, 0));
             rapidjson::Value object(rapidjson::kObjectType);
             object.AddMember("id", id, allocator);
@@ -2032,10 +2040,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("league", atoi(PQgetvalue(ret, i, 4)), allocator);
             object.AddMember("balance", atof(PQgetvalue(ret, i, 5)), allocator);
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 6)), allocator);  // Include the count of predictions
+            object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 7)), allocator);
+
             int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
             int beatBetPos = CachedTable::Get()->GetBeatBetPosition(id);
             object.AddMember("beatBetPosition", beatBetPos, allocator);
+            int fbPos = CachedTable::Get()->GetFireballPosition(id);
+            object.AddMember("fireballPosition", fbPos, allocator);
 
            {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
@@ -3154,7 +3166,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, fu.points, COUNT(p.id) AS total_predictions "
+        std::string sql = "SELECT u.id, u.name, u.avatar, fu.points, COUNT(p.id) AS total_predictions, u.points, u.balance, u.league "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
             "INNER JOIN fireball_users fu ON u.id = fu.user_id "
@@ -3168,7 +3180,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
-            fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch fireball table: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500;
@@ -3179,17 +3191,27 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         rapidjson::Document document;
         document.SetArray();
         rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
-        //   if (page == 1 && league == 1) mCachedTable.clear();
-        for (int i = 0; i < nrows; ++i) {
+
+        for (int i = 0; i < nrows; ++i) 
+        {
             int id = atoi(PQgetvalue(ret, i, 0));
             rapidjson::Value object(rapidjson::kObjectType);
             object.AddMember("id", id, allocator);
             object.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 1), allocator), allocator);
             object.AddMember("avatar", rapidjson::Value(PQgetvalue(ret, i, 2), allocator), allocator);
-            object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
+            object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 3)), allocator);
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 4)), allocator);
-            int pos = CachedTable::Get()->GetFireballPosition(id);
+            object.AddMember("predictions", atoi(PQgetvalue(ret, i, 5)), allocator);
+            object.AddMember("balance", atof(PQgetvalue(ret, i, 6)), allocator);
+            int league = atoi(PQgetvalue(ret, i, 7));
+            object.AddMember("league", league, allocator);
+
+            int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
+            int bbpos = CachedTable::Get()->GetBeatBetPosition(id);
+            object.AddMember("beatBetPosition", bbpos, allocator);
+            int fbpos = CachedTable::Get()->GetFireballPosition(id);
+            object.AddMember("fireballPosition", fbpos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
@@ -3230,8 +3252,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             }
 
             document.PushBack(object, allocator);
-
-            // if (page == 1 && league == 1) mCachedTable.push_back(id);
         }
 
         rapidjson::StringBuffer buffer;
