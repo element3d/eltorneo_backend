@@ -2391,7 +2391,7 @@ int main()
 		auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 		for (auto it = finishedMatches.begin(); it != finishedMatches.end(); )
 		{
-			if (nowMs - it->Timestamp >= 10 * 60 * 1000) // 10 minutes
+			if (nowMs - it->Timestamp >= 5 * 60 * 1000) // 10 minutes
 			{
 				// call your update function
 				GetMatchPlayers(pg, it->MatchId, it->MatchApiId, true);
