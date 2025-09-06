@@ -2321,6 +2321,24 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             PQclear(ret);
         }
 
+        int isSpecial = false;
+        {
+            std::string sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
+            PGresult* specialRet = PQexec(pg, sql.c_str());
+            isSpecial = atoi(PQgetvalue(specialRet, 0, 0));
+            PQclear(specialRet);
+        }
+
+        if (!isSpecial)
+        {
+            amount = std::max(10, amount);
+            amount = std::min(20, amount);
+        }
+        else
+        {
+            amount = 20;
+        }
+
         std::string sql = "INSERT INTO bets(user_id, match_id, bet, amount, odd, status) VALUES("
             + std::to_string(userId) + ", "
             + std::to_string(matchId) + ", '"
@@ -2332,7 +2350,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Execute the insert and capture the inserted predict ID
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) {
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
+        {
             fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -2340,24 +2359,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             return;
         }
 
-        int isSpecial = false;
         {
-            sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
-            PGresult* specialRet = PQexec(pg, sql.c_str());
-            isSpecial = atoi(PQgetvalue(specialRet, 0, 0));
-            PQclear(specialRet);
-        }
-
-        if (!isSpecial)
-        {
-            amount = std::max(10, amount);
-            amount = std::min(20, amount);
-
             sql = "UPDATE USERS SET balance = balance - " + std::to_string(amount)
                 + " WHERE id = " + std::to_string(userId) + ";";
 
             PGresult* amountRet = PQexec(pg, sql.c_str());
-            if (PQresultStatus(amountRet) != PGRES_TUPLES_OK && PQresultStatus(amountRet) != PGRES_COMMAND_OK) {
+            if (PQresultStatus(amountRet) != PGRES_TUPLES_OK && PQresultStatus(amountRet) != PGRES_COMMAND_OK) 
+            {
                 fprintf(stderr, "Failed to add amount: %s", PQerrorMessage(pg));
                 PQclear(amountRet);
                 PQclear(ret);
@@ -2536,14 +2544,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PQclear(ret);
 
-        int isSpecial = false;
-        {
-            sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
-            PGresult* specialRet = PQexec(pg, sql.c_str());
-            isSpecial = atoi(PQgetvalue(specialRet, 0, 0));
-            PQclear(specialRet);
-        }
-        if (!isSpecial)
         {
             sql = "UPDATE users set balance = balance + " + std::to_string(amount) + " WHERE id = " + std::to_string(userId) + ";";
             ret = PQexec(pg, sql.c_str());
