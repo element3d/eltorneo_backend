@@ -1842,22 +1842,29 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // SQL query
         std::string sql =
-            "SELECT u.id, u.name, u.avatar, " + pointsColName + ", " + leagueColName +
-            ", u.balance, COUNT(p.id) AS total_predictions "
+            "SELECT u.id, u.name, u.avatar, "
+            + pointsColName + " AS user_points, "
+            + leagueColName + ", "
+            "u.balance, COUNT(p.id) AS total_predictions, "
+            "COALESCE(fu.points, -1) AS fireball_points "
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
+            "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "WHERE p.status != 4 "
             "AND " + leagueColName + " = " + std::to_string(league) + " "
             "AND u.last_predict_ts >= " + std::to_string(tsDiff) + " "
-            "GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
+            "GROUP BY u.id, u.name, u.avatar, " + pointsColName + ", "
+            + leagueColName + ", u.balance, fu.points "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
+
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
-            fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
+            fprintf(stderr, "Failed to fetch table by points: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500;
@@ -1879,10 +1886,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("league", atoi(PQgetvalue(ret, i, 4)), allocator);
             object.AddMember("balance", atof(PQgetvalue(ret, i, 5)), allocator);
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 6)), allocator);  // Include the count of predictions
+            object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 7)), allocator);
+
             int pos = CachedTable::Get()->GetPosition(id, league);
             object.AddMember("position", pos, allocator);
             int beatBetPos = CachedTable::Get()->GetBeatBetPosition(id);
             object.AddMember("beatBetPosition", beatBetPos, allocator);
+            int fireballPos = CachedTable::Get()->GetFireballPosition(id);
+            object.AddMember("fireballPosition", fireballPos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
@@ -2106,7 +2117,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "JOIN matches m ON p.match_id = m.id ";
 
         // Adding league filter if league_id is greater than 1
-        if (lid >= 1) {
+        if (lid >= 1) 
+        {
             sql += "WHERE m.league = " + std::to_string(lid) + " ";
         }
 
@@ -2116,7 +2128,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch user predictions: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
