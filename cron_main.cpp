@@ -1893,6 +1893,7 @@ ELeague ApiLeagueToLeagueId(int leagueApiId)
 	if (leagueApiId == 137) return ELeague::CoppaItalia; // Coppa Italia
 	if (leagueApiId == 143) return ELeague::CopaDelRey; // CopaDelRey
 	if (leagueApiId == 15) return ELeague::ClubWorldCup; // ClubWorldCup
+	if (leagueApiId == 32) return ELeague::UEFAWorldClubQualification; // ClubWorldCup
 
 	return ELeague::End;
 }
@@ -1913,6 +1914,7 @@ bool IsApiLeagueSupported(int leagueApiId)
 	if (leagueApiId == 137) return true; // Coppa Italia
 	if (leagueApiId == 143) return true; // CopaDelRey
 	if (leagueApiId == 15) return true; // FIFA Club World Cup
+	if (leagueApiId == 32) return true; // FIFA Club World Cup
 
 
 	return false;
