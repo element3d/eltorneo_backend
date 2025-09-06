@@ -1470,6 +1470,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         if (req.has_param("season"))
         {
             season = req.get_param_value("season");
+            if (season == "undefined") season = "";
         }
         std::string postfix = "";
         if (season.size())
@@ -1484,8 +1485,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix +", u.league, u.balance FROM predicts" + postfix + " p "
+        std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix +", u.league, u.balance, "
+            "COALESCE(fu.points, -1) AS fireball_points "
+            "FROM predicts" + postfix + " p "
             "JOIN users u ON p.user_id = u.id "
+            "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "WHERE p.status <> 4 and p.match_id = " + matchId + " "
             "ORDER BY u.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -1525,6 +1529,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int points = atoi(PQgetvalue(ret, i, 8));
             int league = atoi(PQgetvalue(ret, i, 9));
             float balance = atof(PQgetvalue(ret, i, 10));
+            int fireballPoints = atoi(PQgetvalue(ret, i, 11));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
@@ -1538,12 +1543,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("points", points, allocator);
             userObject.AddMember("league", league, allocator);
             userObject.AddMember("balance", balance, allocator);
+            userObject.AddMember("fireballPoints", fireballPoints, allocator);
 
             int posi = CachedTable::Get()->GetPosition(userId, league);
             userObject.AddMember("position", posi, allocator);
 
             int bbPos = CachedTable::Get()->GetBeatBetPosition(userId);
             userObject.AddMember("beatBetPosition", bbPos, allocator);
+
+            int fbPos = CachedTable::Get()->GetFireballPosition(userId);
+            userObject.AddMember("fireballPosition", fbPos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
@@ -1626,12 +1635,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");std::string season = "";
-        if (req.has_param("season"))
+        /*if (req.has_param("season"))
         {
             season = req.get_param_value("season");
-        }
+        }*/
         std::string postfix = "";
-        if (season.size())
+        /*if (season.size())
         {
             std::string currentSeason = "25/26";
             if (season != currentSeason)
@@ -1639,12 +1648,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::replace(season.begin(), season.end(), '/', '_');
                 postfix = "_" + season;
             }
-        }
+        }*/
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT b.*, u.name, u.avatar, u.points" + postfix + ", u.league, u.balance FROM bets" + postfix + " b "
+        std::string sql = "SELECT b.*, u.name, u.avatar, u.points" + postfix + ", u.league, u.balance, "
+            "COALESCE(fu.points, -1) AS fireball_points "
+            "FROM bets" + postfix + " b "
             "JOIN users u ON b.user_id = u.id "
+            "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "WHERE b.match_id = " + matchId + " "
             "ORDER BY u.balance" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -1685,6 +1697,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int points = atoi(PQgetvalue(ret, i, 9));
             int league = atoi(PQgetvalue(ret, i, 10));
             float balance = atof(PQgetvalue(ret, i, 11));
+            int fireballPoints = atoi(PQgetvalue(ret, i, 12));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
@@ -1698,12 +1711,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("points", points, allocator);
             userObject.AddMember("league", league, allocator);
             userObject.AddMember("balance", balance, allocator);
+            userObject.AddMember("fireballPoints", fireballPoints, allocator);
 
             int posi = CachedTable::Get()->GetPosition(userId, league);
             userObject.AddMember("position", posi, allocator);
 
             int bbPos = CachedTable::Get()->GetBeatBetPosition(userId);
             userObject.AddMember("beatBetPosition", bbPos, allocator);
+
+            int fbPos = CachedTable::Get()->GetFireballPosition(userId);
+            userObject.AddMember("fireballPosition", fbPos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
@@ -2807,12 +2824,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.set_header("Access-Control-Allow-Origin", "*");
 
         std::string matchId = req.get_param_value("match_id");std::string season = "";
-        if (req.has_param("season"))
+        /*if (req.has_param("season"))
         {
             season = req.get_param_value("season");
-        }
+        }*/
         std::string postfix = "";
-        if (season.size())
+        /*if (season.size())
         {
             std::string currentSeason = "25/26";
             if (season != currentSeason)
@@ -2820,10 +2837,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::replace(season.begin(), season.end(), '/', '_');
                 postfix = "_" + season;
             }
-        }
+        }*/
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT p.*, u.name, u.avatar, fu.points FROM fireball_predicts p "
+        std::string sql = "SELECT p.*, u.name, u.avatar, fu.points, u.points, u.balance, u.league FROM fireball_predicts p "
             "JOIN users u ON p.user_id = u.id "
             "JOIN fireball_users fu ON p.user_id = fu.user_id "
             "WHERE p.match_id = " + matchId + " "
@@ -2864,7 +2881,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             std::string userName = PQgetvalue(ret, i, 9);
             std::string userAvatar = PQgetvalue(ret, i, 10);
 
-            int points = atoi(PQgetvalue(ret, i, 11));
+            int fireballPoints = atoi(PQgetvalue(ret, i, 11));
+            int points = atoi(PQgetvalue(ret, i, 12));
+            float balance = atof(PQgetvalue(ret, i, 13));
+            int league = atoi(PQgetvalue(ret, i, 14));
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
@@ -2875,11 +2895,18 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("name", nameVal, allocator);
             nameVal.SetString(userAvatar.c_str(), allocator);
             userObject.AddMember("avatar", nameVal, allocator);
+            userObject.AddMember("fireballPoints", fireballPoints, allocator);
             userObject.AddMember("points", points, allocator);
+            userObject.AddMember("balance", balance, allocator);
 
             int posi = CachedTable::Get()->GetFireballPosition(userId);
-            userObject.AddMember("position", posi, allocator);
+            userObject.AddMember("fireballPosition", posi, allocator);
 
+            int pos = CachedTable::Get()->GetPosition(userId, league);
+            userObject.AddMember("position", pos, allocator);
+
+            int bbpos = CachedTable::Get()->GetBeatBetPosition(userId);
+            userObject.AddMember("beatBetPosition", bbpos, allocator);
 
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";

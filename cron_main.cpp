@@ -2131,7 +2131,10 @@ void UpdateFireballPredictsForNonPlayedPlayer(PGconn* pg, int matchId)
 		int predictId = atoi(PQgetvalue(res, i, 0));
 		int userId = atoi(PQgetvalue(res, i, 1));
 
-		std::string updatePointsSql = "UPDATE fireball_users SET points = points - 1 WHERE user_id = " + std::to_string(userId) + ";";
+		std::string updatePointsSql =
+			"UPDATE fireball_users "
+			"SET points = GREATEST(points - 1, 0) "
+			"WHERE user_id = " + std::to_string(userId) + ";";
 		PGresult* resUpdatePoints = PQexec(pg, updatePointsSql.c_str());
 		PQclear(resUpdatePoints);
 
@@ -2314,10 +2317,11 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 					}
 				}
 			}
-		}
-		if (updateFireball)
-		{
-			UpdateFireballPredictsForNonPlayedPlayer(pg, matchId);
+
+			if (updateFireball)
+			{
+				UpdateFireballPredictsForNonPlayedPlayer(pg, matchId);
+			}
 		}
 	}
 }
