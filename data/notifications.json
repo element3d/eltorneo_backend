@@ -37,8 +37,8 @@
     "vbet_msg": "A new feature has been added.",
     "fifa_title": "The final tournament of the 2024/25 season in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: Make your predictions now.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "The battle for victory in el Torneo begins!"
+    "winner_title": "Fireball is out now! Pick you players and burn the net!", 
+    "winner_msg": "Update now to unlock the brand-new Fireball game!"
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -78,8 +78,8 @@
     "vbet_msg": "Добавлена новая функция.",
     "fifa_title": "Финальный турнир сезона 2024/25 в El Torneo!",
     "fifa_msg": "FIFA Club World Cup: сделайте свои прогнозы прямо сейчас.",
-    "winner_title": "Суперкубок: Кристал Пэлас vs Ливерпуль",
-    "winner_msg": "Битва за победу в el Torneo начинается!"
+    "winner_title": "Fireball уже здесь! Выбирай игроков и жги сетку!",
+    "winner_msg": "Обнови приложение, чтобы открыть новую игру Fireball!"
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -119,8 +119,8 @@
     "vbet_msg": "Se ha añadido una nueva función.",
     "fifa_title": "¡El torneo final de la temporada 2024/25 en El Torneo!",
     "fifa_msg": "FIFA Club World Cup: haz tus predicciones ahora.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "¡La batalla por la victoria en el Torneo comienza!"
+    "winner_title": "¡Fireball ya está aquí! Elige a tus jugadores y quema la red!",
+    "winner_msg": "Actualiza la app para desbloquear el nuevo juego Fireball!"
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -160,8 +160,8 @@
     "vbet_msg": "È stata aggiunta una nuova funzione.",
     "fifa_title": "Il torneo finale della stagione 2024/25 in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: fai le tue previsioni ora.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "La battaglia per la vittoria in el Torneo inizia!"
+    "winner_title": "Fireball è arrivato! Scegli i tuoi giocatori e brucia la rete!",
+    "winner_msg": "Aggiorna l’app per sbloccare il nuovo gioco Fireball!"
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -201,8 +201,8 @@
     "vbet_msg": "Eine neue Funktion wurde hinzugefügt.",
     "fifa_title": "Das letzte Turnier der Saison 2024/25 in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: Gib jetzt deine Tipps ab.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "Der Kampf um den Sieg in el Torneo beginnt!"
+    "winner_title": "Fireball ist da! Wähle deine Spieler und brenn das Netz!",
+    "winner_msg": "Aktualisiere die App, um das neue Fireball-Spiel freizuschalten!"
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -242,8 +242,8 @@
     "vbet_msg": "Dodana je nova značajka.",
     "fifa_title": "Završni turnir sezone 2024./25. u El Torneo!",
     "fifa_msg": "FIFA Club World Cup: daj svoje prognoze sada.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "Bitka za pobjedu u el Torneu počinje!"
+    "winner_title": "Fireball je stigao! Odaberi svoje igrače i zapali mrežu!",
+    "winner_msg": "Ažuriraj aplikaciju i otključaj novu igru Fireball!"
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -283,8 +283,8 @@
     "vbet_msg": "Une nouvelle fonctionnalité a été ajoutée.",
     "fifa_title": "Le tournoi final de la saison 2024/25 dans El Torneo !",
     "fifa_msg": "FIFA Club World Cup : fais tes pronostics maintenant.",
-    "winner_title": "Community Shield : Crystal Palace vs Liverpool",
-    "winner_msg": "La bataille pour la victoire dans el Torneo commence !"
+    "winner_title": "Fireball est arrivé ! Choisis tes joueurs et brûle les filets !",
+    "winner_msg": "Mets à jour l’application pour débloquer le nouveau jeu Fireball !"
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -324,7 +324,7 @@
     "vbet_msg": "Um novo recurso foi adicionado.",
     "fifa_title": "O torneio final da temporada 2024/25 no El Torneo!",
     "fifa_msg": "FIFA Club World Cup: faça suas previsões agora.",
-    "winner_title": "Community Shield: Crystal Palace vs Liverpool",
-    "winner_msg": "A batalha pela vitória no el Torneo começa!"
+    "winner_title": "Fireball já chegou! Escolha seus jogadores e queime a rede!",
+    "winner_msg": "Atualize o app para desbloquear o novo jogo Fireball!"
   }
 }
