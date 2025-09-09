@@ -1828,7 +1828,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
         long long timestamp = ms.count();
-        long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
+        long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
         long long tsDiff = timestamp - ten_days_ms;
 
         std::string currentSeason = "25_26";
@@ -1997,7 +1997,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
         long long timestamp = ms.count();
-        long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
+        long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
         std::string sql =
