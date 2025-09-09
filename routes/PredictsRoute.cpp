@@ -1365,12 +1365,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         std::string matchId = req.get_param_value("match_id");
         std::string season;
-        if (req.has_param("season"))
+        /*if (req.has_param("season"))
         {
             season = req.get_param_value("season");
-        }
+        }*/
         std::string postfix = "";
-        if (season.size())
+        /*if (season.size())
         {
             std::string currentSeason = "25/26";
             if (season != currentSeason)
@@ -1378,7 +1378,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::replace(season.begin(), season.end(), '/', '_');
                 postfix = "_" + season;
             }
-        }
+        }*/
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string predictsSql = "SELECT bet FROM bets" + postfix + " WHERE match_id = " + matchId + ";";
@@ -2659,7 +2659,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             PGresult* ret = PQexec(pg, sql.c_str());
             if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
             {
-                fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add fireball predict: Option 1: %s\n", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
@@ -2669,7 +2669,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int n = PQntuples(ret);
             if (n > 0)
             {
-                fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add fireball predict: Option 2: %s\n", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
@@ -2690,7 +2690,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
         {
-            fprintf(stderr, "Failed to add fireball predict: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to add fireball predict: Option 3: %s\n", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
@@ -2744,12 +2744,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         std::string matchId = req.get_param_value("match_id");
         std::string season = "";
-        if (req.has_param("season"))
+        /*if (req.has_param("season"))
         {
             season = req.get_param_value("season");
-        }
+        }*/
         std::string postfix = "";
-        if (season.size())
+        /*if (season.size())
         {
             std::string currentSeason = "25/26";
             if (season != currentSeason)
@@ -2757,7 +2757,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::replace(season.begin(), season.end(), '/', '_');
                 postfix = "_" + season;
             }
-        }
+        }*/
 
         std::string token = req.get_header_value("Authentication");
         auto decoded = jwt::decode(token);
