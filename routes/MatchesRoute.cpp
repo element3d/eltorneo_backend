@@ -361,10 +361,10 @@ bool FillTeamPlayers(PGconn* pg, long tid, const std::string& position, rapidjso
 
     while (std::getline(ss, item, ',')) 
     {
-        if (item == "GK") positions.push_back("Goalkeeper");
-        else if (item == "DF") positions.push_back("Defender");
-        else if (item == "MF") positions.push_back("Midfielder");
-        else if (item == "FW") positions.push_back("Attacker");
+        if (item == "GK") positions.push_back("'Goalkeeper'");
+        else if (item == "DF") positions.push_back("'Defender'");
+        else if (item == "MF") positions.push_back("'Midfielder'");
+        else if (item == "FW") positions.push_back("'Attacker'");
     }
 
     std::string sql = "SELECT id, name, age, number, position, photo, api_id FROM team_players WHERE team_id = "
