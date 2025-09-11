@@ -437,6 +437,7 @@ bool FillTeamPlayers(PGconn* pg, long tid, const std::string& position, rapidjso
         matchObj.AddMember("goals", goals, allocator);
         matchObj.AddMember("assists", assists, allocator);
         matchObj.AddMember("rating", rating, allocator);
+        matchObj.AddMember("teamId", tid, allocator);
 
         PQclear(statRet);
         document.PushBack(matchObj, allocator);
