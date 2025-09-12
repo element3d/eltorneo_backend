@@ -44,6 +44,7 @@ int main()
     }
 
     int nrows = PQntuples(ret);
+    int limit = 3;
     for (int i = 0; i < nrows; i++) 
     {
         int id = atoi(PQgetvalue(ret, i, 0));
@@ -89,7 +90,7 @@ int main()
 
                 PGresult* userPredictsRet = PQexec(pg, sql.c_str());
                 int numUserPredicts = PQntuples(userPredictsRet);
-                if (numUserPredicts < 5)
+                if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
                     continue;
@@ -118,14 +119,14 @@ int main()
                     //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                 }
 
-                if (sum >= 5)
+                if (sum >= limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
                     fprintf(file, "%s %i win\n", team1.c_str(), sum);
                     usernameWritten = true;
                 }
-                if (sum <= -5)
+                if (sum <= -limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
@@ -155,7 +156,7 @@ int main()
 
                 PGresult* userPredictsRet = PQexec(pg, sql.c_str());
                 int numUserPredicts = PQntuples(userPredictsRet);
-                if (numUserPredicts < 5)
+                if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
                     continue;
@@ -184,14 +185,14 @@ int main()
                     //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                 }
 
-                if (sum >= 5)
+                if (sum >= limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
                     fprintf(file, "%s home %i win\n", team1.c_str(), sum);
                     usernameWritten = true;
                 }
-                if (sum <= -5)
+                if (sum <= -limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
@@ -221,7 +222,7 @@ int main()
 
                 PGresult* userPredictsRet = PQexec(pg, sql.c_str());
                 int numUserPredicts = PQntuples(userPredictsRet);
-                if (numUserPredicts < 5)
+                if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
                     continue;
@@ -250,14 +251,14 @@ int main()
                     //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                 }
 
-                if (sum >= 5)
+                if (sum >= limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
                     fprintf(file, "%s %i win\n", team2.c_str(), sum);
                     usernameWritten = true;
                 }
-                if (sum <= -5)
+                if (sum <= -limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
@@ -287,7 +288,7 @@ int main()
 
                 PGresult* userPredictsRet = PQexec(pg, sql.c_str());
                 int numUserPredicts = PQntuples(userPredictsRet);
-                if (numUserPredicts < 5)
+                if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
                     continue;
@@ -316,14 +317,14 @@ int main()
                     //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                 }
 
-                if (sum >= 5)
+                if (sum >= limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
                     fprintf(file, "%s away %i win\n", team2.c_str(), sum);
                     usernameWritten = true;
                 }
-                if (sum <= -5)
+                if (sum <= -limit)
                 {
                     if (file == nullptr) file = fopen(filename.c_str(), "w");
                     if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
