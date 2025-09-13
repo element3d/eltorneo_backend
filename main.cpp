@@ -237,6 +237,9 @@ int main(void)
     svr.Get("/api/v1/user/fireball", PredictsRoute::Get()->GetUserFireballPredicts());
     svr.Delete("/api/v1/fireball", PredictsRoute::Get()->DeleteFireballPredict());
 
+    // Career
+    svr.Post("/api/v1/career/save", PredictsRoute::Get()->PostCareerSave());
+
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 
     svr.Post("/post", [](const Request &req, Response &res) {

@@ -3443,3 +3443,85 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.status = 200;
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::PostCareerSave()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "POST");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+
+        int userId = decoded.get_payload_claim("id").as_int();
+        std::string formation = document["formation"].GetString();
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        {
+            std::string sql =
+                "INSERT INTO career_users (user_id, formation) VALUES ("
+                + std::to_string(userId) + ", '" + formation + "') "
+                "ON CONFLICT (user_id) DO UPDATE SET formation = EXCLUDED.formation;";
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to add career user: %s\n", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+            PQclear(ret);
+        }
+
+        {
+            std::string sql = "DELETE FROM career_players WHERE user_id = " + std::to_string(userId) + ";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            PQclear(ret);
+        }
+
+        rapidjson::Value& players = document["players"];
+        for (rapidjson::SizeType i = 0; i < players.Size(); i++)
+        {
+            rapidjson::Value& player = players[i];
+            int playerApiId = document["apiId"].GetInt();
+            std::string playerName = document["name"].GetString();
+            int number = document["number"].GetInt();
+            std::string grid = document["grid"].GetString();
+            std::string pos = document["pos"].GetString();
+            int start11 = document["start11"].GetInt();
+            int team = document["team"].GetInt();
+            std::string grid = document["pos"].GetString();
+
+            std::string sql = "INSERT INTO career_players (user_id, name, number, grid, start11, team, pos, api_id) VALUE ("
+                + std::to_string(userId) + ", '"
+                + playerName + "', "
+                + std::to_string(number) + ", '"
+                + grid + "', "
+                + std::to_string(start11) + ", "
+                + std::to_string(team) + ", '"
+                + pos + "', "
+                + std::to_string(playerApiId) + ");";
+                
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to add career players: %s\n", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+            PQclear(ret);
+        }
+
+        ConnectionPool::Get()->releaseConnection(pg);
+
+        // Send response
+        res.status = 201; // Created
+    };
+}

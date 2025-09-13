@@ -44,6 +44,9 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteFireballPredict();
 
+    // Career
+    std::function<void(const httplib::Request&, httplib::Response&)> PostCareerSave();
+
 private:
    // void CacheTable();
 
