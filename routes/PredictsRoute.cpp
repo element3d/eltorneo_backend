@@ -3496,7 +3496,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int start11 = player["start11"].GetBool();
             int team = player["teamId"].GetInt();
 
-            std::string sql = "INSERT INTO career_players (user_id, name, number, grid, start11, team, pos, api_id) VALUE ("
+            std::string sql = "INSERT INTO career_players (user_id, name, number, grid, start11, team, pos, api_id) VALUES ("
                 + std::to_string(userId) + ", '"
                 + playerName + "', "
                 + std::to_string(number) + ", '"
