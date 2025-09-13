@@ -3488,13 +3488,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         for (rapidjson::SizeType i = 0; i < players.Size(); i++)
         {
             rapidjson::Value& player = players[i];
-            int playerApiId = document["apiId"].GetInt();
-            std::string playerName = document["name"].GetString();
-            int number = document["number"].GetInt();
-            std::string grid = document["grid"].GetString();
-            std::string pos = document["position"].GetString();
-            int start11 = document["start11"].GetInt();
-            int team = document["teamId"].GetInt();
+            int playerApiId = player["apiId"].GetInt();
+            std::string playerName = player["name"].GetString();
+            int number = player["number"].GetInt();
+            std::string grid = player["grid"].GetString();
+            std::string pos = player["position"].GetString();
+            int start11 = player["start11"].GetBool();
+            int team = player["teamId"].GetInt();
 
             std::string sql = "INSERT INTO career_players (user_id, name, number, grid, start11, team, pos, api_id) VALUE ("
                 + std::to_string(userId) + ", '"
