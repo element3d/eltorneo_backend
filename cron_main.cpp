@@ -2282,7 +2282,7 @@ void FillTeamSquad(PGconn* pg)
 	for (int i = 0; i < rows; ++i)
 	{
 		int leagueId = atoi(PQgetvalue(res, i, 0));
-		if (leagueId != (int)ELeague::UEFAWorldClubQualification) continue;
+		if (leagueId != (int)ELeague::PremierLeague) continue;
 
 		std::string teamSql =
 			"SELECT lt.team_id, t.api_id "
