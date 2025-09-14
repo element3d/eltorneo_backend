@@ -3170,7 +3170,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "FROM users u "
             "INNER JOIN " + predictsTableName + " p ON u.id = p.user_id "
             "INNER JOIN fireball_users fu ON u.id = fu.user_id "
-            "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+            "WHERE fu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
             " GROUP BY u.id, u.name, u.avatar, " + pointsColName + " "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
