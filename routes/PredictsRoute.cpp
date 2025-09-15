@@ -3614,7 +3614,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             player.AddMember("position", idValue, allocator);
 
             int apiId = atoi(PQgetvalue(retPlayers, i, 8));
-            player.AddMember("apiId", idValue, allocator);
+            player.AddMember("apiId", apiId, allocator);
+
             players.PushBack(player, allocator);
         }
         document.AddMember("players", players, allocator);
@@ -3631,6 +3632,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
 
         PQclear(ret);
+        PQclear(retPlayers);
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
