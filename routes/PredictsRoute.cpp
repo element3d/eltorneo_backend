@@ -3568,7 +3568,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("formation", v, allocator);
         document.AddMember("points", points, allocator);
 
-        sql = "SELECT * FROM career_players WHERE user_id " + std::to_string(userId) + ";";
+        sql = "SELECT * FROM career_players WHERE user_id = " + std::to_string(userId) + ";";
         PGresult* retPlayers = PQexec(pg, sql.c_str());
         if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK)
         {
