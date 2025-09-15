@@ -3604,7 +3604,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             player.AddMember("grid", idValue, allocator);
 
             int start11 = atoi(PQgetvalue(retPlayers, i, 5));
-            player.AddMember("start11", start11, allocator);
+            player.AddMember("start11", (bool)start11, allocator);
 
             int team = atoi(PQgetvalue(retPlayers, i, 6));
             player.AddMember("teamId", team, allocator);
