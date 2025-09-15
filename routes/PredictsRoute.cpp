@@ -3524,3 +3524,113 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         res.status = 201; // Created
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetCareerPlayers()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "SELECT formation, points FROM career_users WHERE user_id = "
+            + std::to_string(userId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch user career: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        if (nrows <= 0) 
+        {
+            fprintf(stderr, "Failed to fetch user career: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        std::string formation = PQgetvalue(ret, 0, 0);
+        int points = atoi(PQgetvalue(ret, 0, 1));
+
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+        rapidjson::Value v;
+        v.SetString(formation.c_str(), formation.size(), allocator);
+        document.AddMember("formation", v, allocator);
+        document.AddMember("points", points, allocator);
+
+        sql = "SELECT * FROM career_players WHERE user_id " + std::to_string(userId) + ";";
+        PGresult* retPlayers = PQexec(pg, sql.c_str());
+        if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch user career players: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            PQclear(retPlayers);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        rapidjson::Value players;
+        players.SetArray();
+        nrows = PQntuples(retPlayers);
+        for (int i = 0; i < nrows; ++i)
+        {
+            rapidjson::Value player;
+            player.SetObject();
+
+            int id = atoi(PQgetvalue(retPlayers, i, 0));
+            rapidjson::Value idValue;
+            player.AddMember("id", id, allocator);
+
+            std::string name = (PQgetvalue(retPlayers, i, 2));
+            idValue.SetString(name.c_str(), name.size(), allocator);
+            player.AddMember("name", idValue, allocator);
+
+            int number = atoi(PQgetvalue(retPlayers, i, 3));
+            player.AddMember("number", number, allocator);
+
+            std::string grid = (PQgetvalue(retPlayers, i, 4));
+            idValue.SetString(grid.c_str(), grid.size(), allocator);
+            player.AddMember("grid", idValue, allocator);
+
+            int start11 = atoi(PQgetvalue(retPlayers, i, 5));
+            player.AddMember("start11", start11, allocator);
+
+            int team = atoi(PQgetvalue(retPlayers, i, 6));
+            player.AddMember("teamId", team, allocator);
+
+            std::string pos = (PQgetvalue(retPlayers, i, 7));
+            idValue.SetString(pos.c_str(), pos.size(), allocator);
+            player.AddMember("position", idValue, allocator);
+
+            int apiId = atoi(PQgetvalue(retPlayers, i, 8));
+            player.AddMember("apiId", idValue, allocator);
+            players.PushBack(player, allocator);
+        }
+        document.AddMember("players", players, allocator);
+
+        // Assuming you convert the Document to a string and send it in the response as before
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        // You can then use `buffer.GetString()` to get the JSON string
+        // And send it in the response as follows:
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}

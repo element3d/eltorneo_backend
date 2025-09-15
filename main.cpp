@@ -239,6 +239,7 @@ int main(void)
 
     // Career
     svr.Post("/api/v1/career/save", PredictsRoute::Get()->PostCareerSave());
+    svr.Get("/api/v1/career/players", PredictsRoute::Get()->GetCareerPlayers());
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 
