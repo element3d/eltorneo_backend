@@ -14,13 +14,27 @@
 #include <thread>
 
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
-void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFireball = false);
+void GetMatchPlayers
+(
+	PGconn* pg, 
+	int matchId, 
+	int matchApiId, 
+	int team1Score,
+	int team2Score,
+	int team1Id,
+	int team2Id, 
+	bool updateFireball = false
+);
 
 struct FinishedMatch 
 {
 	long long Timestamp;
 	int MatchId;
 	int MatchApiId;
+	int Team1Score;
+	int Team2Score;
+	int Team1Id;
+	int Team2Id;
 };
 std::vector<FinishedMatch> finishedMatches;
 
@@ -974,11 +988,13 @@ void GetLiveMatches(PGconn* pg)
 
 			FillMatchStats(pg, document, id);
 			FillMatchEvents(pg, document, id, team1, team2);
-			GetMatchPlayers(pg, id, apiId, false);
+			GetMatchPlayers(pg, id, apiId, 0, 0, 0, 0, false);
 			// FillMatchLineups(pg, document, id, matchDate);
 
 			if (status == "FT" || status == "AET" || status == "PEN")
 			{
+				int team1GoalsAll = team1Goals;
+				int team2GoalsAll = team2Goals;
 				int team1Goals90 = -1;
 				int team2Goals90 = -1;
 				int team1GoalsPen = -1;
@@ -1251,14 +1267,30 @@ void GetLiveMatches(PGconn* pg)
 					} */
 
 					// Update match players
-					GetMatchPlayers(pg, id, apiId, false);
-					FinishedMatch fm;
+					GetMatchPlayers(pg, id, apiId, 0, 0, 0, 0, false);
 					auto now = std::chrono::system_clock::now();
 					auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+					/*FinishedMatch fm;
 					fm.Timestamp = nowMs;
 					fm.MatchApiId = apiId;
 					fm.MatchId = id;
-					finishedMatches.push_back(fm);
+					fm.Team1Score = team1GoalsAll;
+					fm.Team2Score = team2GoalsAll;
+					fm.Team1Id = team1.Id;
+					fm.Team2Id = team2.Id;
+					finishedMatches.push_back(fm);*/
+					{
+						std::string sql = "INSERT INTO finished_matches(match_id, match_api_id, team1_score, team2_score, team1, team2, ts) VALUES ("
+							+ std::to_string(id) + ", "
+							+ std::to_string(apiId) + ", "
+							+ std::to_string(team1GoalsAll) + ", "
+							+ std::to_string(team2GoalsAll) + ", "
+							+ std::to_string(team1.Id) + ", "
+							+ std::to_string(team2.Id) + ", "
+							+ std::to_string(nowMs) + ");";
+						PGresult* pret = PQexec(pg, sql.c_str());
+						PQclear(pret);
+					}
 				}
 			}
 		}
@@ -2282,7 +2314,18 @@ void FillTeamSquad(PGconn* pg)
 	for (int i = 0; i < rows; ++i)
 	{
 		int leagueId = atoi(PQgetvalue(res, i, 0));
-		if (leagueId != (int)ELeague::PremierLeague) continue;
+		if (leagueId == (int)ELeague::PremierLeague
+			|| leagueId == (int)ELeague::LaLiga
+			|| leagueId == (int)ELeague::SerieA
+			|| leagueId == (int)ELeague::Bundesliga
+			|| leagueId == (int)ELeague::Ligue1)
+		{
+
+		}
+		else
+		{
+			continue;
+		}
 
 		std::string teamSql =
 			"SELECT lt.team_id, t.api_id "
@@ -2349,6 +2392,142 @@ void UpdateFireballPredictsForNonPlayedPlayer(PGconn* pg, int matchId)
 	PQclear(res);
 }
 
+void UpdateCareerForPlayer
+(
+	PGconn* pg, 
+	int matchId,
+	int playerApiId, 
+	int minutes, 
+	int goals, 
+	int assists, 
+	int yellowCards,
+	int redCards,
+	int penMissed,
+	int penSaved,
+	int team1Score,
+	int team2Score,
+	int team1Id,
+	int team2Id
+)
+{
+	std::string sql = "SELECT id, user_id, pos, team FROM career_players WHERE api_id = "
+		+ std::to_string(playerApiId)
+		+ " AND start11 = 1;";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int rows = PQntuples(res);
+	if (rows == 0)
+	{
+		PQclear(res);
+		return;
+	}
+
+	for (int i = 0; i < rows; ++i)
+	{
+		int id = atoi(PQgetvalue(res, i, 0));
+		int userId = atoi(PQgetvalue(res, i, 1));
+		std::string pos = PQgetvalue(res, i, 2);
+		int teamId = atoi(PQgetvalue(res, i, 3));
+
+		int points = 0;
+		int goalsA = 0;
+		if (minutes <= 0) 
+		{
+			points -= 1;
+		}
+		else
+		{
+			if (goals > 0)
+			{
+				if (pos == "Attacker") points += 3 * goals;
+				if (pos == "Midfielder") points += 4 * goals;
+				if (pos == "Defender") points += 6 * goals;
+				if (pos == "Goalkeeper") points += 10 * goals;
+			}
+			else
+			{
+				if (minutes > 0 && pos == "Attacker") points -= 1;
+			}
+
+			if (assists > 0) points += assists;
+
+			if (redCards > 0) points -= 3;
+			else if (yellowCards > 0) points -= 1;
+
+			if (pos == "Defender")
+			{
+				if (teamId == team1Id) 
+				{
+					goalsA = team2Score;
+					points -= team2Score;
+				}
+				else
+				{
+					goalsA = team1Score;
+					points -= team1Score;
+				}
+			}
+
+			if (pos == "Goalkeeper")
+			{
+				if (teamId == team1Id) 
+				{
+					goalsA = team2Score;
+					points -= 2 * team2Score;
+				}
+				else
+				{
+					goalsA = team1Score;
+					points -= 2 * team1Score;
+				}
+
+				if (penSaved > 0) points += penSaved * 3;
+			}
+
+			if (pos == "Defender" || pos == "Goalkeeper")
+			{
+				if (teamId == team1Id && team2Score == 0) points += 3;
+				else if (teamId == team2Id && team1Score == 0) points += 3;
+			}
+
+			if (penMissed > 0) points -= 3 * penMissed;
+		}
+
+		{
+			std::string updateSql =
+				"UPDATE career_users "
+				"SET points = GREATEST(points + " + std::to_string(points) + ", 0) "
+				"WHERE user_id = " + std::to_string(userId) + ";";
+			PGresult* updateRes = PQexec(pg, updateSql.c_str());
+			if (PQresultStatus(updateRes) != PGRES_COMMAND_OK)
+			{
+				fprintf(stderr, "Update career user failed: %s\n", PQerrorMessage(pg));
+			}
+			PQclear(updateRes);
+		}
+		{
+			std::string insertSql = "INSERT INTO career_predicts (user_id, match_id, player_api_id, minutes, goals, assists, yellow_cards, red_cards, goals_a, pen_saved, pen_missed, points) VALUES ("
+				+ std::to_string(userId) + ", "
+				+ std::to_string(matchId) + ", "
+				+ std::to_string(playerApiId) + ", "
+				+ std::to_string(minutes) + ", "
+				+ std::to_string(goals) + ", "
+				+ std::to_string(assists) + ", "
+				+ std::to_string(yellowCards) + ", "
+				+ std::to_string(redCards) + ", "
+				+ std::to_string(goalsA) + ", "
+				+ std::to_string(penSaved) + ", "
+				+ std::to_string(penMissed) + ", "
+				+ std::to_string(points) + ");";
+			PGresult* updateRes = PQexec(pg, insertSql.c_str());
+			if (PQresultStatus(updateRes) != PGRES_COMMAND_OK)
+			{
+				fprintf(stderr, "Insert career predict failed: %s\n", PQerrorMessage(pg));
+			}
+			PQclear(updateRes);
+		}
+	}
+}
+
 void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, int minutes, int goals)
 {
 	std::string sql = "SELECT is_special FROM matches WHERE id = " + std::to_string(matchId) + ";";
@@ -2405,6 +2584,7 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 			"SET points = GREATEST(points + " + std::to_string(points) + ", 0) "
 			"WHERE user_id = " + std::to_string(userId) + ";";
 		PGresult* resUpdatePoints = PQexec(pg, updatePointsSql.c_str());
+
 		PQclear(resUpdatePoints);
 
 		std::string updatePredictStatusSql = "UPDATE fireball_predicts SET status = " + std::to_string(status) +
@@ -2415,7 +2595,15 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 	PQclear(res);
 }
 
-void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFireball)
+void GetMatchPlayers(
+	PGconn* pg, 
+	int matchId, 
+	int matchApiId, 
+	int team1Score,
+	int team2Score,
+	int team1Id,
+	int team2Id,
+	bool updateFireball)
 {
 	std::string url = "https://v3.football.api-sports.io/fixtures/players";
 	cpr::Response r;
@@ -2453,6 +2641,7 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 						if (updateFireball) 
 						{
 							UpdateFireballPredictsForPlayer(pg, matchId, id, 0, 0);
+							UpdateCareerForPlayer(pg, matchId, id, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 						}
 						continue;
 					}
@@ -2468,6 +2657,10 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 					const rapidjson::Value& cards = statistics[0]["cards"];
 					int yellow = cards["yellow"].GetInt();
 					int red = cards["red"].GetInt();
+
+					const rapidjson::Value& penalty = statistics[0]["penalty"];
+					int penMissed = penalty["missed"].IsNull() ? 0 : penalty["missed"].GetInt();
+					int penSaved = penalty["saved"].IsNull() ? 0 : penalty["saved"].GetInt();
 
 					std::string sql = "insert into match_players "
 						"(api_id, match_id, match_api_id, name, photo, number, position, rating, goals, assists, yellow, red, minutes) values (";
@@ -2518,6 +2711,7 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 					if (updateFireball)
 					{
 						UpdateFireballPredictsForPlayer(pg, matchId, id, minutes, total);
+						UpdateCareerForPlayer(pg, matchId, id, minutes, total, assists, yellow, red, penMissed, penSaved, team1Score, team2Score, team1Id, team2Id);
 					}
 				}
 			}
@@ -2530,12 +2724,51 @@ void GetMatchPlayers(PGconn* pg, int matchId, int matchApiId, bool updateFirebal
 	}
 }
 
+void ProcessFinishedMatches(PGconn* pg)
+{
+	std::string sql =
+		"SELECT * FROM finished_matches "
+		"WHERE status = 0 "
+		"AND ts <= (strftime('%s','now') * 1000 - 5 * 60 * 1000);";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int rows = PQntuples(res);
+	for (int i = 0; i < rows; ++i) 
+	{
+		int id = atoi(PQgetvalue(res, i, 0));
+		int matchId = atoi(PQgetvalue(res, i, 1));
+		int matchApiId = atoi(PQgetvalue(res, i, 2));
+		int team1Score = atoi(PQgetvalue(res, i, 3));
+		int team2Score = atoi(PQgetvalue(res, i, 4));
+		int team1 = atoi(PQgetvalue(res, i, 5));
+		int team2 = atoi(PQgetvalue(res, i, 6));
+
+		GetMatchPlayers
+		(
+			pg,
+			matchId,
+			matchApiId,
+			team1Score,
+			team2Score,
+			team1,
+			team2,
+			true
+		);
+
+		{
+			std::string sql = "DELETE FROM finished_matches WHERE id = " + std::to_string(id) + ";";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+	}
+	PQclear(res);
+}
+
 int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	//FillTodayLineups(pg);
-	// GetMatchPlayers(pg, 0, 1390826);
+    //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
 	FillTeamSquad(pg);
 	printf("\nDONE...\n");
 	return 0;
@@ -2565,21 +2798,7 @@ int main()
 		// Get the current time
 		auto now = std::chrono::system_clock::now();
 		auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
-		for (auto it = finishedMatches.begin(); it != finishedMatches.end(); )
-		{
-			if (nowMs - it->Timestamp >= 5 * 60 * 1000) // 10 minutes
-			{
-				// call your update function
-				GetMatchPlayers(pg, it->MatchId, it->MatchApiId, true);
-
-				// remove from list so it won't be processed again
-				it = finishedMatches.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
+		ProcessFinishedMatches(pg);
 
 		// Check if 5 minutes have passed to fill today's lineups
 		if (std::chrono::duration_cast<std::chrono::minutes>(now - lastFillTime).count() >= 5)
