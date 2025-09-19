@@ -629,6 +629,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
             document.AddMember("fireballPoints", fPoints, allocator);
             PQclear(fpRet);
 
+            sql = "SELECT points from career_users WHERE user_id = " + std::to_string(id) + ";";
+            PGresult* cpRet = PQexec(pg, sql.c_str());
+            n = PQntuples(cpRet);
+            int cPoints = 0;
+            if (n > 0)
+            {
+                cPoints = atoi(PQgetvalue(cpRet, 0, 0));
+            }
+            document.AddMember("careerPoints", cPoints, allocator);
+            PQclear(cpRet);
+
             break;
         }
 
@@ -638,6 +649,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         document.AddMember("beatBetPosition", bbpos, allocator);
         int fpos = CachedTable::Get()->GetFireballPosition(userId);
         document.AddMember("fireballPosition", fpos, allocator);
+        int cpos = CachedTable::Get()->GetCareerPosition(userId);
+        document.AddMember("careerPosition", cpos, allocator);
         free(temp);
 
         {

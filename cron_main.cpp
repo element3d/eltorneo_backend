@@ -2769,9 +2769,9 @@ int main()
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	//FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
-	FillTeamSquad(pg);
-	printf("\nDONE...\n");
-	return 0;
+	//FillTeamSquad(pg);
+	//printf("\nDONE...\n");
+	//return 0;
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;

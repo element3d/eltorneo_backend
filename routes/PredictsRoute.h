@@ -47,6 +47,8 @@ public:
     // Career
     std::function<void(const httplib::Request&, httplib::Response&)> PostCareerSave();
     std::function<void(const httplib::Request&, httplib::Response&)> GetCareerPlayers();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetCareerTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUserCareerPredicts();
 
 private:
    // void CacheTable();

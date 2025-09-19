@@ -233,6 +233,38 @@ void CachedTable::Cache()
         PQclear(ret);
     }
 
+    // Career
+    {
+        std::string sql =
+            "SELECT u.user_id "
+            "FROM career_users u "
+            "GROUP BY u.user_id, u.points "
+            "ORDER BY u.points DESC, u.user_id ASC;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to cache career table: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        {
+            std::lock_guard<std::mutex> l(mMutex);
+            mCareerTable.clear();
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int pos = i + 1;
+                int uid = atoi(PQgetvalue(ret, i, 0));
+                mCareerTable[uid] = pos;
+            }
+        }
+        PQclear(ret);
+    }
+
     ConnectionPool::Get()->releaseConnection(pg);
 }
 
@@ -278,6 +310,16 @@ int CachedTable::GetFireballPosition(int userId)
 
     if (mFireballTable.find(userId) == mFireballTable.end()) return -1;
     return mFireballTable[userId];
+
+    return -1;
+}
+
+int CachedTable::GetCareerPosition(int userId)
+{
+    std::lock_guard<std::mutex> l(mMutex);
+
+    if (mCareerTable.find(userId) == mCareerTable.end()) return -1;
+    return mCareerTable[userId];
 
     return -1;
 }
