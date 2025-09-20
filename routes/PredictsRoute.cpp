@@ -3545,9 +3545,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     return [](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
-        std::string token = req.get_header_value("Authentication");
-        auto decoded = jwt::decode(token);
-        int userId = decoded.get_payload_claim("id").as_int();
+        int userId = -1;
+        if (req.has_param("user_id")) 
+        {
+            userId = atoi(req.get_param_value("user_id").c_str());
+        }
+        if (userId == -1) 
+        {
+            fprintf(stderr, "Failed to fetch career players no user_id\n");
+            res.status = 500;  // Internal Server Error
+            return;
+        }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "SELECT formation, points FROM career_users WHERE user_id = "
