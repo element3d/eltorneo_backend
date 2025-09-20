@@ -1952,78 +1952,6 @@ bool IsApiLeagueSupported(int leagueApiId)
 	return false;
 }
 
-void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId)
-{
-	std::string url = "https://v3.football.api-sports.io/players";
-
-	cpr::Response r;
-	cpr::Parameters params;
-	if (teamApiId == -1)
-	{
-		return;
-	}
-	else
-	{
-		params = {
-			{"id", std::to_string(playerApiId)},
-			{"season", "2025"},
-			{"team", std::to_string(teamApiId)}
-		};
-	}
-
-	r = cpr::Get(cpr::Url{ url },
-		params,
-		cpr::Header{ {"x-apisports-key", apiKey} });
-
-	if (r.status_code == 200)
-	{
-		rapidjson::Document document;
-		document.Parse(r.text.c_str());
-
-		if (document.HasMember("response") && document["response"].IsArray() && document["response"].Size() > 0)
-		{
-			const rapidjson::Value& statistics = document["response"][0]["statistics"];
-			for (rapidjson::SizeType i = 0; i < statistics.Size(); i++)
-			{
-				const auto& stat = statistics[i];
-				const auto& league = stat["league"];
-				if (league["id"].IsNull()) continue;
-				int leagueApiId = league["id"].GetInt();
-				if (!IsApiLeagueSupported(leagueApiId)) continue;
-
-				const auto& games = stat["games"];
-				int appearences = games["appearences"].IsNull() ? 0 : games["appearences"].GetInt();
-				std::string rating = games["rating"].IsNull() ? "" : games["rating"].GetString();
-
-				const auto& goals = stat["goals"];
-				int numGoals = goals["total"].IsNull() ? 0 : goals["total"].GetInt();
-				int numAssists = goals["assists"].IsNull() ? 0 : goals["assists"].GetInt();
-
-				std::string sql = "INSERT INTO player_stats (player_api_id, league_id, league_api_id, team_id, team_api_id, games, rating, goals, assists) VALUES ("
-					+ std::to_string(playerApiId) + ", "
-					+ std::to_string(int(ApiLeagueToLeagueId(leagueApiId))) + ", "
-					+ std::to_string(leagueApiId) + ", "
-					+ std::to_string(teamId) + ", "
-					+ std::to_string(teamApiId) + ", "
-					+ std::to_string(appearences) + ", '"
-					+ rating + "', "
-					+ std::to_string(numGoals) + ", "
-					+ std::to_string(numAssists) + ");";
-
-				PGresult* insertRes = PQexec(pg, sql.c_str());
-				if (PQresultStatus(insertRes) != PGRES_COMMAND_OK)
-				{
-					std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
-					PQclear(insertRes);
-					return;
-				}
-				PQclear(insertRes);
-			}
-		}
-	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-}
-
 void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int leagueId)
 {
 	std::string url = "https://v3.football.api-sports.io/players";
@@ -2094,74 +2022,6 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 					return;
 				}
 				PQclear(insertRes);
-			}
-		}
-	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-}
-
-
-void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId)
-{
-	std::string sql;
-	std::string url = "https://v3.football.api-sports.io/players/squads";
-
-	cpr::Response r;
-	cpr::Parameters params;
-	if (teamApiId == -1)
-	{
-		return;
-	}
-	else
-	{
-		params = {
-			  {"team", std::to_string(teamApiId)}
-		};
-	}
-
-	r = cpr::Get(cpr::Url{ url },
-		params,
-		cpr::Header{ {"x-apisports-key", apiKey} });
-
-	if (r.status_code == 200)
-	{
-		// Parse the JSON response
-		rapidjson::Document document;
-		document.Parse(r.text.c_str());
-
-		if (document.HasMember("response") && document["response"].IsArray())
-		{
-			const rapidjson::Value& players = document["response"][0]["players"];
-			for (rapidjson::SizeType i = 0; i < players.Size(); i++)
-			{
-				const auto& player = players[i];
-				int playerId = player["id"].GetInt();
-				if (playerId == 0 || player["name"].IsNull()) continue;
-				std::string name = player["name"].GetString();
-				int age = player["age"].IsNull() ? 0 : player["age"].GetInt();
-				int number = player["number"].IsNull() ? 0 : player["number"].GetInt();
-				std::string pos = player["position"].IsNull() ? "" : player["position"].GetString();
-				std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
-
-				std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, position, photo) VALUES ("
-					+ std::to_string(playerId) + ", "
-					+ std::to_string(teamId) + ", '"
-					+ escape_sql_string(name) + "', "
-					+ std::to_string(age) + ", "
-					+ std::to_string(number) + ", '"
-					+ escape_sql_string(pos) + "', '"
-					+ escape_sql_string(photo) + "');";
-
-				PGresult* insertRes = PQexec(pg, sql.c_str());
-				if (PQresultStatus(insertRes) != PGRES_COMMAND_OK)
-				{
-					std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
-					PQclear(insertRes);
-					return;
-				}
-				PQclear(insertRes);
-
-				FillPlayerStats(pg, playerId, teamId, teamApiId);
 			}
 		}
 	}
@@ -2314,11 +2174,12 @@ void FillTeamSquad(PGconn* pg)
 	for (int i = 0; i < rows; ++i)
 	{
 		int leagueId = atoi(PQgetvalue(res, i, 0));
-		if (leagueId == (int)ELeague::PremierLeague
+		/*if (leagueId == (int)ELeague::PremierLeague
 			|| leagueId == (int)ELeague::LaLiga
 			|| leagueId == (int)ELeague::SerieA
 			|| leagueId == (int)ELeague::Bundesliga
-			|| leagueId == (int)ELeague::Ligue1)
+			|| leagueId == (int)ELeague::Ligue1)*/
+		if (leagueId == (int)ELeague::LaLiga)
 		{
 
 		}
@@ -2777,9 +2638,9 @@ int main()
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	//FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
-	//FillTeamSquad(pg);
-	//printf("\nDONE...\n");
-	//return 0;
+	FillTeamSquad(pg);
+	printf("\nDONE...\n");
+	return 0;
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;
