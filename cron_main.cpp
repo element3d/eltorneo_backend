@@ -1993,7 +1993,7 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 				const auto& league = stat["league"];
 				if (league["id"].IsNull()) continue;
 				int leagueApiId = league["id"].GetInt();
-				//if (!IsApiLeagueSupported(leagueApiId)) continue;
+				if (!IsApiLeagueSupported(leagueApiId)) continue;
 				if (filterLeagueApiId != leagueApiId) continue;
 				bool br = false;
 				for (int pl = 0; pl < processedLeagues.size(); ++pl) 
@@ -2317,7 +2317,7 @@ void UpdateCareerForPlayer
 			}
 			else
 			{
-				if (minutes > 0 && pos == "Attacker") points -= 1;
+				//if (minutes > 0 && pos == "Attacker") points -= 1;
 			}
 
 			if (assists > 0) points += assists;
@@ -2648,9 +2648,9 @@ int main()
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	//FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
-	FillTeamSquad(pg);
-	printf("\nDONE...\n");
-	return 0;
+	//FillTeamSquad(pg);
+	//printf("\nDONE...\n");
+	//return 0;
 	// Get current time
 	auto lastFillTime = std::chrono::system_clock::now();
 	auto lastTopScorersFillTime = lastFillTime;
