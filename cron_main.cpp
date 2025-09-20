@@ -1986,6 +1986,7 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 		if (document.HasMember("response") && document["response"].IsArray() && document["response"].Size() > 0)
 		{
 			const rapidjson::Value& statistics = document["response"][0]["statistics"];
+			std::vector<int> processedLeagues;
 			for (rapidjson::SizeType i = 0; i < statistics.Size(); i++)
 			{
 				const auto& stat = statistics[i];
@@ -1994,7 +1995,17 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 				int leagueApiId = league["id"].GetInt();
 				//if (!IsApiLeagueSupported(leagueApiId)) continue;
 				if (filterLeagueApiId != leagueApiId) continue;
-
+				bool br = false;
+				for (int pl = 0; pl < processedLeagues.size(); ++pl) 
+				{
+					if (processedLeagues[pl] == leagueApiId)
+					{
+						br = true;
+						break;
+					}
+				}
+				if (br) break;
+				processedLeagues.push_back(leagueApiId);
 				const auto& games = stat["games"];
 				int appearences = games["appearences"].IsNull() ? 0 : games["appearences"].GetInt();
 				std::string rating = games["rating"].IsNull() ? "" : games["rating"].GetString();
