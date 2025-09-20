@@ -3591,7 +3591,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("formation", v, allocator);
         document.AddMember("points", points, allocator);
 
-        sql = "SELECT * FROM career_players WHERE user_id = " + std::to_string(userId) + ";";
+        sql =
+            "SELECT cp.*, t.short_name, t.name, t.players_ready "
+            "FROM career_players cp "
+            "JOIN teams t ON cp.team = t.id "
+            "WHERE cp.user_id = " + std::to_string(userId) + ";";
+
         PGresult* retPlayers = PQexec(pg, sql.c_str());
         if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK)
         {
@@ -3638,6 +3643,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int apiId = atoi(PQgetvalue(retPlayers, i, 8));
             player.AddMember("apiId", apiId, allocator);
+
+            std::string teamShortName = (PQgetvalue(retPlayers, i, 9));
+            idValue.SetString(teamShortName.c_str(), teamShortName.size(), allocator);
+            player.AddMember("teamShortName", idValue, allocator);
+
+            std::string teamName = (PQgetvalue(retPlayers, i, 10));
+            idValue.SetString(teamName.c_str(), teamName.size(), allocator);
+            player.AddMember("teamName", idValue, allocator);
+
+            int teamPlayersReady = atoi(PQgetvalue(retPlayers, i, 11));
+            player.AddMember("teamPlayersReady", teamPlayersReady, allocator);
 
             players.PushBack(player, allocator);
         }
