@@ -3595,7 +3595,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "SELECT cp.*, t.short_name, t.name, t.players_ready "
             "FROM career_players cp "
             "JOIN teams t ON cp.team = t.id "
-            "WHERE cp.user_id = " + std::to_string(userId) + ";";
+            "WHERE cp.user_id = " + std::to_string(userId) + " ORDER BY grid;";
 
         PGresult* retPlayers = PQexec(pg, sql.c_str());
         if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK)
