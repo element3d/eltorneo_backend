@@ -2410,7 +2410,7 @@ void UpdateCareerForPlayer
 	int team2Id
 )
 {
-	std::string sql = "SELECT id, user_id, pos, team FROM career_players WHERE api_id = "
+	std::string sql = "SELECT id, user_id, pos, team, name FROM career_players WHERE api_id = "
 		+ std::to_string(playerApiId)
 		+ " AND start11 = 1;";
 	PGresult* res = PQexec(pg, sql.c_str());
@@ -2427,6 +2427,7 @@ void UpdateCareerForPlayer
 		int userId = atoi(PQgetvalue(res, i, 1));
 		std::string pos = PQgetvalue(res, i, 2);
 		int teamId = atoi(PQgetvalue(res, i, 3));
+		std::string playerName = (PQgetvalue(res, i, 4));
 
 		int points = 0;
 		int goalsA = 0;
@@ -2505,7 +2506,7 @@ void UpdateCareerForPlayer
 			PQclear(updateRes);
 		}
 		{
-			std::string insertSql = "INSERT INTO career_predicts (user_id, match_id, player_api_id, minutes, goals, assists, yellow_cards, red_cards, goals_a, pen_saved, pen_missed, points) VALUES ("
+			std::string insertSql = "INSERT INTO career_predicts (user_id, match_id, player_api_id, minutes, goals, assists, yellow_cards, red_cards, goals_a, pen_saved, pen_missed, points, player_name) VALUES ("
 				+ std::to_string(userId) + ", "
 				+ std::to_string(matchId) + ", "
 				+ std::to_string(playerApiId) + ", "
@@ -2517,7 +2518,9 @@ void UpdateCareerForPlayer
 				+ std::to_string(goalsA) + ", "
 				+ std::to_string(penSaved) + ", "
 				+ std::to_string(penMissed) + ", "
-				+ std::to_string(points) + ");";
+				+ std::to_string(points) + ", '"
+				+ playerName + "');";
+
 			PGresult* updateRes = PQexec(pg, insertSql.c_str());
 			if (PQresultStatus(updateRes) != PGRES_COMMAND_OK)
 			{
@@ -2726,10 +2729,15 @@ void GetMatchPlayers(
 
 void ProcessFinishedMatches(PGconn* pg)
 {
+	long long nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+	).count();
+	long long cutoff = nowMs - 5 * 60 * 1000;
+
 	std::string sql =
 		"SELECT * FROM finished_matches "
 		"WHERE status = 0 "
-		"AND ts <= (strftime('%s','now') * 1000 - 5 * 60 * 1000);";
+		"AND ts <= " + std::to_string(cutoff) + ";";
 	PGresult* res = PQexec(pg, sql.c_str());
 	int rows = PQntuples(res);
 	for (int i = 0; i < rows; ++i) 

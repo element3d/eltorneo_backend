@@ -3819,7 +3819,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // SQL query to fetch bets and match details
         std::string sql =
-            "SELECT cp.id, cp.user_id, cp.match_id, cp.player_api_id, cp.minutes, cp.goals, cp.assists, cp.yellow_cards, cp.red_cards, cp.goals_a, cp.pen_saved, cp.pen_missed, cp.points, pl.name, "
+            "SELECT cp.id, cp.user_id, cp.match_id, cp.player_api_id, cp.minutes, cp.goals, cp.assists, cp.yellow_cards, cp.red_cards, cp.goals_a, cp.pen_saved, cp.pen_missed, cp.points, cp.player_name, "
             "m.id AS match_id, l.id AS league_id, l.name AS league_name, l.country AS league_country, "
             "m.season, m.week, m.match_date, m.team1_score, m.team2_score, m.week_type, m.elapsed, "
             "m.team1_score_live, m.team2_score_live, m.status AS match_status, m.is_special, m.preview, "
@@ -3828,7 +3828,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "COALESCE(s.title, '') AS special_match_title, COALESCE(s.points, '') AS special_match_points "
             "FROM career_predicts cp "
             "INNER JOIN matches m ON cp.match_id = m.id "
-            "LEFT JOIN career_players pl ON cp.user_id = pl.user_id AND cp.player_api_id = pl.api_id "
             "LEFT JOIN leagues l ON m.league = l.id "
             "LEFT JOIN teams t1 ON m.team1 = t1.id "
             "LEFT JOIN teams t2 ON m.team2 = t2.id "
