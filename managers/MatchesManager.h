@@ -41,6 +41,14 @@ public:
 		const std::string& lang,
 		rapidjson::Document& document);
 
+	static bool GetLeagueMatchesWithCareer(PGconn* pg,
+		int userId,
+		int lid,
+		const std::string& season,
+		const std::string& week,
+		const std::string& lang,
+		rapidjson::Document& document);
+
 	// Matches by date (Calendar page)
 	static bool GetMatchesByDateWithPredicts(PGconn* pg,
 		int userId,
@@ -86,6 +94,11 @@ public:
 		long long currentTimeMs,
 		rapidjson::Document& document);
 
+	static bool GetMatchesLiveWithCareer(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
 	// Matches upcoming (Live page)
 	static bool GetMatchesUpcomingWithPredicts(PGconn* pg,
 		int userId,
@@ -98,6 +111,11 @@ public:
 		rapidjson::Document& document);
 
 	static bool GetMatchesUpcomingWithFireball(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
+	static bool GetMatchesUpcomingWithCareer(PGconn* pg,
 		int userId,
 		long long currentTimeMs,
 		rapidjson::Document& document);
