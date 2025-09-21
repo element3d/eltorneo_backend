@@ -3655,6 +3655,47 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int teamPlayersReady = atoi(PQgetvalue(retPlayers, i, 11));
             player.AddMember("teamPlayersReady", teamPlayersReady, allocator);
 
+            {
+                std::string sql = "SELECT player_api_id, league_id, games, rating, goals, assists FROM player_stats WHERE team_id = "
+                    + std::to_string(team) + " AND player_api_id = " + std::to_string(apiId) + ";";
+                PGresult* statRet = PQexec(pg, sql.c_str());
+                if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+                {
+                    fprintf(stderr, "Failed to get player stats: %s", PQerrorMessage(pg));
+                    PQclear(statRet);
+                }
+                else
+                {
+                    int nStats = PQntuples(statRet);
+                    rapidjson::Value stats;
+                    stats.SetArray();
+                    int games = 0;
+                    float rating = 0;
+                    int goals = 0;
+                    int assists = 0;
+                    int numStats = 0;
+                    for (int s = 0; s < nStats; ++s)
+                    {
+                        int g = atoi(PQgetvalue(statRet, s, 2));
+                        if (!g) continue;
+
+                        ++numStats;
+                        games += g;
+                        goals += atoi(PQgetvalue(statRet, s, 4));
+                        assists += atoi(PQgetvalue(statRet, s, 5));
+                        rating += atof(PQgetvalue(statRet, s, 3));
+                    }
+                    if (numStats > 0)
+                        rating = rating / numStats;
+
+                    player.AddMember("games", games, allocator);
+                    player.AddMember("goals", goals, allocator);
+                    player.AddMember("assists", assists, allocator);
+                    player.AddMember("rating", rating, allocator);
+                    PQclear(statRet);
+                }
+            }
+
             players.PushBack(player, allocator);
         }
         document.AddMember("players", players, allocator);
