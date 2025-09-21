@@ -2304,10 +2304,16 @@ void UpdateCareerForPlayer
 		int goalsA = 0;
 		if (minutes <= 0) 
 		{
-			points -= 1;
+			// points -= 1;
 		}
 		else
 		{
+			if (minutes >= 45) 
+			{
+				if (pos == "Goalkeeper") points += 2;
+				if (pos == "Defender") points += 1;
+			}
+
 			if (goals > 0)
 			{
 				if (pos == "Attacker") points += 3 * goals;
