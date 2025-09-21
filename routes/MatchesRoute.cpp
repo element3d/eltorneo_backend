@@ -853,6 +853,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             std::string g = req.get_param_value("game");
             if (g == "beatbet") game = g;
             if (g == "fireball") game = g;
+            if (g == "career") game = g;
         }
 
         std::string lang = "en";
