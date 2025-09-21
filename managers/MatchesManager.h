@@ -63,6 +63,13 @@ public:
 		const std::string& lang,
 		rapidjson::Document& document);
 
+	static bool GetMatchesByDateWithCareer(PGconn* pg,
+		int userId,
+		long long dayStart,
+		long long dayEnd,
+		const std::string& lang,
+		rapidjson::Document& document);
+
 	// Matches live (Live page)
 	static bool GetMatchesLiveWithPredicts(PGconn* pg,
 		int userId,

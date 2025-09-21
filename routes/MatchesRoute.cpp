@@ -890,6 +890,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             ok = MatchesManager::GetMatchesByDateWithFireball(pg, userId, dayStart, dayEnd, lang, document);
         }
+        else if (game == "career")
+        {
+            ok = MatchesManager::GetMatchesByDateWithCareer(pg, userId, dayStart, dayEnd, lang, document);
+        }
         else 
         {
             ok = MatchesManager::GetMatchesByDateWithPredicts(pg, userId, dayStart, dayEnd, lang, document);
