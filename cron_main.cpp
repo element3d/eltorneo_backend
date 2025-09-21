@@ -2383,7 +2383,7 @@ void UpdateCareerForPlayer
 			PQclear(updateRes);
 		}
 		{
-			std::string insertSql = "INSERT INTO career_predicts (user_id, match_id, player_api_id, minutes, goals, assists, yellow_cards, red_cards, goals_a, pen_saved, pen_missed, points, player_name) VALUES ("
+			std::string insertSql = "INSERT INTO career_predicts (user_id, match_id, player_api_id, minutes, goals, assists, yellow_cards, red_cards, goals_a, pen_saved, pen_missed, points, player_name, player_pos) VALUES ("
 				+ std::to_string(userId) + ", "
 				+ std::to_string(matchId) + ", "
 				+ std::to_string(playerApiId) + ", "
@@ -2396,7 +2396,8 @@ void UpdateCareerForPlayer
 				+ std::to_string(penSaved) + ", "
 				+ std::to_string(penMissed) + ", "
 				+ std::to_string(points) + ", '"
-				+ playerName + "');";
+				+ playerName + "', '"
+				+ pos + "');";
 
 			PGresult* updateRes = PQexec(pg, insertSql.c_str());
 			if (PQresultStatus(updateRes) != PGRES_COMMAND_OK)
