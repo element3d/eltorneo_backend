@@ -93,51 +93,51 @@ int main()
                 if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
-                    continue;
+                    // continue;
                 }
-
-                //            printf("%s %i - %i\n\n", userName.c_str(), t1Score, t2Score);
-
-                int sum = 0;
-                for (int up = 0; up < numUserPredicts; ++up)
+                else
                 {
-                    int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
-                    int k = 0;
-                    if (predictStatus == 1 || predictStatus == 2) k = 1;
-                    if (predictStatus == 3) k = -1;
-                    if (sum == 0)
+                    int sum = 0;
+                    for (int up = 0; up < numUserPredicts; ++up)
                     {
+                        int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
+                        int k = 0;
+                        if (predictStatus == 1 || predictStatus == 2 || predictStatus == 5) k = 1;
+                        if (predictStatus == 3) k = -1;
+                        if (sum == 0)
+                        {
+                        }
+                        else if (sum > 0 && k == -1) break;
+                        else if (sum < 0 && k == 1) break;
+
+                        sum += k;
+
+                        std::string team1 = PQgetvalue(userPredictsRet, up, 5);
+                        std::string team2 = PQgetvalue(userPredictsRet, up, 6);
+
+                        //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                     }
-                    else if (sum > 0 && k == -1) break;
-                    else if (sum < 0 && k == 1) break;
 
-                    sum += k;
+                    if (sum >= limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s %i win\n", team1.c_str(), sum);
+                        usernameWritten = true;
+                    }
+                    if (sum <= -limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s %i loose\n", team1.c_str(), sum);
+                        usernameWritten = true;
+                    }
 
-                    std::string team1 = PQgetvalue(userPredictsRet, up, 5);
-                    std::string team2 = PQgetvalue(userPredictsRet, up, 6);
-
-                    //                printf("%s - %s\n", team1.c_str(), team2.c_str());
+                    PQclear(userPredictsRet);
                 }
-
-                if (sum >= limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s %i win\n", team1.c_str(), sum);
-                    usernameWritten = true;
-                }
-                if (sum <= -limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file ,"%s %i loose\n", team1.c_str(), sum);
-                    usernameWritten = true;
-                }
-
-                PQclear(userPredictsRet);
             }
 
-            {
+           {
                 // Get team1 home matches
                 sql = "SELECT p.team1_score, p.team2_score, p.status, "
                     "m.team1_score, m.team2_score, t1.short_name as team1_short_name, "
@@ -159,50 +159,50 @@ int main()
                 if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
-                    continue;
+                    //continue;
                 }
-
-                //            printf("%s %i - %i\n\n", userName.c_str(), t1Score, t2Score);
-
-                int sum = 0;
-                for (int up = 0; up < numUserPredicts; ++up)
+                else
                 {
-                    int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
-                    int k = 0;
-                    if (predictStatus == 1 || predictStatus == 2) k = 1;
-                    if (predictStatus == 3) k = -1;
-                    if (sum == 0)
+                    int sum = 0;
+                    for (int up = 0; up < numUserPredicts; ++up)
                     {
+                        int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
+                        int k = 0;
+                        if (predictStatus == 1 || predictStatus == 2 || predictStatus == 5) k = 1;
+                        if (predictStatus == 3) k = -1;
+                        if (sum == 0)
+                        {
+                        }
+                        else if (sum > 0 && k == -1) break;
+                        else if (sum < 0 && k == 1) break;
+
+                        sum += k;
+
+                        std::string team1 = PQgetvalue(userPredictsRet, up, 5);
+                        std::string team2 = PQgetvalue(userPredictsRet, up, 6);
+
+                        //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                     }
-                    else if (sum > 0 && k == -1) break;
-                    else if (sum < 0 && k == 1) break;
 
-                    sum += k;
+                    if (sum >= limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s home %i win\n", team1.c_str(), sum);
+                        usernameWritten = true;
+                    }
+                    if (sum <= -limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s home %i loose\n", team1.c_str(), sum);
+                        usernameWritten = true;
+                    }
 
-                    std::string team1 = PQgetvalue(userPredictsRet, up, 5);
-                    std::string team2 = PQgetvalue(userPredictsRet, up, 6);
-
-                    //                printf("%s - %s\n", team1.c_str(), team2.c_str());
+                    PQclear(userPredictsRet);
                 }
-
-                if (sum >= limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s home %i win\n", team1.c_str(), sum);
-                    usernameWritten = true;
-                }
-                if (sum <= -limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s home %i loose\n", team1.c_str(), sum);
-                    usernameWritten = true;
-                }
-
-                PQclear(userPredictsRet);
-            }
-
+            }  
+          
             {
                 // Get team2 matches
                 sql = "SELECT p.team1_score, p.team2_score, p.status, "
@@ -225,51 +225,51 @@ int main()
                 if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
-                    continue;
+                    //continue;
                 }
-
-                //            printf("%s %i - %i\n\n", userName.c_str(), t1Score, t2Score);
-
-                int sum = 0;
-                for (int up = 0; up < numUserPredicts; ++up)
+                else
                 {
-                    int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
-                    int k = 0;
-                    if (predictStatus == 1 || predictStatus == 2) k = 1;
-                    if (predictStatus == 3) k = -1;
-                    if (sum == 0)
+                    int sum = 0;
+                    for (int up = 0; up < numUserPredicts; ++up)
                     {
+                        int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
+                        int k = 0;
+                        if (predictStatus == 1 || predictStatus == 2 || predictStatus == 5) k = 1;
+                        if (predictStatus == 3) k = -1;
+                        if (sum == 0)
+                        {
+                        }
+                        else if (sum > 0 && k == -1) break;
+                        else if (sum < 0 && k == 1) break;
+
+                        sum += k;
+
+                        // std::string team1 = PQgetvalue(userPredictsRet, up, 5);
+                        // std::string team2 = PQgetvalue(userPredictsRet, up, 6);
+
+                        //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                     }
-                    else if (sum > 0 && k == -1) break;
-                    else if (sum < 0 && k == 1) break;
 
-                    sum += k;
+                    if (sum >= limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s %i win\n", team2.c_str(), sum);
+                        usernameWritten = true;
+                    }
+                    if (sum <= -limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s %i loose\n", team2.c_str(), sum);
+                        usernameWritten = true;
+                    }
 
-                    // std::string team1 = PQgetvalue(userPredictsRet, up, 5);
-                    // std::string team2 = PQgetvalue(userPredictsRet, up, 6);
-
-                    //                printf("%s - %s\n", team1.c_str(), team2.c_str());
+                    PQclear(userPredictsRet);
                 }
-
-                if (sum >= limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s %i win\n", team2.c_str(), sum);
-                    usernameWritten = true;
-                }
-                if (sum <= -limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s %i loose\n", team2.c_str(), sum);
-                    usernameWritten = true;
-                }
-
-                PQclear(userPredictsRet);
             }
 
-            {
+          {
                 // Get team2 away matches
                 sql = "SELECT p.team1_score, p.team2_score, p.status, "
                     "m.team1_score, m.team2_score, t1.short_name as team1_short_name, "
@@ -291,51 +291,51 @@ int main()
                 if (numUserPredicts < limit)
                 {
                     PQclear(userPredictsRet);
-                    continue;
+                    // continue;
                 }
-
-                //            printf("%s %i - %i\n\n", userName.c_str(), t1Score, t2Score);
-
-                int sum = 0;
-                for (int up = 0; up < numUserPredicts; ++up)
+                else
                 {
-                    int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
-                    int k = 0;
-                    if (predictStatus == 1 || predictStatus == 2) k = 1;
-                    if (predictStatus == 3) k = -1;
-                    if (sum == 0)
+                    int sum = 0;
+                    for (int up = 0; up < numUserPredicts; ++up)
                     {
+                        int predictStatus = atoi(PQgetvalue(userPredictsRet, up, 2));
+                        int k = 0;
+                        if (predictStatus == 1 || predictStatus == 2 || predictStatus == 5) k = 1;
+                        if (predictStatus == 3) k = -1;
+                        if (sum == 0)
+                        {
+                        }
+                        else if (sum > 0 && k == -1) break;
+                        else if (sum < 0 && k == 1) break;
+
+                        sum += k;
+
+                        std::string team1 = PQgetvalue(userPredictsRet, up, 5);
+                        std::string team2 = PQgetvalue(userPredictsRet, up, 6);
+
+                        //                printf("%s - %s\n", team1.c_str(), team2.c_str());
                     }
-                    else if (sum > 0 && k == -1) break;
-                    else if (sum < 0 && k == 1) break;
 
-                    sum += k;
+                    if (sum >= limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s away %i win\n", team2.c_str(), sum);
+                        usernameWritten = true;
+                    }
+                    if (sum <= -limit)
+                    {
+                        if (file == nullptr) file = fopen(filename.c_str(), "w");
+                        if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
+                        fprintf(file, "%s away %i loose\n", team2.c_str(), sum);
+                        usernameWritten = true;
+                    }
 
-                    std::string team1 = PQgetvalue(userPredictsRet, up, 5);
-                    std::string team2 = PQgetvalue(userPredictsRet, up, 6);
-
-                    //                printf("%s - %s\n", team1.c_str(), team2.c_str());
+                    PQclear(userPredictsRet);
                 }
-
-                if (sum >= limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s away %i win\n", team2.c_str(), sum);
-                    usernameWritten = true;
-                }
-                if (sum <= -limit)
-                {
-                    if (file == nullptr) file = fopen(filename.c_str(), "w");
-                    if (!usernameWritten) fprintf(file, "%s %i - %i\n", userName.c_str(), t1Score, t2Score);
-                    fprintf(file, "%s away %i loose\n", team2.c_str(), sum);
-                    usernameWritten = true;
-                }
-
-                PQclear(userPredictsRet);
             }
 
-            if (file) fprintf(file, "\n\n");
+            if (file) fprintf(file, "\n");
         }
         PQclear(predictsRet);
 
