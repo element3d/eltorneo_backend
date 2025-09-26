@@ -3594,7 +3594,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string formation = PQgetvalue(ret, 0, 0);
         int points = atoi(PQgetvalue(ret, 0, 1));
         int numTransfers = atoi(PQgetvalue(ret, 0, 2));
-        long long nextTransferTs = atoi(PQgetvalue(ret, 0, 3));
+        long long nextTransferTs = atoll(PQgetvalue(ret, 0, 3));
 
         rapidjson::Document document;
         document.SetObject();
@@ -3604,7 +3604,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("formation", v, allocator);
         document.AddMember("points", points, allocator);
         document.AddMember("numTransfers", numTransfers, allocator);
-        document.AddMember("nextTransferTs", nextTransferTs, allocator);
+        document.AddMember("nextTransferTs", (double)nextTransferTs, allocator);
 
         sql =
             "SELECT cp.*, t.short_name, t.name, t.players_ready "
