@@ -3474,12 +3474,23 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         int userId = decoded.get_payload_claim("id").as_int();
         std::string formation = document["formation"].GetString();
+        int hasTransfer = document["hasTransfer"].GetInt();
+        int numTransfers = hasTransfer ? 1 : 0;
+        auto now = std::chrono::system_clock::now();
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+        long long timestamp = ms.count();
+        long long weekLaterTs = timestamp + 7LL * 24 * 60 * 60 * 1000;
+
         PGconn* pg = ConnectionPool::Get()->getConnection();
         {
             std::string sql =
-                "INSERT INTO career_users (user_id, formation) VALUES ("
-                + std::to_string(userId) + ", '" + formation + "') "
-                "ON CONFLICT (user_id) DO UPDATE SET formation = EXCLUDED.formation;";
+                "INSERT INTO career_users (user_id, formation, next_transfer_ts, num_transfers) VALUES ("
+                + std::to_string(userId) + ", '" + formation + "', "
+                + std::to_string(weekLaterTs) + ", "
+                + std::to_string(numTransfers) + ") "
+                "ON CONFLICT (user_id) DO UPDATE SET "
+                "formation = EXCLUDED.formation, "
+                "num_transfers = EXCLUDED.num_transfers;";
 
             PGresult* ret = PQexec(pg, sql.c_str());
             if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
@@ -3558,7 +3569,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT formation, points FROM career_users WHERE user_id = "
+        std::string sql = "SELECT formation, points, num_transfers, next_transfer_ts FROM career_users WHERE user_id = "
             + std::to_string(userId) + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -3582,6 +3593,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
         std::string formation = PQgetvalue(ret, 0, 0);
         int points = atoi(PQgetvalue(ret, 0, 1));
+        int numTransfers = atoi(PQgetvalue(ret, 0, 2));
+        long long nextTransferTs = atoi(PQgetvalue(ret, 0, 3));
 
         rapidjson::Document document;
         document.SetObject();
@@ -3590,6 +3603,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         v.SetString(formation.c_str(), formation.size(), allocator);
         document.AddMember("formation", v, allocator);
         document.AddMember("points", points, allocator);
+        document.AddMember("numTransfers", numTransfers, allocator);
+        document.AddMember("nextTransferTs", nextTransferTs, allocator);
 
         sql =
             "SELECT cp.*, t.short_name, t.name, t.players_ready "
