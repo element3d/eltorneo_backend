@@ -415,7 +415,7 @@ DBUser* UserManager::GetUserByEmail(const std::string& email)
     if (PQresultStatus(res) != PGRES_TUPLES_OK || PQntuples(res) == 0)
     {
         char* err = PQerrorMessage(pConn);
-        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        fprintf(stderr, "Error GetUserByEmail() email: %s : Failed to get user: %s", email.c_str(), PQerrorMessage(pConn));
         PQclear(res);
         ConnectionPool::Get()->releaseConnection(pConn);
         //exit_nicely(conn);
@@ -462,7 +462,7 @@ DBUser* UserManager::GetUserByTelegramCode(int tgCode)
     if (PQresultStatus(res) != PGRES_TUPLES_OK || PQntuples(res) == 0)
     {
         char* err = PQerrorMessage(pConn);
-        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        fprintf(stderr, "Error GetUserByTelegramCode(): Failed to get user: %s", PQerrorMessage(pConn));
         PQclear(res);
         ConnectionPool::Get()->releaseConnection(pConn);
         //exit_nicely(conn);
@@ -515,7 +515,7 @@ DBUser* UserManager::GetUserByTelegramId(long long tgId)
     if (PQresultStatus(res) != PGRES_TUPLES_OK || PQntuples(res) == 0)
     {
         char* err = PQerrorMessage(pConn);
-        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        fprintf(stderr, "Error GetUserByTelegramId(): Failed to get user: %s", PQerrorMessage(pConn));
         PQclear(res);
         ConnectionPool::Get()->releaseConnection(pConn);
         //exit_nicely(conn);
@@ -626,7 +626,7 @@ bool UserManager::MeHandshake(int id)
     if (PQresultStatus(res) != PGRES_COMMAND_OK)
 	{
         char* err = PQerrorMessage(pConn);
-        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        fprintf(stderr, "Error MeHandshake(): Failed to get user: %s", PQerrorMessage(pConn));
 		PQclear(res);
         ConnectionPool::Get()->releaseConnection(pConn);
 		return false;
@@ -644,7 +644,7 @@ uint64_t UserManager::UserHandshake(int id)
     if (PQresultStatus(res) != PGRES_TUPLES_OK)
 	{
         char* err = PQerrorMessage(pConn);
-        fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+        fprintf(stderr, "Error UserHandshake(): Failed to get user: %s", PQerrorMessage(pConn));
 		PQclear(res);
         ConnectionPool::Get()->releaseConnection(pConn);
 		return 0;
@@ -674,7 +674,7 @@ DBUser* UserManager::GetUser(int id)
 	if (PQresultStatus(res) != PGRES_TUPLES_OK || PQntuples(res) == 0)
 	{
       char* err = PQerrorMessage(pConn);
-      fprintf(stderr, "Error: Failed to get user: %s", PQerrorMessage(pConn));
+      fprintf(stderr, "Error GetUser() id = %i: Failed to get user: %s", id, PQerrorMessage(pConn));
 		  PQclear(res);
       // ConnectionPool::Get()->releaseConnection(pConn);
       ConnectionPool::Get()->releaseConnection(pConn);
