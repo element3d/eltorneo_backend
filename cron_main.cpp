@@ -2654,6 +2654,24 @@ void ProcessFinishedMatches(PGconn* pg)
 	PQclear(res);
 }
 
+void CorrectCareerTransfers(PGconn* pg)
+{
+	auto now = std::chrono::system_clock::now();
+	auto duration = now.time_since_epoch();
+	long long milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+	// 7 days in ms
+	long long sevenDays = 7LL * 24 * 60 * 60 * 1000;
+
+	std::string sql =
+		"UPDATE career_users "
+		"SET next_transfer_ts = next_transfer_ts + " + std::to_string(sevenDays) + ", "
+		"num_transfers = 0 "
+		"WHERE next_transfer_ts < " + std::to_string(milliseconds) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+	PQclear(res);
+}
+
 int main()
 {
 
@@ -2684,6 +2702,7 @@ int main()
 
 	while (true)
 	{
+		CorrectCareerTransfers(pg);
 		GetLiveMatches(pg);
 
 		// Get the current time
