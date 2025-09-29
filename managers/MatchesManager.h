@@ -135,6 +135,11 @@ public:
 		long tid,
 		rapidjson::Document& document);
 
+	static bool GetMatchesTeamWithCareer(PGconn* pg,
+		int userId,
+		long tid,
+		rapidjson::Document& document);
+
 	// Matches team (Team page)
 	static bool FillTeamMatchesWithPredicts(PGconn* pg,
 		int userId,
@@ -151,6 +156,13 @@ public:
 		ETeamMatch eMatch);
 
 	static bool FillTeamMatchesWithFireball(PGconn* pg,
+		int userId,
+		int tid,
+		rapidjson::Value& document,
+		rapidjson::Document::AllocatorType& allocator,
+		ETeamMatch eMatch);
+
+	static bool FillTeamMatchesWithCareer(PGconn* pg,
 		int userId,
 		int tid,
 		rapidjson::Value& document,
