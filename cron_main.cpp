@@ -2041,6 +2041,38 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
 
+std::string GetPlayerPosition(int playerApiId)
+{
+	std::string sql;
+	std::string url = "https://v3.football.api-sports.io/players/profiles";
+
+	cpr::Response r;
+	cpr::Parameters params;
+	params = 
+	{
+		{"player", std::to_string(playerApiId)}
+	};
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		// Parse the JSON response
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray() && document["response"].Size() > 0)
+		{
+			const rapidjson::Value& player = document["response"][0]["player"];
+			if (!player.HasMember("position") || player["position"].IsNull()) return "";
+
+			return std::string(player["position"].GetString());
+		}
+	}
+}
+
 void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId, int leagueId)
 {
 	std::string sql;
@@ -2081,6 +2113,8 @@ void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId, int leagueId)
 				int age = player["age"].IsNull() ? 0 : player["age"].GetInt();
 				int number = player["number"].IsNull() ? 0 : player["number"].GetInt();
 				std::string pos = player["position"].IsNull() ? "" : player["position"].GetString();
+				std::string newPos = GetPlayerPosition(playerId);
+				if (newPos.size()) pos = newPos;
 				std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
 
 				std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, position, photo) VALUES ("
