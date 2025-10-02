@@ -2221,15 +2221,12 @@ void FillTeamSquad(PGconn* pg)
 	for (int i = 0; i < rows; ++i)
 	{
 		int leagueId = atoi(PQgetvalue(res, i, 0));
-		/*if (leagueId == (int)ELeague::PremierLeague
+		if (leagueId == (int)ELeague::PremierLeague
 			|| leagueId == (int)ELeague::ChampionsLeague
 			|| leagueId == (int)ELeague::LaLiga
 			|| leagueId == (int)ELeague::SerieA
 			|| leagueId == (int)ELeague::Bundesliga
-			|| leagueId == (int)ELeague::Ligue1)*/
-			if (
-				leagueId == (int)ELeague::ChampionsLeague
-				)
+			|| leagueId == (int)ELeague::Ligue1)
 		{
 
 		}
