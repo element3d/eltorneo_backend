@@ -1965,14 +1965,16 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 	}
 	else
 	{
+		int filterLeagueApiId = elTorneoLeagueIdToApiFootball((ELeague)leagueId);
+
 		params = {
 			{"id", std::to_string(playerApiId)},
 			{"season", season},
-			{"team", std::to_string(teamApiId)}
+			{"team", std::to_string(teamApiId)},
+			{"league", std::to_string(filterLeagueApiId)}
 		};
 	}
 
-	int filterLeagueApiId = elTorneoLeagueIdToApiFootball((ELeague)leagueId);
 
 	r = cpr::Get(cpr::Url{ url },
 		params,
@@ -1993,8 +1995,8 @@ void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int
 				const auto& league = stat["league"];
 				if (league["id"].IsNull()) continue;
 				int leagueApiId = league["id"].GetInt();
-				if (!IsApiLeagueSupported(leagueApiId)) continue;
-				if (filterLeagueApiId != leagueApiId) continue;
+				//if (!IsApiLeagueSupported(leagueApiId)) continue;
+				//if (filterLeagueApiId != leagueApiId) continue;
 				bool br = false;
 				for (int pl = 0; pl < processedLeagues.size(); ++pl) 
 				{
@@ -2185,12 +2187,15 @@ void FillTeamSquad(PGconn* pg)
 	for (int i = 0; i < rows; ++i)
 	{
 		int leagueId = atoi(PQgetvalue(res, i, 0));
-		if (leagueId == (int)ELeague::PremierLeague
+		/*if (leagueId == (int)ELeague::PremierLeague
 			|| leagueId == (int)ELeague::ChampionsLeague
 			|| leagueId == (int)ELeague::LaLiga
 			|| leagueId == (int)ELeague::SerieA
 			|| leagueId == (int)ELeague::Bundesliga
-			|| leagueId == (int)ELeague::Ligue1)
+			|| leagueId == (int)ELeague::Ligue1)*/
+			if (
+				leagueId == (int)ELeague::ChampionsLeague
+				)
 		{
 
 		}
@@ -2210,6 +2215,7 @@ void FillTeamSquad(PGconn* pg)
 
 		for (int t = 0; t < nTeams; ++t)
 		{
+
 			int teamId = atoi(PQgetvalue(teamRes, t, 0));
 			int teamApiId = atoi(PQgetvalue(teamRes, t, 1));
 
