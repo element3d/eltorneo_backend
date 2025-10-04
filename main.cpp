@@ -201,6 +201,7 @@ int main(void)
     svr.Get("/api/v1/team/matches", MatchesRoute::Get()->GetTeamMatches());
     svr.Get("/api/v1/team", MatchesRoute::Get()->GetTeam());
     svr.Get("/api/v1/team/players", MatchesRoute::Get()->GetTeamPlayers());
+    svr.Get("/api/v1/player/position", MatchesRoute::Get()->PutPlayerPosition());
 
     svr.Get("/api/v1/match/players", MatchesRoute::Get()->GetMatchPlayers());
 

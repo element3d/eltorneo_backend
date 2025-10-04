@@ -27,6 +27,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetTeamMatches();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTeam();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTeamPlayers();
+    std::function<void(const httplib::Request&, httplib::Response&)> PutPlayerPosition();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPlayers();
     std::function<void(const httplib::Request&, httplib::Response&)> GetSpecialMatch();
