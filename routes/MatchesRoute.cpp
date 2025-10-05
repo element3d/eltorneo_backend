@@ -610,7 +610,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::P
         res.set_header("Access-Control-Allow-Methods", "GET");
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
 
-        // Extract team_id from query parameters
         std::string team_id = req.get_param_value("team_id");
         std::string player_api_id = req.get_param_value("player_id");
 
