@@ -3999,6 +3999,23 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         document.AddMember("predicts", betsArray, allocator);
 
+        auto generateBetCountQuery = [&](const std::string& condition)
+        {
+            std::string countSql = "SELECT COUNT(*) FROM career_predicts cp INNER JOIN matches m ON cp.match_id = m.id WHERE cp.user_id = " + userId;
+            if (leagueId != "-1")
+            {
+                countSql += " AND m.league = " + leagueId;
+            }
+            countSql += condition.size() ? " AND " + condition : "";
+            return countSql;
+        };
+
+        std::string countAllBetsSql = generateBetCountQuery("");
+        PGresult* retAllBets = PQexec(pg, countAllBetsSql.c_str());
+        int allBets = (PQntuples(retAllBets) > 0) ? atoi(PQgetvalue(retAllBets, 0, 0)) : 0;
+        PQclear(retAllBets);
+        document.AddMember("allPredicts", allBets, allocator);
+
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
         document.Accept(writer);
