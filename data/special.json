@@ -145,7 +145,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -293,7 +296,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -441,7 +447,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -589,7 +598,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -737,7 +749,10 @@
         "hotel_transylvania2": "Монстры на каникулах",
         "the_last_samurai": "Последний самурай",
         "multiverse_of_madness": "Мультивселенная безумия",
-        "tmnt2": "Черепашки-ниндзя"
+        "tmnt2": "Черепашки-ниндзя",
+        "dark_phoenix": "Люди Икс: Темный Феникс",
+        "gladiator": "Гладиатор",
+        "scary_movie": "Очень страшное кино"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -885,7 +900,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1033,7 +1051,10 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1181,6 +1202,9 @@
         "hotel_transylvania2": "Hotel Transylvania",
         "the_last_samurai": "The Last Samurai",
         "multiverse_of_madness": "Multiverse of Madness",
-        "tmnt2": "Teenage Mutant Ninja Turtles"
+        "tmnt2": "Teenage Mutant Ninja Turtles",
+        "dark_phoenix": "X-Men: Dark Phoenix",
+        "gladiator": "Gladiator",
+        "scary_movie": "Scary Movie"
     }
 }
