@@ -19,7 +19,9 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsSummary();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop20V2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20V2();
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
@@ -27,8 +29,10 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> PostBet();
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteBet();
 
+    std::function<void(const httplib::Request&, httplib::Response&)> GetElTorneoTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTableV2();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByWinner();
@@ -39,15 +43,18 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> PostFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20V2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTableV2();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteFireballPredict();
 
     // Career
     std::function<void(const httplib::Request&, httplib::Response&)> PostCareerSave();
     std::function<void(const httplib::Request&, httplib::Response&)> GetCareerPlayers();
-    std::function<void(const httplib::Request&, httplib::Response&)> GetCareerTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetCareerTableV2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserCareerPredicts();
 
 private:

@@ -23,6 +23,8 @@ public:
     std::function<void(const httplib::Request &, httplib::Response &)> SignInWithTelegramBot();
     std::function<void(const httplib::Request&, httplib::Response&)> SignInWithTelegramCode();
     std::function<void(const httplib::Request &, httplib::Response&)> Me();
+    std::function<void(const httplib::Request&, httplib::Response&)> MeV2();
+
     std::function<void(const httplib::Request&, httplib::Response&)> MeDelete();
     std::function<void(const httplib::Request&, httplib::Response&)> GetStats();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUser();
