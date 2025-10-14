@@ -2527,6 +2527,12 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 	PQclear(res);
 }
 
+bool IsNationalLeague(int leagueId) 
+{
+	if (leagueId == (int)ELeague::UEFAWorldClubQualification) return true;
+	return false;
+}
+
 void GetMatchPlayers(
 	PGconn* pg, 
 	int matchId, 
@@ -2537,6 +2543,12 @@ void GetMatchPlayers(
 	int team2Id,
 	bool updateFireball)
 {
+	std::string sql = "SELECT league FROM matches WHERE id = " + std::to_string(matchId) + ";";
+	PGresult* leagueRes = PQexec(pg, sql.c_str());
+	int leagueId = atoi(PQgetvalue(leagueRes, 0, 0));
+	bool isNational = IsNationalLeague(leagueId);
+	PQclear(leagueRes);
+
 	std::string url = "https://v3.football.api-sports.io/fixtures/players";
 	cpr::Response r;
 	cpr::Parameters params = {
@@ -2573,7 +2585,7 @@ void GetMatchPlayers(
 						if (updateFireball) 
 						{
 							UpdateFireballPredictsForPlayer(pg, matchId, id, 0, 0);
-							UpdateCareerForPlayer(pg, matchId, id, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+							if (!isNational) UpdateCareerForPlayer(pg, matchId, id, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 						}
 						continue;
 					}
@@ -2643,7 +2655,7 @@ void GetMatchPlayers(
 					if (updateFireball)
 					{
 						UpdateFireballPredictsForPlayer(pg, matchId, id, minutes, total);
-						UpdateCareerForPlayer(pg, matchId, id, minutes, total, assists, yellow, red, penMissed, penSaved, team1Score, team2Score, team1Id, team2Id);
+						if (!isNational) UpdateCareerForPlayer(pg, matchId, id, minutes, total, assists, yellow, red, penMissed, penSaved, team1Score, team2Score, team1Id, team2Id);
 					}
 				}
 			}
