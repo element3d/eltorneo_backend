@@ -631,6 +631,28 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::P
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::DeleteTeamPlayer()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        std::string team_id = req.get_param_value("team_id");
+        std::string player_api_id = req.get_param_value("player_id");
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "DELETE FROM team_players WHERE api_id = " + player_api_id
+            + " AND team_id = " + team_id + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+        res.status = 200; // OK
+
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
+
 
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchPlayers()
 {
