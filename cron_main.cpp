@@ -1278,15 +1278,7 @@ void GetLiveMatches(PGconn* pg)
 					GetMatchPlayers(pg, id, apiId, 0, 0, 0, 0, false);
 					auto now = std::chrono::system_clock::now();
 					auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
-					/*FinishedMatch fm;
-					fm.Timestamp = nowMs;
-					fm.MatchApiId = apiId;
-					fm.MatchId = id;
-					fm.Team1Score = team1GoalsAll;
-					fm.Team2Score = team2GoalsAll;
-					fm.Team1Id = team1.Id;
-					fm.Team2Id = team2.Id;
-					finishedMatches.push_back(fm);*/
+					
 					{
 						std::string sql = "INSERT INTO finished_matches(match_id, match_api_id, team1_score, team2_score, team1, team2, ts) VALUES ("
 							+ std::to_string(id) + ", "
@@ -1295,6 +1287,14 @@ void GetLiveMatches(PGconn* pg)
 							+ std::to_string(team2GoalsAll) + ", "
 							+ std::to_string(team1.Id) + ", "
 							+ std::to_string(team2.Id) + ", "
+							+ std::to_string(nowMs) + ");";
+						PGresult* pret = PQexec(pg, sql.c_str());
+						PQclear(pret);
+					}
+
+					{
+						std::string sql = "INSERT INTO finished_matches_for_long(match_id, ts) VALUES ("
+							+ std::to_string(id) + ", "
 							+ std::to_string(nowMs) + ");";
 						PGresult* pret = PQexec(pg, sql.c_str());
 						PQclear(pret);
@@ -2278,6 +2278,50 @@ void FillTeamSquad(PGconn* pg)
 	PQclear(res);
 }
 
+void UpdateTeamPlayerStats(PGconn* pg, int teamId, int teamApiId, int leagueId)
+{
+	std::string deleteSql = "DELETE FROM player_stats WHERE team_id = " + std::to_string(teamId)
+		+ " AND league_id = " + std::to_string(leagueId) + ";";
+	PGresult* deleteRes = PQexec(pg, deleteSql.c_str());
+	PQclear(deleteRes);
+
+	std::string sql = "SELECT api_id FROM team_players WHERE team_id = " + std::to_string(teamId) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int n = PQntuples(res);
+	for (int i = 0; i < n; ++i) 
+	{
+		int playerId = atoi(PQgetvalue(res, i, 0));
+		FillPlayerStats(pg, playerId, teamId, teamApiId, leagueId);
+	}
+	PQclear(res);
+}
+
+void UpdateMatchTeamPlayerStats(PGconn* pg, int matchId)
+{
+	std::string sql =
+		"SELECT m.id, m.api_id, m.league, "
+		"m.team1, t1.api_id AS team1_api_id, "
+		"m.team2, t2.api_id AS team2_api_id "
+		"FROM matches m "
+		"LEFT JOIN teams t1 ON m.team1 = t1.id "
+		"LEFT JOIN teams t2 ON m.team2 = t2.id "
+		"WHERE m.id = " + std::to_string(matchId) + ";";
+
+	PGresult* res = PQexec(pg, sql.c_str());
+	int apiId = atoi(PQgetvalue(res, 0, 1));
+	int league = atoi(PQgetvalue(res, 0, 2));
+	int team1 = atoi(PQgetvalue(res, 0, 3));
+	int team1ApiId = atoi(PQgetvalue(res, 0, 4));
+	int team2 = atoi(PQgetvalue(res, 0, 5));
+	int team2ApiId = atoi(PQgetvalue(res, 0, 6));
+
+	UpdateTeamPlayerStats(pg, team1, team1ApiId, league);
+	UpdateTeamPlayerStats(pg, team2, team2ApiId, league);
+
+	PQclear(res);
+
+}
+
 void UpdateFireballPredictsForNonPlayedPlayer(PGconn* pg, int matchId)
 {
 	std::string sql = "SELECT id, user_id FROM fireball_predicts WHERE match_id = " + std::to_string(matchId)
@@ -2668,12 +2712,39 @@ void GetMatchPlayers(
 	}
 }
 
+void ProcessFinishedMatchesForPlayerStats(PGconn* pg)
+{
+	long long nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+		std::chrono::system_clock::now().time_since_epoch()
+	).count();
+	long long cutoff = nowMs - 24 * 60 * 60 * 1000;
+
+	std::string sql =
+		"SELECT * FROM finished_matches_for_long "
+		"WHERE ts <= " + std::to_string(cutoff) + ";";
+	PGresult* res = PQexec(pg, sql.c_str());
+	int rows = PQntuples(res);
+	for (int i = 0; i < rows; ++i)
+	{
+		int id = atoi(PQgetvalue(res, i, 0));
+		int matchId = atoi(PQgetvalue(res, i, 1));
+		UpdateMatchTeamPlayerStats(pg, matchId);
+
+		{
+			std::string sql = "DELETE FROM finished_matches_for_long WHERE id = " + std::to_string(id) + ";";
+			PGresult* res = PQexec(pg, sql.c_str());
+			PQclear(res);
+		}
+	}
+	PQclear(res);
+}
+
 void ProcessFinishedMatches(PGconn* pg)
 {
 	long long nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
-	long long cutoff = nowMs - 5 * 60 * 1000;
+	long long cutoff = nowMs - 8 * 60 * 1000;
 
 	std::string sql =
 		"SELECT * FROM finished_matches "
@@ -2735,7 +2806,7 @@ void CorrectGameTables(PGconn* pg)
 	auto now = std::chrono::system_clock::now();
 	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
 	long long timestamp = ms.count();
-	long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
+	long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
 	{
 		std::string sql = "UPDATE users SET eltorneo_position = -1";
@@ -2942,6 +3013,7 @@ int main()
 		auto now = std::chrono::system_clock::now();
 		auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 		ProcessFinishedMatches(pg);
+		ProcessFinishedMatchesForPlayerStats(pg);
 
 		// Check if 5 minutes have passed to fill today's lineups
 		if (std::chrono::duration_cast<std::chrono::minutes>(now - lastFillTime).count() >= 5)

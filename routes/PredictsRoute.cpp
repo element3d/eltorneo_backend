@@ -2161,6 +2161,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         if (req.has_param("page")) 
         {
             page = std::stoi(req.get_param_value("page"));
+            page = std::max(page, 1);
         }
         if (req.has_param("league")) 
         {
@@ -2330,6 +2331,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         if (req.has_param("page"))
         {
             page = std::stoi(req.get_param_value("page"));
+            page = std::max(page, 1);
         }
         if (req.has_param("league"))
         {
@@ -2517,6 +2519,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         if (req.has_param("page")) 
         {
             page = std::stoi(req.get_param_value("page"));
+            page = std::max(page, 1);
         }
         if (req.has_param("league")) 
         {
@@ -2676,6 +2679,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         if (req.has_param("page"))
         {
             page = std::stoi(req.get_param_value("page"));
+            page = std::max(page, 1);
         }
         if (req.has_param("league"))
         {
@@ -2740,7 +2744,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch bets table: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch bets table V2: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500;
@@ -4706,7 +4710,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int nrows = PQntuples(ret);
         if (nrows <= 0) 
         {
-            fprintf(stderr, "Failed to fetch user career: %s", PQerrorMessage(pg));
+            // fprintf(stderr, "Failed to fetch user career: %s", PQerrorMessage(pg));
             PQclear(ret);
             res.status = 500;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
