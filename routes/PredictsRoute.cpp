@@ -4695,7 +4695,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         bool isMe = false;
         std::string token = req.get_header_value("Authentication");
-        if (token.size())
+        if (token.size() && token != "null")
         {
             auto decoded = jwt::decode(token);
             int myId = decoded.get_payload_claim("id").as_int();
