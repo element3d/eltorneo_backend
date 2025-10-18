@@ -2717,7 +2717,7 @@ void ProcessFinishedMatchesForPlayerStats(PGconn* pg)
 	long long nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
-	long long cutoff = nowMs - 24 * 60 * 60 * 1000;
+	long long cutoff = nowMs - 12 * 60 * 60 * 1000;
 
 	std::string sql =
 		"SELECT * FROM finished_matches_for_long "
@@ -2980,6 +2980,7 @@ int main()
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	//FillTodayLineups(pg);
+
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
 	//FillTeamSquad(pg);
 	//printf("\nDONE...\n");

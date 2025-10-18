@@ -4693,6 +4693,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             return;
         }
 
+        bool isMe = false;
+        std::string token = req.get_header_value("Authentication");
+        if (token.size())
+        {
+            auto decoded = jwt::decode(token);
+            int myId = decoded.get_payload_claim("id").as_int();
+            isMe = myId == userId;
+        }
+
+
+
         PGconn* pg = ConnectionPool::Get()->getConnection();
         std::string sql = "SELECT formation, points, num_transfers, next_transfer_ts FROM career_users WHERE user_id = "
             + std::to_string(userId) + ";";
@@ -4731,11 +4742,32 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("numTransfers", numTransfers, allocator);
         document.AddMember("nextTransferTs", (double)nextTransferTs, allocator);
 
-        sql =
-            "SELECT cp.*, t.short_name, t.name, t.players_ready "
-            "FROM career_players cp "
-            "JOIN teams t ON cp.team = t.id "
-            "WHERE cp.user_id = " + std::to_string(userId) + " ORDER BY grid;";
+        if (!isMe)
+        {
+            sql =
+                "SELECT cp.*, t.short_name, t.name, t.players_ready "
+                "FROM career_players cp "
+                "JOIN teams t ON cp.team = t.id "
+                "WHERE cp.user_id = " + std::to_string(userId) + " ORDER BY grid;";
+        }
+        else 
+        {
+            auto now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+            auto twoHoursAgo = now - 2 * 60 * 60 * 1000; // 2 hours in ms
+
+            sql =
+                "SELECT cp.*, t.short_name, t.name, t.players_ready, "
+                "m.id AS live_match_id "
+                "FROM career_players cp "
+                "JOIN teams t ON cp.team = t.id "
+                "LEFT JOIN matches m ON ("
+                "    (m.team1 = t.id OR m.team2 = t.id) "
+                "    AND m.match_date BETWEEN " + std::to_string(twoHoursAgo) +
+                " AND " + std::to_string(now) +
+                ") "
+                "WHERE cp.user_id = " + std::to_string(userId) +
+                " ORDER BY grid;";
+        }
 
         PGresult* retPlayers = PQexec(pg, sql.c_str());
         if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK)
@@ -4794,6 +4826,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int teamPlayersReady = atoi(PQgetvalue(retPlayers, i, 11));
             player.AddMember("teamPlayersReady", teamPlayersReady, allocator);
+
+            int matchId = -1;
+            if (isMe) 
+            {         
+                matchId = atoi(PQgetvalue(retPlayers, i, 12));
+            }
+            player.AddMember("matchId", matchId, allocator);
 
             {
                 std::string sql = "SELECT player_api_id, league_id, games, rating, goals, assists FROM player_stats WHERE team_id = "
