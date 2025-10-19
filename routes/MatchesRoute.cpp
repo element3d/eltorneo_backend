@@ -1522,6 +1522,171 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::GetMatchLineupsStats()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        // Parse match_id from the request
+        auto matchId = req.get_param_value("match_id");
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+
+        // Query the database for the lineups
+        std::string sql =
+            "SELECT l.formation1, l.formation2, l.coach1, l.coach2, "
+            "l.coach1_photo, l.coach2_photo, l.coach1_api_id, l.coach2_api_id, "
+            "m.league "
+            "FROM lineups l "
+            "JOIN matches m ON l.match_id = m.id "
+            "WHERE l.match_id = " + matchId + ";";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+            // Handle error
+            std::cerr << "Error executing SQL: " << PQerrorMessage(pg) << std::endl;
+            res.status = 500; // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
+            return;
+        }
+
+        // Assuming only one row is returned for a match_id
+        int rows = PQntuples(ret);
+        if (rows == 0) {
+            res.status = 404; // Not Found
+            res.set_content("Match lineups not found", "text/plain");
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
+            return;
+        }
+
+        // Construct the JSON response
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+
+        rapidjson::Value team1(rapidjson::kObjectType);
+        rapidjson::Value team2(rapidjson::kObjectType);
+        // Create a rapidjson::Value from the char* returned by PQgetvalue
+        rapidjson::Value formation1(PQgetvalue(ret, 0, 0), allocator);
+        rapidjson::Value formation2(PQgetvalue(ret, 0, 1), allocator);
+
+        rapidjson::Value coach1(PQgetvalue(ret, 0, 2), allocator);
+        rapidjson::Value coach2(PQgetvalue(ret, 0, 3), allocator);
+
+        rapidjson::Value coach1Photo(PQgetvalue(ret, 0, 4), allocator);
+        rapidjson::Value coach2Photo(PQgetvalue(ret, 0, 5), allocator);
+
+        rapidjson::Value coach1ApiId(PQgetvalue(ret, 0, 6), allocator);
+        rapidjson::Value coach2ApiId(PQgetvalue(ret, 0, 7), allocator);
+
+        int league = atoi(PQgetvalue(ret, 0, 8));
+
+        // Add them to the JSON objects
+        team1.AddMember("formation", formation1, allocator);
+        team1.AddMember("coach", coach1, allocator);
+        team1.AddMember("coachPhoto", coach1Photo, allocator);
+        team1.AddMember("coachApiId", coach1ApiId, allocator);
+
+        team2.AddMember("formation", formation2, allocator);
+        team2.AddMember("coach", coach2, allocator);
+        team2.AddMember("coachPhoto", coach2Photo, allocator);
+        team2.AddMember("coachApiId", coach2ApiId, allocator);
+
+        // Query players for both teams
+        std::string sqlPlayers = "SELECT name, number, grid, start11, team, pos, api_id FROM lineups_players WHERE lineup IN "
+            "(SELECT id FROM lineups WHERE match_id = " + matchId + ");";
+
+        PGresult* retPlayers = PQexec(pg, sqlPlayers.c_str());
+
+        if (PQresultStatus(retPlayers) != PGRES_TUPLES_OK) {
+            // Handle error
+            std::cerr << "Error executing SQL for players: " << PQerrorMessage(pg) << std::endl;
+            res.status = 500;
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(retPlayers);
+            return;
+        }
+
+        int playerRows = PQntuples(retPlayers);
+        rapidjson::Value team1Players(rapidjson::kArrayType);
+        rapidjson::Value team2Players(rapidjson::kArrayType);
+
+        for (int i = 0; i < playerRows; ++i)
+        {
+            rapidjson::Value player(rapidjson::kObjectType);
+            player.AddMember("name", rapidjson::Value(PQgetvalue(retPlayers, i, 0), allocator), allocator);
+            player.AddMember("number", std::stoi(PQgetvalue(retPlayers, i, 1)), allocator);
+            player.AddMember("grid", rapidjson::Value(PQgetvalue(retPlayers, i, 2), allocator), allocator);
+            player.AddMember("start11", std::stoi(PQgetvalue(retPlayers, i, 3)), allocator);
+            player.AddMember("pos", rapidjson::Value(PQgetvalue(retPlayers, i, 5), allocator), allocator);
+            int playerApiId = std::stoi(PQgetvalue(retPlayers, i, 6));
+            player.AddMember("apiId", playerApiId, allocator);
+
+            std::string playerStatsSql = "SELECT games, rating, goals, assists FROM player_stats WHERE league_id = "
+                + std::to_string(league) + " AND player_api_id = " + std::to_string(playerApiId) + ";";
+
+            PGresult* statsRes = PQexec(pg, playerStatsSql.c_str());
+            if (PQresultStatus(statsRes) != PGRES_TUPLES_OK) {
+                // Handle error
+                std::cerr << "Error executing SQL for players: " << PQerrorMessage(pg) << std::endl;
+              
+            }
+           if (PQresultStatus(statsRes) == PGRES_TUPLES_OK && PQntuples(statsRes) > 0)
+            {
+                player.AddMember("games", atoi(PQgetvalue(statsRes, 0, 0)), allocator);
+                player.AddMember("rating", atof(PQgetvalue(statsRes, 0, 1)), allocator);
+                player.AddMember("goals", atoi(PQgetvalue(statsRes, 0, 2)), allocator);
+                player.AddMember("assists", atoi(PQgetvalue(statsRes, 0, 3)), allocator);
+            }
+            else
+            {
+                // Default values if no stats yet
+                player.AddMember("games", 0, allocator);
+                player.AddMember("rating", 0.0, allocator);
+                player.AddMember("goals", 0, allocator);
+                player.AddMember("assists", 0, allocator);
+            }
+            PQclear(statsRes);
+
+            int team = std::stoi(PQgetvalue(retPlayers, i, 4));
+            if (team == 1)
+            {
+                team1Players.PushBack(player, allocator);
+            }
+            else
+            {
+                team2Players.PushBack(player, allocator);
+            }
+            
+        }
+
+        // Add players to the teams
+        team1.AddMember("players", team1Players, allocator);
+        team2.AddMember("players", team2Players, allocator);
+
+        // Add both teams to the document
+        document.AddMember("team1", team1, allocator);
+        document.AddMember("team2", team2, allocator);
+
+        // Convert the document to a JSON string
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        // Send the JSON response
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200; // OK
+
+        // Clean up
+        PQclear(ret);
+        PQclear(retPlayers);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}
 
 
 
