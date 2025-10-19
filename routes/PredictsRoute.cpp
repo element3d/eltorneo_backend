@@ -2171,6 +2171,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         {
             season = req.get_param_value("season");
             std::replace(season.begin(), season.end(), '/', '_');
+            if (season == "undefined") season = "25_26";
         }
 
         int limit = 20; // Number of users per page
@@ -2341,6 +2342,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         {
             season = req.get_param_value("season");
             std::replace(season.begin(), season.end(), '/', '_');
+            if (season == "undefined") season = "25_26";
         }
 
         int limit = 20; // Number of users per page
