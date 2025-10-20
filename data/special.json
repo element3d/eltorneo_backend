@@ -148,7 +148,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -299,7 +301,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -450,7 +454,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -601,7 +607,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -752,7 +760,9 @@
         "tmnt2": "Черепашки-ниндзя",
         "dark_phoenix": "Люди Икс: Темный Феникс",
         "gladiator": "Гладиатор",
-        "scary_movie": "Очень страшное кино"
+        "scary_movie": "Очень страшное кино",
+        "last_dance": "Последний танец",
+        "folie_deux": "Безумие для двоих"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -903,7 +913,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1054,7 +1066,9 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1205,6 +1219,8 @@
         "tmnt2": "Teenage Mutant Ninja Turtles",
         "dark_phoenix": "X-Men: Dark Phoenix",
         "gladiator": "Gladiator",
-        "scary_movie": "Scary Movie"
+        "scary_movie": "Scary Movie",
+        "last_dance": "The Last Dance",
+        "folie_deux": "Folie à Deux"
     }
 }
