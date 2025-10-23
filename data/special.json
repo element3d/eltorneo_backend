@@ -150,7 +150,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -303,7 +305,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -456,7 +460,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -609,7 +615,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -762,7 +770,9 @@
         "gladiator": "Гладиатор",
         "scary_movie": "Очень страшное кино",
         "last_dance": "Последний танец",
-        "folie_deux": "Безумие для двоих"
+        "folie_deux": "Безумие для двоих",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -915,7 +925,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1068,7 +1080,9 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1221,6 +1235,8 @@
         "gladiator": "Gladiator",
         "scary_movie": "Scary Movie",
         "last_dance": "The Last Dance",
-        "folie_deux": "Folie à Deux"
+        "folie_deux": "Folie à Deux",
+        "black_ops": "Black Ops",
+        "infinite_warfare": "Infinite Warfare"
     }
 }
