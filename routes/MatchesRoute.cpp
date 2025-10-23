@@ -60,6 +60,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         std::string season = req.get_param_value("season");
         season = season.substr(2);
         std::string week = req.get_param_value("week");
+        if (week == "undefined") 
+        {
+            week = "l.current_week";
+        }
         std::string lang = "en";
         if (req.has_param("lang")) lang = req.get_param_value("lang");
         std::string game = "eltorneo";
