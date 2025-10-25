@@ -10,7 +10,7 @@ public:
     static ConnectionPool* Get() 
     {
 
-      if (!sInstance) sInstance = new ConnectionPool("host=127.0.0.1 port=5432 dbname=godofscore user=postgres password=postgres", 4);
+      if (!sInstance) sInstance = new ConnectionPool("host=127.0.0.1 port=5432 dbname=eltorneo user=postgres password=postgres", 10);
       return sInstance;
     }
 
