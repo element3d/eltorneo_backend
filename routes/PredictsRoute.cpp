@@ -4911,10 +4911,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         {
             page = std::stoi(req.get_param_value("page"));
         }
-        /*if (req.has_param("league"))
+        if (req.has_param("league"))
         {
             league = std::stoi(req.get_param_value("league"));
-        }*/
+        }
         /*  if (req.has_param("season")) {
               season = req.get_param_value("season");
               std::replace(season.begin(), season.end(), '/', '_');
@@ -4955,6 +4955,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "FROM users u "
             "INNER JOIN career_users cu ON u.id = cu.user_id "
             "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
+            "WHERE " + leagueColName + " = " + std::to_string(league) + " "
             " GROUP BY u.id, u.name, u.avatar, " + pointsColName + ", fu.points, fu.league, fu.position, cu.points, cu.league, cu.position "
             "ORDER BY " + pointsColName + " DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
