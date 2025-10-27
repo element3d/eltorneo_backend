@@ -2744,7 +2744,7 @@ void ProcessFinishedMatches(PGconn* pg)
 	long long nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(
 		std::chrono::system_clock::now().time_since_epoch()
 	).count();
-	long long cutoff = nowMs - 8 * 60 * 1000;
+	long long cutoff = nowMs - 12 * 60 * 1000;
 
 	std::string sql =
 		"SELECT * FROM finished_matches "
