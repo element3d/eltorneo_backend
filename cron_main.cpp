@@ -1778,7 +1778,7 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 			+ std::to_string(int(winOrDraw)) + ", '"
 			+ underOver + "') "
 			"ON CONFLICT (match_id) DO UPDATE SET "
-			"team_api_id = EXCLUDED.team_api_id, "
+			"team_id = EXCLUDED.team_id, "
 			"win_or_draw = EXCLUDED.win_or_draw, "
 			"under_over = EXCLUDED.under_over;";
 
