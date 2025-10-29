@@ -631,6 +631,71 @@ enum class EBeatBetType
 	NotDraw
 };
 
+void UpdateOfficialPredictionsResults(PGconn* pg, int matchId, int team1Id, int team2Id, int team1Goals, int team2Goals)
+{
+	std::string sql = "SELECT id, team_id, win_or_draw, under_over FROM official_predictions WHERE match_id = "
+		+ std::to_string(matchId) + ";";
+	PGresult* ret = PQexec(pg, sql.c_str());
+	if (PQresultStatus(ret) == PGRES_TUPLES_OK && PQntuples(ret) > 0)
+	{
+		int id = atoi(PQgetvalue(ret, 0, 0));
+		int teamId = atoi(PQgetvalue(ret, 0, 1));
+		int winOrDraw = atoi(PQgetvalue(ret, 0, 2));
+		std::string underOver = PQgetvalue(ret, 0, 3);
+		int winStatus = 2;
+		int underOverStatus = 2;
+		if (team1Id == teamId) 
+		{
+			if (winOrDraw == 1) 
+			{
+				if (team1Goals >= team2Goals) winStatus = 1;
+			}
+			else 
+			{
+				if (team1Goals > team2Goals) winStatus = 1;
+			}
+		}
+		else 
+		{
+			if (winOrDraw == 1)
+			{
+				if (team2Goals >= team1Goals) winStatus = 1;
+			}
+			else
+			{
+				if (team2Goals > team1Goals) winStatus = 1;
+			}
+		}
+
+		if (underOver.size())
+		{
+			char sign = underOver[0];
+			float num = atof(underOver.substr(1).c_str());
+
+			int total = team1Goals + team2Goals;
+			if (sign == '-') 
+			{
+				if (total < num) underOverStatus = 1;
+			}
+			else
+			{
+				if (total > num) underOverStatus = 1;
+			}
+		}
+
+		{
+			sql = "UPDATE official_predictions SET winner_status = "
+				+ std::to_string(winStatus) + ", "
+				+ " under_over_status = " + std::to_string(underOverStatus) 
+				+ " WHERE id = " + std::to_string(id)
+				+ ";";
+			PGresult* ret = PQexec(pg, sql.c_str());
+			PQclear(ret);
+		}
+	}
+	PQclear(ret);
+}
+
 void UpdateBeatBetPredicts(PGconn* pg, int matchId, int team1Goals, int team2Goals)
 {
 	std::string beatBetSql =
@@ -1104,7 +1169,8 @@ void GetLiveMatches(PGconn* pg)
 					}
 
 					// Update BeatBet
-					// UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
+					UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
+					UpdateOfficialPredictionsResults(pg, id, team1.Id, team2.Id, team1Goals, team2Goals);
 
 					// Update user predics
 					ProcessBetResults(pg, id, team1Goals, team2Goals, isSpecial);
@@ -1671,6 +1737,56 @@ void FillTopScorers(PGconn* pg)
 	}
 }
 
+
+void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team1Id, int team1ApiId, int team2Id, int team2ApiId)
+{
+	std::string url = "https://v3.football.api-sports.io/predictions";
+	cpr::Response r;
+	cpr::Parameters params;
+	params = 
+	{
+		{"fixture", std::to_string(apiId)}
+	};
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		const rapidjson::Value& response = document["response"];
+		if (!response.Size()) return;
+
+		const rapidjson::Value& predictions = response[0]["predictions"];
+		const rapidjson::Value& winner = predictions["winner"];
+		if (winner["id"].IsNull()) return;
+
+		int teamApiId = winner["id"].GetInt();
+		int teamId = team1Id;
+		if (teamApiId == team2ApiId) teamId = team2Id;
+
+		bool winOrDraw = predictions["win_or_draw"].IsNull() ? false : predictions["win_or_draw"].GetBool();
+		std::string underOver = predictions["under_over"].IsNull() ? "" : predictions["under_over"].GetString();
+
+		std::string sql =
+			"INSERT INTO official_predictions (match_id, team_id, win_or_draw, under_over) VALUES ("
+			+ std::to_string(matchId) + ", "
+			+ std::to_string(teamId) + ", "
+			+ std::to_string(int(winOrDraw)) + ", '"
+			+ underOver + "') "
+			"ON CONFLICT (match_id) DO UPDATE SET "
+			"team_api_id = EXCLUDED.team_api_id, "
+			"win_or_draw = EXCLUDED.win_or_draw, "
+			"under_over = EXCLUDED.under_over;";
+
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+	}
+}
+
 void GetMatchBets(PGconn* pg, int matchId, int apiId)
 {
 	std::string url = "https://v3.football.api-sports.io/odds";
@@ -1847,6 +1963,7 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 							PQclear(ret);
 
 							GetMatchBets(pg, id, newApiId);
+							UpdateMatchOfficialPredictions(pg, id, newApiId, team1, homeId, team2, awayId);
 						}
 					}
 				}
