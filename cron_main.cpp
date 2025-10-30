@@ -1764,11 +1764,20 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 		const rapidjson::Value& winner = predictions["winner"];
 		if (winner["id"].IsNull()) return;
 
+		bool winOrDraw = predictions["win_or_draw"].IsNull() ? false : predictions["win_or_draw"].GetBool();
+
+		std::string bet;
 		int teamApiId = winner["id"].GetInt();
 		int teamId = team1Id;
-		if (teamApiId == team2ApiId) teamId = team2Id;
+		if (winOrDraw) bet = "x1";
+		else bet = "w1";
+		if (teamApiId == team2ApiId) 
+		{
+			teamId = team2Id;
+			if (winOrDraw) bet = "x2";
+			else bet = "w2";
+		}
 
-		bool winOrDraw = predictions["win_or_draw"].IsNull() ? false : predictions["win_or_draw"].GetBool();
 		std::string underOver = predictions["under_over"].IsNull() ? "" : predictions["under_over"].GetString();
 
 		std::string sql =
@@ -1783,6 +1792,34 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 			"under_over = EXCLUDED.under_over;";
 
 		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		float odd = 0;
+		{
+			sql = "SELECT " + bet + " FROM odds WHERE match_id = " + std::to_string(matchId) + ";";
+			PGresult* oddRet = PQexec(pg, sql.c_str());
+			int n = PQntuples(oddRet);
+		
+			if (!n) 
+			{
+				PQclear(oddRet);
+				return;
+			}
+			odd = atof(PQgetvalue(oddRet, 0, 0));
+			PQclear(oddRet);
+		}
+
+		sql =
+			"INSERT INTO bets (user_id, match_id, bet, amount, odd) VALUES ("
+			+ std::to_string(20971) + ", "
+			+ std::to_string(matchId) + ", '"
+			+ bet + "', "
+			+ "20, "
+			+ std::to_string(odd) +
+			") ON CONFLICT (user_id, match_id) DO UPDATE SET "
+			"bet = EXCLUDED.bet, "
+			"odd = EXCLUDED.odd;";
+		ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 	}
 }
