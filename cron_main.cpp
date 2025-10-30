@@ -1810,15 +1810,19 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 		}
 
 		sql =
+			"WITH inserted AS ("
 			"INSERT INTO bets (user_id, match_id, bet, amount, odd) VALUES ("
 			+ std::to_string(20971) + ", "
 			+ std::to_string(matchId) + ", '"
-			+ bet + "', "
-			+ "20, "
+			+ bet + "', 20, "
 			+ std::to_string(odd) +
 			") ON CONFLICT (user_id, match_id) DO UPDATE SET "
 			"bet = EXCLUDED.bet, "
-			"odd = EXCLUDED.odd;";
+			"odd = EXCLUDED.odd "
+			"WHERE FALSE "
+			"RETURNING user_id"
+			") "
+			"UPDATE users SET balance = balance - 20 WHERE id IN (SELECT user_id FROM inserted);";
 		ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 	}
