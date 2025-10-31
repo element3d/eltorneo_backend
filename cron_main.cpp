@@ -104,8 +104,8 @@ struct CronTeam
 
 std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjson::Value& team2Stats, const std::string& statName)
 {
-	int team1Value = 0;
-	int team2Value = 0;
+	std::string team1Value = "0";
+	std::string team2Value = "0";
 
 	// Iterate through team1Stats to find the stat
 	for (const auto& stat : team1Stats.GetArray())
@@ -115,12 +115,17 @@ std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjs
 			if (statName == "Ball Possession")
 			{
 				if (stat["value"].IsString())
-					team1Value = atoi(stat["value"].GetString());
+					team1Value = std::to_string(atoi(stat["value"].GetString()));
+			}
+			else if (statName == "expected_goals")
+			{
+				if (stat["value"].IsString())
+					team1Value = stat["value"].GetString();
 			}
 			else
 			{
 				if (stat["value"].IsInt())
-					team1Value = stat["value"].GetInt();
+					team1Value = std::to_string(stat["value"].GetInt());
 			}
 			break;
 		}
@@ -134,12 +139,17 @@ std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjs
 			if (statName == "Ball Possession")
 			{
 				if (stat["value"].IsString())
-					team2Value = atoi(stat["value"].GetString());
+					team2Value = std::to_string(atoi(stat["value"].GetString()));
+			}
+			else if (statName == "expected_goals")
+			{
+				if (stat["value"].IsString())
+					team2Value = stat["value"].GetString();
 			}
 			else
 			{
 				if (stat["value"].IsInt())
-					team2Value = stat["value"].GetInt();
+					team2Value = std::to_string(stat["value"].GetInt());
 			}
 			break;
 		}
@@ -340,9 +350,10 @@ void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
 	std::string offsides = getStatisticString(team1Stats, team2Stats, "Offsides");
 	std::string possession = getStatisticString(team1Stats, team2Stats, "Ball Possession");
 	std::string saves = getStatisticString(team1Stats, team2Stats, "Goalkeeper Saves");
+	std::string xg = getStatisticString(team1Stats, team2Stats, "expected_goals");
 
-	std::string sql = "INSERT INTO match_stats (match_id, shots_on_target, shots_off_target, blocked_shots, fouls, corners, offsides, possession, saves) "
-		"VALUES (" + std::to_string(matchId) + ", '" + shotsOnTarget + "', '" + shotsOffTarget + "', '" + blockedShots + "', '" + fouls + "', '" + corners + "', '" + offsides + "', '" + possession + "', '" + saves + "') "
+	std::string sql = "INSERT INTO match_stats (match_id, shots_on_target, shots_off_target, blocked_shots, fouls, corners, offsides, possession, saves, xg) "
+		"VALUES (" + std::to_string(matchId) + ", '" + shotsOnTarget + "', '" + shotsOffTarget + "', '" + blockedShots + "', '" + fouls + "', '" + corners + "', '" + offsides + "', '" + possession + "', '" + saves + "', '" + xg + "') "
 		"ON CONFLICT (match_id) DO UPDATE SET "
 		"shots_on_target = EXCLUDED.shots_on_target, "
 		"shots_off_target = EXCLUDED.shots_off_target, "
@@ -351,7 +362,8 @@ void FillMatchStats(PGconn* pg, rapidjson::Document& document, int matchId)
 		"corners = EXCLUDED.corners, "
 		"offsides = EXCLUDED.offsides, "
 		"possession = EXCLUDED.possession, "
-		"saves = EXCLUDED.saves;";
+		"saves = EXCLUDED.saves, "
+		"xg = EXCLUDED.xg;";
 
 	PGresult* ret = PQexec(pg, sql.c_str());
 
