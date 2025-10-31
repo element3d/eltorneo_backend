@@ -1167,6 +1167,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             std::string offsides = PQgetvalue(ret, i, 7);
             std::string possession = PQgetvalue(ret, i, 8);
             std::string saves = PQgetvalue(ret, i, 9);
+            std::string xg = PQgetvalue(ret, i, 10);
 
             document.AddMember("shotsOnTarget", rapidjson::Value(shotsOnTarget.c_str(), allocator), allocator);
             document.AddMember("shotsOffTarget", rapidjson::Value(shotsOffTarget.c_str(), allocator), allocator);
@@ -1176,6 +1177,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             document.AddMember("offsides", rapidjson::Value(offsides.c_str(), allocator), allocator);
             document.AddMember("possession", rapidjson::Value(possession.c_str(), allocator), allocator);
             document.AddMember("saves", rapidjson::Value(saves.c_str(), allocator), allocator);
+            document.AddMember("xg", rapidjson::Value(xg.c_str(), allocator), allocator);
 
         }
 
