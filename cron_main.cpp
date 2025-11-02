@@ -1780,17 +1780,21 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 
 		std::string bet;
 		std::string antiBet;
+		std::string antiBet2;
+
 		int teamApiId = winner["id"].GetInt();
 		int teamId = team1Id;
 		if (winOrDraw) 
 		{
 			bet = "x1";
 			antiBet = "w2";
+			antiBet2 = "x2";
 		}
 		else
 		{
 			bet = "w1";
 			antiBet = "x2";
+			antiBet2 = "x1";
 		}
 		if (teamApiId == team2ApiId) 
 		{
@@ -1799,11 +1803,13 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 			{
 				bet = "x2";
 				antiBet = "w1";
+				antiBet2 = "x1";
 			}
 			else
 			{
 				bet = "w2";
 				antiBet = "x1";
+				antiBet2 = "x2";
 			}
 		}
 
@@ -1878,6 +1884,39 @@ void UpdateMatchOfficialPredictions(PGconn* pg, int matchId, int apiId, int team
 				+ std::to_string(22362) + ", "
 				+ std::to_string(matchId) + ", '"
 				+ antiBet + "', 20, "
+				+ std::to_string(odd) +
+				") ON CONFLICT (user_id, match_id) DO UPDATE SET "
+				"bet = EXCLUDED.bet, "
+				"odd = EXCLUDED.odd "
+				"WHERE FALSE "
+				"RETURNING user_id"
+				") "
+				"UPDATE users SET balance = balance - 20 WHERE id IN (SELECT user_id FROM inserted);";
+			ret = PQexec(pg, sql.c_str());
+			PQclear(ret);
+		}
+		{
+			float odd = 0;
+			{
+				sql = "SELECT " + antiBet2 + " FROM odds WHERE match_id = " + std::to_string(matchId) + ";";
+				PGresult* oddRet = PQexec(pg, sql.c_str());
+				int n = PQntuples(oddRet);
+
+				if (!n)
+				{
+					PQclear(oddRet);
+					return;
+				}
+				odd = atof(PQgetvalue(oddRet, 0, 0));
+				PQclear(oddRet);
+			}
+
+			sql =
+				"WITH inserted AS ("
+				"INSERT INTO bets (user_id, match_id, bet, amount, odd) VALUES ("
+				+ std::to_string(16906) + ", "
+				+ std::to_string(matchId) + ", '"
+				+ antiBet2 + "', 20, "
 				+ std::to_string(odd) +
 				") ON CONFLICT (user_id, match_id) DO UPDATE SET "
 				"bet = EXCLUDED.bet, "
