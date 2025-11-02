@@ -152,7 +152,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -307,7 +308,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -462,7 +464,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -617,7 +620,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -772,7 +776,8 @@
         "last_dance": "Последний танец",
         "folie_deux": "Безумие для двоих",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Дракула"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -927,7 +932,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1082,7 +1088,8 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1237,6 +1244,7 @@
         "last_dance": "The Last Dance",
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
-        "infinite_warfare": "Infinite Warfare"
+        "infinite_warfare": "Infinite Warfare",
+        "dracula_untold": "Dracula Untold"
     }
 }
