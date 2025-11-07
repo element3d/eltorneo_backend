@@ -154,7 +154,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -311,7 +314,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -468,7 +474,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -625,7 +634,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -782,7 +794,10 @@
         "folie_deux": "Безумие для двоих",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Дракула"
+        "dracula_untold": "Дракула",
+        "the_flash": "Флэш",
+        "resident_evil": "Обитель зла",
+        "snow_blind": "Снежная слепота"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -939,7 +954,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1096,7 +1114,10 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1253,6 +1274,9 @@
         "folie_deux": "Folie à Deux",
         "black_ops": "Black Ops",
         "infinite_warfare": "Infinite Warfare",
-        "dracula_untold": "Dracula Untold"
+        "dracula_untold": "Dracula Untold",
+        "the_flash": "The Flash",
+        "resident_evil": "Resident Evil",
+        "snow_blind": "Snow Blind"
     }
 }
