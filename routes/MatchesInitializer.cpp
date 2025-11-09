@@ -4903,78 +4903,78 @@ void MatchesInitializer::InitUEFAWCQualifiers(PGconn* pg)
     std::vector<Match> matches;
 
     // Week 9
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Azerbaijan, ETeam::Iceland, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::France, ETeam::Ukraine, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Azerbaijan, ETeam::Iceland, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::France, ETeam::Ukraine, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Armenia, ETeam::Hungary, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::RepublicOfIreland, ETeam::Portugal, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Armenia, ETeam::Hungary, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::RepublicOfIreland, ETeam::Portugal, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Norway, ETeam::Estonia, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Moldova, ETeam::Italy, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Norway, ETeam::Estonia, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Moldova, ETeam::Italy, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Andorra, ETeam::Albania, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::England, ETeam::Serbia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Andorra, ETeam::Albania, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::England, ETeam::Serbia, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Luxemburg, ETeam::Germany, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Slovakia, ETeam::NorthernIreland, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Luxemburg, ETeam::Germany, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Slovakia, ETeam::NorthernIreland, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Finland, ETeam::Malta, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Poland, ETeam::Netherlands, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Finland, ETeam::Malta, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Poland, ETeam::Netherlands, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Croatia, ETeam::FaroeIslands, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Gibraltar, ETeam::Montenegro, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Croatia, ETeam::FaroeIslands, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Gibraltar, ETeam::Montenegro, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Slovenia, ETeam::Kosovo, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Switzerland, ETeam::Sweden, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Slovenia, ETeam::Kosovo, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Switzerland, ETeam::Sweden, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Denmark, ETeam::Belarus, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Greece, ETeam::Scotland, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Denmark, ETeam::Belarus, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Greece, ETeam::Scotland, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Georgia, ETeam::Spain, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Turkiye, ETeam::Bulgaria, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Georgia, ETeam::Spain, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Turkiye, ETeam::Bulgaria, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Cyprus, ETeam::Austria, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::BosniaAndHerzegovina, ETeam::Romania, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Cyprus, ETeam::Austria, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::BosniaAndHerzegovina, ETeam::Romania, 1763053200000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Kazakhstan, ETeam::Belgium, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Liechtenstein, ETeam::Wales, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Kazakhstan, ETeam::Belgium, 1763053200000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 9, ETeam::Liechtenstein, ETeam::Wales, 1763053200000 });
 
     // Week 10
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Azerbaijan, ETeam::France, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Ukraine, ETeam::Iceland, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Azerbaijan, ETeam::France, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Ukraine, ETeam::Iceland, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Hungary, ETeam::RepublicOfIreland, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Portugal, ETeam::Armenia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Hungary, ETeam::RepublicOfIreland, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Portugal, ETeam::Armenia, 1763312400000 });
     
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Israel, ETeam::Moldova, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Italy, ETeam::Norway, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Israel, ETeam::Moldova, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Italy, ETeam::Norway, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Albania, ETeam::England, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Serbia, ETeam::Latvia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Albania, ETeam::England, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Serbia, ETeam::Latvia, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Germany, ETeam::Slovakia, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::NorthernIreland, ETeam::Luxemburg, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Germany, ETeam::Slovakia, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::NorthernIreland, ETeam::Luxemburg, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Malta, ETeam::Poland, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Netherlands, ETeam::Lithuania, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Malta, ETeam::Poland, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Netherlands, ETeam::Lithuania, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Czechia, ETeam::Gibraltar, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Montenegro, ETeam::Croatia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Czechia, ETeam::Gibraltar, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Montenegro, ETeam::Croatia, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Kosovo, ETeam::Switzerland, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Sweden, ETeam::Slovenia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Kosovo, ETeam::Switzerland, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Sweden, ETeam::Slovenia, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Belarus, ETeam::Greece, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Scotland, ETeam::Denmark, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Belarus, ETeam::Greece, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Scotland, ETeam::Denmark, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Bulgaria, ETeam::Georgia, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Spain, ETeam::Turkiye, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Bulgaria, ETeam::Georgia, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Spain, ETeam::Turkiye, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Austria, ETeam::BosniaAndHerzegovina, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Romania, ETeam::SanMarino, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Austria, ETeam::BosniaAndHerzegovina, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Romania, ETeam::SanMarino, 1763312400000 });
 
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Belgium, ETeam::Liechtenstein, 1760294700000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Wales, ETeam::NorthMacedonia, 1760294700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Belgium, ETeam::Liechtenstein, 1763312400000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 10, ETeam::Wales, ETeam::NorthMacedonia, 1763312400000 });
 
     for (auto& m : matches)
     {
