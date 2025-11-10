@@ -157,7 +157,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -317,7 +318,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -477,7 +479,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -637,7 +640,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -797,7 +801,8 @@
         "dracula_untold": "Дракула",
         "the_flash": "Флэш",
         "resident_evil": "Обитель зла",
-        "snow_blind": "Снежная слепота"
+        "snow_blind": "Снежная слепота",
+        "avengers": "Мстители"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -957,7 +962,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1117,7 +1123,8 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1277,6 +1284,7 @@
         "dracula_untold": "Dracula Untold",
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
-        "snow_blind": "Snow Blind"
+        "snow_blind": "Snow Blind",
+        "avengers": "The Avengers"
     }
 }
