@@ -158,7 +158,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -319,7 +320,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -480,7 +482,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -641,7 +644,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -802,7 +806,8 @@
         "the_flash": "Флэш",
         "resident_evil": "Обитель зла",
         "snow_blind": "Снежная слепота",
-        "avengers": "Мстители"
+        "avengers": "Мстители",
+        "vikings": "Викинги"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -963,7 +968,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1124,7 +1130,8 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1285,6 +1292,7 @@
         "the_flash": "The Flash",
         "resident_evil": "Resident Evil",
         "snow_blind": "Snow Blind",
-        "avengers": "The Avengers"
+        "avengers": "The Avengers",
+        "vikings": "Vikings"
     }
 }
