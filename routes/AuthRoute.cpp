@@ -888,7 +888,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         res.set_header("Access-Control-Allow-Headers", "*");
 
         auto userId = req.get_param_value("user_id");
-
+        int uid = atoi(userId.c_str());
+        if (uid <= 0) 
+        {
+            fprintf(stderr, "Failed to fetch user: %s\n", userId);
+            res.status = 500;
+            return;
+        }
 
         std::string sql = "SELECT id, name, avatar, points, league, balance FROM users WHERE id = " + (userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();

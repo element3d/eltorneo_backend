@@ -3058,7 +3058,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int n = PQntuples(ret);
             if (n > 0)
             {
-                fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add user Bet: Exists! %s\n", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
@@ -3116,7 +3116,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
         {
-            fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to add bet: %s\n", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
@@ -3197,7 +3197,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             PGresult* ret = PQexec(pg, sql.c_str());
             if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
             {
-                fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add predict: %s\n", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
@@ -3207,7 +3207,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int n = PQntuples(ret);
             if (n > 0) 
             {
-                fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add predict: Esists! %s\n", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
@@ -3248,7 +3248,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         // Execute the insert and capture the inserted predict ID
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) {
-            fprintf(stderr, "Failed to add predict: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to add predict: %s\n", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
