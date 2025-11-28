@@ -2703,15 +2703,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         std::string predictsTableName = "bets";
-        std::string pointsColName = "u.balance";
-        std::string leagueColName = "u.beat_bet_league";
 
         /* std::string currentSeason = "25_26";
          if (season != currentSeason)
          {
              predictsTableName += "_" + season;
-             pointsColName += "_" + season;
-             leagueColName += "_" + season;
          }*/
 
         auto now = std::chrono::system_clock::now();
@@ -2734,11 +2730,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "LEFT JOIN career_users cu ON cu.user_id = u.id "
             "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-            "AND " + leagueColName + " = " + std::to_string(league) + " "
+            "AND u.beat_bet_league = " + std::to_string(league) + " "
             "GROUP BY u.id, u.name, u.avatar, u.points, u.beat_bet_league, u.balance, "
             "fu.points, cu.points, fu.league, fu.position, cu.league, cu.position "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
+            "ORDER BY u.balance DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
 
@@ -3207,7 +3203,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int n = PQntuples(ret);
             if (n > 0) 
             {
-                fprintf(stderr, "Failed to add predict: Esists! %s\n", PQerrorMessage(pg));
+                fprintf(stderr, "Failed to add predict: Exists! UserId = %i, MatchId = %i %s\n", userId, matchId, PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500; // Internal Server Error
