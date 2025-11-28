@@ -161,7 +161,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -325,7 +328,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -489,7 +495,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -653,7 +662,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -817,7 +829,10 @@
         "snow_blind": "Снежная слепота",
         "avengers": "Мстители",
         "vikings": "Викинги",
-        "game_of_thrones2": "Игра престолов"
+        "game_of_thrones2": "Игра престолов",
+        "zero_dark": "Цель номер один",
+        "dark_knight": "Темный рыцарь",
+        "allied_assault": "Allied Assault"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -981,7 +996,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1145,7 +1163,10 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1309,6 +1330,9 @@
         "snow_blind": "Snow Blind",
         "avengers": "The Avengers",
         "vikings": "Vikings",
-        "game_of_thrones2": "Game of Thrones"
+        "game_of_thrones2": "Game of Thrones",
+        "zero_dark": "Zero Dark Thirty",
+        "dark_knight": "The Dark Knight",
+        "allied_assault": "Allied Assault"
     }
 }
