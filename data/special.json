@@ -164,7 +164,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -331,7 +332,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -498,7 +500,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -665,7 +668,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -832,7 +836,8 @@
         "game_of_thrones2": "Игра престолов",
         "zero_dark": "Цель номер один",
         "dark_knight": "Темный рыцарь",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Любовь, смерть и роботы"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -999,7 +1004,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1166,7 +1172,8 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1333,6 +1340,7 @@
         "game_of_thrones2": "Game of Thrones",
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
-        "allied_assault": "Allied Assault"
+        "allied_assault": "Allied Assault",
+        "love_death_robots": "Love, Death + Robots"
     }
 }
