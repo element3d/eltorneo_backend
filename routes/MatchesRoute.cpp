@@ -635,6 +635,54 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::P
     };
 }
 
+#include "../stlplus/file_system.hpp"
+#include "../stb_image/stb_image_write.h"
+#include "../stb_image/stb_image.h"
+void UploadPhoto(void* data, int size, std::string fullPath) 
+{
+    int w, h, c;
+    unsigned char* d = nullptr;
+    d = stbi_load_from_memory((unsigned char*)data, size, &w, &h, &c, 0);
+    int stride = w * c;
+    stbi_write_png(fullPath.c_str(), w, h, c, d, stride);
+    stbi_image_free(d);
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::PutPlayerPhoto()
+{
+    return [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        std::string teamId = req.get_param_value("team_id");
+        std::string playerId = req.get_param_value("player_id");
+        httplib::MultipartFormData image_file = req.get_file_value("image_file");
+        if (!image_file.content.size())
+        {
+            res.status = 200;
+            return;
+        }
+
+        // std::string dataDir = "data";
+        std::string dataDir = "/var/www/data";
+        if (!stlplus::folder_exists(dataDir)) stlplus::folder_create(dataDir);
+        std::string playersDir = dataDir + "/players";
+        if (!stlplus::folder_exists(playersDir)) stlplus::folder_create(playersDir);
+        std::string teamDir = playersDir + "/" + teamId;
+        if (!stlplus::folder_exists(teamDir)) stlplus::folder_create(teamDir);
+   
+        std::string filename = teamDir + "/" + playerId + ".png";
+                std::ofstream ofs(filename, std::ios::binary);
+                ofs << image_file.content;
+                ofs.close();
+       // UploadPhoto((unsigned char*)image_file.content.c_str(), image_file.content.size(), filename);
+
+        res.status = 200;
+    };
+}
+
+
 std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::DeleteTeamPlayer()
 {
     return [&](const httplib::Request& req, httplib::Response& res) {
