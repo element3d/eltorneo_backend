@@ -1594,6 +1594,30 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationMatchV2()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        int matchId = document["matchId"].GetInt();
+        bool isSpecial = document["isSpecial"].GetInt();
+        int league = document["league"].GetInt();
+        std::string specialMatchTitle = document["specialMatchTitle"].GetString();
+        std::string team1 = document["team1"].GetString();
+        std::string team2 = document["team2"].GetString();
+        std::string title = team1 + " - " + team2;
+        bool b = PNManager::SendMatchNotificationV2(title, league, isSpecial, specialMatchTitle);
+        if (b) res.status = 200;
+        else res.status = 500;
+        res.status = 200;
+    };
+}
+
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::UserSendNotificationPreview()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {

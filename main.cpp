@@ -155,6 +155,7 @@ int main(void)
     svr.Post("/api/v1/user/notification/match", AuthRoute::Get()->UserSendNotificationMatch());
     svr.Post("/api/v1/user/notification/preview", AuthRoute::Get()->UserSendNotificationPreview());
     svr.Post("/api/v1/user/notification/leagu2", AuthRoute::Get()->UserSendNotificationLeague2());
+    svr.Post("/api/v2/user/notification/match", AuthRoute::Get()->UserSendNotificationMatchV2());
 
     svr.Post("/api/v1/user/notification/special", AuthRoute::Get()->UserSendSpecialMatchNotification());
 

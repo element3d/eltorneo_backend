@@ -139,17 +139,20 @@ bool PNManager::SendPushNotification(const std::string& access_token, const std:
 
     rapidjson::Value android;
     android.SetObject();
+
+    // Android priority
+    v.SetString("HIGH", allocator);
+    android.AddMember("priority", v, allocator);
+
+    // Notification appearance
     std::string ni = icon;
     if (!icon.size()) ni = "ic_notification";
     v.SetString(ni.c_str(), allocator);
     andNote.AddMember("icon", v, allocator);
     v.SetString("#37003C", allocator);
     andNote.AddMember("color", v, allocator);
-
     android.AddMember("notification", andNote, allocator);
     message.AddMember("android", android, allocator); // Set Android-specific settings here
-
-      // Add the message object to the root object
     payload.AddMember("message", message, allocator);
 
     rapidjson::StringBuffer buffer;
@@ -776,6 +779,113 @@ bool PNManager::SendSerieANotification()
     ConnectionPool::Get()->releaseConnection(pg);
     return true;
 }
+
+bool PNManager::SendMatchNotificationV2(const std::string& title, int league, bool isSpecial, const std::string& specialMatchTitle)
+{
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    std::string sql = "SELECT * FROM fcm_tokens;";
+    PGresult* ret = PQexec(pg, sql.c_str());
+
+    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch tokens: %s", PQerrorMessage(pg));
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+        return false;
+    }
+
+    int nrows = PQntuples(ret);
+    if (!nrows)
+    {
+        fprintf(stderr, "No tokens: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return true;
+    }
+    std::string jwt_token = PNManager::CreateJwtToken();
+    if (!jwt_token.size())
+    {
+        fprintf(stderr, "Failed to create jwt token: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return false;
+    }
+
+    std::string access_token = PNManager::RequestAccessToken(jwt_token);
+    if (!access_token.size())
+    {
+        fprintf(stderr, "Failed to create access token: %s", PQerrorMessage(pg));
+
+        ConnectionPool::Get()->releaseConnection(pg);
+        PQclear(ret);
+        return false;
+    }
+
+    std::string filename = "data/notifications.json";
+    std::string specialFilename = "data/special.json";
+    std::string jsonString = ReadFile(filename);
+    std::string specialJsonString = ReadFile(specialFilename);
+
+    rapidjson::Document document;
+    document.Parse(jsonString.c_str());
+
+    rapidjson::Document specialDocument;
+    specialDocument.Parse(specialJsonString.c_str());
+
+    std::string nMsg = "match_msg";
+    std::string icon = "";
+    if (league == 1) icon = "champions_league";
+    else if (league == 2) icon = "premier_league";
+    else if (league == 3) icon = "laliga";
+    else if (league == 4) icon = "serie_a";
+    else if (league == 5) icon = "bundesliga";
+    else if (league == 6) icon = "ligue_1";
+
+    char* temp = (char*)calloc(4096, sizeof(char));
+    std::vector<int> invalidTokens;
+    for (int i = 0; i < nrows; ++i)
+    {
+        // Handle ID as integer
+        int id = atoi(PQgetvalue(ret, i, 0));
+        int userId = atoi(PQgetvalue(ret, i, 1));
+        strcpy(temp, PQgetvalue(ret, i, 2));
+        std::string token = temp;//"cHuMBtqtTFWYbCBmHMlJrs:APA91bGl1--uMCtDCW94jmpy0TsrMGiAmmYEMs1OXnIq-bnk2kCFqsC8KLB0GSgowgT7ZIUc58YOzmhkQbFbK0iqH5cM_wQwJH1FrHfF0tLbtI3LGmIeHzhvX5-vxuZPrLGv741WkV4I";
+        strcpy(temp, PQgetvalue(ret, i, 3));
+        std::string os = temp;
+        strcpy(temp, PQgetvalue(ret, i, 4));
+        std::string lang = temp;
+
+        std::string t = title;
+        if (isSpecial) 
+        {
+            std::string prefix = specialDocument[lang.c_str()][specialMatchTitle.c_str()].GetString() + std::string(": ");
+            t = prefix + t;
+        }
+        std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
+
+        bool ret = PNManager::SendPushNotification(access_token, token, t, m, icon);
+        // break;
+        if (!ret) invalidTokens.push_back(id);
+    }
+    free(temp);
+    PQclear(ret);
+
+    if (invalidTokens.size())
+    {
+        for (auto id : invalidTokens)
+        {
+            sql = std::string("delete from fcm_tokens where id = ") + std::to_string(id) + ";";
+            ret = PQexec(pg, sql.c_str());
+            PQclear(ret);
+        }
+    }
+
+    ConnectionPool::Get()->releaseConnection(pg);
+    return true;
+}
+
 
 bool PNManager::SendMatchNotification()
 {

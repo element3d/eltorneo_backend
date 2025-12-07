@@ -19,6 +19,7 @@ public:
 	static bool SendElClasicoNotification();
 	static bool SendSerieANotification();
 	static bool SendMatchNotification();
+	static bool SendMatchNotificationV2(const std::string& title, int league, bool isSpecial, const std::string& specialMatchTitle);
 	static bool SendPreviewNotification();
 	static bool SendLeague2Notification();
 
