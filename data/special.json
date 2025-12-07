@@ -165,7 +165,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -333,7 +334,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -501,7 +503,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -669,7 +672,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -837,7 +841,8 @@
         "zero_dark": "Цель номер один",
         "dark_knight": "Темный рыцарь",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Любовь, смерть и роботы"
+        "love_death_robots": "Любовь, смерть и роботы",
+        "fant_beasts": "Фантастические твари"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1005,7 +1010,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1173,7 +1179,8 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1341,6 +1348,7 @@
         "zero_dark": "Zero Dark Thirty",
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
-        "love_death_robots": "Love, Death + Robots"
+        "love_death_robots": "Love, Death + Robots",
+        "fant_beasts": "Fantastic Beasts"
     }
 }
