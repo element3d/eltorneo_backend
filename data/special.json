@@ -166,7 +166,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -335,7 +336,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -504,7 +506,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -673,7 +676,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -842,7 +846,8 @@
         "dark_knight": "Темный рыцарь",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Любовь, смерть и роботы",
-        "fant_beasts": "Фантастические твари"
+        "fant_beasts": "Фантастические твари",
+        "jumanji2": "Джуманджи"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1011,7 +1016,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1180,7 +1186,8 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1349,6 +1356,7 @@
         "dark_knight": "The Dark Knight",
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
-        "fant_beasts": "Fantastic Beasts"
+        "fant_beasts": "Fantastic Beasts",
+        "jumanji2": "Jumanji"
     }
 }
