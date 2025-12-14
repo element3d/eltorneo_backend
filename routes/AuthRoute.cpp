@@ -716,7 +716,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.email, u.tg_code, u.username, u.balance, u.is_guest, fu.points, cu.points, "
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.email, u.tg_code, u.username, u.clear_balance, u.is_guest, fu.points, cu.points, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -896,7 +896,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
             return;
         }
 
-        std::string sql = "SELECT id, name, avatar, points, league, balance FROM users WHERE id = " + (userId) + ";";
+        std::string sql = "SELECT id, name, avatar, points, league, clear_balance FROM users WHERE id = " + (userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)

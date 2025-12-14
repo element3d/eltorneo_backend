@@ -1653,7 +1653,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix + ", u.balance, "
+        std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix + ", u.clear_balance, "
             "u.eltorneo_position, u.eltorneo_league, "
             "u.beat_bet_position, u.beat_bet_league, "
             "fu.position, fu.league, "
@@ -1989,7 +1989,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
         // Join the predicts with users table and order by points descending, limit to 3
-        std::string sql = "SELECT b.*, u.name, u.avatar, u.points" + postfix + ", u.balance, "
+        std::string sql = "SELECT b.*, u.name, u.avatar, u.points" + postfix + ", u.clear_balance, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -2001,7 +2001,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "LEFT JOIN career_users cu ON cu.user_id = u.id "
             "WHERE b.match_id = " + matchId + " "
-            "ORDER BY u.balance" + postfix + " DESC LIMIT 20;";
+            "ORDER BY u.clear_balance" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -2381,7 +2381,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "SELECT u.id, u.name, u.avatar, "
             + pointsColName + " AS user_points, "
             + leagueColName + ", "
-            "u.balance, u.eltorneo_position, COUNT(p.id) AS total_predictions, "
+            "u.clear_balance, u.eltorneo_position, COUNT(p.id) AS total_predictions, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
             "cu.league, cu.position, "
@@ -2395,7 +2395,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "AND " + leagueColName + " = " + std::to_string(league) + " "
             "AND u.last_predict_ts >= " + std::to_string(tsDiff) + " "
             "GROUP BY u.id, u.name, u.avatar, " + pointsColName + ", "
-            + leagueColName + ", u.balance, fu.points, cu.points, fu.league, fu.position, cu.league, cu.position "
+            + leagueColName + ", u.clear_balance, fu.points, cu.points, fu.league, fu.position, cu.league, cu.position "
             "HAVING COUNT(p.id) > 0 "
             "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
@@ -2717,7 +2717,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
         std::string sql =
-            "SELECT u.id, u.name, u.avatar, u.points, u.balance, "
+            "SELECT u.id, u.name, u.avatar, u.points, u.clear_balance, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -2731,10 +2731,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN career_users cu ON cu.user_id = u.id "
             "WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
             "AND u.beat_bet_league = " + std::to_string(league) + " "
-            "GROUP BY u.id, u.name, u.avatar, u.points, u.beat_bet_league, u.balance, "
+            "GROUP BY u.id, u.name, u.avatar, u.points, u.beat_bet_league, u.clear_balance, "
             "fu.points, cu.points, fu.league, fu.position, cu.league, cu.position "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY u.balance DESC, total_predictions DESC, u.id ASC "
+            "ORDER BY u.clear_balance DESC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
 
@@ -3782,7 +3782,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }*/
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        std::string sql = "SELECT p.*, u.name, u.avatar, fu.points, u.points, u.balance, "
+        std::string sql = "SELECT p.*, u.name, u.avatar, fu.points, u.points, u.clear_balance, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -4259,7 +4259,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, fu.points, COUNT(p.id) AS total_predictions, u.points, u.balance, "
+        std::string sql = "SELECT u.id, u.name, u.avatar, fu.points, COUNT(p.id) AS total_predictions, u.points, u.clear_balance, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -4943,7 +4943,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         long long ten_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.balance, fu.points, cu.points, "
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.clear_balance, fu.points, cu.points, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "

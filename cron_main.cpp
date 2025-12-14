@@ -3126,7 +3126,7 @@ void CorrectGameTables(PGconn* pg)
 		PQclear(ret);
 
 		sql =
-			"SELECT u.id, COUNT(b.id) AS total_bets "
+			"SELECT u.id, u.balance, COUNT(b.id) AS total_bets "
 			"FROM users u "
 			"INNER JOIN bets b ON u.id = b.user_id "
 			"WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
@@ -3153,6 +3153,58 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 40) league = 3;
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
+				float balance = atof(PQgetvalue(ret, i, 1));
+				float totalAmount = 0;
+
+				{
+					std::string unsetBetsSql = "SELECT amount FROM bets WHERE user_id = " + std::to_string(uid) + " AND status = 0;";
+					PGresult* unsetBetsRes = PQexec(pg, unsetBetsSql.c_str());
+					int nrows = PQntuples(unsetBetsRes);
+					for (int b = 0; b < nrows; ++b)
+					{
+						int amount = atof(PQgetvalue(unsetBetsRes, b, 0));
+						totalAmount += amount;
+					}
+					PQclear(unsetBetsRes);
+				}
+
+				std::string posSql = "UPDATE users SET clear_balance = " + std::to_string(balance + totalAmount)
+					+ " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+
+		sql =
+			"SELECT u.id, COUNT(b.id) AS total_bets "
+			"FROM users u "
+			"INNER JOIN bets b ON u.id = b.user_id "
+			"WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"GROUP BY u.id, u.name, u.avatar, u.clear_balance "
+			"HAVING COUNT(b.id) > 0 "
+			"ORDER BY u.clear_balance DESC, total_bets DESC, u.id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				if (pos > 20) league = 2;
+				if (pos > 40) league = 3;
+				if (pos > 60) league = 4;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+
 				std::string posSql = "UPDATE users SET beat_bet_position = " + std::to_string(pos)
 					+ ", beat_bet_league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
@@ -3248,6 +3300,7 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
+
 	//FillTodayLineups(pg);
 
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
