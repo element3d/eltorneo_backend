@@ -167,7 +167,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -337,7 +338,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -507,7 +509,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -677,7 +680,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -847,7 +851,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Любовь, смерть и роботы",
         "fant_beasts": "Фантастические твари",
-        "jumanji2": "Джуманджи"
+        "jumanji2": "Джуманджи",
+        "pearl_harbor": "Перл Харбор"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1017,7 +1022,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1187,7 +1193,8 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1357,6 +1364,7 @@
         "allied_assault": "Allied Assault",
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
-        "jumanji2": "Jumanji"
+        "jumanji2": "Jumanji",
+        "pearl_harbor": "Pearl Harbor"
     }
 }
