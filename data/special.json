@@ -168,7 +168,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -339,7 +341,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -510,7 +514,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -681,7 +687,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -852,7 +860,9 @@
         "love_death_robots": "Любовь, смерть и роботы",
         "fant_beasts": "Фантастические твари",
         "jumanji2": "Джуманджи",
-        "pearl_harbor": "Перл Харбор"
+        "pearl_harbor": "Перл Харбор",
+        "zootopia": "Зверополис",
+        "migration": "Миграция"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1023,7 +1033,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1194,7 +1206,9 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1365,6 +1379,8 @@
         "love_death_robots": "Love, Death + Robots",
         "fant_beasts": "Fantastic Beasts",
         "jumanji2": "Jumanji",
-        "pearl_harbor": "Pearl Harbor"
+        "pearl_harbor": "Pearl Harbor",
+        "zootopia": "Zootopia",
+        "migration": "Migration"
     }
 }
