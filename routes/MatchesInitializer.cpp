@@ -4076,14 +4076,14 @@ void MatchesInitializer::InitCopaDelReyTeams24_25(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitSuperCupItaliaTeams24_25(PGconn* pg)
+void MatchesInitializer::InitSuperCupItaliaTeams25_26(PGconn* pg)
 {
   
     std::vector<ETeam> teams;
+    teams.push_back(ETeam::Napoli);
     teams.push_back(ETeam::ACMilan);
+    teams.push_back(ETeam::Bologna);
     teams.push_back(ETeam::InterMilan);
-    teams.push_back(ETeam::Atalanta);
-    teams.push_back(ETeam::Juventus);
   
     for (ETeam t : teams)
     {
@@ -4240,14 +4240,14 @@ void MatchesInitializer::InitCoppaItalia24_25(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitSuperCupItalia24_25(PGconn * pg)
+void MatchesInitializer::InitSuperCupItalia25_26(PGconn * pg)
 {
     std::vector<Match> matches;
     // Semi final
-    // matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::InterMilan, ETeam::Atalanta, 1735844400000, EWeekType::SemiFinal, true });
-    // matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::Juventus, ETeam::ACMilan, 1735930800000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Napoli, ETeam::ACMilan, 1766084400000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Bologna, ETeam::InterMilan, 1766170800000, EWeekType::SemiFinal, true });
 
-    matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::InterMilan, ETeam::ACMilan, 1736190000000, EWeekType::Final, true });
+    // matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::InterMilan, ETeam::ACMilan, 1736190000000, EWeekType::Final, true });
 
     for (auto& m : matches)
     {
