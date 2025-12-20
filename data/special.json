@@ -173,7 +173,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -349,7 +350,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -525,7 +527,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -701,7 +704,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -877,7 +881,8 @@
         "migration": "Миграция",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Острые козырьки"
+        "peaky_blinders": "Острые козырьки",
+        "bad_guys": "Плохие парни"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1053,7 +1058,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1229,7 +1235,8 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1405,6 +1412,7 @@
         "migration": "Migration",
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
-        "peaky_blinders": "Peaky Blinders"
+        "peaky_blinders": "Peaky Blinders",
+        "bad_guys": "Bad Guys"
     }
 }
