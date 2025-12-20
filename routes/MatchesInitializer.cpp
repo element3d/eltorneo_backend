@@ -4244,10 +4244,10 @@ void MatchesInitializer::InitSuperCupItalia25_26(PGconn * pg)
 {
     std::vector<Match> matches;
     // Semi final
-    matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Napoli, ETeam::ACMilan, 1766084400000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Bologna, ETeam::InterMilan, 1766170800000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Napoli, ETeam::ACMilan, 1766084400000, EWeekType::SemiFinal, true });
+    //matches.push_back({ ELeague::SuperCupItalia, "25/26", 1, ETeam::Bologna, ETeam::InterMilan, 1766170800000, EWeekType::SemiFinal, true });
 
-    // matches.push_back({ ELeague::SuperCupItalia, "24/25", 1, ETeam::InterMilan, ETeam::ACMilan, 1736190000000, EWeekType::Final, true });
+     matches.push_back({ ELeague::SuperCupItalia, "25/26", 2, ETeam::Napoli, ETeam::Bologna, 1766430000000, EWeekType::Final, false });
 
     for (auto& m : matches)
     {
