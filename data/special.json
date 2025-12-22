@@ -174,7 +174,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -351,7 +353,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -528,7 +532,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -705,7 +711,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -882,7 +890,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Острые козырьки",
-        "bad_guys": "Плохие парни"
+        "bad_guys": "Плохие парни",
+        "home_alone2": "Один дома",
+        "lion_king": "Король Лев"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1059,7 +1069,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1236,7 +1248,9 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1413,6 +1427,8 @@
         "angry_birds3": "Angry Birds",
         "world_of_tanks": "World Of Tanks",
         "peaky_blinders": "Peaky Blinders",
-        "bad_guys": "Bad Guys"
+        "bad_guys": "Bad Guys",
+        "home_alone2": "Home Alone",
+        "lion_king": "Lion King"
     }
 }
