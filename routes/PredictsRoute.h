@@ -12,6 +12,7 @@ public:
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserBets();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetOfficialBets();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserScorePredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserWinnerPredicts();
 

@@ -221,6 +221,8 @@ int main(void)
     svr.Get("/api/v1/user/bet", PredictsRoute::Get()->GetUserBet());
     svr.Get("/api/v1/user/predicts", PredictsRoute::Get()->GetUserPredicts());
     svr.Get("/api/v1/user/bets", PredictsRoute::Get()->GetUserBets());
+    svr.Get("/api/v1/beatbet_official", PredictsRoute::Get()->GetBeatBetOfficialBets());
+
     svr.Get("/api/v1/user/score_predicts", PredictsRoute::Get()->GetUserScorePredicts());
     svr.Get("/api/v1/user/winner_predicts", PredictsRoute::Get()->GetUserWinnerPredicts());
 

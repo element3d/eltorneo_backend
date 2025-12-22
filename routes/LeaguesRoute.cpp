@@ -39,7 +39,7 @@ void LeaguesRoute::Init()
     {
         //MatchesInitializer::InitUEFAWCQualifiersTeams(pg);
         //MatchesInitializer::InitUEFAWCQualifiersTables(pg);
-        MatchesInitializer::InitUEFAWCQualifiers(pg);
+        //MatchesInitializer::InitUEFAWCQualifiers(pg);
       
         //MatchesInitializer::InitChampionsLeagueTeams25_26(pg);
         //MatchesInitializer::InitChampionsLeagueTable(pg);
@@ -190,6 +190,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             objValue.AddMember("enableNativeAds", atoi(PQgetvalue(ret, i, 6)), allocator);
             objValue.AddMember("bannerType", atoi(PQgetvalue(ret, i, 7)), allocator);
             objValue.AddMember("numLevels", atoi(PQgetvalue(ret, i, 8)), allocator);
+            objValue.AddMember("showBeatBetOfficial", 0, allocator);
 
             // Add the object to the document array
             document.PushBack(objValue, allocator);
