@@ -176,7 +176,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -355,7 +356,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -534,7 +536,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -713,7 +716,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -892,7 +896,8 @@
         "peaky_blinders": "Острые козырьки",
         "bad_guys": "Плохие парни",
         "home_alone2": "Один дома",
-        "lion_king": "Король Лев"
+        "lion_king": "Король Лев",
+        "polar_express": "Полярный экспресс"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1071,7 +1076,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1250,7 +1256,8 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1429,6 +1436,7 @@
         "peaky_blinders": "Peaky Blinders",
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
-        "lion_king": "Lion King"
+        "lion_king": "Lion King",
+        "polar_express": "Polar Express"
     }
 }
