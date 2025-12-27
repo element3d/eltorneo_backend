@@ -1484,15 +1484,15 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         if (PQresultStatus(beatBetRet) == PGRES_TUPLES_OK && PQntuples(beatBetRet) > 0)
         {
-            rapidjson::Value beatBet(rapidjson::kObjectType);
+          //  rapidjson::Value beatBet(rapidjson::kObjectType);
 
-            rapidjson::Value v;
-            v.SetString(PQgetvalue(beatBetRet, 0, 0), allocator);
-            beatBet.AddMember("bet", v, allocator);
-            beatBet.AddMember("odd", atof(PQgetvalue(beatBetRet, 0, 1)), allocator);
-            beatBet.AddMember("status", atoi(PQgetvalue(beatBetRet, 0, 2)), allocator);
+          //  rapidjson::Value v;
+          //  v.SetString(PQgetvalue(beatBetRet, 0, 0), allocator);
+          //  beatBet.AddMember("bet", v, allocator);
+          //  beatBet.AddMember("odd", atof(PQgetvalue(beatBetRet, 0, 1)), allocator);
+          //  beatBet.AddMember("status", atoi(PQgetvalue(beatBetRet, 0, 2)), allocator);
 
-            document.AddMember("beatBetOfficial", beatBet, allocator);
+          //  document.AddMember("beatBetOfficial", beatBet, allocator);
         }
 
         // Clean up beat_bet result

@@ -908,7 +908,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals, 
 				PGresult* statusRet = PQexec(pg, betStatusSql.c_str());
 				PQclear(statusRet);
 
-				if (isSpecial) 
+				if (isSpecial && userId != 25524)
 				{
 					std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(oldAmount)
 						+ " WHERE id = " + std::to_string(userId) + ";";
@@ -937,7 +937,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals, 
 				PGresult* statusRet = PQexec(pg, betStatusSql.c_str());
 				PQclear(statusRet);
 
-				if (isSpecial)
+				if (isSpecial && userId != 25524)
 				{
 					std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(oldAmount)
 						+ " WHERE id = " + std::to_string(userId) + ";";
@@ -966,7 +966,7 @@ void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals, 
 				PGresult* statusRet = PQexec(pg, betStatusSql.c_str());
 				PQclear(statusRet);
 
-				if (isSpecial)
+				if (isSpecial && userId != 25524)
 				{
 					std::string balanceSql = "UPDATE users SET balance = balance + " + std::to_string(oldAmount)
 						+ " WHERE id = " + std::to_string(userId) + ";";
