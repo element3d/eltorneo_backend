@@ -177,7 +177,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -357,7 +358,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -537,7 +539,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -717,7 +720,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -897,7 +901,8 @@
         "bad_guys": "Плохие парни",
         "home_alone2": "Один дома",
         "lion_king": "Король Лев",
-        "polar_express": "Полярный экспресс"
+        "polar_express": "Полярный экспресс",
+        "new_year": "С Новым Годом"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1077,7 +1082,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1257,7 +1263,8 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1437,6 +1444,7 @@
         "bad_guys": "Bad Guys",
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
-        "polar_express": "Polar Express"
+        "polar_express": "Polar Express",
+        "new_year": "Happy New Year"
     }
 }
