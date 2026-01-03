@@ -178,7 +178,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -359,7 +360,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -540,7 +542,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -721,7 +724,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -902,7 +906,8 @@
         "home_alone2": "Один дома",
         "lion_king": "Король Лев",
         "polar_express": "Полярный экспресс",
-        "new_year": "С Новым Годом"
+        "new_year": "С Новым Годом",
+        "dead_mans_chest": "Сундук мертвеца"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1083,7 +1088,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1264,7 +1270,8 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1445,6 +1452,7 @@
         "home_alone2": "Home Alone",
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
-        "new_year": "Happy New Year"
+        "new_year": "Happy New Year",
+        "dead_mans_chest": "Dead Man's Chest"
     }
 }
