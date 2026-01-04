@@ -4149,12 +4149,12 @@ void MatchesInitializer::InitDFLSuperCupTeams25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitSuperCupFranceTeams24_25(PGconn* pg)
+void MatchesInitializer::InitSuperCupFranceTeams25_26(PGconn* pg)
 {
 
     std::vector<ETeam> teams;
     teams.push_back(ETeam::PSG);
-    teams.push_back(ETeam::Monaco);
+    teams.push_back(ETeam::Marseille);
 
     for (ETeam t : teams)
     {
@@ -4348,11 +4348,11 @@ void MatchesInitializer::InitDFLSuperCup25_26(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitSuperCupFrance24_25(PGconn* pg)
+void MatchesInitializer::InitSuperCupFrance25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // Semi final
-    matches.push_back({ ELeague::SuperCupFrance, "24/25", 1, ETeam::PSG, ETeam::Monaco, 1736094600000, EWeekType::Final, true });
+    matches.push_back({ ELeague::SuperCupFrance, "25/26", 1, ETeam::PSG, ETeam::Marseille, 1767895200000, EWeekType::Final, false });
 
     for (auto& m : matches)
     {
