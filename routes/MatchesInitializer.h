@@ -80,8 +80,8 @@ public:
     static void InitSuperCupFranceTeams24_25(PGconn* pg);
     static void InitSuperCupFrance24_25(PGconn* pg);
 
-    static void InitSuperCupSpainTeams24_25(PGconn* pg);
-    static void InitSuperCupSpain24_25(PGconn* pg);
+    static void InitSuperCupSpainTeams25_26(PGconn* pg);
+    static void InitSuperCupSpain25_26(PGconn* pg);
 
     static void InitEFLCupTeams24_25(PGconn* pg);
     static void InitEFLCup24_25(PGconn* pg);

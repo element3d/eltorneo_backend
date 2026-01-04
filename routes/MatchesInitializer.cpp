@@ -4095,14 +4095,14 @@ void MatchesInitializer::InitSuperCupItaliaTeams25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitSuperCupSpainTeams24_25(PGconn* pg)
+void MatchesInitializer::InitSuperCupSpainTeams25_26(PGconn* pg)
 {
 
     std::vector<ETeam> teams;
     teams.push_back(ETeam::AthleticClub);
     teams.push_back(ETeam::Barcelona);
     teams.push_back(ETeam::RealMadrid);
-    teams.push_back(ETeam::Mallorca);
+    teams.push_back(ETeam::AtleticoMadrid);
 
     for (ETeam t : teams)
     {
@@ -4267,14 +4267,14 @@ void MatchesInitializer::InitSuperCupItalia25_26(PGconn * pg)
     }
 }
 
-void MatchesInitializer::InitSuperCupSpain24_25(PGconn* pg)
+void MatchesInitializer::InitSuperCupSpain25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // Semi final
-    //matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::AthleticClub, ETeam::Barcelona, 1736362800000, EWeekType::SemiFinal, true });
-    //matches.push_back({ ELeague::SuperCupSpain, "24/25", 1, ETeam::RealMadrid, ETeam::Mallorca, 1736449200000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::SuperCupSpain, "25/26", 1, ETeam::Barcelona, ETeam::AthleticClub, 1767812400000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::SuperCupSpain, "25/26", 1, ETeam::AtleticoMadrid, ETeam::RealMadrid, 1767898800000, EWeekType::SemiFinal, false });
 
-    matches.push_back({ ELeague::SuperCupSpain, "24/25", 2, ETeam::RealMadrid, ETeam::Barcelona, 1736708400000, EWeekType::Final, true });
+    //matches.push_back({ ELeague::SuperCupSpain, "24/25", 2, ETeam::RealMadrid, ETeam::Barcelona, 1736708400000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
