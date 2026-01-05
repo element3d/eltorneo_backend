@@ -179,7 +179,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -361,7 +364,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -543,7 +549,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -725,7 +734,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -907,7 +919,10 @@
         "lion_king": "Король Лев",
         "polar_express": "Полярный экспресс",
         "new_year": "С Новым Годом",
-        "dead_mans_chest": "Сундук мертвеца"
+        "dead_mans_chest": "Сундук мертвеца",
+        "transformers2": "Трансформеры",
+        "aftermath": "Последствия",
+        "the_big_fight": "Большая битва"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1089,7 +1104,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1271,7 +1289,10 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1453,6 +1474,9 @@
         "lion_king": "Lion King",
         "polar_express": "Polar Express",
         "new_year": "Happy New Year",
-        "dead_mans_chest": "Dead Man's Chest"
+        "dead_mans_chest": "Dead Man's Chest",
+        "transformers2": "Transformers",
+        "aftermath": "Aftermath",
+        "the_big_fight": "The Big Fight"
     }
 }
