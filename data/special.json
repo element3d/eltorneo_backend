@@ -182,7 +182,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -367,7 +369,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -552,7 +556,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -737,7 +743,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -922,7 +930,9 @@
         "dead_mans_chest": "Сундук мертвеца",
         "transformers2": "Трансформеры",
         "aftermath": "Последствия",
-        "the_big_fight": "Большая битва"
+        "the_big_fight": "Большая битва",
+        "rush2": "Гонка",
+        "revenge_of_fallen2": "Месть падших"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1107,7 +1117,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1292,7 +1304,9 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1477,6 +1491,8 @@
         "dead_mans_chest": "Dead Man's Chest",
         "transformers2": "Transformers",
         "aftermath": "Aftermath",
-        "the_big_fight": "The Big Fight"
+        "the_big_fight": "The Big Fight",
+        "rush2": "Rush",
+        "revenge_of_fallen2": "Revenge of the fallen"
     }
 }
