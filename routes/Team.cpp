@@ -439,7 +439,7 @@ std::string Team::ToString(ETeam team)
         return "Pisa";
     // Bundesliga 
     case ETeam::Koln:
-        return "1.FC Köln";
+        return "1. FC Köln";
     case ETeam::Hamburg:
         return "Hamburger SV";
     // Ligue 1 
