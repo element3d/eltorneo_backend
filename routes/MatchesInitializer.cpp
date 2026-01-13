@@ -4114,14 +4114,14 @@ void MatchesInitializer::InitSuperCupSpainTeams25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitEFLCupTeams24_25(PGconn* pg)
+void MatchesInitializer::InitEFLCupTeams25_26(PGconn* pg)
 {
 
     std::vector<ETeam> teams;
-    teams.push_back(ETeam::Liverpool);
     teams.push_back(ETeam::NewcastleUnited);
+    teams.push_back(ETeam::ManchesterCity);
+    teams.push_back(ETeam::Chelsea);
     teams.push_back(ETeam::Arsenal);
-    teams.push_back(ETeam::TottenhamHotspur);
 
     for (ETeam t : teams)
     {
@@ -4295,15 +4295,15 @@ void MatchesInitializer::InitSuperCupSpain25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitEFLCup24_25(PGconn* pg)
+void MatchesInitializer::InitEFLCup25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // Semi final
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::Arsenal, ETeam::NewcastleUnited, 1736280000000, EWeekType::SemiFinal, false });
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::TottenhamHotspur, ETeam::Liverpool, 1736366400000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::EFLCup, "25/26", 1, ETeam::NewcastleUnited, ETeam::ManchesterCity, 1768334400000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::EFLCup, "25/26", 1, ETeam::Chelsea, ETeam::Arsenal, 1768420800000, EWeekType::SemiFinal, false });
 
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::NewcastleUnited, ETeam::Arsenal, 1738785600000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::EFLCup, "24/25", 1, ETeam::Liverpool, ETeam::TottenhamHotspur, 1738872000000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::EFLCup, "25/26", 1, ETeam::Arsenal, ETeam::Chelsea, 1770148800000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::EFLCup, "25/26", 1, ETeam::ManchesterCity, ETeam::NewcastleUnited, 1770235200000, EWeekType::SemiFinal, false });
 
 
     for (auto& m : matches)
