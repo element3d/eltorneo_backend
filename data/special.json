@@ -186,7 +186,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -375,7 +377,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -564,7 +568,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -753,7 +759,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -942,7 +950,9 @@
         "rush2": "Гонка",
         "revenge_of_fallen2": "Месть падших",
         "silent_hill": "Сайлент Хилл",
-        "ice_age": "Ледниковый период"
+        "ice_age": "Ледниковый период",
+        "brotherhood": "Brotherhood (Братство)",
+        "naval_strike": "Naval Strike (Морской удар)"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1131,7 +1141,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1320,7 +1332,9 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1509,6 +1523,8 @@
         "rush2": "Rush",
         "revenge_of_fallen2": "Revenge of the fallen",
         "silent_hill": "Silent Hill",
-        "ice_age": "Ice Age"
+        "ice_age": "Ice Age",
+        "brotherhood": "Brotherhood",
+        "naval_strike": "Naval Strike"
     }
 }
