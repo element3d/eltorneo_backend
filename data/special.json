@@ -188,7 +188,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -379,7 +381,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -570,7 +574,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -761,7 +767,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -951,8 +959,10 @@
         "revenge_of_fallen2": "Месть падших",
         "silent_hill": "Сайлент Хилл",
         "ice_age": "Ледниковый период",
-        "brotherhood": "Brotherhood (Братство)",
-        "naval_strike": "Naval Strike (Морской удар)"
+        "brotherhood": "Братство",
+        "naval_strike": "Морской удар",
+        "the_mummy": "Мумия",
+        "rivals": "Враги"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1143,7 +1153,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1334,7 +1346,9 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1525,6 +1539,8 @@
         "silent_hill": "Silent Hill",
         "ice_age": "Ice Age",
         "brotherhood": "Brotherhood",
-        "naval_strike": "Naval Strike"
+        "naval_strike": "Naval Strike",
+        "the_mummy": "The Mummy",
+        "rivals": "Rivals"
     }
 }
