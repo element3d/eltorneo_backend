@@ -190,7 +190,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -383,7 +384,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -576,7 +578,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -769,7 +772,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -962,7 +966,8 @@
         "brotherhood": "Братство",
         "naval_strike": "Морской удар",
         "the_mummy": "Мумия",
-        "rivals": "Враги"
+        "rivals": "Враги",
+        "judgement_day": "Судный день"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1155,7 +1160,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1348,7 +1354,8 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1541,6 +1548,7 @@
         "brotherhood": "Brotherhood",
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
-        "rivals": "Rivals"
+        "rivals": "Rivals",
+        "judgement_day": "Judgement day"
     }
 }
