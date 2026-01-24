@@ -191,7 +191,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -385,7 +386,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -579,7 +581,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -773,7 +776,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -967,7 +971,8 @@
         "naval_strike": "Морской удар",
         "the_mummy": "Мумия",
         "rivals": "Враги",
-        "judgement_day": "Судный день"
+        "judgement_day": "Судный день",
+        "undercover": "Undercover"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1161,7 +1166,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1355,7 +1361,8 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1549,6 +1556,7 @@
         "naval_strike": "Naval Strike",
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
-        "judgement_day": "Judgement day"
+        "judgement_day": "Judgement day",
+        "undercover": "Undercover"
     }
 }
