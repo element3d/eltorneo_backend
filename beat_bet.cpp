@@ -1,10 +1,181 @@
 #include <string>
 #include "managers/PQManager.h"
+#include <iostream>
+#include <fstream>
+
+void ProcessMatchPredicts(PGconn* pg, int matchId)
+{
+    int w1Count, w2Count, xCount;
+    // All predicts
+    {
+        std::string sql = "SELECT count(*) FROM predicts WHERE team1_score > team2_score AND match_id = "
+            + std::to_string(matchId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w1Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << "ALL: " << w1Count << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql = "SELECT count(*) FROM predicts WHERE team1_score = team2_score AND match_id = "
+            + std::to_string(matchId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        xCount = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << xCount << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql = "SELECT count(*) FROM predicts WHERE team1_score < team2_score AND match_id = "
+            + std::to_string(matchId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w2Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << w2Count << std::endl;
+        PQclear(ret);
+    }
+
+    // Good predicts
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score > p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 25;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w1Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << "GOO: " << w1Count << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score = p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 25;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        xCount = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << xCount << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score < p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 25;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w2Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << w2Count << std::endl;
+        PQclear(ret);
+    }
+
+    // Best predicts
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score > p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 50;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w1Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << "BES: " << w1Count << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score = p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 50;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        xCount = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << xCount << " - ";
+        PQclear(ret);
+    }
+    {
+        std::string sql =
+            "SELECT COUNT(*) "
+            "FROM predicts p "
+            "JOIN users u ON p.user_id = u.id "
+            "WHERE p.team1_score < p.team2_score "
+            "AND p.match_id = " + std::to_string(matchId) + " "
+            "AND u.points > 50;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        w2Count = atoi(PQgetvalue(ret, 0, 0));
+        std::cout << w2Count << std::endl;
+        PQclear(ret);
+    }
+    std::cout << std::endl;
+    return;
+}
+
+void ProcessLeagueMatches(PGconn* pg, int league, int week)
+{
+    std::string sql =
+        "SELECT m.id, "
+        "t1.short_name AS team1, "
+        "t2.short_name AS team2 "
+        "FROM matches m "
+        "JOIN teams t1 ON m.team1 = t1.id "
+        "JOIN teams t2 ON m.team2 = t2.id "
+        "WHERE m.season = '25/26' "
+        "AND m.league = " + std::to_string(league) + " "
+        "AND m.week = " + std::to_string(week) + ";";
+
+    PGresult* ret = PQexec(pg, sql.c_str());
+    int nrows = PQntuples(ret);
+    for (int i = 0; i < nrows; i++)
+    {
+        int matchId = atoi(PQgetvalue(ret, i, 0));
+        std::string team1 = (PQgetvalue(ret, i, 1));
+        std::string team2 = (PQgetvalue(ret, i, 2));
+
+        std::cout << team1 << " - " << team2 << std::endl;
+        ProcessMatchPredicts(pg, matchId);
+    }
+
+    PQclear(ret);
+}
+
+void ProcessLeague(PGconn* pg, int league) 
+{
+    std::string sql = "SELECT name, current_week FROM leagues WHERE id = " + std::to_string(league) + ";";
+    PGresult* ret = PQexec(pg, sql.c_str());
+    std::string name = (PQgetvalue(ret, 0, 0));
+    int currentWeek = atoi(PQgetvalue(ret, 0, 1));
+    std::ofstream out(name + ".txt");
+    if (!out.is_open())
+    {
+        std::cerr << "Failed to open file\n";
+        return;
+    }
+    std::cout.rdbuf(out.rdbuf());
+
+    ProcessLeagueMatches(pg, league, currentWeek);
+
+    out.close();
+}
 
 int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	
+    
+
+    ProcessLeague(pg, 2);
+    ProcessLeague(pg, 3);
+    ProcessLeague(pg, 4);
+    ProcessLeague(pg, 5);
+    ProcessLeague(pg, 6);
+    return 0;
+
     auto now = std::chrono::system_clock::now();
     auto ts = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 
