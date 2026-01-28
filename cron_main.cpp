@@ -102,6 +102,99 @@ struct CronTeam
 };
 #include "routes/Team.h"
 
+void UpdateTeamSquad(PGconn* pg, int teamId, int teamApiId, int isNationl)
+{
+	std::string sql;
+	std::string url = "https://v3.football.api-sports.io/players/squads";
+
+	cpr::Response r;
+	cpr::Parameters params;
+	if (teamApiId == -1)
+	{
+		return;
+	}
+	else
+	{
+		params = {
+			  {"team", std::to_string(teamApiId)}
+		};
+	}
+
+	r = cpr::Get(cpr::Url{ url },
+		params,
+		cpr::Header{ {"x-apisports-key", apiKey} });
+
+	if (r.status_code == 200)
+	{
+		// Parse the JSON response
+		rapidjson::Document document;
+		document.Parse(r.text.c_str());
+
+		if (document.HasMember("response") && document["response"].IsArray())
+		{
+			const rapidjson::Value& players = document["response"][0]["players"];
+			for (rapidjson::SizeType i = 0; i < players.Size(); i++)
+			{
+				const auto& player = players[i];
+				int playerId = player["id"].GetInt();
+				if (playerId == 0 || player["name"].IsNull()) continue;
+				std::string name = player["name"].GetString();
+				int age = player["age"].IsNull() ? 0 : player["age"].GetInt();
+				int number = player["number"].IsNull() ? 0 : player["number"].GetInt();
+				std::string pos = player["position"].IsNull() ? "" : player["position"].GetString();
+				std::string photo = player["photo"].IsNull() ? "" : player["photo"].GetString();
+
+				std::string sql = "SELECT id, team_id FROM team_players WHERE api_id = "
+					+ std::to_string(playerId) + " AND is_national = " + std::to_string(isNationl) + ";";
+
+				PGresult* selectRes = PQexec(pg, sql.c_str());
+				if (PQresultStatus(selectRes) != PGRES_TUPLES_OK)
+				{
+					std::cerr << "Error executing query: " << PQerrorMessage(pg) << std::endl;
+					PQclear(selectRes);
+					continue;
+				}
+				int n = PQntuples(selectRes);
+				if (n != 1)
+				{
+					if (n > 1)
+					{
+						std::string sql = "DELETE FROM team_players WHERE api_id = "
+							+ std::to_string(playerId) + " AND is_national = " + std::to_string(isNationl) + ";";
+						PGresult* deleteRes = PQexec(pg, sql.c_str());
+						PQclear(deleteRes);
+					}
+					std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, position, photo) VALUES ("
+						+ std::to_string(playerId) + ", "
+						+ std::to_string(teamId) + ", '"
+						+ escape_sql_string(name) + "', "
+						+ std::to_string(age) + ", "
+						+ std::to_string(number) + ", '"
+						+ escape_sql_string(pos) + "', '"
+						+ escape_sql_string(photo) + "');";
+
+					PGresult* insertRes = PQexec(pg, sql.c_str());
+					PQclear(insertRes);
+					continue;
+				}
+				int pId = atoi(PQgetvalue(selectRes, 0, 0));
+				int pTeamId = atoi(PQgetvalue(selectRes, 0, 1));
+				if (pTeamId == teamId)
+				{
+					PQclear(selectRes);
+					continue;
+				}
+
+				sql = "UPDATE team_players SET team_id = " + std::to_string(teamId)
+					+ " WHERE api_id = " + std::to_string(playerId) +
+					" AND is_national = " + std::to_string(isNationl) + ";";
+				PGresult* updateRes = PQexec(pg, sql.c_str());
+				PQclear(updateRes);
+			}
+		}
+	}
+}
+
 std::string getStatisticString(const rapidjson::Value& team1Stats, const rapidjson::Value& team2Stats, const std::string& statName)
 {
 	std::string team1Value = "0";
@@ -1361,6 +1454,11 @@ void GetLiveMatches(PGconn* pg)
 					} */
 
 					// Update match players
+					int isNational = 0;
+					if (league == (int)ELeague::UEFAWorldClubQualification) isNational = true;
+					UpdateTeamSquad(pg, team1.Id, team1.ApiId, isNational);
+					UpdateTeamSquad(pg, team2.Id, team2.ApiId, isNational);
+
 					GetMatchPlayers(pg, id, apiId, 0, 0, 0, 0, false);
 					auto now = std::chrono::system_clock::now();
 					auto nowMs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
@@ -3300,7 +3398,6 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-
 	//FillTodayLineups(pg);
 
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
