@@ -102,6 +102,15 @@ struct CronTeam
 };
 #include "routes/Team.h"
 
+std::string escape_sql_string(const std::string& input) {
+	std::string output;
+	for (char c : input) {
+		if (c == '\'') output += "''";
+		else output += c;
+	}
+	return output;
+}
+
 void UpdateTeamSquad(PGconn* pg, int teamId, int teamApiId, int isNationl)
 {
 	std::string sql;
@@ -2273,15 +2282,6 @@ void CorrectMatchDates(PGconn* pg)
 	}
 	PQclear(res);
 	return;
-}
-
-std::string escape_sql_string(const std::string& input) {
-	std::string output;
-	for (char c : input) {
-		if (c == '\'') output += "''";
-		else output += c;
-	}
-	return output;
 }
 
 ELeague ApiLeagueToLeagueId(int leagueApiId)
