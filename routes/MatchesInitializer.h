@@ -55,7 +55,7 @@ public:
     static void InitLigue1Table(PGconn* pg);
     static void FillLigue1Table(PGconn* pg);
 
-    static void InitChampionsLeaguePO24_25(PGconn* pg);
+    static void InitChampionsLeaguePO25_26(PGconn* pg);
 
     static void InitChampionsLeagueTeams25_26(PGconn* pg);
     static void InitChampionsLeagueTable(PGconn* pg);

@@ -1543,18 +1543,18 @@ void MatchesInitializer::FillLigue1Table(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::Ligue1));
 }
 
-void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
+void MatchesInitializer::InitChampionsLeaguePO25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // 1-16 Finals
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739295900000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Juventus, ETeam::PSV, 1739304000000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ManchesterCity, ETeam::RealMadrid, 1739304000000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::SportingLisbon, ETeam::BorussiaDortmund, 1739304000000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::ClubBrugge, ETeam::Atalanta, 1739382300000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Monaco, ETeam::Benfica, 1739390400000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Celtic, ETeam::BayernMunich, 1739390400000, EWeekType::RoundOf16, false });
-    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Feyenoord, ETeam::ACMilan, 1739390400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::Galatasaray, ETeam::Juventus, 1771350300000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::Monaco, ETeam::PSG, 1771358400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::BorussiaDortmund, ETeam::Atalanta, 1771358400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::Benfica, ETeam::RealMadrid, 1771358400000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::Qarabag, ETeam::NewcastleUnited, 1771436700000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::ClubBrugge, ETeam::AtleticoMadrid, 1771444800000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::BodoGlimt, ETeam::InterMilan, 1771444800000, EWeekType::RoundOf16, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 9, ETeam::Olympiakos, ETeam::BayerLeverkusen, 1771444800000, EWeekType::RoundOf16, false });
 
     //matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::Brest, ETeam::PSG, 1739995200000, EWeekType::RoundOf16, true });
     //matches.push_back({ ELeague::ChampionsLeague, "24/25", 9, ETeam::PSV, ETeam::Juventus, 1739995200000, EWeekType::RoundOf16, true });
@@ -1600,9 +1600,9 @@ void MatchesInitializer::InitChampionsLeaguePO24_25(PGconn* pg)
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::InterMilan, ETeam::Barcelona, 1746558000000, EWeekType::SemiFinal, true });
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::PSG, ETeam::Arsenal, 1746644400000, EWeekType::SemiFinal, true });
 
-    matches.push_back({ ELeague::ChampionsLeague, "24/25", 13, ETeam::PSG, ETeam::InterMilan, 1748718000000, EWeekType::Final, true });
-    matches.push_back({ ELeague::EuropaLeague, "24/25", 1, ETeam::TottenhamHotspur, ETeam::ManchesterUnited, 1747854000000, EWeekType::Final, true });
-    matches.push_back({ ELeague::ConferenceLeague, "24/25", 1, ETeam::RealBetis, ETeam::Chelsea, 1748458800000, EWeekType::Final, true });
+  //  matches.push_back({ ELeague::ChampionsLeague, "24/25", 13, ETeam::PSG, ETeam::InterMilan, 1748718000000, EWeekType::Final, true });
+  //  matches.push_back({ ELeague::EuropaLeague, "24/25", 1, ETeam::TottenhamHotspur, ETeam::ManchesterUnited, 1747854000000, EWeekType::Final, true });
+  //  matches.push_back({ ELeague::ConferenceLeague, "24/25", 1, ETeam::RealBetis, ETeam::Chelsea, 1748458800000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
