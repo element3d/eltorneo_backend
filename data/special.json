@@ -193,7 +193,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -389,7 +390,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -585,7 +587,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -781,7 +784,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -977,7 +981,8 @@
         "rivals": "Враги",
         "judgement_day": "Судный день",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Возрождение"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1173,7 +1178,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1369,7 +1375,8 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1565,6 +1572,7 @@
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
-        "prototype": "Prototype"
+        "prototype": "Prototype",
+        "rebirth": "Rebirth"
     }
 }
