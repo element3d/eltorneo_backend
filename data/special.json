@@ -192,7 +192,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -387,7 +388,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -582,7 +584,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -777,7 +780,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -972,7 +976,8 @@
         "the_mummy": "Мумия",
         "rivals": "Враги",
         "judgement_day": "Судный день",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1167,7 +1172,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1362,7 +1368,8 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1557,6 +1564,7 @@
         "the_mummy": "The Mummy",
         "rivals": "Rivals",
         "judgement_day": "Judgement day",
-        "undercover": "Undercover"
+        "undercover": "Undercover",
+        "prototype": "Prototype"
     }
 }
