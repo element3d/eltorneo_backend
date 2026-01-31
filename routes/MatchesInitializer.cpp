@@ -4053,17 +4053,17 @@ void MatchesInitializer::InitCoppaItaliaTeams24_25(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitCopaDelReyTeams24_25(PGconn* pg)
+void MatchesInitializer::InitCopaDelReyTeams25_26(PGconn* pg)
 {
     std::vector<ETeam> teams;
-    teams.push_back(ETeam::AtleticoMadrid);
-    teams.push_back(ETeam::Getafe);
-    teams.push_back(ETeam::Leganes);
-    teams.push_back(ETeam::RealMadrid);
-    teams.push_back(ETeam::RealSociedad);
-    teams.push_back(ETeam::Osasuna);
-    teams.push_back(ETeam::Valencia);
+    teams.push_back(ETeam::Albacete);
     teams.push_back(ETeam::Barcelona);
+    teams.push_back(ETeam::Alaves);
+    teams.push_back(ETeam::RealSociedad);
+    teams.push_back(ETeam::Valencia);
+    teams.push_back(ETeam::AthleticClub);
+    teams.push_back(ETeam::RealBetis);
+    teams.push_back(ETeam::AtleticoMadrid);
 
     for (ETeam t : teams)
     {
@@ -4166,15 +4166,15 @@ void MatchesInitializer::InitSuperCupFranceTeams25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitCopaDelRey24_25(PGconn* pg)
+void MatchesInitializer::InitCopaDelRey25_26(PGconn* pg)
 {
     // Premier League
     std::vector<Match> matches;
     // Week 1
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 1, ETeam::AtleticoMadrid, ETeam::Getafe, 1738701000000, EWeekType::QuarterFinal, true });
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 1, ETeam::Leganes, ETeam::RealMadrid, 1738785600000, EWeekType::QuarterFinal, true });
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 1, ETeam::RealSociedad, ETeam::Osasuna, 1738866600000, EWeekType::QuarterFinal, true });
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 1, ETeam::Valencia, ETeam::Barcelona, 1738873800000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Albacete, ETeam::Barcelona, 1770148800000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Alaves, ETeam::RealSociedad, 1770235200000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Valencia, ETeam::AthleticClub, 1770235200000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::RealBetis, ETeam::AtleticoMadrid, 1770321600000, EWeekType::QuarterFinal, true });
 
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1740515400000, EWeekType::SemiFinal, false });
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealSociedad, ETeam::RealMadrid, 1740601800000, EWeekType::SemiFinal, false });
@@ -4182,7 +4182,7 @@ void MatchesInitializer::InitCopaDelRey24_25(PGconn* pg)
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealMadrid, ETeam::RealSociedad, 1743535800000, EWeekType::SemiFinal, true });
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1743622200000, EWeekType::SemiFinal, true });
 
-    matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
+   // matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
 
 
     for (auto& m : matches)

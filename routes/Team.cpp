@@ -450,6 +450,9 @@ std::string Team::ToString(ETeam team)
     case ETeam::ParisFC:
         return "Paris FC";
 
+        // Other
+    case ETeam::Albacete:
+        return "Albacete";
 
     default:
         return "Unknown Team";
@@ -904,6 +907,10 @@ std::string Team::ToShortString(ETeam team)
         return "Metz";
     case ETeam::ParisFC:
         return "Paris FC";
+
+    // Other
+    case ETeam::Albacete:
+        return "Albacete";
 
     default:
         return "Unknown Team";

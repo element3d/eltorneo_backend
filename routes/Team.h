@@ -215,6 +215,9 @@ enum class ETeam
     Kairat,
     Galatasaray,
 
+    // Other
+    Albacete,
+
 
     // International
     // Nations League
