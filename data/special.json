@@ -194,7 +194,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -391,7 +392,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -588,7 +590,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -785,7 +788,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -982,7 +986,8 @@
         "judgement_day": "Судный день",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Возрождение"
+        "rebirth": "Возрождение",
+        "the_meltdown": "Глобальное потепление"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1179,7 +1184,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1376,7 +1382,8 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1573,6 +1580,7 @@
         "judgement_day": "Judgement day",
         "undercover": "Undercover",
         "prototype": "Prototype",
-        "rebirth": "Rebirth"
+        "rebirth": "Rebirth",
+        "the_meltdown": "The Meltdown"
     }
 }
