@@ -93,6 +93,9 @@ public:
     static void InitDFLSuperCupTeams25_26(PGconn* pg);
     static void InitDFLSuperCup25_26(PGconn* pg);
 
+    static void InitDFBPokalTeams25_26(PGconn* pg);
+    static void InitDFBPokal25_26(PGconn* pg);
+
     static void InitUEFAWCQualifiersTeams(PGconn* pg);
     static void InitUEFAWCQualifiersTables(PGconn* pg);
     static void InitUEFAWCQualifiers(PGconn* pg);

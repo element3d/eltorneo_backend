@@ -4149,6 +4149,29 @@ void MatchesInitializer::InitDFLSuperCupTeams25_26(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitDFBPokalTeams25_26(PGconn* pg)
+{
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::BayerLeverkusen);
+    teams.push_back(ETeam::StPauli);
+    teams.push_back(ETeam::HolsteinKiel);
+    teams.push_back(ETeam::Stuttgart);
+    teams.push_back(ETeam::Hertha);
+    teams.push_back(ETeam::Freiburg);
+    teams.push_back(ETeam::BayernMunich);
+    teams.push_back(ETeam::RBLeipzig);
+
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::DFBPokal)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+
 void MatchesInitializer::InitSuperCupFranceTeams25_26(PGconn* pg)
 {
 
@@ -4328,6 +4351,32 @@ void MatchesInitializer::InitDFLSuperCup25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     matches.push_back({ ELeague::DFLSuperCup, "25/26", 1, ETeam::Stuttgart, ETeam::BayernMunich, 1755369000000, EWeekType::Final, true });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitDFBPokal25_26(PGconn* pg)
+{
+    std::vector<Match> matches;
+    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::BayerLeverkusen, ETeam::StPauli, 1770147900000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::HolsteinKiel, ETeam::Stuttgart, 1770234300000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::Hertha, ETeam::Freiburg, 1770752700000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::BayernMunich, ETeam::RBLeipzig, 1770839100000, EWeekType::QuarterFinal, true });
 
     for (auto& m : matches)
     {

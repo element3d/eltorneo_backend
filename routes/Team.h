@@ -217,6 +217,7 @@ enum class ETeam
 
     // Other
     Albacete,
+    Hertha,
 
 
     // International

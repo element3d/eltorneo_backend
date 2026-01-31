@@ -88,6 +88,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 529;
 	case ELeague::UEFAWorldClubQualification:
 		return 32;
+	case ELeague::DFBPokal:
+		return 81;
 	default:
 		break;
 	}
@@ -567,7 +569,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
-	else if (league == ELeague::CopaDelRey || league == ELeague::CoppaItalia)
+	else if (league == ELeague::CopaDelRey || league == ELeague::CoppaItalia || league == ELeague::DFBPokal)
 	{
 		if (week == 1)
 		{
