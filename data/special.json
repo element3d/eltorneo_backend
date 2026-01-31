@@ -195,7 +195,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -393,7 +394,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -591,7 +593,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -789,7 +792,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -987,7 +991,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Возрождение",
-        "the_meltdown": "Глобальное потепление"
+        "the_meltdown": "Глобальное потепление",
+        "dawn_dinosaurs": "Эра динозавров"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1185,7 +1190,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1383,7 +1389,8 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1581,6 +1588,7 @@
         "undercover": "Undercover",
         "prototype": "Prototype",
         "rebirth": "Rebirth",
-        "the_meltdown": "The Meltdown"
+        "the_meltdown": "The Meltdown",
+        "dawn_dinosaurs": "Dawn of the Dinosaurs"
     }
 }
