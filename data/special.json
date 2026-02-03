@@ -196,7 +196,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -395,7 +397,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -594,7 +598,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -793,7 +799,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -992,7 +1000,9 @@
         "prototype": "Prototype",
         "rebirth": "Возрождение",
         "the_meltdown": "Глобальное потепление",
-        "dawn_dinosaurs": "Эра динозавров"
+        "dawn_dinosaurs": "Эра динозавров",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1191,7 +1201,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1390,7 +1402,9 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1589,6 +1603,8 @@
         "prototype": "Prototype",
         "rebirth": "Rebirth",
         "the_meltdown": "The Meltdown",
-        "dawn_dinosaurs": "Dawn of the Dinosaurs"
+        "dawn_dinosaurs": "Dawn of the Dinosaurs",
+        "unity": "Unity",
+        "syndicate": "Syndicate"
     }
 }
