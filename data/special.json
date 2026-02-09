@@ -198,7 +198,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -399,7 +400,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -600,7 +602,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -801,7 +804,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1002,7 +1006,8 @@
         "the_meltdown": "Глобальное потепление",
         "dawn_dinosaurs": "Эра динозавров",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Остров Черепа"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1203,7 +1208,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1404,7 +1410,8 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1605,6 +1612,7 @@
         "the_meltdown": "The Meltdown",
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
-        "syndicate": "Syndicate"
+        "syndicate": "Syndicate",
+        "skull_island": "Skull Island"
     }
 }
