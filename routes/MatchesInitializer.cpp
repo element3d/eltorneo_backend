@@ -4194,13 +4194,13 @@ void MatchesInitializer::InitCopaDelRey25_26(PGconn* pg)
     // Premier League
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Albacete, ETeam::Barcelona, 1770148800000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Alaves, ETeam::RealSociedad, 1770235200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Valencia, ETeam::AthleticClub, 1770235200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::RealBetis, ETeam::AtleticoMadrid, 1770321600000, EWeekType::QuarterFinal, true });
+    //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Albacete, ETeam::Barcelona, 1770148800000, EWeekType::QuarterFinal, true });
+    //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Alaves, ETeam::RealSociedad, 1770235200000, EWeekType::QuarterFinal, true });
+    //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Valencia, ETeam::AthleticClub, 1770235200000, EWeekType::QuarterFinal, true });
+    //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::RealBetis, ETeam::AtleticoMadrid, 1770321600000, EWeekType::QuarterFinal, true });
 
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1740515400000, EWeekType::SemiFinal, false });
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealSociedad, ETeam::RealMadrid, 1740601800000, EWeekType::SemiFinal, false });
+   matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
+   matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
 
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealMadrid, ETeam::RealSociedad, 1743535800000, EWeekType::SemiFinal, true });
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1743622200000, EWeekType::SemiFinal, true });
