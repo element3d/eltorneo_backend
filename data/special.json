@@ -199,7 +199,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -401,7 +402,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -603,7 +605,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -805,7 +808,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1007,7 +1011,8 @@
         "dawn_dinosaurs": "Эра динозавров",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Остров Черепа"
+        "skull_island": "Остров Черепа",
+        "anaconda": "Анаконда"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1209,7 +1214,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1411,7 +1417,8 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1613,6 +1620,7 @@
         "dawn_dinosaurs": "Dawn of the Dinosaurs",
         "unity": "Unity",
         "syndicate": "Syndicate",
-        "skull_island": "Skull Island"
+        "skull_island": "Skull Island",
+        "anaconda": "Anaconda"
     }
 }
