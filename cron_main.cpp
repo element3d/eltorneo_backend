@@ -527,7 +527,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		}
 		else if (week == 9)
 		{
-			round = "Knockout Round Play-offs";
+			round = "Round of 32";
 		}
 		else if (week == 10) 
 		{
