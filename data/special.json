@@ -203,7 +203,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -409,7 +413,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -615,7 +623,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -821,7 +833,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1027,7 +1043,11 @@
         "anaconda": "Анаконда",
         "arkham_city": "Аркхэм-Сити",
         "london_has_fallen": "Падение Лондона",
-        "ferdinand": "Фердинанд"
+        "ferdinand": "Фердинанд",
+        "iron_man": "Железный Человек",
+        "kamikaze": "Камикадзе",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1233,7 +1253,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1439,7 +1463,11 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1645,6 +1673,10 @@
         "anaconda": "Anaconda",
         "arkham_city": "Arkham City",
         "london_has_fallen": "London Has Fallen",
-        "ferdinand": "Ferdinand"
+        "ferdinand": "Ferdinand",
+        "iron_man": "Iron Man",
+        "kamikaze": "Kamikaze",
+        "borderlands": "Borderlands",
+        "god_of_war": "God of War"
     }
 }
