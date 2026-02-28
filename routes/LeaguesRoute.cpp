@@ -101,6 +101,9 @@ void LeaguesRoute::Init()
         //MatchesInitializer::InitDFLSuperCupTeams25_26(pg);
         //MatchesInitializer::InitDFLSuperCup25_26(pg);
 
+        //MatchesInitializer::InitCopaDeFranceTeams25_26(pg);
+        //MatchesInitializer::InitCopaDeFrance25_26(pg);
+
         ConnectionPool::Get()->releaseConnection(pg);
         return;
     }

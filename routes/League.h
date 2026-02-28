@@ -25,7 +25,8 @@ enum class ELeague
     DFLSuperCup,
     UEFAWorldClubQualification,
     DFBPokal,
-    End = UEFAWorldClubQualification
+    CoupeDeFrance,
+    End = CoupeDeFrance
 };
 
 enum class ELeagueType 

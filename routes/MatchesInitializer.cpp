@@ -4053,6 +4053,29 @@ void MatchesInitializer::InitCoppaItaliaTeams25_26(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitCopaDeFranceTeams25_26(PGconn* pg)
+{
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::Strasbourg);
+    teams.push_back(ETeam::Reims);
+    teams.push_back(ETeam::Lorient);
+    teams.push_back(ETeam::Nice);
+    teams.push_back(ETeam::Marseille);
+    teams.push_back(ETeam::Toulouse);
+    teams.push_back(ETeam::Lyon);
+    teams.push_back(ETeam::Lens);
+
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::CoupeDeFrance)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+
 void MatchesInitializer::InitCopaDelReyTeams25_26(PGconn* pg)
 {
     std::vector<ETeam> teams;
@@ -4188,6 +4211,36 @@ void MatchesInitializer::InitSuperCupFranceTeams25_26(PGconn* pg)
         PQclear(ret);
     }
 }
+
+void MatchesInitializer::InitCopaDeFrance25_26(PGconn* pg)
+{
+    // Premier League
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Strasbourg, ETeam::Reims, 1772568000000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lorient, ETeam::Nice, 1772652600000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Marseille, ETeam::Toulouse, 1772654400000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lyon, ETeam::Lens, 1772741400000, EWeekType::QuarterFinal, true });
+
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 
 void MatchesInitializer::InitCopaDelRey25_26(PGconn* pg)
 {

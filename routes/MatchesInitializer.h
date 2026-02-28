@@ -68,6 +68,9 @@ public:
     static void InitPremierLeague25_26(PGconn* pg);
     static void InitLaLiga25_26(PGconn* pg);
 
+    static void InitCopaDeFranceTeams25_26(PGconn* pg);
+    static void InitCopaDeFrance25_26(PGconn* pg);
+
     static void InitCopaDelReyTeams25_26(PGconn* pg);
     static void InitCopaDelRey25_26(PGconn* pg);
 
