@@ -4199,11 +4199,11 @@ void MatchesInitializer::InitCopaDelRey25_26(PGconn* pg)
     //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::Valencia, ETeam::AthleticClub, 1770235200000, EWeekType::QuarterFinal, true });
     //matches.push_back({ ELeague::CopaDelRey, "25/26", 1, ETeam::RealBetis, ETeam::AtleticoMadrid, 1770321600000, EWeekType::QuarterFinal, true });
 
-   matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
-   matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
+   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
+   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
 
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::RealMadrid, ETeam::RealSociedad, 1743535800000, EWeekType::SemiFinal, true });
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1743622200000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1772568000000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::RealSociedad, ETeam::AthleticClub, 1772654400000, EWeekType::SemiFinal, true });
 
    // matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
 
@@ -4231,13 +4231,13 @@ void MatchesInitializer::InitCoppaItalia25_26(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::InterMilan, ETeam::Torino, 1770235200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Atalanta, ETeam::Juventus, 1770321600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Napoli, ETeam::Como, 1770753600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Bologna, ETeam::Lazio, 1770840000000, EWeekType::QuarterFinal, true });
+    // matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::InterMilan, ETeam::Torino, 1770235200000, EWeekType::QuarterFinal, true });
+    // matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Atalanta, ETeam::Juventus, 1770321600000, EWeekType::QuarterFinal, true });
+    // matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Napoli, ETeam::Como, 1770753600000, EWeekType::QuarterFinal, true });
+    // matches.push_back({ ELeague::CoppaItalia, "25/26", 1, ETeam::Bologna, ETeam::Lazio, 1770840000000, EWeekType::QuarterFinal, true });
   
-  //  matches.push_back({ ELeague::CoppaItalia, "24/25", 2, ETeam::Empoli, ETeam::Bologna, 1743534000000, EWeekType::SemiFinal, false });
-//    matches.push_back({ ELeague::CoppaItalia, "24/25", 2, ETeam::ACMilan, ETeam::InterMilan, 1743620400000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::CoppaItalia, "25/26", 2, ETeam::Como, ETeam::InterMilan, 1772568000000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::CoppaItalia, "25/26", 2, ETeam::Lazio, ETeam::Atalanta, 1772654400000, EWeekType::SemiFinal, false });
 
   //  matches.push_back({ ELeague::CoppaItalia, "24/25", 2, ETeam::InterMilan, ETeam::ACMilan, 1745434800000, EWeekType::SemiFinal, true });
 //    matches.push_back({ ELeague::CoppaItalia, "24/25", 2, ETeam::Bologna, ETeam::Empoli, 1745521200000, EWeekType::SemiFinal, true });
