@@ -207,7 +207,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -417,7 +419,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -627,7 +631,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -837,7 +843,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1047,7 +1055,9 @@
         "iron_man": "Железный Человек",
         "kamikaze": "Камикадзе",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "За Лин Куэй",
+        "we_are_venom": "Мы — Веном"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1257,7 +1267,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1467,7 +1479,9 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1677,6 +1691,8 @@
         "iron_man": "Iron Man",
         "kamikaze": "Kamikaze",
         "borderlands": "Borderlands",
-        "god_of_war": "God of War"
+        "god_of_war": "God of War",
+        "lin_kuei": "For the Lin Kuei",
+        "we_are_venom": "We are Venom"
     }
 }
