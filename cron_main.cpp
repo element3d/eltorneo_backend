@@ -90,6 +90,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 32;
 	case ELeague::DFBPokal:
 		return 81;
+	case ELeague::CoupeDeFrance:
+		return 66;
 	default:
 		break;
 	}
@@ -569,7 +571,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
-	else if (league == ELeague::CopaDelRey || league == ELeague::CoppaItalia || league == ELeague::DFBPokal)
+	else if (league == ELeague::CopaDelRey || league == ELeague::CoppaItalia || league == ELeague::DFBPokal || league == ELeague::CoupeDeFrance)
 	{
 		if (week == 1)
 		{
@@ -2303,6 +2305,7 @@ ELeague ApiLeagueToLeagueId(int leagueApiId)
 	if (leagueApiId == 143) return ELeague::CopaDelRey; // CopaDelRey
 	if (leagueApiId == 15) return ELeague::ClubWorldCup; // ClubWorldCup
 	if (leagueApiId == 32) return ELeague::UEFAWorldClubQualification; // ClubWorldCup
+	if (leagueApiId == 66) return ELeague::CoupeDeFrance; // ClubWorldCup
 
 	return ELeague::End;
 }
