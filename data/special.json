@@ -209,7 +209,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -421,7 +422,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -633,7 +635,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -845,7 +848,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1057,7 +1061,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "За Лин Куэй",
-        "we_are_venom": "Мы — Веном"
+        "we_are_venom": "Мы — Веном",
+        "godzilla_vs_kong2": "Годзилла против Конга"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1269,7 +1274,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1481,7 +1487,8 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1693,6 +1700,7 @@
         "borderlands": "Borderlands",
         "god_of_war": "God of War",
         "lin_kuei": "For the Lin Kuei",
-        "we_are_venom": "We are Venom"
+        "we_are_venom": "We are Venom",
+        "godzilla_vs_kong2": "Godzilla vs Kong"
     }
 }
