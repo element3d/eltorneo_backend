@@ -323,7 +323,7 @@ void FillMatchEvents(PGconn* pg, rapidjson::Document& document, int matchId, Cro
 
 		player = escapeSingleQuotes(player);
 		assist = escapeSingleQuotes(assist);
-
+		if (ev["type"].IsNull()) continue;
 		std::string type = ev["type"].GetString();
 		std::string detail = ev["detail"].GetString();
 		std::string comments;
