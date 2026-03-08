@@ -218,7 +218,11 @@ enum class ETeam
     // Other
     Albacete,
     Hertha,
-
+    Panathinaikos, // Panathinaikos
+    Ferencvaros, // Ferencváros
+    Braga, // SC Braga
+    Genk, // Genk
+    Midtjylland, // FC Midtjylland
 
     // International
     // Nations League

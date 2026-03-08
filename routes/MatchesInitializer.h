@@ -61,6 +61,12 @@ public:
     static void InitChampionsLeagueTable(PGconn* pg);
     static void InitChampionsLeague25_26(PGconn* pg);
 
+    static void InitEuropaLeagueTeams25_26(PGconn* pg);
+    static void InitEuropaLeaguePO25_26(PGconn* pg);
+
+    static void InitConfLeagueTeams25_26(PGconn* pg);
+
+
 
     static void InitLigue125_26(PGconn* pg);
     static void InitBundesliga25_26(PGconn* pg);

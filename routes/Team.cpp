@@ -455,6 +455,16 @@ std::string Team::ToString(ETeam team)
         return "Albacete";
     case ETeam::Hertha:
         return "Hertha BSC";
+    case ETeam::Panathinaikos:
+        return "Panathinaikos";
+    case ETeam::Ferencvaros:
+        return "Ferencváros";
+    case ETeam::Braga:
+        return "SC Braga";
+    case ETeam::Genk:
+        return "Genk";
+    case ETeam::Midtjylland:
+        return "FC Midtjylland";
 
     default:
         return "Unknown Team";
@@ -915,6 +925,16 @@ std::string Team::ToShortString(ETeam team)
         return "Albacete";
     case ETeam::Hertha:
         return "Hertha";
+    case ETeam::Panathinaikos:
+        return "Panathinai.";
+    case ETeam::Ferencvaros:
+        return "Ferencváros";
+    case ETeam::Braga:
+        return "SC Braga";
+    case ETeam::Genk:
+        return "Genk";
+    case ETeam::Midtjylland:
+        return "Midtjylland";
 
     default:
         return "Unknown Team";
