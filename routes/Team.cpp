@@ -458,7 +458,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Panathinaikos:
         return "Panathinaikos";
     case ETeam::Ferencvaros:
-        return "Ferencváros";
+        return "Ferencvarosi TC";
     case ETeam::Braga:
         return "SC Braga";
     case ETeam::Genk:
@@ -928,7 +928,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Panathinaikos:
         return "Panathinai.";
     case ETeam::Ferencvaros:
-        return "Ferencváros";
+        return "Ferencvaros";
     case ETeam::Braga:
         return "SC Braga";
     case ETeam::Genk:
