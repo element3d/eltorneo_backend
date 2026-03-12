@@ -211,7 +211,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -425,7 +427,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -639,7 +643,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -853,7 +859,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1067,7 +1075,9 @@
         "lin_kuei": "За Лин Куэй",
         "we_are_venom": "Мы — Веном",
         "godzilla_vs_kong2": "Годзилла против Конга",
-        "300_spartans": "300 спартанцев"
+        "300_spartans": "300 спартанцев",
+        "ragnarok": "Рагнарок",
+        "bi_han": "Би-Хан"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1281,7 +1291,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1495,7 +1507,9 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1709,6 +1723,8 @@
         "lin_kuei": "For the Lin Kuei",
         "we_are_venom": "We are Venom",
         "godzilla_vs_kong2": "Godzilla vs Kong",
-        "300_spartans": "300 Spartans"
+        "300_spartans": "300 Spartans",
+        "ragnarok": "Ragnarok",
+        "bi_han": "Bi-Han"
     }
 }
