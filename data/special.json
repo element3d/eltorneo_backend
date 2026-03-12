@@ -213,7 +213,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -429,7 +430,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -645,7 +647,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -861,7 +864,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1077,7 +1081,8 @@
         "godzilla_vs_kong2": "Годзилла против Конга",
         "300_spartans": "300 спартанцев",
         "ragnarok": "Рагнарок",
-        "bi_han": "Би-Хан"
+        "bi_han": "Би-Хан",
+        "scream": "Крик"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1293,7 +1298,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1509,7 +1515,8 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1725,6 +1732,7 @@
         "godzilla_vs_kong2": "Godzilla vs Kong",
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
-        "bi_han": "Bi-Han"
+        "bi_han": "Bi-Han",
+        "scream": "Scream"
     }
 }
