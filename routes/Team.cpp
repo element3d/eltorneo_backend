@@ -127,7 +127,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Venezia:
         return "Venezia";
     case ETeam::Verona:
-        return "Verona";
+        return "Hellas Verona";
 
         // Bundesliga
     case ETeam::Augsburg:
