@@ -1684,14 +1684,23 @@ void MatchesInitializer::InitEuropaLeaguePO25_26(PGconn* pg)
 {
     std::vector<Match> matches;
 
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Bologna, ETeam::Roma, 1773337500000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Lille, ETeam::AstonVilla, 1773337500000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Panathinaikos, ETeam::RealBetis, 1773337500000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Stuttgart, ETeam::Porto, 1773337500000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::CeltaVigo, ETeam::Lyon, 1773345600000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Ferencvaros, ETeam::Braga, 1773345600000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Genk, ETeam::Freiburg, 1773345600000, EWeekType::RoundOf8, false });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::NottinghamForest, ETeam::Midtjylland, 1773345600000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Bologna, ETeam::Roma, 1773337500000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Lille, ETeam::AstonVilla, 1773337500000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Panathinaikos, ETeam::RealBetis, 1773337500000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Stuttgart, ETeam::Porto, 1773337500000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::CeltaVigo, ETeam::Lyon, 1773345600000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Ferencvaros, ETeam::Braga, 1773345600000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Genk, ETeam::Freiburg, 1773345600000, EWeekType::RoundOf8, false });
+    // matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::NottinghamForest, ETeam::Midtjylland, 1773345600000, EWeekType::RoundOf8, false });
+
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Braga, ETeam::Ferencvaros, 1773847800000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Midtjylland, ETeam::NottinghamForest, 1773942300000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Freiburg, ETeam::Genk, 1773942300000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Lyon, ETeam::CeltaVigo, 1773942300000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Roma, ETeam::Bologna, 1773950400000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::AstonVilla, ETeam::Lille, 1773950400000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::Porto, ETeam::Stuttgart, 1773950400000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 10, ETeam::RealBetis, ETeam::Panathinaikos, 1773950400000, EWeekType::RoundOf8, true });
 
    
     for (auto& m : matches)
