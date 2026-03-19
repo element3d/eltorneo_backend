@@ -214,7 +214,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -431,7 +436,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -648,7 +658,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -865,7 +880,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1082,7 +1102,12 @@
         "300_spartans": "300 спартанцев",
         "ragnarok": "Рагнарок",
         "bi_han": "Би-Хан",
-        "scream": "Крик"
+        "scream": "Крик",
+        "ghosts": "Призраки",
+        "miles_morales": "Майлз Моралес",
+        "venom_vs_wolverine": "Веном против Росомахи",
+        "noob_saibot2": "Нуб Сайбот",
+        "Hulk": "Невероятный Халк"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1299,7 +1324,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1516,7 +1546,12 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1733,6 +1768,11 @@
         "300_spartans": "300 Spartans",
         "ragnarok": "Ragnarok",
         "bi_han": "Bi-Han",
-        "scream": "Scream"
+        "scream": "Scream",
+        "ghosts": "Ghosts",
+        "miles_morales": "Miles Morales",
+        "venom_vs_wolverine": "Venom vs Wolverine",
+        "noob_saibot2": "Noob Saibot",
+        "Hulk": "The Incredible Hulk"
     }
 }
