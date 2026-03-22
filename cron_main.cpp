@@ -1299,7 +1299,7 @@ void GetLiveMatches(PGconn* pg)
 
 					// Update BeatBet
 					UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
-					UpdateOfficialPredictionsResults(pg, id, team1.Id, team2.Id, team1Goals, team2Goals);
+					// UpdateOfficialPredictionsResults(pg, id, team1.Id, team2.Id, team1Goals, team2Goals);
 
 					// Update user predics
 					ProcessBetResults(pg, id, team1Goals, team2Goals, isSpecial);
@@ -2229,7 +2229,7 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 							PQclear(ret);
 
 							GetMatchBets(pg, id, newApiId);
-							UpdateMatchOfficialPredictions(pg, id, newApiId, team1, homeId, team2, awayId);
+							// UpdateMatchOfficialPredictions(pg, id, newApiId, team1, homeId, team2, awayId);
 						}
 					}
 				}
