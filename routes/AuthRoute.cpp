@@ -829,6 +829,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         free(temp);
 
         {
+            long long currentTsMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::system_clock::now().time_since_epoch()
+            ).count();
+
+            std::string updateVisitSql =
+                "UPDATE users SET last_visit_ts = " + std::to_string(currentTsMs) +
+                " WHERE id = " + std::to_string(userId) + ";";
+            PGresult* ret = PQexec(pg, updateVisitSql.c_str());
+            PQclear(ret);
+
+        }
+
+        {
             std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
