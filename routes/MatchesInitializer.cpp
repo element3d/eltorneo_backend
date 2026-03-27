@@ -5105,22 +5105,18 @@ void MatchesInitializer::InitUEFAWCQualifiers(PGconn* pg)
 {
     std::vector<Match> matches;
 
-    // Semi-finals
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Turkiye, ETeam::Romania, 1774544400000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Czechia, ETeam::RepublicOfIreland, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Denmark, ETeam::NorthMacedonia, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Italy, ETeam::NorthernIreland, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Poland, ETeam::Albania, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Slovakia, ETeam::Kosovo, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Ukraine, ETeam::Sweden, 1774554300000 });
-    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 11, ETeam::Wales, ETeam::BosniaAndHerzegovina, 1774554300000 });
+    // Finals
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 12, ETeam::BosniaAndHerzegovina, ETeam::Italy, 1774982700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 12, ETeam::Czechia, ETeam::Denmark, 1774982700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 12, ETeam::Kosovo, ETeam::Turkiye, 1774982700000 });
+    matches.push_back({ ELeague::UEFAWorldClubQualification, "25/26", 12, ETeam::Sweden, ETeam::Poland, 1774982700000 });
 
     for (auto& m : matches)
     {
         std::string sql = "insert into matches(league, season, week, week_type, team1, team2, play_off, match_date) values ("
             + std::to_string(int(m.League)) + ", '"
             + m.Season + "', "
-            + std::to_string(m.Week) + ", 3, "
+            + std::to_string(m.Week) + ", 4, "
             + std::to_string((int)m.Team1) + ", "
             + std::to_string((int)m.Team2) + ", 1, "
             + std::to_string(m.Date) + ");";
