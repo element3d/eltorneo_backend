@@ -221,7 +221,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -445,7 +446,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -669,7 +671,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -893,7 +896,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1117,7 +1121,8 @@
         "noob_saibot2": "Нуб Сайбот",
         "hulk": "Невероятный Халк",
         "continental_drift": "Континентальный дрейф",
-        "pirates_of_caribbean": "Пираты Карибского моря"
+        "pirates_of_caribbean": "Пираты Карибского моря",
+        "the_red": "Красный"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1341,7 +1346,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1565,7 +1571,8 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1789,6 +1796,7 @@
         "noob_saibot2": "Noob Saibot",
         "hulk": "The Incredible Hulk",
         "continental_drift": "Continental Drift",
-        "pirates_of_caribbean": "Pirates of the Caribbean"
+        "pirates_of_caribbean": "Pirates of the Caribbean",
+        "the_red": "The Red"
     }
 }
