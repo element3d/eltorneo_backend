@@ -77,6 +77,9 @@ public:
     static void InitCopaDeFranceTeams25_26(PGconn* pg);
     static void InitCopaDeFrance25_26(PGconn* pg);
 
+    static void InitFACupTeams25_26(PGconn* pg);
+    static void InitFACup25_26(PGconn* pg);
+
     static void InitCopaDelReyTeams25_26(PGconn* pg);
     static void InitCopaDelRey25_26(PGconn* pg);
 

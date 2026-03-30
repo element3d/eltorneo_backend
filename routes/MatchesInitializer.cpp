@@ -4174,6 +4174,28 @@ void MatchesInitializer::InitCopaDeFranceTeams25_26(PGconn* pg)
     }
 }
 
+void MatchesInitializer::InitFACupTeams25_26(PGconn* pg)
+{
+    std::vector<ETeam> teams;
+    teams.push_back(ETeam::ManchesterCity);
+    teams.push_back(ETeam::Liverpool);
+    teams.push_back(ETeam::PortVale);
+    teams.push_back(ETeam::Chelsea);
+    teams.push_back(ETeam::Southampton);
+    teams.push_back(ETeam::Arsenal);
+    teams.push_back(ETeam::WestHamUnited);
+    teams.push_back(ETeam::Leeds);
+
+    for (ETeam t : teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id) values ("
+            + std::to_string(int(ELeague::FACup)) + ", "
+            + std::to_string((int)t) + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 
 void MatchesInitializer::InitCopaDelReyTeams25_26(PGconn* pg)
 {
@@ -4320,6 +4342,43 @@ void MatchesInitializer::InitCopaDeFrance25_26(PGconn* pg)
     matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lorient, ETeam::Nice, 1772652600000, EWeekType::QuarterFinal, true });
     matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Marseille, ETeam::Toulouse, 1772654400000, EWeekType::QuarterFinal, true });
     matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lyon, ETeam::Lens, 1772741400000, EWeekType::QuarterFinal, true });
+
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, week_type, team1, team2, match_date, play_off) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.WeekType) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ", "
+            + std::to_string(int(m.PlayOff))
+            + ");";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitFACup25_26(PGconn* pg)
+{
+    // Premier League
+    std::vector<Match> matches;
+    // Week 1
+    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::ManchesterCity, ETeam::Liverpool, 1775303100000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Chelsea, ETeam::PortVale, 1775319300000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Southampton, ETeam::Arsenal, 1775329200000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::WestHamUnited, ETeam::Leeds, 1775403000000, EWeekType::QuarterFinal, true });
+
+   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
+   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
+
+   // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1772568000000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::RealSociedad, ETeam::AthleticClub, 1772654400000, EWeekType::SemiFinal, true });
+
+    // matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
 
 
     for (auto& m : matches)

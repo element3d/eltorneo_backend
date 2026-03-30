@@ -223,6 +223,7 @@ enum class ETeam
     Braga, // SC Braga
     Genk, // Genk
     Midtjylland, // FC Midtjylland
+    PortVale,
 
     // International
     // Nations League
