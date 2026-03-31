@@ -58,6 +58,11 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetCareerTableV2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserCareerPredicts();
 
+    // eFootball
+    std::function<void(const httplib::Request&, httplib::Response&)> PostEFootballPredict();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredict();
+
+
 private:
    // void CacheTable();
 

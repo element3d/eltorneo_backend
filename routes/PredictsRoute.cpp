@@ -5391,3 +5391,217 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         ConnectionPool::Get()->releaseConnection(pg);
     };
 }
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::PostEFootballPredict()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "POST");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+
+        rapidjson::Document document;
+        document.Parse(req.body.c_str());
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        int matchId = document["matchId"].GetInt();
+        int teamId = document["teamId"].GetInt();
+
+        // Connect to the database
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        
+        std::string selectSQL = "select id from efootball_predicts where user_id = "
+            + std::to_string(userId) + " AND match_id = " + std::to_string(matchId) + ";";
+        PGresult* selectRet = PQexec(pg, selectSQL.c_str());
+        if (PQresultStatus(selectRet) != PGRES_TUPLES_OK && PQresultStatus(selectRet) != PGRES_COMMAND_OK)
+        {
+            fprintf(stderr, "Failed to add eFootball predict: Option 1: %s\n", PQerrorMessage(pg));
+            PQclear(selectRet);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500; // Internal Server Error
+            return;
+        }
+
+        int n = PQntuples(selectRet);
+        bool updated = false;
+        int predictId = -1;
+        if (n > 0)
+        {
+            predictId = atoi(PQgetvalue(selectRet, 0, 0));
+            PQclear(selectRet);
+
+            std::string updateSQL = "UPDATE efootball_predicts set team_id = " + std::to_string(teamId) 
+                + " WHERE id = " + std::to_string(predictId) + ";";
+            PGresult* updateRet = PQexec(pg, updateSQL.c_str());
+            if (PQresultStatus(updateRet) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to update eFootball predict: Option 1: %s\n", PQerrorMessage(pg));
+                PQclear(updateRet);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+            PQclear(updateRet);
+            updated = true;
+        }
+        else 
+        {
+            PQclear(selectRet);
+        }
+        
+        if (!updated)
+        {
+            std::string sql = "INSERT INTO efootball_predicts(user_id, match_id, team_id) VALUES("
+                + std::to_string(userId) + ", "
+                + std::to_string(matchId) + ", "
+                + std::to_string(teamId) + " "
+                + ") RETURNING id";  // Return the inserted ID
+
+            // Execute the insert and capture the inserted predict ID
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to add eFootball predict: Option 3: %s\n", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500; // Internal Server Error
+                return;
+            }
+
+            predictId = std::stoi(PQgetvalue(ret, 0, 0));
+            PQclear(ret);
+        }
+
+        {
+            auto now = std::chrono::system_clock::now();
+            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+            long long timestamp = ms.count();
+            std::string sql = "UPDATE efootball_users SET last_predict_ts = " + std::to_string(timestamp) + " WHERE user_id = " + std::to_string(userId) + ";";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
+        }
+
+        {
+            std::string sql =
+                "INSERT INTO efootball_users (user_id) VALUES (" + std::to_string(userId) + ") "
+                "ON CONFLICT (user_id) DO NOTHING;";
+            PGresult* tsRet = PQexec(pg, sql.c_str());
+            PQclear(tsRet);
+        }
+
+        // Get the inserted ID
+
+        // Clear result and release connection
+        ConnectionPool::Get()->releaseConnection(pg);
+
+        // Create a JSON response with the inserted ID
+        rapidjson::Document responseDoc;
+        responseDoc.SetObject();
+        responseDoc.AddMember("predict_id", predictId, responseDoc.GetAllocator());
+
+        // Convert the document to a string
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        responseDoc.Accept(writer);
+
+        // Send response
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 201; // Created
+    };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetUserEFootballPredict()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string matchId = req.get_param_value("match_id");
+        std::string season = "";
+        /*if (req.has_param("season"))
+        {
+            season = req.get_param_value("season");
+        }*/
+        std::string postfix = "";
+        /*if (season.size())
+        {
+            std::string currentSeason = "25/26";
+            if (season != currentSeason)
+            {
+                std::replace(season.begin(), season.end(), '/', '_');
+                postfix = "_" + season;
+            }
+        }*/
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        std::string sql = "SELECT * FROM efootball_predicts" + postfix + " WHERE user_id = "
+            + std::to_string(userId) + " AND match_id = "
+            + matchId
+            + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch user eFootball predict: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+        char* temp = (char*)calloc(4096, sizeof(char));
+
+        for (int i = 0; i < nrows; ++i)
+        {
+            // Handle ID as integer
+            int id = atoi(PQgetvalue(ret, i, 0)); // Convert the string from the first column to an integer
+            rapidjson::Value idValue;
+            idValue.SetInt(id);
+            document.AddMember("id", idValue, allocator);
+
+            int userId = atoi(PQgetvalue(ret, i, 1));
+            idValue.SetInt(userId);
+            document.AddMember("user_id", idValue, allocator);
+
+            int matchId = atoi(PQgetvalue(ret, i, 2));
+            idValue.SetInt(matchId);
+            document.AddMember("match_id", idValue, allocator);
+
+            int teamId = atoi(PQgetvalue(ret, i, 3));
+            idValue.SetInt(teamId);
+            document.AddMember("team_id", idValue, allocator);
+
+            int points = atoi(PQgetvalue(ret, i, 4));
+            idValue.SetInt(points);
+            document.AddMember("points", idValue, allocator);
+
+            int status = atoi(PQgetvalue(ret, i, 5));
+            idValue.SetInt(status);
+            document.AddMember("status", idValue, allocator);
+        }
+        free(temp);
+
+        // Assuming you convert the Document to a string and send it in the response as before
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        // You can then use `buffer.GetString()` to get the JSON string
+        // And send it in the response as follows:
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+}

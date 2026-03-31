@@ -262,6 +262,10 @@ int main(void)
     svr.Get("/api/v2/career_table", PredictsRoute::Get()->GetCareerTableV2());
     svr.Get("/api/v1/user/career", PredictsRoute::Get()->GetUserCareerPredicts());
 
+    // eFootball
+    svr.Post("/api/v1/efootball/predict", PredictsRoute::Get()->PostEFootballPredict());
+    svr.Get("/api/v1/user/efootball_predict", PredictsRoute::Get()->GetUserEFootballPredict());
+
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 
     svr.Post("/post", [](const Request &req, Response &res) {
