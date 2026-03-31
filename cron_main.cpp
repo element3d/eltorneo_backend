@@ -3501,6 +3501,44 @@ void CorrectGameTables(PGconn* pg)
 		}
 		PQclear(ret);
 	}
+	{
+		std::string sql = "UPDATE efootball_users SET position = -1, league = -1;";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		sql =
+			"SELECT eu.user_id "
+			"FROM efootball_users eu "
+			"GROUP BY eu.user_id, eu.points "
+			"ORDER BY eu.points DESC, eu.user_id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				if (pos > 20) league = 2;
+				if (pos > 40) league = 3;
+				if (pos > 60) league = 4;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				std::string posSql = "UPDATE efootball_users SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+	}
 }
 
 int main()
