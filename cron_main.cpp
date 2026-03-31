@@ -980,6 +980,84 @@ void UpdateBeatBetPredicts(PGconn* pg, int matchId, int team1Goals, int team2Goa
 	}
 }
 
+void ProcessEFootballResults(PGconn* pg, 
+	int matchId, 
+	const std::string& matchStatus, int team1Id, int team2Id, 
+	int team1Goals, 
+	int team2Goals,
+	int team1GoalsAET,
+	int team2GoalsAET,
+	int team1GoalsPEN,
+	int team2GoalsPEN,
+	int isSpecial)
+{
+	std::string sql = "SELECT * FROM efootball_predicts WHERE match_id = " + std::to_string(matchId) + " AND team_id > 0;";
+
+	PGresult* ret = PQexec(pg, sql.c_str());
+	int nrows = PQntuples(ret);
+
+	for (int i = 0; i < nrows; ++i)
+	{
+		int points = 0;
+		int status = 0;
+
+		int id = atoi(PQgetvalue(ret, i, 0));
+		int userId = atoi(PQgetvalue(ret, i, 1));
+		int teamId = atoi(PQgetvalue(ret, i, 3));
+		if (teamId == team1Id) 
+		{
+			if (matchStatus == "PEN")
+			{
+				points = team1GoalsPEN > team2GoalsPEN ? 2 : -1;
+			}
+			else if (matchStatus == "AET")
+			{
+				points = (team1GoalsAET - team1Goals) > (team2GoalsAET - team2Goals) ? 2 : -1;
+			}
+			else 
+			{
+				points = team1Goals > team2Goals ? 2 : -1;
+			}
+		}
+		else if (teamId == team2Id)
+		{
+			if (matchStatus == "PEN")
+			{
+				points = team2GoalsPEN > team1GoalsPEN ? 1 : -1;
+			}
+			else if (matchStatus == "AET")
+			{
+				points = (team2GoalsAET - team2Goals) > (team1GoalsAET - team1Goals) ? 2 : -1;
+			}
+			else
+			{
+				points = team2Goals > team1Goals ? 2 : -1;
+			}
+		}
+
+		if (points > 0) status = 1;
+		else if (points < 0) status = 2;
+		else status = 3;
+		if (isSpecial) points *= 2;
+		{
+			std::string updateSQL = "UPDATE efootball_predicts SET points = "
+				+ std::to_string(points)
+				+ ", status = " + std::to_string(status)
+				+ " WHERE id = " + std::to_string(id)
+				+ ";";
+			PGresult* statusRet = PQexec(pg, updateSQL.c_str());
+			PQclear(statusRet);
+
+			std::string userSQL = "UPDATE efootball_users SET points = GREATEST(points + " + std::to_string(points) + ", 0)"
+				+ " WHERE id = " + std::to_string(userId)
+				+ ";";
+			PGresult* userRet = PQexec(pg, userSQL.c_str());
+			PQclear(userRet);
+		}
+	}
+	PQclear(ret);
+}
+
 void ProcessBetResults(PGconn* pg, int matchId, int team1Goals, int team2Goals, int isSpecial)
 {
 	std::string sql = "SELECT * FROM bets WHERE match_id = " + std::to_string(matchId) + ";";
@@ -1205,8 +1283,11 @@ void GetLiveMatches(PGconn* pg)
 				int team2GoalsAll = team2Goals;
 				int team1Goals90 = -1;
 				int team2Goals90 = -1;
+				int team1GoalsAET = -1;
+				int team2GoalsAET = -1;
 				int team1GoalsPen = -1;
 				int team2GoalsPen = -1;
+
 				if (hasScore)
 				{
 					if (scoreValue["fulltime"]["home"].IsInt()) 
@@ -1244,6 +1325,9 @@ void GetLiveMatches(PGconn* pg)
 					updated = PQexec(pg, sql.c_str());
 					PQclear(updated);
 
+					team1GoalsAET = team1Goals;
+					team2GoalsAET = team2Goals;
+
 					team1Goals = team1Goals90;
 					team2Goals = team2Goals90;
 				}
@@ -1258,6 +1342,9 @@ void GetLiveMatches(PGconn* pg)
 						" where id = " + std::to_string(id) + ";";
 					updated = PQexec(pg, sql.c_str());
 					PQclear(updated);
+
+					team1GoalsAET = team1Goals;
+					team2GoalsAET = team2Goals;
 
 					team1Goals = team1Goals90;
 					team2Goals = team2Goals90;
@@ -1304,11 +1391,17 @@ void GetLiveMatches(PGconn* pg)
 					}
 
 					// Update BeatBet
-					UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
+					// UpdateBeatBetPredicts(pg, id, team1Goals, team2Goals);
 					// UpdateOfficialPredictionsResults(pg, id, team1.Id, team2.Id, team1Goals, team2Goals);
 
 					// Update user predics
 					ProcessBetResults(pg, id, team1Goals, team2Goals, isSpecial);
+					ProcessEFootballResults(pg, id, 
+						status, team1.Id, team2.Id, 
+						team1Goals90, team2Goals90,
+						team1GoalsAET, team2GoalsAET,
+						team1GoalsPen, team2GoalsPen, 
+						isSpecial);
 
 					sql = "SELECT * FROM predicts WHERE match_id = " + std::to_string(id) + ";";
 					PGresult* pret = PQexec(pg, sql.c_str());
