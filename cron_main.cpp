@@ -1016,7 +1016,9 @@ void ProcessEFootballResults(PGconn* pg,
 			}
 			else 
 			{
-				points = team1Goals > team2Goals ? 2 : -1;
+				if (team1Goals > team2Goals) points = 2;
+				else if (team1Goals == team2Goals) points = 0;
+				else points = -1;
 			}
 		}
 		else if (teamId == team2Id)
@@ -1031,7 +1033,9 @@ void ProcessEFootballResults(PGconn* pg,
 			}
 			else
 			{
-				points = team2Goals > team1Goals ? 2 : -1;
+				if (team2Goals > team1Goals) points = 2;
+				else if (team2Goals == team1Goals) points = 0;
+				else points = -1;
 			}
 		}
 
@@ -3545,6 +3549,7 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
+
 	//FillTodayLineups(pg);
 
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
