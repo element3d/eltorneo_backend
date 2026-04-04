@@ -1896,7 +1896,7 @@ bool MatchesManager::GetMatchesLiveWithEFootball(PGconn* pg,
         // user bet fields (default values if no bet)
         "COALESCE(ep.id, -1) AS ep_id, "
         "COALESCE(ep.team_id, -1) AS ep_team_id, "
-        "COALESCE(ep.goals, -1) AS ep_points, "
+        "COALESCE(ep.points, -1) AS ep_points, "
         "COALESCE(ep.status, -1) AS ep_status, "
 
         "l.name AS league_name, "  // Include league name
