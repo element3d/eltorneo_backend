@@ -4754,7 +4754,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN teams t1 ON m.team1 = t1.id "
             "LEFT JOIN teams t2 ON m.team2 = t2.id "
             "LEFT JOIN special_matches s ON s.match_id = m.id "
-            "WHERE ep.user_id = " + userId +
+            "WHERE ep.team_id <> -1 AND ep.user_id = " + userId +
             (leagueId != "-1" ? " AND m.league = " + leagueId : "") +
             " ORDER BY m.match_date DESC, m.id DESC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
