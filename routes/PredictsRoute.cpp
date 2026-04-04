@@ -5383,8 +5383,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "    SELECT u.id "
             "    FROM users u "
             "    INNER JOIN career_users cu ON u.id = cu.user_id "
+            "    WHERE u.last_visit_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
             "    GROUP BY u.id "
             ") AS subquery;";
+
         PGresult* totalRet = PQexec(pg, sql.c_str());
         int totalUsers = atoi(PQgetvalue(totalRet, 0, 0));
         document.AddMember("numUsers", totalUsers, allocator);
