@@ -1053,7 +1053,7 @@ void ProcessEFootballResults(PGconn* pg,
 			PQclear(statusRet);
 
 			std::string userSQL = "UPDATE efootball_users SET points = GREATEST(points + " + std::to_string(points) + ", 0)"
-				+ " WHERE id = " + std::to_string(userId)
+				+ " WHERE user_id = " + std::to_string(userId)
 				+ ";";
 			PGresult* userRet = PQexec(pg, userSQL.c_str());
 			PQclear(userRet);
