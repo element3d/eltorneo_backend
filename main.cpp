@@ -265,6 +265,11 @@ int main(void)
     // eFootball
     svr.Post("/api/v1/efootball/predict", PredictsRoute::Get()->PostEFootballPredict());
     svr.Get("/api/v1/user/efootball_predict", PredictsRoute::Get()->GetUserEFootballPredict());
+    svr.Get("/api/v2/efootball_table", PredictsRoute::Get()->GetEFootballTableV2());
+    svr.Get("/api/v1/match/efootball/summary", PredictsRoute::Get()->GetMatchEFootballSummary());
+    svr.Get("/api/v2/match/efootball/top20", PredictsRoute::Get()->GetMatchEFootballTop20V2());
+    svr.Get("/api/v1/user/efootball", PredictsRoute::Get()->GetUserEFootballPredicts());
+
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
 

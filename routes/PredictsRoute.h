@@ -61,6 +61,10 @@ public:
     // eFootball
     std::function<void(const httplib::Request&, httplib::Response&)> PostEFootballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredict();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetEFootballTableV2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballSummary();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredicts();
 
 
 private:

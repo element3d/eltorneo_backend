@@ -49,6 +49,14 @@ public:
 		const std::string& lang,
 		rapidjson::Document& document);
 
+	static bool GetLeagueMatchesWithEFootball(PGconn* pg,
+		int userId,
+		int lid,
+		const std::string& season,
+		const std::string& week,
+		const std::string& lang,
+		rapidjson::Document& document);
+
 	// Matches by date (Calendar page)
 	static bool GetMatchesByDateWithPredicts(PGconn* pg,
 		int userId,
@@ -78,6 +86,13 @@ public:
 		const std::string& lang,
 		rapidjson::Document& document);
 
+	static bool GetMatchesByDateWithEFootball(PGconn* pg,
+		int userId,
+		long long dayStart,
+		long long dayEnd,
+		const std::string& lang,
+		rapidjson::Document& document);
+
 	// Matches live (Live page)
 	static bool GetMatchesLiveWithPredicts(PGconn* pg,
 		int userId,
@@ -95,6 +110,11 @@ public:
 		rapidjson::Document& document);
 
 	static bool GetMatchesLiveWithCareer(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
+	static bool GetMatchesLiveWithEFootball(PGconn* pg,
 		int userId,
 		long long currentTimeMs,
 		rapidjson::Document& document);
@@ -120,6 +140,11 @@ public:
 		long long currentTimeMs,
 		rapidjson::Document& document);
 
+	static bool GetMatchesUpcomingWithEFootball(PGconn* pg,
+		int userId,
+		long long currentTimeMs,
+		rapidjson::Document& document);
+
 	// Matches team (H2H page)
 	static bool GetMatchesTeamWithPredicts(PGconn* pg,
 		int userId,
@@ -136,6 +161,11 @@ public:
 		rapidjson::Document& document);
 
 	static bool GetMatchesTeamWithCareer(PGconn* pg,
+		int userId,
+		long tid,
+		rapidjson::Document& document);
+
+	static bool GetMatchesTeamWithEFootball(PGconn* pg,
 		int userId,
 		long tid,
 		rapidjson::Document& document);
@@ -163,6 +193,13 @@ public:
 		ETeamMatch eMatch);
 
 	static bool FillTeamMatchesWithCareer(PGconn* pg,
+		int userId,
+		int tid,
+		rapidjson::Value& document,
+		rapidjson::Document::AllocatorType& allocator,
+		ETeamMatch eMatch);
+
+	static bool FillTeamMatchesWithEFootball(PGconn* pg,
 		int userId,
 		int tid,
 		rapidjson::Value& document,

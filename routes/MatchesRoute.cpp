@@ -73,6 +73,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             if (g == "beatbet") game = g;
             if (g == "fireball") game = g;
             if (g == "career") game = g;
+            if (g == "efootball") game = g;
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
@@ -89,6 +90,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         else if (game == "career")
         {
             ok = MatchesManager::GetLeagueMatchesWithCareer(pg, userId, lid, season, week, lang, document);
+        }
+        else if (game == "efootball")
+        {
+            ok = MatchesManager::GetLeagueMatchesWithEFootball(pg, userId, lid, season, week, lang, document);
         }
         else 
         {
@@ -256,6 +261,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             if (g == "beatbet") game = g;
             if (g == "fireball") game = g;
             if (g == "career") game = g;
+            if (g == "efootball") game = g;
         }
 
         // Validate team_id
@@ -284,6 +290,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         else if (game == "career")
         {
             ok = MatchesManager::GetMatchesTeamWithCareer(pg, userId, tid, document);
+        }
+        else if (game == "efootball")
+        {
+            ok = MatchesManager::GetMatchesTeamWithEFootball(pg, userId, tid, document);
         }
         else 
         {
@@ -528,6 +538,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             MatchesManager::FillTeamMatchesWithCareer(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Upcoming);
             MatchesManager::FillTeamMatchesWithCareer(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Live);
             MatchesManager::FillTeamMatchesWithCareer(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Finished);
+        }
+        else if (game == "efootball")
+        {
+            MatchesManager::FillTeamMatchesWithEFootball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Upcoming);
+            MatchesManager::FillTeamMatchesWithEFootball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Live);
+            MatchesManager::FillTeamMatchesWithEFootball(pg, userId, tid, vMatches, document.GetAllocator(), ETeamMatch::Finished);
         }
         else 
         {
@@ -973,6 +989,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             if (g == "beatbet") game = g;
             if (g == "fireball") game = g;
             if (g == "career") game = g;
+            if (g == "efootball") game = g;
         }
 
         std::string lang = "en";
@@ -1013,6 +1030,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         else if (game == "career")
         {
             ok = MatchesManager::GetMatchesByDateWithCareer(pg, userId, dayStart, dayEnd, lang, document);
+        }
+        else if (game == "efootball")
+        {
+            ok = MatchesManager::GetMatchesByDateWithEFootball(pg, userId, dayStart, dayEnd, lang, document);
         }
         else 
         {
@@ -1059,6 +1080,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             if (g == "beatbet") game = g;
             else if (g == "fireball") game = g;
             else if (g == "career") game = g;
+            else if (g == "efootball") game = g;
         }
 
         // Get the current timestamp in milliseconds
@@ -1084,6 +1106,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         else if (game == "career")
         {
             ok = MatchesManager::GetMatchesLiveWithCareer(pg, userId, currentTimeMs, document);
+        }
+        else if (game == "efootball")
+        {
+            ok = MatchesManager::GetMatchesLiveWithEFootball(pg, userId, currentTimeMs, document);
         }
         else 
         {
@@ -1129,6 +1155,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             if (g == "beatbet") game = g;
             else if (g == "fireball") game = g;
             else if (g == "career") game = g;
+            else if (g == "efootball") game = g;
         }
 
         // Get the current timestamp in milliseconds
@@ -1154,6 +1181,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         else if (game == "career")
         {
             ok = MatchesManager::GetMatchesUpcomingWithCareer(pg, userId, currentTimeMs, document);
+        }
+        else if (game == "efootball")
+        {
+            ok = MatchesManager::GetMatchesUpcomingWithEFootball(pg, userId, currentTimeMs, document);
         }
         else
         {
