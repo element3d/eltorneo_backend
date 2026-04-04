@@ -2235,7 +2235,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("fireballPosition", fireballPosition, allocator);
             userObject.AddMember("careerLeague", careerLeague, allocator);
             userObject.AddMember("careerPosition", careerPosition, allocator);
-            {
+           
+            /* {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
                 PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
@@ -2271,7 +2272,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                     PQclear(awardsRes);
                 }
 
-            }
+            }*/
 
             object.AddMember("id", id, allocator);
             object.AddMember("user", userObject, allocator);
