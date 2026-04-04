@@ -3475,6 +3475,8 @@ void CorrectGameTables(PGconn* pg)
 		sql =
 			"SELECT cu.user_id "
 			"FROM career_users cu "
+			"JOIN users u ON u.user_id = cu.user_id "
+			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
 			"GROUP BY cu.user_id, cu.points "
 			"ORDER BY cu.points DESC, cu.user_id ASC;";
 
@@ -3511,10 +3513,13 @@ void CorrectGameTables(PGconn* pg)
 		PQclear(ret);
 
 		sql =
-			"SELECT eu.user_id "
+			"SELECT eu.user_id, COUNT(p.id) AS total_predicts "
 			"FROM efootball_users eu "
+			"INNER JOIN efootball_predicts p ON eu.user_id = p.user_id "
+			"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
 			"GROUP BY eu.user_id, eu.points "
-			"ORDER BY eu.points DESC, eu.user_id ASC;";
+			"HAVING COUNT(p.id) > 0 "
+			"ORDER BY eu.points DESC, total_predicts DESC, eu.user_id ASC;";
 
 		ret = PQexec(pg, sql.c_str());
 
