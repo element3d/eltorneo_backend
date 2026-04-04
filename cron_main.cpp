@@ -3475,7 +3475,7 @@ void CorrectGameTables(PGconn* pg)
 		sql =
 			"SELECT cu.user_id "
 			"FROM career_users cu "
-			"JOIN users u ON u.user_id = cu.user_id "
+			"JOIN users u ON u.id = cu.user_id "
 			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
 			"GROUP BY cu.user_id, cu.points "
 			"ORDER BY cu.points DESC, cu.user_id ASC;";
@@ -3554,7 +3554,6 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-
 	//FillTodayLineups(pg);
 
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
