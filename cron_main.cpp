@@ -3518,7 +3518,7 @@ void CorrectGameTables(PGconn* pg)
 			"INNER JOIN efootball_predicts p ON eu.user_id = p.user_id "
 			"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
 			"GROUP BY eu.user_id, eu.points "
-			"HAVING COUNT(p.id) > 0 "
+			"HAVING COUNT(p.id) > 0 AND SUM(CASE WHEN p.team_id <> -1 THEN 1 ELSE 0 END) > 0 "
 			"ORDER BY eu.points DESC, total_predicts DESC, eu.user_id ASC;";
 
 		ret = PQexec(pg, sql.c_str());
