@@ -1025,7 +1025,7 @@ void ProcessEFootballResults(PGconn* pg,
 		{
 			if (matchStatus == "PEN")
 			{
-				points = team2GoalsPEN > team1GoalsPEN ? 1 : -1;
+				points = team2GoalsPEN > team1GoalsPEN ? 2 : -1;
 			}
 			else if (matchStatus == "AET")
 			{
