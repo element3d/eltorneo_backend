@@ -720,10 +720,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
-            "cu.league, cu.position "
+            "cu.league, cu.position, "
+            "eu.league, eu.position "
             "FROM users u "
             "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
             "LEFT JOIN career_users cu ON cu.user_id = u.id "
+            "LEFT JOIN efootball_users eu ON eu.user_id = u.id "
             "WHERE u.id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -822,6 +824,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
             document.AddMember("careerLeague", careerLeague, allocator);
             int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (careerLeague - 1) * 20 : -1;
             document.AddMember("careerPosition", careerPosition, allocator);
+
+            int eFootballLeague = atoi(PQgetvalue(ret, i, 19));
+            if (eFootballLeague < 1) eFootballLeague = -1;
+            document.AddMember("eFootballLeague", eFootballLeague, allocator);
+            int eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 20)) - (eFootballLeague - 1) * 20 : -1;
+            document.AddMember("eFootballPosition", eFootballPosition, allocator);
 
             break;
         }
