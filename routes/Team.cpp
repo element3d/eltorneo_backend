@@ -467,6 +467,10 @@ std::string Team::ToString(ETeam team)
         return "FC Midtjylland";
     case ETeam::PortVale:
         return "Port Vale";
+    case ETeam::AEKAthens:
+        return "AEK Athens FC";
+    case ETeam::AZAlkmaar:
+        return "AZ Alkmaar";
 
     default:
         return "Unknown Team";
@@ -939,6 +943,10 @@ std::string Team::ToShortString(ETeam team)
         return "Midtjylland";
     case ETeam::PortVale:
         return "Port Vale";
+    case ETeam::AEKAthens:
+        return "AEK Athens";
+    case ETeam::AZAlkmaar:
+        return "AZ Alkmaar";
 
     default:
         return "Unknown Team";

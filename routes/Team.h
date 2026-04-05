@@ -224,6 +224,8 @@ enum class ETeam
     Genk, // Genk
     Midtjylland, // FC Midtjylland
     PortVale,
+    AEKAthens,
+    AZAlkmaar,
 
     // International
     // Nations League
