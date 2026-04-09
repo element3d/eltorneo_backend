@@ -225,7 +225,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "es": {
         "mortal_kombat": "Mortal Kombat",
@@ -453,7 +457,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "fr": {
         "mortal_kombat": "Mortal Kombat",
@@ -681,7 +689,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "it": {
         "mortal_kombat": "Mortal Kombat",
@@ -909,7 +921,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -1137,7 +1153,11 @@
         "the_red": "Красный",
         "batman2": "Бэтмен",
         "joker": "Джокер",
-        "max_speed" : "Максимум скорости"
+        "max_speed" : "Максимум скорости",
+        "war_with_god": "Война с Богом",
+        "future_days": "Дни минувшего будущего",
+        "max_effort": "На максимум",
+        "get_over_here": "Get Over Here"
     },
     "pt": {
         "mortal_kombat": "Mortal Kombat",
@@ -1365,7 +1385,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "de": {
         "mortal_kombat": "Mortal Kombat",
@@ -1593,7 +1617,11 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     },
     "hr": {
         "mortal_kombat": "Mortal Kombat",
@@ -1821,6 +1849,10 @@
         "the_red": "The Red",
         "batman2": "The Batman",
         "joker": "Joker",
-        "max_speed" : "Maximum Speed"
+        "max_speed" : "Maximum Speed",
+        "war_with_god": "War with a God",
+        "future_days": "Days of Future Past",
+        "max_effort": "Maximum effort",
+        "get_over_here": "Get Over Here"
     }
 }
