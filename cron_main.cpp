@@ -523,7 +523,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 				round = "Final";
 		}
 	}
-	else if (league == ELeague::ChampionsLeague || league == ELeague::EuropaLeague)
+	else if (league == ELeague::ChampionsLeague || league == ELeague::EuropaLeague || league == ELeague::ConferenceLeague)
 	{
 		if (week <= 8)
 		{
@@ -562,7 +562,7 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 		}
 	}
 	else if (league == ELeague::SuperCupFrance 
-		|| league == ELeague::ConferenceLeague
+		//|| league == ELeague::ConferenceLeague
 		|| league == ELeague::CommunityShield
 		|| league == ELeague::UEFASuperCup
 		|| league == ELeague::DFLSuperCup)
