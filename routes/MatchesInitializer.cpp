@@ -4464,10 +4464,10 @@ void MatchesInitializer::InitCopaDelRey25_26(PGconn* pg)
    //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
    //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
 
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1772568000000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::RealSociedad, ETeam::AthleticClub, 1772654400000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1772568000000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::RealSociedad, ETeam::AthleticClub, 1772654400000, EWeekType::SemiFinal, true });
 
-   // matches.push_back({ ELeague::CopaDelRey, "24/25", 3, ETeam::Barcelona, ETeam::RealMadrid, 1745697600000, EWeekType::Final, true });
+    matches.push_back({ ELeague::CopaDelRey, "25/26", 3, ETeam::AtleticoMadrid, ETeam::RealSociedad, 1776538800000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
