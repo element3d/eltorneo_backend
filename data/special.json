@@ -229,7 +229,10 @@
         "war_with_god": "War with a God",
         "future_days": "Days of Future Past",
         "max_effort": "Maximum effort",
-        "get_over_here": "Get Over Here"
+        "get_over_here": "Get Over Here",
+        "mufasa": "Mufasa",
+        "king_of_monsters": "King of the Monsters",
+        "final_fantasy2": "Final Fantasy"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -461,6 +464,9 @@
         "war_with_god": "Война с Богом",
         "future_days": "Дни минувшего будущего",
         "max_effort": "На максимум",
-        "get_over_here": "Get Over Here"
+        "get_over_here": "Get Over Here",
+        "mufasa": "Муфаса",
+        "king_of_monsters": "Король монстров",
+        "final_fantasy2": "Последняя фантазия"
     }
 }
