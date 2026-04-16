@@ -233,8 +233,8 @@
         "mufasa": "Mufasa",
         "king_of_monsters": "King of the Monsters",
         "final_fantasy2": "Final Fantasy",
-        "mortal_kombat2": "Смертельная битва",
-        "i_am_reborn": "Перерождение"
+        "mortal_kombat2": "Mortal Kombat",
+        "i_am_reborn": "I am reborn"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -470,7 +470,7 @@
         "mufasa": "Муфаса",
         "king_of_monsters": "Король монстров",
         "final_fantasy2": "Последняя фантазия",
-        "mortal_kombat2": "Mortal Kombat",
-        "i_am_reborn": "I am reborn"
+        "mortal_kombat2": "Смертельная битва",
+        "i_am_reborn": "Перерождение"
     }
 }
