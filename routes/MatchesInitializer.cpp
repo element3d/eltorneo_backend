@@ -1682,13 +1682,13 @@ void MatchesInitializer::InitChampionsLeaguePO25_26(PGconn* pg)
    // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::Barcelona, ETeam::AtleticoMadrid, 1775592000000, EWeekType::QuarterFinal, false });
    // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::SportingLisbon, ETeam::Arsenal, 1775592000000, EWeekType::QuarterFinal, false });
 
-    matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::AtleticoMadrid, ETeam::Barcelona, 1776193200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::Liverpool, ETeam::PSG, 1776193200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::Arsenal, ETeam::SportingLisbon, 1776279600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::BayernMunich, ETeam::RealMadrid, 1776279600000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::AtleticoMadrid, ETeam::Barcelona, 1776193200000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::Liverpool, ETeam::PSG, 1776193200000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::Arsenal, ETeam::SportingLisbon, 1776279600000, EWeekType::QuarterFinal, true });
+   // matches.push_back({ ELeague::ChampionsLeague, "25/26", 11, ETeam::BayernMunich, ETeam::RealMadrid, 1776279600000, EWeekType::QuarterFinal, true });
 
-  //  matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Arsenal, ETeam::PSG, 1745953200000, EWeekType::SemiFinal, false });
-   // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::Barcelona, ETeam::InterMilan, 1746039600000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 12, ETeam::PSG, ETeam::BayernMunich, 1777402800000, EWeekType::SemiFinal, false });
+    matches.push_back({ ELeague::ChampionsLeague, "25/26", 12, ETeam::AtleticoMadrid, ETeam::Arsenal, 1777489200000, EWeekType::SemiFinal, false });
 
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::InterMilan, ETeam::Barcelona, 1746558000000, EWeekType::SemiFinal, true });
    // matches.push_back({ ELeague::ChampionsLeague, "24/25", 12, ETeam::PSG, ETeam::Arsenal, 1746644400000, EWeekType::SemiFinal, true });
