@@ -232,7 +232,9 @@
         "get_over_here": "Get Over Here",
         "mufasa": "Mufasa",
         "king_of_monsters": "King of the Monsters",
-        "final_fantasy2": "Final Fantasy"
+        "final_fantasy2": "Final Fantasy",
+        "mortal_kombat2": "Смертельная битва",
+        "i_am_reborn": "Перерождение"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -467,6 +469,8 @@
         "get_over_here": "Get Over Here",
         "mufasa": "Муфаса",
         "king_of_monsters": "Король монстров",
-        "final_fantasy2": "Последняя фантазия"
+        "final_fantasy2": "Последняя фантазия",
+        "mortal_kombat2": "Mortal Kombat",
+        "i_am_reborn": "I am reborn"
     }
 }
