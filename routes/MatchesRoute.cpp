@@ -946,6 +946,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
             std::string lang = req.get_param_value("lang");
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[lang.c_str()][title.c_str()].GetString();
         }
         v.SetString(translatedTitle.c_str(), allocator);

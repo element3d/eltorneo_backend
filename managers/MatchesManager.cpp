@@ -122,7 +122,7 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
             std::string l = "en";
-            if (lang.size()) l = lang;
+            if (lang == "ru") l = lang;
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 25), allocator), allocator);
@@ -266,7 +266,7 @@ bool MatchesManager::GetLeagueMatchesWithBets(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 27), allocator), allocator);
@@ -413,7 +413,7 @@ bool MatchesManager::GetLeagueMatchesWithFireball(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 29), allocator), allocator);
@@ -552,7 +552,7 @@ bool MatchesManager::GetLeagueMatchesWithCareer(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 22), allocator), allocator);
@@ -686,7 +686,7 @@ bool MatchesManager::GetLeagueMatchesWithEFootball(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 26), allocator), allocator);
@@ -832,7 +832,7 @@ bool MatchesManager::GetMatchesByDateWithPredicts(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         rapidjson::Value v;
@@ -979,7 +979,7 @@ bool MatchesManager::GetMatchesByDateWithBets(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         rapidjson::Value v;
@@ -1131,7 +1131,7 @@ bool MatchesManager::GetMatchesByDateWithFireball(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         rapidjson::Value v;
@@ -1271,7 +1271,7 @@ bool MatchesManager::GetMatchesByDateWithCareer(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         rapidjson::Value v;
@@ -1411,7 +1411,7 @@ bool MatchesManager::GetMatchesByDateWithEFootball(PGconn* pg,
             std::string jsonString = ReadFile(filename);
             rapidjson::Document d;
             d.Parse(jsonString.c_str());
-            std::string l = lang.size() ? lang : "en";
+            std::string l = lang == "ru" ? lang : "en";
             translatedTitle = d[l.c_str()][title.c_str()].GetString();
         }
         rapidjson::Value v;

@@ -856,7 +856,7 @@ bool PNManager::SendMatchNotificationV2(const std::string& title, int league, bo
         std::string os = temp;
         strcpy(temp, PQgetvalue(ret, i, 4));
         std::string lang = temp;
-
+        lang = lang == "ru" ? lang : "en";
         std::string t = title;
         if (isSpecial) 
         {
