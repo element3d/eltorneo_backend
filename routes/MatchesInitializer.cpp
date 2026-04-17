@@ -4389,10 +4389,13 @@ void MatchesInitializer::InitCopaDeFrance25_26(PGconn* pg)
     // Premier League
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Strasbourg, ETeam::Reims, 1772568000000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lorient, ETeam::Nice, 1772652600000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Marseille, ETeam::Toulouse, 1772654400000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lyon, ETeam::Lens, 1772741400000, EWeekType::QuarterFinal, true });
+  // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Strasbourg, ETeam::Reims, 1772568000000, EWeekType::QuarterFinal, true });
+  // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lorient, ETeam::Nice, 1772652600000, EWeekType::QuarterFinal, true });
+  // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Marseille, ETeam::Toulouse, 1772654400000, EWeekType::QuarterFinal, true });
+  // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lyon, ETeam::Lens, 1772741400000, EWeekType::QuarterFinal, true });
+  
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Lens, ETeam::Toulouse, 1776798000000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Strasbourg, ETeam::Nice, 1776884400000, EWeekType::SemiFinal, true });
 
 
     for (auto& m : matches)
