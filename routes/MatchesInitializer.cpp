@@ -4640,10 +4640,8 @@ void MatchesInitializer::InitDFLSuperCup25_26(PGconn* pg)
 void MatchesInitializer::InitDFBPokal25_26(PGconn* pg)
 {
     std::vector<Match> matches;
-    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::BayerLeverkusen, ETeam::StPauli, 1770147900000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::HolsteinKiel, ETeam::Stuttgart, 1770234300000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::Hertha, ETeam::Freiburg, 1770752700000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::DFBPokal, "25/26", 1, ETeam::BayernMunich, ETeam::RBLeipzig, 1770839100000, EWeekType::QuarterFinal, true });
+    matches.push_back({ ELeague::DFBPokal, "25/26", 2, ETeam::BayerLeverkusen, ETeam::BayernMunich, 1776883500000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::DFBPokal, "25/26", 2, ETeam::Stuttgart, ETeam::Freiburg, 1776969900000, EWeekType::SemiFinal, true });
 
     for (auto& m : matches)
     {
