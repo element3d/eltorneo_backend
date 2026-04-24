@@ -234,7 +234,8 @@
         "king_of_monsters": "King of the Monsters",
         "final_fantasy2": "Final Fantasy",
         "mortal_kombat2": "Mortal Kombat",
-        "i_am_reborn": "I am reborn"
+        "i_am_reborn": "I am reborn",
+        "revelations": "Revelations"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -471,6 +472,7 @@
         "king_of_monsters": "Король монстров",
         "final_fantasy2": "Последняя фантазия",
         "mortal_kombat2": "Смертельная битва",
-        "i_am_reborn": "Перерождение"
+        "i_am_reborn": "Перерождение",
+        "revelations": "Revelations"
     }
 }
