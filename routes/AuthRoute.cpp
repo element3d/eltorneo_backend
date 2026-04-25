@@ -716,7 +716,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.email, u.tg_code, u.username, u.clear_balance, u.is_guest, fu.points, cu.points, "
+        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.email, u.tg_code, u.username, u.clear_balance, u.is_guest, fu.points, cu.points, eu.points, "
             "u.eltorneo_league, u.eltorneo_position, "
             "u.beat_bet_league, u.beat_bet_position, "
             "fu.league, fu.position, "
@@ -800,35 +800,37 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
             document.AddMember("fireballPoints", fireballPoints, allocator);
             int careerPoints = atoi(PQgetvalue(ret, i, 10));
             document.AddMember("careerPoints", careerPoints, allocator);
+            int eFootballPoints = atoi(PQgetvalue(ret, i, 11));
+            document.AddMember("eFootballPoints", eFootballPoints, allocator);
 
-            int elTorneoLeague = atoi(PQgetvalue(ret, i, 11));
+            int elTorneoLeague = atoi(PQgetvalue(ret, i, 12));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
             document.AddMember("elTorneoLeague", elTorneoLeague, allocator);
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 13)) - (elTorneoLeague - 1) * 20 : -1;
             document.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
-            int beatBetLeague = atoi(PQgetvalue(ret, i, 13));
+            int beatBetLeague = atoi(PQgetvalue(ret, i, 14));
             if (beatBetLeague < 1) beatBetLeague = -1;
             document.AddMember("beatBetLeague", beatBetLeague, allocator);
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 15)) - (beatBetLeague - 1) * 20 : -1;
             document.AddMember("beatBetPosition", beatBetPosition, allocator);
 
-            int fireballLeague = atoi(PQgetvalue(ret, i, 15));
+            int fireballLeague = atoi(PQgetvalue(ret, i, 16));
             if (fireballLeague < 1) fireballLeague = -1;
             document.AddMember("fireballLeague", fireballLeague, allocator);
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (fireballLeague - 1) * 20 : -1;
             document.AddMember("fireballPosition", fireballPosition, allocator);
 
-            int careerLeague = atoi(PQgetvalue(ret, i, 17));
+            int careerLeague = atoi(PQgetvalue(ret, i, 18));
             if (careerLeague < 1) careerLeague = -1;
             document.AddMember("careerLeague", careerLeague, allocator);
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 19)) - (careerLeague - 1) * 20 : -1;
             document.AddMember("careerPosition", careerPosition, allocator);
 
-            int eFootballLeague = atoi(PQgetvalue(ret, i, 19));
+            int eFootballLeague = atoi(PQgetvalue(ret, i, 20));
             if (eFootballLeague < 1) eFootballLeague = -1;
             document.AddMember("eFootballLeague", eFootballLeague, allocator);
-            int eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 20)) - (eFootballLeague - 1) * 20 : -1;
+            int eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 21)) - (eFootballLeague - 1) * 20 : -1;
             document.AddMember("eFootballPosition", eFootballPosition, allocator);
 
             break;
