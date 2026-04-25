@@ -4421,13 +4421,13 @@ void MatchesInitializer::InitFACup25_26(PGconn* pg)
     // Premier League
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::ManchesterCity, ETeam::Liverpool, 1775303100000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Chelsea, ETeam::PortVale, 1775319300000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Southampton, ETeam::Arsenal, 1775329200000, EWeekType::QuarterFinal, true });
-    matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::WestHamUnited, ETeam::Leeds, 1775403000000, EWeekType::QuarterFinal, true });
+   //matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::ManchesterCity, ETeam::Liverpool, 1775303100000, EWeekType::QuarterFinal, true });
+   //matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Chelsea, ETeam::PortVale, 1775319300000, EWeekType::QuarterFinal, true });
+   //matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::Southampton, ETeam::Arsenal, 1775329200000, EWeekType::QuarterFinal, true });
+   //matches.push_back({ ELeague::FACup, "25/26", 1, ETeam::WestHamUnited, ETeam::Leeds, 1775403000000, EWeekType::QuarterFinal, true });
 
-   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AthleticClub, ETeam::RealSociedad, 1770840000000, EWeekType::SemiFinal, false });
-   //matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::AtleticoMadrid, ETeam::Barcelona, 1770926400000, EWeekType::SemiFinal, false });
+   matches.push_back({ ELeague::FACup, "25/26", 2, ETeam::ManchesterCity, ETeam::Southampton, 1777133700000, EWeekType::SemiFinal, true });
+   matches.push_back({ ELeague::FACup, "25/26", 2, ETeam::Chelsea, ETeam::Leeds, 1777212000000, EWeekType::SemiFinal, true });
 
    // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::Barcelona, ETeam::AtleticoMadrid, 1772568000000, EWeekType::SemiFinal, true });
    // matches.push_back({ ELeague::CopaDelRey, "25/26", 2, ETeam::RealSociedad, ETeam::AthleticClub, 1772654400000, EWeekType::SemiFinal, true });
