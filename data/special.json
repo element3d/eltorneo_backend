@@ -237,7 +237,8 @@
         "i_am_reborn": "I am reborn",
         "revelations": "Revelations",
         "scorpion_revenge": "Scorpion's Revenge",
-        "healing_factor": "Healing factor"
+        "healing_factor": "Healing factor",
+        "jurassic_world": "Jurassic World"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -477,6 +478,7 @@
         "i_am_reborn": "Перерождение",
         "revelations": "Revelations",
         "scorpion_revenge": "Месть Скорпиона",
-        "healing_factor": "Фактор исцеления"
+        "healing_factor": "Фактор исцеления",
+        "jurassic_world": "Мир Юрского периода"
     }
 }
