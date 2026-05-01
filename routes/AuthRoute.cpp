@@ -742,7 +742,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         if (!nrows)
         {
             PQclear(ret);
-            res.status = 500;  // Internal Server Error
+            res.status = 404;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
             return;
         }

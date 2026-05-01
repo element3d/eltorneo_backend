@@ -3583,10 +3583,30 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int n = PQntuples(ret);
             if (n > 0)
             {
-                fprintf(stderr, "Failed to add fireball predict: Option 2: %s\n", PQerrorMessage(pg));
+                int predictId = atoi(PQgetvalue(ret, 0, 0));
+                std::string sql = "UPDATE fireball_predicts SET team_id = " + std::to_string(teamId)
+                    + ", player_api_id = " + std::to_string(playerApiId)
+                    + ", player_name = '" + playerName
+                    + "', player_photo = '" + playerPhoto
+                    + "' WHERE id = " + std::to_string(predictId) + ";";
+
+                PGresult* ret2 = PQexec(pg, sql.c_str());
                 PQclear(ret);
+                PQclear(ret2);
                 ConnectionPool::Get()->releaseConnection(pg);
-                res.status = 500; // Internal Server Error
+                
+                rapidjson::Document responseDoc;
+                responseDoc.SetObject();
+                responseDoc.AddMember("predict_id", predictId, responseDoc.GetAllocator());
+
+                // Convert the document to a string
+                rapidjson::StringBuffer buffer;
+                rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+                responseDoc.Accept(writer);
+
+                // Send response
+                res.set_content(buffer.GetString(), "application/json");
+                res.status = 201; // Created
                 return;
             }
         }
@@ -3612,18 +3632,18 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         {
-            auto now = std::chrono::system_clock::now();
-            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-            long long timestamp = ms.count();
-            sql = "UPDATE fireball_users SET last_predict_ts = " + std::to_string(timestamp) + " WHERE user_id = " + std::to_string(userId) + ";";
+            std::string sql =
+                "INSERT INTO fireball_users (user_id) VALUES (" + std::to_string(userId) + ") "
+                "ON CONFLICT (user_id) DO NOTHING;";
             PGresult* tsRet = PQexec(pg, sql.c_str());
             PQclear(tsRet);
         }
 
         {
-            std::string sql =
-                "INSERT INTO fireball_users (user_id) VALUES (" + std::to_string(userId) + ") "
-                "ON CONFLICT (user_id) DO NOTHING;";
+            auto now = std::chrono::system_clock::now();
+            auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+            long long timestamp = ms.count();
+            sql = "UPDATE fireball_users SET last_predict_ts = " + std::to_string(timestamp) + " WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* tsRet = PQexec(pg, sql.c_str());
             PQclear(tsRet);
         }
