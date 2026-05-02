@@ -1119,6 +1119,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         if (!ok) 
         {
             ConnectionPool::Get()->releaseConnection(pg);
+            printf("Error: Failed to get LIVE matches.\n");
             res.status = 500; // Internal Server Error
             return;
         }

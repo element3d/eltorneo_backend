@@ -1466,7 +1466,7 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
-        fprintf(stderr, "Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1580,7 +1580,7 @@ bool MatchesManager::GetMatchesLiveWithBets(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with BETS: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1699,7 +1699,7 @@ bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with FIREBALL predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1810,7 +1810,7 @@ bool MatchesManager::GetMatchesLiveWithCareer(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch live matches with career: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with career: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1917,7 +1917,7 @@ bool MatchesManager::GetMatchesLiveWithEFootball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch live matches with eFootball: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with eFootball: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2028,7 +2028,7 @@ bool MatchesManager::GetMatchesUpcomingWithPredicts(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
-        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2142,7 +2142,7 @@ bool MatchesManager::GetMatchesUpcomingWithBets(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with BETS: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2261,7 +2261,7 @@ bool MatchesManager::GetMatchesUpcomingWithFireball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with FIREBALL predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2372,7 +2372,7 @@ bool MatchesManager::GetMatchesUpcomingWithCareer(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with CAREER: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2479,7 +2479,7 @@ bool MatchesManager::GetMatchesUpcomingWithEFootball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with EFOOTBALL: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
