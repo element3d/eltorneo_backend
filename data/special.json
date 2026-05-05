@@ -238,7 +238,8 @@
         "revelations": "Revelations",
         "scorpion_revenge": "Scorpion's Revenge",
         "healing_factor": "Healing factor",
-        "jurassic_world": "Jurassic World"
+        "jurassic_world": "Jurassic World",
+        "contra": "Contra"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -479,6 +480,7 @@
         "revelations": "Revelations",
         "scorpion_revenge": "Месть Скорпиона",
         "healing_factor": "Фактор исцеления",
-        "jurassic_world": "Мир Юрского периода"
+        "jurassic_world": "Мир Юрского периода",
+        "contra": "Контра"
     }
 }
