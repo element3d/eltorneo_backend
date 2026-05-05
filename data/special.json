@@ -239,7 +239,8 @@
         "scorpion_revenge": "Scorpion's Revenge",
         "healing_factor": "Healing factor",
         "jurassic_world": "Jurassic World",
-        "contra": "Contra"
+        "contra": "Contra",
+        "ghost_rider": "Ghost Rider"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -481,6 +482,7 @@
         "scorpion_revenge": "Месть Скорпиона",
         "healing_factor": "Фактор исцеления",
         "jurassic_world": "Мир Юрского периода",
-        "contra": "Контра"
+        "contra": "Контра",
+        "ghost_rider": "Призрачный гонщик"
     }
 }
