@@ -240,7 +240,8 @@
         "healing_factor": "Healing factor",
         "jurassic_world": "Jurassic World",
         "contra": "Contra",
-        "ghost_rider": "Ghost Rider"
+        "ghost_rider": "Ghost Rider",
+        "noob_saibot_vs_scorp": "Noob Saibot vs Scorpion"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -483,6 +484,7 @@
         "healing_factor": "Фактор исцеления",
         "jurassic_world": "Мир Юрского периода",
         "contra": "Контра",
-        "ghost_rider": "Призрачный гонщик"
+        "ghost_rider": "Призрачный гонщик",
+        "noob_saibot_vs_scorp": "Нуб Сайбот против Скорпиона"
     }
 }
