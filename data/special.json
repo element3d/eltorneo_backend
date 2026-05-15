@@ -241,7 +241,8 @@
         "jurassic_world": "Jurassic World",
         "contra": "Contra",
         "ghost_rider": "Ghost Rider",
-        "noob_saibot_vs_scorp": "Noob Saibot vs Scorpion"
+        "noob_saibot_vs_scorp": "Noob Saibot vs Scorpion",
+        "batman_vs_sm": "Batman vs Superman"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -485,6 +486,7 @@
         "jurassic_world": "Мир Юрского периода",
         "contra": "Контра",
         "ghost_rider": "Призрачный гонщик",
-        "noob_saibot_vs_scorp": "Нуб Сайбот против Скорпиона"
+        "noob_saibot_vs_scorp": "Нуб Сайбот против Скорпиона",
+        "batman_vs_sm": "Бэтмен против Супермена"
     }
 }
