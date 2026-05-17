@@ -48,9 +48,9 @@ void LeaguesRoute::Init()
         //MatchesInitializer::InitChampionsLeagueTable(pg);
         //MatchesInitializer::InitChampionsLeague25_26(pg);
 
-        //MatchesInitializer::InitClubWorldCupTeams24_25(pg);
-        //MatchesInitializer::InitClubWorldCupTable24_25(pg);
-        //MatchesInitializer::InitClubWorldCup24_25(pg);
+    ///    MatchesInitializer::InitWorldCupTeams25_26(pg);
+  //      MatchesInitializer::InitWorldCupTable25_26(pg);
+//       MatchesInitializer::InitWorldCup25_26(pg);
       //  MatchesInitializer::InitClubWorldCupPO24_25(pg);
 
        //MatchesInitializer::InitNationsLeaguePO24_25(pg);
@@ -460,6 +460,54 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
                     weeks.PushBack(weekObject, allocator);
                 }
             }
+            else if (id == (int)ELeague::WorldCup)
+            {
+                int i = 1;
+                for (; i <= 3; ++i)
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Matchday, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::RoundOf32, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::RoundOf16, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::QuarterFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::SemiFinal, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                {
+                    rapidjson::Value weekObject;
+                    weekObject.SetObject();
+                    weekObject.AddMember("week", i++, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::Final, allocator);
+                    weeks.PushBack(weekObject, allocator);
+                }
+                }
             objValue.AddMember("weeks", weeks, allocator);
 
             // Add the object to the document array

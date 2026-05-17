@@ -238,6 +238,7 @@ int main(void)
 
     svr.Get("/api/v1/beat_bet_table", PredictsRoute::Get()->GetBeatBetTable());
     svr.Get("/api/v2/beat_bet_table", PredictsRoute::Get()->GetBeatBetTableV2());
+    svr.Get("/api/v3/beat_bet_table", PredictsRoute::Get()->GetBeatBetTableV3());
 
     svr.Get("/api/v1/table/score", PredictsRoute::Get()->GetTableByScore());
     svr.Get("/api/v1/table/winner", PredictsRoute::Get()->GetTableByWinner());
@@ -253,6 +254,7 @@ int main(void)
     svr.Get("/api/v1/match/fireball/summary", PredictsRoute::Get()->GetMatchFireballSummary());
     svr.Get("/api/v1/fireball_table", PredictsRoute::Get()->GetFireballTable());
     svr.Get("/api/v2/fireball_table", PredictsRoute::Get()->GetFireballTableV2());
+    svr.Get("/api/v3/fireball_table", PredictsRoute::Get()->GetFireballTableV3());
     svr.Get("/api/v1/user/fireball", PredictsRoute::Get()->GetUserFireballPredicts());
     svr.Delete("/api/v1/fireball", PredictsRoute::Get()->DeleteFireballPredict());
 
@@ -269,6 +271,11 @@ int main(void)
     svr.Get("/api/v1/match/efootball/summary", PredictsRoute::Get()->GetMatchEFootballSummary());
     svr.Get("/api/v2/match/efootball/top20", PredictsRoute::Get()->GetMatchEFootballTop20V2());
     svr.Get("/api/v1/user/efootball", PredictsRoute::Get()->GetUserEFootballPredicts());
+
+    // World Cup
+    svr.Get("/api/v1/user/world_cup", PredictsRoute::Get()->GetUserWorldCupPredicts());
+    svr.Get("/api/v2/match/world_cup/top20", PredictsRoute::Get()->GetMatchWorldCupPredictsTop20V2());
+    svr.Get("/api/v2/world_cup_table", PredictsRoute::Get()->GetWorldCupTableV2());
 
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());

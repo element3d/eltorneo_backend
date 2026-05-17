@@ -472,6 +472,71 @@ std::string Team::ToString(ETeam team)
     case ETeam::AZAlkmaar:
         return "AZ Alkmaar";
 
+    // World Cup
+    case ETeam::Canada:
+        return "Canada";
+    case ETeam::Mexico:
+        return "Mexico";
+    case ETeam::USA:
+        return "USA";
+    case ETeam::Algeria:
+        return "Algeria";
+    case ETeam::Argentina:
+        return "Argentina";
+    case ETeam::Australia:
+        return "Australia";
+    case ETeam::Brazil:
+        return "Brazil";
+    case ETeam::CaboVerde:
+        return "Cabo Verde";
+    case ETeam::Colombia:
+        return "Colombia";
+    case ETeam::CongoDR:
+        return "Congo DR";
+    case ETeam::IvoryCoast:
+        return "Ivory Coast";
+    case ETeam::Curacao:
+        return "Curaçao";
+    case ETeam::Ecuador:
+        return "Ecuador";
+    case ETeam::Egypt:
+        return "Egypt";
+    case ETeam::Ghana:
+        return "Ghana";
+    case ETeam::Haiti:
+        return "Haiti";
+    case ETeam::Iran:
+        return "Iran";
+    case ETeam::Iraq:
+        return "Iraq";
+    case ETeam::Japan:
+        return "Japan";
+    case ETeam::Jordan:
+        return "Jordan";
+    case ETeam::KoreaRepublic:
+        return "South Korea";
+    case ETeam::Morocco:
+        return "Morocco";
+    case ETeam::NewZealand:
+        return "New Zealand";
+    case ETeam::Panama:
+        return "Panama";
+    case ETeam::Paraguay:
+        return "Paraguay";
+    case ETeam::Qatar:
+        return "Qatar";
+    case ETeam::SaudiArabia:
+        return "Saudi Arabia";
+    case ETeam::Senegal:
+        return "Senegal";
+    case ETeam::SouthAfrica:
+        return "South Africa";
+    case ETeam::Tunisia:
+        return "Tunisia";
+    case ETeam::Uruguay:
+        return "Uruguay";
+    case ETeam::Uzbekistan:
+        return "Uzbekistan";
     default:
         return "Unknown Team";
     }
@@ -800,7 +865,7 @@ std::string Team::ToShortString(ETeam team)
     case ETeam::Kazakhstan:
         return "Kazakhstan";
     case ETeam::Turkiye:
-        return "Turkiye";
+        return "Türkiye";
     case ETeam::Wales:
         return "Wales";
     case ETeam::Iceland:
@@ -947,6 +1012,72 @@ std::string Team::ToShortString(ETeam team)
         return "AEK Athens";
     case ETeam::AZAlkmaar:
         return "AZ Alkmaar";
+
+        // World Cup
+    case ETeam::Canada:
+        return "Canada";
+    case ETeam::Mexico:
+        return "Mexico";
+    case ETeam::USA:
+        return "USA";
+    case ETeam::Algeria:
+        return "Algeria";
+    case ETeam::Argentina:
+        return "Argentina";
+    case ETeam::Australia:
+        return "Australia";
+    case ETeam::Brazil:
+        return "Brazil";
+    case ETeam::CaboVerde:
+        return "Cabo Verde";
+    case ETeam::Colombia:
+        return "Colombia";
+    case ETeam::CongoDR:
+        return "Congo DR";
+    case ETeam::IvoryCoast:
+        return "Ivory Coast";
+    case ETeam::Curacao:
+        return "Curaçao";
+    case ETeam::Ecuador:
+        return "Ecuador";
+    case ETeam::Egypt:
+        return "Egypt";
+    case ETeam::Ghana:
+        return "Ghana";
+    case ETeam::Haiti:
+        return "Haiti";
+    case ETeam::Iran:
+        return "Iran";
+    case ETeam::Iraq:
+        return "Iraq";
+    case ETeam::Japan:
+        return "Japan";
+    case ETeam::Jordan:
+        return "Jordan";
+    case ETeam::KoreaRepublic:
+        return "South Korea";
+    case ETeam::Morocco:
+        return "Morocco";
+    case ETeam::NewZealand:
+        return "New Zealand";
+    case ETeam::Panama:
+        return "Panama";
+    case ETeam::Paraguay:
+        return "Paraguay";
+    case ETeam::Qatar:
+        return "Qatar";
+    case ETeam::SaudiArabia:
+        return "Saudi Arabia";
+    case ETeam::Senegal:
+        return "Senegal";
+    case ETeam::SouthAfrica:
+        return "South Africa";
+    case ETeam::Tunisia:
+        return "Tunisia";
+    case ETeam::Uruguay:
+        return "Uruguay";
+    case ETeam::Uzbekistan:
+        return "Uzbekistan";
 
     default:
         return "Unknown Team";

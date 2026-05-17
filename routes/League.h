@@ -27,7 +27,8 @@ enum class ELeague
     DFBPokal,
     CoupeDeFrance,
     FACup,
-    End = FACup
+    WorldCup,
+    End = WorldCup
 };
 
 enum class ELeagueType 

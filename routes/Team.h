@@ -284,7 +284,40 @@ enum class ETeam
     Moldova,
     Malta,
     Andorra,
-    NationsLeagueEnd = Andorra
+
+    // World
+    Canada,
+    Mexico,
+    USA,
+    Algeria,
+    Argentina,
+    Australia,
+    Brazil,
+    CaboVerde,
+    Colombia,
+    CongoDR,
+    IvoryCoast,
+    Curacao,
+    Ecuador,
+    Egypt,
+    Ghana,
+    Haiti,
+    Iran,
+    Iraq,
+    Japan,
+    Jordan,
+    KoreaRepublic,
+    Morocco,
+    NewZealand,
+    Panama,
+    Paraguay,
+    Qatar,
+    SaudiArabia,
+    Senegal,
+    SouthAfrica,
+    Tunisia,
+    Uruguay,
+    Uzbekistan
 };
 
 class Team

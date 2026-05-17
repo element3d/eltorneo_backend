@@ -34,6 +34,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTableV2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTableV3();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByScore();
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByWinner();
@@ -48,6 +49,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTableV2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTableV3();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteFireballPredict();
@@ -65,6 +67,10 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredicts();
+
+    std::function<void(const httplib::Request&, httplib::Response&)> GetUserWorldCupPredicts();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchWorldCupPredictsTop20V2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetWorldCupTableV2();
 
 
 private:
