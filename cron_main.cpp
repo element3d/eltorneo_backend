@@ -94,6 +94,8 @@ int elTorneoLeagueIdToApiFootball(ELeague league)
 		return 66;
 	case ELeague::FACup:
 		return 45;
+	case ELeague::WorldCup:
+		return 1;
 	default:
 		break;
 	}
@@ -653,6 +655,42 @@ std::string GetApiFootballRound(PGconn* pg, ELeague league, int week, int team1I
 			round = "Final";
 		}
 	}
+	else if (league == ELeague::WorldCup)
+	{
+		if (week == 1)
+		{
+			round = "Group Stage - 1";
+		}
+		if (week == 2)
+		{
+			round = "Group Stage - 2";
+		}
+		else if (week == 3)
+		{
+			round = "Group Stage - 3";
+		}
+		else if (week == 4)
+		{
+			round = "Round of 32";
+		}
+		else if (week == 5)
+		{
+			round = "8th Finals";
+		}
+		else if (week == 6)
+		{
+			round = "Quarter-finals";
+		}
+		else if (week == 7)
+		{
+			round = "Semi-finals";
+		}
+		else if (week == 9)
+		{
+			round = "Final";
+		}
+		}
+
 
 
 	return round;
@@ -2413,6 +2451,7 @@ ELeague ApiLeagueToLeagueId(int leagueApiId)
 	if (leagueApiId == 32) return ELeague::UEFAWorldClubQualification; // ClubWorldCup
 	if (leagueApiId == 66) return ELeague::CoupeDeFrance; // ClubWorldCup
 	if (leagueApiId == 45) return ELeague::FACup; // FACup
+	if (leagueApiId == 1) return ELeague::WorldCup; // FACup
 
 	return ELeague::End;
 }
@@ -3548,12 +3587,55 @@ void CorrectGameTables(PGconn* pg)
 		}
 		PQclear(ret);
 	}
+
+	{
+		std::string sql = "UPDATE world_cup_users SET position = -1";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		sql =
+			"SELECT wu.id, COUNT(p.id) AS total_predictions "
+			"FROM world_cup_users wu "
+			"INNER JOIN predicts p ON wu.user_id = p.user_id "
+			"WHERE p.status != 4 "
+			"AND wu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"GROUP BY wu.id, wu.points "
+			"HAVING COUNT(p.id) > 0 "
+			"ORDER BY wu.points DESC, total_predictions DESC, wu.id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				std::string posSql = "UPDATE world_cup_users SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+	}
+
 }
 
 int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
+
 	//FillTodayLineups(pg);
 
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
