@@ -11,7 +11,8 @@ enum class EWeekType
     SemiFinal,
     Final,
     RoundOf8,
-    ThirdPlace
+    ThirdPlace,
+    RoundOf32,
 };
 
 class Match
@@ -30,6 +31,11 @@ public:
 class MatchesInitializer 
 {
 public:
+    static void InitWorldCupTeams25_26(PGconn* pg);
+    static void InitWorldCupTable25_26(PGconn* pg);
+    static void InitWorldCup25_26(PGconn* pg);
+
+
     static void InitClubWorldCupTeams24_25(PGconn* pg);
     static void InitClubWorldCupTable24_25(PGconn* pg);
     static void InitClubWorldCup24_25(PGconn* pg);
@@ -66,8 +72,6 @@ public:
 
     static void InitConfLeagueTeams25_26(PGconn* pg);
     static void InitConfLeaguePO25_26(PGconn* pg);
-
-
 
     static void InitLigue125_26(PGconn* pg);
     static void InitBundesliga25_26(PGconn* pg);

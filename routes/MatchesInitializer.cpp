@@ -2,6 +2,568 @@
 #include <vector>
 #include <unordered_map>
 
+void MatchesInitializer::InitWorldCupTeams25_26(PGconn* pg)
+{
+    std::vector<ETeam> newTeams =
+    {
+        ETeam::Canada,
+        ETeam::Mexico,
+        ETeam::USA,
+        ETeam::Algeria,
+        ETeam::Argentina,
+        ETeam::Australia,
+        ETeam::Brazil,
+        ETeam::CaboVerde,
+        ETeam::Colombia,
+        ETeam::CongoDR,
+        ETeam::IvoryCoast,
+        ETeam::Curacao,
+        ETeam::Ecuador,
+        ETeam::Egypt,
+        ETeam::Ghana,
+        ETeam::Haiti,
+        ETeam::Iran,
+        ETeam::Iraq,
+        ETeam::Japan,
+        ETeam::Jordan,
+        ETeam::KoreaRepublic,
+        ETeam::Morocco,
+        ETeam::NewZealand,
+        ETeam::Panama,
+        ETeam::Paraguay,
+        ETeam::Qatar,
+        ETeam::SaudiArabia,
+        ETeam::Senegal,
+        ETeam::SouthAfrica,
+        ETeam::Tunisia,
+        ETeam::Uruguay,
+        ETeam::Uzbekistan
+    };
+
+    for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
+    {
+        std::string sql = "insert into teams(id, name, short_name) values ("
+            + std::to_string(i) + ", '"
+            + Team::ToString((ETeam)i) + "', '"
+            + Team::ToShortString((ETeam)i)
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::Mexico,
+        ETeam::SouthAfrica,
+        ETeam::KoreaRepublic,
+        ETeam::Czechia
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::Canada,
+        ETeam::BosniaAndHerzegovina,
+        ETeam::Qatar,
+        ETeam::Switzerland
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::Brazil,
+        ETeam::Morocco,
+        ETeam::Haiti,
+        ETeam::Scotland
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::USA,
+        ETeam::Paraguay,
+        ETeam::Australia,
+        ETeam::Turkiye
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::Germany,
+        ETeam::Curacao,
+        ETeam::IvoryCoast,
+        ETeam::Ecuador
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::Netherlands,
+        ETeam::Japan,
+        ETeam::Sweden,
+        ETeam::Tunisia
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::Belgium,
+        ETeam::Egypt,
+        ETeam::Iran,
+        ETeam::NewZealand
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::Spain,
+        ETeam::CaboVerde,
+        ETeam::SaudiArabia,
+        ETeam::Uruguay
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group I
+    std::vector group9Teams =
+    {
+        ETeam::France,
+        ETeam::Senegal,
+        ETeam::Iraq,
+        ETeam::Norway
+    };
+
+    for (auto team : group9Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group J
+    std::vector group10Teams =
+    {
+        ETeam::Argentina,
+        ETeam::Algeria,
+        ETeam::Austria,
+        ETeam::Jordan
+    };
+
+    for (auto team : group10Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group K
+    std::vector group11Teams =
+    {
+        ETeam::Portugal,
+        ETeam::CongoDR,
+        ETeam::Uzbekistan,
+        ETeam::Colombia
+    };
+
+    for (auto team : group11Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group L
+    std::vector group12Teams =
+    {
+        ETeam::England,
+        ETeam::Croatia,
+        ETeam::Ghana,
+        ETeam::Panama
+    };
+
+    for (auto team : group12Teams)
+    {
+        std::string sql = "insert into leagues_teams(league_id, team_id, group_index) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex)
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
+void MatchesInitializer::InitWorldCupTable25_26(PGconn* pg)
+{
+    int groupIndex = 0;
+
+    // Group A
+    std::vector group1Teams =
+    {
+        ETeam::Mexico,
+        ETeam::SouthAfrica,
+        ETeam::KoreaRepublic,
+        ETeam::Czechia
+    };
+
+    for (auto team : group1Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group B
+    std::vector group2Teams =
+    {
+        ETeam::Canada,
+        ETeam::BosniaAndHerzegovina,
+        ETeam::Qatar,
+        ETeam::Switzerland
+    };
+
+    for (auto team : group2Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group C
+    std::vector group3Teams =
+    {
+        ETeam::Brazil,
+        ETeam::Morocco,
+        ETeam::Haiti,
+        ETeam::Scotland
+    };
+
+    for (auto team : group3Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group D
+    std::vector group4Teams =
+    {
+        ETeam::USA,
+        ETeam::Paraguay,
+        ETeam::Australia,
+        ETeam::Turkiye
+    };
+
+    for (auto team : group4Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group E
+    std::vector group5Teams =
+    {
+        ETeam::Germany,
+        ETeam::Curacao,
+        ETeam::IvoryCoast,
+        ETeam::Ecuador
+    };
+
+    for (auto team : group5Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group F
+    std::vector group6Teams =
+    {
+        ETeam::Netherlands,
+        ETeam::Japan,
+        ETeam::Sweden,
+        ETeam::Tunisia
+    };
+
+    for (auto team : group6Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group G
+    std::vector group7Teams =
+    {
+        ETeam::Belgium,
+        ETeam::Egypt,
+        ETeam::Iran,
+        ETeam::NewZealand
+    };
+
+    for (auto team : group7Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group H
+    std::vector group8Teams =
+    {
+        ETeam::Spain,
+        ETeam::CaboVerde,
+        ETeam::SaudiArabia,
+        ETeam::Uruguay
+    };
+
+    for (auto team : group8Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group I
+    std::vector group9Teams =
+    {
+        ETeam::France,
+        ETeam::Senegal,
+        ETeam::Iraq,
+        ETeam::Norway
+    };
+
+    for (auto team : group9Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group J
+    std::vector group10Teams =
+    {
+        ETeam::Argentina,
+        ETeam::Algeria,
+        ETeam::Austria,
+        ETeam::Jordan
+    };
+
+    for (auto team : group10Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group K
+    std::vector group11Teams =
+    {
+        ETeam::Portugal,
+        ETeam::CongoDR,
+        ETeam::Uzbekistan,
+        ETeam::Colombia
+    };
+
+    for (auto team : group11Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+
+    // Group L
+    std::vector group12Teams =
+    {
+        ETeam::England,
+        ETeam::Croatia,
+        ETeam::Ghana,
+        ETeam::Panama
+    };
+
+    for (auto team : group12Teams)
+    {
+        std::string sql = "insert into tables(league_id, team_id, group_index, season) values ("
+            + std::to_string(int(ELeague::WorldCup)) + ", "
+            + std::to_string(int(team)) + ", "
+            + std::to_string(groupIndex) + ", '25/26'"
+            + ");";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+    ++groupIndex;
+}
+
+
 void MatchesInitializer::InitClubWorldCupTeams24_25(PGconn* pg)
 {
     std::vector<ETeam> newTeams =
@@ -1250,6 +1812,144 @@ void MatchesInitializer::InitClubWorldCupPO24_25(PGconn* pg)
             + std::to_string((int)m.PlayOff) + ""
             + ");";
 
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
+void MatchesInitializer::InitWorldCup25_26(PGconn* pg)
+{
+    std::vector<Match> matches;
+    // Group A
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Mexico, ETeam::SouthAfrica, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::KoreaRepublic, ETeam::Czechia, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Czechia, ETeam::SouthAfrica, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Mexico, ETeam::KoreaRepublic, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Czechia, ETeam::Mexico, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::SouthAfrica, ETeam::KoreaRepublic, 1781204400000 });
+
+    // Group B
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Canada, ETeam::BosniaAndHerzegovina, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Qatar, ETeam::Switzerland, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Switzerland, ETeam::BosniaAndHerzegovina, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Canada, ETeam::Qatar, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Switzerland, ETeam::Canada, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::BosniaAndHerzegovina, ETeam::Qatar, 1781204400000 });
+
+    // Group C
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Brazil, ETeam::Morocco, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Haiti, ETeam::Scotland, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Scotland, ETeam::Morocco, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Brazil, ETeam::Haiti, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Scotland, ETeam::Brazil, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Morocco, ETeam::Haiti, 1781204400000 });
+
+    // Group D
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::USA, ETeam::Paraguay, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Australia, ETeam::Turkiye, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::USA, ETeam::Australia, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Turkiye, ETeam::Paraguay, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Turkiye, ETeam::USA, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Paraguay, ETeam::Australia, 1781204400000 });
+
+    // Group E
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Germany, ETeam::Curacao, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::IvoryCoast, ETeam::Ecuador, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Germany, ETeam::IvoryCoast, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Ecuador, ETeam::Curacao, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Curacao, ETeam::IvoryCoast, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Ecuador, ETeam::Germany, 1781204400000 });
+
+    // Group F
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Netherlands, ETeam::Japan, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Sweden, ETeam::Tunisia, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Netherlands, ETeam::Sweden, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Tunisia, ETeam::Japan, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Japan, ETeam::Sweden, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Tunisia, ETeam::Netherlands, 1781204400000 });
+
+    // Group G
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Belgium, ETeam::Egypt, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Iran, ETeam::NewZealand, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Belgium, ETeam::Iran, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::NewZealand, ETeam::Egypt, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Egypt, ETeam::Iran, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::NewZealand, ETeam::Belgium, 1781204400000 });
+
+    // Group H
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Spain, ETeam::CaboVerde, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::SaudiArabia, ETeam::Uruguay, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Spain, ETeam::SaudiArabia, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Uruguay, ETeam::CaboVerde, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::CaboVerde, ETeam::SaudiArabia, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Uruguay, ETeam::Spain, 1781204400000 });
+
+    // Group I
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::France, ETeam::Senegal, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Iraq, ETeam::Norway, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::France, ETeam::Iraq, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Norway, ETeam::Senegal, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Norway, ETeam::France, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Senegal, ETeam::Iraq, 1781204400000 });
+
+    // Group J
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Argentina, ETeam::Algeria, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Austria, ETeam::Jordan, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Argentina, ETeam::Austria, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Jordan, ETeam::Algeria, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Algeria, ETeam::Austria, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Jordan, ETeam::Argentina, 1781204400000 });
+
+    // Group K
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Portugal, ETeam::CongoDR, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Uzbekistan, ETeam::Colombia, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Portugal, ETeam::Uzbekistan, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Colombia, ETeam::CongoDR, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Colombia, ETeam::Portugal, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::CongoDR, ETeam::Uzbekistan, 1781204400000 });
+
+    // Group L
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::England, ETeam::Croatia, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 1, ETeam::Ghana, ETeam::Panama, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::England, ETeam::Ghana, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 2, ETeam::Panama, ETeam::Croatia, 1781204400000 });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Panama, ETeam::England, 1781204400000 });
+    matches.push_back({ ELeague::WorldCup, "25/26", 3, ETeam::Croatia, ETeam::Ghana, 1781204400000 });
+
+    for (auto& m : matches)
+    {
+        std::string sql = "insert into matches(league, season, week, team1, team2, match_date) values ("
+            + std::to_string(int(m.League)) + ", '"
+            + m.Season + "', "
+            + std::to_string(m.Week) + ", "
+            + std::to_string((int)m.Team1) + ", "
+            + std::to_string((int)m.Team2) + ", "
+            + std::to_string(m.Date) + ");";
 
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
