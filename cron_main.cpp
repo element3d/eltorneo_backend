@@ -2293,6 +2293,7 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 {
 	int rows = PQntuples(res);
 	std::string season = lId == 20 ? "2024": "2025";
+	if (lId == 24) season = "2026";
 	for (int i = 0; i < rows; ++i) 
 	{
 		int id = atoi(PQgetvalue(res, i, 0));
@@ -2416,7 +2417,7 @@ void CorrectMatchDates(PGconn* pg)
 	{
 		
 		int id = atoi(PQgetvalue(res, i, 0));
-		 //if (id != 3) continue;
+		// if (id != 24) continue;
 		int week = atoi(PQgetvalue(res, i, 1));
 		int numWeeks = atoi(PQgetvalue(res, i, 2));
 		for (int w = week; w <= std::min(week + 3, numWeeks); ++w) 
