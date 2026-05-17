@@ -2425,9 +2425,10 @@ void MatchesInitializer::InitEuropaLeaguePO25_26(PGconn* pg)
     //matches.push_back({ ELeague::EuropaLeague, "25/26", 11, ETeam::NottinghamForest, ETeam::Porto, 1776366000000, EWeekType::QuarterFinal, true });
     //matches.push_back({ ELeague::EuropaLeague, "25/26", 11, ETeam::RealBetis, ETeam::Braga, 1776366000000, EWeekType::QuarterFinal, true });
 
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 12, ETeam::AstonVilla, ETeam::NottinghamForest, 1778180400000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::EuropaLeague, "25/26", 12, ETeam::Freiburg, ETeam::Braga, 1778180400000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::EuropaLeague, "25/26", 12, ETeam::AstonVilla, ETeam::NottinghamForest, 1778180400000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::EuropaLeague, "25/26", 12, ETeam::Freiburg, ETeam::Braga, 1778180400000, EWeekType::SemiFinal, true });
 
+    matches.push_back({ ELeague::EuropaLeague, "25/26", 13, ETeam::Freiburg, ETeam::AstonVilla, 1779303600000, EWeekType::Final, true });
 
     for (auto& m : matches)
     {
