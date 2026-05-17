@@ -1461,7 +1461,7 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
         "AND m.team1_score = -1 AND m.team2_score = -1 "
-        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+        "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
@@ -1575,7 +1575,7 @@ bool MatchesManager::GetMatchesLiveWithBets(PGconn* pg,
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
         "AND m.team1_score = -1 AND m.team2_score = -1 "
-        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+        "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -1694,7 +1694,7 @@ bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
         "AND m.team1_score = -1 AND m.team2_score = -1 "
-        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+        "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -1805,7 +1805,7 @@ bool MatchesManager::GetMatchesLiveWithCareer(PGconn* pg,
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
         "AND m.team1_score = -1 AND m.team2_score = -1 "
-        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+        "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -1912,7 +1912,7 @@ bool MatchesManager::GetMatchesLiveWithEFootball(PGconn* pg,
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
         "AND m.team1_score = -1 AND m.team2_score = -1 "
-        "AND m.status <> 'PST' ORDER BY m.league ASC, m.match_date ASC;";
+        "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
     if (PQresultStatus(ret) != PGRES_TUPLES_OK)
