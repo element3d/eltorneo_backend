@@ -488,7 +488,7 @@ std::string Team::ToString(ETeam team)
     case ETeam::Brazil:
         return "Brazil";
     case ETeam::CaboVerde:
-        return "Cabo Verde";
+        return "Cape Verde Islands";
     case ETeam::Colombia:
         return "Colombia";
     case ETeam::CongoDR:
