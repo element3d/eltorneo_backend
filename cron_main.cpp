@@ -1612,7 +1612,7 @@ void GetLiveMatches(PGconn* pg)
 
 					// Update match players
 					int isNational = 0;
-					if (league == (int)ELeague::UEFAWorldClubQualification) isNational = true;
+					if (IsNationalLeague(league)) isNational = true;
 					UpdateTeamSquad(pg, team1.Id, team1.ApiId, isNational);
 					UpdateTeamSquad(pg, team2.Id, team2.ApiId, isNational);
 
@@ -3093,7 +3093,8 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 
 bool IsNationalLeague(int leagueId) 
 {
-	if (leagueId == (int)ELeague::UEFAWorldClubQualification) return true;
+	if (leagueId == (int)ELeague::UEFAWorldClubQualification
+		|| leagueId == (int)ELeague::WorldCup) return true;
 	return false;
 }
 
