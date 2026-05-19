@@ -5101,8 +5101,10 @@ void MatchesInitializer::InitCopaDeFrance25_26(PGconn* pg)
   // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Marseille, ETeam::Toulouse, 1772654400000, EWeekType::QuarterFinal, true });
   // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 1, ETeam::Lyon, ETeam::Lens, 1772741400000, EWeekType::QuarterFinal, true });
   
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Lens, ETeam::Toulouse, 1776798000000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Strasbourg, ETeam::Nice, 1776884400000, EWeekType::SemiFinal, true });
+   // matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Lens, ETeam::Toulouse, 1776798000000, EWeekType::SemiFinal, true });
+    //matches.push_back({ ELeague::CoupeDeFrance, "25/26", 2, ETeam::Strasbourg, ETeam::Nice, 1776884400000, EWeekType::SemiFinal, true });
+
+    matches.push_back({ ELeague::CoupeDeFrance, "25/26", 3, ETeam::Lens, ETeam::Nice, 1779476400000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
