@@ -171,6 +171,7 @@ bool PNManager::SendPushNotification(const std::string& access_token, const std:
     }
     else
     {
+        if (notification_response.status_code == 404) return false;
         return false;
     }
 }
@@ -856,6 +857,7 @@ bool PNManager::SendMatchNotificationV2(const std::string& title, int league, bo
         std::string os = temp;
         strcpy(temp, PQgetvalue(ret, i, 4));
         std::string lang = temp;
+        std::string nLang = temp;
         lang = lang == "ru" ? lang : "en";
         std::string t = title;
         if (isSpecial) 
@@ -863,11 +865,13 @@ bool PNManager::SendMatchNotificationV2(const std::string& title, int league, bo
             std::string prefix = specialDocument[lang.c_str()][specialMatchTitle.c_str()].GetString() + std::string(": ");
             t = prefix + t;
         }
-        std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
+        std::string m = document[nLang.c_str()][nMsg.c_str()].GetString();
 
         bool ret = PNManager::SendPushNotification(access_token, token, t, m, icon);
         // break;
-        if (!ret) invalidTokens.push_back(id);
+        if (!ret) {
+            invalidTokens.push_back(id);
+        }
     }
     free(temp);
     PQclear(ret);
