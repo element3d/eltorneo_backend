@@ -119,6 +119,13 @@ std::string escape_sql_string(const std::string& input) {
 	return output;
 }
 
+bool IsNationalLeague(int leagueId)
+{
+	if (leagueId == (int)ELeague::UEFAWorldClubQualification
+		|| leagueId == (int)ELeague::WorldCup) return true;
+	return false;
+}
+
 void UpdateTeamSquad(PGconn* pg, int teamId, int teamApiId, int isNationl)
 {
 	std::string sql;
@@ -3089,13 +3096,6 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 		PQclear(updatePredictStatusRes);
 	}
 	PQclear(res);
-}
-
-bool IsNationalLeague(int leagueId) 
-{
-	if (leagueId == (int)ELeague::UEFAWorldClubQualification
-		|| leagueId == (int)ELeague::WorldCup) return true;
-	return false;
 }
 
 void GetMatchPlayers(
