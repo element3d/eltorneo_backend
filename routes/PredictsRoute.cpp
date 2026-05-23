@@ -2967,7 +2967,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("careerPoints", atoi(PQgetvalue(ret, i, 15)), allocator);
 
             {
-                std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(id) + ";";
+                std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id) + ";";
                 PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
                 if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -2987,6 +2987,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                         int place = atoi(PQgetvalue(awardsRes, j, 0));
                         char* season = PQgetvalue(awardsRes, j, 1);
                         int league = atoi(PQgetvalue(awardsRes, j, 2));
+                        char* game = PQgetvalue(awardsRes, j, 3);
+                        int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
 
                         awardObj.AddMember("place", place, allocator);
 
@@ -2994,6 +2996,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                         seasonVal.SetString(season, allocator);
                         awardObj.AddMember("season", seasonVal, allocator);
                         awardObj.AddMember("league", league, allocator);
+
+                        seasonVal.SetString(game, allocator);
+                        awardObj.AddMember("game", seasonVal, allocator);
+                        awardObj.AddMember("isWinner", isWinner, allocator);
 
                         awards.PushBack(awardObj, allocator);
                     }
