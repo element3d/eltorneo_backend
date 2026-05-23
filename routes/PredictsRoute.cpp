@@ -7,6 +7,53 @@
 #include <jwt-cpp/jwt.h>
 
 
+static void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Document::AllocatorType& allocator, int id)
+{
+    std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id)
+        + " ORDER BY id DESC;";
+    PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+    if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+    {
+        fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+        PQclear(awardsRes);
+    }
+    else
+    {
+        int awardCount = PQntuples(awardsRes);
+        rapidjson::Value awards(rapidjson::kArrayType);
+
+        for (int j = 0; j < awardCount; ++j)
+        {
+            rapidjson::Value awardObj(rapidjson::kObjectType);
+
+            int place = atoi(PQgetvalue(awardsRes, j, 0));
+            char* season = PQgetvalue(awardsRes, j, 1);
+            int league = atoi(PQgetvalue(awardsRes, j, 2));
+            char* game = PQgetvalue(awardsRes, j, 3);
+            int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
+
+            awardObj.AddMember("place", place, allocator);
+
+            rapidjson::Value seasonVal;
+            seasonVal.SetString(season, allocator);
+            awardObj.AddMember("season", seasonVal, allocator);
+            awardObj.AddMember("league", league, allocator);
+
+            seasonVal.SetString(game, allocator);
+            awardObj.AddMember("game", seasonVal, allocator);
+            awardObj.AddMember("isWinner", isWinner, allocator);
+
+            awards.PushBack(awardObj, allocator);
+        }
+
+        object.AddMember("awards", awards, allocator);
+        PQclear(awardsRes);
+    }
+
+}
+
+
 PredictsRoute* PredictsRoute::sInstance = nullptr;
 
 PredictsRoute* PredictsRoute::Get()
@@ -2065,6 +2112,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             userObject.AddMember("fireballPoints", fireballPoints, allocator);
             userObject.AddMember("careerPoints", careerPoints, allocator);
 
+            AddUserAwards(pg, userObject, allocator, userId);
+            /*
             {
                 std::string awardsQuery = "SELECT place, season, league FROM awards WHERE user_id = " + std::to_string(userId) + ";";
                 PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
@@ -2102,7 +2151,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 }
 
             }
-
+            */
             object.AddMember("id", id, allocator);
             object.AddMember("user", userObject, allocator);
             object.AddMember("match_id", matchId, allocator);
@@ -2831,52 +2880,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
     };
 }
 
-void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Document::AllocatorType& allocator, int id)
-{
-    std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id)
-        + " ORDER BY id DESC;";
-    PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
-
-    if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
-    {
-        fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
-        PQclear(awardsRes);
-    }
-    else
-    {
-        int awardCount = PQntuples(awardsRes);
-        rapidjson::Value awards(rapidjson::kArrayType);
-
-        for (int j = 0; j < awardCount; ++j)
-        {
-            rapidjson::Value awardObj(rapidjson::kObjectType);
-
-            int place = atoi(PQgetvalue(awardsRes, j, 0));
-            char* season = PQgetvalue(awardsRes, j, 1);
-            int league = atoi(PQgetvalue(awardsRes, j, 2));
-            char* game = PQgetvalue(awardsRes, j, 3);
-            int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
-
-            awardObj.AddMember("place", place, allocator);
-
-            rapidjson::Value seasonVal;
-            seasonVal.SetString(season, allocator);
-            awardObj.AddMember("season", seasonVal, allocator);
-            awardObj.AddMember("league", league, allocator);
-
-            seasonVal.SetString(game, allocator);
-            awardObj.AddMember("game", seasonVal, allocator);
-            awardObj.AddMember("isWinner", isWinner, allocator);
-
-            awards.PushBack(awardObj, allocator);
-        }
-
-        object.AddMember("awards", awards, allocator);
-        PQclear(awardsRes);
-    }
-
-}
-
 std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::GetElTorneoTable()
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
@@ -3011,52 +3014,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 14)), allocator);
             object.AddMember("careerPoints", atoi(PQgetvalue(ret, i, 15)), allocator);
-/*
-            {
-                std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id) 
-                    + " ORDER BY id DESC;";
-                PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
-                if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
-                {
-                    fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
-                    PQclear(awardsRes);
-                }
-                else
-                {
-                    int awardCount = PQntuples(awardsRes);
-                    rapidjson::Value awards(rapidjson::kArrayType);
-
-                    for (int j = 0; j < awardCount; ++j)
-                    {
-                        rapidjson::Value awardObj(rapidjson::kObjectType);
-
-                        int place = atoi(PQgetvalue(awardsRes, j, 0));
-                        char* season = PQgetvalue(awardsRes, j, 1);
-                        int league = atoi(PQgetvalue(awardsRes, j, 2));
-                        char* game = PQgetvalue(awardsRes, j, 3);
-                        int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
-
-                        awardObj.AddMember("place", place, allocator);
-
-                        rapidjson::Value seasonVal;
-                        seasonVal.SetString(season, allocator);
-                        awardObj.AddMember("season", seasonVal, allocator);
-                        awardObj.AddMember("league", league, allocator);
-
-                        seasonVal.SetString(game, allocator);
-                        awardObj.AddMember("game", seasonVal, allocator);
-                        awardObj.AddMember("isWinner", isWinner, allocator);
-
-                        awards.PushBack(awardObj, allocator);
-                    }
-
-                    object.AddMember("awards", awards, allocator);
-                    PQclear(awardsRes);
-                }
-
-            }
-            */
             AddUserAwards(pg, object, allocator, id);
             document.PushBack(object, allocator);
         }
