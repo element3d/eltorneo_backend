@@ -2967,7 +2967,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("careerPoints", atoi(PQgetvalue(ret, i, 15)), allocator);
 
             {
-                std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id) + ";";
+                std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id) 
+                    + " ORDER BY id DESC;";
                 PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
                 if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
