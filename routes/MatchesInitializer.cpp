@@ -2457,8 +2457,9 @@ void MatchesInitializer::InitConfLeaguePO25_26(PGconn* pg)
    // matches.push_back({ ELeague::ConferenceLeague, "25/26", 11, ETeam::Fiorentina, ETeam::CrystalPalace, 1776366000000, EWeekType::QuarterFinal, true });
    // matches.push_back({ ELeague::ConferenceLeague, "25/26", 11, ETeam::Strasbourg, ETeam::Mainz, 1776366000000, EWeekType::QuarterFinal, true });
 
-    matches.push_back({ ELeague::ConferenceLeague, "25/26", 12, ETeam::Strasbourg, ETeam::RayoVallecano, 1778180400000, EWeekType::SemiFinal, true });
-    matches.push_back({ ELeague::ConferenceLeague, "25/26", 12, ETeam::CrystalPalace, ETeam::ShakhtarDonetsk, 1778180400000, EWeekType::SemiFinal, true });
+    //matches.push_back({ ELeague::ConferenceLeague, "25/26", 12, ETeam::Strasbourg, ETeam::RayoVallecano, 1778180400000, EWeekType::SemiFinal, true });
+  //  matches.push_back({ ELeague::ConferenceLeague, "25/26", 12, ETeam::CrystalPalace, ETeam::ShakhtarDonetsk, 1778180400000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::ConferenceLeague, "25/26", 13, ETeam::CrystalPalace, ETeam::RayoVallecano, 1779908400000, EWeekType::Final, true });
 
 
     for (auto& m : matches)
