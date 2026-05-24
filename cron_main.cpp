@@ -3326,7 +3326,7 @@ void CorrectGameTables(PGconn* pg)
 {
 	auto now = std::chrono::system_clock::now();
 	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-	long long timestamp = 1778371200000;//ms.count();
+	long long timestamp = 1777593600000;//ms.count();
 	long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
 	{

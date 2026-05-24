@@ -2738,7 +2738,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
         long long tsDiff = timestamp - ten_days_ms;
 
@@ -3016,7 +3016,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -3174,7 +3174,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -4660,7 +4660,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -4817,7 +4817,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -5637,7 +5637,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -6160,7 +6160,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
@@ -6598,7 +6598,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-        long long timestamp = 1778371200000;//ms.count();
+        long long timestamp = 1777593600000;//ms.count();
         long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
