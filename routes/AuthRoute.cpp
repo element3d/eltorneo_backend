@@ -1641,9 +1641,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::User
         std::string team1 = document["team1"].GetString();
         std::string team2 = document["team2"].GetString();
         std::string title = team1 + " - " + team2;
-        bool b = PNManager::SendMatchNotificationV2(title, league, isSpecial, specialMatchTitle);
-        if (b) res.status = 200;
-        else res.status = 500;
+        std::thread t([title, league, isSpecial, specialMatchTitle]() {
+            bool b = PNManager::SendMatchNotificationV2(title, league, isSpecial, specialMatchTitle);
+            return;
+        });
+        t.detach();
+      //  if (b) res.status = 200;
+       // else res.status = 500;
         res.status = 200;
     };
 }
