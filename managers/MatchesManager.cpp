@@ -29,7 +29,7 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
         postfix = "_" + ss;
     }
 
-    std::string sql = "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, , m.team1_score_90, m.team2_score_90, m.team1_score_pen, m.team2_score_pen,"
+    std::string sql = "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, m.team1_score_90, m.team2_score_90, m.team1_score_pen, m.team2_score_pen,"
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
         "COALESCE(p.team1_score, -1) AS predicted_team1_score, " // Default -1 if NULL
