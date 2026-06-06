@@ -242,7 +242,8 @@
         "contra": "Contra",
         "ghost_rider": "Ghost Rider",
         "noob_saibot_vs_scorp": "Noob Saibot vs Scorpion",
-        "batman_vs_sm": "Batman vs Superman"
+        "batman_vs_sm": "Batman vs Superman",
+        "tekken2": "Tekken"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -487,6 +488,7 @@
         "contra": "Контра",
         "ghost_rider": "Призрачный гонщик",
         "noob_saibot_vs_scorp": "Нуб Сайбот против Скорпиона",
-        "batman_vs_sm": "Бэтмен против Супермена"
+        "batman_vs_sm": "Бэтмен против Супермена",
+        "tekken2": "Tekken"
     }
 }
