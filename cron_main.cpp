@@ -2494,7 +2494,7 @@ bool IsApiLeagueSupported(int leagueApiId)
 void FillPlayerStats(PGconn* pg, int playerApiId, int teamId, int teamApiId, int leagueId)
 {
 	std::string url = "https://v3.football.api-sports.io/players";
-	std::string season = "2025";
+	std::string season = "2026";
 	if (leagueId == (int)ELeague::UEFAWorldClubQualification) season = "2024";
 	cpr::Response r;
 	cpr::Parameters params;
