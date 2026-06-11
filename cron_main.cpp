@@ -1547,6 +1547,10 @@ void GetLiveMatches(PGconn* pg)
 						PGresult* updateRet = PQexec(pg, sql.c_str());
 						PQclear(updateRet);
 
+						sql = "UPDATE world_cup_users SET points = GREATEST(0, points + " + std::to_string(points) + ") WHERE user_id = " + std::to_string(userId) + ";";
+						updateRet = PQexec(pg, sql.c_str());
+						PQclear(updateRet);
+
 						sql = "UPDATE predicts SET status = " + std::to_string(int(status)) + " WHERE id = " + std::to_string(id) + ";";
 						updateRet = PQexec(pg, sql.c_str());
 						PQclear(updateRet);
