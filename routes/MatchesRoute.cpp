@@ -342,8 +342,9 @@ bool FillTeamSquds(PGconn* pg, long tid, rapidjson::Value& document, rapidjson::
     std::string sql = "SELECT id, name, age, number, position, photo, api_id FROM team_players WHERE team_id = " + std::to_string(tid) 
         + " ORDER BY position;";
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
-        fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    {
+        fprintf(stderr, "Failed to fetch team squad: %s", PQerrorMessage(pg));
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
         return false;
@@ -818,9 +819,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000;"; // Compare match_date with the current time (in milliseconds)
            
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch special match: %s", PQerrorMessage(pg));
             PQclear(ret);
             res.set_content("[]", "application/json");
             ConnectionPool::Get()->releaseConnection(pg);
@@ -830,7 +831,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         int nm = PQntuples(ret);
         if (nm <= 0) 
         {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch special match 2: %s", PQerrorMessage(pg));
             PQclear(ret);
             res.set_content("[]", "application/json");
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1978,8 +1979,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             "WHERE m.id = " + matchId + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) {
+            fprintf(stderr, "Failed to fetch match: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
             res.status = 500; // Internal Server Error
