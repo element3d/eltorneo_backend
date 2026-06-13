@@ -6051,13 +6051,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int userId = decoded.get_payload_claim("id").as_int();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         std::string sql = "SELECT * FROM efootball_predicts" + postfix + " WHERE user_id = "
             + std::to_string(userId) + " AND match_id = "
             + matchId
             + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch user eFootball predict: %s", PQerrorMessage(pg));
             PQclear(ret);
