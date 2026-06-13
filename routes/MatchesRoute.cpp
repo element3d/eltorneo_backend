@@ -292,7 +292,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         // Connect to the database
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         bool ok;
         rapidjson::Document document;
         if (game == "beatbet")

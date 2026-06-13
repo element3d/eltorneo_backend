@@ -2622,7 +2622,7 @@ bool MatchesManager::GetMatchesTeamWithPredicts(PGconn* pg,
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3101,9 +3101,9 @@ bool MatchesManager::GetMatchesTeamWithEFootball(PGconn* pg,
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to fetch team matches: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Failed to fetch team matches with eFootball: %s\n", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }

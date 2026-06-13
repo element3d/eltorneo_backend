@@ -1653,12 +1653,16 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         std::string predictsSql = "SELECT * FROM predicts" + postfix + " WHERE status <> 4 AND match_id = " + matchId + ";";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
 
-        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
+        if (!predictsRet || PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch predicts: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch predicts: %s\n", PQerrorMessage(pg));
             PQclear(predictsRet);
             res.status = 500;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1691,7 +1695,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("numPredicts", nrows, allocator);
 
         // Check for beat_bet record
-        std::string beatBetSql =
+      /*  std::string beatBetSql =
             "SELECT bet, odd, status "
             "FROM bets WHERE user_id = 25524 and match_id = " + matchId + ";";
         PGresult* beatBetRet = PQexec(pg, beatBetSql.c_str());
@@ -1711,7 +1715,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Clean up beat_bet result
         PQclear(beatBetRet);
-
+        */
         // Serialize JSON response
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -6297,7 +6301,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string season;
         if (req.has_param("season"))
         {
-            season = req.get_param_value("season");
+            // season = req.get_param_value("season");
         }
         std::string postfix = "";
         if (season.size())
@@ -6311,16 +6315,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         std::string predictsSql =
             "SELECT p.team_id, m.team1, m.team2 "
             "FROM efootball_predicts" + postfix + " p "
             "JOIN matches m ON p.match_id = m.id "
             "WHERE p.team_id <> -1 AND p.match_id = " + matchId + ";";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
-
-        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
+        if (!predictsRet || PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to fetch predicts: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch efootball summary: %s\n", PQerrorMessage(pg));
             PQclear(predictsRet);
             res.status = 500;  // Internal Server Error
             ConnectionPool::Get()->releaseConnection(pg);
@@ -6352,7 +6359,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         document.AddMember("numPredicts", nrows, allocator);
 
         // Check for beat_bet record
-        std::string beatBetSql =
+       /* std::string beatBetSql =
             "SELECT bet, odd, status "
             "FROM bets WHERE user_id = 25524 and match_id = " + matchId + ";";
         PGresult* beatBetRet = PQexec(pg, beatBetSql.c_str());
@@ -6372,7 +6379,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Clean up beat_bet result
         PQclear(beatBetRet);
-
+        */
         // Serialize JSON response
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
