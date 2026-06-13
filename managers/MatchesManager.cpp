@@ -1502,7 +1502,7 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
         "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
         fprintf(stderr, "Error: Failed to fetch live matches with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1616,7 +1616,7 @@ bool MatchesManager::GetMatchesLiveWithBets(PGconn* pg,
         "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch live matches with BETS: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1735,7 +1735,7 @@ bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
         "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch live matches with FIREBALL predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1846,7 +1846,7 @@ bool MatchesManager::GetMatchesLiveWithCareer(PGconn* pg,
         "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch live matches with career: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1953,7 +1953,7 @@ bool MatchesManager::GetMatchesLiveWithEFootball(PGconn* pg,
         "AND m.status <> 'PST' AND m.status <> 'ABD' ORDER BY m.league ASC, m.match_date ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch live matches with eFootball: %s", PQerrorMessage(pg));
         PQclear(ret);
