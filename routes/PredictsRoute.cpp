@@ -90,13 +90,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         int userId = decoded.get_payload_claim("id").as_int();
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         std::string sql = "SELECT * FROM predicts" + postfix + " WHERE user_id = "
             + std::to_string(userId) + " AND match_id = "
             + matchId
             + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch leagues: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -1986,6 +1990,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         }
 
         PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg) 
+        {
+            fprintf(stderr, "Failed to get pg.\n");
+        }
         // Join the predicts with users table and order by points descending, limit to 3
         std::string sql = "SELECT p.*, u.name, u.avatar, u.points" + postfix + ", u.clear_balance, "
             "u.eltorneo_position, u.eltorneo_league, "
@@ -2002,7 +2010,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY u.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top predicts: %s", PQerrorMessage(pg));
             PQclear(ret);
