@@ -245,7 +245,8 @@
         "noob_saibot_vs_scorp": "Noob Saibot vs Scorpion",
         "batman_vs_sm": "Batman vs Superman",
         "tekken2": "Tekken",
-        "black_flag": "Black Flag"
+        "black_flag": "Black Flag",
+        "valhalla": "Valhalla"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -493,6 +494,7 @@
         "noob_saibot_vs_scorp": "Нуб Сайбот против Скорпиона",
         "batman_vs_sm": "Бэтмен против Супермена",
         "tekken2": "Tekken",
-        "black_flag": "Black Flag"
+        "black_flag": "Black Flag",
+        "valhalla": "Valhalla"
     }
 }
