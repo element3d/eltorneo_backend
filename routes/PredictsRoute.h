@@ -72,6 +72,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchWorldCupPredictsTop20V2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetWorldCupTableV2();
 
+    std::function<void(const httplib::Request&, httplib::Response&)> PostFinish();
 
 private:
    // void CacheTable();

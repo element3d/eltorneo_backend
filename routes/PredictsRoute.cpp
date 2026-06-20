@@ -6618,7 +6618,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         auto now = std::chrono::system_clock::now();
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
         long long timestamp = 1777593600000;//ms.count();
-        long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
+        long long ten_days_ms = 10LL * 24 * 60 * 60 * 1000;
 
         // Updated SQL query to join users with predicts, count the total number of predictions per user, and paginate
         std::string sql = "SELECT u.id, u.name, u.avatar, COUNT(p.id) AS total_predictions, u.points, u.clear_balance, "
@@ -6753,4 +6753,58 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         PQclear(ret);
         ConnectionPool::Get()->releaseConnection(pg);
     };
+}
+
+std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::PostFinish()
+{
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+
+        std::string sql = "select user_id from world_cup_users where position > 0 order by position asc limit 20;";
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        if (!pg)
+        {
+            res.status = 500;  // Internal Server Error
+            return;
+        }
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch world cup users: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+            res.status = 500;
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        for (int i = 0; i < nrows; ++i)
+        {
+            int userId = atoi(PQgetvalue(ret, i, 0));
+
+            sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                + std::to_string(userId) + ", "
+                + "1, "
+                + std::to_string(i + 1) + ", "
+                + "'25/26', "
+                + "'world_cup', "
+                + std::to_string(i == 0 ? 1 : 0)
+                + ");";
+            PGresult* insertRet = PQexec(pg, sql.c_str());
+            if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+            PQclear(insertRet);
+        }
+        PQclear(ret);
+        res.status = 200;
+        ConnectionPool::Get()->releaseConnection(pg);
+    };
+
 }
