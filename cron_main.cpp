@@ -3336,6 +3336,7 @@ void CorrectGameTables(PGconn* pg)
 	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
 	long long timestamp = 1777593600000;//ms.count();
 	long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
+	long long twenty_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
 	{
 		std::string sql = "UPDATE users SET eltorneo_position = -1";
@@ -3606,11 +3607,13 @@ void CorrectGameTables(PGconn* pg)
 		sql =
 			"SELECT wu.id, COUNT(p.id) AS total_predictions "
 			"FROM world_cup_users wu "
+			"INNER JOIN users u ON wu.user_id = u.id "
 			"INNER JOIN predicts p ON wu.user_id = p.user_id "
 			"INNER JOIN matches m ON p.match_id = m.id "
 			"WHERE p.status != 4 "
 			"AND m.league = 24 "
 			"AND wu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"AND u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
 			"GROUP BY wu.id, wu.points "
 			"HAVING COUNT(p.id) > 0 "
 			"ORDER BY wu.points DESC, total_predictions DESC, wu.id ASC;";
