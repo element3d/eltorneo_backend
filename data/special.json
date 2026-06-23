@@ -247,7 +247,8 @@
         "batman_vs_sm": "Batman vs Superman",
         "tekken2": "Tekken",
         "black_flag": "Black Flag",
-        "valhalla": "Valhalla"
+        "valhalla": "Valhalla",
+        "naruto": "Naruto"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -497,6 +498,7 @@
         "batman_vs_sm": "Бэтмен против Супермена",
         "tekken2": "Tekken",
         "black_flag": "Black Flag",
-        "valhalla": "Valhalla"
+        "valhalla": "Valhalla",
+        "naruto": "Naruto"
     }
 }
