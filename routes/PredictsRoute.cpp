@@ -9,7 +9,7 @@
 
 static void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Document::AllocatorType& allocator, int id)
 {
-    std::string awardsQuery = "SELECT place, season, league, game, is_winner FROM awards WHERE user_id = " + std::to_string(id)
+    std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(id)
         + " ORDER BY id DESC;";
     PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
@@ -32,6 +32,7 @@ static void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Docum
             int league = atoi(PQgetvalue(awardsRes, j, 2));
             char* game = PQgetvalue(awardsRes, j, 3);
             int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
+            int finished = atoi(PQgetvalue(awardsRes, j, 5));
 
             awardObj.AddMember("place", place, allocator);
 
@@ -43,6 +44,7 @@ static void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Docum
             seasonVal.SetString(game, allocator);
             awardObj.AddMember("game", seasonVal, allocator);
             awardObj.AddMember("isWinner", isWinner, allocator);
+            awardObj.AddMember("finished", finished, allocator);
 
             awards.PushBack(awardObj, allocator);
         }
@@ -6202,7 +6204,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "AND " + leagueColName + " = " + std::to_string(league) + " "
             " GROUP BY u.id, u.name, u.avatar, " + pointsColName + ", eu.league, eu.position, cu.points, fu.league, fu.position, cu.league, cu.position, fu.points "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY " + pointsColName + " DESC, total_predictions DESC, u.id ASC "
+            "ORDER BY eu.position ASC, total_predictions DESC, u.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -6759,52 +6761,410 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 {
     return [this](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
-
-        std::string sql = "select user_id from world_cup_users where position > 0 order by position asc limit 20;";
         PGconn* pg = ConnectionPool::Get()->getConnection();
-        if (!pg)
         {
-            res.status = 500;  // Internal Server Error
-            return;
-        }
-
-        PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-        {
-            fprintf(stderr, "Failed to fetch world cup users: %s", PQerrorMessage(pg));
-            PQclear(ret);
-            ConnectionPool::Get()->releaseConnection(pg);
-            res.status = 500;
-            return;
-        }
-
-        int nrows = PQntuples(ret);
-        for (int i = 0; i < nrows; ++i)
-        {
-            int userId = atoi(PQgetvalue(ret, i, 0));
-
-            sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
-                + std::to_string(userId) + ", "
-                + "1, "
-                + std::to_string(i + 1) + ", "
-                + "'25/26', "
-                + "'world_cup', "
-                + std::to_string(i == 0 ? 1 : 0)
-                + ");";
-            PGresult* insertRet = PQexec(pg, sql.c_str());
-            if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+            std::string sql = "DELETE FROM awards WhERE season = '25/26';";
+            if (!pg)
             {
-                fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to delete awards: %s", PQerrorMessage(pg));
                 PQclear(ret);
                 ConnectionPool::Get()->releaseConnection(pg);
                 res.status = 500;
                 return;
             }
-            PQclear(insertRet);
+            PQclear(ret);
         }
-        PQclear(ret);
+        // Fantasy
+        {
+            std::string sql = "select user_id, league, position from career_users where position > 0 AND position < 61 order by position asc;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch career users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+                int league = atoi(PQgetvalue(ret, i, 1));
+                int position = atoi(PQgetvalue(ret, i, 2));
+                if (position == 1) 
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(league) + ", "
+                        + std::to_string(position - ((league - 1) * 20)) + ", "
+                        + "'25/26', "
+                        + "'career', "
+                        + std::to_string(0)
+                        + ");";
+
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(insertRet);
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(league) + ", "
+                        + std::to_string(position - ((league - 1) * 20)) + ", "
+                        + "'25/26', "
+                        + "'career', "
+                        + std::to_string(i == 0 ? 1 : 0)
+                        + ");";
+
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(insertRet);
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+            }
+            PQclear(ret);
+        }
+
+        // Fireball
+        {
+            std::string sql = "select user_id from fireball_users where position > 0 order by position asc limit 20;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch fireball users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + "1, "
+                        + std::to_string(i + 1) + ", "
+                        + "'25/26', "
+                        + "'fireball', "
+                        + std::to_string(i == 0 ? 1 : 0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        PQclear(insertRet);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+            }
+            PQclear(ret);
+        }
+
+        // BeatBet
+        {
+            std::string sql = "select id, beat_bet_position, clear_balance from users where beat_bet_position > 0 and clear_balance > 0 order by beat_bet_position asc;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch beat bet users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+                int position = atoi(PQgetvalue(ret, i, 1));
+                int balance = std::ceil(atof(PQgetvalue(ret, i, 2)));
+                if (position == 1) 
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(balance) + ", "
+                        + std::to_string(position) + ", "
+                        + "'25/26', "
+                        + "'beatbet', "
+                        + std::to_string(0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(balance) + ", "
+                        + std::to_string(position) + ", "
+                        + "'25/26', "
+                        + "'beatbet', "
+                        + std::to_string(i == 0 ? 1 : 0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+            }
+            PQclear(ret);
+        }
+
+        // EFootball
+        {
+            std::string sql = "select user_id, league, position from efootball_users where position > 0 AND position < 61 order by position asc;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch efootball users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+                int league = atoi(PQgetvalue(ret, i, 1));
+                int position = atoi(PQgetvalue(ret, i, 2));
+
+                if (position == 1) 
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(league) + ", "
+                        + std::to_string(position) + ", "
+                        + "'25/26', "
+                        + "'efootball', "
+                        + std::to_string(0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(league) + ", "
+                        + std::to_string(position) + ", "
+                        + "'25/26', "
+                        + "'efootball', "
+                        + std::to_string(i == 0 ? 1 : 0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+            }
+            PQclear(ret);
+        }
+
+        // el Torneo
+        {
+            std::string sql = "select id, eltorneo_league, eltorneo_position from users where eltorneo_position > 0 AND eltorneo_position < 61 order by eltorneo_position asc;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch el torneo users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+                int league = atoi(PQgetvalue(ret, i, 1));
+                int position = atoi(PQgetvalue(ret, i, 2));
+
+                if (position == 1) 
+                {
+                    {
+                        sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                            + std::to_string(userId) + ", "
+                            + std::to_string(league) + ", "
+                            + std::to_string(position) + ", "
+                            + "'25/26', "
+                            + "'eltorneo', "
+                            + std::to_string(0)
+                            + ");";
+                        PGresult* insertRet = PQexec(pg, sql.c_str());
+                        if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                        {
+                            fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                            PQclear(ret);
+                            ConnectionPool::Get()->releaseConnection(pg);
+                            res.status = 500;
+                            return;
+                        }
+                        PQclear(insertRet);
+                    }
+                }
+                {
+                    sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                        + std::to_string(userId) + ", "
+                        + std::to_string(league) + ", "
+                        + std::to_string(position) + ", "
+                        + "'25/26', "
+                        + "'eltorneo', "
+                        + std::to_string(i == 0 ? 1 : 0)
+                        + ");";
+                    PGresult* insertRet = PQexec(pg, sql.c_str());
+                    if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                    {
+                        fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                        PQclear(ret);
+                        ConnectionPool::Get()->releaseConnection(pg);
+                        res.status = 500;
+                        return;
+                    }
+                    PQclear(insertRet);
+                }
+            }
+            PQclear(ret);
+        }
+
+
+        // World Cup
+        {
+            std::string sql = "select user_id from world_cup_users where position > 0 order by position asc limit 20;";
+            if (!pg)
+            {
+                res.status = 500;  // Internal Server Error
+                return;
+            }
+
+            PGresult* ret = PQexec(pg, sql.c_str());
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch world cup users: %s", PQerrorMessage(pg));
+                PQclear(ret);
+                ConnectionPool::Get()->releaseConnection(pg);
+                res.status = 500;
+                return;
+            }
+
+            int nrows = PQntuples(ret);
+            for (int i = 0; i < nrows; ++i)
+            {
+                int userId = atoi(PQgetvalue(ret, i, 0));
+
+                sql = "INSERT INTO awards (user_id, league, place, season, game, is_winner) VALUES ("
+                    + std::to_string(userId) + ", "
+                    + "1, "
+                    + std::to_string(i + 1) + ", "
+                    + "'25/26', "
+                    + "'world_cup', "
+                    + std::to_string(i == 0 ? 1 : 0)
+                    + ");";
+                PGresult* insertRet = PQexec(pg, sql.c_str());
+                if (PQresultStatus(insertRet) != PGRES_COMMAND_OK)
+                {
+                    fprintf(stderr, "Failed to finish: %s", PQerrorMessage(pg));
+                    PQclear(ret);
+                    ConnectionPool::Get()->releaseConnection(pg);
+                    res.status = 500;
+                    return;
+                }
+                PQclear(insertRet);
+            }
+            PQclear(ret);
+        }
         res.status = 200;
         ConnectionPool::Get()->releaseConnection(pg);
+
     };
 
 }
