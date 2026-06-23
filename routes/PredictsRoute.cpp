@@ -5,7 +5,7 @@
 #include <rapidjson/writer.h>
 #include "../managers/PQManager.h"
 #include <jwt-cpp/jwt.h>
-
+#include <cmath>
 
 static void AddUserAwards(PGconn* pg, rapidjson::Value& object, rapidjson::Document::AllocatorType& allocator, int id)
 {

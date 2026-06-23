@@ -12,6 +12,7 @@
 #undef max
 #include "managers/PNManager.h"
 #include <thread>
+#include <cmath>
 
 std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
 void GetMatchPlayers
