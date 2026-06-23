@@ -3163,6 +3163,7 @@ void GetMatchPlayers(
 						continue;
 					}
 					int minutes = games["minutes"].GetInt();
+					if (!games.HasMember("number") || games["number"].IsNull()) continue;
 					int number = games["number"].GetInt();
 					std::string position = games["position"].GetString();
 					float rating = games["rating"].IsNull() ? 0 : atof(games["rating"].GetString());
