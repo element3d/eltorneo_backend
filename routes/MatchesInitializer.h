@@ -34,6 +34,7 @@ public:
     static void InitWorldCupTeams25_26(PGconn* pg);
     static void InitWorldCupTable25_26(PGconn* pg);
     static void InitWorldCup25_26(PGconn* pg);
+    static void InitWorldCupPO25_26(PGconn* pg);
 
 
     static void InitClubWorldCupTeams24_25(PGconn* pg);
