@@ -189,12 +189,13 @@ void UpdateTeamSquad(PGconn* pg, int teamId, int teamApiId, int isNationl)
 						PGresult* deleteRes = PQexec(pg, sql.c_str());
 						PQclear(deleteRes);
 					}
-					std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, position, photo) VALUES ("
+					std::string sql = "INSERT INTO team_players(api_id, team_id, name, age, number, is_national, position, photo) VALUES ("
 						+ std::to_string(playerId) + ", "
 						+ std::to_string(teamId) + ", '"
 						+ escape_sql_string(name) + "', "
 						+ std::to_string(age) + ", "
-						+ std::to_string(number) + ", '"
+						+ std::to_string(number) + ", "
+						+ std::to_string(isNationl) + ", '"
 						+ escape_sql_string(pos) + "', '"
 						+ escape_sql_string(photo) + "');";
 
@@ -2617,7 +2618,7 @@ std::string GetPlayerPosition(int playerApiId)
 	}
 }
 
-void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId, int leagueId)
+/*void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId, int leagueId)
 {
 	std::string sql;
 	std::string url = "https://v3.football.api-sports.io/players/squads";
@@ -2685,7 +2686,7 @@ void FillOneTeamPlayers(PGconn* pg, int teamId, int teamApiId, int leagueId)
 	}
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 }
-
+*/
 
 void FillTeamData(PGconn* pg, int teamId, int teamApiId)
 {
@@ -2732,7 +2733,7 @@ void FillTeamData(PGconn* pg, int teamId, int teamApiId)
 		}
 	}
 }
-
+/*
 void FillTeamSquad(PGconn* pg)
 {
 	std::string sql = "SELECT id from leagues;";
@@ -2741,26 +2742,7 @@ void FillTeamSquad(PGconn* pg)
 	int rows = PQntuples(res);
 	if (rows > 0) 
 	{
-		/* {
-			sql = "DROP TABLE team_players;";
-			PGresult* res = PQexec(pg, sql.c_str());
-			PQclear(res);
-		}
-		{
-			sql = "DROP TABLE player_stats;";
-			PGresult* res = PQexec(pg, sql.c_str());
-			PQclear(res);
-		}
-		{
-			sql = "CREATE TABLE team_players(id serial primary key not null, team_id integer, name text, age integer, number integer, position text, photo text, api_id integer);";
-			PGresult* res = PQexec(pg, sql.c_str());
-			PQclear(res);
-		}
-		{
-			sql = "CREATE TABLE player_stats(id serial primary key not null, player_api_id integer, league_id integer, league_api_id integer, team_id integer, team_api_id integer, games integer, rating text, goals integer, assists integer);";
-			PGresult* res = PQexec(pg, sql.c_str());
-			PQclear(res);
-		}*/
+		
 	}
 	for (int i = 0; i < rows; ++i)
 	{
@@ -2813,7 +2795,7 @@ void FillTeamSquad(PGconn* pg)
 
 	PQclear(res);
 }
-
+*/
 void UpdateTeamPlayerStats(PGconn* pg, int teamId, int teamApiId, int leagueId)
 {
 	std::string deleteSql = "DELETE FROM player_stats WHERE team_id = " + std::to_string(teamId)
