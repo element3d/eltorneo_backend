@@ -654,7 +654,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         free(temp);
 
         {
-            std::string awardsQuery = "SELECT place, season, league, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -674,7 +674,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
                     int place = atoi(PQgetvalue(awardsRes, j, 0));
                     char* season = PQgetvalue(awardsRes, j, 1);
                     int league = atoi(PQgetvalue(awardsRes, j, 2));
-                    int finished = atoi(PQgetvalue(awardsRes, j, 3));
+                    char* game = PQgetvalue(awardsRes, j, 3);
+                    int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
+                    int finished = atoi(PQgetvalue(awardsRes, j, 5));
 
                     awardObj.AddMember("place", place, allocator);
 
@@ -682,6 +684,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
                     seasonVal.SetString(season, allocator);
                     awardObj.AddMember("season", seasonVal, allocator);
                     awardObj.AddMember("league", league, allocator);
+                    
+                    seasonVal.SetString(game, allocator);
+                    awardObj.AddMember("game", seasonVal, allocator);
+                    awardObj.AddMember("isWinner", isWinner, allocator);
                     awardObj.AddMember("finished", finished, allocator);
 
                     awards.PushBack(awardObj, allocator);
@@ -861,7 +867,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         }
 
         {
-            std::string awardsQuery = "SELECT place, season, league, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -881,7 +887,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
                     int place = atoi(PQgetvalue(awardsRes, j, 0));
                     char* season = PQgetvalue(awardsRes, j, 1);
                     int league = atoi(PQgetvalue(awardsRes, j, 2));
-                    int finished = atoi(PQgetvalue(awardsRes, j, 3));
+                    char* game = PQgetvalue(awardsRes, j, 3);
+                    int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
+                    int finished = atoi(PQgetvalue(awardsRes, j, 5));
 
                     awardObj.AddMember("place", place, allocator);
 
@@ -889,6 +897,10 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
                     seasonVal.SetString(season, allocator);
                     awardObj.AddMember("season", seasonVal, allocator);
                     awardObj.AddMember("league", league, allocator);
+
+                    seasonVal.SetString(game, allocator);
+                    awardObj.AddMember("game", seasonVal, allocator);
+                    awardObj.AddMember("isWinner", isWinner, allocator);
                     awardObj.AddMember("finished", finished, allocator);
 
                     awards.PushBack(awardObj, allocator);
