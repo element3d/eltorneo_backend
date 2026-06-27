@@ -784,7 +784,7 @@ bool MatchesManager::GetMatchesByDateWithPredicts(PGconn* pg,
         "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
         fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -931,7 +931,7 @@ bool MatchesManager::GetMatchesByDateWithBets(PGconn* pg,
         "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1083,7 +1083,7 @@ bool MatchesManager::GetMatchesByDateWithFireball(PGconn* pg,
         "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1226,7 +1226,7 @@ bool MatchesManager::GetMatchesByDateWithCareer(PGconn* pg,
         "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -1363,7 +1363,7 @@ bool MatchesManager::GetMatchesByDateWithEFootball(PGconn* pg,
         "ORDER BY m.league ASC, m.match_date ASC, m.id ASC;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to get matches by day with eFootball: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2064,7 +2064,7 @@ bool MatchesManager::GetMatchesUpcomingWithPredicts(PGconn* pg,
         "LIMIT 10;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
         fprintf(stderr, "Error: Failed to fetch upcoming matches with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2178,7 +2178,7 @@ bool MatchesManager::GetMatchesUpcomingWithBets(PGconn* pg,
         "LIMIT 10;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch upcoming matches with BETS: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2297,7 +2297,7 @@ bool MatchesManager::GetMatchesUpcomingWithFireball(PGconn* pg,
         "LIMIT 10;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch upcoming matches with FIREBALL predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2408,7 +2408,7 @@ bool MatchesManager::GetMatchesUpcomingWithCareer(PGconn* pg,
         "LIMIT 10;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch upcoming matches with CAREER: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2515,7 +2515,7 @@ bool MatchesManager::GetMatchesUpcomingWithEFootball(PGconn* pg,
         "LIMIT 10;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Error: Failed to fetch upcoming matches with EFOOTBALL: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2746,7 +2746,7 @@ bool MatchesManager::GetMatchesTeamWithBets(PGconn* pg,
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2874,7 +2874,7 @@ bool MatchesManager::GetMatchesTeamWithFireball(PGconn* pg,
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -2994,7 +2994,7 @@ bool MatchesManager::GetMatchesTeamWithCareer(PGconn* pg,
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3255,7 +3255,7 @@ bool MatchesManager::FillTeamMatchesWithPredicts(PGconn* pg,
     }
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
         fprintf(stderr, "Failed to fetch team page matches with predicts: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3410,7 +3410,7 @@ bool MatchesManager::FillTeamMatchesWithBets(PGconn* pg,
     }
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
     {
         fprintf(stderr, "Failed to fetch team page matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3569,7 +3569,7 @@ bool MatchesManager::FillTeamMatchesWithFireball(PGconn* pg,
     }
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team page matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3720,7 +3720,7 @@ bool MatchesManager::FillTeamMatchesWithCareer(PGconn* pg,
     }
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team page matches: %s", PQerrorMessage(pg));
         PQclear(ret);
@@ -3858,7 +3858,7 @@ bool MatchesManager::FillTeamMatchesWithEFootball(PGconn* pg,
     }
 
     PGresult* ret = PQexec(pg, sql.c_str());
-    if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+    if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
         fprintf(stderr, "Failed to fetch team page matches: %s", PQerrorMessage(pg));
         PQclear(ret);

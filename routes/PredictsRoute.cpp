@@ -250,7 +250,7 @@ int getTeamId(PGconn* conn, int matchId, int teamNumber)
     snprintf(query, sizeof(query), "SELECT %s FROM matches WHERE id = %d;", teamField, matchId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return -1; // Indicate error
@@ -269,7 +269,7 @@ int getTeamScore(PGconn* conn, int matchId, int teamNumber)
     snprintf(query, sizeof(query), "SELECT %s FROM matches WHERE id = %d;", teamField, matchId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return -1; // Indicate error
@@ -285,7 +285,7 @@ long long getMatchDate(PGconn* conn, int matchId)
     char query[256];
     std::string sql = "select match_date from matches where id = " + std::to_string(matchId) + ";";
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return -1; // Indicate error
@@ -304,7 +304,7 @@ std::string getTeamName(PGconn* conn, int teamId)
     snprintf(query, sizeof(query), "SELECT name FROM teams WHERE id = %d;", teamId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         strcpy(teamName, "Unknown"); // Indicate error
@@ -324,7 +324,7 @@ std::string getTeamShortName(PGconn* conn, int teamId)
     snprintf(query, sizeof(query), "SELECT short_name FROM teams WHERE id = %d;", teamId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         strcpy(teamName, "Unknown"); // Indicate error
@@ -417,7 +417,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             ret = PQexec(pg, sqlBase.c_str());
 
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -507,7 +507,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             ret = PQexec(pg, sqlBase.c_str());
 
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -591,7 +591,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             PGresult* ret = PQexec(pg, sqlBase.c_str());
             ret2 = ret;
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -704,7 +704,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sqlBase.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
             fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -785,7 +785,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             countSql += condition.size() ? " AND " + condition + ";" : ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
-            if (PQresultStatus(countRet) != PGRES_TUPLES_OK) 
+            if (!countRet || PQresultStatus(countRet) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch count: %s", PQerrorMessage(pg));
                 PQclear(countRet);
@@ -870,7 +870,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sqlBase.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -951,7 +951,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             countSql += condition.size() ? " AND " + condition + ";" : ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
-            if (PQresultStatus(countRet) != PGRES_TUPLES_OK)
+            if (!countRet || PQresultStatus(countRet) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch count: %s", PQerrorMessage(pg));
                 PQclear(countRet);
@@ -1035,7 +1035,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch bets: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1185,7 +1186,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) {
             fprintf(stderr, "Failed to fetch bets: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1307,11 +1308,13 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 // Helper function to add count results to the document
 void addCountToDocument(const std::string& key, const std::string& sql, PGconn* pg, rapidjson::Document& document, rapidjson::Document::AllocatorType& allocator) {
     PGresult* countRet = PQexec(pg, sql.c_str());
-    if (PQresultStatus(countRet) == PGRES_TUPLES_OK) {
+    if (countRet && PQresultStatus(countRet) == PGRES_TUPLES_OK)
+    {
         int count = atoi(PQgetvalue(countRet, 0, 0));
         document.AddMember(rapidjson::StringRef(key.c_str()), count, allocator);
     }
-    else {
+    else 
+    {
         fprintf(stderr, "Failed to fetch count for %s: %s", key.c_str(), PQerrorMessage(pg));
     }
     PQclear(countRet);
@@ -1354,7 +1357,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sqlBase.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1418,7 +1422,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             countSql += " AND " + condition + ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
-            if (PQresultStatus(countRet) != PGRES_TUPLES_OK) {
+            if (!countRet || PQresultStatus(countRet) != PGRES_TUPLES_OK) 
+            {
                 fprintf(stderr, "Failed to fetch count: %s", PQerrorMessage(pg));
                 PQclear(countRet);
                 ConnectionPool::Get()->releaseConnection(pg);
@@ -1486,7 +1491,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
             fprintf(stderr, "Failed to fetch data: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1548,7 +1554,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             countSql += " AND " + condition + ";";
             PGresult* countRet = PQexec(pg, countSql.c_str());
 
-            if (PQresultStatus(countRet) != PGRES_TUPLES_OK) {
+            if (!countRet || PQresultStatus(countRet) != PGRES_TUPLES_OK) 
+            {
                 fprintf(stderr, "Failed to fetch count: %s", PQerrorMessage(pg));
                 PQclear(countRet);
                 ConnectionPool::Get()->releaseConnection(pg);
@@ -1591,7 +1598,7 @@ std::string getUserName(PGconn* conn, int userId)
     snprintf(query, sizeof(query), "SELECT name FROM users WHERE id = %d;", userId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return "Unknown"; // Indicate error
@@ -1608,7 +1615,7 @@ std::string getUserAvatar(PGconn* conn, int userId)
     snprintf(query, sizeof(query), "SELECT avatar FROM users WHERE id = %d;", userId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return "Unknown"; // Indicate error
@@ -1625,7 +1632,7 @@ int getUserPoints(PGconn* conn, int userId)
     snprintf(query, sizeof(query), "SELECT points FROM users WHERE id = %d;", userId);
 
     PGresult* res = PQexec(conn, query);
-    if (PQresultStatus(res) != PGRES_TUPLES_OK)
+    if (!res || PQresultStatus(res) != PGRES_TUPLES_OK)
     {
         PQclear(res);
         return 0; // Indicate error
@@ -1871,7 +1878,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY u.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top predicts: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -2302,7 +2309,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY u.balance" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top 20 bets: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -2656,7 +2663,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
             fprintf(stderr, "Failed to fetch table by points: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -2794,7 +2801,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch table by points: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -2932,7 +2939,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
             fprintf(stderr, "Failed to fetch bets table: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -3058,7 +3065,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch bets table V2: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -3216,7 +3223,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch bets table V2: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -3340,7 +3347,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
             fprintf(stderr, "Failed to fetch user predictions: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -3414,7 +3421,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch user predictions: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -3482,7 +3490,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             std::string sql = "select id from bets where user_id = "
                 + std::to_string(userId) + " AND match_id = " + std::to_string(matchId) + ";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            if (!ret || (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK))
             {
                 fprintf(stderr, "Failed to get bet: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -3508,7 +3516,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 std::to_string(matchId) + ";";
 
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK)
+            if (!ret || (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK))
             {
                 fprintf(stderr, "Failed to get bet odd: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -3550,7 +3558,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
         // Execute the insert and capture the inserted predict ID
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK) 
+        if (!ret || (PQresultStatus(ret) != PGRES_TUPLES_OK && PQresultStatus(ret) != PGRES_COMMAND_OK))
         {
             fprintf(stderr, "Failed to add bet: %s\n", PQerrorMessage(pg));
             PQclear(ret);
@@ -3564,7 +3572,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
                 + " WHERE id = " + std::to_string(userId) + ";";
 
             PGresult* amountRet = PQexec(pg, sql.c_str());
-            if (PQresultStatus(amountRet) != PGRES_TUPLES_OK && PQresultStatus(amountRet) != PGRES_COMMAND_OK) 
+            if (!ret || (PQresultStatus(amountRet) != PGRES_TUPLES_OK && PQresultStatus(amountRet) != PGRES_COMMAND_OK))
             {
                 fprintf(stderr, "Failed to add amount: %s", PQerrorMessage(pg));
                 PQclear(amountRet);
