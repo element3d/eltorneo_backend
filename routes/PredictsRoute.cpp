@@ -196,7 +196,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch user bet: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -1761,7 +1761,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         std::string predictsSql = "SELECT bet FROM bets" + postfix + " WHERE match_id = " + matchId + ";";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
 
-        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
+        if (!predictsRet || PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch predicts: %s", PQerrorMessage(pg));
             PQclear(predictsRet);
@@ -2159,7 +2159,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY wu.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top predicts: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -2430,7 +2430,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY u.clear_balance" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top 20 bets: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -4019,7 +4019,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch user fireball predict: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -4249,7 +4249,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY fu.points DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top fireball predicts: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -4429,8 +4429,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY predict_count DESC "
             "LIMIT 2;";
         PGresult* predictsRet = PQexec(pg, predictsSql.c_str());
-
-        if (PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
+        if (!predictsRet || PQresultStatus(predictsRet) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch fireball summary: %s", PQerrorMessage(pg));
             PQclear(predictsRet);
@@ -6453,7 +6452,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "ORDER BY eu.points" + postfix + " DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch top predicts: %s", PQerrorMessage(pg));
             PQclear(ret);

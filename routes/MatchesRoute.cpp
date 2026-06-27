@@ -1246,7 +1246,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         std::string sql = "SELECT * FROM match_stats WHERE match_id = " + (matchId) + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
         {
             fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -1309,7 +1309,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         std::string sql = "SELECT * FROM events WHERE match_id = " + (matchId)+" order by elapsed asc;";
         PGresult* ret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -1383,7 +1383,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         std::string sql = "SELECT * FROM odds WHERE match_id = " + matchId + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
 
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK) {
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK) 
+        {
             fprintf(stderr, "Failed to fetch match odds: %s", PQerrorMessage(pg));
             PQclear(ret);
             ConnectionPool::Get()->releaseConnection(pg);
@@ -1420,7 +1421,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
                 std::to_string(userId) + " AND match_id = " + matchId + " LIMIT 1;";
             PGresult* betResult = PQexec(pg, betSql.c_str());
 
-            if (PQresultStatus(betResult) == PGRES_TUPLES_OK && PQntuples(betResult) > 0) {
+            if (betResult && PQresultStatus(betResult) == PGRES_TUPLES_OK && PQntuples(betResult) > 0)
+            {
                 rapidjson::Value betObject(rapidjson::kObjectType);
                 betObject.AddMember("id", atoi(PQgetvalue(betResult, 0, 0)), allocator);
                 betObject.AddMember("bet", rapidjson::Value(PQgetvalue(betResult, 0, 1), allocator), allocator);
@@ -1816,7 +1818,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string sql = "SELECT id FROM match_stats WHERE match_id = " + (matchId)+";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -1832,7 +1834,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string sql = "SELECT id FROM events WHERE match_id = " + (matchId) + ";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch match events: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -1848,7 +1850,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string sql = "SELECT id FROM lineups WHERE match_id = " + (matchId)+";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch match events: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -1864,7 +1866,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string sql = "SELECT id FROM odds WHERE match_id = " + (matchId)+";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch match events: %s", PQerrorMessage(pg));
                 PQclear(ret);
@@ -1905,7 +1907,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         {
             std::string sql = "SELECT id, elapsed, team1_score_live, team2_score_live, status FROM matches WHERE id = " + (matchId)+";";
             PGresult* ret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+            if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
             {
                 fprintf(stderr, "Failed to fetch match stats: %s", PQerrorMessage(pg));
                 PQclear(ret);

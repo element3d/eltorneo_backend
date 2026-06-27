@@ -647,8 +647,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             "ORDER BY t.group_index, t.points DESC, (t.goals_f - t.goals_a) DESC;";
 
         PGresult* ret = PQexec(pg, sql.c_str());
-
-        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
         {
             fprintf(stderr, "Failed to get league table: %s", PQerrorMessage(pg));
             PQclear(ret);
@@ -679,8 +678,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             // Fetch team details
             std::string teamSql = "SELECT id, name, short_name, venue FROM teams WHERE id = " + std::to_string(teamId) + ";";
             PGresult* teamRet = PQexec(pg, teamSql.c_str());
-
-            if (PQresultStatus(teamRet) == PGRES_TUPLES_OK && PQntuples(teamRet) > 0) {
+            if (teamRet && PQresultStatus(teamRet) == PGRES_TUPLES_OK && PQntuples(teamRet) > 0) 
+            {
                 rapidjson::Value teamDetails(rapidjson::kObjectType);
                 teamDetails.AddMember("id", atoi(PQgetvalue(teamRet, 0, 0)), allocator);
                 teamDetails.AddMember("name", rapidjson::Value(PQgetvalue(teamRet, 0, 1), allocator), allocator);
