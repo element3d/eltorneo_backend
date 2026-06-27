@@ -1823,11 +1823,16 @@ void MatchesInitializer::InitWorldCupPO25_26(PGconn* pg)
     // ClubWorldCup
     std::vector<Match> matches;
     // 1/16
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::SouthAfrica, ETeam::Canada, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Brazil, ETeam::Japan, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Netherlands, ETeam::Morocco, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::IvoryCoast, ETeam::Norway, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::USA, ETeam::BosniaAndHerzegovina, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::SouthAfrica, ETeam::Canada, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Brazil, ETeam::Japan, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Netherlands, ETeam::Morocco, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::IvoryCoast, ETeam::Norway, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::USA, ETeam::BosniaAndHerzegovina, 1782673200000, EWeekType::RoundOf32, true });
+        
+    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Germany, ETeam::Paraguay, 1782673200000, EWeekType::RoundOf32, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::France, ETeam::Sweden, 1782673200000, EWeekType::RoundOf32, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Australia, ETeam::Egypt, 1782673200000, EWeekType::RoundOf32, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Argentina, ETeam::CaboVerde, 1782673200000, EWeekType::RoundOf32, true });
 
 
     for (auto& m : matches)
