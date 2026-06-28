@@ -248,7 +248,8 @@
         "tekken2": "Tekken",
         "black_flag": "Black Flag",
         "valhalla": "Valhalla",
-        "naruto": "Naruto"
+        "naruto": "Naruto",
+        "fast_five": "Fast Five"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -499,6 +500,7 @@
         "tekken2": "Tekken",
         "black_flag": "Black Flag",
         "valhalla": "Valhalla",
-        "naruto": "Naruto"
+        "naruto": "Naruto",
+        "fast_five": "Форсаж"
     }
 }
