@@ -654,7 +654,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Me()
         free(temp);
 
         {
-            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + " order by id desc;";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -867,7 +867,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         }
 
         {
-            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + ";";
+            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + " order by id desc;";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
@@ -991,7 +991,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetU
         document.AddMember("position", pos, allocator);
 
         {
-            std::string awardsQuery = "SELECT place, season, league, finished FROM awards WHERE user_id = " + userId + ";";
+            std::string awardsQuery = "SELECT place, season, league, finished FROM awards WHERE user_id = " + userId + " order by id desc;";
             PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
 
             if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
