@@ -249,7 +249,8 @@
         "black_flag": "Black Flag",
         "valhalla": "Valhalla",
         "naruto": "Naruto",
-        "fast_five": "Fast Five"
+        "fast_five": "Fast Five",
+        "terminator": "Terminator"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -501,6 +502,7 @@
         "black_flag": "Black Flag",
         "valhalla": "Valhalla",
         "naruto": "Naruto",
-        "fast_five": "Форсаж"
+        "fast_five": "Форсаж",
+        "terminator": "Терминатор"
     }
 }
