@@ -1834,13 +1834,18 @@ void MatchesInitializer::InitWorldCupPO25_26(PGconn* pg)
    // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Australia, ETeam::Egypt, 1782673200000, EWeekType::RoundOf32, true });
    // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Argentina, ETeam::CaboVerde, 1782673200000, EWeekType::RoundOf32, true });
    
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Mexico, ETeam::Ecuador, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::England, ETeam::CongoDR, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Belgium, ETeam::Senegal, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Spain, ETeam::Austria, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Portugal, ETeam::Croatia, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Switzerland, ETeam::Algeria, 1782673200000, EWeekType::RoundOf32, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Colombia, ETeam::Ghana, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Mexico, ETeam::Ecuador, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::England, ETeam::CongoDR, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Belgium, ETeam::Senegal, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Spain, ETeam::Austria, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Portugal, ETeam::Croatia, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Switzerland, ETeam::Algeria, 1782673200000, EWeekType::RoundOf32, true });
+   // matches.push_back({ ELeague::WorldCup, "25/26", 4, ETeam::Colombia, ETeam::Ghana, 1782673200000, EWeekType::RoundOf32, true });
+
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Canada, ETeam::Morocco, 1783198800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Paraguay, ETeam::France, 1783198800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Brazil, ETeam::Norway, 1783198800000, EWeekType::RoundOf16, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Mexico, ETeam::England, 1783198800000, EWeekType::RoundOf16, true });
 
 
     for (auto& m : matches)
