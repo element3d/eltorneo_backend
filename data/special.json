@@ -250,7 +250,8 @@
         "valhalla": "Valhalla",
         "naruto": "Naruto",
         "fast_five": "Fast Five",
-        "terminator": "Terminator"
+        "terminator": "Terminator",
+        "one_piece": "One Piece"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -503,6 +504,7 @@
         "valhalla": "Valhalla",
         "naruto": "Naruto",
         "fast_five": "Форсаж",
-        "terminator": "Терминатор"
+        "terminator": "Терминатор",
+        "one_piece": "Ван-Пис"
     }
 }
