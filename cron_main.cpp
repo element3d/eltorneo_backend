@@ -3687,6 +3687,8 @@ void CorrectGameTables(PGconn* pg)
 	auto now = std::chrono::system_clock::now();
 	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
 	long long timestamp = 1777593600000;//ms.count();
+	long long nowMS = ms.count();
+
 	long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
 	long long twenty_days_ms = 10LL * 24 * 60 * 60 * 1000;
 
@@ -3964,8 +3966,8 @@ void CorrectGameTables(PGconn* pg)
 			"INNER JOIN matches m ON p.match_id = m.id "
 			"WHERE p.status != 4 "
 			"AND m.league = 24 "
-			"AND wu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-			"AND u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"AND wu.last_predict_ts >= " + std::to_string(nowMS - twenty_days_ms) + " "
+		//	"AND u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
 			"GROUP BY wu.id, wu.points "
 			"HAVING COUNT(p.id) > 0 "
 			"ORDER BY wu.points DESC, total_predictions DESC, wu.id ASC;";
