@@ -251,7 +251,8 @@
         "naruto": "Naruto",
         "fast_five": "Fast Five",
         "terminator": "Terminator",
-        "one_piece": "One Piece"
+        "one_piece": "One Piece",
+        "brand_new_day": "Brand New Day"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -505,6 +506,7 @@
         "naruto": "Naruto",
         "fast_five": "Форсаж",
         "terminator": "Терминатор",
-        "one_piece": "Ван-Пис"
+        "one_piece": "Ван-Пис",
+        "brand_new_day": "Совершенно новый день"
     }
 }
