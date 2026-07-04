@@ -1844,8 +1844,8 @@ void MatchesInitializer::InitWorldCupPO25_26(PGconn* pg)
 
   
 
-    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Portugal, ETeam::Spain, 1783198800000, EWeekType::RoundOf8, true });
-    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::USA, ETeam::Belgium, 1783198800000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Argentina, ETeam::Egypt, 1783440000000, EWeekType::RoundOf8, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 5, ETeam::Switzerland, ETeam::Colombia, 1783454400000, EWeekType::RoundOf8, true });
 
 
     for (auto& m : matches)
