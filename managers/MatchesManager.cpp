@@ -37,7 +37,8 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
         "COALESCE(p.status, -1) AS status, " // Default -1 if NULL
         "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches table
         "COALESCE(s.stadium, '') AS special_match_stadium, "
-        "COALESCE(s.points, '') AS special_match_points "
+        "COALESCE(s.points, '') AS special_match_points, "
+        "COALESCE(s.has_video, 0) AS has_special_video "
         "FROM matches m "
         "JOIN leagues l ON m.league = l.id "
         "JOIN teams t1 ON m.team1 = t1.id "
@@ -136,6 +137,7 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 29), allocator), allocator);
         matchObj.AddMember("special_match_stadium", rapidjson::Value(PQgetvalue(ret, i, 30), allocator), allocator);
         matchObj.AddMember("special_match_points", rapidjson::Value(PQgetvalue(ret, i, 31), allocator), allocator);
+        matchObj.AddMember("has_special_video", atoi(PQgetvalue(ret, i, 32)), allocator);
 
         rapidjson::Value v;
         v.SetString(translatedTitle.c_str(), allocator);
