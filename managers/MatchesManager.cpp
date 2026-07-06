@@ -1492,7 +1492,8 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
         "l.country AS league_country, "  // Include league name
         "l.current_week, "
         "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches 
-        "COALESCE(s.points, '') AS special_match_points "
+        "COALESCE(s.points, '') AS special_match_points, "
+        "COALESCE(s.has_video, 0) AS has_special_video "
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
@@ -1571,6 +1572,7 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
         matchObj.AddMember("currentWeek", currentWeek, allocator);
         matchObj.AddMember("special_match_title", rapidjson::Value(specialMatchTitle.c_str(), allocator), allocator); // Add league name
         matchObj.AddMember("special_match_points", rapidjson::Value(specialMatchPoints.c_str(), allocator), allocator); // Add league name
+        matchObj.AddMember("has_special_video", atoi(PQgetvalue(ret, i, 28)), allocator);
 
         rapidjson::Value predictObj(rapidjson::kObjectType);
         predictObj.AddMember("team1_score", atoi(PQgetvalue(ret, i, 20)), allocator);
