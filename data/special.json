@@ -254,7 +254,9 @@
         "one_piece": "One Piece",
         "brand_new_day": "Brand New Day",
         "hwoarang_vs_king": "Hwoarang vs King",
-        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima"
+        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima",
+        "eddy_vs_kazuya": "Eddy Gordo vs Kazuya",
+        "jin_vs_law": "Jin Kazama vs Marshall Law"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -511,6 +513,8 @@
         "one_piece": "Ван-Пис",
         "brand_new_day": "Совершенно новый день",
         "hwoarang_vs_king": "Hwoarang vs King",
-        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima"
+        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima",
+        "eddy_vs_kazuya": "Eddy Gordo vs Kazuya",
+        "jin_vs_law": "Jin Kazama vs Marshall Law"
     }
 }
