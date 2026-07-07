@@ -253,7 +253,8 @@
         "terminator": "Terminator",
         "one_piece": "One Piece",
         "brand_new_day": "Brand New Day",
-        "hwoarang_vs_king": "Hwoarang vs King"
+        "hwoarang_vs_king": "Hwoarang vs King",
+        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -509,6 +510,7 @@
         "terminator": "Терминатор",
         "one_piece": "Ван-Пис",
         "brand_new_day": "Совершенно новый день",
-        "hwoarang_vs_king": "Hwoarang vs King"
+        "hwoarang_vs_king": "Hwoarang vs King",
+        "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima"
     }
 }
