@@ -774,8 +774,9 @@ bool MatchesManager::GetMatchesByDateWithPredicts(PGconn* pg,
 
         "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches 
         "COALESCE(s.stadium, '') AS special_match_stadium, " // Fetch title from special_matches table
-        "COALESCE(s.points, '') AS special_match_points "
-        
+        "COALESCE(s.points, '') AS special_match_points, "
+        "COALESCE(s.has_video, 0) AS has_special_video "
+
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
@@ -863,6 +864,7 @@ bool MatchesManager::GetMatchesByDateWithPredicts(PGconn* pg,
         matchObj.AddMember("special_match_title", rapidjson::Value(PQgetvalue(ret, i, 32), allocator), allocator);
         matchObj.AddMember("special_match_stadium", rapidjson::Value(PQgetvalue(ret, i, 33), allocator), allocator);
         matchObj.AddMember("special_match_points", rapidjson::Value(PQgetvalue(ret, i, 34), allocator), allocator);
+        matchObj.AddMember("has_special_video", atoi(PQgetvalue(ret, i, 35)), allocator);
 
         std::string title = PQgetvalue(ret, i, 32);
         std::string translatedTitle;
