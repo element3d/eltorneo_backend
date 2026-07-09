@@ -962,7 +962,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         rapidjson::Value vv;
         vv.SetString(points.c_str(), allocator);
         matchObject.AddMember("special_match_points", vv, allocator);
-        team2Object.AddMember("has_special_video", hasVideo, allocator);
+        matchObject.AddMember("has_special_video", hasVideo, allocator);
 
         document.AddMember("match", matchObject, allocator);
 
