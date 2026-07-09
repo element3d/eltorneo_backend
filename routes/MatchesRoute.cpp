@@ -875,6 +875,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             stadium = ss;
             points = pp;
             hasVideo = hv;
+            break;
         }
         
         if (matchId == -1) 
