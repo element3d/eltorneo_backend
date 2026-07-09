@@ -816,7 +816,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         std::string sql = "SELECT sm.* "
             "FROM special_matches sm "
             "JOIN matches m ON sm.match_id = m.id "
-            "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000;"; // Compare match_date with the current time (in milliseconds)
+            "WHERE m.match_date > EXTRACT(EPOCH FROM NOW()) * 1000 ORDER BY m.match_date ASC, sm.id ASC;"; // Compare match_date with the current time (in milliseconds)
            
         PGresult* ret = PQexec(pg, sql.c_str());
         if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
