@@ -843,6 +843,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         std::string title;
         std::string stadium;
         std::string points;
+        int hasVideo = 0;
 
         for (int i = 0; i < nm; ++i)
         {
@@ -851,6 +852,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             std::string ss = PQgetvalue(ret, i, 2);
             int mid = atoi(PQgetvalue(ret, i, 3));
             std::string pp = PQgetvalue(ret, i, 4);
+            int hv = atoi(PQgetvalue(ret, i, 5));
 
 
             // If user exists, check if they have predicted this match
@@ -872,6 +874,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             title = tt;
             stadium = ss;
             points = pp;
+            hasVideo = hv;
         }
         
         if (matchId == -1) 
@@ -958,6 +961,8 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
         rapidjson::Value vv;
         vv.SetString(points.c_str(), allocator);
         matchObject.AddMember("special_match_points", vv, allocator);
+        team2Object.AddMember("has_special_video", hasVideo, allocator);
+
         document.AddMember("match", matchObject, allocator);
 
         {
