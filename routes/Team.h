@@ -239,7 +239,7 @@ enum class ETeam
     Malaga = LaLiga2026Start,
     RacingSantander,
     DepCoruna,
-    LaLiga2026End = Hull,
+    LaLiga2026End = DepCoruna,
 
     // International
     // Nations League
