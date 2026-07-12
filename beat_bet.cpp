@@ -164,10 +164,77 @@ void ProcessLeague(PGconn* pg, int league)
     out.close();
 }
 
+void ProcessTopUsers(PGconn* pg)
+{
+    int userId = 1621;
+    int numGoodWeeks = 0;
+    int numBadWeeks = 0;
+    int numIncompleteWeeks = 0;
+    for (int week = 1; week < 28; ++week)
+    {
+
+        std::string sql =
+            "SELECT p.status "
+            "FROM predicts p "
+            "JOIN matches m ON p.match_id = m.id "
+            "WHERE p.user_id = " + std::to_string(userId) +
+            " AND m.week = " + std::to_string(week) + " and m.league = 3;";
+
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            ConnectionPool::Get()->releaseConnection(pg);
+        }
+        int numPredicts = PQntuples(ret);
+        int numOK = 0, numFail = 0;
+        for (int p = 0; p < numPredicts; ++p)
+        {
+            int status = atoi(PQgetvalue(ret, p, 0));
+            std::string st = "-";
+            if (status == 1 || status == 2 || status == 5) ++numOK;
+            else if (status == 3) ++numFail;
+            else 
+            {
+                printf("asdf");
+            }
+        }
+
+        if (numOK + numFail != 10) 
+        {
+            numIncompleteWeeks++;
+            printf("Week %i: %i    %i    INCOMPLETE\n", week, numOK, numFail);
+            continue;
+        }
+        if (numOK > 6 || numOK < 4)
+        {
+            numBadWeeks++;
+        }
+        else 
+        {
+            numGoodWeeks++;
+        }
+        printf("Week %i: %i    %i\n", week, numOK, numFail);
+
+    }
+
+    printf("INC %i, GOOD %i, BAD %i \n", numIncompleteWeeks, numGoodWeeks, numBadWeeks);
+    return;
+}
+
+#include "routes/MatchesInitializer.h"
+
 int main()
 {
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-    
+
+    MatchesInitializer::InitLaLiga26_27(pg);
+    MatchesInitializer::InitLaLigaTable(pg);
+    return 0;
+    /*
+    ProcessTopUsers(pg);
+    return 0;
 
     ProcessLeague(pg, 2);
     ProcessLeague(pg, 3);
@@ -175,7 +242,7 @@ int main()
     ProcessLeague(pg, 5);
     ProcessLeague(pg, 6);
     return 0;
-
+    */
     auto now = std::chrono::system_clock::now();
     auto ts = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
 
@@ -226,7 +293,9 @@ int main()
         int leagueId = atoi(PQgetvalue(ret, i, 5));
 
         printf("%s - %s\n", team1.c_str(), team2.c_str());
-        std::string filename = "/var/www/beatbet/" + team1 + " - " + team2 + ".txt";
+        std::string filename = 
+            // "/var/www/beatbet/" + 
+            team1 + " - " + team2 + ".txt";
         FILE* file = nullptr;
 
         sql = "SELECT predicts.*, users.name FROM predicts "
