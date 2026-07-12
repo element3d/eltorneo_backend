@@ -28,7 +28,11 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
         std::replace(ss.begin(), ss.end(), '/', '_');
         postfix = "_" + ss;
     }
-
+    std::string predictsTableName = "predicts" + postfix;
+    if (season == "26/27") 
+    {
+        predictsTableName = "eltorneo_predicts_26_27";
+    }
     std::string sql = "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, m.team1_score_90, m.team2_score_90, m.team1_score_pen, m.team2_score_pen,"
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
@@ -43,7 +47,7 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
         "JOIN leagues l ON m.league = l.id "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN predicts" + postfix + " p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN " + predictsTableName + " p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = l.current_season "
         "ORDER BY m.match_date ASC;";
@@ -175,6 +179,11 @@ bool MatchesManager::GetLeagueMatchesWithBets(PGconn* pg,
         std::replace(ss.begin(), ss.end(), '/', '_');
         postfix = "_" + ss;
     }
+    std::string tableName = "bets";
+    if (season == "26/27") 
+    {
+        tableName = "beatbet_bets_26_27";
+    }
 
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
@@ -198,7 +207,7 @@ bool MatchesManager::GetLeagueMatchesWithBets(PGconn* pg,
         "JOIN leagues l ON m.league = l.id "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN " + tableName + " b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id "
         "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = l.current_season "
         "ORDER BY m.match_date ASC;";
@@ -331,6 +340,12 @@ bool MatchesManager::GetLeagueMatchesWithFireball(PGconn* pg,
         postfix = "_" + ss;
     }
 
+    std::string tableName = "fireball_predicts";
+    if (season == "26/27") 
+    {
+        tableName = "fireball_predicts_26_27";
+    }
+
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
         "m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, "
@@ -355,7 +370,7 @@ bool MatchesManager::GetLeagueMatchesWithFireball(PGconn* pg,
         "JOIN leagues l ON m.league = l.id "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN " + tableName + " fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id "
         "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = l.current_season "
         "ORDER BY m.match_date ASC;";
@@ -616,7 +631,11 @@ bool MatchesManager::GetLeagueMatchesWithEFootball(PGconn* pg,
         std::replace(ss.begin(), ss.end(), '/', '_');
         postfix = "_" + ss;
     }
-
+    std::string tableName = "efootball_predicts";
+    if (season == "26/27") 
+    {
+        tableName = "efootball_predicts_26_27";
+    }
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
         "m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, "
@@ -624,7 +643,6 @@ bool MatchesManager::GetLeagueMatchesWithEFootball(PGconn* pg,
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
 
-        // user eFootball fields (default values if no predict)
         "COALESCE(ep.id, -1) AS ep_id, "
         "COALESCE(ep.team_id, -1) AS ep_team_id, "
         "COALESCE(ep.points, -1) AS ep_points, "
@@ -638,7 +656,7 @@ bool MatchesManager::GetLeagueMatchesWithEFootball(PGconn* pg,
         "JOIN leagues l ON m.league = l.id "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN " + tableName + " ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id "
         "WHERE m.league = " + std::to_string(lid) + " AND m.week = " + week + " AND m.season = l.current_season "
         "ORDER BY m.match_date ASC;";

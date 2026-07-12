@@ -21,8 +21,11 @@ public:
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop20V2();
+    void GetMatchPredictsTop20V3(const httplib::Request& req, httplib::Response& res);
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20V2();
+    void GetMatchBetsTop20V3(const httplib::Request& req, httplib::Response& res);
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
@@ -46,6 +49,8 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20V2();
+    void GetMatchFireballTop20V3(const httplib::Request& req, httplib::Response& res);
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTableV2();
@@ -66,10 +71,13 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetEFootballTableV2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V2();
+    void GetMatchEFootballTop20V3(const httplib::Request& req, httplib::Response& res);
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredicts();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserWorldCupPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchWorldCupPredictsTop20V2();
+    void GetMatchWorldCupPredictsTop20V3(const httplib::Request& req, httplib::Response& res);
     std::function<void(const httplib::Request&, httplib::Response&)> GetWorldCupTableV2();
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostFinish();
