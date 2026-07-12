@@ -227,6 +227,13 @@ enum class ETeam
     AEKAthens,
     AZAlkmaar,
 
+    ///////////////////// 26/27 /////////////////////
+    // Premier League 2026
+    PremierLeague2026Start,
+    Coventry = PremierLeague2026Start,
+    Hull,
+    PremierLeague2026End = Hull,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

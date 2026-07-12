@@ -537,6 +537,12 @@ std::string Team::ToString(ETeam team)
         return "Uruguay";
     case ETeam::Uzbekistan:
         return "Uzbekistan";
+
+    // EPL 26
+    case ETeam::Coventry:
+        return "Coventry";
+    case ETeam::Hull:
+        return "Hull City";
     default:
         return "Unknown Team";
     }
@@ -1078,6 +1084,12 @@ std::string Team::ToShortString(ETeam team)
         return "Uruguay";
     case ETeam::Uzbekistan:
         return "Uzbekistan";
+
+    // EPL 26
+    case ETeam::Coventry:
+        return "Coventry";
+    case ETeam::Hull:
+        return "Hull City";
 
     default:
         return "Unknown Team";

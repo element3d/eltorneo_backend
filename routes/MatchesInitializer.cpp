@@ -1170,9 +1170,9 @@ void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitPremierLeagueTeams25_26(PGconn* pg)
+void MatchesInitializer::InitPremierLeagueTeams26_27(PGconn* pg)
 {
-    for (int i = (int)ETeam::PremierLeague2025Start; i <= (int)ETeam::PremierLeague2025End; ++i)
+    for (int i = (int)ETeam::PremierLeague2026Start; i <= (int)ETeam::PremierLeague2026End; ++i)
     {
         std::string sql = "insert into teams(id, name, short_name) values ("
             + std::to_string(i) + ", '"
@@ -1203,7 +1203,7 @@ void MatchesInitializer::InitPremierLeagueTable(PGconn* pg)
         ETeam::AstonVilla,
         ETeam::Brentford,
         ETeam::BrightonAndHoveAlbion,
-        ETeam::Burnley,
+        ETeam::Coventry,
         ETeam::Chelsea,
         ETeam::CrystalPalace,
         ETeam::Everton,
@@ -1216,15 +1216,15 @@ void MatchesInitializer::InitPremierLeagueTable(PGconn* pg)
         ETeam::NottinghamForest,
         ETeam::Sunderland,
         ETeam::TottenhamHotspur,
-        ETeam::WestHamUnited,
-        ETeam::Wolverhampton
+        ETeam::Hull,
+        ETeam::IpswichTown
     };
     for (ETeam i : teams)
     {
         sql = "insert into tables(team_id, league_id, season) values ("
             + std::to_string(int(i)) + ", "
             + std::to_string(int(ELeague::PremierLeague)) + " ,'"
-            + "25/26" 
+            + "26/27" 
             + "');";
         ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -1844,7 +1844,8 @@ void MatchesInitializer::InitWorldCupPO25_26(PGconn* pg)
 
   
 
-    matches.push_back({ ELeague::WorldCup, "25/26", 7, ETeam::France, ETeam::Spain, 1784055600000, EWeekType::SemiFinal, true });
+  //  matches.push_back({ ELeague::WorldCup, "25/26", 7, ETeam::France, ETeam::Spain, 1784055600000, EWeekType::SemiFinal, true });
+    matches.push_back({ ELeague::WorldCup, "25/26", 7, ETeam::England, ETeam::Argentina, 1784142000000, EWeekType::SemiFinal, true });
 
     for (auto& m : matches)
     {
@@ -4462,464 +4463,92 @@ void MatchesInitializer::InitLaLiga25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitPremierLeague25_26(PGconn* pg)
+void MatchesInitializer::InitPremierLeague26_27(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::Liverpool, ETeam::AFCBournemouth, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::AstonVilla, ETeam::NewcastleUnited, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::BrightonAndHoveAlbion, ETeam::Fulham, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::Sunderland, ETeam::WestHamUnited, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::TottenhamHotspur, ETeam::Burnley, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::Wolverhampton, ETeam::ManchesterCity, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::NottinghamForest, ETeam::Brentford, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::Chelsea, ETeam::CrystalPalace, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::ManchesterUnited, ETeam::Arsenal, 1755284400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 1, ETeam::Leeds, ETeam::Everton, 1755284400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::Arsenal, ETeam::Coventry, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::Hull, ETeam::ManchesterUnited, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::Everton, ETeam::CrystalPalace, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::IpswichTown, ETeam::Sunderland, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::NottinghamForest, ETeam::Leeds, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::Brentford, ETeam::TottenhamHotspur, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::BrightonAndHoveAlbion, ETeam::AstonVilla, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::ManchesterCity, ETeam::AFCBournemouth, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::NewcastleUnited, ETeam::Liverpool, 1787338800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 1, ETeam::Fulham, ETeam::Chelsea, 1787338800000 });
 
     // Week 2
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::WestHamUnited, ETeam::Chelsea, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::ManchesterCity, ETeam::TottenhamHotspur, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::Fulham, ETeam::ManchesterUnited, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::NewcastleUnited, ETeam::Liverpool, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::Burnley, ETeam::Sunderland, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::Arsenal, ETeam::Leeds, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::Brentford, ETeam::AstonVilla, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::CrystalPalace, ETeam::NottinghamForest, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::AFCBournemouth, ETeam::Wolverhampton, 1755957600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 2, ETeam::Everton, ETeam::BrightonAndHoveAlbion, 1755957600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::CrystalPalace, ETeam::ManchesterCity, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::Liverpool, ETeam::NottinghamForest, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::AFCBournemouth, ETeam::Everton, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::Coventry, ETeam::Hull, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::TottenhamHotspur, ETeam::NewcastleUnited, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::Chelsea, ETeam::BrightonAndHoveAlbion, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::Leeds, ETeam::Brentford, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::Sunderland, ETeam::Fulham, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::ManchesterUnited, ETeam::IpswichTown, 1787943600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 2, ETeam::AstonVilla, ETeam::Arsenal, 1787943600000 });
 
     // Week 3
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::Sunderland, ETeam::Brentford, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::Chelsea, ETeam::Fulham, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::AstonVilla, ETeam::CrystalPalace, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::ManchesterUnited, ETeam::Burnley, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::TottenhamHotspur, ETeam::AFCBournemouth, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::Liverpool, ETeam::Arsenal, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::NottinghamForest, ETeam::WestHamUnited, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::Wolverhampton, ETeam::Everton, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::Leeds, ETeam::NewcastleUnited, 1756562400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 3, ETeam::BrightonAndHoveAlbion, ETeam::ManchesterCity, 1756562400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::IpswichTown, ETeam::Liverpool, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::NewcastleUnited, ETeam::AFCBournemouth, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::Brentford, ETeam::Sunderland, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::BrightonAndHoveAlbion, ETeam::Leeds, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::Fulham, ETeam::CrystalPalace, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::ManchesterCity, ETeam::Coventry, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::NottinghamForest, ETeam::TottenhamHotspur, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::Hull, ETeam::AstonVilla, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::Everton, ETeam::ManchesterUnited, 1788548400000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 3, ETeam::Arsenal, ETeam::Chelsea, 1788548400000 });
 
     // Week 4
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::Fulham, ETeam::Leeds, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::Everton, ETeam::AstonVilla, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::CrystalPalace, ETeam::Sunderland, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::Brentford, ETeam::Chelsea, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::WestHamUnited, ETeam::TottenhamHotspur, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::Burnley, ETeam::Liverpool, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::AFCBournemouth, ETeam::BrightonAndHoveAlbion, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::NewcastleUnited, ETeam::Wolverhampton, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::Arsenal, ETeam::NottinghamForest, 1757772000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 4, ETeam::ManchesterCity, ETeam::ManchesterUnited, 1757772000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::AstonVilla, ETeam::NottinghamForest, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::AFCBournemouth, ETeam::Brentford, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::Chelsea, ETeam::Hull, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::CrystalPalace, ETeam::IpswichTown, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::Liverpool, ETeam::Fulham, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::TottenhamHotspur, ETeam::Everton, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::Sunderland, ETeam::Arsenal, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::Coventry, ETeam::BrightonAndHoveAlbion, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::ManchesterUnited, ETeam::ManchesterCity, 1789239600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 4, ETeam::Leeds, ETeam::NewcastleUnited, 1789239600000 });
 
     // Week 5
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::BrightonAndHoveAlbion, ETeam::TottenhamHotspur, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::ManchesterUnited, ETeam::Chelsea, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Wolverhampton, ETeam::Leeds, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Arsenal, ETeam::ManchesterCity, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::WestHamUnited, ETeam::CrystalPalace, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::AFCBournemouth, ETeam::NewcastleUnited, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Liverpool, ETeam::Everton, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Sunderland, ETeam::AstonVilla, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Burnley, ETeam::NottinghamForest, 1758376800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 5, ETeam::Fulham, ETeam::Brentford, 1758376800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::Brentford, ETeam::Chelsea, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::TottenhamHotspur, ETeam::AstonVilla, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::BrightonAndHoveAlbion, ETeam::Arsenal, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::Everton, ETeam::IpswichTown, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::Leeds, ETeam::CrystalPalace, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::ManchesterCity, ETeam::Sunderland, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::NewcastleUnited, ETeam::Hull, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::NottinghamForest, ETeam::Coventry, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::AFCBournemouth, ETeam::Liverpool, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 5, ETeam::Fulham, ETeam::ManchesterUnited, 1789758000000 });
 
     // Week 6
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::Brentford, ETeam::ManchesterUnited, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::CrystalPalace, ETeam::Liverpool, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::ManchesterCity, ETeam::Burnley, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::Leeds, ETeam::AFCBournemouth, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::Everton, ETeam::WestHamUnited, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::NewcastleUnited, ETeam::Arsenal, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::TottenhamHotspur, ETeam::Wolverhampton, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::AstonVilla, ETeam::Fulham, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::NottinghamForest, ETeam::Sunderland, 1758981600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 6, ETeam::Chelsea, ETeam::BrightonAndHoveAlbion, 1758981600000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Arsenal, ETeam::Leeds, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::AstonVilla, ETeam::Brentford, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Chelsea, ETeam::AFCBournemouth, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Coventry, ETeam::NewcastleUnited, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::CrystalPalace, ETeam::NottinghamForest, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Hull, ETeam::Everton, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::IpswichTown, ETeam::Fulham, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Liverpool, ETeam::ManchesterCity, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::ManchesterUnited, ETeam::TottenhamHotspur, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 6, ETeam::Sunderland, ETeam::BrightonAndHoveAlbion, 1791658800000 });
 
     // Week 7
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Arsenal, ETeam::WestHamUnited, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::AFCBournemouth, ETeam::Fulham, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Brentford, ETeam::ManchesterCity, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Wolverhampton, ETeam::BrightonAndHoveAlbion, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Leeds, ETeam::TottenhamHotspur, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::AstonVilla, ETeam::Burnley, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Everton, ETeam::CrystalPalace, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::ManchesterUnited, ETeam::Sunderland, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::Chelsea, ETeam::Liverpool, 1759586400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 7, ETeam::NewcastleUnited, ETeam::NottinghamForest, 1759586400000 });
-
-    // Week 8
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::TottenhamHotspur, ETeam::AstonVilla, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::Fulham, ETeam::Arsenal, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::CrystalPalace, ETeam::AFCBournemouth, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::Sunderland, ETeam::Wolverhampton, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::NottinghamForest, ETeam::Chelsea, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::ManchesterCity, ETeam::Everton, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::Liverpool, ETeam::ManchesterUnited, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::BrightonAndHoveAlbion, ETeam::NewcastleUnited, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::WestHamUnited, ETeam::Brentford, 1760796000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 8, ETeam::Burnley, ETeam::Leeds, 1760796000000 });
-
-    // Week 9
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::AFCBournemouth, ETeam::NottinghamForest, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::AstonVilla, ETeam::ManchesterCity, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Leeds, ETeam::WestHamUnited, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::ManchesterUnited, ETeam::BrightonAndHoveAlbion, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Brentford, ETeam::Liverpool, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::NewcastleUnited, ETeam::Fulham, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Wolverhampton, ETeam::Burnley, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Everton, ETeam::TottenhamHotspur, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Arsenal, ETeam::CrystalPalace, 1761400800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 9, ETeam::Chelsea, ETeam::Sunderland, 1761400800000 });
-
-    // Week 10
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::Fulham, ETeam::Wolverhampton, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::CrystalPalace, ETeam::Brentford, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::Sunderland, ETeam::Everton, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::WestHamUnited, ETeam::NewcastleUnited, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::BrightonAndHoveAlbion, ETeam::Leeds, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::NottinghamForest, ETeam::ManchesterUnited, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::Burnley, ETeam::Arsenal, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::ManchesterCity, ETeam::AFCBournemouth, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::Liverpool, ETeam::AstonVilla, 1762005600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 10, ETeam::TottenhamHotspur, ETeam::Chelsea, 1762005600000 });
-
-    // Week 11
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::Everton, ETeam::Fulham, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::CrystalPalace, ETeam::BrightonAndHoveAlbion, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::Chelsea, ETeam::Wolverhampton, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::ManchesterCity, ETeam::Liverpool, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::Brentford, ETeam::NewcastleUnited, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::AstonVilla, ETeam::AFCBournemouth, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::WestHamUnited, ETeam::Burnley, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::TottenhamHotspur, ETeam::ManchesterUnited, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::Sunderland, ETeam::Arsenal, 1762610400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 11, ETeam::NottinghamForest, ETeam::Leeds, 1762610400000 });
-
-    // Week 12
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::BrightonAndHoveAlbion, ETeam::Brentford, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Burnley, ETeam::Chelsea, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Leeds, ETeam::AstonVilla, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Wolverhampton, ETeam::CrystalPalace, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::AFCBournemouth, ETeam::WestHamUnited, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Fulham, ETeam::Sunderland, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Arsenal, ETeam::TottenhamHotspur, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::ManchesterUnited, ETeam::Everton, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::Liverpool, ETeam::AstonVilla, 1762956000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 12, ETeam::NewcastleUnited, ETeam::ManchesterCity, 1762956000000 });
-
-    // Week 13
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::Chelsea, ETeam::Arsenal, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::Brentford, ETeam::Burnley, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::ManchesterCity, ETeam::Leeds, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::NottinghamForest, ETeam::BrightonAndHoveAlbion, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::AstonVilla, ETeam::Wolverhampton, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::WestHamUnited, ETeam::Liverpool, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::Everton, ETeam::NewcastleUnited, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::Sunderland, ETeam::AFCBournemouth, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::TottenhamHotspur, ETeam::Fulham, 1764424800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 13, ETeam::CrystalPalace, ETeam::ManchesterUnited, 1764424800000 });
-
-    // Week 14
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Wolverhampton, ETeam::NottinghamForest, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Arsenal, ETeam::Brentford, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::BrightonAndHoveAlbion, ETeam::AstonVilla, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Leeds, ETeam::Chelsea, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Burnley, ETeam::CrystalPalace, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::NewcastleUnited, ETeam::TottenhamHotspur, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::AFCBournemouth, ETeam::Everton, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Liverpool, ETeam::Sunderland, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::ManchesterUnited, ETeam::WestHamUnited, 1764856800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 14, ETeam::Fulham, ETeam::ManchesterCity, 1764856800000 });
-
-    // Week 15
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::NewcastleUnited, ETeam::Burnley, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::Fulham, ETeam::CrystalPalace, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::AFCBournemouth, ETeam::Chelsea, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::BrightonAndHoveAlbion, ETeam::WestHamUnited, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::Leeds, ETeam::Liverpool, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::TottenhamHotspur, ETeam::Brentford, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::Wolverhampton, ETeam::ManchesterUnited, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::ManchesterCity, ETeam::Sunderland, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::AstonVilla, ETeam::Arsenal, 1765029600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 15, ETeam::Everton, ETeam::NottinghamForest, 1765029600000 });
-
-    // Week 16
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Burnley, ETeam::Fulham, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Brentford, ETeam::Leeds, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Arsenal, ETeam::Wolverhampton, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Liverpool, ETeam::BrightonAndHoveAlbion, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::CrystalPalace, ETeam::ManchesterCity, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Chelsea, ETeam::Everton, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::ManchesterUnited, ETeam::AFCBournemouth, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::NottinghamForest, ETeam::TottenhamHotspur, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::WestHamUnited, ETeam::AstonVilla, 1765634400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 16, ETeam::Sunderland, ETeam::NewcastleUnited, 1765634400000 });
-
-    // Week 17
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::ManchesterCity, ETeam::WestHamUnited, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::Fulham, ETeam::NottinghamForest, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::AFCBournemouth, ETeam::Burnley, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::NewcastleUnited, ETeam::Chelsea, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::Everton, ETeam::Arsenal, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::Wolverhampton, ETeam::Brentford, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::BrightonAndHoveAlbion, ETeam::Sunderland, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::AstonVilla, ETeam::ManchesterUnited, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::Leeds, ETeam::CrystalPalace, 1766239200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 17, ETeam::TottenhamHotspur, ETeam::Liverpool, 1766239200000 });
-
-    // Week 18
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::CrystalPalace, ETeam::TottenhamHotspur, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Burnley, ETeam::Everton, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::WestHamUnited, ETeam::Fulham, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Sunderland, ETeam::Leeds, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Chelsea, ETeam::AstonVilla, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::NottinghamForest, ETeam::ManchesterCity, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::ManchesterUnited, ETeam::NewcastleUnited, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Brentford, ETeam::AFCBournemouth, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Liverpool, ETeam::Wolverhampton, 1766844000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 18, ETeam::Arsenal, ETeam::BrightonAndHoveAlbion, 1766844000000 });
-
-    // Week 19
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Sunderland, ETeam::ManchesterCity, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::CrystalPalace, ETeam::Fulham, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Liverpool, ETeam::Leeds, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Burnley, ETeam::NewcastleUnited, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::NottinghamForest, ETeam::Everton, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::WestHamUnited, ETeam::BrightonAndHoveAlbion, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Brentford, ETeam::TottenhamHotspur, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::ManchesterUnited, ETeam::Wolverhampton, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Chelsea, ETeam::AFCBournemouth, 1767189600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 19, ETeam::Arsenal, ETeam::AstonVilla, 1767189600000 });
-
-    // Week 20
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::Everton, ETeam::Brentford, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::Leeds, ETeam::ManchesterUnited, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::Wolverhampton, ETeam::WestHamUnited, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::Fulham, ETeam::Liverpool, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::AFCBournemouth, ETeam::Arsenal, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::NewcastleUnited, ETeam::CrystalPalace, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::TottenhamHotspur, ETeam::Sunderland, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::AstonVilla, ETeam::NottinghamForest, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::BrightonAndHoveAlbion, ETeam::Burnley, 1767448800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 20, ETeam::ManchesterCity, ETeam::Chelsea, 1767448800000 });
-
-    // Week 21
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::Arsenal, ETeam::Liverpool, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::Everton, ETeam::Wolverhampton, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::WestHamUnited, ETeam::NottinghamForest, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::NewcastleUnited, ETeam::Leeds, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::AFCBournemouth, ETeam::TottenhamHotspur, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::Brentford, ETeam::Sunderland, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::CrystalPalace, ETeam::AstonVilla, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::Fulham, ETeam::Chelsea, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::Burnley, ETeam::ManchesterUnited, 1767880800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 21, ETeam::ManchesterCity, ETeam::BrightonAndHoveAlbion, 1767880800000 });
-
-    // Week 22
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::Sunderland, ETeam::CrystalPalace, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::Wolverhampton, ETeam::NewcastleUnited, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::ManchesterUnited, ETeam::ManchesterCity, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::Leeds, ETeam::Fulham, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::Chelsea, ETeam::Brentford, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::AstonVilla, ETeam::Everton, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::BrightonAndHoveAlbion, ETeam::AFCBournemouth, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::TottenhamHotspur, ETeam::WestHamUnited, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::Liverpool, ETeam::Burnley, 1769090400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 22, ETeam::NottinghamForest, ETeam::Arsenal, 1769090400000 });
-
-    // Week 23
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::AFCBournemouth, ETeam::Liverpool, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::Fulham, ETeam::BrightonAndHoveAlbion, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::Burnley, ETeam::TottenhamHotspur, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::CrystalPalace, ETeam::Chelsea, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::ManchesterCity, ETeam::Wolverhampton, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::WestHamUnited, ETeam::Sunderland, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::Everton, ETeam::Leeds, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::NewcastleUnited, ETeam::AstonVilla, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::Arsenal, ETeam::ManchesterUnited, 1769263200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 23, ETeam::Brentford, ETeam::NottinghamForest, 1769263200000 });
-
-    // Week 24
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::Liverpool, ETeam::NewcastleUnited, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::AstonVilla, ETeam::Brentford, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::NottinghamForest, ETeam::CrystalPalace, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::TottenhamHotspur, ETeam::ManchesterCity, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::Chelsea, ETeam::WestHamUnited, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::ManchesterCity, ETeam::Fulham, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::Sunderland, ETeam::Burnley, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::Wolverhampton, ETeam::AFCBournemouth, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::BrightonAndHoveAlbion, ETeam::Everton, 1769868000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 24, ETeam::Leeds, ETeam::Arsenal, 1769868000000 });
-
-    // Week 25
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::AFCBournemouth, ETeam::AstonVilla, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::NewcastleUnited, ETeam::Brentford, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Fulham, ETeam::Everton, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Liverpool, ETeam::ManchesterCity, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Leeds, ETeam::NottinghamForest, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Burnley, ETeam::WestHamUnited, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::BrightonAndHoveAlbion, ETeam::CrystalPalace, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::ManchesterUnited, ETeam::TottenhamHotspur, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Wolverhampton, ETeam::Chelsea, 1770472800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 25, ETeam::Arsenal, ETeam::Sunderland, 1770472800000 });
-
-    // Week 26
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::Everton, ETeam::AFCBournemouth, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::NottinghamForest, ETeam::Wolverhampton, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::CrystalPalace, ETeam::Burnley, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::Chelsea, ETeam::Leeds, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::Brentford, ETeam::Arsenal, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::AstonVilla, ETeam::BrightonAndHoveAlbion, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::WestHamUnited, ETeam::ManchesterUnited, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::ManchesterCity, ETeam::Fulham, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::TottenhamHotspur, ETeam::NewcastleUnited, 1770904800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 26, ETeam::Sunderland, ETeam::Liverpool, 1770904800000 });
-
-    // Week 27
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::Everton, ETeam::ManchesterUnited, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::Brentford, ETeam::BrightonAndHoveAlbion, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::AstonVilla, ETeam::Leeds, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::WestHamUnited, ETeam::AFCBournemouth, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::CrystalPalace, ETeam::Wolverhampton, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::Chelsea, ETeam::Burnley, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::NottinghamForest, ETeam::Liverpool, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::ManchesterCity, ETeam::NewcastleUnited, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::TottenhamHotspur, ETeam::Arsenal, 1771682400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 27, ETeam::Sunderland, ETeam::Fulham, 1771682400000 });
-
-    // Week 28
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Fulham, ETeam::TottenhamHotspur, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Liverpool, ETeam::WestHamUnited, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::ManchesterUnited, ETeam::CrystalPalace, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::BrightonAndHoveAlbion, ETeam::NottinghamForest, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Burnley, ETeam::Brentford, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::AFCBournemouth, ETeam::Sunderland, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Wolverhampton, ETeam::AstonVilla, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::NewcastleUnited, ETeam::Everton, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Arsenal, ETeam::Chelsea, 1772287200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 28, ETeam::Leeds, ETeam::ManchesterCity, 1772287200000 });
-
-    // Week 29
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::TottenhamHotspur, ETeam::CrystalPalace, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::AstonVilla, ETeam::Chelsea, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::ManchesterCity, ETeam::NottinghamForest, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::AFCBournemouth, ETeam::Brentford, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::Leeds, ETeam::Sunderland, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::Wolverhampton, ETeam::Liverpool, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::BrightonAndHoveAlbion, ETeam::Arsenal, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::Everton, ETeam::Burnley, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::NewcastleUnited, ETeam::ManchesterUnited, 1772719200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 29, ETeam::Fulham, ETeam::WestHamUnited, 1772719200000 });
-
-    // Week 30
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Sunderland, ETeam::BrightonAndHoveAlbion, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::ManchesterUnited, ETeam::AstonVilla, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::CrystalPalace, ETeam::Leeds, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Burnley, ETeam::AFCBournemouth, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::WestHamUnited, ETeam::ManchesterCity, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Chelsea, ETeam::NewcastleUnited, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Liverpool, ETeam::TottenhamHotspur, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Brentford, ETeam::Wolverhampton, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::NottinghamForest, ETeam::Fulham, 1773496800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 30, ETeam::Arsenal, ETeam::Everton, 1773496800000 });
-
-    // Week 31
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::AFCBournemouth, ETeam::ManchesterUnited, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::Leeds, ETeam::Brentford, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::Fulham, ETeam::Burnley, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::BrightonAndHoveAlbion, ETeam::Liverpool, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::Wolverhampton, ETeam::Arsenal, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::TottenhamHotspur, ETeam::NottinghamForest, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::NewcastleUnited, ETeam::Sunderland, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::Everton, ETeam::Chelsea, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::AstonVilla, ETeam::WestHamUnited, 1774101600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 31, ETeam::ManchesterCity, ETeam::CrystalPalace, 1774101600000 });
-
-    // Week 32
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Sunderland, ETeam::TottenhamHotspur, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Brentford, ETeam::Everton, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::WestHamUnited, ETeam::Wolverhampton, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Arsenal, ETeam::AFCBournemouth, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::NottinghamForest, ETeam::AstonVilla, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Liverpool, ETeam::Fulham, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Burnley, ETeam::BrightonAndHoveAlbion, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::ManchesterUnited, ETeam::Leeds, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::CrystalPalace, ETeam::NewcastleUnited, 1775052000000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 32, ETeam::Chelsea, ETeam::ManchesterCity, 1775052000000 });
-
-    // Week 33
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::NottinghamForest, ETeam::Burnley, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::Brentford, ETeam::Fulham, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::TottenhamHotspur, ETeam::BrightonAndHoveAlbion, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::Leeds, ETeam::Wolverhampton, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::Everton, ETeam::Liverpool, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::NewcastleUnited, ETeam::AFCBournemouth, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::AstonVilla, ETeam::Sunderland, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::Chelsea, ETeam::ManchesterUnited, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::ManchesterCity, ETeam::Arsenal, 1776520800000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 33, ETeam::CrystalPalace, ETeam::WestHamUnited, 1776520800000 });
-
-    // Week 34
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::BrightonAndHoveAlbion, ETeam::Chelsea, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Fulham, ETeam::AstonVilla, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Liverpool, ETeam::CrystalPalace, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Arsenal, ETeam::NewcastleUnited, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::AFCBournemouth, ETeam::Leeds, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::WestHamUnited, ETeam::Everton, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Wolverhampton, ETeam::TottenhamHotspur, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::ManchesterUnited, ETeam::Brentford, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Sunderland, ETeam::NottinghamForest, 1777125600000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 34, ETeam::Burnley, ETeam::ManchesterCity, 1777125600000 });
-
-    // Week 35
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Leeds, ETeam::Burnley, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::ManchesterUnited, ETeam::Liverpool, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::AFCBournemouth, ETeam::CrystalPalace, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Wolverhampton, ETeam::Sunderland, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::NewcastleUnited, ETeam::BrightonAndHoveAlbion, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Brentford, ETeam::WestHamUnited, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Everton, ETeam::ManchesterCity, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Chelsea, ETeam::NottinghamForest, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::AstonVilla, ETeam::TottenhamHotspur, 1777730400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 35, ETeam::Arsenal, ETeam::Fulham, 1777730400000 });
-
-    // Week 36
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::WestHamUnited, ETeam::Arsenal, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::BrightonAndHoveAlbion, ETeam::Wolverhampton, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::NottinghamForest, ETeam::NewcastleUnited, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::Fulham, ETeam::AFCBournemouth, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::Sunderland, ETeam::ManchesterUnited, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::Burnley, ETeam::AstonVilla, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::TottenhamHotspur, ETeam::Leeds, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::CrystalPalace, ETeam::Everton, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::ManchesterCity, ETeam::Brentford, 1778335200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 36, ETeam::Liverpool, ETeam::Chelsea, 1778335200000 });
-
-    // Week 37
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Leeds, ETeam::BrightonAndHoveAlbion, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::ManchesterUnited, ETeam::NottinghamForest, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::AstonVilla, ETeam::Liverpool, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Arsenal, ETeam::Burnley, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::AFCBournemouth, ETeam::ManchesterCity, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Wolverhampton, ETeam::Fulham, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::NewcastleUnited, ETeam::WestHamUnited, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Chelsea, ETeam::TottenhamHotspur, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Brentford, ETeam::CrystalPalace, 1779026400000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 37, ETeam::Everton, ETeam::Sunderland, 1779026400000 });
-
-    // Week 38
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::BrightonAndHoveAlbion, ETeam::ManchesterUnited, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::Burnley, ETeam::Wolverhampton, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::WestHamUnited, ETeam::Leeds, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::Fulham, ETeam::NewcastleUnited, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::NottinghamForest, ETeam::AFCBournemouth, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::Liverpool, ETeam::Brentford, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::ManchesterCity, ETeam::AstonVilla, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::TottenhamHotspur, ETeam::Everton, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::Sunderland, ETeam::Chelsea, 1779631200000 });
-    matches.push_back({ ELeague::PremierLeague, "25/26", 38, ETeam::CrystalPalace, ETeam::Arsenal, 1779631200000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::AFCBournemouth, ETeam::Sunderland, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::Brentford, ETeam::Liverpool, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::BrightonAndHoveAlbion, ETeam::CrystalPalace, 1789758000000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::Everton, ETeam::Chelsea, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::Fulham, ETeam::Hull, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::Leeds, ETeam::ManchesterUnited, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::ManchesterCity, ETeam::IpswichTown, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::NewcastleUnited, ETeam::AstonVilla, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::NottinghamForest, ETeam::Arsenal, 1791658800000 });
+    matches.push_back({ ELeague::PremierLeague, "26/27", 7, ETeam::TottenhamHotspur, ETeam::Coventry, 1791658800000 });
 
     for (auto& m : matches)
     {
