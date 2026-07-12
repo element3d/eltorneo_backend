@@ -234,6 +234,13 @@ enum class ETeam
     Hull,
     PremierLeague2026End = Hull,
 
+    // LaLiga 2026
+    LaLiga2026Start,
+    Malaga = LaLiga2026Start,
+    RacingSantander,
+    DepCoruna,
+    LaLiga2026End = Hull,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

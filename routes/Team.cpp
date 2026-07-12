@@ -543,6 +543,15 @@ std::string Team::ToString(ETeam team)
         return "Coventry";
     case ETeam::Hull:
         return "Hull City";
+
+    // LaLIGA 26
+    case ETeam::Malaga:
+        return "Malaga";
+    case ETeam::RacingSantander:
+        return "Racing Santander";
+    case ETeam::DepCoruna:
+        return "Deportivo La Coruna";
+
     default:
         return "Unknown Team";
     }
@@ -1090,6 +1099,14 @@ std::string Team::ToShortString(ETeam team)
         return "Coventry";
     case ETeam::Hull:
         return "Hull City";
+
+    // LaLIGA 26
+    case ETeam::Malaga:
+        return "Malaga";
+    case ETeam::RacingSantander:
+        return "Racing";
+    case ETeam::DepCoruna:
+        return "Deportivo";
 
     default:
         return "Unknown Team";
