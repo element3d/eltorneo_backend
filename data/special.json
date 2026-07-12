@@ -257,7 +257,8 @@
         "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima",
         "eddy_vs_kazuya": "Eddy Gordo vs Kazuya",
         "jin_vs_law": "Jin Kazama vs Marshall Law",
-        "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo"
+        "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo",
+        "king_vs_jin": "King vs Jin Kazama"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -517,6 +518,7 @@
         "yoshi_vs_hei": "Yoshimitsu vs Heihachi Mishima",
         "eddy_vs_kazuya": "Eddy Gordo vs Kazuya",
         "jin_vs_law": "Jin Kazama vs Marshall Law",
-        "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo"
+        "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo",
+        "king_vs_jin": "King vs Jin Kazama"
     }
 }
