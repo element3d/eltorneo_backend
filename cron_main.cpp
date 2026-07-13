@@ -1910,8 +1910,7 @@ void GetMatchBets(PGconn* pg, int matchId, int apiId)
 void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 {
 	int rows = PQntuples(res);
-	std::string season = lId == 20 ? "2024": "2025";
-	if (lId == 24) season = "2026";
+	std::string season = "2026";
 	for (int i = 0; i < rows; ++i) 
 	{
 		int id = atoi(PQgetvalue(res, i, 0));
@@ -2010,7 +2009,7 @@ void ProcessMatchesForOdds(PGconn* pg, int lId, int w, PGresult* res)
 void ProcessLeagueMatches(PGconn* pg, int lId, int week)
 {
 	std::string sql = "SELECT id, team1, team2, match_date, api_id, week from matches where status = '' and league = " +
-		std::to_string(lId) + " AND week = " + std::to_string(week) + " AND season = '25/26';";
+		std::to_string(lId) + " AND week = " + std::to_string(week) + " AND (season = '25/26' OR season = '26/27');";
 	PGresult* res = PQexec(pg, sql.c_str());
 	ProcessMatchesForOdds(pg, lId, week, res);
 }
