@@ -50,7 +50,7 @@ public:
     static void InitLaLigaTable(PGconn* pg);
     static void FillLaLigaTable(PGconn* pg);
 
-    static void InitSerieATeams25_26(PGconn* pg);
+    static void InitSerieATeams26_27(PGconn* pg);
     static void InitSeriaATable(PGconn* pg);
     static void FillSeriaATable(PGconn* pg);
 
@@ -76,7 +76,7 @@ public:
 
     static void InitLigue125_26(PGconn* pg);
     static void InitBundesliga25_26(PGconn* pg);
-    static void InitSerieA25_26(PGconn* pg);
+    static void InitSerieA26_27(PGconn* pg);
     static void InitPremierLeague26_27(PGconn* pg);
     static void InitLaLiga26_27(PGconn* pg);
 

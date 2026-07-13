@@ -241,6 +241,11 @@ enum class ETeam
     DepCoruna,
     LaLiga2026End = DepCoruna,
 
+    // Seria A 2026
+    SerieA2026Start,
+    Frosinone = SerieA2026Start,
+    SerieA2026End = Frosinone,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

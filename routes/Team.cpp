@@ -552,6 +552,10 @@ std::string Team::ToString(ETeam team)
     case ETeam::DepCoruna:
         return "Deportivo La Coruna";
 
+    // LaLIGA 26
+    case ETeam::Frosinone:
+        return "Frosinone";
+
     default:
         return "Unknown Team";
     }
@@ -1107,6 +1111,10 @@ std::string Team::ToShortString(ETeam team)
         return "Racing";
     case ETeam::DepCoruna:
         return "Deportivo";
+
+    // LaLIGA 26
+    case ETeam::Frosinone:
+        return "Frosinone";
 
     default:
         return "Unknown Team";

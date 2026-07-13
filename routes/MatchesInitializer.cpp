@@ -1373,10 +1373,10 @@ void MatchesInitializer::FillLaLigaTable(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::LaLiga));
 }
 
-void MatchesInitializer::InitSerieATeams25_26(PGconn* pg)
+void MatchesInitializer::InitSerieATeams26_27(PGconn* pg)
 {
 
-    for (int i = (int)ETeam::SerieA2025Start; i <= (int)ETeam::SerieA2025End; ++i)
+    for (int i = (int)ETeam::SerieA2026Start; i <= (int)ETeam::SerieA2026End; ++i)
     {
         std::string sql = "insert into teams(id, name, short_name) values ("
             + std::to_string(i) + ", '"
@@ -1403,7 +1403,7 @@ void MatchesInitializer::InitSeriaATable(PGconn* pg)
         ETeam::Bologna,
         ETeam::Cagliari,
         ETeam::Como,
-        ETeam::Cremonese,
+        ETeam::Monza,
         ETeam::Fiorentina,
         ETeam::Genoa,
         ETeam::InterMilan,
@@ -1412,19 +1412,19 @@ void MatchesInitializer::InitSeriaATable(PGconn* pg)
         ETeam::Lecce,
         ETeam::Napoli,
         ETeam::Parma,
-        ETeam::Pisa,
+        ETeam::Frosinone,
         ETeam::Roma,
         ETeam::Sassuolo,
         ETeam::Torino,
         ETeam::Udinese,
-        ETeam::Verona
+        ETeam::Venezia
     };
     for (ETeam i : teams)
     {
         std::string sql = "insert into tables(team_id, league_id, season) values ("
             + std::to_string((int)i) + ", "
             + std::to_string(int(ELeague::SerieA)) + " ,'"
-            + "25/26"
+            + "26/27"
             + "');";
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -3515,464 +3515,93 @@ void MatchesInitializer::InitBundesliga25_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitSerieA25_26(PGconn* pg)
+void MatchesInitializer::InitSerieA26_27(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Sassuolo, ETeam::Napoli, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Genoa, ETeam::Lecce, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::ACMilan, ETeam::Cremonese, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Roma, ETeam::Bologna, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Cagliari, ETeam::Fiorentina, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Como, ETeam::Lazio, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Juventus, ETeam::Parma, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Atalanta, ETeam::Pisa, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::Udinese, ETeam::Verona, 1755966600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 1, ETeam::InterMilan, ETeam::Torino, 1755966600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::InterMilan, ETeam::Monza, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Udinese, ETeam::Como, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Genoa, ETeam::Napoli, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Parma, ETeam::Cagliari, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Frosinone, ETeam::Juventus, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Venezia, ETeam::Lecce, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Atalanta, ETeam::Sassuolo, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Torino, ETeam::ACMilan, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Bologna, ETeam::Lazio, 1787416200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 1, ETeam::Roma, ETeam::Fiorentina, 1787416200000 });
 
     // Week 2
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Cremonese, ETeam::Sassuolo, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Lecce, ETeam::ACMilan, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Bologna, ETeam::Como, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Parma, ETeam::Atalanta, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Napoli, ETeam::Cagliari, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Pisa, ETeam::Roma, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Torino, ETeam::Fiorentina, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Genoa, ETeam::Juventus, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::InterMilan, ETeam::Udinese, 1756485000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 2, ETeam::Lazio, ETeam::Verona, 1756485000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::ACMilan, ETeam::Venezia, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Fiorentina, ETeam::Frosinone, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Monza, ETeam::Udinese, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Sassuolo, ETeam::Torino, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Juventus, ETeam::Parma, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Napoli, ETeam::Como, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Cagliari, ETeam::InterMilan, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Lazio, ETeam::Genoa, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Lecce, ETeam::Roma, 1787934600000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 2, ETeam::Atalanta, ETeam::Bologna, 1787934600000 });
 
     // Week 3
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Cagliari, ETeam::Parma, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Juventus, ETeam::InterMilan, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Fiorentina, ETeam::Napoli, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Roma, ETeam::Torino, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Pisa, ETeam::Udinese, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Atalanta, ETeam::Lecce, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Sassuolo, ETeam::Lazio, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::ACMilan, ETeam::Bologna, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Verona, ETeam::Cremonese, 1757781000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 3, ETeam::Como, ETeam::Genoa, 1757781000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Genoa, ETeam::Como, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Fiorentina, ETeam::Torino, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::InterMilan, ETeam::Napoli, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Roma, ETeam::Atalanta, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Frosinone, ETeam::Venezia, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Parma, ETeam::Monza, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Bologna, ETeam::Sassuolo, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Juventus, ETeam::ACMilan, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Cagliari, ETeam::Lecce, 1788539400000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 3, ETeam::Udinese, ETeam::Lazio, 1788539400000 });
 
     // Week 4
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Lecce, ETeam::Cagliari, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Torino, ETeam::Atalanta, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Fiorentina, ETeam::Como, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Udinese, ETeam::ACMilan, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Cremonese, ETeam::Parma, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Verona, ETeam::Juventus, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Lazio, ETeam::Roma, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Bologna, ETeam::Genoa, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::Napoli, ETeam::Pisa, 1758472200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 4, ETeam::InterMilan, ETeam::Sassuolo, 1758472200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Venezia, ETeam::Fiorentina, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Genoa, ETeam::Frosinone, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Sassuolo, ETeam::Juventus, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Atalanta, ETeam::Cagliari, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Torino, ETeam::Roma, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Como, ETeam::Parma, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Lecce, ETeam::Monza, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Napoli, ETeam::Bologna, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::Lazio, ETeam::ACMilan, 1789144200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 4, ETeam::InterMilan, ETeam::Udinese, 1789144200000 });
 
     // Week 5
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Roma, ETeam::Verona, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Cagliari, ETeam::InterMilan, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Como, ETeam::Cremonese, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Parma, ETeam::Torino, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Lecce, ETeam::Bologna, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Genoa, ETeam::Lazio, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::ACMilan, ETeam::Napoli, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Juventus, ETeam::Atalanta, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Pisa, ETeam::Fiorentina, 1759077000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 5, ETeam::Sassuolo, ETeam::Udinese, 1759077000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Monza, ETeam::Sassuolo, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Bologna, ETeam::Torino, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Udinese, ETeam::Cagliari, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Roma, ETeam::InterMilan, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Venezia, ETeam::Lazio, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Fiorentina, ETeam::Napoli, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Frosinone, ETeam::Como, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Parma, ETeam::Genoa, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::Juventus, ETeam::Atalanta, 1789749000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 5, ETeam::ACMilan, ETeam::Lecce, 1789749000000 });
 
     // Week 6
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Napoli, ETeam::Genoa, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Lazio, ETeam::Torino, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Bologna, ETeam::Pisa, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Udinese, ETeam::Cagliari, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Verona, ETeam::Sassuolo, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::InterMilan, ETeam::Cremonese, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Juventus, ETeam::ACMilan, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Fiorentina, ETeam::Roma, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Atalanta, ETeam::Como, 1759681800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 6, ETeam::Parma, ETeam::Lecce, 1759681800000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Atalanta, ETeam::Venezia, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Cagliari, ETeam::Juventus, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Como, ETeam::Roma, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Genoa, ETeam::Fiorentina, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::InterMilan, ETeam::Parma, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Lazio, ETeam::Monza, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Lecce, ETeam::Bologna, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Napoli, ETeam::Frosinone, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Sassuolo, ETeam::ACMilan, 1791736200000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 6, ETeam::Torino, ETeam::Udinese, 1791736200000 });
 
     // Week 7
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Torino, ETeam::Napoli, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Genoa, ETeam::Parma, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Cagliari, ETeam::Bologna, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::ACMilan, ETeam::Fiorentina, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Atalanta, ETeam::Lazio, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Cremonese, ETeam::Udinese, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Como, ETeam::Juventus, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Roma, ETeam::InterMilan, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Pisa, ETeam::Verona, 1760886000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 7, ETeam::Lecce, ETeam::Sassuolo, 1760886000000 });
-
-    // Week 8
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Parma, ETeam::Como, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Fiorentina, ETeam::Bologna, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Sassuolo, ETeam::Roma, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Verona, ETeam::Cagliari, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Cremonese, ETeam::Atalanta, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Napoli, ETeam::InterMilan, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Torino, ETeam::Genoa, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Udinese, ETeam::Lecce, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::Lazio, ETeam::Juventus, 1761490800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 8, ETeam::ACMilan, ETeam::Pisa, 1761490800000 });
-
-    // Week 9
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Roma, ETeam::Parma, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Genoa, ETeam::Cremonese, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Cagliari, ETeam::Sassuolo, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Bologna, ETeam::Torino, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Juventus, ETeam::Udinese, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::InterMilan, ETeam::Fiorentina, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Pisa, ETeam::Lazio, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Lecce, ETeam::Napoli, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Como, ETeam::Verona, 1761750000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 9, ETeam::Atalanta, ETeam::ACMilan, 1761750000000 });
-
-    // Week 10
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Lazio, ETeam::Cagliari, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Udinese, ETeam::Atalanta, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Fiorentina, ETeam::Lecce, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Torino, ETeam::Pisa, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Verona, ETeam::InterMilan, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Parma, ETeam::Bologna, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::ACMilan, ETeam::Roma, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Napoli, ETeam::Como, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Sassuolo, ETeam::Genoa, 1762095600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 10, ETeam::Cremonese, ETeam::Juventus, 1762095600000 });
-
-    // Week 11
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Como, ETeam::Cagliari, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Atalanta, ETeam::Sassuolo, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Genoa, ETeam::Fiorentina, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::InterMilan, ETeam::Lazio, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Parma, ETeam::ACMilan, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Bologna, ETeam::Napoli, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Roma, ETeam::Udinese, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Pisa, ETeam::Cremonese, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Lecce, ETeam::Verona, 1762700400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 11, ETeam::Juventus, ETeam::Torino, 1762700400000 });
-
-    // Week 12
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Napoli, ETeam::Atalanta, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Cremonese, ETeam::Roma, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Sassuolo, ETeam::Pisa, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Udinese, ETeam::Bologna, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Cagliari, ETeam::Genoa, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::InterMilan, ETeam::ACMilan, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Fiorentina, ETeam::Juventus, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Verona, ETeam::Parma, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Lazio, ETeam::Lecce, 1763910000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 12, ETeam::Torino, ETeam::Como, 1763910000000 });
-
-    // Week 13
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Juventus, ETeam::Cagliari, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Roma, ETeam::Napoli, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::ACMilan, ETeam::Lazio, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Como, ETeam::Sassuolo, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Genoa, ETeam::Verona, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Bologna, ETeam::Cremonese, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Pisa, ETeam::InterMilan, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Atalanta, ETeam::Fiorentina, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Parma, ETeam::Udinese, 1764514800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 13, ETeam::Lecce, ETeam::Torino, 1764514800000 });
-
-    // Week 14
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Verona, ETeam::Atalanta, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Udinese, ETeam::Genoa, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Pisa, ETeam::Parma, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Cremonese, ETeam::Lecce, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Napoli, ETeam::Juventus, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Sassuolo, ETeam::Fiorentina, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Cagliari, ETeam::Roma, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Torino, ETeam::ACMilan, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::Lazio, ETeam::Bologna, 1765119600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 14, ETeam::InterMilan, ETeam::Como, 1765119600000 });
-
-    // Week 15
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Udinese, ETeam::Napoli, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Lecce, ETeam::Pisa, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Torino, ETeam::Cremonese, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Fiorentina, ETeam::Verona, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Atalanta, ETeam::Cagliari, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Parma, ETeam::Lazio, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Roma, ETeam::Como, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Genoa, ETeam::InterMilan, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::ACMilan, ETeam::Sassuolo, 1765724400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 15, ETeam::Bologna, ETeam::Juventus, 1765724400000 });
-
-    // Week 16
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Fiorentina, ETeam::Udinese, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Verona, ETeam::Bologna, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Genoa, ETeam::Atalanta, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::InterMilan, ETeam::Lecce, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Napoli, ETeam::Parma, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Cagliari, ETeam::Pisa, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Como, ETeam::ACMilan, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Sassuolo, ETeam::Torino, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Lazio, ETeam::Cremonese, 1766329200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 16, ETeam::Juventus, ETeam::Roma, 1766329200000 });
-
-    // Week 17
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Cremonese, ETeam::Napoli, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Torino, ETeam::Cagliari, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Bologna, ETeam::Sassuolo, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Atalanta, ETeam::InterMilan, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Pisa, ETeam::Juventus, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Lecce, ETeam::Como, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Udinese, ETeam::Lazio, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Parma, ETeam::Fiorentina, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::ACMilan, ETeam::Verona, 1766934000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 17, ETeam::Roma, ETeam::Genoa, 1766934000000 });
-
-    // Week 18
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Juventus, ETeam::Lecce, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Sassuolo, ETeam::Parma, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Atalanta, ETeam::Roma, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::InterMilan, ETeam::Bologna, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Genoa, ETeam::Pisa, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Como, ETeam::Udinese, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Verona, ETeam::Torino, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Fiorentina, ETeam::Cremonese, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Lazio, ETeam::Napoli, 1767452400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 18, ETeam::Cagliari, ETeam::ACMilan, 1767452400000 });
-
-    // Week 19
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Sassuolo, ETeam::Juventus, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Cremonese, ETeam::Cagliari, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Lazio, ETeam::Fiorentina, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Lecce, ETeam::Roma, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Parma, ETeam::InterMilan, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::ACMilan, ETeam::Genoa, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Pisa, ETeam::Como, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Torino, ETeam::Udinese, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Bologna, ETeam::Atalanta, 1767711600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 19, ETeam::Napoli, ETeam::Verona, 1767711600000 });
-
-    // Week 20
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Genoa, ETeam::Cagliari, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Fiorentina, ETeam::ACMilan, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Juventus, ETeam::Cremonese, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Roma, ETeam::Sassuolo, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Verona, ETeam::Lazio, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Udinese, ETeam::Pisa, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Como, ETeam::Bologna, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::InterMilan, ETeam::Napoli, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Lecce, ETeam::Parma, 1768143600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 20, ETeam::Atalanta, ETeam::Torino, 1768143600000 });
-
-    // Week 21
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Cremonese, ETeam::Verona, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Parma, ETeam::Genoa, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Pisa, ETeam::Atalanta, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Torino, ETeam::Roma, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Udinese, ETeam::InterMilan, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Bologna, ETeam::Fiorentina, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Lazio, ETeam::Como, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Napoli, ETeam::Sassuolo, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::ACMilan, ETeam::Lecce, 1768748400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 21, ETeam::Cagliari, ETeam::Juventus, 1768748400000 });
-
-    // Week 22
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Genoa, ETeam::Bologna, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Juventus, ETeam::Napoli, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Roma, ETeam::ACMilan, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Lecce, ETeam::Lazio, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Atalanta, ETeam::Parma, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Fiorentina, ETeam::Cagliari, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::InterMilan, ETeam::Pisa, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Sassuolo, ETeam::Cremonese, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Verona, ETeam::Udinese, 1769353200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 22, ETeam::Como, ETeam::Torino, 1769353200000 });
-
-    // Week 23
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Udinese, ETeam::Roma, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Como, ETeam::Atalanta, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Torino, ETeam::Lecce, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Cagliari, ETeam::Verona, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Cremonese, ETeam::InterMilan, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Parma, ETeam::Juventus, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Pisa, ETeam::Sassuolo, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Lazio, ETeam::Genoa, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Bologna, ETeam::ACMilan, 1769958000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 23, ETeam::Napoli, ETeam::Fiorentina, 1769958000000 });
-
-    // Week 24
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Juventus, ETeam::Lazio, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Roma, ETeam::Cagliari, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Fiorentina, ETeam::Torino, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Lecce, ETeam::Udinese, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Bologna, ETeam::Parma, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::ACMilan, ETeam::Como, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Verona, ETeam::Pisa, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Sassuolo, ETeam::InterMilan, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Atalanta, ETeam::Cremonese, 1770562800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 24, ETeam::Genoa, ETeam::Napoli, 1770562800000 });
-
-    // Week 25
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Torino, ETeam::Bologna, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Cremonese, ETeam::Genoa, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Napoli, ETeam::Roma, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::InterMilan, ETeam::Juventus, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Lazio, ETeam::Atalanta, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Como, ETeam::Fiorentina, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Pisa, ETeam::ACMilan, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Parma, ETeam::Verona, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Udinese, ETeam::Sassuolo, 1771167600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 25, ETeam::Cagliari, ETeam::Lecce, 1771167600000 });
-
-    // Week 26
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Genoa, ETeam::Torino, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Juventus, ETeam::Como, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Roma, ETeam::Cremonese, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::ACMilan, ETeam::Parma, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Cagliari, ETeam::Lazio, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Sassuolo, ETeam::Verona, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Lecce, ETeam::InterMilan, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Bologna, ETeam::Udinese, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Fiorentina, ETeam::Pisa, 1771772400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 26, ETeam::Atalanta, ETeam::Napoli, 1771772400000 });
-
-    // Week 27
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Torino, ETeam::Lazio, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Verona, ETeam::Napoli, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Como, ETeam::Lecce, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Pisa, ETeam::Bologna, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Parma, ETeam::Cagliari, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Roma, ETeam::Juventus, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Sassuolo, ETeam::Atalanta, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Cremonese, ETeam::ACMilan, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::Udinese, ETeam::Fiorentina, 1772377200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 27, ETeam::InterMilan, ETeam::Genoa, 1772377200000 });
-
-    // Week 28
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Cagliari, ETeam::Como, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Genoa, ETeam::Roma, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Napoli, ETeam::Torino, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Lazio, ETeam::Sassuolo, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Juventus, ETeam::Pisa, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Lecce, ETeam::Cremonese, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Atalanta, ETeam::Udinese, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Bologna, ETeam::Verona, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::ACMilan, ETeam::InterMilan, 1772982000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 28, ETeam::Fiorentina, ETeam::Parma, 1772982000000 });
-
-    // Week 29
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Verona, ETeam::Genoa, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Cremonese, ETeam::Fiorentina, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Napoli, ETeam::Lecce, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::InterMilan, ETeam::Atalanta, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Pisa, ETeam::Cagliari, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Lazio, ETeam::ACMilan, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Sassuolo, ETeam::Bologna, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Udinese, ETeam::Juventus, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Torino, ETeam::Parma, 1773586800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 29, ETeam::Como, ETeam::Roma, 1773586800000 });
-
-    // Week 30
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::ACMilan, ETeam::Torino, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Atalanta, ETeam::Verona, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Bologna, ETeam::Lazio, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Cagliari, ETeam::Napoli, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Genoa, ETeam::Udinese, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Parma, ETeam::Cremonese, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Juventus, ETeam::Sassuolo, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Como, ETeam::Pisa, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Roma, ETeam::Lecce, 1774191600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 30, ETeam::Fiorentina, ETeam::InterMilan, 1774191600000 });
-
-    // Week 31
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Cremonese, ETeam::Bologna, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Sassuolo, ETeam::Cagliari, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Udinese, ETeam::Como, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::InterMilan, ETeam::Roma, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Lecce, ETeam::Atalanta, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Lazio, ETeam::Parma, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Verona, ETeam::Fiorentina, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Napoli, ETeam::ACMilan, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Pisa, ETeam::Torino, 1775314800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 31, ETeam::Juventus, ETeam::Genoa, 1775314800000 });
-
-    // Week 32
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Cagliari, ETeam::Cremonese, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Roma, ETeam::Pisa, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Genoa, ETeam::Sassuolo, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Fiorentina, ETeam::Lazio, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Parma, ETeam::Napoli, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Como, ETeam::InterMilan, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Torino, ETeam::Verona, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::ACMilan, ETeam::Udinese, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Atalanta, ETeam::Juventus, 1776006000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 32, ETeam::Bologna, ETeam::Lecce, 1776006000000 });
-
-    // Week 33
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Sassuolo, ETeam::Como, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Pisa, ETeam::Genoa, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Verona, ETeam::ACMilan, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Juventus, ETeam::Bologna, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Lecce, ETeam::Fiorentina, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Udinese, ETeam::Parma, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Cremonese, ETeam::Torino, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::InterMilan, ETeam::Cagliari, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Roma, ETeam::Atalanta, 1776610800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 33, ETeam::Napoli, ETeam::Lazio, 1776610800000 });
-
-    // Week 34
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Torino, ETeam::InterMilan, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Parma, ETeam::Pisa, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Genoa, ETeam::Como, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Bologna, ETeam::Roma, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::ACMilan, ETeam::Juventus, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Fiorentina, ETeam::Sassuolo, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Verona, ETeam::Lecce, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Napoli, ETeam::Cremonese, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Lazio, ETeam::Udinese, 1777215600000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 34, ETeam::Cagliari, ETeam::Atalanta, 1777215600000 });
-
-    // Week 35
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Atalanta, ETeam::Genoa, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Pisa, ETeam::Lecce, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Como, ETeam::Napoli, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::InterMilan, ETeam::Parma, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Sassuolo, ETeam::ACMilan, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Bologna, ETeam::Cagliari, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Udinese, ETeam::Torino, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Roma, ETeam::Fiorentina, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Juventus, ETeam::Verona, 1777820400000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 35, ETeam::Cremonese, ETeam::Lazio, 1777820400000 });
-
-    // Week 36
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Napoli, ETeam::Bologna, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Verona, ETeam::Como, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::ACMilan, ETeam::Atalanta, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Lecce, ETeam::Juventus, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Cagliari, ETeam::Udinese, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Cremonese, ETeam::Pisa, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Fiorentina, ETeam::Genoa, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Torino, ETeam::Sassuolo, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Lazio, ETeam::InterMilan, 1778425200000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 36, ETeam::Parma, ETeam::Roma, 1778425200000 });
-
-    // Week 37
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Sassuolo, ETeam::Lecce, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Juventus, ETeam::Fiorentina, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Pisa, ETeam::Napoli, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Atalanta, ETeam::Bologna, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Udinese, ETeam::Cremonese, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Roma, ETeam::Lazio, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::InterMilan, ETeam::Verona, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Como, ETeam::Parma, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Cagliari, ETeam::Torino, 1779030000000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 37, ETeam::Genoa, ETeam::ACMilan, 1779030000000 });
-
-    // Week 38
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Cremonese, ETeam::Como, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Napoli, ETeam::Udinese, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Bologna, ETeam::InterMilan, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Lazio, ETeam::Pisa, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Parma, ETeam::Sassuolo, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Verona, ETeam::Roma, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Fiorentina, ETeam::Atalanta, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Lecce, ETeam::Genoa, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::ACMilan, ETeam::Cagliari, 1779634800000 });
-    matches.push_back({ ELeague::SerieA, "25/26", 38, ETeam::Torino, ETeam::Juventus, 1779634800000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::ACMilan, ETeam::Atalanta, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Roma, ETeam::Genoa, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Bologna, ETeam::InterMilan, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Fiorentina, ETeam::Como, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Frosinone, ETeam::Sassuolo, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Juventus, ETeam::Lazio, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Monza, ETeam::Cagliari, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Parma, ETeam::Torino, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Udinese, ETeam::Lecce, 1792341000000 });
+    matches.push_back({ ELeague::SerieA, "26/27", 7, ETeam::Venezia, ETeam::Napoli, 1792341000000 });
+   
 
     for (auto& m : matches)
     {
