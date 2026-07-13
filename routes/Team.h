@@ -253,6 +253,12 @@ enum class ETeam
     Pederborn,
     Bundesliga2026End = Pederborn,
 
+    // Ligue 1 2026
+    Ligue12026Start,
+    LeMans = Ligue12026Start,
+    Troyes,
+    Ligue12026End = Troyes,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

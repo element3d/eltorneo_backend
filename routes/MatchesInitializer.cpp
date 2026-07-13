@@ -1497,9 +1497,9 @@ void MatchesInitializer::FillBundesligaTable(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitLigue1Teams25_26(PGconn* pg)
+void MatchesInitializer::InitLigue1Teams26_27(PGconn* pg)
 {
-    for (int i = (int)ETeam::Ligue12025Start; i <= (int)ETeam::Ligue12025End; ++i)
+    for (int i = (int)ETeam::Ligue12026Start; i <= (int)ETeam::Ligue12026End; ++i)
     {
         std::string sql = "insert into teams(id, name, short_name) values ("
             + std::to_string(i) + ", '"
@@ -2357,9 +2357,9 @@ void MatchesInitializer::InitLigue1Table(PGconn* pg)
         ETeam::Lorient,
         ETeam::Lyon,
         ETeam::Marseille,
-        ETeam::Metz,
+        ETeam::LeMans,
         ETeam::Monaco,
-        ETeam::Nantes,
+        ETeam::Troyes,
         ETeam::Nice,
         ETeam::PSG,
         ETeam::ParisFC,
@@ -2372,7 +2372,7 @@ void MatchesInitializer::InitLigue1Table(PGconn* pg)
         std::string sql = "insert into tables(team_id, league_id, season) values ("
             + std::to_string(int(i)) + ", "
             + std::to_string(int(ELeague::Ligue1)) + " ,'"
-            + "25/26"
+            + "26/27"
             + "');";
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -2731,382 +2731,86 @@ void MatchesInitializer::InitChampionsLeague25_26(PGconn* pg)
 }
 
 
-void MatchesInitializer::InitLigue125_26(PGconn* pg)
+void MatchesInitializer::InitLigue126_27(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Nantes, ETeam::PSG, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Brest, ETeam::Lille, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Monaco, ETeam::LeHavre, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Auxerre, ETeam::Lorient, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Metz, ETeam::Strasbourg, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Rennes, ETeam::Marseille, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Angers, ETeam::ParisFC, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Lens, ETeam::Lyon, 1755442800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 1, ETeam::Nice, ETeam::Toulouse, 1755442800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Marseille, ETeam::Strasbourg, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Lens, ETeam::Auxerre, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::LeMans, ETeam::Brest, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Nice, ETeam::Lorient, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Toulouse, ETeam::Lyon, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Troyes, ETeam::ParisFC, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::Angers, ETeam::Lille, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::LeHavre, ETeam::Monaco, 1787329800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 1, ETeam::PSG, ETeam::Rennes, 1787329800000 });
 
     // Week 2
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Toulouse, ETeam::Brest, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Lorient, ETeam::Rennes, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Lille, ETeam::Monaco, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Nice, ETeam::Auxerre, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::PSG, ETeam::Angers, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Strasbourg, ETeam::Nantes, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::LeHavre, ETeam::Lens, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Lyon, ETeam::Metz, 1756047600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 2, ETeam::Marseille, ETeam::ParisFC, 1756047600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Lille, ETeam::PSG, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Strasbourg, ETeam::Lens, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Auxerre, ETeam::Angers, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Brest, ETeam::Toulouse, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Lorient, ETeam::Troyes, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Lyon, ETeam::LeHavre, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::ParisFC, ETeam::Nice, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Rennes, ETeam::LeMans, 1787934600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 2, ETeam::Monaco, ETeam::Marseille, 1787934600000 });
 
     // Week 3
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Toulouse, ETeam::PSG, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::LeHavre, ETeam::Nice, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Lyon, ETeam::Marseille, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Nantes, ETeam::Auxerre, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Lens, ETeam::Brest, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Lorient, ETeam::Lille, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Angers, ETeam::Rennes, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::Monaco, ETeam::Strasbourg, 1756652400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 3, ETeam::ParisFC, ETeam::Metz, 1756652400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Angers, ETeam::Rennes, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::LeHavre, ETeam::Brest, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Lens, ETeam::Lorient, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Lyon, ETeam::Auxerre, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Marseille, ETeam::ParisFC, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Nice, ETeam::LeMans, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::PSG, ETeam::Monaco, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Toulouse, ETeam::Lille, 1788625800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 3, ETeam::Troyes, ETeam::Strasbourg, 1788625800000 });
 
     // Week 4
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Brest, ETeam::ParisFC, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Marseille, ETeam::Lorient, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Metz, ETeam::Angers, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Strasbourg, ETeam::LeHavre, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Lille, ETeam::Toulouse, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::PSG, ETeam::Lens, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Rennes, ETeam::Lyon, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Auxerre, ETeam::Monaco, 1757862000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 4, ETeam::Nice, ETeam::Nantes, 1757862000000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Auxerre, ETeam::Nice, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Brest, ETeam::PSG, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::LeHavre, ETeam::Angers, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::LeMans, ETeam::Lens, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Lille, ETeam::Troyes, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Lorient, ETeam::Toulouse, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::ParisFC, ETeam::Lyon, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Rennes, ETeam::Marseille, 1789230600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 4, ETeam::Strasbourg, ETeam::Monaco, 1789230600000 });
 
     // Week 5
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Auxerre, ETeam::Toulouse, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Monaco, ETeam::Metz, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Lyon, ETeam::Angers, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::LeHavre, ETeam::Lorient, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Brest, ETeam::Nice, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Lens, ETeam::Lille, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Marseille, ETeam::PSG, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::Nantes, ETeam::Rennes, 1758466800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 5, ETeam::ParisFC, ETeam::Strasbourg, 1758466800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Angers, ETeam::Troyes, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Auxerre, ETeam::Brest, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::LeMans, ETeam::Lorient, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Lyon, ETeam::Rennes, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Monaco, ETeam::Lens, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Nice, ETeam::Lille, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::ParisFC, ETeam::Strasbourg, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Toulouse, ETeam::LeHavre, 1789835400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 5, ETeam::Marseille, ETeam::PSG, 1789835400000 });
 
     // Week 6
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Rennes, ETeam::Lens, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Nice, ETeam::ParisFC, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Strasbourg, ETeam::Marseille, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Angers, ETeam::Brest, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Lille, ETeam::Lyon, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Metz, ETeam::LeHavre, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Toulouse, ETeam::Nantes, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::Lorient, ETeam::Monaco, 1759071600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 6, ETeam::PSG, ETeam::Auxerre, 1759071600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Brest, ETeam::Angers, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Lens, ETeam::Lyon, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Lille, ETeam::LeHavre, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Lorient, ETeam::ParisFC, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Monaco, ETeam::Toulouse, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Nice, ETeam::Strasbourg, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::PSG, ETeam::LeMans, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Rennes, ETeam::Auxerre, 1791649800000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 6, ETeam::Troyes, ETeam::Marseille, 1791649800000 });
 
     // Week 7
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Lyon, ETeam::Toulouse, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Lille, ETeam::PSG, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Auxerre, ETeam::Lens, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Strasbourg, ETeam::Angers, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::LeHavre, ETeam::Rennes, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Metz, ETeam::Marseille, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Brest, ETeam::Nantes, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::Monaco, ETeam::Nice, 1759676400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 7, ETeam::ParisFC, ETeam::Lorient, 1759676400000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Angers, ETeam::Marseille, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::LeHavre, ETeam::Auxerre, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::LeMans, ETeam::Toulouse, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Lille, ETeam::Brest, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Lorient, ETeam::Monaco, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Lyon, ETeam::Nice, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::ParisFC, ETeam::Rennes, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Strasbourg, ETeam::PSG, 1792254600000 });
+    matches.push_back({ ELeague::Ligue1, "26/27", 7, ETeam::Troyes, ETeam::Lens, 1792254600000 });
 
-    // Week 8
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::PSG, ETeam::Strasbourg, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Nantes, ETeam::Lille, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Marseille, ETeam::LeHavre, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Lorient, ETeam::Brest, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Rennes, ETeam::Auxerre, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Angers, ETeam::Monaco, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Toulouse, ETeam::Metz, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Lens, ETeam::ParisFC, 1760886000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 8, ETeam::Nice, ETeam::Lyon, 1760886000000 });
-
-    // Week 9
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Lyon, ETeam::Strasbourg, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Lens, ETeam::Marseille, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Auxerre, ETeam::LeHavre, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Monaco, ETeam::Toulouse, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Lille, ETeam::Metz, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Brest, ETeam::PSG, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Rennes, ETeam::Nice, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::Angers, ETeam::Lorient, 1761490800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 9, ETeam::ParisFC, ETeam::Nantes, 1761490800000 });
-
-    // Week 10
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::LeHavre, ETeam::Brest, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::ParisFC, ETeam::Lyon, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Toulouse, ETeam::Rennes, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Marseille, ETeam::Angers, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Lorient, ETeam::PSG, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Nice, ETeam::Lille, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Nantes, ETeam::Monaco, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Strasbourg, ETeam::Auxerre, 1761750000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 10, ETeam::Metz, ETeam::Lens, 1761750000000 });
-
-    // Week 11
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Nantes, ETeam::Metz, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Toulouse, ETeam::LeHavre, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Lille, ETeam::Angers, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::PSG, ETeam::Nice, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Monaco, ETeam::ParisFC, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Brest, ETeam::Lyon, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Lens, ETeam::Lorient, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Auxerre, ETeam::Marseille, 1762095600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 11, ETeam::Rennes, ETeam::Strasbourg, 1762095600000 });
-
-    // Week 12
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Marseille, ETeam::Brest, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Angers, ETeam::Auxerre, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Lorient, ETeam::Toulouse, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Lyon, ETeam::PSG, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Metz, ETeam::Nice, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Monaco, ETeam::Lens, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::ParisFC, ETeam::Rennes, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::LeHavre, ETeam::Nantes, 1762700400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 12, ETeam::Strasbourg, ETeam::Lille, 1762700400000 });
-
-    // Week 13
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Lille, ETeam::ParisFC, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Toulouse, ETeam::Angers, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Nantes, ETeam::Lorient, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::PSG, ETeam::LeHavre, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Rennes, ETeam::Monaco, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Lens, ETeam::Strasbourg, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Brest, ETeam::Metz, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Auxerre, ETeam::Lyon, 1763910000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 13, ETeam::Nice, ETeam::Marseille, 1763910000000 });
-
-    // Week 14
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Angers, ETeam::Lens, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Lorient, ETeam::Nice, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Lyon, ETeam::Nantes, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Marseille, ETeam::Toulouse, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Monaco, ETeam::PSG, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Metz, ETeam::Rennes, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::LeHavre, ETeam::Lille, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::Strasbourg, ETeam::Brest, 1764514800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 14, ETeam::ParisFC, ETeam::Auxerre, 1764514800000 });
-
-    // Week 15
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Nice, ETeam::Angers, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Toulouse, ETeam::Strasbourg, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Lorient, ETeam::Lyon, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Auxerre, ETeam::Metz, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::PSG, ETeam::Rennes, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Lille, ETeam::Marseille, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::LeHavre, ETeam::ParisFC, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Brest, ETeam::Monaco, 1765119600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 15, ETeam::Nantes, ETeam::Lens, 1765119600000 });
-
-    // Week 16
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Angers, ETeam::Nantes, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Strasbourg, ETeam::Lorient, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Lyon, ETeam::LeHavre, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Rennes, ETeam::Brest, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Marseille, ETeam::Monaco, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Lens, ETeam::Nice, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Metz, ETeam::PSG, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::Auxerre, ETeam::Lille, 1765724400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 16, ETeam::ParisFC, ETeam::Toulouse, 1765724400000 });
-
-    // Week 17
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Lorient, ETeam::Metz, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Marseille, ETeam::Nantes, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::PSG, ETeam::ParisFC, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Brest, ETeam::Auxerre, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Monaco, ETeam::Lyon, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Lille, ETeam::Rennes, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::LeHavre, ETeam::Angers, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Nice, ETeam::Strasbourg, 1767538800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 17, ETeam::Toulouse, ETeam::Lens, 1767538800000 });
-
-    // Week 18
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Lens, ETeam::Auxerre, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::PSG, ETeam::Lille, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Lyon, ETeam::Brest, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Nantes, ETeam::ParisFC, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Strasbourg, ETeam::Metz, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Toulouse, ETeam::Nice, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Rennes, ETeam::LeHavre, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Angers, ETeam::Marseille, 1768748400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 18, ETeam::Monaco, ETeam::Lorient, 1768748400000 });
-
-    // Week 19
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::LeHavre, ETeam::Monaco, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Rennes, ETeam::Lorient, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Marseille, ETeam::Lens, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::ParisFC, ETeam::Angers, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Nantes, ETeam::Nice, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Brest, ETeam::Toulouse, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Lille, ETeam::Strasbourg, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Metz, ETeam::Lyon, 1769353200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 19, ETeam::Auxerre, ETeam::PSG, 1769353200000 });
-
-    // Week 20
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Angers, ETeam::Metz, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Toulouse, ETeam::Auxerre, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Lyon, ETeam::Lille, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Strasbourg, ETeam::PSG, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Lens, ETeam::LeHavre, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Nice, ETeam::Brest, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::ParisFC, ETeam::Marseille, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Lorient, ETeam::Nantes, 1769958000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 20, ETeam::Monaco, ETeam::Rennes, 1769958000000 });
-
-    // Week 21
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Metz, ETeam::Lille, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Angers, ETeam::Toulouse, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Lens, ETeam::Rennes, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::LeHavre, ETeam::Strasbourg, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Auxerre, ETeam::ParisFC, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Brest, ETeam::Lorient, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::PSG, ETeam::Marseille, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Nantes, ETeam::Lyon, 1770562800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 21, ETeam::Nice, ETeam::Monaco, 1770562800000 });
-
-    // Week 22
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Lorient, ETeam::Angers, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Lyon, ETeam::Nice, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Monaco, ETeam::Nantes, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Lille, ETeam::Brest, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Marseille, ETeam::Strasbourg, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Metz, ETeam::Auxerre, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::ParisFC, ETeam::Lens, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::Rennes, ETeam::PSG, 1771167600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 22, ETeam::LeHavre, ETeam::Toulouse, 1771167600000 });
-
-    // Week 23
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Lens, ETeam::Monaco, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Brest, ETeam::Marseille, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Angers, ETeam::Lille, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::PSG, ETeam::Metz, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Strasbourg, ETeam::Lyon, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Nantes, ETeam::LeHavre, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Auxerre, ETeam::Rennes, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Toulouse, ETeam::ParisFC, 1771772400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 23, ETeam::Nice, ETeam::Lorient, 1771772400000 });
-
-    // Week 24
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Monaco, ETeam::Angers, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Rennes, ETeam::Toulouse, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::ParisFC, ETeam::Nice, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Strasbourg, ETeam::Lens, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Marseille, ETeam::Lyon, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::LeHavre, ETeam::PSG, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Lille, ETeam::Nantes, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Lorient, ETeam::Auxerre, 1772377200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 24, ETeam::Metz, ETeam::Brest, 1772377200000 });
-
-    // Week 25
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Nantes, ETeam::Angers, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::PSG, ETeam::Monaco, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Auxerre, ETeam::Strasbourg, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Lyon, ETeam::ParisFC, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Toulouse, ETeam::Marseille, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Lille, ETeam::Lorient, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Lens, ETeam::Metz, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Nice, ETeam::Rennes, 1772982000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 25, ETeam::Brest, ETeam::LeHavre, 1772982000000 });
-
-    // Week 26
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Marseille, ETeam::Auxerre, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::LeHavre, ETeam::Lyon, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Monaco, ETeam::Brest, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Rennes, ETeam::Lille, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Lorient, ETeam::Lens, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Metz, ETeam::Toulouse, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Angers, ETeam::Nice, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::PSG, ETeam::Nantes, 1773586800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 26, ETeam::Strasbourg, ETeam::ParisFC, 1773586800000 });
-
-    // Week 27
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Toulouse, ETeam::Lorient, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Lyon, ETeam::Monaco, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Nantes, ETeam::Strasbourg, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::ParisFC, ETeam::LeHavre, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Marseille, ETeam::Lille, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Auxerre, ETeam::Brest, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Nice, ETeam::PSG, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Rennes, ETeam::Metz, 1774191600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 27, ETeam::Lens, ETeam::Angers, 1774191600000 });
-
-    // Week 28
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Monaco, ETeam::Marseille, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Metz, ETeam::Nantes, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Brest, ETeam::Rennes, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::LeHavre, ETeam::Auxerre, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Lorient, ETeam::ParisFC, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Lille, ETeam::Lens, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Strasbourg, ETeam::Nice, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::PSG, ETeam::Toulouse, 1775401200000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 28, ETeam::Angers, ETeam::Lyon, 1775401200000 });
-
-    // Week 29
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Nice, ETeam::LeHavre, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Toulouse, ETeam::Lille, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Brest, ETeam::Strasbourg, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Lyon, ETeam::Lorient, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::ParisFC, ETeam::Monaco, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Auxerre, ETeam::Nantes, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Lens, ETeam::PSG, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Rennes, ETeam::Angers, 1776006000000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 29, ETeam::Marseille, ETeam::Metz, 1776006000000 });
-
-    // Week 30
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Lille, ETeam::Nice, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Metz, ETeam::ParisFC, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Strasbourg, ETeam::Rennes, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Lorient, ETeam::Marseille, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::PSG, ETeam::Lyon, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Lens, ETeam::Toulouse, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Angers, ETeam::LeHavre, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Nantes, ETeam::Brest, 1776610800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 30, ETeam::Monaco, ETeam::Auxerre, 1776610800000 });
-
-    // Week 31
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Rennes, ETeam::Nantes, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Toulouse, ETeam::Monaco, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Angers, ETeam::PSG, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::LeHavre, ETeam::Metz, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Brest, ETeam::Lens, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Lyon, ETeam::Auxerre, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Marseille, ETeam::Nice, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::Lorient, ETeam::Strasbourg, 1777215600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 31, ETeam::ParisFC, ETeam::Lille, 1777215600000 });
-
-    // Week 32
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::PSG, ETeam::Lorient, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Lille, ETeam::LeHavre, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Auxerre, ETeam::Angers, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Metz, ETeam::Monaco, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Strasbourg, ETeam::Toulouse, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Nice, ETeam::Lens, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Nantes, ETeam::Marseille, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::ParisFC, ETeam::Brest, 1777820400000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 32, ETeam::Lyon, ETeam::Rennes, 1777820400000 });
-
-    // Week 33
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Metz, ETeam::Lorient, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Rennes, ETeam::ParisFC, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Auxerre, ETeam::Nice, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::LeHavre, ETeam::Marseille, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Angers, ETeam::Strasbourg, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::PSG, ETeam::Brest, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Monaco, ETeam::Lille, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Toulouse, ETeam::Lyon, 1778338800000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 33, ETeam::Lens, ETeam::Nantes, 1778338800000 });
-
-    // Week 34
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Brest, ETeam::Angers, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Lyon, ETeam::Lens, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Nice, ETeam::Metz, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Lorient, ETeam::LeHavre, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Lille, ETeam::Auxerre, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Strasbourg, ETeam::Monaco, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Nantes, ETeam::Toulouse, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::ParisFC, ETeam::PSG, 1778943600000 });
-    matches.push_back({ ELeague::Ligue1, "25/26", 34, ETeam::Marseille, ETeam::Rennes, 1778943600000 });
 
     for (auto& m : matches)
     {
