@@ -246,6 +246,13 @@ enum class ETeam
     Frosinone = SerieA2026Start,
     SerieA2026End = Frosinone,
 
+    // Bundesliga 2026
+    Bundesliga2026Start,
+    Schalke = Bundesliga2026Start,
+    Elversberg,
+    Pederborn,
+    Bundesliga2026End = Pederborn,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

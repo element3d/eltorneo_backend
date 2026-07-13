@@ -1436,9 +1436,9 @@ void MatchesInitializer::FillSeriaATable(PGconn* pg)
     FillLeagueTable(pg, int(ELeague::SerieA));
 }
 
-void MatchesInitializer::InitBundesligaTeams25_26(PGconn* pg)
+void MatchesInitializer::InitBundesligaTeams26_27(PGconn* pg)
 {
-    for (int i = (int)ETeam::Bundesliga2025Start; i <= (int)ETeam::Bundesliga2025End; ++i)
+    for (int i = (int)ETeam::Bundesliga2026Start; i <= (int)ETeam::Bundesliga2026End; ++i)
     {
         std::string sql = "insert into teams(id, name, short_name) values ("
             + std::to_string(i) + ", '"
@@ -1469,22 +1469,22 @@ void MatchesInitializer::InitBundesligaTable(PGconn* pg)
         ETeam::Koln,
         ETeam::Freiburg,
         ETeam::Hamburg,
-        ETeam::Heidenheim,
+        ETeam::Schalke,
         ETeam::Hoffenheim,
         ETeam::Mainz,
         ETeam::RBLeipzig,
-        ETeam::StPauli,
+        ETeam::Elversberg,
         ETeam::Stuttgart,
         ETeam::UnionBerlin,
         ETeam::WerderBremen,
-        ETeam::Wolfsburg
+        ETeam::Pederborn
     };
     for (ETeam i : teams)
     {
         std::string sql = "insert into tables(team_id, league_id, season) values ("
             + std::to_string(int(i)) + ", "
             + std::to_string(int(ELeague::Bundesliga)) + " ,'"
-            + "25/26"
+            + "26/27"
             + "');";
         PGresult* ret = PQexec(pg, sql.c_str());
         PQclear(ret);
@@ -3123,382 +3123,85 @@ void MatchesInitializer::InitLigue125_26(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitBundesliga25_26(PGconn* pg)
+void MatchesInitializer::InitBundesliga26_27(PGconn* pg)
 {
     std::vector<Match> matches;
     // Week 1
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::BayernMunich, ETeam::RBLeipzig, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::BorussiaMgladbach, ETeam::Hamburg, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::BayerLeverkusen, ETeam::Hoffenheim, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::Mainz, ETeam::Koln, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::Freiburg, ETeam::Augsburg, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::Heidenheim, ETeam::Wolfsburg, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::StPauli, ETeam::BorussiaDortmund, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::EintrachtFrankfurt, ETeam::WerderBremen, 1755874800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 1, ETeam::UnionBerlin, ETeam::Stuttgart, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::BayernMunich, ETeam::Stuttgart, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::Augsburg, ETeam::Schalke, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::BorussiaDortmund, ETeam::Hamburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::Elversberg, ETeam::BayerLeverkusen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::Koln, ETeam::Hoffenheim, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::Freiburg, ETeam::WerderBremen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::Mainz, ETeam::Pederborn, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::RBLeipzig, ETeam::BorussiaMgladbach, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 1, ETeam::UnionBerlin, ETeam::EintrachtFrankfurt, 1755874800000 });
 
     // Week 2
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::RBLeipzig, ETeam::Heidenheim, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::WerderBremen, ETeam::BayerLeverkusen, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Hoffenheim, ETeam::EintrachtFrankfurt, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Augsburg, ETeam::BayernMunich, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Koln, ETeam::Freiburg, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::BorussiaDortmund, ETeam::UnionBerlin, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Wolfsburg, ETeam::Mainz, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Hamburg, ETeam::StPauli, 1756566000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 2, ETeam::Stuttgart, ETeam::BorussiaMgladbach, 1756566000000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::BorussiaMgladbach, ETeam::Elversberg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::BayerLeverkusen, ETeam::UnionBerlin, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::EintrachtFrankfurt, ETeam::Augsburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::Hamburg, ETeam::Mainz, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::Hoffenheim, ETeam::BorussiaDortmund, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::Pederborn, ETeam::Freiburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::Schalke, ETeam::BayernMunich, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::Stuttgart, ETeam::Koln, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 2, ETeam::WerderBremen, ETeam::RBLeipzig, 1755874800000 });
 
     // Week 3
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::BorussiaMgladbach, ETeam::WerderBremen, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::Freiburg, ETeam::Stuttgart, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::UnionBerlin, ETeam::Hoffenheim, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::Mainz, ETeam::RBLeipzig, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::BayernMunich, ETeam::Hamburg, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::Wolfsburg, ETeam::Koln, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::StPauli, ETeam::Augsburg, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::BayerLeverkusen, ETeam::EintrachtFrankfurt, 1757775600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 3, ETeam::Heidenheim, ETeam::BorussiaDortmund, 1757775600000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Augsburg, ETeam::BayerLeverkusen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::BorussiaDortmund, ETeam::Pederborn, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Elversberg, ETeam::BayernMunich, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Koln, ETeam::BorussiaMgladbach, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Freiburg, ETeam::BorussiaDortmund, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Hoffenheim, ETeam::Stuttgart, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::Mainz, ETeam::EintrachtFrankfurt, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::RBLeipzig, ETeam::Hamburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 3, ETeam::UnionBerlin, ETeam::Schalke, 1755874800000 });
 
     // Week 4
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::Augsburg, ETeam::Mainz, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::Stuttgart, ETeam::StPauli, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::Hamburg, ETeam::Heidenheim, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::BayerLeverkusen, ETeam::BorussiaMgladbach, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::EintrachtFrankfurt, ETeam::UnionBerlin, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::BorussiaDortmund, ETeam::Wolfsburg, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::WerderBremen, ETeam::Freiburg, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::RBLeipzig, ETeam::Koln, 1758380400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 4, ETeam::Hoffenheim, ETeam::BayernMunich, 1758380400000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::BorussiaMgladbach, ETeam::Mainz, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::BayerLeverkusen, ETeam::RBLeipzig, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::BayernMunich, ETeam::UnionBerlin, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::EintrachtFrankfurt, ETeam::Freiburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::Hamburg, ETeam::Koln, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::Pederborn, ETeam::Hoffenheim, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::Schalke, ETeam::Elversberg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::Stuttgart, ETeam::BorussiaDortmund, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 4, ETeam::WerderBremen, ETeam::Augsburg, 1755874800000 });
 
     // Week 5
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::Mainz, ETeam::BorussiaDortmund, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::Wolfsburg, ETeam::RBLeipzig, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::BorussiaMgladbach, ETeam::EintrachtFrankfurt, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::Freiburg, ETeam::Hoffenheim, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::UnionBerlin, ETeam::Hamburg, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::BayernMunich, ETeam::WerderBremen, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::Heidenheim, ETeam::Augsburg, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::Koln, ETeam::Stuttgart, 1758985200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 5, ETeam::StPauli, ETeam::BayerLeverkusen, 1758985200000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Augsburg, ETeam::BayernMunich, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::BorussiaDortmund, ETeam::WerderBremen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Koln, ETeam::BorussiaMgladbach, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Freiburg, ETeam::Schalke, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Hoffenheim, ETeam::Hamburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Mainz, ETeam::BayerLeverkusen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::Pederborn, ETeam::Stuttgart, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::RBLeipzig, ETeam::EintrachtFrankfurt, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 5, ETeam::UnionBerlin, ETeam::Elversberg, 1755874800000 });
 
     // Week 6
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::BorussiaDortmund, ETeam::RBLeipzig, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::Augsburg, ETeam::Wolfsburg, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::WerderBremen, ETeam::StPauli, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::Stuttgart, ETeam::Heidenheim, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::Hoffenheim, ETeam::Koln, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::EintrachtFrankfurt, ETeam::BayernMunich, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::BayerLeverkusen, ETeam::UnionBerlin, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::BorussiaMgladbach, ETeam::Freiburg, 1759590000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 6, ETeam::Hamburg, ETeam::Mainz, 1759590000000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::BorussiaMgladbach, ETeam::Hoffenheim, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::BayerLeverkusen, ETeam::Freiburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::BayernMunich, ETeam::RBLeipzig, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::EintrachtFrankfurt, ETeam::Koln, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::Elversberg, ETeam::Augsburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::Hamburg, ETeam::Stuttgart, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::Schalke, ETeam::Mainz, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::UnionBerlin, ETeam::BorussiaDortmund, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 6, ETeam::WerderBremen, ETeam::Pederborn, 1755874800000 });
 
     // Week 7
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::RBLeipzig, ETeam::Hamburg, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::UnionBerlin, ETeam::BorussiaMgladbach, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::Freiburg, ETeam::EintrachtFrankfurt, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::Heidenheim, ETeam::WerderBremen, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::Mainz, ETeam::BayerLeverkusen, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::Wolfsburg, ETeam::Stuttgart, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::Koln, ETeam::Augsburg, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::StPauli, ETeam::Hoffenheim, 1760799600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 7, ETeam::BayernMunich, ETeam::BorussiaDortmund, 1760799600000 });
-
-    // Week 8
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::Hamburg, ETeam::Wolfsburg, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::Hoffenheim, ETeam::Heidenheim, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::WerderBremen, ETeam::UnionBerlin, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::BorussiaMgladbach, ETeam::BayernMunich, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::Augsburg, ETeam::RBLeipzig, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::BayerLeverkusen, ETeam::Freiburg, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::BorussiaDortmund, ETeam::Koln, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::EintrachtFrankfurt, ETeam::StPauli, 1761404400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 8, ETeam::Stuttgart, ETeam::Mainz, 1761404400000 });
-
-    // Week 9
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::Koln, ETeam::Hamburg, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::Augsburg, ETeam::BorussiaDortmund, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::Mainz, ETeam::WerderBremen, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::UnionBerlin, ETeam::Freiburg, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::Wolfsburg, ETeam::Hoffenheim, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::RBLeipzig, ETeam::Stuttgart, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::Heidenheim, ETeam::EintrachtFrankfurt, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::StPauli, ETeam::BorussiaMgladbach, 1762009200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 9, ETeam::BayernMunich, ETeam::BayerLeverkusen, 1762009200000 });
-
-    // Week 10
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::BorussiaMgladbach, ETeam::Koln, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::Freiburg, ETeam::StPauli, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::UnionBerlin, ETeam::BayernMunich, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::Stuttgart, ETeam::Augsburg, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::Hoffenheim, ETeam::RBLeipzig, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::BayerLeverkusen, ETeam::Heidenheim, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::EintrachtFrankfurt, ETeam::Mainz, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::Hamburg, ETeam::BorussiaDortmund, 1762614000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 10, ETeam::WerderBremen, ETeam::Wolfsburg, 1762614000000 });
-
-    // Week 11
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::Wolfsburg, ETeam::BayerLeverkusen, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::BayernMunich, ETeam::Freiburg, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::Koln, ETeam::EintrachtFrankfurt, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::BorussiaDortmund, ETeam::Stuttgart, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::Heidenheim, ETeam::BorussiaMgladbach, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::Mainz, ETeam::Hoffenheim, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::StPauli, ETeam::UnionBerlin, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::Augsburg, ETeam::Hamburg, 1763823600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 11, ETeam::RBLeipzig, ETeam::WerderBremen, 1763823600000 });
-
-    // Week 12
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::BorussiaMgladbach, ETeam::RBLeipzig, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::Hamburg, ETeam::Stuttgart, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::Hoffenheim, ETeam::Augsburg, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::UnionBerlin, ETeam::Heidenheim, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::BayerLeverkusen, ETeam::BorussiaDortmund, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::Freiburg, ETeam::Mainz, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::WerderBremen, ETeam::Koln, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::EintrachtFrankfurt, ETeam::Wolfsburg, 1764428400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 12, ETeam::BayernMunich, ETeam::StPauli, 1764428400000 });
-
-    // Week 13
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Wolfsburg, ETeam::UnionBerlin, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Stuttgart, ETeam::BayernMunich, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Heidenheim, ETeam::Freiburg, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Augsburg, ETeam::BayerLeverkusen, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::RBLeipzig, ETeam::EintrachtFrankfurt, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Koln, ETeam::StPauli, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::BorussiaDortmund, ETeam::Hoffenheim, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Mainz, ETeam::BorussiaMgladbach, 1765033200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 13, ETeam::Hamburg, ETeam::WerderBremen, 1765033200000 });
-
-    // Week 14
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::WerderBremen, ETeam::Stuttgart, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::BayerLeverkusen, ETeam::Koln, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::Hoffenheim, ETeam::Hamburg, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::BayernMunich, ETeam::Mainz, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::Freiburg, ETeam::BorussiaDortmund, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::EintrachtFrankfurt, ETeam::Augsburg, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::BorussiaMgladbach, ETeam::Wolfsburg, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::StPauli, ETeam::Heidenheim, 1765638000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 14, ETeam::UnionBerlin, ETeam::RBLeipzig, 1765638000000 });
-
-    // Week 15
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Hamburg, ETeam::EintrachtFrankfurt, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::BorussiaDortmund, ETeam::BorussiaMgladbach, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Stuttgart, ETeam::Hoffenheim, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Mainz, ETeam::StPauli, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Augsburg, ETeam::WerderBremen, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Wolfsburg, ETeam::Freiburg, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Heidenheim, ETeam::BayernMunich, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::Koln, ETeam::UnionBerlin, 1766242800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 15, ETeam::RBLeipzig, ETeam::BayerLeverkusen, 1766242800000 });
-
-    // Week 16
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::BorussiaMgladbach, ETeam::Augsburg, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::Freiburg, ETeam::Hamburg, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::EintrachtFrankfurt, ETeam::BorussiaDortmund, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::BayernMunich, ETeam::Wolfsburg, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::BayerLeverkusen, ETeam::Stuttgart, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::Heidenheim, ETeam::Koln, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::UnionBerlin, ETeam::Mainz, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::WerderBremen, ETeam::Hoffenheim, 1768057200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 16, ETeam::StPauli, ETeam::RBLeipzig, 1768057200000 });
-
-    // Week 17
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Koln, ETeam::BayernMunich, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Augsburg, ETeam::UnionBerlin, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Wolfsburg, ETeam::StPauli, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::RBLeipzig, ETeam::Freiburg, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Mainz, ETeam::Heidenheim, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Hoffenheim, ETeam::BorussiaMgladbach, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Hamburg, ETeam::BayerLeverkusen, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::Stuttgart, ETeam::EintrachtFrankfurt, 1768402800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 17, ETeam::BorussiaDortmund, ETeam::WerderBremen, 1768402800000 });
-
-    // Week 18
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Wolfsburg, ETeam::Heidenheim, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::BorussiaDortmund, ETeam::StPauli, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Hamburg, ETeam::BorussiaMgladbach, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Augsburg, ETeam::Freiburg, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Hoffenheim, ETeam::BayerLeverkusen, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::WerderBremen, ETeam::EintrachtFrankfurt, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::RBLeipzig, ETeam::BayernMunich, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Stuttgart, ETeam::UnionBerlin, 1768662000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 18, ETeam::Koln, ETeam::Mainz, 1768662000000 });
-
-    // Week 19
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::EintrachtFrankfurt, ETeam::Hoffenheim, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::BorussiaMgladbach, ETeam::Stuttgart, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::UnionBerlin, ETeam::BorussiaDortmund, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::BayernMunich, ETeam::Augsburg, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::Mainz, ETeam::Wolfsburg, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::Heidenheim, ETeam::RBLeipzig, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::Freiburg, ETeam::Koln, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::BayerLeverkusen, ETeam::WerderBremen, 1769266800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 19, ETeam::StPauli, ETeam::Hamburg, 1769266800000 });
-
-    // Week 20
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::Koln, ETeam::Wolfsburg, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::WerderBremen, ETeam::BorussiaMgladbach, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::BorussiaDortmund, ETeam::Heidenheim, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::Hoffenheim, ETeam::UnionBerlin, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::Augsburg, ETeam::StPauli, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::Stuttgart, ETeam::Freiburg, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::Hamburg, ETeam::BayernMunich, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::RBLeipzig, ETeam::Mainz, 1769871600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 20, ETeam::EintrachtFrankfurt, ETeam::BayerLeverkusen, 1769871600000 });
-
-    // Week 21
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::BayernMunich, ETeam::Hoffenheim, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::StPauli, ETeam::Stuttgart, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::UnionBerlin, ETeam::EintrachtFrankfurt, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::BorussiaMgladbach, ETeam::BayerLeverkusen, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::Koln, ETeam::RBLeipzig, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::Heidenheim, ETeam::Hamburg, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::Wolfsburg, ETeam::BorussiaDortmund, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::Freiburg, ETeam::WerderBremen, 1770476400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 21, ETeam::Mainz, ETeam::Augsburg, 1770476400000 });
-
-    // Week 22
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::Augsburg, ETeam::Heidenheim, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::Stuttgart, ETeam::Koln, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::Hoffenheim, ETeam::Freiburg, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::BayerLeverkusen, ETeam::StPauli, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::Hamburg, ETeam::UnionBerlin, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::WerderBremen, ETeam::BayernMunich, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::BorussiaDortmund, ETeam::Mainz, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::RBLeipzig, ETeam::Wolfsburg, 1771081200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 22, ETeam::EintrachtFrankfurt, ETeam::BorussiaMgladbach, 1771081200000 });
-
-    // Week 23
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::Freiburg, ETeam::BorussiaMgladbach, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::Wolfsburg, ETeam::Augsburg, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::StPauli, ETeam::WerderBremen, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::Mainz, ETeam::Hamburg, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::UnionBerlin, ETeam::BayerLeverkusen, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::BayernMunich, ETeam::EintrachtFrankfurt, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::Heidenheim, ETeam::Stuttgart, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::RBLeipzig, ETeam::BorussiaDortmund, 1771686000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 23, ETeam::Koln, ETeam::Hoffenheim, 1771686000000 });
-
-    // Week 24
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::BorussiaDortmund, ETeam::BayernMunich, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::EintrachtFrankfurt, ETeam::Freiburg, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::WerderBremen, ETeam::Heidenheim, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::Augsburg, ETeam::Koln, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::Hoffenheim, ETeam::StPauli, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::BayerLeverkusen, ETeam::Mainz, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::Stuttgart, ETeam::Wolfsburg, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::Hamburg, ETeam::RBLeipzig, 1772290800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 24, ETeam::BorussiaMgladbach, ETeam::UnionBerlin, 1772290800000 });
-
-    // Week 25
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::StPauli, ETeam::EintrachtFrankfurt, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::Heidenheim, ETeam::Hoffenheim, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::Freiburg, ETeam::BayerLeverkusen, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::RBLeipzig, ETeam::Augsburg, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::Koln, ETeam::BorussiaDortmund, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::UnionBerlin, ETeam::WerderBremen, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::Wolfsburg, ETeam::Hamburg, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::BayernMunich, ETeam::BorussiaMgladbach, 1772895600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 25, ETeam::Mainz, ETeam::Stuttgart, 1772895600000 });
-
-    // Week 26
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::BorussiaMgladbach, ETeam::StPauli, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::BorussiaDortmund, ETeam::Augsburg, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::Freiburg, ETeam::UnionBerlin, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::WerderBremen, ETeam::Mainz, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::Hoffenheim, ETeam::Wolfsburg, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::EintrachtFrankfurt, ETeam::Heidenheim, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::Stuttgart, ETeam::RBLeipzig, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::Hamburg, ETeam::Koln, 1773500400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 26, ETeam::BayerLeverkusen, ETeam::BayernMunich, 1773500400000 });
-
-    // Week 27
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::Mainz, ETeam::EintrachtFrankfurt, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::Heidenheim, ETeam::BayerLeverkusen, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::StPauli, ETeam::Freiburg, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::RBLeipzig, ETeam::Hoffenheim, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::BorussiaDortmund, ETeam::Hamburg, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::Augsburg, ETeam::Stuttgart, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::BayernMunich, ETeam::UnionBerlin, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::Koln, ETeam::BorussiaMgladbach, 1774105200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 27, ETeam::Wolfsburg, ETeam::WerderBremen, 1774105200000 });
-
-    // Week 28
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::Hoffenheim, ETeam::Mainz, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::Stuttgart, ETeam::BorussiaDortmund, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::Freiburg, ETeam::BayernMunich, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::EintrachtFrankfurt, ETeam::Koln, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::BorussiaMgladbach, ETeam::Heidenheim, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::BayerLeverkusen, ETeam::Wolfsburg, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::UnionBerlin, ETeam::StPauli, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::Hamburg, ETeam::Augsburg, 1775314800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 28, ETeam::WerderBremen, ETeam::RBLeipzig, 1775314800000 });
-
-    // Week 29
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Stuttgart, ETeam::Hamburg, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Heidenheim, ETeam::UnionBerlin, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Wolfsburg, ETeam::EintrachtFrankfurt, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Koln, ETeam::WerderBremen, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::StPauli, ETeam::BayernMunich, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Augsburg, ETeam::Hoffenheim, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::BorussiaDortmund, ETeam::BayerLeverkusen, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::RBLeipzig, ETeam::BorussiaMgladbach, 1775919600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 29, ETeam::Mainz, ETeam::Freiburg, 1775919600000 });
-
-    // Week 30
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::EintrachtFrankfurt, ETeam::RBLeipzig, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::BayerLeverkusen, ETeam::Augsburg, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::WerderBremen, ETeam::Hamburg, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::StPauli, ETeam::Koln, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::Hoffenheim, ETeam::BorussiaDortmund, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::BayernMunich, ETeam::Stuttgart, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::Freiburg, ETeam::Heidenheim, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::BorussiaMgladbach, ETeam::Mainz, 1776524400000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 30, ETeam::UnionBerlin, ETeam::Wolfsburg, 1776524400000 });
-
-    // Week 31
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Wolfsburg, ETeam::BorussiaMgladbach, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Heidenheim, ETeam::StPauli, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Augsburg, ETeam::EintrachtFrankfurt, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Hamburg, ETeam::Hoffenheim, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Stuttgart, ETeam::WerderBremen, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::RBLeipzig, ETeam::UnionBerlin, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Koln, ETeam::BayerLeverkusen, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::Mainz, ETeam::BayernMunich, 1777129200000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 31, ETeam::BorussiaDortmund, ETeam::Freiburg, 1777129200000 });
-
-    // Week 32
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::BorussiaMgladbach, ETeam::BorussiaDortmund, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::WerderBremen, ETeam::Augsburg, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::UnionBerlin, ETeam::Koln, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::BayerLeverkusen, ETeam::RBLeipzig, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::Freiburg, ETeam::Wolfsburg, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::Hoffenheim, ETeam::Stuttgart, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::EintrachtFrankfurt, ETeam::Hamburg, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::StPauli, ETeam::Mainz, 1777734000000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 32, ETeam::BayernMunich, ETeam::Heidenheim, 1777734000000 });
-
-    // Week 33
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::BorussiaDortmund, ETeam::EintrachtFrankfurt, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Mainz, ETeam::UnionBerlin, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Wolfsburg, ETeam::BayernMunich, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::RBLeipzig, ETeam::StPauli, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Hamburg, ETeam::Freiburg, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Augsburg, ETeam::BorussiaMgladbach, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Stuttgart, ETeam::BayerLeverkusen, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Koln, ETeam::Heidenheim, 1778338800000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 33, ETeam::Hoffenheim, ETeam::WerderBremen, 1778338800000 });
-
-    // Week 34
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::Heidenheim, ETeam::Mainz, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::UnionBerlin, ETeam::Augsburg, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::BorussiaMgladbach, ETeam::Hoffenheim, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::Freiburg, ETeam::RBLeipzig, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::WerderBremen, ETeam::BorussiaDortmund, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::BayernMunich, ETeam::Koln, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::EintrachtFrankfurt, ETeam::Stuttgart, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::BayerLeverkusen, ETeam::Hamburg, 1778943600000 });
-    matches.push_back({ ELeague::Bundesliga, "25/26", 34, ETeam::StPauli, ETeam::Wolfsburg, 1778943600000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Augsburg, ETeam::UnionBerlin, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::BorussiaDortmund, ETeam::EintrachtFrankfurt, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Koln, ETeam::Schalke, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Freiburg, ETeam::BayernMunich, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Hoffenheim, ETeam::BayerLeverkusen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Mainz, ETeam::WerderBremen, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Pederborn, ETeam::Hamburg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::RBLeipzig, ETeam::Elversberg, 1755874800000 });
+    matches.push_back({ ELeague::Bundesliga, "26/27", 7, ETeam::Stuttgart, ETeam::BorussiaMgladbach, 1755874800000 });
 
     for (auto& m : matches)
     {

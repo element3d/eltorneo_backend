@@ -556,6 +556,14 @@ std::string Team::ToString(ETeam team)
     case ETeam::Frosinone:
         return "Frosinone";
 
+    // Bundesliga 26
+    case ETeam::Elversberg:
+        return "SV Elversberg";
+    case ETeam::Schalke:
+        return "FC Schalke 04";
+    case ETeam::Pederborn:
+        return "SC Paderborn 07";
+
     default:
         return "Unknown Team";
     }
@@ -1115,6 +1123,14 @@ std::string Team::ToShortString(ETeam team)
     // LaLIGA 26
     case ETeam::Frosinone:
         return "Frosinone";
+
+    // Bundesliga 26
+    case ETeam::Elversberg:
+        return "Elversberg";
+    case ETeam::Schalke:
+        return "Schalke";
+    case ETeam::Pederborn:
+        return "Paderborn";
 
     default:
         return "Unknown Team";
