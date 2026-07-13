@@ -118,5 +118,9 @@ public:
     static void InitUEFAWCQualifiersTables(PGconn* pg);
     static void InitUEFAWCQualifiers(PGconn* pg);
 
+    static void InitComShieldTeams26_27(PGconn* pg);
+    static void InitComShield26_27(PGconn* pg);
+
+
     static void FillAwards(PGconn* pg);
 };
