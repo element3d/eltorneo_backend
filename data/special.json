@@ -259,7 +259,9 @@
         "jin_vs_law": "Jin Kazama vs Marshall Law",
         "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo",
         "king_vs_jin": "King vs Jin Kazama",
-        "doomsday": "Doomsday"
+        "doomsday": "Doomsday",
+        "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
+        "yoshi_vs_king": "Yoshimitsu vs King"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -521,6 +523,8 @@
         "jin_vs_law": "Jin Kazama vs Marshall Law",
         "yoshi_vs_eddy": "Yoshimitsu vs Eddy Gordo",
         "king_vs_jin": "King vs Jin Kazama",
-        "doomsday": "Doomsday"
+        "doomsday": "Doomsday",
+        "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
+        "yoshi_vs_king": "Yoshimitsu vs King"
     }
 }
