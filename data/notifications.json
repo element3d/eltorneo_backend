@@ -38,7 +38,19 @@
     "fifa_title": "The final tournament of the 2024/25 season in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: Make your predictions now.",
     "winner_title": "World Cup: Available Now!",
-    "winner_msg": "Update the app to enjoy new features and World Cup content."
+    "winner_msg": "Update the app to enjoy new features and World Cup content.",
+    "fantasy_winner_title": "Narek Is the 2025/26 Fantasy Champion!",
+    "fantasy_winner_msg": "Visit your profile to get new trophies and badges.",
+    "fireball_winner_title": "Szymon Is the 2025/26 Fireball Champion!",
+    "fireball_winner_msg": "Our top goalscorer has been crowned! Check your final position.",
+    "beatbet_winner_title": "Napoleon Struck It Rich in BeatBet 2025/26!",
+    "beatbet_winner_msg": "Who else made it big? Check your final position.",
+    "efootball_winner_title": "Szymon Was Unstoppable in eFootball 2025/26!",
+    "efootball_winner_msg": "Congratulations to all our Legends, Pros, Amateurs, and Beginners!",
+    "eltorneo_winner_title": "Shadow Is the Undisputed el Torneo Champion of 2025/26!",
+    "eltorneo_winner_msg": "Are you ready for a new season, new rules, and an endless battle for the trophy?",
+    "worldcup_winner_title": "Juan Mu Is the el Torneo World Cup 2026 Champion!",
+    "worldcup_winner_msg": "Thank you to everyone who played and made this tournament unforgettable!"
   },
   "ru": {
     "week_started_title": "Футбольная неделя началась",
@@ -79,7 +91,19 @@
     "fifa_title": "Финальный турнир сезона 2024/25 в El Torneo!",
     "fifa_msg": "FIFA Club World Cup: сделайте свои прогнозы прямо сейчас.",
     "winner_title": "Чемпионат мира: уже доступен!",
-    "winner_msg": "Обновите приложение, чтобы получить новые функции и контент Чемпионата мира."
+    "winner_msg": "Обновите приложение, чтобы получить новые функции и контент Чемпионата мира.",
+    "fantasy_winner_title": "Narek — чемпион Fantasy сезона 2025/26!",
+    "fantasy_winner_msg": "Загляните в свой профиль, чтобы получить новые трофеи и значки.",
+    "fireball_winner_title": "Szymon — чемпион Fireball 2025/26!",
+    "fireball_winner_msg": "Наш лучший бомбардир определён! Проверьте своё итоговое место.",
+    "beatbet_winner_title": "Napoleon сорвал куш в BeatBet 2025/26!",
+    "beatbet_winner_msg": "Кто ещё разбогател? Проверьте своё итоговое место.",
+    "efootball_winner_title": "Szymon был неудержим в eFootball 2025/26!",
+    "efootball_winner_msg": "Поздравляем всех наших Легенд, Профи, Любителей и Новичков!",
+    "eltorneo_winner_title": "Shadow — бесспорный чемпион el Torneo сезона 2025/26!",
+    "eltorneo_winner_msg": "Готовы к новому сезону, новым правилам и бесконечной борьбе за трофей?",
+    "worldcup_winner_title": "Juan Mu — чемпион Кубка мира el Torneo 2026!",
+    "worldcup_winner_msg": "Спасибо всем, кто играл и сделал этот турнир незабываемым!"
   },
   "es": {
     "week_started_title": "La semana de fútbol ha comenzado",
@@ -120,7 +144,19 @@
     "fifa_title": "¡El torneo final de la temporada 2024/25 en El Torneo!",
     "fifa_msg": "FIFA Club World Cup: haz tus predicciones ahora.",
     "winner_title": "World Cup: ¡ya disponible!",
-    "winner_msg": "Actualiza la aplicación para disfrutar de nuevas funciones y contenido del World Cup."
+    "winner_msg": "Actualiza la aplicación para disfrutar de nuevas funciones y contenido del World Cup.",
+    "fantasy_winner_title": "¡Narek es el campeón de Fantasy 2025/26!",
+    "fantasy_winner_msg": "Visita tu perfil para obtener nuevos trofeos e insignias.",
+    "fireball_winner_title": "¡Szymon es el campeón de Fireball 2025/26!",
+    "fireball_winner_msg": "¡Ya tenemos al máximo goleador! Consulta tu posición final.",
+    "beatbet_winner_title": "¡Napoleon se hizo rico en BeatBet 2025/26!",
+    "beatbet_winner_msg": "¿Quién más lo consiguió? Consulta tu posición final.",
+    "efootball_winner_title": "¡Szymon fue imparable en eFootball 2025/26!",
+    "efootball_winner_msg": "¡Felicidades a todas nuestras Leyendas, Profesionales, Aficionados y Principiantes!",
+    "eltorneo_winner_title": "¡Shadow es el campeón indiscutible de el Torneo 2025/26!",
+    "eltorneo_winner_msg": "¿Estás listo para una nueva temporada, nuevas reglas y una batalla interminable por el trofeo?",
+    "worldcup_winner_title": "¡Juan Mu es el campeón de la Copa del Mundo de el Torneo 2026!",
+    "worldcup_winner_msg": "¡Gracias a todos los que jugaron e hicieron inolvidable este torneo!"
   },
   "it": {
     "week_started_title": "La settimana del calcio è iniziata",
@@ -161,7 +197,19 @@
     "fifa_title": "Il torneo finale della stagione 2024/25 in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: fai le tue previsioni ora.",
     "winner_title": "World Cup: ora disponibile!",
-    "winner_msg": "Aggiorna l'app per scoprire nuove funzionalità e contenuti del World Cup."
+    "winner_msg": "Aggiorna l'app per scoprire nuove funzionalità e contenuti del World Cup.",
+    "fantasy_winner_title": "Narek è il campione Fantasy 2025/26!",
+    "fantasy_winner_msg": "Visita il tuo profilo per ottenere nuovi trofei e badge.",
+    "fireball_winner_title": "Szymon è il campione di Fireball 2025/26!",
+    "fireball_winner_msg": "Abbiamo incoronato il nostro capocannoniere! Controlla la tua posizione finale.",
+    "beatbet_winner_title": "Napoleon ha fatto fortuna in BeatBet 2025/26!",
+    "beatbet_winner_msg": "Chi altro ha fatto il colpaccio? Controlla la tua posizione finale.",
+    "efootball_winner_title": "Szymon è stato inarrestabile in eFootball 2025/26!",
+    "efootball_winner_msg": "Congratulazioni a tutte le nostre Leggende, Professionisti, Dilettanti e Principianti!",
+    "eltorneo_winner_title": "Shadow è il campione indiscusso di el Torneo 2025/26!",
+    "eltorneo_winner_msg": "Sei pronto per una nuova stagione, nuove regole e una battaglia infinita per il trofeo?",
+    "worldcup_winner_title": "Juan Mu è il campione della Coppa del Mondo di el Torneo 2026!",
+    "worldcup_winner_msg": "Grazie a tutti coloro che hanno giocato e reso questo torneo indimenticabile!"
   },
   "de": {
     "week_started_title": "Die Fußballwoche hat begonnen",
@@ -202,7 +250,19 @@
     "fifa_title": "Das letzte Turnier der Saison 2024/25 in El Torneo!",
     "fifa_msg": "FIFA Club World Cup: Gib jetzt deine Tipps ab.",
     "winner_title": "World Cup: jetzt verfügbar!",
-    "winner_msg": "Aktualisiere die App, um neue Funktionen und Inhalte zum World Cup zu entdecken."
+    "winner_msg": "Aktualisiere die App, um neue Funktionen und Inhalte zum World Cup zu entdecken.",
+    "fantasy_winner_title": "Narek ist der Fantasy-Champion 2025/26!",
+    "fantasy_winner_msg": "Besuche dein Profil, um neue Trophäen und Abzeichen zu erhalten.",
+    "fireball_winner_title": "Szymon ist der Fireball-Champion 2025/26!",
+    "fireball_winner_msg": "Unser Torschützenkönig steht fest! Schau dir deine endgültige Platzierung an.",
+    "beatbet_winner_title": "Napoleon hat bei BeatBet 2025/26 groß abgeräumt!",
+    "beatbet_winner_msg": "Wer hat noch den großen Gewinn gemacht? Schau dir deine endgültige Platzierung an.",
+    "efootball_winner_title": "Szymon war in eFootball 2025/26 nicht zu stoppen!",
+    "efootball_winner_msg": "Glückwunsch an all unsere Legenden, Profis, Amateure und Anfänger!",
+    "eltorneo_winner_title": "Shadow ist der unangefochtene Champion von el Torneo 2025/26!",
+    "eltorneo_winner_msg": "Bist du bereit für eine neue Saison, neue Regeln und einen endlosen Kampf um die Trophäe?",
+    "worldcup_winner_title": "Juan Mu ist der el Torneo Weltmeister 2026!",
+    "worldcup_winner_msg": "Danke an alle, die mitgespielt und dieses Turnier unvergesslich gemacht haben!"
   },
   "hr": {
     "week_started_title": "Nogometni tjedan je počeo",
@@ -243,7 +303,19 @@
     "fifa_title": "Završni turnir sezone 2024./25. u El Torneo!",
     "fifa_msg": "FIFA Club World Cup: daj svoje prognoze sada.",
     "winner_title": "World Cup: sada dostupan!",
-    "winner_msg": "Ažuriraj aplikaciju kako bi uživao u novim funkcijama i sadržaju World Cupa."
+    "winner_msg": "Ažuriraj aplikaciju kako bi uživao u novim funkcijama i sadržaju World Cupa.",
+    "fantasy_winner_title": "Narek je Fantasy prvak sezone 2025/26!",
+    "fantasy_winner_msg": "Posjeti svoj profil kako bi dobio nove trofeje i značke.",
+    "fireball_winner_title": "Szymon je prvak Fireballa 2025./26.!",
+    "fireball_winner_msg": "Naš najbolji strijelac je okrunjen! Provjeri svoj konačni plasman.",
+    "beatbet_winner_title": "Napoleon se obogatio u BeatBetu 2025./26.!",
+    "beatbet_winner_msg": "Tko je još dobro zaradio? Provjeri svoj konačni plasman.",
+    "efootball_winner_title": "Szymon je bio nezaustavljiv u eFootballu 2025./26.!",
+    "efootball_winner_msg": "Čestitamo svim našim Legendama, Profesionalcima, Amaterima i Početnicima!",
+    "eltorneo_winner_title": "Shadow je neprikosnoveni prvak el Tornea 2025./26.!",
+    "eltorneo_winner_msg": "Jesi li spreman za novu sezonu, nova pravila i beskrajnu borbu za trofej?",
+    "worldcup_winner_title": "Juan Mu je svjetski prvak el Tornea 2026!",
+    "worldcup_winner_msg": "Hvala svima koji su igrali i učinili ovaj turnir nezaboravnim!"
   },
   "fr": {
     "week_started_title": "La semaine de football a commencé",
@@ -284,7 +356,19 @@
     "fifa_title": "Le tournoi final de la saison 2024/25 dans El Torneo !",
     "fifa_msg": "FIFA Club World Cup : fais tes pronostics maintenant.",
     "winner_title": "World Cup : disponible maintenant !",
-    "winner_msg": "Mettez à jour l'application pour profiter de nouvelles fonctionnalités et du contenu du World Cup."
+    "winner_msg": "Mettez à jour l'application pour profiter de nouvelles fonctionnalités et du contenu du World Cup.",
+    "fantasy_winner_title": "Narek est le champion Fantasy 2025/26 !",
+    "fantasy_winner_msg": "Visite ton profil pour obtenir de nouveaux trophées et badges.",
+    "fireball_winner_title": "Szymon est le champion de Fireball 2025/26 !",
+    "fireball_winner_msg": "Notre meilleur buteur a été couronné ! Consulte ton classement final.",
+    "beatbet_winner_title": "Napoleon a fait fortune dans BeatBet 2025/26 !",
+    "beatbet_winner_msg": "Qui d’autre a décroché le gros lot ? Consulte ton classement final.",
+    "efootball_winner_title": "Szymon a été inarrêtable dans eFootball 2025/26 !",
+    "efootball_winner_msg": "Félicitations à toutes nos Légendes, Pros, Amateurs et Débutants !",
+    "eltorneo_winner_title": "Shadow est le champion incontesté d’el Torneo 2025/26 !",
+    "eltorneo_winner_msg": "Es-tu prêt pour une nouvelle saison, de nouvelles règles et une lutte sans fin pour le trophée ?",
+    "worldcup_winner_title": "Juan Mu est le champion du monde el Torneo 2026 !",
+    "worldcup_winner_msg": "Merci à tous ceux qui ont joué et rendu ce tournoi inoubliable !"
   },
   "pt": {
     "week_started_title": "A semana de futebol começou",
@@ -325,6 +409,18 @@
     "fifa_title": "O torneio final da temporada 2024/25 no El Torneo!",
     "fifa_msg": "FIFA Club World Cup: faça suas previsões agora.",
     "winner_title": "World Cup: disponível agora!",
-    "winner_msg": "Atualize o aplicativo para aproveitar novos recursos e conteúdo do World Cup."
+    "winner_msg": "Atualize o aplicativo para aproveitar novos recursos e conteúdo do World Cup.",
+    "fantasy_winner_title": "Narek é o campeão do Fantasy 2025/26!",
+    "fantasy_winner_msg": "Visite seu perfil para receber novos troféus e emblemas.",
+    "fireball_winner_title": "Szymon é o campeão do Fireball 2025/26!",
+    "fireball_winner_msg": "Nosso artilheiro foi consagrado! Confira sua posição final.",
+    "beatbet_winner_title": "Napoleon fez fortuna no BeatBet 2025/26!",
+    "beatbet_winner_msg": "Quem mais faturou alto? Confira sua posição final.",
+    "efootball_winner_title": "Szymon foi imparável no eFootball 2025/26!",
+    "efootball_winner_msg": "Parabéns a todas as nossas Lendas, Profissionais, Amadores e Iniciantes!",
+    "eltorneo_winner_title": "Shadow é o campeão absoluto do el Torneo 2025/26!",
+    "eltorneo_winner_msg": "Você está pronto para uma nova temporada, novas regras e uma batalha sem fim pelo troféu?",
+    "worldcup_winner_title": "Juan Mu é o campeão da Copa do Mundo el Torneo 2026!",
+    "worldcup_winner_msg": "Obrigado a todos que jogaram e tornaram este torneio inesquecível!"
   }
 }

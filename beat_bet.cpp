@@ -224,13 +224,73 @@ void ProcessTopUsers(PGconn* pg)
 }
 
 #include "routes/MatchesInitializer.h"
+#include "managers/PNManager.h"
+#include <fstream>
+#include <sstream>
+#include <rapidjson/document.h>
+
+static std::string ReadFile(const std::string& filename)
+{
+    std::ifstream file(filename);
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
 
 int main()
 {
-	PGconn* pg = ConnectionPool::Get()->getConnection();
+    PGconn* pg = ConnectionPool::Get()->getConnection();
+    {
+        std::string filename = "data/notifications.json";
+        std::string jsonString = ReadFile(filename);
 
-    MatchesInitializer::InitLaLiga26_27(pg);
-    MatchesInitializer::InitLaLigaTable(pg);
+        rapidjson::Document document;
+        document.Parse(jsonString.c_str());
+
+        std::string nTitle = "fireball_winner_title";
+        std::string nMsg = "fireball_winner_msg";
+
+        std::string sql = "SELECT id, token, lang FROM fcm_tokens;";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        int nrows = PQntuples(ret);
+        std::vector<int> failedTokens;
+
+        std::string jwt_token = PNManager::CreateJwtToken();
+        if (!jwt_token.size())
+        {
+            fprintf(stderr, "Failed to create jwt token: %s", PQerrorMessage(pg));
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
+            return 0;
+        }
+
+        std::string access_token = PNManager::RequestAccessToken(jwt_token);
+        if (!access_token.size())
+        {
+            fprintf(stderr, "Failed to create access token: %s", PQerrorMessage(pg));
+            ConnectionPool::Get()->releaseConnection(pg);
+            PQclear(ret);
+            return 0;
+        }
+
+        for (int i = 0; i < nrows; ++i)
+        {
+            int userId = atoi(PQgetvalue(ret, i, 0));
+            std::string token = PQgetvalue(ret, i, 1);
+            std::string lang = PQgetvalue(ret, i, 2);
+
+            std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
+            std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
+
+           
+
+            bool res = PNManager::SendPushNotification(access_token, token, t, m, "");
+            if (!res) failedTokens.push_back(userId);
+        }
+        PQclear(ret);
+    }
+
+    ConnectionPool::Get()->releaseConnection(pg);
     return 0;
     /*
     ProcessTopUsers(pg);
