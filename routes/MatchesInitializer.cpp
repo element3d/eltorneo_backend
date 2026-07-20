@@ -2440,7 +2440,7 @@ void MatchesInitializer::InitChampionsLeaguePO25_26(PGconn* pg)
    // matches.push_back({ ELeague::ChampionsLeague, "25/26", 12, ETeam::BayernMunich, ETeam::PSG, 1778094000000, EWeekType::SemiFinal, true });
  //   matches.push_back({ ELeague::ChampionsLeague, "25/26", 12, ETeam::Arsenal, ETeam::AtleticoMadrid, 1778007600000, EWeekType::SemiFinal, true });
 
-        matches.push_back({ ELeague::ChampionsLeague, "25/26", 13, ETeam::PSG, ETeam::Arsenal, 1780156800000, EWeekType::Final, true });
+      matches.push_back({ ELeague::UEFASuperCup, "26/27", 1, ETeam::PSG, ETeam::AstonVilla, 1786561200, EWeekType::Final, true });
   //  matches.push_back({ ELeague::EuropaLeague, "24/25", 1, ETeam::TottenhamHotspur, ETeam::ManchesterUnited, 1747854000000, EWeekType::Final, true });
   //  matches.push_back({ ELeague::ConferenceLeague, "24/25", 1, ETeam::RealBetis, ETeam::Chelsea, 1748458800000, EWeekType::Final, true });
 
