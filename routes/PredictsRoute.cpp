@@ -696,7 +696,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "t2.id as team2_id, t2.name as team2_name, t2.short_name as team2_short_name, "
             "COALESCE(s.title, '') AS special_match_title, " // Fetch title from special_matches table
             "COALESCE(s.points, '') AS special_match_points " // Fetch title from special_matches table
-            "FROM predicts p "
+            "FROM eltorneo_predicts_26_27 p "
             "INNER JOIN matches m ON p.match_id = m.id "
             "LEFT JOIN leagues l ON m.league = l.id "
             "LEFT JOIN teams t1 ON m.team1 = t1.id "
@@ -782,7 +782,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
         // Reintroducing the count queries
         auto generateCountQuery = [&](const std::string& condition) 
         {
-            std::string countSql = "SELECT COUNT(*) FROM predicts p INNER JOIN matches m ON p.match_id = m.id WHERE p.user_id = " + userId;
+            std::string countSql = "SELECT COUNT(*) FROM eltorneo_predicts_26_27 p INNER JOIN matches m ON p.match_id = m.id WHERE p.user_id = " + userId;
             if (leagueId != "-1") 
             {
                 countSql += " AND m.league = " + leagueId;
