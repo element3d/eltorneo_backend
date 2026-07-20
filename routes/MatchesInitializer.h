@@ -121,6 +121,9 @@ public:
     static void InitComShieldTeams26_27(PGconn* pg);
     static void InitComShield26_27(PGconn* pg);
 
+    static void InitUEFASuperCupTeams26_27(PGconn* pg);
+    static void InitUEFASuperCup26_27(PGconn* pg);
+
 
     static void FillAwards(PGconn* pg);
 };
