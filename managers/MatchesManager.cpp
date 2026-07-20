@@ -2081,7 +2081,7 @@ bool MatchesManager::GetMatchesUpcomingWithPredicts(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN eltorneo_predicts_26_27 p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date > " + std::to_string(currentTimeMs) + " "
@@ -2196,7 +2196,7 @@ bool MatchesManager::GetMatchesUpcomingWithBets(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN beatbet_bets_26_27 b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date > " + std::to_string(currentTimeMs) + " "
@@ -2315,7 +2315,7 @@ bool MatchesManager::GetMatchesUpcomingWithFireball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN fireball_predicts_26_27 fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date > " + std::to_string(currentTimeMs) + " "
@@ -2533,7 +2533,7 @@ bool MatchesManager::GetMatchesUpcomingWithEFootball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN efootball_predicts_26_27 ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date > " + std::to_string(currentTimeMs) + " "
