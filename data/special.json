@@ -261,7 +261,8 @@
         "king_vs_jin": "King vs Jin Kazama",
         "doomsday": "Doomsday",
         "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
-        "yoshi_vs_king": "Yoshimitsu vs King"
+        "yoshi_vs_king": "Yoshimitsu vs King",
+        "battle_of_realms": "Battle of the Realms"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -525,6 +526,7 @@
         "king_vs_jin": "King vs Jin Kazama",
         "doomsday": "Doomsday",
         "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
-        "yoshi_vs_king": "Yoshimitsu vs King"
+        "yoshi_vs_king": "Yoshimitsu vs King",
+        "battle_of_realms": "Битва Королевств"
     }
 }
