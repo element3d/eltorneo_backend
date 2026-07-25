@@ -3289,26 +3289,25 @@ void CorrectGameTables(PGconn* pg)
 {
 	auto now = std::chrono::system_clock::now();
 	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-	long long timestamp = 1777593600000;//ms.count();
+	long long timestamp = ms.count();
 	long long nowMS = ms.count();
 
-	long long ten_days_ms = 0;//20LL * 24 * 60 * 60 * 1000;
-	long long twenty_days_ms = 10LL * 24 * 60 * 60 * 1000;
+	long long twenty_days_ms = 20LL * 24 * 60 * 60 * 1000;
 
 	{
-		std::string sql = "UPDATE users SET eltorneo_position = -1";
+		std::string sql = "UPDATE eltorneo_users_26_27 SET position = -1";
 		PGresult* ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 
 		sql =
-			"SELECT u.id, COUNT(p.id) AS total_predictions "
-			"FROM users u "
-			"INNER JOIN predicts p ON u.id = p.user_id "
+			"SELECT elu.id, COUNT(p.id) AS total_predictions "
+			"FROM eltorneo_users_26_27 elu "
+			"INNER JOIN eltorneo_predicts_26_27 p ON elu.user_id = p.user_id "
 			"WHERE p.status != 4 "
-			"AND u.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-			"GROUP BY u.id, u.name, u.avatar, u.points "
+			"AND elu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY elu.id, elu.points "
 			"HAVING COUNT(p.id) > 0 "
-			"ORDER BY u.points DESC, total_predictions DESC, u.id ASC;";
+			"ORDER BY elu.points DESC, total_predictions DESC, elu.id ASC;";
 
 		ret = PQexec(pg, sql.c_str());
 
@@ -3329,8 +3328,8 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 40) league = 3;
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE users SET eltorneo_position = " + std::to_string(pos)
-					+ ", eltorneo_league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				std::string posSql = "UPDATE eltorneo_users_26_27 SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
 			}
@@ -3339,18 +3338,18 @@ void CorrectGameTables(PGconn* pg)
 	}
 
 	{
-		std::string sql = "UPDATE users SET beat_bet_position = -1, beat_bet_league = -1;";
+		std::string sql = "UPDATE beatbet_users_26_27 SET position = -1, league = -1;";
 		PGresult* ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 
 		sql =
-			"SELECT u.id, u.balance, COUNT(b.id) AS total_bets "
-			"FROM users u "
-			"INNER JOIN bets b ON u.id = b.user_id "
-			"WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-			"GROUP BY u.id, u.name, u.avatar, u.balance "
+			"SELECT bu.id, bu.balance, COUNT(b.id) AS total_bets "
+			"FROM beatbet_users_26_27 bu "
+			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
+			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY bu.id, bu.balance "
 			"HAVING COUNT(b.id) > 0 "
-			"ORDER BY u.balance DESC, total_bets DESC, u.id ASC;";
+			"ORDER BY bu.balance DESC, total_bets DESC, bu.id ASC;";
 
 		ret = PQexec(pg, sql.c_str());
 
@@ -3386,7 +3385,7 @@ void CorrectGameTables(PGconn* pg)
 					PQclear(unsetBetsRes);
 				}
 
-				std::string posSql = "UPDATE users SET clear_balance = " + std::to_string(balance + totalAmount)
+				std::string posSql = "UPDATE beatbet_users_26_27 SET clear_balance = " + std::to_string(balance + totalAmount)
 					+ " WHERE id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
@@ -3395,13 +3394,13 @@ void CorrectGameTables(PGconn* pg)
 		PQclear(ret);
 
 		sql =
-			"SELECT u.id, COUNT(b.id) AS total_bets "
-			"FROM users u "
-			"INNER JOIN bets b ON u.id = b.user_id "
-			"WHERE u.last_bet_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
-			"GROUP BY u.id, u.name, u.avatar, u.clear_balance "
+			"SELECT bu.id, COUNT(b.id) AS total_bets "
+			"FROM beatbet_users_26_27 bu "
+			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
+			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY bu.id, bu.clear_balance "
 			"HAVING COUNT(b.id) > 0 "
-			"ORDER BY u.clear_balance DESC, total_bets DESC, u.id ASC;";
+			"ORDER BY bu.clear_balance DESC, total_bets DESC, bu.id ASC;";
 
 		ret = PQexec(pg, sql.c_str());
 		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -3423,8 +3422,8 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
 
-				std::string posSql = "UPDATE users SET beat_bet_position = " + std::to_string(pos)
-					+ ", beat_bet_league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				std::string posSql = "UPDATE beatbet_users_26_27 SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
 			}
@@ -3433,15 +3432,15 @@ void CorrectGameTables(PGconn* pg)
 	}
 
 	{
-		std::string sql = "UPDATE fireball_users SET position = -1, league = -1;";
+		std::string sql = "UPDATE fireball_users_26_27 SET position = -1, league = -1;";
 		PGresult* ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 
 		sql =
 			"SELECT fu.user_id, COUNT(p.id) AS total_predicts "
-			"FROM fireball_users fu "
-			"INNER JOIN fireball_predicts p ON fu.user_id = p.user_id "
-			"WHERE fu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"FROM fireball_users_26_27 fu "
+			"INNER JOIN fireball_predicts_26_27 p ON fu.user_id = p.user_id "
+			"WHERE fu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
 			"GROUP BY fu.user_id, fu.points "
 			"HAVING COUNT(p.id) > 0 "
 			"ORDER BY fu.points DESC, total_predicts DESC, fu.user_id ASC;";
@@ -3465,7 +3464,7 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 40) league = 3;
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE fireball_users SET position = " + std::to_string(pos)
+				std::string posSql = "UPDATE fireball_users_26_27 SET position = " + std::to_string(pos)
 					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
@@ -3475,15 +3474,15 @@ void CorrectGameTables(PGconn* pg)
 	}
 
 	{
-		std::string sql = "UPDATE career_users SET position = -1, league = -1;";
+		std::string sql = "UPDATE career_users_26_27 SET position = -1, league = -1;";
 		PGresult* ret = PQexec(pg, sql.c_str());
 		PQclear(ret);
 
 		sql =
 			"SELECT cu.user_id "
-			"FROM career_users cu "
+			"FROM career_users_26_27 cu "
 			"JOIN users u ON u.id = cu.user_id "
-			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
 			"GROUP BY cu.user_id, cu.points "
 			"ORDER BY cu.points DESC, cu.user_id ASC;";
 
@@ -3506,7 +3505,7 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 40) league = 3;
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE career_users SET position = " + std::to_string(pos)
+				std::string posSql = "UPDATE career_users_26_27 SET position = " + std::to_string(pos)
 					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
@@ -3521,9 +3520,9 @@ void CorrectGameTables(PGconn* pg)
 
 		sql =
 			"SELECT eu.user_id, COUNT(p.id) AS total_predicts "
-			"FROM efootball_users eu "
-			"INNER JOIN efootball_predicts p ON eu.user_id = p.user_id "
-			"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - ten_days_ms) + " "
+			"FROM efootball_users_26_27 eu "
+			"INNER JOIN efootball_predicts_26_27 p ON eu.user_id = p.user_id "
+			"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
 			"GROUP BY eu.user_id, eu.points "
 			"HAVING COUNT(p.id) > 0 AND SUM(CASE WHEN p.team_id <> -1 THEN 1 ELSE 0 END) > 0 "
 			"ORDER BY eu.points DESC, total_predicts DESC, eu.user_id ASC;";
@@ -3547,7 +3546,7 @@ void CorrectGameTables(PGconn* pg)
 				if (pos > 40) league = 3;
 				if (pos > 60) league = 4;
 				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE efootball_users SET position = " + std::to_string(pos)
+				std::string posSql = "UPDATE efootball_users_26_27 SET position = " + std::to_string(pos)
 					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
 				PGresult* posRet = PQexec(pg, posSql.c_str());
 				PQclear(posRet);
@@ -3555,51 +3554,7 @@ void CorrectGameTables(PGconn* pg)
 		}
 		PQclear(ret);
 	}
-
-	{
-		std::string sql = "UPDATE world_cup_users SET position = -1";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		PQclear(ret);
-
-		sql =
-			"SELECT wu.id, COUNT(p.id) AS total_predictions "
-			"FROM world_cup_users wu "
-			"INNER JOIN users u ON wu.user_id = u.id "
-			"INNER JOIN predicts p ON wu.user_id = p.user_id "
-			"INNER JOIN matches m ON p.match_id = m.id "
-			"WHERE p.status != 4 "
-			"AND m.league = 24 "
-			"AND wu.last_predict_ts >= " + std::to_string(nowMS - twenty_days_ms) + " "
-		//	"AND u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY wu.id, wu.points "
-			"HAVING COUNT(p.id) > 0 "
-			"ORDER BY wu.points DESC, total_predictions DESC, wu.id ASC;";
-
-		ret = PQexec(pg, sql.c_str());
-
-		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-		{
-			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		{
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int pos = i + 1;
-				int league = 1;
-				
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE world_cup_users SET position = " + std::to_string(pos)
-					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				PQclear(posRet);
-			}
-		}
-		PQclear(ret);
-	}
+	return;
 	
 	CorrectUserAwards(pg);
 }
@@ -3608,7 +3563,8 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-
+	CorrectGameTables(pg);
+	return 0;
 	//FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
 	//FillTeamSquad(pg);
