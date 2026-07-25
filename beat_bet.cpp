@@ -241,55 +241,97 @@ int main()
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
     {
-        std::string filename = "data/notifications.json";
-        std::string jsonString = ReadFile(filename);
-
-        rapidjson::Document document;
-        document.Parse(jsonString.c_str());
-
-        std::string nTitle = "fireball_winner_title";
-        std::string nMsg = "fireball_winner_msg";
-
-        std::string sql = "SELECT id, token, lang FROM fcm_tokens;";
-        PGresult* ret = PQexec(pg, sql.c_str());
-        int nrows = PQntuples(ret);
-        std::vector<int> failedTokens;
-
-        std::string jwt_token = PNManager::CreateJwtToken();
-        if (!jwt_token.size())
+        std::string sql = "SELECT id, balance, last_bet_ts, beat_bet_position FROM users WHERE beat_bet_position > 0 order by beat_bet_position ASC;";
+        PQexec(pg, sql.c_str());
+        PGresult* pret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
         {
-            fprintf(stderr, "Failed to create jwt token: %s", PQerrorMessage(pg));
+            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            PQclear(pret);
             ConnectionPool::Get()->releaseConnection(pg);
-            PQclear(ret);
-            return 0;
         }
 
-        std::string access_token = PNManager::RequestAccessToken(jwt_token);
-        if (!access_token.size())
+        int nPredicts = PQntuples(pret);
+        for (int i = 0; i < nPredicts; i++)
         {
-            fprintf(stderr, "Failed to create access token: %s", PQerrorMessage(pg));
-            ConnectionPool::Get()->releaseConnection(pg);
-            PQclear(ret);
-            return 0;
+            std::string userId = (PQgetvalue(pret, i, 0));
+            std::string balance = (PQgetvalue(pret, i, 1));
+            std::string ts = (PQgetvalue(pret, i, 2));
+            std::string pos = (PQgetvalue(pret, i, 3));
+
+            sql = "INSERT INTO beatbet_users_25_26(user_id, last_predict_ts, league, position, balance, clear_balance) VALUES ("
+                + userId + ", " + ts + ", " + "1" + ", " + pos + ", " + balance + ", " + balance + ");";
+            PGresult* iret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
+                PQclear(iret);
+                ConnectionPool::Get()->releaseConnection(pg);
+            }
         }
-
-        for (int i = 0; i < nrows; ++i)
-        {
-            int userId = atoi(PQgetvalue(ret, i, 0));
-            std::string token = PQgetvalue(ret, i, 1);
-            std::string lang = PQgetvalue(ret, i, 2);
-
-            std::string t = document[lang.c_str()][nTitle.c_str()].GetString();
-            std::string m = document[lang.c_str()][nMsg.c_str()].GetString();
-
-           
-
-            bool res = PNManager::SendPushNotification(access_token, token, t, m, "");
-            if (!res) failedTokens.push_back(userId);
-        }
-        PQclear(ret);
     }
+    {
+        std::string sql = "SELECT id, league_24_25, points_24_25 FROM users WHERE points_24_25 > 0 AND league_24_25 > 0 order by points_24_25 DESC;";
+        PQexec(pg, sql.c_str());
+        PGresult* pret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            PQclear(pret);
+            ConnectionPool::Get()->releaseConnection(pg);
+        }
 
+        int nPredicts = PQntuples(pret);
+        for (int i = 0; i < nPredicts; i++)
+        {
+            std::string userId = (PQgetvalue(pret, i, 0));
+            std::string league = (PQgetvalue(pret, i, 1));
+            std::string points = (PQgetvalue(pret, i, 2));
+
+            sql = "INSERT INTO eltorneo_users_24_25(user_id, points, last_predict_ts, league, position) VALUES ("
+                + userId + ", " + points + ", " + "0" + ", " + league + ", " + std::to_string(i + 1) + ");";
+            PGresult* iret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
+                PQclear(iret);
+                ConnectionPool::Get()->releaseConnection(pg);
+            }
+        }
+    }
+    
+    {
+        std::string sql = "SELECT id, eltorneo_league, eltorneo_position, last_predict_ts, points FROM users WHERE eltorneo_position > 0 order by eltorneo_position ASC;";
+        PQexec(pg, sql.c_str());
+        PGresult* pret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+            PQclear(pret);
+            ConnectionPool::Get()->releaseConnection(pg);
+        }
+
+        int nPredicts = PQntuples(pret);
+        for (int i = 0; i < nPredicts; i++)
+        {
+            std::string userId = (PQgetvalue(pret, i, 0));
+            std::string league = (PQgetvalue(pret, i, 1));
+            std::string pos = (PQgetvalue(pret, i, 2));
+            std::string ts = (PQgetvalue(pret, i, 3));
+            std::string points = (PQgetvalue(pret, i, 4));
+
+            sql = "INSERT INTO eltorneo_users_25_26(user_id, points, last_predict_ts, league, position) VALUES ("
+                + userId + ", " + points + ", " + ts + ", " + league + ", " + pos + ");";
+            PGresult* iret = PQexec(pg, sql.c_str());
+            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
+            {
+                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
+                PQclear(iret);
+                ConnectionPool::Get()->releaseConnection(pg);
+            }
+        }
+    }
+    
     ConnectionPool::Get()->releaseConnection(pg);
     return 0;
     /*
