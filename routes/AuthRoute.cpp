@@ -341,6 +341,11 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::Link
         int numGoogleActions = 0;
         if (pUser)
         {
+            delete pUser;
+            res.status = 403;
+            res.set_content("", "text/plain");
+            return;
+            
             PGconn* pConn = ConnectionPool::Get()->getConnection();
             googleUserId = pUser->Id;
             std::string sql =
@@ -724,18 +729,23 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
         int userId = decoded.get_payload_claim("id").as_int();
         std::string authType = decoded.get_payload_claim("auth_type").as_string();
 
-        std::string sql = "SELECT u.id, u.name, u.avatar, u.points, u.email, u.tg_code, u.username, u.clear_balance, u.is_guest, fu.points, cu.points, eu.points, wu.points, "
-            "u.eltorneo_league, u.eltorneo_position, "
-            "u.beat_bet_league, u.beat_bet_position, "
+        std::string sql = "SELECT u.id, u.name, u.avatar, elu.points, u.email, u.tg_code, u.username, bu.clear_balance, u.is_guest, fu.points, cu.points, eu.points, wu.points, "
+            "elu.league, elu.position, "
+            "bu.league, bu.position, "
             "fu.league, fu.position, "
             "cu.league, cu.position, "
             "eu.league, eu.position, "
             "wu.position "
+
             "FROM users u "
-            "LEFT JOIN fireball_users fu ON fu.user_id = u.id "
-            "LEFT JOIN career_users cu ON cu.user_id = u.id "
-            "LEFT JOIN efootball_users eu ON eu.user_id = u.id "
+
+            "LEFT JOIN eltorneo_users_26_27 elu ON elu.user_id = u.id "
+            "LEFT JOIN beatbet_users_26_27 bu ON bu.user_id = u.id "
+            "LEFT JOIN fireball_users_26_27 fu ON fu.user_id = u.id "
+            "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
+            "LEFT JOIN efootball_users_26_27 eu ON eu.user_id = u.id "
             "LEFT JOIN world_cup_users wu ON wu.user_id = u.id "
+            
             "WHERE u.id = " + std::to_string(userId) + ";";
         PGconn* pg = ConnectionPool::Get()->getConnection();
         PGresult* ret = PQexec(pg, sql.c_str());

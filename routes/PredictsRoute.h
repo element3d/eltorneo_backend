@@ -13,19 +13,15 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserBets();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetOfficialBets();
-    std::function<void(const httplib::Request&, httplib::Response&)> GetUserScorePredicts();
-    std::function<void(const httplib::Request&, httplib::Response&)> GetUserWinnerPredicts();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredicts();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsSummary();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop20V2();
-    void GetMatchPredictsTop20V3(const httplib::Request& req, httplib::Response& res);
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20V2();
-    void GetMatchBetsTop20V3(const httplib::Request& req, httplib::Response& res);
 
     std::function<void(const httplib::Request&, httplib::Response&)> PostPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> EditPredict();
@@ -34,6 +30,8 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> DeleteBet();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetElTorneoTable();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetElTorneoTableV3();
+
     std::function<void(const httplib::Request&, httplib::Response&)> GetTableByPoints();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTable();
     std::function<void(const httplib::Request&, httplib::Response&)> GetBeatBetTableV2();
@@ -49,7 +47,6 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserFireballPredict();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballTop20V2();
-    void GetMatchFireballTop20V3(const httplib::Request& req, httplib::Response& res);
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchFireballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetFireballTable();
@@ -71,7 +68,6 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetEFootballTableV2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V2();
-    void GetMatchEFootballTop20V3(const httplib::Request& req, httplib::Response& res);
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredicts();
 

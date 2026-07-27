@@ -156,9 +156,7 @@ int main(void)
     svr.Post("/api/v1/user/notification/preview", AuthRoute::Get()->UserSendNotificationPreview());
     svr.Post("/api/v1/user/notification/leagu2", AuthRoute::Get()->UserSendNotificationLeague2());
     svr.Post("/api/v2/user/notification/match", AuthRoute::Get()->UserSendNotificationMatchV2());
-
     svr.Post("/api/v1/user/notification/special", AuthRoute::Get()->UserSendSpecialMatchNotification());
-
     svr.Post("/api/v1/user/notification/prediction", AuthRoute::Get()->UserPredictionSendNotification());
 
     svr.Delete("/api/v1/me/avatar", AuthRoute::Get()->MeDeleteAvatar());
@@ -209,42 +207,33 @@ int main(void)
     svr.Put("/api/v1/player/position", MatchesRoute::Get()->PutPlayerPosition());
     svr.Put("/api/v1/player/photo", MatchesRoute::Get()->PutPlayerPhoto());
     svr.Delete("/api/v1/team/player", MatchesRoute::Get()->DeleteTeamPlayer());
-
     svr.Get("/api/v1/match/players", MatchesRoute::Get()->GetMatchPlayers());
 
-    svr.Post("/api/v1/bet", PredictsRoute::Get()->PostBet());
-    svr.Delete("/api/v1/bet", PredictsRoute::Get()->DeleteBet());
 
+    // el Torneo
     svr.Post("/api/v1/predicts", PredictsRoute::Get()->PostPredict());
     svr.Put("/api/v1/predicts", PredictsRoute::Get()->EditPredict());
     svr.Get("/api/v1/user/predict", PredictsRoute::Get()->GetUserPredict());
-    svr.Get("/api/v1/user/bet", PredictsRoute::Get()->GetUserBet());
     svr.Get("/api/v1/user/predicts", PredictsRoute::Get()->GetUserPredicts());
-    svr.Get("/api/v1/user/bets", PredictsRoute::Get()->GetUserBets());
-    svr.Get("/api/v1/beatbet_official", PredictsRoute::Get()->GetBeatBetOfficialBets());
-
-    svr.Get("/api/v1/user/score_predicts", PredictsRoute::Get()->GetUserScorePredicts());
-    svr.Get("/api/v1/user/winner_predicts", PredictsRoute::Get()->GetUserWinnerPredicts());
-
-    svr.Get("/api/v1/match/bets/summary", PredictsRoute::Get()->GetMatchBetsSummary());
     svr.Get("/api/v1/match/predicts", PredictsRoute::Get()->GetMatchPredicts());
     svr.Get("/api/v1/match/predicts/top3", PredictsRoute::Get()->GetMatchPredictsTop3());
     svr.Get("/api/v2/match/predicts/top20", PredictsRoute::Get()->GetMatchPredictsTop20V2());
-    svr.Get("/api/v1/match/bets/top20", PredictsRoute::Get()->GetMatchBetsTop20());
-    svr.Get("/api/v2/match/bets/top20", PredictsRoute::Get()->GetMatchBetsTop20V2());
-
     svr.Get("/api/v1/table/points", PredictsRoute::Get()->GetTableByPoints());
     svr.Get("/api/v2/table/eltorneo", PredictsRoute::Get()->GetElTorneoTable());
+    svr.Get("/api/v3/table/eltorneo", PredictsRoute::Get()->GetElTorneoTableV3());
 
+    // BEATBET
     svr.Get("/api/v1/beat_bet_table", PredictsRoute::Get()->GetBeatBetTable());
     svr.Get("/api/v2/beat_bet_table", PredictsRoute::Get()->GetBeatBetTableV2());
     svr.Get("/api/v3/beat_bet_table", PredictsRoute::Get()->GetBeatBetTableV3());
-
-    svr.Get("/api/v1/table/score", PredictsRoute::Get()->GetTableByScore());
-    svr.Get("/api/v1/table/winner", PredictsRoute::Get()->GetTableByWinner());
-    svr.Get("/api/v1/top_scorers", LeaguesRoute::Get()->GetTopScorers());
-
-    svr.Get("/api/v1/beat_bet", PredictsRoute::Get()->GetBeatBet());
+    svr.Get("/api/v1/match/bets/top20", PredictsRoute::Get()->GetMatchBetsTop20());
+    svr.Get("/api/v2/match/bets/top20", PredictsRoute::Get()->GetMatchBetsTop20V2());
+    svr.Get("/api/v1/match/bets/summary", PredictsRoute::Get()->GetMatchBetsSummary());
+    svr.Get("/api/v1/user/bets", PredictsRoute::Get()->GetUserBets());
+    svr.Get("/api/v1/beatbet_official", PredictsRoute::Get()->GetBeatBetOfficialBets());
+    svr.Get("/api/v1/user/bet", PredictsRoute::Get()->GetUserBet());
+    svr.Post("/api/v1/bet", PredictsRoute::Get()->PostBet());
+    svr.Delete("/api/v1/bet", PredictsRoute::Get()->DeleteBet());
 
     // Fireball
     svr.Post("/api/v1/fireball/predict", PredictsRoute::Get()->PostFireballPredict());
@@ -279,6 +268,14 @@ int main(void)
 
 
     svr.Post("/api/v1/analytics/page", AnalyticsRoute::Get()->PostPage());
+
+    svr.Post("/api/v1/finish", PredictsRoute::Get()->PostFinish());
+
+
+    svr.Get("/api/v1/table/score", PredictsRoute::Get()->GetTableByScore());
+    svr.Get("/api/v1/table/winner", PredictsRoute::Get()->GetTableByWinner());
+    svr.Get("/api/v1/top_scorers", LeaguesRoute::Get()->GetTopScorers());
+    svr.Get("/api/v1/beat_bet", PredictsRoute::Get()->GetBeatBet());
 
     svr.Post("/post", [](const Request &req, Response &res) {
 		req.params;

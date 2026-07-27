@@ -858,7 +858,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
             // If user exists, check if they have predicted this match
             if (userId > 0)
             {
-                std::string sql = "SELECT id FROM predicts WHERE user_id = "
+                std::string sql = "SELECT id FROM eltorneo_predicts_26_27 WHERE user_id = "
                     + std::to_string(userId) + " AND match_id = " + std::to_string(mid) + ";";
                 PGresult* predRet = PQexec(pg, sql.c_str());
                 int n = PQntuples(predRet);

@@ -20,19 +20,12 @@ bool MatchesManager::GetLeagueMatchesWithPredicts(PGconn* pg,
     const std::string& lang,
     rapidjson::Document& document)
 {
-    std::string currentSeason = "25/26";
     std::string postfix = "";
     std::string ss = season;
-    if (ss != currentSeason)
-    {
-        std::replace(ss.begin(), ss.end(), '/', '_');
-        postfix = "_" + ss;
-    }
-    std::string predictsTableName = "predicts" + postfix;
-    if (season == "26/27") 
-    {
-        predictsTableName = "eltorneo_predicts_26_27";
-    }
+    std::replace(ss.begin(), ss.end(), '/', '_');
+    postfix = "_" + ss;
+    std::string predictsTableName = "eltorneo_predicts" + postfix;
+
     std::string sql = "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, m.status, m.is_special, m.preview, m.teaser, m.play_off, m.team1_score_90, m.team2_score_90, m.team1_score_pen, m.team2_score_pen,"
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
@@ -171,19 +164,10 @@ bool MatchesManager::GetLeagueMatchesWithBets(PGconn* pg,
     const std::string& lang,
     rapidjson::Document& document)
 {
-    std::string currentSeason = "25/26";
-    std::string postfix = "";
     std::string ss = season;
-    if (ss != currentSeason)
-    {
-        std::replace(ss.begin(), ss.end(), '/', '_');
-        postfix = "_" + ss;
-    }
-    std::string tableName = "bets";
-    if (season == "26/27") 
-    {
-        tableName = "beatbet_bets_26_27";
-    }
+    std::replace(ss.begin(), ss.end(), '/', '_');
+
+    std::string tableName = "beatbet_bets_" + ss;
 
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
@@ -192,7 +176,6 @@ bool MatchesManager::GetLeagueMatchesWithBets(PGconn* pg,
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
 
-        // user bet fields (default values if no bet)
         "COALESCE(b.id, -1) AS bet_id, "
         "COALESCE(b.bet, '') AS bet, "
         "COALESCE(b.amount, 0) AS bet_amount, "
@@ -331,20 +314,10 @@ bool MatchesManager::GetLeagueMatchesWithFireball(PGconn* pg,
     const std::string& lang,
     rapidjson::Document& document)
 {
-    std::string currentSeason = "25/26";
-    std::string postfix = "";
     std::string ss = season;
-    if (ss != currentSeason)
-    {
-        std::replace(ss.begin(), ss.end(), '/', '_');
-        postfix = "_" + ss;
-    }
+    std::replace(ss.begin(), ss.end(), '/', '_');
 
-    std::string tableName = "fireball_predicts";
-    if (season == "26/27") 
-    {
-        tableName = "fireball_predicts_26_27";
-    }
+    std::string tableName = "fireball_predicts_" + ss;
 
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
@@ -353,7 +326,6 @@ bool MatchesManager::GetLeagueMatchesWithFireball(PGconn* pg,
         "t1.id AS team1_id, t1.name AS team1_name, t1.short_name AS team1_short_name, "
         "t2.id AS team2_id, t2.name AS team2_name, t2.short_name AS team2_short_name, "
 
-        // user bet fields (default values if no bet)
         "COALESCE(fp.id, -1) AS fp_id, "
         "COALESCE(fp.team_id, -1) AS fp_team_id, "
         "COALESCE(fp.player_api_id, -1) AS fp_player_api_id, "
@@ -496,15 +468,6 @@ bool MatchesManager::GetLeagueMatchesWithCareer(PGconn* pg,
     const std::string& lang,
     rapidjson::Document& document)
 {
-    std::string currentSeason = "25/26";
-    std::string postfix = "";
-    std::string ss = season;
-    if (ss != currentSeason)
-    {
-        std::replace(ss.begin(), ss.end(), '/', '_');
-        postfix = "_" + ss;
-    }
-
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
         "m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, "
@@ -623,19 +586,10 @@ bool MatchesManager::GetLeagueMatchesWithEFootball(PGconn* pg,
     const std::string& lang,
     rapidjson::Document& document)
 {
-    std::string currentSeason = "25/26";
-    std::string postfix = "";
     std::string ss = season;
-    if (ss != currentSeason)
-    {
-        std::replace(ss.begin(), ss.end(), '/', '_');
-        postfix = "_" + ss;
-    }
-    std::string tableName = "efootball_predicts";
-    if (season == "26/27") 
-    {
-        tableName = "efootball_predicts_26_27";
-    }
+    std::replace(ss.begin(), ss.end(), '/', '_');
+    std::string tableName = "efootball_predicts_" + ss;
+
     std::string sql =
         "SELECT m.id, m.league, m.season, m.week, m.week_type, m.match_date, "
         "m.team1_score, m.team2_score, m.elapsed, m.team1_score_live, m.team2_score_live, "
@@ -798,7 +752,7 @@ bool MatchesManager::GetMatchesByDateWithPredicts(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN eltorneo_predicts_26_27 p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date >= " + std::to_string(dayStart) + " AND m.match_date <= " + std::to_string(dayEnd) + " "
@@ -946,7 +900,7 @@ bool MatchesManager::GetMatchesByDateWithBets(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN beatbet_bets_26_27 b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date >= " + std::to_string(dayStart) + " AND m.match_date <= " + std::to_string(dayEnd) + " "
@@ -955,7 +909,7 @@ bool MatchesManager::GetMatchesByDateWithBets(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Failed to get matches by day with bets: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1098,7 +1052,7 @@ bool MatchesManager::GetMatchesByDateWithFireball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN fireball_predicts_26_27 fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date >= " + std::to_string(dayStart) + " AND m.match_date <= " + std::to_string(dayEnd) + " "
@@ -1107,7 +1061,7 @@ bool MatchesManager::GetMatchesByDateWithFireball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Failed to get matches by day with fireball: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1250,7 +1204,7 @@ bool MatchesManager::GetMatchesByDateWithCareer(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Failed to get matches by day with predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Failed to get matches by day with career: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1378,7 +1332,7 @@ bool MatchesManager::GetMatchesByDateWithEFootball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN efootball_predicts_26_27 ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date >= " + std::to_string(dayStart) + " AND m.match_date <= " + std::to_string(dayEnd) + " "
@@ -1517,7 +1471,7 @@ bool MatchesManager::GetMatchesLiveWithPredicts(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN eltorneo_predicts_26_27 p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
@@ -1632,7 +1586,7 @@ bool MatchesManager::GetMatchesLiveWithBets(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN beatbet_bets_26_27 b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
@@ -1751,7 +1705,7 @@ bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN fireball_predicts_26_27 fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
@@ -1761,7 +1715,7 @@ bool MatchesManager::GetMatchesLiveWithFireball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Error: Failed to fetch live matches with FIREBALL predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch live matches with FIREBALL: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -1969,7 +1923,7 @@ bool MatchesManager::GetMatchesLiveWithEFootball(PGconn* pg,
         "FROM matches m "
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN efootball_predicts_26_27 ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "JOIN leagues l ON m.league = l.id "  // Join with leagues table
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE m.match_date < " + std::to_string(currentTimeMs) + " "
@@ -2325,7 +2279,7 @@ bool MatchesManager::GetMatchesUpcomingWithFireball(PGconn* pg,
     PGresult* ret = PQexec(pg, sql.c_str());
     if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
     {
-        fprintf(stderr, "Error: Failed to fetch upcoming matches with FIREBALL predicts: %s", PQerrorMessage(pg));
+        fprintf(stderr, "Error: Failed to fetch upcoming matches with FIREBALL: %s", PQerrorMessage(pg));
         PQclear(ret);
         return false;
     }
@@ -2643,7 +2597,7 @@ bool MatchesManager::GetMatchesTeamWithPredicts(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN eltorneo_predicts_26_27 p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
@@ -2767,7 +2721,7 @@ bool MatchesManager::GetMatchesTeamWithBets(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN beatbet_bets_26_27 b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
@@ -2895,7 +2849,7 @@ bool MatchesManager::GetMatchesTeamWithFireball(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN fireball_predicts_26_27 fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
@@ -3122,7 +3076,7 @@ bool MatchesManager::GetMatchesTeamWithEFootball(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN efootball_predicts_26_27 ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id " // Join special_matches
         "WHERE (m.team1 = " + std::to_string(tid) + " OR m.team2 = " + std::to_string(tid) + ") AND m.team1_score > -1 AND m.team2_score > -1 ORDER BY m.match_date DESC LIMIT 20;";
 
@@ -3244,7 +3198,7 @@ bool MatchesManager::FillTeamMatchesWithPredicts(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN predicts p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN eltorneo_predicts_26_27 p ON p.match_id = m.id AND p.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id ";
 
     if (eMatch == ETeamMatch::Finished)
@@ -3399,7 +3353,7 @@ bool MatchesManager::FillTeamMatchesWithBets(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN bets b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN beatbet_bets_26_27 b ON b.match_id = m.id AND b.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id ";
 
     if (eMatch == ETeamMatch::Finished)
@@ -3558,7 +3512,7 @@ bool MatchesManager::FillTeamMatchesWithFireball(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN fireball_predicts_26_27 fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id ";
 
     if (eMatch == ETeamMatch::Finished)
@@ -3709,7 +3663,6 @@ bool MatchesManager::FillTeamMatchesWithCareer(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN fireball_predicts fp ON fp.match_id = m.id AND fp.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id ";
 
     if (eMatch == ETeamMatch::Finished)
@@ -3847,7 +3800,7 @@ bool MatchesManager::FillTeamMatchesWithEFootball(PGconn* pg,
         "JOIN teams t1 ON m.team1 = t1.id "
         "JOIN teams t2 ON m.team2 = t2.id "
         "JOIN leagues l ON m.league = l.id "
-        "LEFT JOIN efootball_predicts ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
+        "LEFT JOIN efootball_predicts_26_27 ep ON ep.team_id > 0 AND ep.match_id = m.id AND ep.user_id = " + std::to_string(userId) + " "
         "LEFT JOIN special_matches s ON s.match_id = m.id ";
 
     if (eMatch == ETeamMatch::Finished)
