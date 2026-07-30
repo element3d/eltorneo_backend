@@ -137,6 +137,7 @@ int main(void)
 
     svr.Get("/api/v1/me", AuthRoute::Get()->Me());
     svr.Get("/api/v2/me", AuthRoute::Get()->MeV2());
+    svr.Get("/api/v3/me", AuthRoute::Get()->MeV3());
 
     svr.Get("/api/v1/user", AuthRoute::Get()->GetUser());
     svr.Put("/api/v1/me/avatar", AuthRoute::Get()->MeUploadAvatar());

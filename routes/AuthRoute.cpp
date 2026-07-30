@@ -935,6 +935,224 @@ std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV2
     };
 }
 
+std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::MeV3()
+{
+    return [](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "*");
+        res.set_header("Access-Control-Allow-Headers", "*");
+
+        std::string token = req.get_header_value("Authentication");
+        auto decoded = jwt::decode(token);
+        int userId = decoded.get_payload_claim("id").as_int();
+        std::string authType = decoded.get_payload_claim("auth_type").as_string();
+
+        std::string sql = "SELECT u.id, u.name, u.avatar, elu.points, u.email, u.tg_code, u.username, bu.clear_balance, u.is_guest, fu.points, cu.points, eu.points, wu.points, "
+            "elu.league, elu.position, "
+            "bu.league, bu.position, "
+            "fu.league, fu.position, "
+            "cu.league, cu.position, "
+            "eu.league, eu.position, "
+            "wu.position "
+
+            "FROM users u "
+
+            "LEFT JOIN eltorneo_users_26_27 elu ON elu.user_id = u.id "
+            "LEFT JOIN beatbet_users_26_27 bu ON bu.user_id = u.id "
+            "LEFT JOIN fireball_users_26_27 fu ON fu.user_id = u.id "
+            "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
+            "LEFT JOIN efootball_users_26_27 eu ON eu.user_id = u.id "
+            "LEFT JOIN world_cup_users wu ON wu.user_id = u.id "
+
+            "WHERE u.id = " + std::to_string(userId) + ";";
+        PGconn* pg = ConnectionPool::Get()->getConnection();
+        PGresult* ret = PQexec(pg, sql.c_str());
+        if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+        {
+            fprintf(stderr, "Failed to fetch me: %s", PQerrorMessage(pg));
+            PQclear(ret);
+            res.status = 500;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+
+        int nrows = PQntuples(ret);
+        if (!nrows)
+        {
+            PQclear(ret);
+            res.status = 404;  // Internal Server Error
+            ConnectionPool::Get()->releaseConnection(pg);
+            return;
+        }
+        rapidjson::Document document;
+        document.SetObject();
+        rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
+        char* temp = (char*)calloc(4096, sizeof(char));
+        int league = -1;
+        for (int i = 0; i < nrows; ++i)
+        {
+            int id = atoi(PQgetvalue(ret, i, 0));
+            rapidjson::Value v;
+            v.SetInt(id);
+            document.AddMember("id", v, allocator);
+
+            strcpy(temp, PQgetvalue(ret, i, 1));
+            std::string name = temp;
+            v.SetString(name.c_str(), name.size(), allocator);
+            document.AddMember("name", v, allocator);
+
+            strcpy(temp, PQgetvalue(ret, i, 2));
+            std::string ava = temp;
+            v.SetString(ava.c_str(), ava.size(), allocator);
+            document.AddMember("avatar", v, allocator);
+
+            int points = atoi(PQgetvalue(ret, i, 3));
+            document.AddMember("points", points, allocator);
+
+            strcpy(temp, PQgetvalue(ret, i, 4));
+            std::string email = temp;
+            v.SetString(email.c_str(), email.size(), allocator);
+            document.AddMember("email", v, allocator);
+
+            v.SetString(authType.c_str(), authType.size(), allocator);
+            document.AddMember("authType", v, allocator);
+
+            if (authType == "telegram")
+            {
+                int code = atoi(PQgetvalue(ret, i, 5));
+                document.AddMember("tgCode", code, allocator);
+            }
+
+            strcpy(temp, PQgetvalue(ret, i, 6));
+            std::string username = temp;
+            v.SetString(username.c_str(), username.size(), allocator);
+            document.AddMember("username", v, allocator);
+
+            float balance = atof(PQgetvalue(ret, i, 7));
+            document.AddMember("balance", balance, allocator);
+
+            int isGuest = atoi(PQgetvalue(ret, i, 8));
+            document.AddMember("isGuest", isGuest, allocator);
+
+            int fireballPoints = atoi(PQgetvalue(ret, i, 9));
+            document.AddMember("fireballPoints", fireballPoints, allocator);
+            int careerPoints = atoi(PQgetvalue(ret, i, 10));
+            document.AddMember("careerPoints", careerPoints, allocator);
+            int eFootballPoints = atoi(PQgetvalue(ret, i, 11));
+            document.AddMember("eFootballPoints", eFootballPoints, allocator);
+            int worldCupPoints = atoi(PQgetvalue(ret, i, 12));
+            document.AddMember("worldCupPoints", worldCupPoints, allocator);
+
+            int elTorneoLeague = atoi(PQgetvalue(ret, i, 13));
+            if (elTorneoLeague < 1) elTorneoLeague = -1;
+            document.AddMember("elTorneoLeague", elTorneoLeague, allocator);
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 14));//elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (elTorneoLeague - 1) * 20 : -1;
+            document.AddMember("elTorneoPosition", elTorneoPosition, allocator);
+
+            int beatBetLeague = atoi(PQgetvalue(ret, i, 15));
+            if (beatBetLeague < 1) beatBetLeague = -1;
+            document.AddMember("beatBetLeague", beatBetLeague, allocator);
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 16)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (beatBetLeague - 1) * 20 : -1;
+            document.AddMember("beatBetPosition", beatBetPosition, allocator);
+
+            int fireballLeague = atoi(PQgetvalue(ret, i, 17));
+            if (fireballLeague < 1) fireballLeague = -1;
+            document.AddMember("fireballLeague", fireballLeague, allocator);
+            int fireballPosition = atoi(PQgetvalue(ret, i, 18)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (fireballLeague - 1) * 20 : -1;
+            document.AddMember("fireballPosition", fireballPosition, allocator);
+
+            int careerLeague = atoi(PQgetvalue(ret, i, 19));
+            if (careerLeague < 1) careerLeague = -1;
+            document.AddMember("careerLeague", careerLeague, allocator);
+            int careerPosition = atoi(PQgetvalue(ret, i, 20)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 20)) - (careerLeague - 1) * 20 : -1;
+            document.AddMember("careerPosition", careerPosition, allocator);
+
+            int eFootballLeague = atoi(PQgetvalue(ret, i, 21));
+            if (eFootballLeague < 1) eFootballLeague = -1;
+            document.AddMember("eFootballLeague", eFootballLeague, allocator);
+            int eFootballPosition = atoi(PQgetvalue(ret, i, 22)); // eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 22)) - (eFootballLeague - 1) * 20 : -1;
+            document.AddMember("eFootballPosition", eFootballPosition, allocator);
+
+            int worldCupPosition = atoi(PQgetvalue(ret, i, 23));
+            document.AddMember("worldCupPosition", worldCupPosition, allocator);
+
+            break;
+        }
+
+        free(temp);
+
+        {
+            long long currentTsMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::system_clock::now().time_since_epoch()
+            ).count();
+
+            std::string updateVisitSql =
+                "UPDATE users SET last_visit_ts = " + std::to_string(currentTsMs) +
+                " WHERE id = " + std::to_string(userId) + ";";
+            PGresult* ret = PQexec(pg, updateVisitSql.c_str());
+            PQclear(ret);
+
+        }
+
+        {
+            std::string awardsQuery = "SELECT place, season, league, game, is_winner, finished FROM awards WHERE user_id = " + std::to_string(userId) + " order by id desc;";
+            PGresult* awardsRes = PQexec(pg, awardsQuery.c_str());
+
+            if (PQresultStatus(awardsRes) != PGRES_TUPLES_OK)
+            {
+                fprintf(stderr, "Failed to fetch awards: %s", PQerrorMessage(pg));
+                PQclear(awardsRes);
+            }
+            else
+            {
+                int awardCount = PQntuples(awardsRes);
+                rapidjson::Value awards(rapidjson::kArrayType);
+
+                for (int j = 0; j < awardCount; ++j)
+                {
+                    rapidjson::Value awardObj(rapidjson::kObjectType);
+
+                    int place = atoi(PQgetvalue(awardsRes, j, 0));
+                    char* season = PQgetvalue(awardsRes, j, 1);
+                    int league = atoi(PQgetvalue(awardsRes, j, 2));
+                    char* game = PQgetvalue(awardsRes, j, 3);
+                    int isWinner = atoi(PQgetvalue(awardsRes, j, 4));
+                    int finished = atoi(PQgetvalue(awardsRes, j, 5));
+
+                    awardObj.AddMember("place", place, allocator);
+
+                    rapidjson::Value seasonVal;
+                    seasonVal.SetString(season, allocator);
+                    awardObj.AddMember("season", seasonVal, allocator);
+                    awardObj.AddMember("league", league, allocator);
+
+                    seasonVal.SetString(game, allocator);
+                    awardObj.AddMember("game", seasonVal, allocator);
+                    awardObj.AddMember("isWinner", isWinner, allocator);
+                    awardObj.AddMember("finished", finished, allocator);
+
+                    awards.PushBack(awardObj, allocator);
+                }
+
+                document.AddMember("awards", awards, allocator);
+                PQclear(awardsRes);
+            }
+
+        }
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        document.Accept(writer);
+
+        res.set_content(buffer.GetString(), "application/json");
+        res.status = 200;  // OK
+
+        PQclear(ret);
+        ConnectionPool::Get()->releaseConnection(pg);
+
+    };
+}
+
 
 std::function<void(const httplib::Request&, httplib::Response&)> AuthRoute::GetUser()
 {

@@ -63,14 +63,14 @@ void LeaguesRoute::Init()
 
 
 
-  //     MatchesInitializer::InitPremierLeagueTeams25_26(pg);
-  //     MatchesInitializer::InitPremierLeague25_26(pg);
-  //     MatchesInitializer::InitPremierLeagueTable(pg);
+     //  MatchesInitializer::InitPremierLeagueTeams26_27(pg);
+      // MatchesInitializer::InitPremierLeague26_27(pg);
+      // MatchesInitializer::InitPremierLeagueTable(pg);
   //  // MatchesInitializer::FillPremierLeagueTable(pg);
   //
-  //     MatchesInitializer::InitLaLigaTeams25_26(pg);
-  //     MatchesInitializer::InitLaLiga25_26(pg);
-  //     MatchesInitializer::InitLaLigaTable(pg);
+    //   MatchesInitializer::InitLaLigaTeams26_27(pg);
+     //  MatchesInitializer::InitLaLiga26_27(pg);
+      // MatchesInitializer::InitLaLigaTable(pg);
   //  // MatchesInitializer::FillLaLigaTable(pg);
   //
        //MatchesInitializer::InitSerieATeams25_26(pg);
@@ -145,7 +145,12 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
     return [](const httplib::Request& req, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", "*");
 
-
+        std::string season = "25/26";
+        if (req.has_header("X-App-Version"))
+        {
+            std::string appVersion = req.get_header_value("X-App-Version");
+            season = "26/27";
+        }
         PGconn* pg = ConnectionPool::Get()->getConnection();
         const char* sql = "SELECT * FROM settings;";
         PGresult* ret = PQexec(pg, sql);
@@ -181,7 +186,6 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
             versionValue.SetString(version.c_str(), version.size(), allocator);
 
             rapidjson::Value seasonValue;
-            std::string season = "25/26";
             seasonValue.SetString(season.c_str(), season.size(), allocator);
 
             // Add key-value pairs to the object
@@ -483,7 +487,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> LeaguesRoute::G
                     rapidjson::Value weekObject;
                     weekObject.SetObject();
                     weekObject.AddMember("week", i++, allocator);
-                    weekObject.AddMember("type", (int)EWeekType::RoundOf16, allocator);
+                    weekObject.AddMember("type", (int)EWeekType::RoundOf8, allocator);
                     weeks.PushBack(weekObject, allocator);
                 }
                 {

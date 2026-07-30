@@ -1744,7 +1744,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             
             "WHERE p.status <> 4 and p.match_id = " + matchId + " "
             
-            "ORDER BY elu.points DESC LIMIT 20;";
+            "ORDER BY elu.league ASC, elu.position ASC, elu.points DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -1784,19 +1784,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             float elTorneoLeague = atoi(PQgetvalue(ret, i, 11));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            float elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
+            float elTorneoPosition = atoi(PQgetvalue(ret, i, 10)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
 
             float beatBetLeague = atoi(PQgetvalue(ret, i, 13));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            float beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
+            float beatBetPosition = atoi(PQgetvalue(ret, i, 12)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
 
             float fireballLeague = atoi(PQgetvalue(ret, i, 15));
             if (fireballLeague < 1) fireballLeague = -1;
-            float fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
+            float fireballPosition = atoi(PQgetvalue(ret, i, 14)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
 
             float careerLeague = atoi(PQgetvalue(ret, i, 17));
             if (careerLeague < 1) careerLeague = -1;
-            float careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (careerLeague - 1) * 20 : -1;
+            float careerPosition = atoi(PQgetvalue(ret, i, 16)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (careerLeague - 1) * 20 : -1;
 
             int fireballPoints = atoi(PQgetvalue(ret, i, 18));
             int careerPoints = atoi(PQgetvalue(ret, i, 19));
@@ -2088,19 +2088,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             float elTorneoLeague = atoi(PQgetvalue(ret, i, 11));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            float elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
+            float elTorneoPosition = atoi(PQgetvalue(ret, i, 10)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
 
             float beatBetLeague = atoi(PQgetvalue(ret, i, 13));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            float beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
+            float beatBetPosition = atoi(PQgetvalue(ret, i, 12)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
 
             float fireballLeague = atoi(PQgetvalue(ret, i, 15));
             if (fireballLeague < 1) fireballLeague = -1;
-            float fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
+            float fireballPosition = atoi(PQgetvalue(ret, i, 14)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
 
             float careerLeague = atoi(PQgetvalue(ret, i, 17));
             if (careerLeague < 1) careerLeague = -1;
-            float careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (careerLeague - 1) * 20 : -1;
+            float careerPosition = atoi(PQgetvalue(ret, i, 16)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (careerLeague - 1) * 20 : -1;
 
             float worldCupPosition = atoi(PQgetvalue(ret, i, 18));
 
@@ -2360,19 +2360,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 11));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 12)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (elTorneoLeague - 1) * 20 : -1;
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 13));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 14)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (beatBetLeague - 1) * 20 : -1;
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 15));
             if (fireballLeague < 1) fireballLeague = -1;
-            int fireballPosition = fireballLeague >=1 ? atoi(PQgetvalue(ret, i, 16)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 16)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 16)) - (fireballLeague - 1) * 20 : -1;
 
             int careerLeague = atoi(PQgetvalue(ret, i, 17));
             if (careerLeague < 1) careerLeague = -1;
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 18)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (careerLeague - 1) * 20 : -1;
 
 
             int fireballPoints = atoi(PQgetvalue(ret, i, 19));
@@ -2847,25 +2847,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 4));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 6)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 6));//elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 6)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
             object.AddMember("totalPredictions", atoi(PQgetvalue(ret, i, 7)), allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 8));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 9)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 10));
             if (fireballLeague < 1) fireballLeague = -1;
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 11)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
             object.AddMember("fireballPosition", fireballPosition, allocator);
 
             int careerLeague = atoi(PQgetvalue(ret, i, 12));
             if (careerLeague < 1) careerLeague = -1;
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 13)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 13)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 13)) - (careerLeague - 1) * 20 : -1;
             object.AddMember("careerLeague", careerLeague, allocator);
             object.AddMember("careerPosition", careerPosition, allocator);
 
@@ -3261,25 +3261,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 5));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 6)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 6)); // elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 6)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 7));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 8)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 9));
             if (fireballLeague < 1) fireballLeague = -1;
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 10)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
             object.AddMember("fireballPosition", fireballPosition, allocator);
 
             int careerLeague = atoi(PQgetvalue(ret, i, 11));
             if (careerLeague < 1) careerLeague = -1;
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 12)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (careerLeague - 1) * 20 : -1;
             object.AddMember("careerLeague", careerLeague, allocator);
             object.AddMember("careerPosition", careerPosition, allocator);
 
@@ -4242,7 +4242,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN beatbet_users_26_27 bu ON bu.user_id = u.id "
             "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
             "WHERE p.match_id = " + matchId + " "
-            "ORDER BY fu.points DESC LIMIT 20;";
+            "ORDER BY fu.position ASC, fu.points DESC, fu.id ASC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -4285,19 +4285,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 14));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 15)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 15));//elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 15)) - (elTorneoLeague - 1) * 20 : -1;
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 16));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 17));//beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (beatBetLeague - 1) * 20 : -1;
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 18));
             if (fireballLeague < 1) fireballLeague = -1;
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 19)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 19)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 19)) - (fireballLeague - 1) * 20 : -1;
 
             int careerLeague = atoi(PQgetvalue(ret, i, 20));
             if (careerLeague < 1) careerLeague = -1;
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 21)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 21)); // careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 21)) - (careerLeague - 1) * 20 : -1;
 
             // Add user info and position to the JSON object
             rapidjson::Value userObject;
@@ -4792,9 +4792,9 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             "WHERE fu.position > 0 "
 
-            " GROUP BY u.id, u.name, u.avatar, fu.points, elu.league, elu.position, elu.points, bu.clear_balance, cu.points, fu.league, fu.position, cu.league, cu.position, bu.league, bu.position "
+            " GROUP BY u.id, u.name, u.avatar, fu.points, fu.id, elu.league, elu.position, elu.points, bu.clear_balance, cu.points, fu.league, fu.position, cu.league, cu.position, bu.league, bu.position "
             "HAVING COUNT(p.id) > 0 "
-            "ORDER BY fu.position ASC, total_predictions DESC, u.id ASC "
+            "ORDER BY fu.position ASC, total_predictions DESC, fu.id ASC "
             "LIMIT " + std::to_string(limit) + " OFFSET " + std::to_string(offset) + ";";
 
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -4830,25 +4830,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 7));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 8)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 9));
             if (beatBetLeague < 1) beatBetLeague = -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 10)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 11));
             if (fireballLeague < 1) fireballLeague = -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 12)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballPosition", fireballPosition, allocator);
 
             int careerLeague = atoi(PQgetvalue(ret, i, 13));
             if (careerLeague < 1) careerLeague = -1;
             object.AddMember("careerLeague", careerLeague, allocator);
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 14)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
             object.AddMember("careerPosition", careerPosition, allocator);
             object.AddMember("careerPoints", atoi(PQgetvalue(ret, i, 15)), allocator);
 
@@ -5622,25 +5622,25 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
 
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 7));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 8)); // elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 8)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 9));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 10)); // beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 11));
             if (fireballLeague < 1) fireballLeague = -1;
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 12)); // fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
             object.AddMember("fireballPosition", fireballPosition, allocator);
 
             int careerLeague = atoi(PQgetvalue(ret, i, 13));
             if (careerLeague < 1) careerLeague = -1;
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 14)); // careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
             object.AddMember("careerLeague", careerLeague, allocator);
             object.AddMember("careerPosition", careerPosition, allocator);
 
@@ -6149,19 +6149,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 6));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 7)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 7)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 7)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 8));
             if (beatBetLeague < 1) beatBetLeague = -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 9)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 10));
             if (fireballLeague < 1) fireballLeague = -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 11)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballPosition", fireballPosition, allocator);
             object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 12)), allocator);
 
@@ -6176,7 +6176,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int eFootballLeague = atoi(PQgetvalue(ret, i, 16));
             if (eFootballLeague < 1) eFootballLeague = -1;
             object.AddMember("eFootballLeague", eFootballLeague, allocator);
-            int eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (eFootballLeague - 1) * 20 : -1;
+            int eFootballPosition = atoi(PQgetvalue(ret, i, 17)); //eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (eFootballLeague - 1) * 20 : -1;
             object.AddMember("eFootballPosition", eFootballPosition, allocator);
             int p = atoi(PQgetvalue(ret, i, 18));
             object.AddMember("eFootballPoints", atoi(PQgetvalue(ret, i, 18)), allocator);
@@ -6338,7 +6338,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
             
             "WHERE p.team_id <> -1 and p.match_id = " + matchId + " "
-            "ORDER BY eu.points DESC LIMIT 20;";
+            "ORDER BY eu.league ASC, eu.position ASC, eu.points DESC, eu.id DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
         if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
@@ -6380,17 +6380,17 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             // elTorneo
             float elTorneoLeague = atoi(PQgetvalue(ret, i, 11));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
-            float elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
+            float elTorneoPosition = atoi(PQgetvalue(ret, i, 10)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 10)) - (elTorneoLeague - 1) * 20 : -1;
 
             // BeatBet
             float beatBetLeague = atoi(PQgetvalue(ret, i, 13));
             if (beatBetLeague < 1) beatBetLeague = -1;
-            float beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
+            float beatBetPosition = atoi(PQgetvalue(ret, i, 12)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 12)) - (beatBetLeague - 1) * 20 : -1;
 
             // Fireball
             float fireballLeague = atoi(PQgetvalue(ret, i, 15));
             if (fireballLeague < 1) fireballLeague = -1;
-            float fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
+            float fireballPosition = atoi(PQgetvalue(ret, i, 14)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (fireballLeague - 1) * 20 : -1;
 
             // Career
             float careerLeague = atoi(PQgetvalue(ret, i, 17));
@@ -6400,7 +6400,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             // eFootball
             float eFootballLeague = atoi(PQgetvalue(ret, i, 19));
             if (eFootballLeague < 1) eFootballLeague = -1;
-            float eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (eFootballLeague - 1) * 20 : -1;
+            float eFootballPosition = atoi(PQgetvalue(ret, i, 18)); //eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 18)) - (eFootballLeague - 1) * 20 : -1;
 
 
             int fireballPoints = atoi(PQgetvalue(ret, i, 20));
@@ -6573,19 +6573,19 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 6));
             if (elTorneoLeague < 1) elTorneoLeague = -1;
             object.AddMember("elTorneoLeague", elTorneoLeague, allocator);
-            int elTorneoPosition = elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 7)) - (elTorneoLeague - 1) * 20 : -1;
+            int elTorneoPosition = atoi(PQgetvalue(ret, i, 7)); //elTorneoLeague >= 1 ? atoi(PQgetvalue(ret, i, 7)) - (elTorneoLeague - 1) * 20 : -1;
             object.AddMember("elTorneoPosition", elTorneoPosition, allocator);
 
             int beatBetLeague = atoi(PQgetvalue(ret, i, 8));
             if (beatBetLeague < 1) beatBetLeague = -1;
             object.AddMember("beatBetLeague", beatBetLeague, allocator);
-            int beatBetPosition = beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
+            int beatBetPosition = atoi(PQgetvalue(ret, i, 9)); //beatBetLeague >= 1 ? atoi(PQgetvalue(ret, i, 9)) - (beatBetLeague - 1) * 20 : -1;
             object.AddMember("beatBetPosition", beatBetPosition, allocator);
 
             int fireballLeague = atoi(PQgetvalue(ret, i, 10));
             if (fireballLeague < 1) fireballLeague = -1;
             object.AddMember("fireballLeague", fireballLeague, allocator);
-            int fireballPosition = fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
+            int fireballPosition = atoi(PQgetvalue(ret, i, 11)); //fireballLeague >= 1 ? atoi(PQgetvalue(ret, i, 11)) - (fireballLeague - 1) * 20 : -1;
             object.AddMember("fireballPosition", fireballPosition, allocator);
             object.AddMember("fireballPoints", atoi(PQgetvalue(ret, i, 12)), allocator);
 
@@ -6593,14 +6593,14 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             int careerLeague = atoi(PQgetvalue(ret, i, 13));
             if (careerLeague < 1) careerLeague = -1;
             object.AddMember("careerLeague", careerLeague, allocator);
-            int careerPosition = careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
+            int careerPosition = atoi(PQgetvalue(ret, i, 14)); //careerLeague >= 1 ? atoi(PQgetvalue(ret, i, 14)) - (careerLeague - 1) * 20 : -1;
             object.AddMember("careerPosition", careerPosition, allocator);
             object.AddMember("careerPoints", atoi(PQgetvalue(ret, i, 15)), allocator);
 
             int eFootballLeague = atoi(PQgetvalue(ret, i, 16));
             if (eFootballLeague < 1) eFootballLeague = -1;
             object.AddMember("eFootballLeague", eFootballLeague, allocator);
-            int eFootballPosition = eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (eFootballLeague - 1) * 20 : -1;
+            int eFootballPosition = atoi(PQgetvalue(ret, i, 17)); //eFootballLeague >= 1 ? atoi(PQgetvalue(ret, i, 17)) - (eFootballLeague - 1) * 20 : -1;
             object.AddMember("eFootballPosition", eFootballPosition, allocator);
             int p = atoi(PQgetvalue(ret, i, 18));
             object.AddMember("eFootballPoints", atoi(PQgetvalue(ret, i, 18)), allocator);
