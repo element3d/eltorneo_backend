@@ -2842,6 +2842,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             object.AddMember("name", rapidjson::Value(PQgetvalue(ret, i, 1), allocator), allocator);
             object.AddMember("avatar", rapidjson::Value(PQgetvalue(ret, i, 2), allocator), allocator);
             object.AddMember("predictions", atoi(PQgetvalue(ret, i, 3)), allocator);
+            object.AddMember("points", atoi(PQgetvalue(ret, i, 3)), allocator);
             object.AddMember("balance", atof(PQgetvalue(ret, i, 5)), allocator);
 
             int elTorneoLeague = atoi(PQgetvalue(ret, i, 4));
