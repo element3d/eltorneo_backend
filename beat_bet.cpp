@@ -237,101 +237,101 @@ static std::string ReadFile(const std::string& filename)
     return buffer.str();
 }
 
+#include <cpr/cpr.h>
+
+bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
+{
+    std::string round = "Regular Season - " + std::to_string(week);
+    std::string season = "2026";
+    std::string url = "https://v3.football.api-sports.io/fixtures";
+
+    cpr::Parameters params;
+    params = {
+        {"league", std::to_string(leagueApiId)},
+        {"season", season},
+        {"round", round}
+    };
+
+    std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
+
+    cpr::Response r = cpr::Get(cpr::Url{ url },
+        params,
+        cpr::Header{ {"x-apisports-key", apiKey} });
+
+    if (r.status_code == 200)
+    {
+        // Parse the JSON response
+        rapidjson::Document document;
+        document.Parse(r.text.c_str());
+
+        if (document.HasMember("response") && document["response"].IsArray())
+        {
+            const rapidjson::Value& matches = document["response"];
+            for (rapidjson::SizeType i = 0; i < matches.Size(); i++)
+            {
+                const rapidjson::Value& match = matches[i];
+                if (match.HasMember("fixture"))
+                {
+                    int id = match["fixture"]["id"].GetInt();
+
+                    std::string homeTeam = match["teams"]["home"]["name"].GetString();
+                    std::string awayTeam = match["teams"]["away"]["name"].GetString();
+
+                    int homeApiId = match["teams"]["home"]["id"].GetInt();
+                    int awayApiId = match["teams"]["away"]["id"].GetInt();
+                    long long date = match["fixture"]["timestamp"].GetInt64() * 1000;
+                    int homeId, awayId;
+                    {
+                        std::string sql = "SELECT id FROM teams WHERE api_id = " + std::to_string(homeApiId);
+                        PGresult* res = PQexec(pg, sql.c_str());
+                        homeId = atoi(PQgetvalue(res, 0, 0));
+                        PQclear(res);
+                    }
+                    {
+                        std::string sql = "SELECT id FROM teams WHERE api_id = " + std::to_string(awayApiId);
+                        PGresult* res = PQexec(pg, sql.c_str());
+                        awayId = atoi(PQgetvalue(res, 0, 0));
+                        PQclear(res);
+                    }
+                    {
+                        std::string sql = "INSERT INTO matches (league, season, week, team1, team2, match_date, api_id) values ("
+                            + std::to_string(leagueId) + ", "
+                            + "'26/27', "
+                            + std::to_string(week) + ", "
+                            + std::to_string(homeId) + ", "
+                            + std::to_string(awayId) + ", "
+                            + std::to_string(date) + ", "
+                            + std::to_string(id) + ");";
+                        PGresult* ret = PQexec(pg, sql.c_str());
+                        if (PQresultStatus(ret) != PGRES_COMMAND_OK) 
+                        {
+                            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
+                            PQclear(ret);
+                            return false;
+                        }
+
+                        PQclear(ret);
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
 int main()
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
+    for (int week = 8; week <= 38; ++week) 
     {
-        std::string sql = "SELECT id, balance, last_bet_ts, beat_bet_position FROM users WHERE beat_bet_position > 0 order by beat_bet_position ASC;";
-        PQexec(pg, sql.c_str());
-        PGresult* pret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
+        bool b = InsertLeagueMatch(pg, week, 2, 39);
+        if (!b) 
         {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
-            PQclear(pret);
-            ConnectionPool::Get()->releaseConnection(pg);
-        }
-
-        int nPredicts = PQntuples(pret);
-        for (int i = 0; i < nPredicts; i++)
-        {
-            std::string userId = (PQgetvalue(pret, i, 0));
-            std::string balance = (PQgetvalue(pret, i, 1));
-            std::string ts = (PQgetvalue(pret, i, 2));
-            std::string pos = (PQgetvalue(pret, i, 3));
-
-            sql = "INSERT INTO beatbet_users_25_26(user_id, last_predict_ts, league, position, balance, clear_balance) VALUES ("
-                + userId + ", " + ts + ", " + "1" + ", " + pos + ", " + balance + ", " + balance + ");";
-            PGresult* iret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
-            {
-                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
-                PQclear(iret);
-                ConnectionPool::Get()->releaseConnection(pg);
-            }
+            printf("aaaaaaaa");
         }
     }
-    {
-        std::string sql = "SELECT id, league_24_25, points_24_25 FROM users WHERE points_24_25 > 0 AND league_24_25 > 0 order by points_24_25 DESC;";
-        PQexec(pg, sql.c_str());
-        PGresult* pret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
-        {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
-            PQclear(pret);
-            ConnectionPool::Get()->releaseConnection(pg);
-        }
+   
 
-        int nPredicts = PQntuples(pret);
-        for (int i = 0; i < nPredicts; i++)
-        {
-            std::string userId = (PQgetvalue(pret, i, 0));
-            std::string league = (PQgetvalue(pret, i, 1));
-            std::string points = (PQgetvalue(pret, i, 2));
-
-            sql = "INSERT INTO eltorneo_users_24_25(user_id, points, last_predict_ts, league, position) VALUES ("
-                + userId + ", " + points + ", " + "0" + ", " + league + ", " + std::to_string(i + 1) + ");";
-            PGresult* iret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
-            {
-                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
-                PQclear(iret);
-                ConnectionPool::Get()->releaseConnection(pg);
-            }
-        }
-    }
-    
-    {
-        std::string sql = "SELECT id, eltorneo_league, eltorneo_position, last_predict_ts, points FROM users WHERE eltorneo_position > 0 order by eltorneo_position ASC;";
-        PQexec(pg, sql.c_str());
-        PGresult* pret = PQexec(pg, sql.c_str());
-        if (PQresultStatus(pret) != PGRES_TUPLES_OK)
-        {
-            fprintf(stderr, "Failed to fetch matches: %s", PQerrorMessage(pg));
-            PQclear(pret);
-            ConnectionPool::Get()->releaseConnection(pg);
-        }
-
-        int nPredicts = PQntuples(pret);
-        for (int i = 0; i < nPredicts; i++)
-        {
-            std::string userId = (PQgetvalue(pret, i, 0));
-            std::string league = (PQgetvalue(pret, i, 1));
-            std::string pos = (PQgetvalue(pret, i, 2));
-            std::string ts = (PQgetvalue(pret, i, 3));
-            std::string points = (PQgetvalue(pret, i, 4));
-
-            sql = "INSERT INTO eltorneo_users_25_26(user_id, points, last_predict_ts, league, position) VALUES ("
-                + userId + ", " + points + ", " + ts + ", " + league + ", " + pos + ");";
-            PGresult* iret = PQexec(pg, sql.c_str());
-            if (PQresultStatus(iret) != PGRES_COMMAND_OK)
-            {
-                fprintf(stderr, "Failed to insert matches: %s", PQerrorMessage(pg));
-                PQclear(iret);
-                ConnectionPool::Get()->releaseConnection(pg);
-            }
-        }
-    }
-    
     ConnectionPool::Get()->releaseConnection(pg);
     return 0;
     /*
