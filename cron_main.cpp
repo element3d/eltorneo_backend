@@ -3547,11 +3547,11 @@ void CorrectGameTables(PGconn* pg)
 		PQclear(ret);
 
 		sql =
-			"SELECT bu.id, bu.balance, COUNT(b.id) AS total_bets "
+			"SELECT bu.id, bu.balance, bu.user_id, COUNT(b.id) AS total_bets "
 			"FROM beatbet_users_26_27 bu "
 			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
 			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY bu.id, bu.balance "
+			"GROUP BY bu.id, bu.balance, bu.user_id "
 			"HAVING COUNT(b.id) > 0 "
 			"ORDER BY bu.balance DESC, total_bets DESC, bu.id ASC;";
 
@@ -3572,10 +3572,11 @@ void CorrectGameTables(PGconn* pg)
 				int league = 1;
 				int uid = atoi(PQgetvalue(ret, i, 0));
 				float balance = atof(PQgetvalue(ret, i, 1));
+				int userId = atoi(PQgetvalue(ret, i, 2));
 				float totalAmount = 0;
 
 				{
-					std::string unsetBetsSql = "SELECT amount FROM beatbet_bets_26_27 WHERE user_id = " + std::to_string(uid) + " AND status = 0;";
+					std::string unsetBetsSql = "SELECT amount FROM beatbet_bets_26_27 WHERE user_id = " + std::to_string(userId) + " AND status = 0;";
 					PGresult* unsetBetsRes = PQexec(pg, unsetBetsSql.c_str());
 					int nrows = PQntuples(unsetBetsRes);
 					for (int b = 0; b < nrows; ++b)
