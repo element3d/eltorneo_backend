@@ -2670,7 +2670,7 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 		else 
 		{ // goals == 0
 			status = 4;
-			points = isSpecial ? -4 : -2;
+			points = isSpecial ? -2 : -1;
 		}
 
 		std::string updatePointsSql =
@@ -3575,7 +3575,7 @@ void CorrectGameTables(PGconn* pg)
 				float totalAmount = 0;
 
 				{
-					std::string unsetBetsSql = "SELECT amount FROM bets WHERE user_id = " + std::to_string(uid) + " AND status = 0;";
+					std::string unsetBetsSql = "SELECT amount FROM beatbet_bets_26_27 WHERE user_id = " + std::to_string(uid) + " AND status = 0;";
 					PGresult* unsetBetsRes = PQexec(pg, unsetBetsSql.c_str());
 					int nrows = PQntuples(unsetBetsRes);
 					for (int b = 0; b < nrows; ++b)
