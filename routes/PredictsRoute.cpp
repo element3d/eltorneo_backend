@@ -1742,7 +1742,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN fireball_users_26_27 fu ON fu.user_id = u.id "
             "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
             
-            "WHERE p.status <> 4 and p.match_id = " + matchId + " "
+            "WHERE elu.position > 0 AND p.status <> 4 and p.match_id = " + matchId + " "
             
             "ORDER BY elu.league ASC, elu.position ASC, elu.points DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
