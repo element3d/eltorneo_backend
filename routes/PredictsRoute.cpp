@@ -4242,7 +4242,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN eltorneo_users_26_27 elu ON elu.user_id = u.id "
             "LEFT JOIN beatbet_users_26_27 bu ON bu.user_id = u.id "
             "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
-            "WHERE p.match_id = " + matchId + " "
+            "WHERE fu.position > 0 AND p.match_id = " + matchId + " "
             "ORDER BY fu.position ASC, fu.points DESC, fu.id ASC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
@@ -6338,7 +6338,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> PredictsRoute::
             "LEFT JOIN fireball_users_26_27 fu ON fu.user_id = u.id "
             "LEFT JOIN career_users_26_27 cu ON cu.user_id = u.id "
             
-            "WHERE p.team_id <> -1 and p.match_id = " + matchId + " "
+            "WHERE eu.position > 0 AND p.team_id <> -1 and p.match_id = " + matchId + " "
             "ORDER BY eu.league ASC, eu.position ASC, eu.points DESC, eu.id DESC LIMIT 20;";
         PGresult* ret = PQexec(pg, sql.c_str());
 
