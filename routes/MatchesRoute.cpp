@@ -1423,7 +1423,7 @@ std::function<void(const httplib::Request&, httplib::Response&)> MatchesRoute::G
 
         // If user is authenticated, fetch their bet for this match
         if (userId != -1) {
-            std::string betSql = "SELECT id, bet, amount, odd, status FROM bets WHERE user_id = " +
+            std::string betSql = "SELECT id, bet, amount, odd, status FROM beatbet_bets_26_27 WHERE user_id = " +
                 std::to_string(userId) + " AND match_id = " + matchId + " LIMIT 1;";
             PGresult* betResult = PQexec(pg, betSql.c_str());
 
