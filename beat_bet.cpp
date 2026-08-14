@@ -322,16 +322,8 @@ bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
 int main()
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
-    for (int week = 8; week <= 38; ++week) 
-    {
-        bool b = InsertLeagueMatch(pg, week, 2, 39);
-        if (!b) 
-        {
-            printf("aaaaaaaa");
-        }
-    }
-   
-
+    MatchesInitializer::InitDFLSuperCupTeams26_27(pg);
+    MatchesInitializer::InitDFLSuperCup26_27(pg);
     ConnectionPool::Get()->releaseConnection(pg);
     return 0;
     /*

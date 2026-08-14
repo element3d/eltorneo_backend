@@ -108,8 +108,8 @@ public:
     static void InitNationsLeague24_25(PGconn* pg);
     static void InitNationsLeaguePO24_25(PGconn* pg);
 
-    static void InitDFLSuperCupTeams25_26(PGconn* pg);
-    static void InitDFLSuperCup25_26(PGconn* pg);
+    static void InitDFLSuperCupTeams26_27(PGconn* pg);
+    static void InitDFLSuperCup26_27(PGconn* pg);
 
     static void InitDFBPokalTeams25_26(PGconn* pg);
     static void InitDFBPokal25_26(PGconn* pg);
