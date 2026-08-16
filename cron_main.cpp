@@ -1355,6 +1355,8 @@ void GetLiveMatches(PGconn* pg)
 						updateRet = PQexec(pg, sql.c_str());
 						PQclear(updateRet);
 
+						CorrectGameTables(pg);
+
 						// Send push notifications
 						if (localSendPN)
 						{
@@ -2849,6 +2851,10 @@ void ProcessFinishedMatchesForPlayerStats(PGconn* pg)
 			PQclear(res);
 		}
 	}
+	if (rows > 0)
+	{
+		CorrectGameTables(pg);
+	}
 	PQclear(res);
 }
 
@@ -2892,6 +2898,10 @@ void ProcessFinishedMatches(PGconn* pg)
 			PGresult* res = PQexec(pg, sql.c_str());
 			PQclear(res);
 		}
+	}
+	if (rows > 0)
+	{
+		CorrectGameTables(pg);
 	}
 	PQclear(res);
 }
@@ -3748,7 +3758,7 @@ int main()
 
 	while (true)
 	{
-		CorrectGameTables(pg);
+		// CorrectGameTables(pg);
 		// CorrectCareerTransfers(pg);
 		GetLiveMatches(pg);
 
