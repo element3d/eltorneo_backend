@@ -138,6 +138,441 @@ bool IsNationalLeague(int leagueId)
 	return false;
 }
 
+void CorrectGameTables(PGconn* pg)
+{
+	auto now = std::chrono::system_clock::now();
+	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+	long long timestamp = ms.count();
+	long long nowMS = ms.count();
+
+	long long twenty_days_ms = 20LL * 24 * 60 * 60 * 1000;
+
+	// el Torneo 26/27
+	{
+		std::string sql = "UPDATE eltorneo_users_26_27 SET position = -1";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (!ret || PQresultStatus(ret) != PGRES_COMMAND_OK)
+		{
+			fprintf(stderr, "Failed to update eltorneo_users_26_27 positions to -1: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		PQclear(ret);
+
+		{
+			sql =
+				"SELECT elu.id, elu.league, elu.points, COUNT(p.id) AS total_predictions "
+				"FROM eltorneo_users_26_27 elu "
+				"INNER JOIN users u ON elu.user_id = u.id "
+				"INNER JOIN eltorneo_predicts_26_27 p ON elu.user_id = p.user_id "
+				"WHERE p.status != 4 "
+				"GROUP BY elu.id, elu.league, elu.points "
+				"HAVING COUNT(p.id) > 0 "
+				"ORDER BY elu.points DESC, total_predictions DESC, elu.id ASC;";
+
+			ret = PQexec(pg, sql.c_str());
+			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+			{
+				fprintf(stderr, "Failed to select eltorneo_users_26_27: %s", PQerrorMessage(pg));
+				PQclear(ret);
+				ConnectionPool::Get()->releaseConnection(pg);
+				return;
+			}
+
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				int league = atoi(PQgetvalue(ret, i, 1));
+				int points = atoi(PQgetvalue(ret, i, 2));
+
+				if (league == (int)EGameLeague::Legend) continue;
+
+				int pDiff = 20;
+				if (league == (int)EGameLeague::Amateur) pDiff = 30;
+				if (league == (int)EGameLeague::Regular) pDiff = 40;
+				if (league == (int)EGameLeague::Pro) pDiff = 50;
+				if (league == (int)EGameLeague::Superstar) pDiff = 60;
+
+				if (points >= pDiff)
+				{
+					points -= pDiff;
+					league -= 1;
+				}
+				if (league == -1) league = (int)EGameLeague::Beginner;
+
+				std::string posSql = "UPDATE eltorneo_users_26_27 SET points = " + std::to_string(points)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				if (!posRet || PQresultStatus(posRet) != PGRES_COMMAND_OK)
+				{
+					fprintf(stderr, "Failed to update eltorneo_users_26_27 leagues and points: %s", PQerrorMessage(pg));
+					PQclear(posRet);
+					ConnectionPool::Get()->releaseConnection(pg);
+					return;
+				}
+
+				PQclear(posRet);
+			}
+
+			PQclear(ret);
+		}
+		{
+			sql =
+				"SELECT elu.id, elu.league, elu.points, COUNT(p.id) AS total_predictions "
+				"FROM eltorneo_users_26_27 elu "
+				"INNER JOIN users u ON elu.user_id = u.id "
+				"INNER JOIN eltorneo_predicts_26_27 p ON elu.user_id = p.user_id "
+				"WHERE p.status != 4 "
+				"AND elu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+				"GROUP BY elu.id, elu.league, elu.points "
+				"HAVING COUNT(p.id) > 0 "
+				"ORDER BY elu.league ASC, elu.points DESC, total_predictions DESC, elu.id ASC;";
+
+			ret = PQexec(pg, sql.c_str());
+
+			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+			{
+				fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+				PQclear(ret);
+				ConnectionPool::Get()->releaseConnection(pg);
+				return;
+			}
+
+			int currentLeague = -1;
+			int currentPos = 1;
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				int league = atoi(PQgetvalue(ret, i, 1));
+				if (currentLeague != league)
+				{
+					currentLeague = league;
+					currentPos = 1;
+				}
+
+				std::string updateSql = "UPDATE eltorneo_users_26_27 SET position = " + std::to_string(currentPos)
+					+ " WHERE id = " + std::to_string(uid);
+				PGresult* updateRet = PQexec(pg, updateSql.c_str());
+				if (!updateRet || PQresultStatus(updateRet) != PGRES_COMMAND_OK)
+				{
+					fprintf(stderr, "Failed to update eltorneo_users_26_27 leagues and points: %s", PQerrorMessage(pg));
+					PQclear(updateRet);
+					ConnectionPool::Get()->releaseConnection(pg);
+					return;
+				}
+				PQclear(updateRet);
+
+				currentPos++;
+			}
+
+			PQclear(ret);
+		}
+	}
+
+	// eFootball 26/27
+	{
+		std::string sql = "UPDATE efootball_users_26_27 SET position = -1";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		if (!ret || PQresultStatus(ret) != PGRES_COMMAND_OK)
+		{
+			fprintf(stderr, "Failed to update efootball_users_26_27 positions to -1: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		PQclear(ret);
+
+		{
+			sql =
+				"SELECT eu.id, eu.league, eu.points, COUNT(p.id) AS total_predictions "
+				"FROM efootball_users_26_27 eu "
+				"INNER JOIN users u ON eu.user_id = u.id "
+				"INNER JOIN efootball_predicts_26_27 p ON eu.user_id = p.user_id "
+				"GROUP BY eu.id, eu.league, eu.points "
+				"HAVING COUNT(p.id) > 0 "
+				"ORDER BY eu.points DESC, total_predictions DESC, eu.id ASC;";
+
+			ret = PQexec(pg, sql.c_str());
+			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+			{
+				fprintf(stderr, "Failed to select efootball_users_26_27: %s", PQerrorMessage(pg));
+				PQclear(ret);
+				ConnectionPool::Get()->releaseConnection(pg);
+				return;
+			}
+
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				int league = atoi(PQgetvalue(ret, i, 1));
+				int points = atoi(PQgetvalue(ret, i, 2));
+
+				if (league == (int)EGameLeague::Legend) continue;
+
+				int pDiff = 20;
+				if (league == (int)EGameLeague::Amateur) pDiff = 30;
+				if (league == (int)EGameLeague::Regular) pDiff = 40;
+				if (league == (int)EGameLeague::Pro) pDiff = 50;
+				if (league == (int)EGameLeague::Superstar) pDiff = 60;
+
+				if (points >= pDiff)
+				{
+					points -= pDiff;
+					league -= 1;
+				}
+				if (league == -1) league = (int)EGameLeague::Beginner;
+
+				std::string posSql = "UPDATE efootball_users_26_27 SET points = " + std::to_string(points)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				if (!posRet || PQresultStatus(posRet) != PGRES_COMMAND_OK)
+				{
+					fprintf(stderr, "Failed to update efootball_users_26_27 leagues and points: %s", PQerrorMessage(pg));
+					PQclear(posRet);
+					ConnectionPool::Get()->releaseConnection(pg);
+					return;
+				}
+
+				PQclear(posRet);
+			}
+
+			PQclear(ret);
+		}
+		{
+			sql =
+				"SELECT eu.id, eu.league, eu.points, COUNT(p.id) AS total_predictions "
+				"FROM efootball_users_26_27 eu "
+				"INNER JOIN users u ON eu.user_id = u.id "
+				"INNER JOIN efootball_predicts_26_27 p ON eu.user_id = p.user_id "
+				"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+				"GROUP BY eu.id, eu.league, eu.points "
+				"HAVING COUNT(p.id) > 0 "
+				"ORDER BY eu.league ASC, eu.points DESC, total_predictions DESC, eu.id ASC;";
+
+			ret = PQexec(pg, sql.c_str());
+
+			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
+			{
+				fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+				PQclear(ret);
+				ConnectionPool::Get()->releaseConnection(pg);
+				return;
+			}
+
+			int currentLeague = -1;
+			int currentPos = 1;
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				int league = atoi(PQgetvalue(ret, i, 1));
+				if (currentLeague != league)
+				{
+					currentLeague = league;
+					currentPos = 1;
+				}
+
+				std::string updateSql = "UPDATE efootball_users_26_27 SET position = " + std::to_string(currentPos)
+					+ " WHERE id = " + std::to_string(uid);
+				PGresult* updateRet = PQexec(pg, updateSql.c_str());
+				if (!updateRet || PQresultStatus(updateRet) != PGRES_COMMAND_OK)
+				{
+					fprintf(stderr, "Failed to update efootball_users_26_27 leagues and points: %s", PQerrorMessage(pg));
+					PQclear(updateRet);
+					ConnectionPool::Get()->releaseConnection(pg);
+					return;
+				}
+				PQclear(updateRet);
+
+				currentPos++;
+			}
+
+			PQclear(ret);
+		}
+	}
+
+	// Beat Bet
+	{
+		std::string sql = "UPDATE beatbet_users_26_27 SET position = -1, league = -1;";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		sql =
+			"SELECT bu.id, bu.balance, bu.user_id, COUNT(b.id) AS total_bets "
+			"FROM beatbet_users_26_27 bu "
+			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
+			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY bu.id, bu.balance, bu.user_id "
+			"HAVING COUNT(b.id) > 0 "
+			"ORDER BY bu.balance DESC, total_bets DESC, bu.id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				float balance = atof(PQgetvalue(ret, i, 1));
+				int userId = atoi(PQgetvalue(ret, i, 2));
+				float totalAmount = 0;
+
+				{
+					std::string unsetBetsSql = "SELECT amount FROM beatbet_bets_26_27 WHERE user_id = " + std::to_string(userId) + " AND status = 0;";
+					PGresult* unsetBetsRes = PQexec(pg, unsetBetsSql.c_str());
+					int nrows = PQntuples(unsetBetsRes);
+					for (int b = 0; b < nrows; ++b)
+					{
+						int amount = atof(PQgetvalue(unsetBetsRes, b, 0));
+						totalAmount += amount;
+					}
+					PQclear(unsetBetsRes);
+				}
+
+				std::string posSql = "UPDATE beatbet_users_26_27 SET clear_balance = " + std::to_string(balance + totalAmount)
+					+ " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+
+		sql =
+			"SELECT bu.id, COUNT(b.id) AS total_bets "
+			"FROM beatbet_users_26_27 bu "
+			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
+			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY bu.id, bu.clear_balance "
+			"HAVING COUNT(b.id) > 0 "
+			"ORDER BY bu.clear_balance DESC, total_bets DESC, bu.id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+
+				std::string posSql = "UPDATE beatbet_users_26_27 SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+	}
+
+	// Fireball
+	{
+		std::string sql = "UPDATE fireball_users_26_27 SET position = -1, league = -1;";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		sql =
+			"SELECT fu.user_id, COUNT(p.id) AS total_predicts "
+			"FROM fireball_users_26_27 fu "
+			"INNER JOIN fireball_predicts_26_27 p ON fu.user_id = p.user_id "
+			"WHERE fu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY fu.user_id, fu.points "
+			"HAVING COUNT(p.id) > 0 "
+			"ORDER BY fu.points DESC, total_predicts DESC, fu.user_id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				std::string posSql = "UPDATE fireball_users_26_27 SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+	}
+
+	/*
+	{
+		std::string sql = "UPDATE career_users_26_27 SET position = -1, league = -1;";
+		PGresult* ret = PQexec(pg, sql.c_str());
+		PQclear(ret);
+
+		sql =
+			"SELECT cu.user_id "
+			"FROM career_users_26_27 cu "
+			"JOIN users u ON u.id = cu.user_id "
+			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
+			"GROUP BY cu.user_id, cu.points "
+			"ORDER BY cu.points DESC, cu.user_id ASC;";
+
+		ret = PQexec(pg, sql.c_str());
+
+		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
+		{
+			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
+			PQclear(ret);
+			ConnectionPool::Get()->releaseConnection(pg);
+			return;
+		}
+		{
+			int nrows = PQntuples(ret);
+			for (int i = 0; i < nrows; ++i)
+			{
+				int pos = i + 1;
+				int league = 1;
+				if (pos > 20) league = 2;
+				if (pos > 40) league = 3;
+				if (pos > 60) league = 4;
+				int uid = atoi(PQgetvalue(ret, i, 0));
+				std::string posSql = "UPDATE career_users_26_27 SET position = " + std::to_string(pos)
+					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
+				PGresult* posRet = PQexec(pg, posSql.c_str());
+				PQclear(posRet);
+			}
+		}
+		PQclear(ret);
+	}
+	*/
+	return;
+
+	//CorrectUserAwards(pg);
+}
+
+
 void UpdateTeamSquad(PGconn* pg, int teamId, int teamApiId, int isNationl)
 {
 	std::string sql;
@@ -3291,440 +3726,6 @@ void CorrectUserAwards(PGconn* pg)
 		}
 		PQclear(ret);
 	}
-}
-
-void CorrectGameTables(PGconn* pg)
-{
-	auto now = std::chrono::system_clock::now();
-	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-	long long timestamp = ms.count();
-	long long nowMS = ms.count();
-
-	long long twenty_days_ms = 20LL * 24 * 60 * 60 * 1000;
-
-	// el Torneo 26/27
-	{
-		std::string sql = "UPDATE eltorneo_users_26_27 SET position = -1";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		if (!ret || PQresultStatus(ret) != PGRES_COMMAND_OK)
-		{
-			fprintf(stderr, "Failed to update eltorneo_users_26_27 positions to -1: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		PQclear(ret);
-
-		{
-			sql =
-				"SELECT elu.id, elu.league, elu.points, COUNT(p.id) AS total_predictions "
-				"FROM eltorneo_users_26_27 elu "
-				"INNER JOIN users u ON elu.user_id = u.id "
-				"INNER JOIN eltorneo_predicts_26_27 p ON elu.user_id = p.user_id "
-				"WHERE p.status != 4 "
-				"GROUP BY elu.id, elu.league, elu.points "
-				"HAVING COUNT(p.id) > 0 "
-				"ORDER BY elu.points DESC, total_predictions DESC, elu.id ASC;";
-
-			ret = PQexec(pg, sql.c_str());
-			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
-			{
-				fprintf(stderr, "Failed to select eltorneo_users_26_27: %s", PQerrorMessage(pg));
-				PQclear(ret);
-				ConnectionPool::Get()->releaseConnection(pg);
-				return;
-			}
-
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				int league = atoi(PQgetvalue(ret, i, 1));
-				int points = atoi(PQgetvalue(ret, i, 2));
-
-				if (league == (int)EGameLeague::Legend) continue;
-
-				int pDiff = 20;
-				if (league == (int)EGameLeague::Amateur) pDiff = 30;
-				if (league == (int)EGameLeague::Regular) pDiff = 40;
-				if (league == (int)EGameLeague::Pro) pDiff = 50;
-				if (league == (int)EGameLeague::Superstar) pDiff = 60;
-
-				if (points >= pDiff)
-				{
-					points -= pDiff;
-					league -= 1;
-				}
-				if (league == -1) league = (int)EGameLeague::Beginner;
-
-				std::string posSql = "UPDATE eltorneo_users_26_27 SET points = " + std::to_string(points)
-					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				if (!posRet || PQresultStatus(posRet) != PGRES_COMMAND_OK)
-				{
-					fprintf(stderr, "Failed to update eltorneo_users_26_27 leagues and points: %s", PQerrorMessage(pg));
-					PQclear(posRet);
-					ConnectionPool::Get()->releaseConnection(pg);
-					return;
-				}
-
-				PQclear(posRet);
-			}
-
-			PQclear(ret);
-		}
-		{
-			sql =
-				"SELECT elu.id, elu.league, elu.points, COUNT(p.id) AS total_predictions "
-				"FROM eltorneo_users_26_27 elu "
-				"INNER JOIN users u ON elu.user_id = u.id "
-				"INNER JOIN eltorneo_predicts_26_27 p ON elu.user_id = p.user_id "
-				"WHERE p.status != 4 "
-				"AND elu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-				"GROUP BY elu.id, elu.league, elu.points "
-				"HAVING COUNT(p.id) > 0 "
-				"ORDER BY elu.league ASC, elu.points DESC, total_predictions DESC, elu.id ASC;";
-
-			ret = PQexec(pg, sql.c_str());
-
-			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
-			{
-				fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-				PQclear(ret);
-				ConnectionPool::Get()->releaseConnection(pg);
-				return;
-			}
-
-			int currentLeague = -1;
-			int currentPos = 1;
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				int league = atoi(PQgetvalue(ret, i, 1));
-				if (currentLeague != league)
-				{
-					currentLeague = league;
-					currentPos = 1;
-				}
-
-				std::string updateSql = "UPDATE eltorneo_users_26_27 SET position = " + std::to_string(currentPos)
-					+ " WHERE id = " + std::to_string(uid);
-				PGresult* updateRet = PQexec(pg, updateSql.c_str());
-				if (!updateRet || PQresultStatus(updateRet) != PGRES_COMMAND_OK)
-				{
-					fprintf(stderr, "Failed to update eltorneo_users_26_27 leagues and points: %s", PQerrorMessage(pg));
-					PQclear(updateRet);
-					ConnectionPool::Get()->releaseConnection(pg);
-					return;
-				}
-				PQclear(updateRet);
-
-				currentPos++;
-			}
-
-			PQclear(ret);
-		}
-	}
-
-	// eFootball 26/27
-	{
-		std::string sql = "UPDATE efootball_users_26_27 SET position = -1";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		if (!ret || PQresultStatus(ret) != PGRES_COMMAND_OK)
-		{
-			fprintf(stderr, "Failed to update efootball_users_26_27 positions to -1: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		PQclear(ret);
-
-		{
-			sql =
-				"SELECT eu.id, eu.league, eu.points, COUNT(p.id) AS total_predictions "
-				"FROM efootball_users_26_27 eu "
-				"INNER JOIN users u ON eu.user_id = u.id "
-				"INNER JOIN efootball_predicts_26_27 p ON eu.user_id = p.user_id "
-				"GROUP BY eu.id, eu.league, eu.points "
-				"HAVING COUNT(p.id) > 0 "
-				"ORDER BY eu.points DESC, total_predictions DESC, eu.id ASC;";
-
-			ret = PQexec(pg, sql.c_str());
-			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
-			{
-				fprintf(stderr, "Failed to select efootball_users_26_27: %s", PQerrorMessage(pg));
-				PQclear(ret);
-				ConnectionPool::Get()->releaseConnection(pg);
-				return;
-			}
-
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				int league = atoi(PQgetvalue(ret, i, 1));
-				int points = atoi(PQgetvalue(ret, i, 2));
-
-				if (league == (int)EGameLeague::Legend) continue;
-
-				int pDiff = 20;
-				if (league == (int)EGameLeague::Amateur) pDiff = 30;
-				if (league == (int)EGameLeague::Regular) pDiff = 40;
-				if (league == (int)EGameLeague::Pro) pDiff = 50;
-				if (league == (int)EGameLeague::Superstar) pDiff = 60;
-
-				if (points >= pDiff)
-				{
-					points -= pDiff;
-					league -= 1;
-				}
-				if (league == -1) league = (int)EGameLeague::Beginner;
-
-				std::string posSql = "UPDATE efootball_users_26_27 SET points = " + std::to_string(points)
-					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				if (!posRet || PQresultStatus(posRet) != PGRES_COMMAND_OK)
-				{
-					fprintf(stderr, "Failed to update efootball_users_26_27 leagues and points: %s", PQerrorMessage(pg));
-					PQclear(posRet);
-					ConnectionPool::Get()->releaseConnection(pg);
-					return;
-				}
-
-				PQclear(posRet);
-			}
-
-			PQclear(ret);
-		}
-		{
-			sql =
-				"SELECT eu.id, eu.league, eu.points, COUNT(p.id) AS total_predictions "
-				"FROM efootball_users_26_27 eu "
-				"INNER JOIN users u ON eu.user_id = u.id "
-				"INNER JOIN efootball_predicts_26_27 p ON eu.user_id = p.user_id "
-				"WHERE eu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-				"GROUP BY eu.id, eu.league, eu.points "
-				"HAVING COUNT(p.id) > 0 "
-				"ORDER BY eu.league ASC, eu.points DESC, total_predictions DESC, eu.id ASC;";
-
-			ret = PQexec(pg, sql.c_str());
-
-			if (!ret || PQresultStatus(ret) != PGRES_TUPLES_OK)
-			{
-				fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-				PQclear(ret);
-				ConnectionPool::Get()->releaseConnection(pg);
-				return;
-			}
-
-			int currentLeague = -1;
-			int currentPos = 1;
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				int league = atoi(PQgetvalue(ret, i, 1));
-				if (currentLeague != league)
-				{
-					currentLeague = league;
-					currentPos = 1;
-				}
-
-				std::string updateSql = "UPDATE efootball_users_26_27 SET position = " + std::to_string(currentPos)
-					+ " WHERE id = " + std::to_string(uid);
-				PGresult* updateRet = PQexec(pg, updateSql.c_str());
-				if (!updateRet || PQresultStatus(updateRet) != PGRES_COMMAND_OK)
-				{
-					fprintf(stderr, "Failed to update efootball_users_26_27 leagues and points: %s", PQerrorMessage(pg));
-					PQclear(updateRet);
-					ConnectionPool::Get()->releaseConnection(pg);
-					return;
-				}
-				PQclear(updateRet);
-
-				currentPos++;
-			}
-
-			PQclear(ret);
-		}
-	}
-
-	// Beat Bet
-	{
-		std::string sql = "UPDATE beatbet_users_26_27 SET position = -1, league = -1;";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		PQclear(ret);
-
-		sql =
-			"SELECT bu.id, bu.balance, bu.user_id, COUNT(b.id) AS total_bets "
-			"FROM beatbet_users_26_27 bu "
-			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
-			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY bu.id, bu.balance, bu.user_id "
-			"HAVING COUNT(b.id) > 0 "
-			"ORDER BY bu.balance DESC, total_bets DESC, bu.id ASC;";
-
-		ret = PQexec(pg, sql.c_str());
-
-		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-		{
-			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		{
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int pos = i + 1;
-				int league = 1;
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				float balance = atof(PQgetvalue(ret, i, 1));
-				int userId = atoi(PQgetvalue(ret, i, 2));
-				float totalAmount = 0;
-
-				{
-					std::string unsetBetsSql = "SELECT amount FROM beatbet_bets_26_27 WHERE user_id = " + std::to_string(userId) + " AND status = 0;";
-					PGresult* unsetBetsRes = PQexec(pg, unsetBetsSql.c_str());
-					int nrows = PQntuples(unsetBetsRes);
-					for (int b = 0; b < nrows; ++b)
-					{
-						int amount = atof(PQgetvalue(unsetBetsRes, b, 0));
-						totalAmount += amount;
-					}
-					PQclear(unsetBetsRes);
-				}
-
-				std::string posSql = "UPDATE beatbet_users_26_27 SET clear_balance = " + std::to_string(balance + totalAmount)
-					+ " WHERE id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				PQclear(posRet);
-			}
-		}
-		PQclear(ret);
-
-		sql =
-			"SELECT bu.id, COUNT(b.id) AS total_bets "
-			"FROM beatbet_users_26_27 bu "
-			"INNER JOIN beatbet_bets_26_27 b ON bu.user_id = b.user_id "
-			"WHERE bu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY bu.id, bu.clear_balance "
-			"HAVING COUNT(b.id) > 0 "
-			"ORDER BY bu.clear_balance DESC, total_bets DESC, bu.id ASC;";
-
-		ret = PQexec(pg, sql.c_str());
-		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-		{
-			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-
-		{
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int pos = i + 1;
-				int league = 1;
-				int uid = atoi(PQgetvalue(ret, i, 0));
-
-				std::string posSql = "UPDATE beatbet_users_26_27 SET position = " + std::to_string(pos)
-					+ ", league = " + std::to_string(league) + " WHERE id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				PQclear(posRet);
-			}
-		}
-		PQclear(ret);
-	}
-
-	// Fireball
-	{
-		std::string sql = "UPDATE fireball_users_26_27 SET position = -1, league = -1;";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		PQclear(ret);
-
-		sql =
-			"SELECT fu.user_id, COUNT(p.id) AS total_predicts "
-			"FROM fireball_users_26_27 fu "
-			"INNER JOIN fireball_predicts_26_27 p ON fu.user_id = p.user_id "
-			"WHERE fu.last_predict_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY fu.user_id, fu.points "
-			"HAVING COUNT(p.id) > 0 "
-			"ORDER BY fu.points DESC, total_predicts DESC, fu.user_id ASC;";
-
-		ret = PQexec(pg, sql.c_str());
-
-		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-		{
-			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		{
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int pos = i + 1;
-				int league = 1;
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE fireball_users_26_27 SET position = " + std::to_string(pos)
-					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				PQclear(posRet);
-			}
-		}
-		PQclear(ret);
-	}
-
-	/*
-	{
-		std::string sql = "UPDATE career_users_26_27 SET position = -1, league = -1;";
-		PGresult* ret = PQexec(pg, sql.c_str());
-		PQclear(ret);
-
-		sql =
-			"SELECT cu.user_id "
-			"FROM career_users_26_27 cu "
-			"JOIN users u ON u.id = cu.user_id "
-			"WHERE u.last_visit_ts >= " + std::to_string(timestamp - twenty_days_ms) + " "
-			"GROUP BY cu.user_id, cu.points "
-			"ORDER BY cu.points DESC, cu.user_id ASC;";
-
-		ret = PQexec(pg, sql.c_str());
-
-		if (PQresultStatus(ret) != PGRES_TUPLES_OK)
-		{
-			fprintf(stderr, "Failed to cache table: %s", PQerrorMessage(pg));
-			PQclear(ret);
-			ConnectionPool::Get()->releaseConnection(pg);
-			return;
-		}
-		{
-			int nrows = PQntuples(ret);
-			for (int i = 0; i < nrows; ++i)
-			{
-				int pos = i + 1;
-				int league = 1;
-				if (pos > 20) league = 2;
-				if (pos > 40) league = 3;
-				if (pos > 60) league = 4;
-				int uid = atoi(PQgetvalue(ret, i, 0));
-				std::string posSql = "UPDATE career_users_26_27 SET position = " + std::to_string(pos)
-					+ ", league = " + std::to_string(league) + " WHERE user_id = " + std::to_string(uid);
-				PGresult* posRet = PQexec(pg, posSql.c_str());
-				PQclear(posRet);
-			}
-		}
-		PQclear(ret);
-	}
-	*/
-	return;
-	
-	//CorrectUserAwards(pg);
 }
 
 int main()
