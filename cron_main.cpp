@@ -3102,7 +3102,7 @@ void UpdateFireballPredictsForPlayer(PGconn* pg, int matchId, int playerApiId, i
 		else if (goals >= 1) 
 		{
 			status = 1;
-			points = isSpecial ? 4 * goals : 2 * goals;
+			points = isSpecial ? 6 * goals : 3 * goals;
 		}
 		else 
 		{ // goals == 0
