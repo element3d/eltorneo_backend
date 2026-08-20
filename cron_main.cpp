@@ -1790,7 +1790,6 @@ void GetLiveMatches(PGconn* pg)
 						updateRet = PQexec(pg, sql.c_str());
 						PQclear(updateRet);
 
-						CorrectGameTables(pg);
 
 						// Send push notifications
 						if (localSendPN)
@@ -1836,6 +1835,7 @@ void GetLiveMatches(PGconn* pg)
 							}
 						}
 					}
+
 					PQclear(pret);
 
 					// Quest remove points
@@ -1857,6 +1857,7 @@ void GetLiveMatches(PGconn* pg)
 						pret = PQexec(pg, sql.c_str());
 						PQclear(pret);
 					} */
+					CorrectGameTables(pg);
 
 					// Update match players
 					int isNational = 0;
