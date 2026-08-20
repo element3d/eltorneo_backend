@@ -264,7 +264,8 @@
         "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
         "yoshi_vs_king": "Yoshimitsu vs King",
         "battle_of_realms": "Battle of the Realms",
-        "showtime": "It's Showtime"
+        "showtime": "It's Showtime",
+        "counter_strike": "Counter Strike"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -531,6 +532,7 @@
         "eddy_vs_jin": "Eddy Gordo vs Jin Kazama",
         "yoshi_vs_king": "Yoshimitsu vs King",
         "battle_of_realms": "Битва Королевств",
-        "showtime": "Шоу начинается"
+        "showtime": "Шоу начинается",
+        "counter_strike": "Counter Strike"
     }
 }
