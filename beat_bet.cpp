@@ -319,12 +319,32 @@ bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
     return true;
 }
 
-int main()
+int main(int argc, char** argv)
 {
     PGconn* pg = ConnectionPool::Get()->getConnection();
-    MatchesInitializer::InitDFLSuperCupTeams26_27(pg);
-    MatchesInitializer::InitDFLSuperCup26_27(pg);
+    {
+        int matchId = atoi(argv[1]);
+        std::string sql = "SELECT league, is_special, team1, team2 FROM matches WHERE id = " + std::to_string(matchId) + ";";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        int league = atoi(PQgetvalue(ret, 0, 0));
+        int isSpecial = atoi(PQgetvalue(ret, 0, 1));
+        int team1 = atoi(PQgetvalue(ret, 0, 2));
+        int team2 = atoi(PQgetvalue(ret, 0, 3));
+
+        std::string smTitle = "";
+        if (isSpecial)
+        {
+            sql = "SELECT title FROM special_matches WHERE match_id = " + std::to_string(matchId) + ";";
+            PGresult* ret = PQexec(pg, sql.c_str());
+            smTitle = PQgetvalue(ret, 0, 0);
+            PQclear(ret);
+        }
+        std::string title = Team::ToShortString(ETeam(team1)) + " - " + Team::ToShortString(ETeam(team2));
+        PNManager::SendMatchNotificationV2(title, league, isSpecial, smTitle);
+
+    }
     ConnectionPool::Get()->releaseConnection(pg);
+
     return 0;
     /*
     ProcessTopUsers(pg);
