@@ -344,7 +344,7 @@ int main(int argc, char** argv)
 
     }
     ConnectionPool::Get()->releaseConnection(pg);
-
+    printf("Notification finish.\n");
     return 0;
     /*
     ProcessTopUsers(pg);
