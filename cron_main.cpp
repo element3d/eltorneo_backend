@@ -1997,20 +1997,20 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 
 		rapidjson::Value lineup1 = document["response"][0].GetObject();
 		rapidjson::Value lineup2 = document["response"][1].GetObject();
-
+		if (!lineup1.HasMember("formation") || !lineup2.HasMember("formation")) return;
 		// Delete existing lineups and players for this match
 		DeleteExistingLineups(pg, matchId);
 
 		// Extract team1 details
 		std::string team1Formation = lineup1["formation"].GetString();
-		if (!lineup1["team"].HasMember("colors") || lineup1["team"]["colors"].IsNull()) return;
+		//if (!lineup1["team"].HasMember("colors") || lineup1["team"]["colors"].IsNull()) return;
 
-		std::string team1PlayerColor = lineup1["team"]["colors"]["player"]["primary"].GetString();
-		std::string team1PlayerNColor = lineup1["team"]["colors"]["player"]["number"].GetString();
-		std::string team1PlayerBColor = lineup1["team"]["colors"]["player"]["border"].GetString();
-		std::string team1GKColor = lineup1["team"]["colors"]["goalkeeper"]["primary"].GetString();
-		std::string team1GKNColor = lineup1["team"]["colors"]["goalkeeper"]["number"].GetString();
-		std::string team1GKBColor = lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
+		std::string team1PlayerColor = "";//lineup1["team"]["colors"]["player"]["primary"].GetString();
+		std::string team1PlayerNColor = "";//lineup1["team"]["colors"]["player"]["number"].GetString();
+		std::string team1PlayerBColor = "";//lineup1["team"]["colors"]["player"]["border"].GetString();
+		std::string team1GKColor = "";//lineup1["team"]["colors"]["goalkeeper"]["primary"].GetString();
+		std::string team1GKNColor = "";//lineup1["team"]["colors"]["goalkeeper"]["number"].GetString();
+		std::string team1GKBColor = "";//lineup1["team"]["colors"]["goalkeeper"]["border"].GetString();
 		std::string coach1 = "";
 		int coach1ApiId = -1;
 		std::string coach1Photo = "";
@@ -2028,14 +2028,14 @@ void GetMatchLineups(PGconn* pg, int apiId, int matchId, long long matchDate)
 
 		// Extract team2 details
 		std::string team2Formation = lineup2["formation"].GetString();
-		if (!lineup2["team"].HasMember("colors") || lineup2["team"]["colors"].IsNull()) return;
+		//if (!lineup2["team"].HasMember("colors") || lineup2["team"]["colors"].IsNull()) return;
 
-		std::string team2PlayerColor = lineup2["team"]["colors"]["player"]["primary"].GetString();
-		std::string team2PlayerNColor = lineup2["team"]["colors"]["player"]["number"].GetString();
-		std::string team2PlayerBColor = lineup2["team"]["colors"]["player"]["border"].GetString();
-		std::string team2GKColor = lineup2["team"]["colors"]["goalkeeper"]["primary"].GetString();
-		std::string team2GKNColor = lineup2["team"]["colors"]["goalkeeper"]["number"].GetString();
-		std::string team2GKBColor = lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
+		std::string team2PlayerColor = "";//lineup2["team"]["colors"]["player"]["primary"].GetString();
+		std::string team2PlayerNColor = "";//lineup2["team"]["colors"]["player"]["number"].GetString();
+		std::string team2PlayerBColor = "";//lineup2["team"]["colors"]["player"]["border"].GetString();
+		std::string team2GKColor = "";//lineup2["team"]["colors"]["goalkeeper"]["primary"].GetString();
+		std::string team2GKNColor = "";//lineup2["team"]["colors"]["goalkeeper"]["number"].GetString();
+		std::string team2GKBColor = "";//lineup2["team"]["colors"]["goalkeeper"]["border"].GetString();
 		
 		std::string coach2 = "";
 		int coach2ApiId = -1;
@@ -2106,7 +2106,7 @@ void GetTodayMatches(PGconn* pg)
 
 	const std::string sql = "SELECT m.id, m.api_id, m.league, m.team1, m.team2, m.week, m.match_date "
 		"FROM MATCHES m "
-		"WHERE m.match_date >= " + std::to_string(nowMs) +
+		"WHERE m.match_date >= " + std::to_string(nowMs -  (1200) *1000) +
 		" AND m.match_date < " + std::to_string(oneHourLaterMs) + ";";
 
 	PGresult* res = PQexec(pg, sql.c_str());
@@ -3734,7 +3734,7 @@ int main()
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
 	
-	//FillTodayLineups(pg);
+	FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
 	//FillTeamSquad(pg);
 	//printf("\nDONE...\n");
@@ -3755,7 +3755,7 @@ int main()
 	};
 
 	std::string lastCorrectMatchDatesDate;
-	CorrectMatchDates(pg);
+//	CorrectMatchDates(pg);
 	lastCorrectMatchDatesDate = getCurrentDate();
 
 	while (true)
