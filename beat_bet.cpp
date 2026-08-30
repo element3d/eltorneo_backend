@@ -323,7 +323,7 @@ int main(int argc, char** argv)
 {
     
     PGconn* pg = ConnectionPool::Get()->getConnection();
-    /*{
+    {
         int matchId = atoi(argv[1]);
         std::string sql = "SELECT league, is_special, team1, team2 FROM matches WHERE id = " + std::to_string(matchId) + ";";
         PGresult* ret = PQexec(pg, sql.c_str());
@@ -347,14 +347,14 @@ int main(int argc, char** argv)
     ConnectionPool::Get()->releaseConnection(pg);
     printf("Notification finish.\n");
     return 0;
-    */
+    
     
     //ProcessTopUsers(pg);
     //return 0;
 
-    MatchesInitializer::InitChampionsLeagueTeams26_27(pg);
-    MatchesInitializer::InitChampionsLeagueTable(pg);
-    MatchesInitializer::InitChampionsLeague26_27(pg);
+  //  MatchesInitializer::InitChampionsLeagueTeams26_27(pg);
+    //MatchesInitializer::InitChampionsLeagueTable(pg);
+    //MatchesInitializer::InitChampionsLeague26_27(pg);
     /*ProcessLeague(pg, 2);
     ProcessLeague(pg, 3);
     ProcessLeague(pg, 4);
