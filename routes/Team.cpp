@@ -570,6 +570,16 @@ std::string Team::ToString(ETeam team)
     case ETeam::Troyes:
         return "Estac Troyes";
 
+    // Champions League
+    case ETeam::Fenerbahce:
+        return "Fenerbahçe";
+    case ETeam::Lask:
+        return "Lask Linz";
+    case ETeam::Sabah:
+        return "Sabah FA";
+    case ETeam::Viking:
+        return "Viking";
+
     default:
         return "Unknown Team";
     }
@@ -1143,6 +1153,16 @@ std::string Team::ToShortString(ETeam team)
         return "Le Mans";
     case ETeam::Troyes:
         return "Troyes";
+
+    // Champions league
+    case ETeam::Fenerbahce:
+        return "Fenerbahce";
+    case ETeam::Lask:
+        return "Lask";
+    case ETeam::Sabah:
+        return "Sabah";
+    case ETeam::Viking:
+        return "Viking";
 
     default:
         return "Unknown Team";

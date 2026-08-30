@@ -64,9 +64,9 @@ public:
 
     static void InitChampionsLeaguePO25_26(PGconn* pg);
 
-    static void InitChampionsLeagueTeams25_26(PGconn* pg);
+    static void InitChampionsLeagueTeams26_27(PGconn* pg);
     static void InitChampionsLeagueTable(PGconn* pg);
-    static void InitChampionsLeague25_26(PGconn* pg);
+    static void InitChampionsLeague26_27(PGconn* pg);
 
     static void InitEuropaLeagueTeams25_26(PGconn* pg);
     static void InitEuropaLeaguePO25_26(PGconn* pg);

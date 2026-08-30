@@ -259,6 +259,12 @@ enum class ETeam
     Troyes,
     Ligue12026End = Troyes,
 
+    // Champions League
+    Fenerbahce,
+    Lask,
+    Sabah,
+    Viking,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,
