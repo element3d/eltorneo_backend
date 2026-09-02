@@ -265,7 +265,10 @@
         "yoshi_vs_king": "Yoshimitsu vs King",
         "battle_of_realms": "Battle of the Realms",
         "showtime": "It's Showtime",
-        "counter_strike": "Counter Strike"
+        "counter_strike": "Counter Strike",
+        "we_are_venom2": "Мы — Веном",
+        "black_ops2": "Black Ops",
+        "odyssey": "Odyssey"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -533,6 +536,9 @@
         "yoshi_vs_king": "Yoshimitsu vs King",
         "battle_of_realms": "Битва Королевств",
         "showtime": "Шоу начинается",
-        "counter_strike": "Counter Strike"
+        "counter_strike": "Counter Strike",
+        "we_are_venom2": "Мы — Веном",
+        "black_ops2": "Black Ops",
+        "odyssey": "Одиссея"
     }
 }
