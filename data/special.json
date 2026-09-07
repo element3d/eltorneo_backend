@@ -268,7 +268,8 @@
         "counter_strike": "Counter Strike",
         "we_are_venom2": "Мы — Веном",
         "black_ops2": "Black Ops",
-        "odyssey": "Odyssey"
+        "odyssey": "Odyssey",
+        "peaky_blinders2": "Peaky Blinders"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -539,6 +540,7 @@
         "counter_strike": "Counter Strike",
         "we_are_venom2": "Мы — Веном",
         "black_ops2": "Black Ops",
-        "odyssey": "Одиссея"
+        "odyssey": "Одиссея",
+        "peaky_blinders2": "Острые козырьки",
     }
 }
