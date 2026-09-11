@@ -270,7 +270,8 @@
         "black_ops2": "Black Ops",
         "odyssey": "Odyssey",
         "peaky_blinders2": "Peaky Blinders",
-        "dead_men2": "Dead Men Tell No Tales"
+        "dead_men2": "Dead Men Tell No Tales",
+        "doctor_strange": "Doctor Strange"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -543,6 +544,7 @@
         "black_ops2": "Black Ops",
         "odyssey": "Одиссея",
         "peaky_blinders2": "Острые козырьки",
-        "dead_men2": "Мертвецы не рассказывают сказки"
+        "dead_men2": "Мертвецы не рассказывают сказки",
+        "doctor_strange": "Доктор Стрэндж"
     }
 }
