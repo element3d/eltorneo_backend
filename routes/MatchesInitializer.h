@@ -104,7 +104,7 @@ public:
     static void InitEFLCupTeams25_26(PGconn* pg);
     static void InitEFLCup25_26(PGconn* pg);
 
-    static void InitNationsLeagueTeams24_25(PGconn* pg);
+    static void InitNationsLeagueTeams26_27(PGconn* pg);
     static void InitNationsLeague24_25(PGconn* pg);
     static void InitNationsLeaguePO24_25(PGconn* pg);
 

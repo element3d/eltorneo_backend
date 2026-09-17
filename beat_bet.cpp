@@ -241,7 +241,7 @@ static std::string ReadFile(const std::string& filename)
 
 bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
 {
-    std::string round = "Regular Season - " + std::to_string(week);
+    std::string round = std::to_string(week);//"Regular Season - " + std::to_string(week);
     std::string season = "2026";
     std::string url = "https://v3.football.api-sports.io/fixtures";
 
@@ -323,6 +323,11 @@ int main(int argc, char** argv)
 {
     
     PGconn* pg = ConnectionPool::Get()->getConnection();
+    MatchesInitializer::InitNationsLeagueTeams26_27(pg);
+    for (int i = 1; i <= 6; ++i) {
+        InsertLeagueMatch(pg, i, 7, 5);
+    }
+    return 0;
     {
         int matchId = atoi(argv[1]);
         std::string sql = "SELECT league, is_special, team1, team2 FROM matches WHERE id = " + std::to_string(matchId) + ";";

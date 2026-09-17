@@ -1512,7 +1512,7 @@ void MatchesInitializer::InitLigue1Teams26_27(PGconn* pg)
     }
 }
 #include <functional>
-void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
+void MatchesInitializer::InitNationsLeagueTeams26_27(PGconn* pg)
 {
     std::function<void(ETeam, int, int)> insertInto = [pg](ETeam team, int leagueIndex, int groupIndex) {
         std::string sql = "insert into teams(id, name, short_name) values ("
@@ -1535,7 +1535,7 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
         sql = "insert into tables(team_id, league_id, season, league_index, group_index) values ("
             + std::to_string(int(team)) + ", "
             + std::to_string(int(ELeague::NationsLeague)) + " ,'"
-            + "24/25" + "' ,"
+            + "26/27" + "' ,"
             + std::to_string(leagueIndex) + ", "
             + std::to_string(groupIndex)
             + ");";
@@ -1548,10 +1548,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group A1
     std::vector<ETeam> groupA1Teams =
     {
-        ETeam::Portugal,
-        ETeam::Croatia,
-        ETeam::Poland,
-        ETeam::Scotland
+        ETeam::France,
+        ETeam::Turkiye,
+        ETeam::Italy,
+        ETeam::Belgium
     };
 
     int leagueIndex = 0;
@@ -1565,10 +1565,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group A2
     std::vector<ETeam> groupA2Teams =
     {
-        ETeam::Italy,
-        ETeam::France,
-        ETeam::Belgium,
-        ETeam::Israel
+        ETeam::Germany,
+        ETeam::Netherlands,
+        ETeam::Greece,
+        ETeam::Serbia
     };
 
     ++groupIndex;
@@ -1581,10 +1581,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group A3
     std::vector<ETeam> groupA3Teams =
     {
-        ETeam::Germany,
-        ETeam::Netherlands,
-        ETeam::BosniaAndHerzegovina,
-        ETeam::Hungary,
+        ETeam::Czechia,
+        ETeam::Croatia,
+        ETeam::Spain,
+        ETeam::England,
     };
 
     ++groupIndex;
@@ -1597,10 +1597,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group A4
     std::vector<ETeam> groupA4Teams =
     {
+        ETeam::Portugal,
+        ETeam::Norway,
         ETeam::Denmark,
-        ETeam::Spain,
-        ETeam::Serbia,
-        ETeam::Switzerland,
+        ETeam::Wales,
     };
 
     ++groupIndex;
@@ -1613,10 +1613,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group B1
     std::vector<ETeam> groupB1Teams =
     {
-        ETeam::Georgia,
-        ETeam::Albania,
-        ETeam::Czechia,
-        ETeam::Ukraine
+        ETeam::Switzerland,
+        ETeam::NorthMacedonia,
+        ETeam::Scotland,
+        ETeam::Slovenia
     };
 
     ++leagueIndex;
@@ -1630,10 +1630,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group B2
     std::vector<ETeam> groupB2Teams =
     {
-        ETeam::Greece,
-        ETeam::England,
-        ETeam::RepublicOfIreland,
-        ETeam::Finland
+        ETeam::NorthernIreland,
+        ETeam::Ukraine,
+        ETeam::Hungary,
+        ETeam::Georgia
     };
 
     ++groupIndex;
@@ -1646,10 +1646,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group B3
     std::vector<ETeam> groupB3Teams =
     {
-        ETeam::Slovenia,
-        ETeam::Norway,
         ETeam::Austria,
-        ETeam::Kazakhstan
+        ETeam::Israel,
+        ETeam::RepublicOfIreland,
+        ETeam::Kosovo
     };
 
     ++groupIndex;
@@ -1662,10 +1662,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group B4
     std::vector<ETeam> groupB4Teams =
     {
-        ETeam::Turkiye,
-        ETeam::Wales,
-        ETeam::Iceland,
-        ETeam::Montenegro
+        ETeam::Sweden,
+        ETeam::Poland,
+        ETeam::Romania,
+        ETeam::BosniaAndHerzegovina
     };
 
     ++groupIndex;
@@ -1678,10 +1678,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group C1
     std::vector<ETeam> groupC1Teams =
     {
-        ETeam::Sweden,
-        ETeam::Slovakia,
-        ETeam::Azerbaijan,
-        ETeam::Estonia
+        ETeam::Albania,
+        ETeam::Belarus,
+        ETeam::SanMarino,
+        ETeam::Finland
     };
 
     ++leagueIndex;
@@ -1695,10 +1695,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group C2
     std::vector<ETeam> groupC2Teams =
     {
-        ETeam::Romania,
-        ETeam::Kosovo,
-        ETeam::Cyprus,
-        ETeam::Lithuania
+        ETeam::Armenia,
+        ETeam::Latvia,
+        ETeam::Montenegro,
+        ETeam::Cyprus
     };
 
     ++groupIndex;
@@ -1711,10 +1711,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group C3
     std::vector<ETeam> groupC3Teams =
     {
-        ETeam::Belarus,
-        ETeam::Bulgaria,
-        ETeam::NorthernIreland,
-        ETeam::Luxemburg
+        ETeam::Slovakia,
+        ETeam::Moldova,
+        ETeam::FaroeIslands,
+        ETeam::Kazakhstan
     };
 
     ++groupIndex;
@@ -1727,10 +1727,10 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group C4
     std::vector<ETeam> groupC4Teams =
     {
-        ETeam::NorthMacedonia,
-        ETeam::Armenia,
-        ETeam::Latvia,
-        ETeam::FaroeIslands
+        ETeam::Estonia,
+        ETeam::Iceland,
+        ETeam::Bulgaria,
+        ETeam::Luxemburg
     };
 
     ++groupIndex;
@@ -1743,9 +1743,9 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group D1
     std::vector<ETeam> groupD1Teams =
     {
-        ETeam::SanMarino,
-        ETeam::Gibraltar,
-        ETeam::Liechtenstein
+        ETeam::Andorra,
+        ETeam::Malta,
+        ETeam::Gibraltar
     };
 
     ++leagueIndex;
@@ -1759,9 +1759,9 @@ void MatchesInitializer::InitNationsLeagueTeams24_25(PGconn* pg)
     // Group D2
     std::vector<ETeam> groupD2Teams =
     {
-        ETeam::Moldova,
-        ETeam::Malta,
-        ETeam::Andorra
+        ETeam::Lithuania,
+        ETeam::Azerbaijan,
+        ETeam::Liechtenstein
     };
 
     ++groupIndex;
