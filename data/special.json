@@ -273,7 +273,8 @@
         "dead_men2": "Dead Men Tell No Tales",
         "doctor_strange": "Doctor Strange",
         "jumanji3": "Jumanji",
-        "unity2": "Unity"
+        "unity2": "Unity",
+        "carnage2": "Carnage"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -549,6 +550,7 @@
         "dead_men2": "Мертвецы не рассказывают сказки",
         "doctor_strange": "Доктор Стрэндж",
         "jumanji3": "Джуманджи",
-        "unity2": "Unity"
+        "unity2": "Unity",
+        "carnage2": "Карнаж"
     }
 }
