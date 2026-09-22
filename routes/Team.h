@@ -265,6 +265,22 @@ enum class ETeam
     Sabah,
     Viking,
 
+    // Europa League
+    Besiktas,
+    OFICrete,
+    Torreense,
+    Omonia,
+    BeerSheva,
+    Jagiellonia,
+    Anderlecht,
+    Lillestrom,
+    LevskiSofia,
+    Celje,
+    AraratArmenia,
+    Plzen,
+    LechPoznan,
+    Nijmegen,
+
     // International
     // Nations League
     NationsLeagueStart = 10000,

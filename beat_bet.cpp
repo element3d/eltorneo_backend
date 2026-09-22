@@ -241,7 +241,7 @@ static std::string ReadFile(const std::string& filename)
 
 bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
 {
-    std::string round = std::to_string(week);//"Regular Season - " + std::to_string(week);
+    std::string round = "League Stage - " + std::to_string(week);
     std::string season = "2026";
     std::string url = "https://v3.football.api-sports.io/fixtures";
 
@@ -280,27 +280,41 @@ bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
                     int homeApiId = match["teams"]["home"]["id"].GetInt();
                     int awayApiId = match["teams"]["away"]["id"].GetInt();
                     long long date = match["fixture"]["timestamp"].GetInt64() * 1000;
+
+                    int team1Goals = -1;
+                    int team2Goals = -1;
+                    std::string status = "";
+                    if (week == 1) 
+                    {
+                        status = "FT";
+                        team1Goals = match["score"]["fulltime"]["home"].GetInt();
+                        team2Goals = match["score"]["fulltime"]["away"].GetInt();
+                    }
+    
                     int homeId, awayId;
                     {
-                        std::string sql = "SELECT id FROM teams WHERE api_id = " + std::to_string(homeApiId);
+                        std::string sql = "SELECT id FROM teams WHERE name = '" + homeTeam + "';";
                         PGresult* res = PQexec(pg, sql.c_str());
                         homeId = atoi(PQgetvalue(res, 0, 0));
                         PQclear(res);
                     }
                     {
-                        std::string sql = "SELECT id FROM teams WHERE api_id = " + std::to_string(awayApiId);
+                        std::string sql = "SELECT id FROM teams WHERE name = '" + awayTeam + "';";
                         PGresult* res = PQexec(pg, sql.c_str());
                         awayId = atoi(PQgetvalue(res, 0, 0));
                         PQclear(res);
                     }
                     {
-                        std::string sql = "INSERT INTO matches (league, season, week, team1, team2, match_date, api_id) values ("
+                        std::string sql = "INSERT INTO matches (league, season, week, team1, team2, team1_score, team2_score, match_date, status, api_id) values ("
                             + std::to_string(leagueId) + ", "
                             + "'26/27', "
                             + std::to_string(week) + ", "
                             + std::to_string(homeId) + ", "
                             + std::to_string(awayId) + ", "
-                            + std::to_string(date) + ", "
+                            + std::to_string(team1Goals) + ", "
+                            + std::to_string(team2Goals) + ", "
+                            + std::to_string(date) + ", '"
+                            + status + "', "
                             + std::to_string(id) + ");";
                         PGresult* ret = PQexec(pg, sql.c_str());
                         if (PQresultStatus(ret) != PGRES_COMMAND_OK) 
@@ -319,13 +333,69 @@ bool InsertLeagueMatch(PGconn* pg, int week, int leagueId, int leagueApiId)
     return true;
 }
 
+void updateLeagueStandings(PGconn* pg, int leagueId, int leagueApiId)
+{
+    std::string season = "2026";
+    std::string url = "https://v3.football.api-sports.io/standings";
+
+    cpr::Parameters params;
+    params = {
+        {"league", std::to_string(leagueApiId)},
+        {"season", season},
+    };
+
+    std::string apiKey = "74035ea910ab742b96bece628c3ca1e1";
+
+    cpr::Response r = cpr::Get(cpr::Url{ url },
+        params,
+        cpr::Header{ {"x-apisports-key", apiKey} });
+
+    if (r.status_code == 200)
+    {
+        rapidjson::Document document;
+        document.Parse(r.text.c_str());
+
+        if (document.HasMember("response") && document["response"].IsArray())
+        {
+
+            const rapidjson::Value& standings = document["response"][0]["league"]["standings"][0];
+
+            for (rapidjson::SizeType i = 0; i < standings.Size(); i++)
+            {
+                const rapidjson::Value& team = standings[i];
+                std::string teamName = team["team"]["name"].GetString();
+                int teamId = -1;
+                {
+                    std::string sql = "select id from teams where name = '" + teamName + "';";
+                    PGresult* res = PQexec(pg, sql.c_str());
+                    teamId = atoi(PQgetvalue(res, 0, 0));
+                    PQclear(res);
+                }
+
+                int goalsF = team["all"]["goals"]["for"].GetInt();
+                int goalsA = team["all"]["goals"]["against"].GetInt();
+                int points = team["points"].GetInt();
+
+                std::string sql = "update tables set matches_played = 1, goals_f = " + std::to_string(goalsF)
+                    + ", goals_a = " + std::to_string(goalsA) + ", points = " + std::to_string(points)
+                    + " where league_id = 14 and team_id = " + std::to_string(teamId) + " and season = '26/27';";
+                PGresult* res = PQexec(pg, sql.c_str());
+                PQclear(res);
+            }
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     
     PGconn* pg = ConnectionPool::Get()->getConnection();
-    MatchesInitializer::InitNationsLeagueTeams26_27(pg);
-    for (int i = 1; i <= 6; ++i) {
-        InsertLeagueMatch(pg, i, 7, 5);
+    MatchesInitializer::InitEuropaLeagueTeams26_27(pg);
+    MatchesInitializer::InitEuropaLeagueTable(pg);
+    updateLeagueStandings(pg, 14, 3);
+    
+    for (int i = 1; i <= 8; ++i) {
+        InsertLeagueMatch(pg, i, 14, 3);
     }
     return 0;
     {

@@ -580,6 +580,35 @@ std::string Team::ToString(ETeam team)
     case ETeam::Viking:
         return "Viking";
 
+    case ETeam::Besiktas:
+        return "Beşiktaş";
+    case ETeam::OFICrete:
+        return "OFI";
+    case ETeam::Torreense:
+        return "Torreense";
+    case ETeam::Omonia:
+        return "Omonia Nicosia";
+    case ETeam::BeerSheva:
+        return "Hapoel Beer Sheva";
+    case ETeam::Jagiellonia:
+        return "Jagiellonia";
+    case ETeam::Anderlecht:
+        return "Anderlecht";
+    case ETeam::Lillestrom:
+        return "Lillestrom";
+    case ETeam::LevskiSofia:
+        return "Levski Sofia";
+    case ETeam::Celje:
+        return "Celje";
+    case ETeam::AraratArmenia:
+        return "Ararat-Armenia";
+    case ETeam::Plzen:
+        return "Plzen";
+    case ETeam::LechPoznan:
+        return "Lech Poznan";
+    case ETeam::Nijmegen:
+        return "NEC Nijmegen";
+
     default:
         return "Unknown Team";
     }
@@ -1163,6 +1192,36 @@ std::string Team::ToShortString(ETeam team)
         return "Sabah";
     case ETeam::Viking:
         return "Viking";
+
+
+    case ETeam::Besiktas:
+        return "Besiktas";
+    case ETeam::OFICrete:
+        return "OFI Crete";
+    case ETeam::Torreense:
+        return "Torreense";
+    case ETeam::Omonia:
+        return "Omonia";
+    case ETeam::BeerSheva:
+        return "Beer Sheva";
+    case ETeam::Jagiellonia:
+        return "Jagiellonia";
+    case ETeam::Anderlecht:
+        return "Anderlecht";
+    case ETeam::Lillestrom:
+        return "Lillestrom";
+    case ETeam::LevskiSofia:
+        return "Levski Sofia";
+    case ETeam::Celje:
+        return "Celje";
+    case ETeam::AraratArmenia:
+        return "Ararat Arm.";
+    case ETeam::Plzen:
+        return "Plzen";
+    case ETeam::LechPoznan:
+        return "Lech Poznan";
+    case ETeam::Nijmegen:
+        return "Nijmegen";
 
     default:
         return "Unknown Team";

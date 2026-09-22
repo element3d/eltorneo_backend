@@ -1017,15 +1017,24 @@ void MatchesInitializer::InitChampionsLeagueTeams26_27(PGconn* pg)
     }
 }
 
-void MatchesInitializer::InitEuropaLeagueTeams25_26(PGconn* pg)
+void MatchesInitializer::InitEuropaLeagueTeams26_27(PGconn* pg)
 {
     std::vector<ETeam> newTeams =
     {
-        ETeam::Panathinaikos,
-        ETeam::Ferencvaros,
-        ETeam::Genk,
-        ETeam::Midtjylland,
-        ETeam::Braga
+        ETeam::Besiktas,
+        ETeam::OFICrete,
+        ETeam::Torreense,
+        ETeam::Omonia,
+        ETeam::BeerSheva,
+        ETeam::Jagiellonia,
+        ETeam::Anderlecht,
+        ETeam::Lillestrom,
+        ETeam::LevskiSofia,
+        ETeam::Celje,
+        ETeam::AraratArmenia,
+        ETeam::Plzen,
+        ETeam::LechPoznan,
+        ETeam::Nijmegen
     };
 
     for (int i = (int)newTeams[0]; i <= (int)newTeams[newTeams.size() - 1]; ++i)
@@ -1041,22 +1050,42 @@ void MatchesInitializer::InitEuropaLeagueTeams25_26(PGconn* pg)
 
     std::vector clTeams =
     {
-        ETeam::Bologna,
-        ETeam::Roma,
-        ETeam::Lille,
-        ETeam::AstonVilla,
-        ETeam::Panathinaikos,
-        ETeam::RealBetis,
-        ETeam::Stuttgart,
-        ETeam::Porto,
-        ETeam::CeltaVigo,
-        ETeam::Lyon,
+        ETeam::Juventus,
+        ETeam::CrystalPalace,
+        ETeam::SpartaPrague,
+        ETeam::Besiktas,
+        ETeam::UnionSG,
         ETeam::Ferencvaros,
-        ETeam::Braga,
-        ETeam::Genk,
-        ETeam::Freiburg,
-        ETeam::NottinghamForest,
-        ETeam::Midtjylland
+        ETeam::Benfica,
+        ETeam::BayerLeverkusen,
+        ETeam::OFICrete,
+        ETeam::AFCBournemouth,
+        ETeam::Lyon,
+        ETeam::Torreense,
+        ETeam::Olympiakos,
+        ETeam::Salzburg,
+        ETeam::Sunderland,
+        ETeam::Omonia,
+        ETeam::SturmGraz,
+        ETeam::Rennes,
+        ETeam::DinamoZagreb,
+        ETeam::BeerSheva,
+        ETeam::Jagiellonia,
+        ETeam::RealSociedad,
+        ETeam::Anderlecht,
+        ETeam::Lillestrom,
+        ETeam::CeltaVigo,
+        ETeam::AZAlkmaar,
+        ETeam::LevskiSofia,
+        ETeam::Celtic,
+        ETeam::Hoffenheim,
+        ETeam::ACMilan,
+        ETeam::Celje,
+        ETeam::Marseille,
+        ETeam::AraratArmenia,
+        ETeam::Plzen,
+        ETeam::LechPoznan,
+        ETeam::Nijmegen,
     };
 
     for (auto team : clTeams)
@@ -1164,6 +1193,61 @@ void MatchesInitializer::InitChampionsLeagueTable(PGconn* pg)
         PQclear(ret);
     }
 }
+
+void MatchesInitializer::InitEuropaLeagueTable(PGconn* pg)
+{
+    std::vector clTeams =
+    {
+        ETeam::Juventus,
+        ETeam::CrystalPalace,
+        ETeam::SpartaPrague,
+        ETeam::Besiktas,
+        ETeam::UnionSG,
+        ETeam::Ferencvaros,
+        ETeam::Benfica,
+        ETeam::BayerLeverkusen,
+        ETeam::OFICrete,
+        ETeam::AFCBournemouth,
+        ETeam::Lyon,
+        ETeam::Torreense,
+        ETeam::Olympiakos,
+        ETeam::Salzburg,
+        ETeam::Sunderland,
+        ETeam::Omonia,
+        ETeam::SturmGraz,
+        ETeam::Rennes,
+        ETeam::DinamoZagreb,
+        ETeam::BeerSheva,
+        ETeam::Jagiellonia,
+        ETeam::RealSociedad,
+        ETeam::Anderlecht,
+        ETeam::Lillestrom,
+        ETeam::CeltaVigo,
+        ETeam::AZAlkmaar,
+        ETeam::LevskiSofia,
+        ETeam::Celtic,
+        ETeam::Hoffenheim,
+        ETeam::ACMilan,
+        ETeam::Celje,
+        ETeam::Marseille,
+        ETeam::AraratArmenia,
+        ETeam::Plzen,
+        ETeam::LechPoznan,
+        ETeam::Nijmegen,
+    };
+
+    for (auto team : clTeams)
+    {
+        std::string sql = "insert into tables(team_id, league_id, season) values ("
+            + std::to_string(int(team)) + ", "
+            + std::to_string(int(ELeague::EuropaLeague)) + " ,'"
+            + "26/27"
+            + "');";
+        PGresult* ret = PQexec(pg, sql.c_str());
+        PQclear(ret);
+    }
+}
+
 
 void MatchesInitializer::InitPremierLeagueTeams26_27(PGconn* pg)
 {
