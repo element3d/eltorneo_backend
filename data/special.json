@@ -274,7 +274,8 @@
         "doctor_strange": "Doctor Strange",
         "jumanji3": "Jumanji",
         "unity2": "Unity",
-        "carnage2": "Carnage"
+        "carnage2": "Carnage",
+        "borderlands3": "Borderlands"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -551,6 +552,7 @@
         "doctor_strange": "Доктор Стрэндж",
         "jumanji3": "Джуманджи",
         "unity2": "Unity",
-        "carnage2": "Карнаж"
+        "carnage2": "Карнаж",
+        "borderlands3": "Borderlands"
     }
 }
