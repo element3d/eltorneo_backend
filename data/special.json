@@ -276,7 +276,8 @@
         "unity2": "Unity",
         "carnage2": "Carnage",
         "borderlands3": "Borderlands",
-        "logan": "Logan"
+        "logan": "Logan",
+        "vikings2": "Vikings"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -555,6 +556,7 @@
         "unity2": "Unity",
         "carnage2": "Карнаж",
         "borderlands3": "Borderlands",
-        "logan": "Логан"
+        "logan": "Логан",
+        "vikings2": "Викинги"
     }
 }
