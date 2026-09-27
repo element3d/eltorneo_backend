@@ -19,6 +19,7 @@ public:
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop3();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop20V2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchPredictsTop20V3();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchBetsTop20V2();
@@ -68,6 +69,7 @@ public:
     std::function<void(const httplib::Request&, httplib::Response&)> GetEFootballTableV2();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballSummary();
     std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V2();
+    std::function<void(const httplib::Request&, httplib::Response&)> GetMatchEFootballTop20V3();
 
     std::function<void(const httplib::Request&, httplib::Response&)> GetUserEFootballPredicts();
 

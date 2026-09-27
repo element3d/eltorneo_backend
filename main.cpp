@@ -219,6 +219,7 @@ int main(void)
     svr.Get("/api/v1/match/predicts", PredictsRoute::Get()->GetMatchPredicts());
     svr.Get("/api/v1/match/predicts/top3", PredictsRoute::Get()->GetMatchPredictsTop3());
     svr.Get("/api/v2/match/predicts/top20", PredictsRoute::Get()->GetMatchPredictsTop20V2());
+    svr.Get("/api/v3/match/predicts/top20", PredictsRoute::Get()->GetMatchPredictsTop20V3());
     svr.Get("/api/v1/table/points", PredictsRoute::Get()->GetTableByPoints());
     svr.Get("/api/v2/table/eltorneo", PredictsRoute::Get()->GetElTorneoTable());
     svr.Get("/api/v3/table/eltorneo", PredictsRoute::Get()->GetElTorneoTableV3());
@@ -260,6 +261,7 @@ int main(void)
     svr.Get("/api/v2/efootball_table", PredictsRoute::Get()->GetEFootballTableV2());
     svr.Get("/api/v1/match/efootball/summary", PredictsRoute::Get()->GetMatchEFootballSummary());
     svr.Get("/api/v2/match/efootball/top20", PredictsRoute::Get()->GetMatchEFootballTop20V2());
+    svr.Get("/api/v3/match/efootball/top20", PredictsRoute::Get()->GetMatchEFootballTop20V3());
     svr.Get("/api/v1/user/efootball", PredictsRoute::Get()->GetUserEFootballPredicts());
 
     // World Cup
