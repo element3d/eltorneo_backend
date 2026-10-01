@@ -133,8 +133,8 @@ std::string escape_sql_string(const std::string& input) {
 
 bool IsNationalLeague(int leagueId)
 {
-	if (leagueId == (int)ELeague::UEFAWorldClubQualification
-		|| leagueId == (int)ELeague::WorldCup) return true;
+	if (leagueId == (int)ELeague::UEFAWorldClubQualification || leagueId == (int)ELeague::WorldCup || leagueId == (int)ELeague::NationsLeague) return true;
+
 	return false;
 }
 
