@@ -3934,8 +3934,6 @@ int main()
 {
 
 	PGconn* pg = ConnectionPool::Get()->getConnection();
-	correct(pg);
-	return 0;
 	
 	//FillTodayLineups(pg);
     //GetMatchPlayers(pg, 3966, 1451024, 2, 1, 35, 86, true);
