@@ -278,7 +278,8 @@
         "borderlands3": "Borderlands",
         "logan": "Logan",
         "vikings2": "Vikings",
-        "prowler": "Prowler"
+        "prowler": "Prowler",
+        "hercules": "Hercules"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -559,6 +560,7 @@
         "borderlands3": "Borderlands",
         "logan": "Логан",
         "vikings2": "Викинги",
-        "prowler": "Бродяга"
+        "prowler": "Бродяга",
+        "hercules": "Геркулес"
     }
 }
