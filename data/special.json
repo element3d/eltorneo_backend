@@ -281,7 +281,8 @@
         "logan": "Logan",
         "vikings2": "Vikings",
         "prowler": "Prowler",
-        "hercules": "Hercules"
+        "hercules": "Hercules",
+        "beyond_verse": "Beyond the Spider-Verse"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -565,6 +566,7 @@
         "logan": "Логан",
         "vikings2": "Викинги",
         "prowler": "Бродяга",
-        "hercules": "Геркулес"
+        "hercules": "Геркулес",
+        "beyond_verse": "За пределами вселенных"
     }
 }
