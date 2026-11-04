@@ -282,7 +282,8 @@
         "vikings2": "Vikings",
         "prowler": "Prowler",
         "hercules": "Hercules",
-        "beyond_verse": "Beyond the Spider-Verse"
+        "beyond_verse": "Beyond the Spider-Verse",
+        "gotham": "Gotham"
     },
     "ru": {
         "mortal_kombat": "Смертельная битва",
@@ -567,6 +568,7 @@
         "vikings2": "Викинги",
         "prowler": "Бродяга",
         "hercules": "Геркулес",
-        "beyond_verse": "За пределами вселенных"
+        "beyond_verse": "За пределами вселенных",
+        "gotham": "Готэм"
     }
 }
